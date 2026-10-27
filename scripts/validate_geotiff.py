@@ -59,8 +59,10 @@ def validate(raster_path: Path, template_path: Path) -> dict:
         checks = {
             # A sidecar mask can change the interpreted pixels without changing TIFF SHA-256.
             # Require both the candidate and reference footprint to be self-contained files.
-            "candidate_single_file": all(Path(p).resolve() == raster_path.resolve() for p in candidate.files),
-            "template_single_file": all(Path(p).resolve() == template_path.resolve() for p in template.files),
+            "candidate_single_file": bool(candidate.files) and all(Path(p).resolve() == raster_path.resolve() for p in candidate.files),
+            "template_single_file": bool(template.files) and all(Path(p).resolve() == template_path.resolve() for p in template.files),
+            "candidate_geotiff": candidate.driver == "GTiff",
+            "template_geotiff": template.driver == "GTiff",
             "single_band": candidate.count == 1,
             "float32": candidate.dtypes[0] == "float32",
             "reference_epsg_32611": template.crs == CRS.from_epsg(32611),

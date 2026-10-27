@@ -33,5 +33,5 @@ jobs:
       - name: Public JSON must be browser-parseable
         run: node -e 'for (const p of require("fs").readdirSync("docs").filter(p=>p.endsWith(".json"))) JSON.parse(require("fs").readFileSync("docs/"+p,"utf8"))'
 # Existing Pages is legacy main:/, not workflow-deployed. GitHub's native Pages
-# build publishes the root redirect and docs/. Do not invoke configure-pages
+# build publishes the root site and retained docs/. Do not invoke configure-pages
 # without permissions to change that deployment mode.

@@ -10,7 +10,7 @@ The official metric computes a distance-weighted Tversky index with α=0.2, β=0
 
 ## Four candidate mechanisms — untested, ranked qualitatively
 
-These are ideas, **not** numerical DTI projections, assigned lanes, or validated claims of novelty. The local project had no geological model. We examined the pinned GEMSDOE32 template and the nine saved README snapshots, not every historical commit or every sibling site, so uniqueness across parallel projects remains unproven. A fresh search and lane assignment are prerequisites.
+These are ideas, **not** numerical DTI projections, assigned lanes, or validated claims of novelty. A parallel review in this same repository independently proposed a very similar signed gravity–magnetic profile ([its slate](https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/research/2026-10-27-review.md)); our rank 1 is not unique across parallel ideas and must not be claimed as a separate lane. The local project had no geological model. We examined the pinned GEMSDOE32 template and the nine saved README snapshots, not every historical commit or every sibling site, so uniqueness across parallel projects remains unproven. A fresh search and lane assignment are prerequisites.
 
 | Rank | Layers and proposed signature | Why a catalogue-missing fault might respond; non-fault mimic | Difference from reviewed work, and estimated cost/data status |
 |---|---|---|---|

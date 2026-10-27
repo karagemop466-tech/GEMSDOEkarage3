@@ -2,7 +2,7 @@
 
 **Start every session here. Current decision: NOT OK TO SUBMIT.**
 
-[Executive overview](docs/index.html) · [Submission guide](docs/executive-summary.html) · [Research](docs/research.html) · [Detailed evidence ledger](docs/research.md) · [Historical forensics](docs/historical-review.html) · [Run card](docs/run-card.json)
+[Root overview](index.html) · [Live activity desk](docs/index.html) · [Submission guide](docs/executive-summary.html) · [Research](docs/research.html) · [Detailed evidence ledger](docs/research.md) · [Historical forensics](docs/historical-review.html) · [Run card](docs/run-card.json) · [Project brief](docs/PROJECT_BRIEF.md)
 
 ## Standing project brief (normalized from the supplied repeated prompt)
 
@@ -20,7 +20,7 @@ Before implementing a geological model, rank 3–5 hypotheses with specific laye
 6. Stop after three experiments or two hours. Promotion to a real weekly slot is a separate selector step. Never spend a slot on an unvalidated idea.
 7. End with one JSON run card: hypothesis, mechanism, named non-fault mimic, holdout + CI, registry comparisons, raster SHA-256, saved-byte validator results, name, short note and promote/negative verdict. Negative results are deliverables.
 
-The exact saved TIFF must be single-band float32, match an authenticated organizer template's CRS/shape/geotransform, have no non-finite or masked values in the footprint, and contain [0,1] predictions. Check finite nodata sentinels as well and reject external mask sidecars not bound by the TIFF hash. The organizer's outside-bounds null/NaN wording and the reported range rejection need reconciliation; neither outside encoding has been proven accepted in this run. A metadata gate is not a scientific evaluation or an upload authorization. No human inspection waiver can turn missing evidence into a pass.
+The exact saved TIFF must be single-band float32, match an authenticated organizer template's CRS/shape/geotransform, have no non-finite or masked values in the footprint, and contain [0,1] predictions. Check finite nodata sentinels as well and reject external mask sidecars not bound by the TIFF hash. The conservative gate independently requires both raw-array finite/range and outside-null diagnostics; a synthetic internal-mask file passes locally, but the shared writer does not currently emit this combined encoding and portal acceptance is unknown. A metadata gate is not a scientific evaluation or an upload authorization. No human inspection waiver can turn missing evidence into a pass.
 
 ## Current result
 
@@ -28,7 +28,7 @@ No new candidate, new TIFF, candidate holdout or weekly upload. A pinned shared 
 
 An independent [historical raster audit](docs/priority-audit.json) found that GEMSDOE32's historical mask is GEMSDOE31's mask with the 2,545 pixels within two pixels of the mirrored catalogue removed. The 0.2778 value is **USER/OWNER-REPORT**, without a linked organizer receipt. All 72 directional comparisons among the selected nine historical masks exceed 70% proximity. The registered lattice covers all but 6,649 proxy-footprint cells within three pixels, giving an **82.34% lower bound** for any 37,654-dot candidate. This is a geometry result, not a score, full-registry audit, or impossibility proof for every smaller budget. See [research](docs/research.md#literal-lattice-stop-a-reproducible-counting-bound).
 
-The [official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) showed a leader at 0.4544 on 27 October 2026. This is a public-board snapshot, not an organizer receipt for our file; it may already be stale. DrivenData's [terms](https://www.drivendata.org/termsofuse/) prohibit automated monitoring, so the site checks public GitHub heads and displays commit subjects only, not the DrivenData leaderboard. That activity feed does not verify new scores or files. The signed-in submission page was inaccessible.
+The [official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) showed a leader at 0.4544 on 27 October 2026. This is a public-board snapshot, not an organizer receipt for our file; it may already be stale. DrivenData's [terms](https://www.drivendata.org/termsofuse/) prohibit automated access, so the site checks public GitHub heads and displays commit subjects only, not the DrivenData leaderboard. That activity feed does not verify new scores or files. The signed-in submission page was inaccessible.
 
 The shared writer and evaluator silently binarize positive probability values; the existing [upstream issue #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37) documents it. This session has read-only upstream access, did not modify or privately fork those tools, and blocks continuous candidates until the shared contract is corrected. The requested verbatim prompt is not archived here; this is a normalized brief.
 

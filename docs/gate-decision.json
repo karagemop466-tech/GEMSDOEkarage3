@@ -25,6 +25,7 @@
     "outside-footprint encoding/portal behavior unresolved or mismatched",
     "shared template probability contract is not fixed",
     "independent saved-byte candidate/template inspection missing or mismatched",
+    "missing independently verified strict outside/null and raw-array range diagnostic",
     "invalid submission name/note"
   ]
 }

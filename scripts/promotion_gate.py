@@ -27,8 +27,8 @@ def interval(value, low, high):
             and low <= value[0] <= value[1] <= high)
 
 
-def assess(card, inspected=None):
-    """Evaluate metadata and an independently produced saved-byte inspection.
+def assess(card, inspected=None, strict_inspected=None):
+    """Evaluate metadata and independently produced saved-byte inspections.
 
     `promote` means eligible for the separate selector, never automatic upload approval.
     False or missing evidence fails closed. Caller-supplied scientific receipts still need
@@ -156,6 +156,25 @@ def assess(card, inspected=None):
             and inspected.get('template_sha256') == v.get('template_sha256')
             and inspected.get('inside_binary') is True,
             'independent saved-byte candidate/template inspection missing or mismatched')
+    # Preserve the parallel gate's stricter simultaneous raw-range + outside-null
+    # diagnostic. An embedded finite-valued mask can satisfy both locally; neither
+    # this check nor a metadata assertion proves actual organizer acceptance.
+    diagnostic = mapping(card.get('format_diagnostic'))
+    diagnostic_checks = mapping(diagnostic.get('checks'))
+    strict_checks = ('template_epsg32611_and_100m_unrotated', 'geotiff',
+                     'self_contained_no_sidecars', 'single_band', 'float32',
+                     'crs_shape_transform_match_template', 'inside_finite_and_in_range',
+                     'inside_not_masked', 'no_positive_outside_footprint',
+                     'all_cell_finite_range', 'outside_null_or_nan')
+    require(diagnostic.get('strict_format_gate_pass') is True
+            and diagnostic.get('sha256') == sha and sha256_string(sha)
+            and diagnostic.get('template_sha256') == v.get('template_sha256')
+            and all(diagnostic_checks.get(key) is True for key in strict_checks)
+            and isinstance(strict_inspected, dict) and strict_inspected.get('strict_format_gate_pass') is True
+            and strict_inspected.get('sha256') == sha
+            and strict_inspected.get('template_sha256') == v.get('template_sha256')
+            and all(mapping(strict_inspected.get('checks')).get(key) is True for key in strict_checks),
+            'missing independently verified strict outside/null and raw-array range diagnostic')
     require(isinstance(card.get('submission_name'), str) and bool(card['submission_name'].strip())
             and isinstance(card.get('note'), str) and 0 < len(card['note']) <= 140,
             'invalid submission name/note')
@@ -170,16 +189,19 @@ def main():
     parser.add_argument('--template', type=Path, help='Exact organizer template bytes to reopen')
     args = parser.parse_args()
     inspected = None
+    strict_inspected = None
     inspection_error = None
     if args.raster and args.template:
         try:
             # Kept optional so a missing rasterio install still returns a negative decision.
             from validate_geotiff import validate
+            from check_format import inspect
             inspected = validate(args.raster, args.template)
-        except (ImportError, OSError, ValueError) as exc:
-            inspection_error = str(exc)
+            strict_inspected = inspect(args.raster, args.template)
+        except Exception as exc:  # All inspection failures must remain negative.
+            inspection_error = f'{type(exc).__name__}: {exc}'
     try:
-        result = assess(json.loads(args.card.read_text()), inspected)
+        result = assess(json.loads(args.card.read_text()), inspected, strict_inspected)
     except (OSError, ValueError, TypeError) as exc:
         result = {'verdict': 'negative', 'ok_to_submit': False, 'selector_required': True,
                   'reasons': [f'could not parse card: {exc}']}

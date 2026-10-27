@@ -1,6 +1,6 @@
 {
   "kind": "READ-ONLY-HISTORICAL-FORMAT-AUDIT; not organizer authentication, score or submission approval",
-  "checked_utc": "2026-10-27T21:28:46+00:00",
+  "checked_utc": "2026-10-27T21:38:09+00:00",
   "template_provenance": "hash-pinned owner-mirrored sample, not authenticated organizer template",
   "outside_encoding_accepted_by_portal": null,
   "rasters": [
@@ -21,6 +21,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -56,6 +58,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -91,6 +95,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -126,6 +132,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -161,6 +169,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -196,6 +206,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -231,6 +243,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -266,6 +280,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
@@ -301,6 +317,8 @@
       "checks": {
         "candidate_single_file": true,
         "template_single_file": true,
+        "candidate_geotiff": true,
+        "template_geotiff": true,
         "single_band": true,
         "float32": true,
         "reference_epsg_32611": true,
