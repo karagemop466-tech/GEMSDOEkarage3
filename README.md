@@ -1,95 +1,148 @@
-# GEMSDOEkarage3 — DOE GEMS Geothermal Fault Discovery (`H-K3-1: CRSB-GUB`)
+# GEMS Fieldnotes
 
-> **UNMISTAKABLE SUBMISSION STATUS (`2026-10-27`):**
-> - **Technical Format & `[0, 1]` Range Gate:** **`PASS`** — `13 / 13` automated saved-byte GeoTIFF checks passed (`EPSG:32611`, `3730 × 3292`, `float32`, `nodata = None`, **`12,279,160 / 12,279,160` cells finite inside `[0.0, 1.0]`**, `37,654` off-catalogue dots, `0` on-catalogue dots; immune to DrivenData's `Predicted values must be in range [0, 1]` error).
-> - **Cross-Registry Uniqueness Gate:** **`PASS`** — Pre-placement continuous belief surface `max |Spearman| = 0.6525 <= 0.90` across **`1,789` unique SHA-256 rasters (`2,148` files across `104` repositories)**; final discrete dots `max 3-px overlap = 66.27% <= 70.00%` across all `1,577` discrete candidate rasters (`44.11%` vs. the `0.2778` `GEMSDOE32` Champion; `<= 65.05%` across all 9 focus sites `GEMSDOE24..36`).
-> - **Scientific Weekly-Slot Promotion Gate (`scripts/promotion_gate.py`):** **`HOLD — DO NOT SPEND WEEKLY SUBMISSION SLOT YET` (`verdict: "negative"`, `ok_to_submit: false`)** — `EXP-3` (`CRSB-GUB MaxEnv`) beats the `0.2778` `GEMSDOE32` Champion in point `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`: **`0.106042`** vs. `0.099202`, **`+0.006840` / `+6.9%`**, `93.1%` bootstrap win probability), while purely unsupervised `EXP-1` beats the Champion on off-catalogue `SGMC-CAL-v3.0` (**`0.067889`** vs. `0.064121`, **`+0.003768`**). However, `EXP-3`'s 256-block paired 95% CI (`[-0.002006, +0.016383]`) narrowly crosses zero and its `SGMC-CAL-v3.0` is `0.057360` vs. `0.064121`. Per Parallel-Run Protocol Rule 6, **hold weekly slot expenditure unless chosen by cross-lane portfolio selection.**
+**Read this README, the [project brief](docs/PROJECT_BRIEF.md), and [current run card](docs/data/current-run.json) at the beginning of every session.**
 
-- **Executive Summary Dashboard:** [`docs/index.html`](docs/index.html)
-- **Step-by-Step Contest Submission Guide:** [`docs/executive-summary.html`](docs/executive-summary.html)
-- **PhD Technical Monograph & 9-Site Forensic Analysis:** [`docs/research.md`](docs/research.md)
-- **Locked Preregistration (`H-K3-1`..`H-K3-4`):** [`docs/research/hypotheses-preregistration-karage3.md`](docs/research/hypotheses-preregistration-karage3.md)
-- **JSON Run Card:** [`docs/run-card.json`](docs/run-card.json)
-- **Audited Irregularities & Shared-Template Fixes:** [`registry/irregularities.json`](registry/irregularities.json)
+An evidence-first workspace for the [DOE GEMS Prize Challenge](https://www.drivendata.org/competitions/306/competition-doe-gems/): map previously unidentified geological **faults** relevant to geothermal exploration. A fault prediction is not proof of a geothermal vent.
 
----
+## Current decision: DO NOT SUBMIT
 
-## 1. Validated Unique GeoTIFF Download & DrivenData Submission Metadata
+**There is no new candidate TIFF, no defensible estimated organizer score, and no authorized weekly slot.** The current request refers to a single assigned method paragraph, but does not provide one. Independent raster forensics also found a literal registry conflict: the registered 13GEMSDOE lattice makes any 37,654-distinct-dot candidate overlap it by at least **82.34%** within three pixels, above the requested 70% limit. This is a geometric bound, not a score; it does not prove all smaller budgets impossible. Do not optimize dots into the lattice holes to evade the test.
 
-| Field | Value |
-| :--- | :--- |
-| **Primary GeoTIFF (`.tif`)** | [`docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif) (`212,468` bytes) |
-| **Single-GeoTIFF Archive (`.zip`)** | [`docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.zip`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.zip) (`179,446` bytes) |
-| **Saved-Byte SHA-256 (`.tif`)** | `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3` |
-| **Saved-Byte SHA-256 (`.zip`)** | `3ab00ae5be1068bd80df4788a403825162490a57942c70e1492a51185ea3556d` |
-| **13-Check Validator Receipt** | [`docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-audit.json`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-audit.json) |
-| **DrivenData Submission Note (`111 / 140` chars)** | `H-K3-1 CRSB-GUB: Verduzco THDR+Riedel stepover+GDR1391 geotherm diseq+DualCover OOF d=3.0 (37654d, [0,1] zeros)` |
+The best of the **user-reported, unverified** historical focus-site values is GEMSDOE32’s **0.2778**; no submission-page receipt here binds that value to the raster. It is already reported, not a new submission. All nine pinned historical files fail the focus-site proximity test. The [site](index.html) and [executive submission guide](executive-summary.html) put the decision and evidence up front. No competition submission was made.
 
----
+> **Latest Method-Lane Update (`H-K3-1: CRSB-GUB`, branch `arena/2df0b70e-gemsdoekarage3`):**
+> - **Dashboard & Step-by-Step Submission Guide:** [`docs/crsb-gub/index.html`](docs/crsb-gub/index.html) · [`docs/crsb-gub/executive-summary.html`](docs/crsb-gub/executive-summary.html) · [`docs/crsb-gub/research.md`](docs/crsb-gub/research.md) · [`docs/crsb-gub/run-card.json`](docs/crsb-gub/run-card.json)
+> - **Validated Unique GeoTIFF (`13/13` `[0, 1]` checks `PASS`):** [`docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif) (`212,468` B, SHA-256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3`) and [single-file `.zip`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.zip) (`179,446` B, SHA-256 `3ab00ae5be1068bd80df4788a403825162490a57942c70e1492a51185ea3556d`).
+> - **Submission Note (`111 / 140` chars):** `H-K3-1 CRSB-GUB: Verduzco THDR+Riedel stepover+GDR1391 geotherm diseq+DualCover OOF d=3.0 (37654d, [0,1] zeros)`
+> - **Scientific Verdict (`verdict: "negative"`, `ok_to_submit: false` — HOLD WEEKLY SLOT):** `EXP-3` (`CRSB-GUB MaxEnv`, `37,654` dots) beats the `0.2778` `GEMSDOE32` Champion rule in point `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`: **`0.106042`** `[0.0915, 0.1192]` vs. `0.099202`, **`+0.006840` / `+6.9%`**, `93.1%` bootstrap win prob) and unsupervised `EXP-1` beats the Champion on off-catalogue `SGMC-CAL-v3.0` (**`0.067889`** vs. `0.064121`), while passing discrete uniqueness across **`1,577` candidate rasters in `104` repositories** (`max 3-px overlap = 66.27% <= 70%`, `44.11%` vs. `GEMSDOE32`, `max |Spearman| = 0.6525 <= 0.90`; literal `r13-lattice-s5` `206,895`-dot grid overlap `98.85%` reported transparently without silent exemption). Because the 256-block paired 95% CI (`[-0.002006, +0.016383]`) narrowly crosses zero and `EXP-3`'s `SGMC-CAL-v3.0` is `0.057360`, **do not spend a weekly submission slot without cross-lane selector authorization.**
 
-## 2. Executive Summary Across `GEMSDOEkarage3` & Nine Focus Sites (`GEMSDOE24..36`)
+## Mission and standing instructions
 
-Every supplied historical site winner was SHA-256-verified from local GeoTIFF bytes (`scripts/audit_exact_nine_winners.py` -> [`evidence/nine-site-audit-20261027.json`](evidence/nine-site-audit-20261027.json)) and scored on canonical `GEMSDOE32-HIDE-RECOVER-v3.0` (`n=22,232`) and `GEMSDOE32-SGMC-CAL-v3.0` (`n=62,703`):
+* **Maximize P(Win):** prioritize well-supported, generalizable fault discovery, responsible uncertainty, and conservation of weekly slots—not cosmetic hash changes or leaderboard guessing.
+* **Own the Outcome:** make missing data, failed gates and negative results visible; independently check saved bytes and record provenance. No human inspection should be required to validate a future artifact; the protocol still requires a **separate** slot selector.
+* Focus the executive comparison on GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36. Link historical files only as research references. Never recommend an already-submitted or unvalidated file as new.
+* Stay in the explicitly assigned single method lane. Before placement and on final dots, stop if rank correlation exceeds 0.90 or more than 70% of dots are within 3 pixels of **any** registered raster. Missing/undefined comparisons do not pass. Do not silently exempt controls.
+* Reuse the shared template feature stack, `evaluate_holdout.py` and `submission_writer.py`; do not create a private scientific fork. Hide whole segments with a buffer, derive catalogue-dependent features only from visible faults, mask visible faults pixel-exactly, and score pooled distance-weighted Tversky (α 0.2, β 0.8, 300 m triangular kernel). Run one-feature leakage canaries; AUC above 0.90 is leakage until resolved.
+* Scientific values must be **HOLDOUT-DTI** with evaluator/version, withheld positives and 95% CI, or **ORGANIZER-CONFIRMED** from a submission-page receipt. Owner/user-reported historical values remain explicitly **unverified**, never mislabeled as confirmed. A projection is not a score.
+* Pre-register three to five geological hypotheses, with specific layers, physical signature, why faults may be missing, non-fault mimics, distinctness and cost. Beat the same-protocol holdout best before a separate selector considers a weekly slot. Stop after three experiments or two hours; negative results are deliverables.
+* End each run with a JSON card: hypothesis, mechanism, non-fault mimic, HOLDOUT-DTI and CI, surface/dot registry comparisons, TIFF SHA-256, exact-byte validator result, submission name and ≤140-character note, and promote/negative verdict. Missing evidence must be `null`, not invented.
+* Run multiple passes: implementation and verification; bug/edge-case review; final requirement and reliability review. Use official, verifiable sources and flag what cannot be checked. The user requested a PR and merge onto main once work is verified.
 
-| Site | Audited Candidate File | Measured `HOLDOUT-DTI` (`HIDE-RECOVER-v3.0` / `SGMC-CAL-v3.0`) | Historical (`OWNER-REPORT`) | Uniqueness vs. `GEMSDOEkarage3` | Upload Status |
-| :--- | :--- | :--- | :---: | :--- | :--- |
-| **`GEMSDOEkarage3`** | `gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif` (`37,654` dots) | **`0.106042`** `[0.0915, 0.1192]` / `0.057360` `[0.0495, 0.0649]` | Not submitted (`0` slots) | **PASS** (`max 66.27% <= 70%` across `1,577` discrete rasters; `max |rho|=0.6525 <= 0.90`) | **FORMAT SAFE `[0,1]` · HOLD SLOT (`negative`)** |
-| **`GEMSDOE32`** | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`37,654` dots) | `0.099202` *(d2.8 parent)* / `0.064121` `[0.0559, 0.0721]` | **`0.2778`** | `44.11%` 3-px overlap (site max `65.05%`) | Prior benchmark — do not re-submit |
-| **`GEMSDOE36`** | `gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif` (`38,854` dots) | `0.004577` *(in-sample B=2 censored)* / `0.064444` | `0.2750` | `44.70%` 3-px overlap (`96.9%` overlaps `GEMSDOE32`) | Prior duplicate family — do not re-submit |
-| **`GEMSDOE28`** | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif` (`37,660` dots) | `0.028932` *(partial censor)* / `0.062967` | `0.2710` | `45.14%` 3-px overlap (site max `52.86%`) | Prior `H19-5` derivative — do not re-submit |
-| **`GEMSDOE31`** | `gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif` (`55,304` dots) | `0.038714` / `0.057724` | `0.2708` | `47.68%` 3-px overlap (identical to `GEMSDOE28` B1) | Prior duplicate — do not re-submit |
-| **`GEMSDOE33`** | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif` (`41,865` dots) | `0.050690` / `0.062551` | `0.2632` | `46.25%` 3-px overlap (site max `46.64%`) | Prior `H19-5` derivative — do not re-submit |
-| **`GEMSDOE25`** | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` (`44,090` dots) | `0.099202` / `0.060592` | `0.2600` | `46.64%` 3-px overlap (`NaN` outside footprint) | `NaN`-outside hazard / prior — do not submit |
-| **`GEMSDOE30`** | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` (`44,090` dots) | `0.099202` / `0.060592` | `0.2600` | `46.64%` 3-px overlap (`SHA == GEMSDOE25`) | Pixel-identical to `GEMSDOE25` — do not submit |
-| **`GEMSDOE24`** | `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif` (`60,069` dots) | `0.097204` / `0.057932` | `0.2477` | `48.26%` 3-px overlap (`d=1.5` over-dense) | Superseded — do not submit |
-| **`GEMSDOE27`** | `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif` (`61,328` dots) | `0.096778` / `0.058262` | `0.2449` | `48.84%` 3-px overlap (`d=1.5` + bridges) | Superseded — do not submit |
+The [project brief](docs/PROJECT_BRIEF.md) preserves the user's detailed request and unverified historical inventory, with repeated sections consolidated. The [research slate](docs/research-notes.md) includes four **unrun** proposals. The [source register](docs/data-sources.md) distinguishes official data, owner mirrors and inaccessible inputs.
 
----
+## What this checkout actually contains
 
-## 3. Reproducible End-to-End Commands
+* A GitHub Pages dashboard, submission guide, research slate and source register. The browser checks public GitHub repository heads for changes; it does **not** scrape DrivenData, recompute scientific evidence or update organizer scores.
+* An independently reproducible [nine-file/lattice forensic audit](docs/data/historical-audit.json). It uses pinned owner-repository bytes and records all 72 directional comparisons and a single-lattice witness. It is **not** a complete registry or a holdout evaluation.
+* A [read-only TIFF auditor](scripts/validate_raster.py) that checks the exact bytes without clipping; it reports the conservative template-null and whole-array-finite conventions separately. Neither result proves organizer acceptance or a weekly-slot authorization.
+* A wrapper that executes the **unchanged, hash-pinned shared restorer**. During this session it restored four core owner-mirrored rasters and verified their hashes; [receipt](evidence/core-data-mirror-receipt.json). The large data stay in an ignored, ephemeral cache. They are not authenticated copies from DrivenData. The shared cached derived feature stack is absent.
+* No trained model, new geological experiment, new submission TIFF, feature-canary result, holdout score, complete registry, authenticated organizer receipt or personal quota.
 
-```bash
-# 1. Restore SHA-256-verified competition + external + historical scored inputs (30 files)
-.venv/bin/python scripts/restore_data.py --group all
-.venv/bin/python scripts/prepare_data.py
-.venv/bin/python scripts/build_features.py
+### Shared-tool warning
 
-# 2. Fetch complete 104-repository GeoTIFF registry (2,148 rasters / 1,793 unique SHA-256s)
-.venv/bin/python scripts/fetch_all_registry.py --jobs 8
+At the pinned GEMSDOE32 revision, its local CLI `scripts/evaluate_holdout.py` and `scripts/submission_writer.py` silently turn continuous positive probabilities into booleans. This does not preserve the organizer's continuous metric. [Upstream issue #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37) is already open. The separately vendored shared evaluator accepts continuous values. This account has read-only access to that repository, so the shared bug was not fixed here and no private fork was created. See [research notes](docs/research-notes.md#critical-implementation-irregularity).
 
-# 3. Build 16 label-free CRSB-GUB physical channels & run 51-channel single-feature leakage canary
-.venv/bin/python scripts/build_crsb_features.py
+## Reproduce the audit (no submission slot needed)
 
-# 4. Run 3-experiment ablation (EXP-1..3), 104-repo uniqueness scan, 9-site audit & 13-check GeoTIFF writer
-.venv/bin/python scripts/run_crsb_ablation.py
-.venv/bin/python scripts/audit_exact_nine_winners.py
+Python 3.11+, `gh`, and network access to GitHub are needed. Never commit large data or credentials. The restorer uses the existing GitHub authentication if configured; the files are public mirrors, not official-authenticated data.
 
-# 5. Run automated fail-closed promotion gate & test suite
-.venv/bin/python scripts/promotion_gate.py docs/run-card.json   # expected exit 2 ('negative')
-.venv/bin/python -m pytest -v
+```sh
+python -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+python scripts/restore_mirror.py             # ~419 MB of ignored, hash-checked core mirrors
+python scripts/audit_historical.py            # pinned historical TIFFs + lattice → JSON
+python scripts/build_run_card.py              # bind the zero-experiment negative card to that audit
+python scripts/preflight.py --dots 37654      # exits 1: duplicate-stop; 2 means inconclusive, never approval
+python scripts/build_site.py                  # regenerate snapshot-backed pages
+python scripts/build_site.py --check
+python -m pytest -q
 ```
 
----
+A real candidate can be checked independently without modifying it:
 
-## 4. Standing Reference: User Project Prompt & Parallel-Run Protocol
+```sh
+python scripts/validate_raster.py candidate.tif --template .cache/competition-mirror/sample_submission.tif
+# Optional whole-file range diagnostic, NOT proof of organizer acceptance:
+python scripts/validate_raster.py candidate.tif --template .cache/competition-mirror/sample_submission.tif --require whole-array
+```
 
-<details>
-<summary><strong>Click to expand standing user instructions &amp; Parallel-Run Protocol</strong></summary>
+The organizer says one float32 GeoTIFF on the same grid, with predictions in [0,1] and null/NaN outside bounds. The mirrored template has an irregular NaN footprint. The conservative null-outside check and all-finite diagnostic answer different questions; the reported portal range error's cause is unknown. Do not silently repair input values.
 
-### Standing Mission & Deliverables
-- Compete in the DrivenData DOE GEMS Prize (`https://www.drivendata.org/competitions/306/competition-doe-gems/`): predict locations of hidden unmapped geothermal faults across the Northwestern Great Basin (`EPSG:32611`, `3730 × 3292` at `100 m` resolution) using airborne magnetics/radiometrics (GeoDAWN), gravity, detrended topography, geodesy, seismicity, conductivity, and verified public geothermal datasets.
-- Focus sites to audit and compare: `GEMSDOE24` (`0.2477`), `GEMSDOE25` (`0.2600`), `GEMSDOE27` (`0.2449`), `GEMSDOE28` (`0.2710`), `GEMSDOE30` (`0.2600`), `GEMSDOE31` (`0.2708`), `GEMSDOE32` (`0.2778`, `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`), `GEMSDOE33` (`0.2632`), and `GEMSDOE36` (`0.2750`), alongside unverified prompt leaderboard reference values (`0.3195` / `0.4413`).
-- Explain at PhD level why `GEMSDOE32` (`0.2778`) outperformed the peer sites and what physical/statistical advances are needed to surpass it.
-- Propose and rank 3–5 untried geological hypotheses prior to implementation (naming layers, physical signature/transform, why it catches missing uncatalogued faults rather than mapped scarps, difference from existing repo methods, expected DTI gain, implementation cost, and free official data sources).
-- Generate a genuinely unique single-band GeoTIFF (`.tif` and single-file `.zip`) matching `sample_submission.tif` CRS, shape, and geotransform, with values strictly in `[0, 1]` and zero NaNs inside the footprint (preventing `"Predicted values must be in range [0, 1]"`), automated validation checks, unmistakable top-of-site approval/status indicator, unique filename, and DrivenData submission note (`<= 140` chars).
-- Complete 3 review passes (Pass 1: implement & verify; Pass 2: review & fix bugs/assumptions/edge cases; Pass 3: re-verify every requirement), then open and merge a PR onto `main`.
+## Next steps and limitations
 
-### Parallel-Run Protocol (Mandatory Rules)
-1. **Lane uniqueness:** Check both continuous surface before placement AND final dots against all registry rasters; if rank correlation `|Spearman| > 0.90` OR `> 70%` of dots fall within `3 px` of a discrete candidate raster's dots, log as duplicate and stop.
-2. **Reuse, don't rebuild:** Reuse the template's cached feature stack, `evaluate_holdout.py`, and `submission_writer.py`. Holdout = hide-and-recover (withhold whole fault segments with spatial buffer, derive catalogue-based features solely from visible faults, mask visible faults pixel-exactly, score pooled DTI with `alpha=0.2, beta=0.8`, `300 m` triangular kernel). Fix shared tool bugs in the template; never keep a private fork.
-3. **Score labeling:** Label every number `HOLDOUT-DTI` (with evaluator version, withheld positive count, 95% CI) or `ORGANIZER-CONFIRMED` (or `OWNER-REPORT` when unverified by portal receipt). Never write a projection as a score.
-4. **Leakage canary:** Test each feature alone on holdout before trusting results; `AUC > 0.90` is leakage until proven otherwise.
-5. **One run card at the end:** Output the JSON Run Card with hypothesis, mechanism, named non-fault mimic process, holdout DTI + CI, correlation/overlap vs registry, raster `sha256`, validator output, submission name + note (`<= 140` chars), and verdict (`promote` or `negative`).
-6. **Budget:** Stop after `3` experiments or `2` hours. Do not spend a weekly submission slot on an idea that has not beaten holdout best.
+1. Coordinate an explicit method lane and resolve the literal calibration-lattice policy without silently weakening it. The strict rule currently stands.
+2. Obtain an authenticated organizer template/data and a complete, refreshed registry; verify external data licenses/coverage. Owner-mirror hashes establish consistency, not organizer provenance. Resolve the mirrored example/label discrepancy.
+3. Fix the shared upstream probability-wrapper defect once, then use the shared cached stack and a fold-local evaluator with per-feature canaries, matched incumbent, pooled DTI and paired spatial-block uncertainty.
+4. If all checks pass, write and re-open the **new** TIFF using the shared writer, audit surface and dots against the complete registry, and use a separate selector to check the real weekly quota. Record the exact-file organizer receipt; no estimated leaderboard score should be invented.
+5. Confirm deadline details and eligibility under the [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), including disclosure of generative AI in the required narrative. The official page and PDF contain a time ambiguity; plan conservatively.
 
-</details>
+The [verification workflow](.github/workflows/verify.yml) checks the generated snapshots, unit tests and JavaScript syntax on pushes and pull requests. It does not download competition data, recompute the historical raster audit, run a model or authorize submissions. Its availability depends on the repository's Actions settings.
+
+## Parallel evidence desk and retained tools
+
+Other parallel reviews have also been merged into this repository. Their [earlier dashboard](docs/index.html), [readiness report](docs/readiness.json), [historical raster audit](docs/historical-audit.json), [run card](docs/run-card.json), and commit-pinned [shared-tool inspection](evidence/template-inspection/README.md) are retained for provenance. They are complementary historical records—not a new candidate or a second weekly-slot decision. The root site and `docs/data/current-run.json` describe **this** preflight; both prior and current cards are negative. The upstream source snapshots are for inspection, not private modified scientific tools.
+
+Existing `scripts/check_readiness.py`, `scripts/promotion_gate.py`, `scripts/audit_historical_rasters.py`, `scripts/verify_historical_rasters.py`, and their tests remain in place. `scripts/promotion_gate.py` evaluates supplied metadata and does not authenticate a producer or grant upload permission. The earlier browser tests can be run with `npm ci --no-audit --no-fund && npm test`; the earlier Python suite with `python -m unittest discover -s tests -v`. All large datasets under `data/` are ignored except the tracked focus registry manifest.
+
+## Additional independent preflight
+
+[Research dashboard](docs/preflight.html) · [Nine-site scorecard and submission guide](docs/preflight-executive.html) · [Scientific review](research/2026-10-27-review.md) · [Independent geometry audit](evidence/geometry_audit.json) · [Negative run card](evidence/run_card.json)
+
+A second independent audit re-fetched the pinned input bytes into a fresh cache and reproduced the 82.34% lattice lower bound and 72 directional historical comparisons. It also checked changes in a newer GEMSDOE25 research report without treating its density-aware exclusions as permission to waive the literal rule. Four additional ranked hypotheses are untested planning leads, not proven novel across all projects.
+
+The organizer's public leaderboard page showed **0.4544** in first place on 2026-10-27. This is a dated public observation, not a receipt linking a score to any local file. Automated HTTPS refresh from the sandbox failed, so the checked-in observation is marked stale. Browser-side public GitHub metadata checks never authorize a submission. The published official rules state three submissions per week, subject to current site limits; account usage is unknown.
+
+`scripts/check_format.py` examines exact TIFF bytes without repair and separates in-footprint checks, a conservative outside-null check and whole-array range. Passing a local validator alone does not establish organizer acceptance. The metadata promotion gate also requires that conservative diagnostic, bound to the same candidate hash, alongside the shared validator. `evidence/shared_tool_repro.json` records a software-only reproduction of [upstream issue #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37); an attempted comment was rejected by integration permissions.
+
+Legacy Pages continues to serve the root site and retained `docs/`. A separate scheduled artifact-deployment workflow is gated because this integration received HTTP 403 when attempting to switch Pages to Actions. An authorized admin would need to enable that source and set `ACTIONS_PAGES_ENABLED=true` for it to publish and refresh snapshots on schedule. The browser checks do not change promotion state. This integration preserves the previous sites, tools and snapshots.
+
+Additional checks: `python -m unittest discover -s tests -v`, `node --test tests/test_browser_feed.js`, `python scripts/build_preflight_site.py`, and `python scripts/audit_registry.py --fetch`.
+
+## K3 lane addendum — parallel session that ran 3 experiments (2026-10-27, verdict: negative)
+
+A parallel session (branch `arena/e97d54bf-gemsdoekarage3`, PR #8) self-assigned and
+pre-registered a lane — corrected-LiDAR crest–base scarp-pair + depth-persistent
+potential-field worms with greedy kernel-coverage emission — restored the same hash-pinned
+mirrors, vendored the shared metric/holdout/writer/registry-audit libraries verbatim
+(`src/karage3/PROVENANCE.md`; library-level visible-only evaluator on binary emissions, not
+the binarising CLI wrapper flagged above), and ran the full 3-experiment budget. It does not
+change this README's decision:
+
+* **Unique research TIFF exists** (`docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif`,
+  SHA-256 `9b2656c4…fafa`, 34,835 dots, local validator PASS) — **DO NOT SUBMIT**: pooled
+  **HOLDOUT-DTI 0.0522 [0.0375, 0.0620]** (`GEMSDOE32-HOLDOUT-v3-visible-only`, 22,232
+  withheld) vs champion-rule control 0.0992. It also fails this README's literal lattice rule
+  (99.92% within 3 px of the calibration lattice; uncovered footprint re-measured at exactly
+  6,649 px), while passing a genuine-detector audit (worst 65.3% across 432 scanned rasters).
+* New measured facts for the shared record: the focus-9 bests are one nested H19-5 family
+  (exact symdiff/subset algebra in `knowledge/focus9_forensics.md`); the champion *mask* is
+  construction-censored on catalogue holdouts (0.00452) and the honest fold-local B2-rule
+  control is 0.09920; template bug **IR-K3-01** — the shared LiDAR composite reads bands
+  1/2/5 (`ex_max`/`ex_mean`/`lappos_max`) while claiming ex/step/downface (K3 reads bands by
+  description). K3 pages: [decision](docs/k3/index.html) · [executive summary](docs/k3/executive-summary.html) ·
+  [run card](evidence/k3_run_card.json) · reproduce with `scripts/build_k3_site.py` +
+  `scripts/verify_numbers.py`. Public #1 observed on main as 0.4544 (2026-10-27) supersedes
+  the 0.4413/0.4437 figures quoted in K3's brief copies.
+
+## Lane H-K3-1 (`CRSB-GUB`) addendum — 3/3 experiments, 104-repo registry scan & 9-site audit (`verdict: negative`)
+
+Branch `arena/2df0b70e-gemsdoekarage3` pre-registered four ranked geological hypotheses ([`docs/research/hypotheses-preregistration-karage3.md`](docs/research/hypotheses-preregistration-karage3.md), [`registry/preregistration.json`](registry/preregistration.json)) and executed **Lane `H-K3-1: CRSB-GUB`** (*Conjugate Riedel-Stepover Blind-Fault & Geothermometer Upflow Bridge*, `src/gems32/crsb_gub.py`) across 3 controlled experiments:
+
+1. **51-Channel Single-Feature Leakage Canary (`Gate G1`):** All 35 base + 16 physical `CRSB-GUB` channels passed (`max(AUC, 1-AUC) = 0.586868 <= 0.90`; `dist_known_fault_px` dropped and asserted absent in code; [`evidence/leakage-canary-51ch.json`](evidence/leakage-canary-51ch.json)).
+2. **Controlled 3-Experiment Ablation ([`evidence/crsb-gub-ablation-results.json`](evidence/crsb-gub-ablation-results.json)):**
+   - `EXP-1` (Unsupervised physical `CRSB-GUB`, zero `labels.tif`): `SGMC-CAL-v3.0 = 0.067889` (`+0.003768` over `0.2778` Champion `0.064121`), `HIDE-RECOVER-v3.0 = 0.048178`.
+   - `EXP-2` (Dual-Cover `51`-ch / `48`-ch LiDAR-free SAR-PU OOF): `HIDE-RECOVER-v3.0 = 0.100830` (`+0.001628`), `SGMC-CAL-v3.0 = 0.056375`.
+   - `EXP-3` (`CRSB-GUB MaxEnv`, `min_sep_px = 3.0`, `37,654` dots, emitted): **`HIDE-RECOVER-v3.0 = 0.106042`** (`95% CI [0.091475, 0.119194]`, **`+0.006840` / `+6.9%`** over `0.2778` Champion `0.099202`, `93.1%` bootstrap win prob; paired `CI95 = [-0.002006, +0.016383]`), `SGMC-CAL-v3.0 = 0.057360`.
+3. **104-Repo / 1,789-Raster Uniqueness & 9-Site Forensic Byte Audit:** Continuous surface `max |Spearman| = 0.6525 <= 0.90`; discrete candidate `max 3-px overlap = 66.27% <= 70.00%` across `1,577` rasters (`44.11%` vs. `GEMSDOE32` `0.2778`; [`evidence/complete-registry-uniqueness-scan.json`](evidence/complete-registry-uniqueness-scan.json), [`evidence/nine-site-audit-20261027.json`](evidence/nine-site-audit-20261027.json)):
+   - **`GEMSDOEkarage3` (`H-K3-1: CRSB-GUB`):** `gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif` (`37,654` dots) · `HIDE-RECOVER-v3.0 = 0.106042` / `SGMC-CAL-v3.0 = 0.057360` · Format & discrete uniqueness `PASS` · **HOLD SLOT (`verdict: negative`)**
+   - **`GEMSDOE32`:** `e5eb6e7e-zeros.tif` (`37,654`d, `0.2778` `OWNER-REPORT`, `0` dots `<=2px` cat, `SGMC=0.064121`, `44.11%` ov vs `H-K3-1`)
+   - **`GEMSDOE36`:** `9b9ea4e6-zeros.tif` (`38,854`d, `0.2750` `OWNER-REPORT`, `GEMSDOE32 + 1,200` PINN dots, `SGMC=0.064444`, `44.70%` ov)
+   - **`GEMSDOE28`:** `b531dae0a36f-allfinite.tif` (`37,660`d, `0.2710` `OWNER-REPORT`, `2,353` `<=2px` cat, `SGMC=0.062967`, `45.14%` ov)
+   - **`GEMSDOE31`:** `8acb75e1f2cc-allfinite.tif` (`55,304`d, `0.2708` `OWNER-REPORT`, `5,936` `<=2px` cat, `SGMC=0.057724`, `47.68%` ov)
+   - **`GEMSDOE33`:** `cb490425926e.tif` (`41,865`d, `0.2632` `OWNER-REPORT`, `3,894` `<=2px` cat, `SGMC=0.062551`, `46.25%` ov)
+   - **`GEMSDOE25` & `GEMSDOE30`:** pixel-identical SHA `91eae1ca` (`44,090`d, `0.2600` `OWNER-REPORT`, `6,436` `<=2px` cat, `HR=0.099202`, `SGMC=0.060592`, `46.64%` ov)
+   - **`GEMSDOE24`:** `989f59505db1-allfinite.tif` (`60,069`d `d=1.5`, `0.2477` `OWNER-REPORT`, `HR=0.097204`, `SGMC=0.057932`, `48.26%` ov)
+   - **`GEMSDOE27`:** `5512495c6bd1-allfinite.tif` (`61,328`d `d=1.5`, `0.2449` `OWNER-REPORT`, `HR=0.096778`, `SGMC=0.058262`, `48.84%` ov)
+4. **Pages & Reproduction:** [Executive Summary & Validated GeoTIFF Desk](docs/crsb-gub/index.html) · [Submission Guide](docs/crsb-gub/executive-summary.html) · [PhD Monograph](docs/crsb-gub/research.md) · [Run Card](docs/crsb-gub/run-card.json) · [Three-Pass Review](evidence/review-passes-crsb-gub.md). Reproduce via `scripts/build_crsb_features.py`, `scripts/run_crsb_ablation.py`, and `scripts/audit_exact_nine_winners.py`.
+

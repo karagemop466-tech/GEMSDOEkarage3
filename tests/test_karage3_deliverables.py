@@ -1,4 +1,4 @@
-"""End-to-end automated verification tests for GEMSDOEkarage3 deliverables (zero human intervention)."""
+"""End-to-end automated verification tests for GEMSDOEkarage3 Lane H-K3-1 (CRSB-GUB) deliverables."""
 from __future__ import annotations
 
 import hashlib
@@ -23,16 +23,18 @@ def sha256_bytes(b: bytes) -> str:
 
 class DeliverableVerificationTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.card = json.loads((ROOT / "docs" / "run-card.json").read_text(encoding="utf-8"))
+        self.card = json.loads((ROOT / "docs" / "crsb-gub" / "run-card.json").read_text(encoding="utf-8"))
+        self.ev_card = json.loads((ROOT / "evidence" / "crsb_gub_run_card.json").read_text(encoding="utf-8"))
         self.ablation = json.loads((ROOT / "evidence" / "crsb-gub-ablation-results.json").read_text(encoding="utf-8"))
         self.canary = json.loads((ROOT / "evidence" / "leakage-canary-51ch.json").read_text(encoding="utf-8"))
         self.uniq = json.loads((ROOT / "evidence" / "complete-registry-uniqueness-scan.json").read_text(encoding="utf-8"))
         self.nine = json.loads((ROOT / "evidence" / "nine-site-audit-20261027.json").read_text(encoding="utf-8"))
 
     def test_saved_geotiff_and_zip_strict_0_1_and_no_nan_hazard(self) -> None:
+        self.assertEqual(self.card, self.ev_card)
         dl_dir = ROOT / "docs" / "downloads"
-        nan_files = list(dl_dir.glob("*-nan.tif"))
-        self.assertEqual(nan_files, [], "No -nan.tif hazard file may remain in docs/downloads/")
+        nan_files = list(dl_dir.glob("gemskarage3-*-nan.tif"))
+        self.assertEqual(nan_files, [], "No gemskarage3 -nan.tif hazard file may remain in docs/downloads/")
 
         tif_path = dl_dir / self.card["submission_name"]
         zip_path = dl_dir / self.card["zip_submission_name"]
@@ -95,23 +97,23 @@ class DeliverableVerificationTests(unittest.TestCase):
 
         sha = self.card["raster_sha256"]
         fname = self.card["submission_name"]
-        for doc_rel in ("README.md", "docs/index.html", "docs/executive-summary.html", "docs/research.md"):
+        for doc_rel in ("README.md", "docs/crsb-gub/index.html", "docs/crsb-gub/executive-summary.html", "docs/crsb-gub/research.md"):
             txt = (ROOT / doc_rel).read_text(encoding="utf-8")
             self.assertIn(sha, txt, f"{doc_rel} missing exact GeoTIFF SHA-256")
             self.assertIn(fname, txt, f"{doc_rel} missing exact GeoTIFF filename")
-            for site in FOCUS_9:
-                if doc_rel != "docs/executive-summary.html":
+            if doc_rel != "docs/crsb-gub/executive-summary.html":
+                for site in FOCUS_9:
                     self.assertIn(site, txt, f"{doc_rel} missing {site}")
 
-        # Verify all local href/src paths in docs/index.html and docs/executive-summary.html resolve on disk
         for html_name in ("index.html", "executive-summary.html"):
-            html_txt = (ROOT / "docs" / html_name).read_text(encoding="utf-8")
+            html_dir = ROOT / "docs" / "crsb-gub"
+            html_txt = (html_dir / html_name).read_text(encoding="utf-8")
             for attr_m in re.finditer(r'(?:href|src)="([^"]+)"', html_txt):
                 target = attr_m.group(1)
                 if target.startswith(("http://", "https://", "#", "mailto:")):
                     continue
-                resolved = (ROOT / "docs" / target).resolve()
-                self.assertTrue(resolved.exists(), f"Broken relative link {target} in docs/{html_name}")
+                resolved = (html_dir / target).resolve()
+                self.assertTrue(resolved.exists(), f"Broken relative link {target} in docs/crsb-gub/{html_name}")
 
 
 if __name__ == "__main__":

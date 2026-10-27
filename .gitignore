@@ -1,6 +1,15 @@
-__pycache__/
-*.pyc
+# Local dependencies, generated caches and competition data
+.arena/
 .cache/
 .venv/
-data/
-
+__pycache__/
+.pytest_cache/
+*.py[cod]
+node_modules/
+/data/*
+!/data/focus_registry.json
+!/data/prepared_manifest.json
+*.part
+*.npy
+*.partial
+*.assembling

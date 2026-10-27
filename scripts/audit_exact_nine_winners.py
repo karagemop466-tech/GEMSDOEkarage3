@@ -157,7 +157,7 @@ def main() -> int:
     }
     (ROOT / "evidence" / "nine-site-audit-20261027.json").write_text(json.dumps(out, indent=2) + "\n")
 
-    # Enrich docs/sites.json while preserving existing keys & upstream README/status receipts
+    # Write enriched sites.json under docs/crsb-gub/sites.json without mutating root docs/sites.json
     sites_json_path = ROOT / "docs" / "sites.json"
     sites_doc = json.loads(sites_json_path.read_text())
     by_site = {r["site"]: r for r in rows}
@@ -181,7 +181,9 @@ def main() -> int:
         )
         s_entry["ok_to_submit"] = False
     sites_doc["karage3_candidate"] = out["karage3_candidate"]
-    sites_json_path.write_text(json.dumps(sites_doc, indent=2) + "\n")
+    out_sites_path = ROOT / "docs" / "crsb-gub" / "sites.json"
+    out_sites_path.parent.mkdir(parents=True, exist_ok=True)
+    out_sites_path.write_text(json.dumps(sites_doc, indent=2) + "\n")
     return 0
 
 

@@ -1,0 +1,26 @@
+[
+  {
+    "path": "evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json",
+    "sha256": "dabac84d6a153c0022fdd354b1775c7098e5cb68ca571817ee2a5c081927dfc2",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+    "classification": "UPSTREAM-REPORT / source inspection only; not locally executed"
+  },
+  {
+    "path": "evidence/upstream/GEMSDOE32/evidence/arena48_pass2_verification.json",
+    "sha256": "fa581122f44efa8141a94a6086131d22bf6f00ff20fde5e4748facc326267946",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_pass2_verification.json",
+    "classification": "UPSTREAM-REPORT / source inspection only; not locally executed"
+  },
+  {
+    "path": "evidence/upstream/GEMSDOE32/scripts/evaluate_holdout.py",
+    "sha256": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/evaluate_holdout.py",
+    "classification": "UPSTREAM-REPORT / source inspection only; not locally executed"
+  },
+  {
+    "path": "evidence/upstream/GEMSDOE32/scripts/submission_writer.py",
+    "sha256": "cf7eb9948cfe5032e1db2362ddd5a075c2c744bb33ebbcfb2ba2b5ebd1b1de9b",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/submission_writer.py",
+    "classification": "UPSTREAM-REPORT / source inspection only; not locally executed"
+  }
+]
