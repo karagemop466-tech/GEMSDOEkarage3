@@ -31,7 +31,7 @@ class SiteTests(unittest.TestCase):
         self.assertTrue((DOCS / 'index.html').is_file())
 
     def test_internal_links_exist(self):
-        for page in ('index.html', 'executive-summary.html', 'research.html'):
+        for page in ('preflight.html', 'preflight-executive.html', 'preflight-research.html'):
             parser = Links()
             parser.feed((DOCS / page).read_text())
             for url in parser.links:
@@ -41,7 +41,7 @@ class SiteTests(unittest.TestCase):
                         self.assertTrue((DOCS / parsed.path).is_file())
 
     def test_all_nine_historical_rows_labeled_and_upload_blocked(self):
-        page = (DOCS / 'executive-summary.html').read_text()
+        page = (DOCS / 'preflight-executive.html').read_text()
         manifest = json.loads((ROOT / 'registry/historical.json').read_text())
         self.assertEqual(page.count('USER-REPORTED / unverified'), 9)
         for row in manifest['historical']:
@@ -61,7 +61,7 @@ class SiteTests(unittest.TestCase):
         self.assertLessEqual(len(card['note']), 140)
 
     def test_deterministic_build(self):
-        files = [DOCS / p for p in ('index.html', 'executive-summary.html', 'research.html',
+        files = [DOCS / p for p in ('preflight.html', 'preflight-executive.html', 'preflight-research.html',
                                     'data/historical.json', 'data/geometry_audit.json', 'data/run_card.json', 'data/review.md')]
         before = {p: p.read_bytes() for p in files}
         subprocess.run([sys.executable, str(ROOT / 'scripts/build_site.py')], cwd=ROOT, check=True, capture_output=True)

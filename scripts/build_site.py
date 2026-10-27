@@ -18,8 +18,8 @@ def esc(value) -> str:
 
 
 def shell(title: str, active: str, body: str) -> str:
-    nav = [("index.html", "Overview", "home"), ("executive-summary.html", "Executive summary", "executive"),
-           ("research.html", "Research & sources", "research")]
+    nav = [("preflight.html", "Overview", "home"), ("preflight-executive.html", "Executive summary", "executive"),
+           ("preflight-research.html", "Research & sources", "research")]
     links = "".join('<a href="{}"{}>{}</a>'.format(
         href, ' aria-current="page"' if active == key else '', label)
         for href, label, key in nav)
@@ -27,7 +27,7 @@ def shell(title: str, active: str, body: str) -> str:
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{esc(title)} · GEMS Research Desk</title><meta name="description" content="An evidence-led research and submission-readiness review for the DOE GEMS Prize.">
 <link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head>
-<body><header class="topbar"><div class="wrap"><a class="brand" href="index.html" aria-label="GEMS Research Desk home"><span class="brand-mark">G</span><span class="brand-name">GEMS <br>RESEARCH DESK<small>GEOLOGIC MAPPING / DOE</small></span></a>
+<body><header class="topbar"><div class="wrap"><a class="brand" href="preflight.html" aria-label="GEMS Research Desk home"><span class="brand-mark">G</span><span class="brand-name">GEMS <br>RESEARCH DESK<small>GEOLOGIC MAPPING / DOE</small></span></a>
 <nav class="nav" aria-label="Main navigation">{links}</nav><span class="nav-pill"><span class="nav-dot"></span>Evidence first</span></div></header>
 <main>{body}</main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>GEMS Research Desk</strong> &nbsp; / &nbsp; Independent research, not affiliated with the organizers.<br>Evidence snapshots may become stale. No slot has been selected.</p><div class="footer-links"><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem ↗</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard ↗</a><a href="https://github.com/karagemop466-tech/GEMSDOEkarage3">Repository ↗</a></div></div></footer></body></html>'''
@@ -54,10 +54,10 @@ rows_html = "\n".join(rows)
 home = '''
 <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">DOE GEMS PRIZE &nbsp; / &nbsp; RESEARCH INTELLIGENCE</div>
 <h1>Find the faults.<br><em>Keep the evidence.</em></h1><p>Turning geologic signals into defensible fault predictions. The goal: test each candidate for scientific value, uniqueness, and submission readiness before a slot is spent.</p>
-<div class="actions"><a class="btn" href="executive-summary.html">View executive summary <span class="arrow">↗</span></a><a class="btn ghost" href="research.html">Explore the research <span class="arrow">→</span></a></div></div>
+<div class="actions"><a class="btn" href="preflight-executive.html">View executive summary <span class="arrow">↗</span></a><a class="btn ghost" href="preflight-research.html">Explore the research <span class="arrow">→</span></a></div></div>
 <aside class="status-card" aria-label="Current submission readiness"><div class="card-head"><span>SUBMISSION CHECKPOINT</span><span class="tag red">Not ready</span></div><h2 class="card-title">No file is ready<br>to submit.</h2><p>There is no new, validated TIFF or authorized weekly slot. Historical files below are research references—not new submissions.</p>
 <div class="status-checks"><div class="status-check"><b>×</b> Assigned method lane not supplied</div><div class="status-check"><b>×</b> Literal registry rule blocks the usual dot budget</div><div class="status-check"><b>×</b> No new holdout or candidate file</div></div>
-<a class="card-link" href="executive-summary.html">See the full decision &nbsp; →</a></aside></div></section>
+<a class="card-link" href="preflight-executive.html">See the full decision &nbsp; →</a></aside></div></section>
 <section class="ticker"><div class="wrap ticker-grid"><div class="stat"><span class="stat-icon">↗</span><div><small>Public leaderboard leader</small><strong id="public-score">0.4544</strong><span class="evidence" id="public-score-detail">PUBLIC snapshot · 27 Oct 2026 · may be stale</span></div></div>
 <div class="stat"><span class="stat-icon">◈</span><div><small>Best historical claim · 9 sites</small><strong>0.2778</strong><span class="evidence">USER-REPORTED / not receipt-verified</span></div></div>
 <div class="stat"><span class="stat-icon">⌁</span><div><small>New validated candidate</small><strong>None</strong><span class="evidence">No HOLDOUT-DTI run this session</span></div></div></div></section>
@@ -65,13 +65,13 @@ home = '''
 <div class="cards"><article class="step-card"><div class="step-top"><span class="step-icon">⌁</span><span>01 / GEOLOGY</span></div><h3>Propose a physical signal</h3><p>Start with a testable mechanism, the layers it uses, and the non-fault processes that could imitate it.</p></article>
 <article class="step-card"><div class="step-top"><span class="step-icon">◫</span><span>02 / VALIDATION</span></div><h3>Recover withheld segments</h3><p>Build catalogue features from visible faults only, check each feature for leakage, and compare matched spatial holdouts.</p></article>
 <article class="step-card"><div class="step-top"><span class="step-icon">◇</span><span>03 / RELEASE</span></div><h3>Protect the submission</h3><p>Check the complete registry before and after placement, validate saved bytes, then use a separate slot selector.</p></article></div></div></section>
-<section class="section tight" style="padding-top:0"><div class="wrap"><div class="insight"><div class="insight-visual"><span>THE NINE-SITE REVIEW</span></div><div class="insight-body"><div class="section-label">WHAT THE EVIDENCE SAYS</div><h2>A higher claim is not a new discovery.</h2><p>The reported GEMSDOE32 leader is a catalogue-adjacent deletion of an earlier dot pattern. That geometry is verified on mirrored rasters; the reason for its reported score is not. All nine historical files fail the requested proximity rule against another focus-site file.</p><a class="text-link" href="executive-summary.html#nine-sites">Review all nine historical files &nbsp; →</a></div></div></div></section>
+<section class="section tight" style="padding-top:0"><div class="wrap"><div class="insight"><div class="insight-visual"><span>THE NINE-SITE REVIEW</span></div><div class="insight-body"><div class="section-label">WHAT THE EVIDENCE SAYS</div><h2>A higher claim is not a new discovery.</h2><p>The reported GEMSDOE32 leader is a catalogue-adjacent deletion of an earlier dot pattern. That geometry is verified on mirrored rasters; the reason for its reported score is not. All nine historical files fail the requested proximity rule against another focus-site file.</p><a class="text-link" href="preflight-executive.html#nine-sites">Review all nine historical files &nbsp; →</a></div></div></div></section>
 <section class="section tight" style="padding-top:0"><div class="wrap"><div class="watch"><div><strong><span class="status-dot"></span>Source watch</strong><p id="watch-detail">Loading source metadata; the checked-in snapshot may be stale. Refresh never approves a submission.</p></div><a class="text-link" href="data/feed.json">View feed JSON &nbsp; →</a></div></div></section>'''
 
 executive = '''
 <section class="page-hero"><div class="wrap"><div class="eyebrow">DECISION BRIEF &nbsp; / &nbsp; 27 OCT 2026</div><h1>Submission executive summary.</h1><p>The strongest defensible recommendation is to protect the next slot. A downloadable archive is not the same as a new, unique, validated submission.</p></div></section>
 <section class="section tight"><div class="wrap"><div class="alert"><span class="alert-icon">!</span><div><strong>NO FILE IS APPROVED FOR SUBMISSION</strong><p>No new TIFF was generated in this run. Do not upload, rename, or resubmit the historical research files listed below.</p></div></div>
-<div class="two-col"><div class="panel"><div class="section-label">CURRENT DECISION</div><h2>Download is locked for now.</h2><p>There is no new file, defensible leaderboard estimate, artifact-linked organizer receipt, or selected weekly slot. The method lane is missing, and the literal registry rule blocks the customary dot budget.</p><div class="actions"><span class="btn" aria-disabled="true">No submission file available &nbsp; ⊘</span><a class="text-link" href="research.html">Understand the blockers →</a></div></div>
+<div class="two-col"><div class="panel"><div class="section-label">CURRENT DECISION</div><h2>Download is locked for now.</h2><p>There is no new file, defensible leaderboard estimate, artifact-linked organizer receipt, or selected weekly slot. The method lane is missing, and the literal registry rule blocks the customary dot budget.</p><div class="actions"><span class="btn" aria-disabled="true">No submission file available &nbsp; ⊘</span><a class="text-link" href="preflight-research.html">Understand the blockers →</a></div></div>
 <div class="panel"><div class="section-label">WHEN A CANDIDATE EXISTS</div><h2>Required evidence</h2><div class="mini-grid"><div class="mini"><small>Format</small><strong>Saved-byte checks</strong></div><div class="mini"><small>Uniqueness</small><strong>Complete registry</strong></div><div class="mini"><small>Performance</small><strong>Paired holdout win</strong></div><div class="mini"><small>Decision</small><strong>Separate selector</strong></div></div></div></div>
 <div class="section-head" id="nine-sites" style="margin-top:42px"><div><div class="section-label">HISTORICAL BASELINES</div><h2>The nine-site scorecard.</h2></div><p>Values below are unverified owner/user reports, not ORGANIZER-CONFIRMED receipts or estimates for a new file.</p></div>
 <div class="table-wrap"><table class="score-table"><thead><tr><th>Site</th><th>Historical file · research only</th><th>Reported result</th><th>Estimated score</th><th>Unique vs peers?</th><th>Submit?</th></tr></thead><tbody>''' + rows_html + '''</tbody></table></div>
@@ -101,9 +101,9 @@ research = '''
 
 DOCS.mkdir(exist_ok=True)
 (DOCS / 'data').mkdir(exist_ok=True)
-(DOCS / 'index.html').write_text(shell('Overview', 'home', home), encoding='utf-8')
-(DOCS / 'executive-summary.html').write_text(shell('Executive summary', 'executive', executive), encoding='utf-8')
-(DOCS / 'research.html').write_text(shell('Research & sources', 'research', research), encoding='utf-8')
+(DOCS / 'preflight.html').write_text(shell('Overview', 'home', home), encoding='utf-8')
+(DOCS / 'preflight-executive.html').write_text(shell('Executive summary', 'executive', executive), encoding='utf-8')
+(DOCS / 'preflight-research.html').write_text(shell('Research & sources', 'research', research), encoding='utf-8')
 shutil.copyfile(ROOT / 'registry' / 'historical.json', DOCS / 'data' / 'historical.json')
 shutil.copyfile(ROOT / 'evidence' / 'geometry_audit.json', DOCS / 'data' / 'geometry_audit.json')
 shutil.copyfile(ROOT / 'evidence' / 'run_card.json', DOCS / 'data' / 'run_card.json')
