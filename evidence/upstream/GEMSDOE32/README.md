@@ -1,5 +1,7 @@
 # GEMSDOE32 — DOE GEMS Prize Research, Validation & Submission System
 
+**Session-start review:** Read the [standing prompt (recorded; completeness unverified)](docs/research/standing-prompt-as-recorded-20261026.md) and [current review / constraints / next hypotheses](docs/research/review-and-next-hypotheses-20261027.md) every session. [Nine-site executive table](docs/nine-site-review.html). This session fixed release-audit defects; **no new TIF, no new holdout result, no submission authorized**. The historical H48 file below is not a newly generated submission.
+
 <!-- SINGLE DECISION: rendered from registry/current_status.json and evidence/current_release_review.json (both must authorize; fail closed). Update those files, never add a second banner. -->
 ## 🚦 Current Decision — 2026-10-27 19:25 UTC
 

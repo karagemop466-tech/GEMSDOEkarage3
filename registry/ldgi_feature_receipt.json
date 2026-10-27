@@ -1,0 +1,35 @@
+{
+  "channels": [
+    "lineament_density_multi_km_km2",
+    "lineament_intersection_relay",
+    "getis_ord_gi_star_r500_r1200",
+    "bivariate_moran_grav_topo",
+    "wavelet_ricker_multiscale_1_4km",
+    "bouguer_svd_inflection_wall",
+    "upward_crest_dip_vent_asymmetry",
+    "ldgi_corridor_unsup_composite"
+  ],
+  "shape": [
+    3730,
+    3292,
+    8
+  ],
+  "dtype": "float32",
+  "label_free": true,
+  "in_footprint_2m_probes": 2782,
+  "valid_t2m_t15m_gradient_probes": 1541,
+  "in_footprint_paleo_vents": 281,
+  "ricker_wavelet_scales_px": [
+    10.0,
+    20.0,
+    35.0
+  ],
+  "getis_ord_radii_px": [
+    5,
+    12
+  ],
+  "lineament_density_bandwidths_px": [
+    8.0,
+    18.0
+  ]
+}
