@@ -1,0 +1,172 @@
+{
+  "checked_utc": "2026-10-27T21:01:02.368463+00:00",
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "owner_reported_submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "owner_reported_value": 0.2477,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a73f9ffba29260cc7708e8e0557c84c5bea7d47b/README.md",
+          "local": "evidence/upstream/GEMSDOE24/README.md",
+          "sha256": "39383f1c39c687c7262db982f95f3b3e58d6763524c6c83390f797000725e7c5"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE25",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE25",
+      "owner_reported_submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "owner_reported_value": 0.26,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "b13ccabae15d4951854d47cb35e17322e7537b64",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b13ccabae15d4951854d47cb35e17322e7537b64/README.md",
+          "local": "evidence/upstream/GEMSDOE25/README.md",
+          "sha256": "57c90502a7f540d9d0aed67bc8e4976da899ae2623461a2969a744d28b07ea28"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE27",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE27",
+      "owner_reported_submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "owner_reported_value": 0.2449,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/4f34228a9f39e99da592aa34fd835c96d1b693f5/README.md",
+          "local": "evidence/upstream/GEMSDOE27/README.md",
+          "sha256": "f545d23ea5cd3499002ea385c481949ae322a4493847709b867ad5b1268158d9"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "owner_reported_submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+      "owner_reported_value": 0.271,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "4955e29c7b66503ba2178b25d356d713dc1bc534",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/4955e29c7b66503ba2178b25d356d713dc1bc534/README.md",
+          "local": "evidence/upstream/GEMSDOE28/README.md",
+          "sha256": "7efe73d123ac8b849a5162fc3f3ba0920c4aedcf5a0e9d611f7a0c70b5efb022"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE30",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE30",
+      "owner_reported_submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "owner_reported_value": 0.26,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/d21ddd9502f3c3911e8d77b8f1e6abfaadffc876/README.md",
+          "local": "evidence/upstream/GEMSDOE30/README.md",
+          "sha256": "76b96fcb9bc57c835f64ca5c68c8930480cfd1621e16ef389c03252a8e1f409e"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE31",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE31",
+      "owner_reported_submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
+      "owner_reported_value": 0.2708,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "88ec212955353f7590e94b8ef2a9763ffa035d45",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/88ec212955353f7590e94b8ef2a9763ffa035d45/README.md",
+          "local": "evidence/upstream/GEMSDOE31/README.md",
+          "sha256": "37b55e46831812c43eeb77173132e756f284a2ff09376293edaf568cebaac925"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE32",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "owner_reported_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "owner_reported_value": 0.2778,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/README.md",
+          "local": "evidence/upstream/GEMSDOE32/README.md",
+          "sha256": "19d368a0f0035fe22462a029d607d70f242e59d1e05aa63d6a6bf438dcb92412"
+        },
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/registry/current_status.json",
+          "local": "evidence/upstream/GEMSDOE32/registry/current_status.json",
+          "sha256": "2afc9c34c8af08e4d5b1405771b427e476c79c6671a99e3af191f66895225f3d"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE33",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE33",
+      "owner_reported_submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "owner_reported_value": 0.2632,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "844f514819041c7be9efd345a24cf5cd70263f00",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/844f514819041c7be9efd345a24cf5cd70263f00/README.md",
+          "local": "evidence/upstream/GEMSDOE33/README.md",
+          "sha256": "afbc2441e604e4cbb0d44eecc35386d1f8a9578e02f6225135c3fc05a8d45614"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE36",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+      "owner_reported_submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "owner_reported_value": 0.275,
+      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "estimated_score": null,
+      "unique": null,
+      "ok_to_submit": false,
+      "commit": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
+      "sources": [
+        {
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7edcc9b58e6ad0f88c6e6f5ee9218761a391769d/README.md",
+          "local": "evidence/upstream/GEMSDOE36/README.md",
+          "sha256": "1a872d7730a54cff5cfc86fae0d670ac7651516418fc3af9693d37d3e52d49ca"
+        }
+      ]
+    }
+  ]
+}
