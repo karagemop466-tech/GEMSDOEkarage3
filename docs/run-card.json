@@ -1,18 +1,162 @@
 {
-  "hypothesis": "Magnetic-edge migration under upward continuation; preregistered, not executed",
-  "mechanism": "Scale-consistent displaced magnetic gradients may identify concealed dipping discontinuities",
-  "non_fault_mimic": "Dipping lithologic contact or remanent magnetization",
-  "assigned_lane": null,
-  "experiments_run": 0,
+  "hypothesis": "H-K3-1 (CRSB-GUB): Conjugate Riedel-Stepover Stress-Shadow & Geothermometer-Disequilibrium Upflow Bridge",
+  "mechanism": "Exact 2D Fourier upward-continued Miller-Singh/Verduzco Tilt-THDR on gravity & multi-altitude RTP magnetics + multi-scale structure-tensor Riedel/stepover angular dispersion sin^2(phi_200m - phi_1800m) + strike-advected DOE GDR #1391 chemical geothermometer disequilibrium max(T_qtz,T_chalc,T_cat)-T_meas & 2m F2mDAB/sinter vents + uniform-negative inverse-observability Dual-Cover OOF (51ch M_Full / 48ch LiDAR-free M_NoLiDAR) + propensity max-envelope + min_sep_px=3.0 (300 m) CELF (37,654 dots, B=2)",
+  "non_fault_mimic": "Unfaulted dipping volcanic/pluton contacts, flat-playa evaporite conductivity bowls, Pleistocene Lake Lahontan wave-cut shorelines, and TIGER highway/railroad embankments (explicitly vetoed via multi-field THDR concordance, det_elev/slope playa decoupler, contour-parallelism filter, and 175 m TIGER road gate)",
+  "assigned_lane": "H-K3-1: CRSB-GUB",
+  "experiments_run": 3,
   "submission_slots_used": 0,
-  "holdout": {"evidence_class": "HOLDOUT-DTI", "status": "NOT MEASURED", "evaluator_version": null, "withheld_positives": null, "dti": null, "ci95": null, "paired_delta_ci95": null},
-  "feature_auc": null,
-  "registry": {"surface": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null}, "final_dots": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null}},
-  "raster_sha256": null,
-  "validator": {"status": "NOT RUN — no generated raster", "saved_bytes_checked": false, "single_band": null, "finite_inside": null, "range_0_1": null, "crs_match": null, "shape_match": null, "transform_match": null},
-  "submission_name": null,
-  "note": "Audit only: missing assigned lane, cached stack and complete registry. No new TIFF generated; DO NOT SUBMIT.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "MEASURED",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "dti": 0.106042,
+    "ci95": [
+      0.091475,
+      0.119194
+    ],
+    "per_quadrant_dti": {
+      "NW": 0.119389,
+      "NE": 0.120899,
+      "SW": 0.065832,
+      "SE": 0.128655
+    },
+    "baseline_champion_02778_dti": 0.099202,
+    "baseline_champion_02778_ci95": [
+      0.085951,
+      0.112668
+    ],
+    "point_delta_vs_champion_02778": 0.00684,
+    "paired_delta_ci95": [
+      -0.002006,
+      0.016383
+    ],
+    "paired_win_probability_vs_champion_02778": 0.931,
+    "same_evaluator_current_best": true,
+    "supplementary_benchmarks": {
+      "detached_600m_dti": 0.090394,
+      "detached_600m_ci95": [
+        0.075804,
+        0.10472
+      ],
+      "sgmc_off_catalogue_evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "sgmc_withheld_positives": 62703,
+      "sgmc_prevalence_calibrated_dti": 0.05736,
+      "sgmc_calibrated_ci95": [
+        0.049532,
+        0.064888
+      ],
+      "champion_02778_sgmc_calibrated_dti": 0.064121,
+      "exp1_unsup_crsb_sgmc_calibrated_dti": 0.067889,
+      "exp2_oof_only_hide_recover_dti": 0.10083
+    }
+  },
+  "feature_auc": [
+    0.525766,
+    0.510115,
+    0.521508,
+    0.564476,
+    0.531937,
+    0.544688,
+    0.569707,
+    0.520376,
+    0.501266,
+    0.549414,
+    0.511737,
+    0.524554,
+    0.528267,
+    0.51618,
+    0.503705,
+    0.563879,
+    0.516647,
+    0.537406,
+    0.552415,
+    0.568555,
+    0.586868,
+    0.51302,
+    0.510643,
+    0.511969,
+    0.56143,
+    0.526105,
+    0.521606,
+    0.526527,
+    0.536531,
+    0.502212,
+    0.526309,
+    0.562821,
+    0.570776,
+    0.536999,
+    0.5,
+    0.529322,
+    0.51782,
+    0.502733,
+    0.519365,
+    0.507049,
+    0.500111,
+    0.512299,
+    0.506063,
+    0.541006,
+    0.548205,
+    0.507621,
+    0.525721,
+    0.540822,
+    0.543728,
+    0.550969,
+    0.55369
+  ],
+  "feature_canary_summary": {
+    "n_channels": 51,
+    "max_oriented_auc": 0.586868,
+    "worst_channel": "curv_s2",
+    "threshold": 0.9,
+    "passed": true
+  },
+  "registry": {
+    "repos_audited": 104,
+    "manifest_rasters_fetched": 2148,
+    "unique_sha256_rasters_checked": 1789,
+    "discrete_candidate_rasters_checked": 1577,
+    "surface": {
+      "complete": true,
+      "max_abs_spearman": 0.652461,
+      "worst_spearman_raster": "wingbangboozle1-lang/WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+      "max_overlap_3px": 0.0
+    },
+    "final_dots": {
+      "complete": true,
+      "max_abs_spearman": 0.099875,
+      "max_overlap_3px": 0.662692,
+      "worst_discrete_overlap_raster": "buffedlizard55-lab/GEMSDOE92:docs/downloads/gemsdoe92-riedelvalve-riedel_n90k-90000-20261025-e57353de-zeros.tif",
+      "max_focus9_overlap_3px": 0.650502,
+      "overlap_3px_vs_champion_02778": 0.441122,
+      "calibration_lattice_r13_s5_literal_overlap_3px": 0.993387,
+      "calibration_lattice_r13_s5_footprint_coverage_p0": 0.998713,
+      "continuous_research_surface_literal_overlap_3px": 1.0
+    }
+  },
+  "raster_sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
+  "zip_sha256": "3ab00ae5be1068bd80df4788a403825162490a57942c70e1492a51185ea3556d",
+  "validator": {
+    "status": "PASS \u2014 13/13 saved-byte GeoTIFF checks passed (all 12,279,160 cells finite float32 in [0.0, 1.0], nodata=None, 0 on-catalogue pixels)",
+    "saved_bytes_checked": true,
+    "single_band": true,
+    "finite_inside": true,
+    "finite_full_grid_12279160": true,
+    "range_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "zero_on_catalogue_leakage": true,
+    "emitted_positive_pixels": 37654
+  },
+  "submission_name": "gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+  "zip_submission_name": "gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.zip",
+  "note": "H-K3-1 CRSB-GUB: Verduzco THDR+Riedel stepover+GDR1391 geotherm diseq+DualCover OOF d=3.0 (37654d, [0,1] zeros)",
   "verdict": "negative",
   "ok_to_submit": false,
-  "blockers": ["No explicit method lane", "No local cached feature stack or template pipeline", "No complete local raster registry", "No measured baseline or candidate holdout", "No saved-byte GeoTIFF validation or selector authorization"]
+  "decision_reasons": [
+    "Format & uniqueness PASS (13/13 saved-byte checks, [0,1] all-finite, max discrete 3px overlap 66.27% <= 70%, max |Spearman| 0.6525 <= 0.90 across 1,789 unique rasters).",
+    "Point HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0) beats 0.2778 Champion (+0.006840: 0.106042 vs 0.099202, 93.1% bootstrap win prob), but 95% paired spatial-block CI [-0.002006, +0.016383] slightly crosses 0 and trails GEMSDOE32 unshipped H48-1-FBGR (0.115341).",
+    "Off-catalogue HOLDOUT-DTI (GEMSDOE32-SGMC-CAL-v3.0) is 0.057360 vs 0.064121 Champion (-0.006761), confirming the supervised PU vs off-catalogue SGMC Pareto tradeoff (whereas unsupervised EXP-1 reached 0.067889 SGMC-cal). Do not spend a weekly submission slot without selector override."
+  ]
 }

@@ -1,0 +1,28 @@
+{
+  "source_repo": "buffedlizard55-lab/GEMSDOE32",
+  "source_commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+  "fetched_utc": "2026-10-27T21:14:00Z",
+  "why": "PARALLEL-RUN PROTOCOL Rule 2: reuse canonical cached feature stack, evaluate_holdout.py and submission_writer.py without private forks",
+  "files": {
+    "src/gems32/__init__.py": "e4a584f79eab8c0db81b5704b1525536fef2dcee5bac28da1455a39868983504",
+    "src/gems32/paths.py": "ceb7c79097958beff1f618e608491c3528341b14ee8b2e9cdcfafe1406230b69",
+    "src/gems32/grid.py": "6d3807313adad37445e182c47d11ce0a852c38b007242c51fafb6d8eb157236b",
+    "src/gems32/metric.py": "382de3eb6d77d549e01bafa718fd01f5a7132263be0b6925dbd5a40a24025289",
+    "src/gems32/features.py": "58cff8551ba2f2eb5bbc5656306d8e19243c38721368ddd3d5e393c8e889e316",
+    "src/gems32/emitter.py": "2a2f64df720fca2232af492e274423e92f25b0c7629cbb466b2e0d9b48abc697",
+    "src/gems32/holdout.py": "c476410a3fe27e9c2d6b97e206633ec252929df1c0c0e4c620da0c2f311fd538",
+    "src/gems32/submission.py": "48f1921e435b153625c41092009361e3af20c2b4c142e69553dabcbdbb30a9bc",
+    "src/gems32/registry_audit.py": "f12b539c147e785a92e808b303e93fafef714c6f54591a73fde257524bc530ab",
+    "src/gems32/release_gate.py": "ebf5bd483e84234ceb885070a1e717892f921d52112c0af52ffcd41f392ebebd",
+    "src/gems32/livescore.py": "2376586b7cd4e2d6c8ed1d41f90710b47941b402ec431e2989a152aed36a0f09",
+    "src/gems32/ledger_inversion.py": "370c324e310c6ac809efd5bde162d93c6f5048cf860e725e3012701db85985cd",
+    "scripts/restore_data.py": "4bbbb6552c4725558cadddc97f698393d584a5ec2a71bd1d41bb1f95c108dff6",
+    "scripts/prepare_data.py": "1582cec8c8d1459950f0254a537b1aba2c65c139c97c47a92a8efe1ba86adb86",
+    "scripts/build_features.py": "8232b42e06c42d00942b1b2bc3bff2a3dba3d16c171be0a47d2435ee92e39087",
+    "scripts/evaluate_holdout.py": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c",
+    "scripts/submission_writer.py": "cf7eb9948cfe5032e1db2362ddd5a075c2c744bb33ebbcfb2ba2b5ebd1b1de9b",
+    "registry/data_manifest.json": "463cf26c840a9338816e873a762beb8186c50952ae26ae572e73d71eb329bd34",
+    "registry/focus_registry_manifest.json": "e313af1d3dbbed287711d1200dc152b3704376cee2d028c8dbbb2e6945d31324",
+    "registry/extra_scored_manifest.json": "a975b7c73365351887256b2ecb80454a03a24c71892dcfdcfc3e4c73587b3927"
+  }
+}
