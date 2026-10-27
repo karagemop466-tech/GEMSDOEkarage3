@@ -97,38 +97,46 @@ def greedy_coverage(
     foot: np.ndarray,
     n_dots: int,
     candidate_top: int = 300_000,
-    seed: int = 3,
-) -> tuple[np.ndarray, dict]:
+) -> tuple[np.ndarray, dict, list[tuple[int, int]]]:
     """Lazy-greedy (CELF) maximum kernel coverage of the surface-rank mass.
 
     Candidates: the ``candidate_top`` highest-rank footprint pixels. Gain of dot x =
     sum over the 300 m kernel disk of rank(y) * k(|x-y|) * (1 - cover(y)), where cover is the
-    running max-kernel field of already-selected dots. Returns (mask, diagnostics) with the
-    realised gain curve summary. Deterministic given the rank raster (seed only breaks exact
-    float ties in heap order via index ordering)."""
+    running max-kernel field of already-selected dots. Initial gains are the exact
+    convolution of rank with the kernel; selection order is returned so smaller budgets are
+    prefixes. Deterministic given the rank raster (heap ties break by candidate index)."""
+    from scipy.ndimage import convolve
+
     H, W = foot.shape
     rank = np.asarray(rank, dtype=np.float32)
     cand = top_n_mask(rank, foot, min(candidate_top, int(foot.sum())))
     yy, xx = np.nonzero(cand)
     offs = _offsets()
 
+    kw = np.zeros((7, 7), dtype=np.float32)
+    for dy, dx, k in offs:
+        kw[dy + 3, dx + 3] = k
+    gain0 = convolve(rank, kw, mode="constant", cval=0.0)
+
     cover = np.zeros((H, W), dtype=np.float32)
     selected = np.zeros((H, W), dtype=bool)
+    rank_l, cover_l = rank, cover
 
     def gain(r: int, c: int) -> float:
         g = 0.0
         for dy, dx, k in offs:
             nr, nc = r + dy, c + dx
             if 0 <= nr < H and 0 <= nc < W:
-                g += float(rank[nr, nc]) * k * (1.0 - float(cover[nr, nc]))
+                g += float(rank_l[nr, nc]) * k * (1.0 - float(cover_l[nr, nc]))
         return g
 
-    heap: list[tuple[float, int, int, int]] = []
-    for i, (r, c) in enumerate(zip(yy.tolist(), xx.tolist())):
-        heap.append((-gain(r, c), i, r, c))
+    heap: list[tuple[float, int, int, int]] = [
+        (-float(gain0[r, c]), i, int(r), int(c)) for i, (r, c) in enumerate(zip(yy, xx))]
     heapq.heapify(heap)
+    del gain0
 
     gains: list[float] = []
+    order: list[tuple[int, int]] = []
     stale_pops = 0
     while heap and len(gains) < n_dots:
         neg_g, i, r, c = heapq.heappop(heap)
@@ -141,6 +149,7 @@ def greedy_coverage(
             continue
         selected[r, c] = True
         gains.append(float(g_now))
+        order.append((r, c))
         for dy, dx, k in offs:
             nr, nc = r + dy, c + dx
             if 0 <= nr < H and 0 <= nc < W and k > cover[nr, nc]:
@@ -154,4 +163,4 @@ def greedy_coverage(
         gain_median=float(np.median(gains)) if gains else 0.0,
         covered_rank_mass=float((rank * cover)[foot].sum() / max(float(rank[foot].sum()), 1e-9)),
     )
-    return selected & foot, diag
+    return selected & foot, diag, order

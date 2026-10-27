@@ -57,6 +57,19 @@ no code, data, evaluator, or site. All shared tools were vendored verbatim from
 `src/karage3/PROVENANCE.md`. Prior-session instructions in the prompt that presuppose existing
 repo machinery therefore apply to the vendored copies.
 
+## IR-K3-09 — The champion *mask* is mechanically censored on any catalogue holdout (measured Exp 1)
+H33-2-B2 was constructed with the full catalogue (all dots >2 px from every catalogue pixel,
+including segments a holdout would withhold). Withheld truth ⊂ catalogue, kernel radius 3 px,
+so almost no champion dot can earn credit: measured pooled HOLDOUT-DTI 0.00452 [0.00394,
+0.00520] (`GEMSDOE32-HOLDOUT-v3-visible-only`, 22,232 withheld) — an artefact of construction,
+not a quality estimate (its own sister audit prints the same 0.0046-class number). The honest
+fold-local estimate of the champion *rule* is the pre-prune D2.8 mask gated per-cell by
+visible-fault distance (B=2): **0.09920 [0.08149, 0.12041]**, identical to the “champion
+0.099202” quoted in sister reports. Gate G1 therefore compares against the champion-rule
+control (D2.8 + visible-B2), and the literal champion-mask number is reported only as a
+censoring diagnostic. K3 candidates use no catalogue in construction, so their gated
+evaluations are uncensored and comparable to the rule control.
+
 ## IR-K3-08 — `labels.tif` ≡ `existing_faults.tif` byte-identical
 Both SHA-256 `7ba308cc…` in the pinned manifest. Consistent with the competition design
 (catalogue = label support to be masked), noted so no one treats them as independent sources.
