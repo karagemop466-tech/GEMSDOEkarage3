@@ -31,10 +31,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/refresh_feed.py
       - name: Rebuild static pages from pinned evidence
-        run: python scripts/build_site.py
+        run: python scripts/build_preflight_site.py
+      - name: Build root evidence site
+        run: python scripts/build_site.py --check
+      - name: Stage public files
+        run: |
+          mkdir -p "$RUNNER_TEMP/pages-site"
+          cp index.html executive-summary.html research.html sources.html "$RUNNER_TEMP/pages-site/"
+          cp -r assets docs "$RUNNER_TEMP/pages-site/"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: ${{ runner.temp }}/pages-site
       - id: deploy
         uses: actions/deploy-pages@v4

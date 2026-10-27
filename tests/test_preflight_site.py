@@ -66,7 +66,7 @@ class SiteTests(unittest.TestCase):
         files = [DOCS / p for p in ('preflight.html', 'preflight-executive.html', 'preflight-research.html',
                                     'data/historical.json', 'data/geometry_audit.json', 'data/run_card.json', 'data/review.md')]
         before = {p: p.read_bytes() for p in files}
-        subprocess.run([sys.executable, str(ROOT / 'scripts/build_site.py')], cwd=ROOT, check=True, capture_output=True)
+        subprocess.run([sys.executable, str(ROOT / 'scripts/build_preflight_site.py')], cwd=ROOT, check=True, capture_output=True)
         self.assertEqual(before, {p: p.read_bytes() for p in files})
 
     def test_status_not_tied_to_page_metadata(self):
