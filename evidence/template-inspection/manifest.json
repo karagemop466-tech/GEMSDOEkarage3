@@ -1,0 +1,98 @@
+[
+  {
+    "path": "scripts/restore_data.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "4bbbb6552c4725558cadddc97f698393d584a5ec2a71bd1d41bb1f95c108dff6",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/restore_data.py"
+  },
+  {
+    "path": "scripts/evaluate_holdout.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/evaluate_holdout.py"
+  },
+  {
+    "path": "scripts/submission_writer.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "cf7eb9948cfe5032e1db2362ddd5a075c2c744bb33ebbcfb2ba2b5ebd1b1de9b",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/submission_writer.py"
+  },
+  {
+    "path": "registry/data_manifest.json",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "463cf26c840a9338816e873a762beb8186c50952ae26ae572e73d71eb329bd34",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/registry/data_manifest.json"
+  },
+  {
+    "path": "data/restore_receipt.json",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "74aad03f69ce395c7598041645e670facdc93fdc66d6fe2c419c72b72baeef56",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/data/restore_receipt.json"
+  },
+  {
+    "path": "registry/focus_registry_manifest.json",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "e313af1d3dbbed287711d1200dc152b3704376cee2d028c8dbbb2e6945d31324",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/registry/focus_registry_manifest.json"
+  },
+  {
+    "path": "registry/feature_receipt.json",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "0e43c9ff80630c2e0ef5ab05f1fde7ed76e29dcc0baf84b06ff5a47970c50c77",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/registry/feature_receipt.json"
+  },
+  {
+    "path": "vendor/gems57/evaluate_holdout.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/vendor/gems57/evaluate_holdout.py"
+  },
+  {
+    "path": "vendor/gems57/submission_writer.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/vendor/gems57/submission_writer.py"
+  },
+  {
+    "path": "vendor/template57/prepare_data.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "73c743e8ab7238b44ce82b9a8d4f9c7a17312fc023ee894ebd0e3788a456d7d6",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/vendor/template57/prepare_data.py"
+  },
+  {
+    "path": "src/gems32/__init__.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "e4a584f79eab8c0db81b5704b1525536fef2dcee5bac28da1455a39868983504",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/src/gems32/__init__.py"
+  },
+  {
+    "path": "src/gems32/paths.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "ceb7c79097958beff1f618e608491c3528341b14ee8b2e9cdcfafe1406230b69",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/src/gems32/paths.py"
+  },
+  {
+    "path": "src/gems32/submission.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "48f1921e435b153625c41092009361e3af20c2b4c142e69553dabcbdbb30a9bc",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/src/gems32/submission.py"
+  },
+  {
+    "path": "src/gems32/holdout.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "c476410a3fe27e9c2d6b97e206633ec252929df1c0c0e4c620da0c2f311fd538",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/src/gems32/holdout.py"
+  },
+  {
+    "path": "src/gems32/metric.py",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "382de3eb6d77d549e01bafa718fd01f5a7132263be0b6925dbd5a40a24025289",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/src/gems32/metric.py"
+  },
+  {
+    "path": "requirements.txt",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sha256": "5a24af4cfb21f947c6714a9a2b82427be420e920bbd192d0e97b02e43e4ab82a",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/requirements.txt"
+  }
+]
