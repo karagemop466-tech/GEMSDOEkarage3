@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "checked_utc": "2026-10-27T21:22:28+00:00",
+  "ready_for_experiment": false,
+  "ok_to_submit": false,
+  "checks": [
+    {
+      "id": "canonical_source_snapshot",
+      "passed": true,
+      "detail": "Unmodified pinned upstream source snapshot; not an organizer authentication"
+    },
+    {
+      "id": "assigned_method_lane",
+      "passed": false,
+      "detail": "A coordinator-assigned lane is required; it must not be invented"
+    },
+    {
+      "id": "core_mirror_data",
+      "passed": true,
+      "details": [
+        {
+          "id": "training_features",
+          "present_and_hash_verified": true,
+          "path": ".cache/gems_data/training_features.tif"
+        },
+        {
+          "id": "labels",
+          "present_and_hash_verified": true,
+          "path": ".cache/gems_data/labels.tif"
+        },
+        {
+          "id": "existing_faults",
+          "present_and_hash_verified": true,
+          "path": ".cache/gems_data/existing_faults.tif"
+        },
+        {
+          "id": "sample_submission",
+          "present_and_hash_verified": true,
+          "path": ".cache/gems_data/sample_submission.tif"
+        }
+      ],
+      "detail": "Owner mirrors only; not organizer-authenticated"
+    },
+    {
+      "id": "cached_feature_stack",
+      "passed": true,
+      "detail": ".cache/feature_stack.npy matches recorded 35-channel build SHA-256"
+    },
+    {
+      "id": "complete_registry",
+      "passed": false,
+      "detail": "0/416 pinned registry paths present; fresh inventory and surfaces unverified"
+    },
+    {
+      "id": "same_evaluator_baseline",
+      "passed": false,
+      "detail": "No baseline rerun in this checkout"
+    }
+  ],
+  "limitations": "This local snapshot will become stale. File availability and a matching digest are not scientific validation or organizer authentication."
+}

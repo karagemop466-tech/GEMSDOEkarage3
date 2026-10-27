@@ -57,6 +57,10 @@ def validate(raster_path: Path, template_path: Path) -> dict:
         outside_nonnull = int(np.count_nonzero(outside & valid_mask & ~np.isnan(arr)))
         finite_inside = arr[foot & finite]
         checks = {
+            # A sidecar mask can change the interpreted pixels without changing TIFF SHA-256.
+            # Require both the candidate and reference footprint to be self-contained files.
+            "candidate_single_file": all(Path(p).resolve() == raster_path.resolve() for p in candidate.files),
+            "template_single_file": all(Path(p).resolve() == template_path.resolve() for p in template.files),
             "single_band": candidate.count == 1,
             "float32": candidate.dtypes[0] == "float32",
             "reference_epsg_32611": template.crs == CRS.from_epsg(32611),
@@ -89,6 +93,7 @@ def validate(raster_path: Path, template_path: Path) -> dict:
             "outside_footprint_nonnull": outside_nonnull,
             "outside_footprint_all_null_or_nan": outside_nonnull == 0,
             "whole_grid_finite_and_in_range": bool(finite.all() and not finite_out_of_range.any()),
+            "whole_grid_unmasked": bool(valid_mask.all()),
             "checks": checks,
         }
     # Bind findings to stable bytes; a file modified during inspection fails closed.
@@ -103,7 +108,7 @@ def main() -> int:
     parser.add_argument("raster", type=Path)
     parser.add_argument("template", type=Path, help="Organizer template when available; mirror authenticity is not proven")
     parser.add_argument("--require-null-outside", action="store_true", help="Require null/NaN outside the reference footprint")
-    parser.add_argument("--require-allfinite", action="store_true", help="Additionally require every grid cell finite and in [0,1]")
+    parser.add_argument("--require-allfinite", action="store_true", help="Additionally require every grid cell unmasked, finite and in [0,1]")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     try:
@@ -112,7 +117,7 @@ def main() -> int:
         if args.require_null_outside:
             passed &= report["outside_footprint_all_null_or_nan"]
         if args.require_allfinite:
-            passed &= report["whole_grid_finite_and_in_range"]
+            passed &= report["whole_grid_finite_and_in_range"] and report["whole_grid_unmasked"]
         report["requested_checks_passed"] = bool(passed)
         text = json.dumps(report, indent=2, allow_nan=False) + "\n"
         if args.output:

@@ -55,6 +55,44 @@ class GeoTiffTests(unittest.TestCase):
         self.write(self.candidate, arr, nodata=np.nan)
         self.assertFalse(validate(self.candidate, self.template)['core_checks_passed'])
 
+    def test_allfinite_policy_detects_an_outside_mask(self):
+        arr = np.zeros((4, 5), dtype='float32')
+        self.write(self.candidate, arr)
+        with rasterio.Env(GDAL_TIFF_INTERNAL_MASK=True):
+            with rasterio.open(self.candidate, 'r+') as dst:
+                mask = np.full((4, 5), 255, dtype='uint8')
+                mask[0, 0] = 0
+                dst.write_mask(mask)
+        r = validate(self.candidate, self.template)
+        self.assertTrue(r['core_checks_passed'])
+        self.assertTrue(r['whole_grid_finite_and_in_range'])
+        self.assertFalse(r['whole_grid_unmasked'])
+        self.assertTrue(r['outside_footprint_all_null_or_nan'])
+
+    def test_external_mask_sidecar_is_rejected(self):
+        arr = np.zeros((4, 5), dtype='float32')
+        self.write(self.candidate, arr)
+        with rasterio.Env(GDAL_TIFF_INTERNAL_MASK=False):
+            with rasterio.open(self.candidate, 'r+') as dst:
+                mask = np.full((4, 5), 255, dtype='uint8')
+                mask[0, 0] = 0
+                dst.write_mask(mask)
+        self.assertTrue(Path(str(self.candidate) + '.msk').exists())
+        result = validate(self.candidate, self.template)
+        self.assertFalse(result['checks']['candidate_single_file'])
+        self.assertFalse(result['core_checks_passed'])
+
+    def test_external_template_mask_sidecar_is_rejected(self):
+        self.write(self.candidate, np.zeros((4, 5), dtype='float32'))
+        with rasterio.Env(GDAL_TIFF_INTERNAL_MASK=False):
+            with rasterio.open(self.template, 'r+') as dst:
+                mask = np.full((4, 5), 255, dtype='uint8')
+                mask[0, 0] = 0
+                dst.write_mask(mask)
+        result = validate(self.candidate, self.template)
+        self.assertFalse(result['checks']['template_single_file'])
+        self.assertFalse(result['core_checks_passed'])
+
     def test_numeric_sentinel_outside_is_detected_even_when_masked(self):
         arr = np.zeros((4, 5), dtype='float32')
         arr[0, 0] = -9999

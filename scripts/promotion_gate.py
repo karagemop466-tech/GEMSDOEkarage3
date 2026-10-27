@@ -92,18 +92,44 @@ def assess(card, inspected=None):
             'missing, incomplete, or leaking feature canaries (two-sided AUC)')
 
     registry = mapping(card.get('registry'))
+    ids = registry.get('reference_ids')
+    ids_valid = (isinstance(ids, list) and bool(ids)
+                 and all(isinstance(i, str) and bool(i.strip()) for i in ids)
+                 and len(set(ids)) == len(ids))
+    require(ids_valid, 'missing or invalid registry inventory')
     stages = []
     for stage in ('surface', 'final_dots'):
         r = mapping(registry.get(stage))
         stages.append(r)
         require(r.get('complete') is True and type(r.get('expected_rasters')) is int
-                and r['expected_rasters'] > 0 and type(r.get('checked_rasters')) is int
-                and r['checked_rasters'] == r['expected_rasters']
+                and ids_valid and r['expected_rasters'] == len(ids)
+                and type(r.get('checked_rasters')) is int and r['checked_rasters'] == len(ids)
                 and type(r.get('failed_rasters')) is int and r['failed_rasters'] == 0
                 and sha256_string(r.get('manifest_sha256')) and sha256_string(r.get('candidate_sha256'))
                 and finite(r.get('max_abs_spearman')) and 0 <= r['max_abs_spearman'] <= .90
                 and finite(r.get('max_overlap_3px')) and 0 <= r['max_overlap_3px'] <= .70,
                 f'{stage} uniqueness incomplete or duplicate')
+        records = r.get('comparisons')
+        records_valid = (isinstance(records, list) and bool(records)
+                         and all(isinstance(row, dict) for row in records))
+        require(records_valid, f'{stage} missing per-reference comparisons')
+        if not records_valid:
+            continue
+        names = [row.get('reference_id') for row in records]
+        coverage = (ids_valid and all(isinstance(name, str) and bool(name.strip()) for name in names)
+                    and len(set(names)) == len(names) and set(names) == set(ids))
+        require(coverage, f'{stage} registry comparison coverage mismatch')
+        valid_values = all(finite(row.get('spearman')) and abs(row['spearman']) <= .90
+                           and finite(row.get('overlap_3px')) and 0 <= row['overlap_3px'] <= .70
+                           for row in records)
+        require(valid_values, f'{stage} duplicate or invalid per-reference measurement')
+        if valid_values:
+            max_rho = max(abs(row['spearman']) for row in records)
+            max_overlap = max(row['overlap_3px'] for row in records)
+            require(finite(r.get('max_abs_spearman')) and finite(r.get('max_overlap_3px'))
+                    and math.isclose(max_rho, r['max_abs_spearman'], abs_tol=1e-12)
+                    and math.isclose(max_overlap, r['max_overlap_3px'], abs_tol=1e-12),
+                    f'{stage} summary does not match per-reference comparisons')
     require(sha256_string(stages[0].get('manifest_sha256'))
             and stages[0].get('manifest_sha256') == stages[1].get('manifest_sha256')
             and stages[0].get('expected_rasters') == stages[1].get('expected_rasters'),
@@ -119,7 +145,8 @@ def assess(card, inspected=None):
     require(v.get('outside_encoding_policy_resolved') is True
             and policy in ('null_or_nan', 'allfinite') and isinstance(inspected, dict)
             and inspected.get('outside_footprint_all_null_or_nan' if policy == 'null_or_nan'
-                              else 'whole_grid_finite_and_in_range') is True,
+                              else 'whole_grid_finite_and_in_range') is True
+            and (policy != 'allfinite' or inspected.get('whole_grid_unmasked') is True),
             'outside-footprint encoding/portal behavior unresolved or mismatched')
     # Current pinned shared writer and holdout CLI silently threshold probabilities. Binary
     # candidates are the only safe contract until the shared template issue is fixed.

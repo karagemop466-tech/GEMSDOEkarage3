@@ -54,10 +54,11 @@ def audit(number):
                 result['sources'].append({'url': f'https://github.com/{repo}/blob/{commit}/{path}',
                                           'local': str(dest.relative_to(ROOT)),
                                           'sha256': hashlib.sha256(data).hexdigest()})
-            except subprocess.CalledProcessError:
+            except subprocess.CalledProcessError as exc:
                 if path == 'README.md':
                     raise
-                # Not every site has this optional status file.
+                # Not every site has this optional status file; disclose the failure.
+                result.setdefault('unavailable_sources', []).append({'path': path, 'error': str(exc)})
         if not result['sources']:
             raise ValueError('no pinned README returned')
         result['refresh_status'] = 'ok'
@@ -70,6 +71,11 @@ def audit(number):
 def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
         rows = list(pool.map(audit, CLAIMS))
+    # Preserve the independently merged upstream/local historical comparison.
+    from build_comparison import enrich
+    comparison_path = ROOT / 'evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json'
+    if comparison_path.exists():
+        enrich(rows, json.loads(comparison_path.read_text()))
     complete = all(row['refresh_status'] == 'ok' for row in rows)
     target = ROOT / 'docs' / 'sites.json'
     payload = {'checked_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'),

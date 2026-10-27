@@ -34,9 +34,19 @@ class PriorityAuditTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'x.tif'
             path.write_bytes(b'not authentic')
-            item = {'id': 'x', 'bytes': path.stat().st_size, 'sha256': '0' * 64}
+            item = {'id': 'x', 'bytes': path.stat().st_size, 'sha256': '0' * 64,
+                    'repository': 'example/repo', 'ref': 'a' * 40, 'path': 'x.tif'}
             with self.assertRaises(ValueError):
                 fetch_input(item, Path(tmp), offline=True)
+
+    def test_unsafe_manifest_is_rejected_before_download(self):
+        item = {'id': 'x', 'bytes': 1, 'sha256': '0' * 64,
+                'repository': 'example/repo', 'ref': 'a' * 40, 'path': 'x.tif'}
+        with tempfile.TemporaryDirectory() as tmp:
+            for change in ({'path': '../escape'}, {'path': 'x?ref=main'},
+                           {'ref': 'main'}, {'repository': '../repo'}, {'sha256': 'bad'}):
+                with self.subTest(change=change), self.assertRaises(ValueError):
+                    fetch_input(item | change, Path(tmp), offline=False)
 
     def test_published_report_is_consistent_and_does_not_claim_full_registry(self):
         manifest = json.loads((ROOT / 'evidence/priority_inputs.json').read_text())

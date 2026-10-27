@@ -14,6 +14,7 @@ import json
 import math
 from datetime import datetime, timezone
 from pathlib import Path
+import re
 import subprocess
 import sys
 
@@ -37,8 +38,19 @@ def sha256(path: Path) -> str:
 def fetch_input(item: dict, cache: Path, offline: bool = False) -> Path:
     """Hash-check local bytes, fetching pinned GitHub data atomically if necessary."""
     key = item["id"]
-    if not key.isalnum():
+    if not isinstance(key, str) or not key.isalnum():
         raise ValueError(f"Unsafe input id: {key!r}")
+    repo, ref, remote_path = item["repository"], item["ref"], item["path"]
+    if not all(isinstance(value, str) for value in (repo, ref, remote_path, item["sha256"])):
+        raise ValueError(f"{key}: manifest paths and digest must be strings")
+    path = Path(remote_path)
+    if (not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo)
+            or any(part in (".", "..") for part in repo.split("/"))
+            or not re.fullmatch(r"[0-9a-f]{40}", ref)
+            or path.is_absolute() or ".." in path.parts or "?" in remote_path or "#" in remote_path
+            or not re.fullmatch(r"[0-9a-f]{64}", item["sha256"])
+            or type(item["bytes"]) is not int or item["bytes"] <= 0):
+        raise ValueError(f"{key}: unsafe or unpinned input manifest entry")
     dest = cache / f"{key}.tif"
     if dest.is_file() and dest.stat().st_size == item["bytes"] and sha256(dest) == item["sha256"]:
         return dest
@@ -211,7 +223,7 @@ def main() -> int:
         temp.replace(args.output)
         print(f"Geometry audit written to {args.output}; no experiment, score, or submission was produced.")
         return 0
-    except (OSError, ValueError, KeyError, subprocess.SubprocessError) as exc:
+    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as exc:
         print(f"Audit failed; no new receipt was written: {exc}", file=sys.stderr)
         return 1
 

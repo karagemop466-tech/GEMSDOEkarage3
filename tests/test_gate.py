@@ -10,9 +10,12 @@ class GateTests(unittest.TestCase):
         self.template_sha = 'b' * 64
         self.registry_sha = 'c' * 64
         self.fold_sha = 'd' * 64
+        self.reference_ids = ['r1', 'r2', 'r3', 'r4']
         stage = dict(complete=True, expected_rasters=4, checked_rasters=4, failed_rasters=0,
                      manifest_sha256=self.registry_sha, candidate_sha256=self.sha,
-                     max_abs_spearman=.9, max_overlap_3px=.7)
+                     max_abs_spearman=.9, max_overlap_3px=.7,
+                     comparisons=[dict(reference_id=name, spearman=.9, overlap_3px=.7)
+                                  for name in self.reference_ids])
         self.card = dict(
             hypothesis='test mechanism', mechanism='test', non_fault_mimic='contact',
             assigned_lane='test', experiments_run=1, elapsed_seconds=100,
@@ -23,12 +26,13 @@ class GateTests(unittest.TestCase):
                          whole_segment_buffered=True, catalogue_features_visible_only=True,
                          visible_faults_masked_pixel_exactly=True),
             feature_count=2, feature_names=['one', 'two'], feature_auc=[.6, .9],
-            registry={'surface': copy.deepcopy(stage), 'final_dots': copy.deepcopy(stage)},
+            registry={'reference_ids': self.reference_ids, 'surface': copy.deepcopy(stage),
+                      'final_dots': copy.deepcopy(stage)},
             validator=dict(template_organizer_authenticated=True, template_sha256=self.template_sha,
                            outside_encoding_policy_resolved=True, outside_policy='allfinite'),
             raster_sha256=self.sha, output_kind='binary', submission_name='test', note='test only')
         self.inspected = dict(core_checks_passed=True, raster_sha256=self.sha, template_sha256=self.template_sha,
-                              inside_binary=True, whole_grid_finite_and_in_range=True,
+                              inside_binary=True, whole_grid_finite_and_in_range=True, whole_grid_unmasked=True,
                               outside_footprint_all_null_or_nan=False)
 
     def test_missing_and_malformed_fail_closed(self):
@@ -57,6 +61,43 @@ class GateTests(unittest.TestCase):
             card['registry']['final_dots'][field] = value
             self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
 
+    def test_per_reference_coverage_and_measurements_fail_closed(self):
+        for stage in ('surface', 'final_dots'):
+            for changed in ([], [None], [dict(reference_id=[], spearman=0, overlap_3px=0)],
+                            [dict(reference_id='r1', spearman=-.90001, overlap_3px=0)]):
+                card = copy.deepcopy(self.card)
+                card['registry'][stage]['comparisons'] = changed
+                self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+            card = copy.deepcopy(self.card)
+            card['registry'][stage]['comparisons'][0]['overlap_3px'] = .70001
+            self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+            card = copy.deepcopy(self.card)
+            card['registry'][stage]['comparisons'][0]['spearman'] = .8
+            card['registry'][stage]['max_abs_spearman'] = .8
+            self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+        for ids in ([], ['r1', 'r1'], ['r1', 'missing'], [[]]):
+            card = copy.deepcopy(self.card)
+            card['registry']['reference_ids'] = ids
+            self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+
+    def test_parallel_regression_malformed_sections_and_bounds(self):
+        for field in ('holdout', 'registry', 'validator'):
+            for value in (True, 42, 'bad', []):
+                card = copy.deepcopy(self.card)
+                card[field] = value
+                self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+        for field, value in [('assigned_lane', '  '), ('experiments_run', True),
+                             ('feature_auc', [float('nan'), .5]),
+                             ('feature_auc', [True, .5])]:
+            card = copy.deepcopy(self.card)
+            card[field] = value
+            self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+        for field, value in [('dti', float('inf')), ('ci95', [True, .3]),
+                             ('paired_delta_ci95', [.1, 2])]:
+            card = copy.deepcopy(self.card)
+            card['holdout'][field] = value
+            self.assertEqual(assess(card, self.inspected)['verdict'], 'negative')
+
     def test_canaries_are_complete_and_direction_invariant(self):
         for values in ([float('nan')], [.5], [.5, .90001], [.5, .09999]):
             card = copy.deepcopy(self.card)
@@ -65,7 +106,7 @@ class GateTests(unittest.TestCase):
 
     def test_wrong_or_uninspected_bytes(self):
         for change in ({'raster_sha256': 'f' * 64}, {'core_checks_passed': False},
-                       {'template_sha256': 'f' * 64}, {'inside_binary': False}):
+                       {'template_sha256': 'f' * 64}, {'inside_binary': False}, {'whole_grid_unmasked': False}):
             inspected = self.inspected | change
             self.assertEqual(assess(self.card, inspected)['verdict'], 'negative')
 

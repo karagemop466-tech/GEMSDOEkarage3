@@ -48,5 +48,17 @@
     "This cache is not evidence of a feature canary, valid holdout, model training, unique candidate, or upload eligibility."
   ],
   "experiments_run": 0,
-  "submission_slots_used": 0
+  "submission_slots_used": 0,
+  "restore_helper_replay": {
+    "checked_utc": "2026-10-27T21:29:55+00:00",
+    "mode": "--build-stack",
+    "core_inputs": "Existing hash-verified core mirror directory reused; no network refetch was needed",
+    "stack_sha256": "f95486ffa937e0237c53c5e7f59e49cc142825ae5ea56b166d64dcbfeef5bdc0",
+    "matches_first_build": true,
+    "feature_build_seconds": 153.9,
+    "invalid_mode_returns_2": true,
+    "model_experiments": 0,
+    "fresh_extract": true,
+    "scope": "The hardened helper extracted into a fresh directory and checked builder, feature module, evaluator, writer and manifest digests; cached core files were reused."
+  }
 }
