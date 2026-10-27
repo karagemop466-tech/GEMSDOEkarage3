@@ -1,8 +1,9 @@
 # Data and artifacts are reproducibly fetched, not committed.
 .cache/
-data/cache/
-data/competition/
 .venv/
+/data/*
+!/data/focus_registry.json
+node_modules/
 __pycache__/
 .pytest_cache/
 *.pyc

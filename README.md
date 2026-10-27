@@ -72,3 +72,9 @@ The organizer says one float32 GeoTIFF on the same grid, with predictions in [0,
 5. Confirm deadline details and eligibility under the [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), including disclosure of generative AI in the required narrative. The official page and PDF contain a time ambiguity; plan conservatively.
 
 The [verification workflow](.github/workflows/verify.yml) checks the generated snapshots, unit tests and JavaScript syntax on pushes and pull requests. It does not download competition data, recompute the historical raster audit, run a model or authorize submissions. Its availability depends on the repository's Actions settings.
+
+## Parallel evidence desk and retained tools
+
+Other parallel reviews have also been merged into this repository. Their [earlier dashboard](docs/index.html), [readiness report](docs/readiness.json), [historical raster audit](docs/historical-audit.json), [run card](docs/run-card.json), and commit-pinned [shared-tool inspection](evidence/template-inspection/README.md) are retained for provenance. They are complementary historical records—not a new candidate or a second weekly-slot decision. The root site and `docs/data/current-run.json` describe **this** preflight; both prior and current cards are negative. The upstream source snapshots are for inspection, not private modified scientific tools.
+
+Existing `scripts/check_readiness.py`, `scripts/promotion_gate.py`, `scripts/audit_historical_rasters.py`, `scripts/verify_historical_rasters.py`, and their tests remain in place. `scripts/promotion_gate.py` evaluates supplied metadata and does not authenticate a producer or grant upload permission. The earlier browser tests can be run with `npm ci --no-audit --no-fund && npm test`; the earlier Python suite with `python -m unittest discover -s tests -v`. All large datasets under `data/` are ignored except the tracked focus registry manifest.
