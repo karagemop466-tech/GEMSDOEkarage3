@@ -17,7 +17,20 @@
           "local": "evidence/upstream/GEMSDOE24/README.md",
           "sha256": "39383f1c39c687c7262db982f95f3b3e58d6763524c6c83390f797000725e7c5"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+        "filename": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+        "sha256_upstream_reported": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+        "mechanism_upstream_reported": "H19-5 thinned at 1.5 px (parent)",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 1.0
+      }
     },
     {
       "site": "GEMSDOE25",
@@ -35,7 +48,20 @@
           "local": "evidence/upstream/GEMSDOE25/README.md",
           "sha256": "57c90502a7f540d9d0aed67bc8e4976da899ae2623461a2969a744d28b07ea28"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+        "filename": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+        "sha256_upstream_reported": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+        "mechanism_upstream_reported": "H19-5 thinned at 2.8 px (D2.8)",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 1.0
+      }
     },
     {
       "site": "GEMSDOE27",
@@ -53,7 +79,20 @@
           "local": "evidence/upstream/GEMSDOE27/README.md",
           "sha256": "f545d23ea5cd3499002ea385c481949ae322a4493847709b867ad5b1268158d9"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+        "filename": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+        "sha256_upstream_reported": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+        "mechanism_upstream_reported": "D1.5 + topographic gap-closure mass",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 0.9801884946517089
+      }
     },
     {
       "site": "GEMSDOE28",
@@ -71,7 +110,20 @@
           "local": "evidence/upstream/GEMSDOE28/README.md",
           "sha256": "7efe73d123ac8b849a5162fc3f3ba0920c4aedcf5a0e9d611f7a0c70b5efb022"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+        "filename": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+        "sha256_upstream_reported": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+        "mechanism_upstream_reported": "best of the GEMSDOE28 four-file ~0.27 B=1/blind cluster",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 1.0
+      }
     },
     {
       "site": "GEMSDOE30",
@@ -89,7 +141,20 @@
           "local": "evidence/upstream/GEMSDOE30/README.md",
           "sha256": "76b96fcb9bc57c835f64ca5c68c8930480cfd1621e16ef389c03252a8e1f409e"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+        "filename": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+        "sha256_upstream_reported": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+        "mechanism_upstream_reported": "D2.8 Poisson off-catalogue (claimed dot-identical to GEMSDOE25)",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 1.0
+      }
     },
     {
       "site": "GEMSDOE31",
@@ -107,7 +172,20 @@
           "local": "evidence/upstream/GEMSDOE31/README.md",
           "sha256": "37b55e46831812c43eeb77173132e756f284a2ff09376293edaf568cebaac925"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/2a7cd0c8f1c30341a3a655a01a1ff5bff67b23d2/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+        "filename": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+        "sha256_upstream_reported": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+        "mechanism_upstream_reported": "solo/B=1 (D2.8 minus dots <=100 m from catalogue)",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 1.0
+      }
     },
     {
       "site": "GEMSDOE32",
@@ -130,7 +208,20 @@
           "local": "evidence/upstream/GEMSDOE32/registry/current_status.json",
           "sha256": "2afc9c34c8af08e4d5b1405771b427e476c79c6671a99e3af191f66895225f3d"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73295a80bb4021ca972b8a07eeabd1163b9e6629/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "filename": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256_upstream_reported": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "mechanism_upstream_reported": "champion B=2 (solo minus dots 100-200 m from catalogue)",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 1.0
+      }
     },
     {
       "site": "GEMSDOE33",
@@ -148,7 +239,20 @@
           "local": "evidence/upstream/GEMSDOE33/README.md",
           "sha256": "afbc2441e604e4cbb0d44eecc35386d1f8a9578e02f6225135c3fc05a8d45614"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/7c37df17dee1e7470cd54d0bbbc6f168810145dd/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+        "filename": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+        "sha256_upstream_reported": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+        "mechanism_upstream_reported": "B=1 + analog fault-tip/step-over additions",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 0.9970858712528365
+      }
     },
     {
       "site": "GEMSDOE36",
@@ -166,7 +270,20 @@
           "local": "evidence/upstream/GEMSDOE36/README.md",
           "sha256": "1a872d7730a54cff5cfc86fae0d670ac7651516418fc3af9693d37d3e52d49ca"
         }
-      ]
+      ],
+      "historical_artifact": {
+        "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "filename": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "sha256_upstream_reported": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "mechanism_upstream_reported": "claimed champion superset + 1,200 Anderson/PINN additions",
+        "evidence_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/evidence/arena48_focus9_overlap.json",
+        "locally_validated": false,
+        "uniqueness": "NOT UNIQUE \u2014 local nine-winner dot-overlap test",
+        "purpose": "Historical research only; NOT OK TO SUBMIT",
+        "positive_mask_locally_inspected": true,
+        "local_audit": "historical-raster-audit.json",
+        "max_peer_overlap_3px": 0.9757811293560509
+      }
     }
   ]
 }
