@@ -1,0 +1,8 @@
+# Data and artifacts are reproducibly fetched, not committed.
+.cache/
+data/cache/
+data/competition/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
