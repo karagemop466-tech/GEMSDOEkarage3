@@ -1,0 +1,4 @@
+# Geospatial packages are used for independent read-only audits, not a private scorer or writer.
+numpy==2.4.6
+scipy==1.17.1
+rasterio==1.4.4

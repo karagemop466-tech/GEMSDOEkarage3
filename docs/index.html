@@ -1,10 +1,52 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMS · Submission evidence desk</title><style>
-:root{font:16px/1.6 system-ui;color:#e8f0f3;background:#101b23}body{max-width:1200px;margin:auto;padding:36px 24px}a{color:#86dfcf}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1}h2{margin-top:40px}.eyebrow{color:#86dfcf;letter-spacing:.15em;font-size:.8rem}.notice{background:#342925;border:1px solid #c78964;border-radius:12px;padding:24px}.panel{background:#192a35;padding:24px;border-radius:12px;margin:24px 0}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{text-align:left;padding:16px 12px;border-bottom:1px solid #3c505c;vertical-align:top}td small{display:block;max-width:310px;overflow-wrap:anywhere;color:#b1c2cc}.muted{color:#b1c2cc}nav{display:flex;gap:24px;flex-wrap:wrap}button{background:#34414a;color:#c5cdd2;border:0;padding:12px;border-radius:6px}code{overflow-wrap:anywhere}footer{margin-top:40px;color:#b1c2cc}</style>
-<header><div class="eyebrow">GEMS / EVIDENCE BEFORE SUBMISSION</div><h1>Submission evidence desk</h1><p class="muted">Nine-site executive summary · A reported leaderboard result is not a validated prediction.</p><nav><a href="executive-summary.html">How to submit</a><a href="research.md">Research & irregularities</a><a href="sites.json">Pinned source manifest</a><a href="run-card.json">Run card</a></nav></header>
-<section class="notice"><strong>NOT OK TO SUBMIT — no new TIFF certified in this run</strong><p>No assigned method lane, local cached feature stack, shared evaluation pipeline, or complete raster registry was present. No experiments or weekly submission slots were used. An old TIFF will not be renamed and presented as unique.</p><button disabled>No certified TIFF available</button></section>
-<section class="panel"><h2>Best reported result ≠ next submission</h2><p>GEMSDOE32 has the largest owner-reported value in the supplied nine-site list. Its historical audit describes pruning a prior dot pattern near catalogued faults, not a new geothermal-vent discovery. Its current upstream status says no file is authorized for upload. No organizer receipt was verified.</p><p>Score estimate for a new submission: <strong>unavailable</strong>. Exceeding any public leaderboard result cannot be guaranteed from a local holdout.</p></section>
-<h2>Executive summary by site</h2><p>All values below are <strong>OWNER-REPORT (unverified claims)</strong>, neither ORGANIZER-CONFIRMED nor newly measured HOLDOUT-DTI. “Unknown” means no raster-level uniqueness test was run. These are comparison references, not upload recommendations.</p><p id="updated" class="muted"></p><div class="scroll"><table><thead><tr><th>Site / evidence</th><th>Highest item in supplied list</th><th>Reported value</th><th>New-file estimate</th><th>Unique?</th><th>File to download / upload status</th></tr></thead><tbody id="rows"></tbody></table></div><noscript>Enable JavaScript to view the table, or open the pinned source manifest above. No file is authorized.</noscript>
-<h2>Automatic release gates</h2><p>Assigned lane → per-feature leakage canaries → complete surface registry comparison → buffered whole-segment hide-and-recover → paired improvement against current same-evaluator best → complete final-dot comparison → saved-byte GeoTIFF validation → separate weekly-slot selector.</p><p>Correlation exceeding 0.90 or dot overlap exceeding 70% within three pixels stops the lane. A new file hash alone is insufficient. The evidence gate does not run the evaluator or inspect raster bytes itself; those receipts must come from the canonical template tools.</p><footer>Research hypotheses are untested. Official-source access limits and conflicting leaderboard claims are documented in the research note. <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3">Repository</a></footer>
-<script>
-fetch('sites.json').then(r=>{if(!r.ok)throw Error('Manifest unavailable');return r.json()}).then(data=>{document.querySelector('#updated').textContent='GitHub evidence checked: '+data.checked_utc;for(const row of data.sites){const tr=document.createElement('tr');const td=document.createElement('td');const a=document.createElement('a');a.href=row.sources?.[0]?.url||row.repository;a.textContent=row.site;td.append(a);tr.append(td);for(const text of [row.owner_reported_submission,row.owner_reported_value.toFixed(4),'Not available','Unknown','None recommended · NOT OK TO SUBMIT']){const c=document.createElement('td');const s=document.createElement('small');s.textContent=text;c.append(s);tr.append(c)}document.querySelector('#rows').append(tr)}}).catch(e=>{document.querySelector('#updated').textContent='Evidence loading failed. Remain NOT OK TO SUBMIT. '+e.message});
-</script></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="An evidence-first desk for the DOE GEMS geothermal fault-mapping challenge.">
+  <title>GEMS / Submission evidence desk</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="shell topbar-inner">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">G</span><span>GEMS DESK<small>Fault discovery / evidence first</small></span></a>
+  <nav class="nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="https://github.com/karagemop466-tech/GEMSDOEkarage3">Repository ↗</a></nav>
+</div></header>
+<main id="main" class="shell">
+  <section class="hero"><div class="eyebrow">DOE GEMS / Executive summary</div><div class="hero-grid">
+    <div class="hero-copy"><h1>Better evidence.<br>Better decisions.</h1><p>A clear view of the nine priority projects, their reported results, and the checks that stand between a research raster and a competition submission.</p></div>
+    <aside class="hero-aside"><div class="mini-label">Current position</div><p>The highest value in the supplied nine-site history belongs to GEMSDOE32. It is a <strong>user/owner report</strong>, not a verified receipt, and it is not a new file to submit.</p><div class="link-row"><a href="#site-table">Explore the site comparison ↓</a><a href="executive-summary.html">How submission works →</a></div></aside>
+  </div></section>
+
+  <section class="status" aria-labelledby="status-title">
+    <span class="status-icon" aria-hidden="true">!</span><div class="status-body"><div class="status-top"><h2 id="status-title">Not OK to submit — no new TIFF approved</h2><span class="chip red">Decision: negative</span></div>
+    <p>No new candidate or leaderboard estimate was produced. The method lane is unspecified; the literal registry rule blocks the usual champion-sized dot budget. Historical links below are for research only. A format pass or a new filename does not grant upload permission.</p>
+    <div class="link-row"><button type="button" disabled>No approved submission download</button><a href="run-card.json">View this run’s JSON card →</a></div></div>
+  </section>
+
+  <div class="metrics" aria-label="Evidence at a glance">
+    <article class="metric"><div class="mini-label">Historical high / user report</div><strong>0.2778</strong><p>GEMSDOE32; no organizer submission receipt linked to this raster.</p></article>
+    <article class="metric"><div class="mini-label">Public leader / official snapshot</div><strong>0.4544</strong><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a> observed 27 Oct 2026; not a score for this project and may have changed.</p></article>
+    <article class="metric"><div class="mini-label">Geometry / not a score</div><strong>≥82.34%</strong><p>Unavoidable lattice overlap at 37,654 dots, above the stated 70% limit.</p></article>
+  </div>
+
+  <section class="section" id="site-table" aria-labelledby="sites-heading"><div class="section-heading"><div><div class="eyebrow">Nine priority projects</div><h2 id="sites-heading">The comparison desk.</h2></div><p>Highest items in the supplied historical list, not a ranking of current candidates. Direct links point to previously published files; <strong>do not resubmit them</strong>.</p></div>
+    <div class="card table-wrap"><table class="data-table"><thead><tr><th scope="col">Site / historical file</th><th scope="col">Reported value</th><th scope="col">New-file estimate</th><th scope="col">Unique vs the other eight?</th><th scope="col">Decision</th></tr></thead><tbody id="rows"><tr><td colspan="5">Loading the pinned comparison…</td></tr></tbody></table></div>
+    <p id="source-status" class="footnote" role="status">Checking pinned evidence…</p><p id="freshness" class="footnote" role="status">Checking the nine public GitHub repository heads; this does not refresh the organizer leaderboard.</p>
+    <noscript><p class="footnote">JavaScript is needed for the table. Read <a href="sites.json">the source manifest</a> and <a href="priority-audit.json">the historical audit</a> instead. No file is approved.</p></noscript>
+    <p class="footnote">Reported values are user/owner claims without file-bound receipts. Uniqueness here is measured only against the eight other selected historical masks, at ≤3-pixel Euclidean distance; it is not a complete current-registry or pre-placement surface audit. The downloads are historical research references, not new submissions.</p>
+  </section>
+
+  <section class="section" aria-labelledby="finding-heading"><div class="section-heading"><div><div class="eyebrow">What the bytes tell us</div><h2 id="finding-heading">A lineage, not a guarantee.</h2></div></div>
+    <div class="analysis-grid"><article class="card analysis-card"><h3>Why might GEMSDOE32 have led?</h3><p>We independently checked the pinned masks: the GEMSDOE32 pattern equals the GEMSDOE31 pattern after removing 2,545 dots within two pixels of the mirrored catalogue. GEMSDOE25 and GEMSDOE30 have the same in-footprint dot mask.</p><p>The official distance-weighted metric rewards proximity to hidden fault pixels while predictions can add false-positive cost. Removing redundant or low-yield dots is a plausible explanation—not proof of why a reported score changed. Hidden truth and a score-to-file receipt are unavailable.</p><div class="link-row"><a href="priority-audit.json">Inspect reproducible geometry ↗</a><a href="research.html">Read the full analysis →</a></div></article>
+    <article class="card analysis-card dark-card"><div class="mini-label" style="color:#a6cabd">A decisive preflight</div><p class="callout-line">One registered lattice is enough to stop this budget.</p><p>Only 6,649 footprint cells lie farther than three pixels from it. At 37,654 distinct dots, at least 31,005 must overlap, even before spacing or geology constraints. This does not prove every smaller candidate is impossible.</p><div class="link-row"><a href="research.html#lattice">See the counting proof →</a></div></article></div>
+  </section>
+
+  <section class="section" aria-labelledby="sources-heading"><div class="section-heading"><div><div class="eyebrow">Verify the foundations</div><h2 id="sources-heading">Go to the source.</h2></div><p>Fault prediction is not proof of a geothermal vent. Local holdouts are not calibrated leaderboard scores.</p></div>
+    <div class="source-strip"><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Competition problem & metric ↗</a><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules ↗</a><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN ↗</a><a href="https://gdr.openei.org/submissions/1391">DOE INGENIOUS data ↗</a><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution ↗</a></div>
+  </section>
+</main>
+<footer class="footer"><div class="shell footer-inner"><span>Maximize P(Win) · Own the outcome · No unsupported score claims</span><span>GitHub freshness is a head check, not a live competition feed.</span></div></footer>
+</body></html>

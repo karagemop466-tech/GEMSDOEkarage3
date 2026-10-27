@@ -1,18 +1,59 @@
 {
-  "hypothesis": "Magnetic-edge migration under upward continuation; preregistered, not executed",
-  "mechanism": "Scale-consistent displaced magnetic gradients may identify concealed dipping discontinuities",
-  "non_fault_mimic": "Dipping lithologic contact or remanent magnetization",
+  "hypothesis": "Signed gravity–RTP cross-edge lag on oriented transects; proposed only, not an assigned lane",
+  "mechanism": "Persistent offset between magnetic and gravity gradient peaks may identify a concealed basement discontinuity beneath cover.",
+  "non_fault_mimic": "Unfaulted intrusive or lithologic contact, remanent magnetization, or survey-line artifact",
   "assigned_lane": null,
   "experiments_run": 0,
+  "elapsed_seconds": null,
   "submission_slots_used": 0,
-  "holdout": {"evidence_class": "HOLDOUT-DTI", "status": "NOT MEASURED", "evaluator_version": null, "withheld_positives": null, "dti": null, "ci95": null, "paired_delta_ci95": null},
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT MEASURED — no geological candidate evaluated",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "dti": null,
+    "ci95": null,
+    "paired_delta": null,
+    "paired_delta_ci95": null,
+    "same_evaluator_current_best": false
+  },
   "feature_auc": null,
-  "registry": {"surface": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null}, "final_dots": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null}},
+  "feature_count": null,
+  "feature_names": null,
+  "registry": {
+    "scope": "One registered lattice and nine pinned historical masks only; not a full current registry",
+    "surface": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null},
+    "final_dots": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null},
+    "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "lattice_uncovered_footprint_pixels": 6649,
+    "dot_budget_example": 37654,
+    "minimum_lattice_overlap_at_example_budget": 0.8234184947150369,
+    "label": "GEOMETRY-AUDIT, not a candidate comparison or score"
+  },
   "raster_sha256": null,
-  "validator": {"status": "NOT RUN — no generated raster", "saved_bytes_checked": false, "single_band": null, "finite_inside": null, "range_0_1": null, "crs_match": null, "shape_match": null, "transform_match": null},
+  "validator": {
+    "status": "NOT RUN — no generated raster",
+    "saved_bytes_checked": false,
+    "single_band": null,
+    "finite_inside": null,
+    "range_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "template_organizer_authenticated": false,
+    "outside_encoding_policy_resolved": false
+  },
   "submission_name": null,
-  "note": "Audit only: missing assigned lane, cached stack and complete registry. No new TIFF generated; DO NOT SUBMIT.",
+  "note": "Research audit only: no candidate or assigned lane; literal lattice stop. DO NOT SUBMIT.",
   "verdict": "negative",
   "ok_to_submit": false,
-  "blockers": ["No explicit method lane", "No local cached feature stack or template pipeline", "No complete local raster registry", "No measured baseline or candidate holdout", "No saved-byte GeoTIFF validation or selector authorization"]
+  "selector_required": true,
+  "blockers": [
+    "No explicit parallel method lane",
+    "The literal registry lattice makes the usual 37,654-dot budget exceed the 70% limit",
+    "No complete registry, pre-placement surface comparison, canaries, or measured holdout",
+    "Shared writer and evaluator silently binarize probability inputs (upstream issue 37)",
+    "Owner-mirrored template is not organizer-authenticated; outside-footprint acceptance is unresolved",
+    "No generated raster, saved-byte validation, or separate slot selection"
+  ]
 }
