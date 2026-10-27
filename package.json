@@ -1,0 +1,6 @@
+{
+  "name": "gemsdoekarage3-evidence-desk",
+  "private": true,
+  "scripts": {"test": "node --test tests/dashboard.test.cjs"},
+  "devDependencies": {"jsdom": "26.1.0"}
+}

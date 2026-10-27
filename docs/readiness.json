@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "ready_for_experiment": false,
+  "ok_to_submit": false,
+  "checks": [
+    {
+      "id": "canonical_source_snapshot",
+      "passed": true,
+      "detail": "Unmodified pinned upstream scripts + dependency modules recovered; not the feature cache"
+    },
+    {
+      "id": "assigned_method_lane",
+      "passed": false,
+      "detail": "registry/lane.json has no assigned method; parallel-run lane must not be invented"
+    },
+    {
+      "id": "core_mirror_data",
+      "passed": true,
+      "details": [
+        {
+          "id": "training_features",
+          "present_and_hash_verified": true
+        },
+        {
+          "id": "labels",
+          "present_and_hash_verified": true
+        },
+        {
+          "id": "existing_faults",
+          "present_and_hash_verified": true
+        },
+        {
+          "id": "sample_submission",
+          "present_and_hash_verified": true
+        }
+      ],
+      "detail": "Owner mirrors only, not organizer-authenticated"
+    },
+    {
+      "id": "cached_feature_stack",
+      "passed": false,
+      "detail": ".cache/gems_work/feature_stack.npy: absent"
+    },
+    {
+      "id": "complete_registry",
+      "passed": false,
+      "detail": "0/416 pinned registry paths present; continuous surfaces and freshness unverified"
+    },
+    {
+      "id": "same_evaluator_baseline",
+      "passed": false,
+      "detail": "No baseline rerun in this checkout"
+    }
+  ],
+  "limitations": "Availability is not scientific validation. No lane, dataset provenance, or complete registry is inferred from filenames."
+}

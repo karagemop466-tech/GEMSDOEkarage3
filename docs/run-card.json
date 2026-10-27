@@ -5,14 +5,57 @@
   "assigned_lane": null,
   "experiments_run": 0,
   "submission_slots_used": 0,
-  "holdout": {"evidence_class": "HOLDOUT-DTI", "status": "NOT MEASURED", "evaluator_version": null, "withheld_positives": null, "dti": null, "ci95": null, "paired_delta_ci95": null},
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT MEASURED",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "dti": null,
+    "ci95": null,
+    "paired_delta_ci95": null
+  },
   "feature_auc": null,
-  "registry": {"surface": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null}, "final_dots": {"complete": false, "max_abs_spearman": null, "max_overlap_3px": null}},
+  "registry": {
+    "surface": {
+      "complete": false,
+      "max_abs_spearman": null,
+      "max_overlap_3px": null
+    },
+    "final_dots": {
+      "complete": false,
+      "max_abs_spearman": null,
+      "max_overlap_3px": null
+    }
+  },
   "raster_sha256": null,
-  "validator": {"status": "NOT RUN — no generated raster", "saved_bytes_checked": false, "single_band": null, "finite_inside": null, "range_0_1": null, "crs_match": null, "shape_match": null, "transform_match": null},
+  "validator": {
+    "status": "NOT RUN for a new candidate \u2014 no new raster generated; historical files validated separately",
+    "saved_bytes_checked": false,
+    "single_band": null,
+    "finite_inside": null,
+    "range_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
   "submission_name": null,
-  "note": "Audit only: missing assigned lane, cached stack and complete registry. No new TIFF generated; DO NOT SUBMIT.",
+  "note": "Historical audit only; core mirrors restored. Missing assigned lane, shared cache and complete registry. No new TIFF; DO NOT SUBMIT.",
   "verdict": "negative",
   "ok_to_submit": false,
-  "blockers": ["No explicit method lane", "No local cached feature stack or template pipeline", "No complete local raster registry", "No measured baseline or candidate holdout", "No saved-byte GeoTIFF validation or selector authorization"]
+  "blockers": [
+    "No explicit assigned method lane",
+    "Canonical cached feature stack absent (source snapshot and core data mirrors recovered)",
+    "No complete fresh raster/surface registry",
+    "No same-evaluator baseline or candidate holdout",
+    "No generated new candidate or selector authorization"
+  ],
+  "experiment_elapsed_seconds": 0,
+  "historical_evidence": {
+    "report": "historical-audit.json",
+    "artifacts_byte_checked": 10,
+    "format_passed": 10,
+    "all_nine_leaders_fail_literal_overlap": true,
+    "candidate_generated": false,
+    "source_authentication": "owner mirrors, not organizer-authenticated"
+  }
 }

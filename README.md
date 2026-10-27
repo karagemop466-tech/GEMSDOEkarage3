@@ -21,21 +21,47 @@ Before implementing a model, rank 3–5 geological hypotheses with layers, physi
 
 GeoTIFF validation must check single band, exact official-template CRS/shape/geotransform, no NaN inside the footprint and values in [0,1]. No human inspection waiver is needed; missing evidence automatically fails closed. Do not conflate format validity with scientific performance or slot authorization.
 
-## What actually exists
-The initial checkout at `85359a3` contained only a one-line README. There was no previous training pipeline, dataset, cached stack, evaluator or writer to run. Claims in the supplied prompt about a ready pipeline or data being the sole blocker did not describe this checkout.
+## Current evidence and progress — 2026-10-27
 
-This revision adds a source-pinned nine-site dashboard, four preregistered hypotheses, a metadata evidence gate and tests. It does **not** implement or privately fork the template evaluator or writer. No model experiments, TIFF generation, or competition submission occurred. Upstream evidence was recovered over GitHub; those are third-party reports, not official organizer receipts. Missing lane and cache prevent honest completion of the requested competitive TIFF.
+**No new candidate is OK TO SUBMIT.** [Executive desk](docs/index.html) · [Why GEMSDOE32 led](docs/historical-review.html) · [Measured raster audit](docs/historical-audit.json) · [Readiness](docs/readiness.json).
 
-## Reproduce
+This session went beyond the prior metadata-only review:
+- Restored **all four core owner-mirror files**, including the 418,912,844-byte 19-band training raster. SHA256 pins and grid metadata are checked; mirrors are **not organizer-authenticated**. Large inputs are ignored by Git.
+- Recovered unchanged, commit-pinned canonical evaluator, writer, validator dependency modules and restoration source in `evidence/template-inspection/`. They are an inspected upstream snapshot, **not a private fork or a recovered feature cache**. Verify its manifest before execution.
+- Downloaded and inspected the nine cited historical leaders plus the earlier GEMSDOE28 solo base, for learning only. The unchanged canonical validator accepts all ten in all-finite mode against the mirrored template.
+- Confirmed GEMSDOE32 is exactly the 40,199-dot solo base minus 2,545 dots within two pixels of the catalogue: 37,654 dots, **no new dots**. This proves construction, not the reason for the OWNER-REPORTED 0.2778.
+- Confirmed GEMSDOE25/GEMSDOE30 positive-pixel equality and GEMSDOE31/earlier GEMSDOE28 solo equality despite different TIFF hashes.
+- Every historical leader violates the literal 70% overlap rule against another audited pattern. The audit is a **partial registry**; it cannot certify a uniqueness pass. Continuous surfaces were not recovered.
+- Hardened the evidence gate against malformed JSON structures, missing comparison coverage, mismatched baseline/folds, inconsistent confidence intervals, over-budget experiments, and validator/candidate digest mismatches. It still consumes metadata and cannot authenticate an untrusted producer.
+
+No model experiments, new candidate TIFF generation, HOLDOUT-DTI measurements or competition submissions occurred. An assigned lane, canonical cached feature stack, complete fresh registry including surfaces, and same-evaluator baseline remain missing. The original checkout history did not include the ready training pipeline described in the repeated prompt.
+
+## Reproduce autonomously
 ```sh
-python scripts/audit_sources.py          # gh authentication; refresh pinned GitHub evidence
-python -m unittest discover -s tests -v
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+python scripts/audit_sources.py               # gh; refresh pinned source reports
+.venv/bin/python scripts/restore_core_data.py  # gh; canonical restoration, ~422 MB core inputs
+.venv/bin/python scripts/audit_historical_rasters.py  # gh; pinned historical learning only
+python scripts/check_readiness.py             # expected exit 2 while blocked
+.venv/bin/python -m unittest discover -s tests -v
+npm ci --no-audit --no-fund && npm test          # browser-DOM success/failure checks
 python scripts/promotion_gate.py docs/run-card.json  # expected exit 2: negative
 python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
-The promotion gate consumes evidence metadata, not raster pixels; it cannot certify receipts supplied by an untrusted producer. Only canonical tools may produce the actual evaluator/writer/validator outputs. Even a `promote` result does not authorize upload.
+No credentials are requested or stored. GitHub authentication is supplied by the environment. Do not upload any historical artifact obtained by the restoration/audit tools. No new download is enabled until the release gates and separate selector succeed.
+
+Canonical tools are intentionally unchanged. Inspection found their path-based evaluator converts positive fields to binary masks; the writer also emits a binary mask from positive input. They **must not be presented as probability-preserving continuous evaluation/writing APIs**. Their sanitizing behavior must not conceal upstream model errors. If continuous probability support is needed, fix and test it in the shared upstream template once, not in a private fork here. See [template inspection](evidence/template-inspection/README.md).
 
 ## Limitations and next-session priorities
-See [research.md](docs/research.md). Assign the lane, restore pinned shared cache/template and complete registry, establish fold-local baseline and run at most three experiments. CPU training is supported by the official reference; a GPU is not strictly required. DrivenData, USGS, Dropbox and literature hosts are outside this sandbox's network allowlist; no current cap, receipt, leaderboard or official-data authentication was verified.
+1. Obtain the parallel coordinator's actual lane assignment; the prompt contains no identifiable single-method paragraph. Do not invent one across concurrent runs.
+2. Restore the canonical cached feature stack with its checksum and source/band provenance. The observed mirrored feature raster has 19 bands, but no `.cache/gems_work/feature_stack.npy` exists here.
+3. Restore a complete fresh registry of both continuous surfaces and final dots. Pinned historical references are not a live exhaustive inventory.
+4. Establish a fold-local current-best baseline using the pinned shared evaluator. Test feature-only canaries and at most three preregistered experiments; stop on duplicate drift.
+5. Release a new method-derived TIFF only after paired improvement, literal novelty, saved-byte checks, and independent weekly-slot selection. Record a real organizer receipt after upload, never a projected leaderboard score.
 
-We can modify this repository's site, not nine other repositories without separately scoped changes. GitHub Pages deploys `docs/` using the included workflow. Source refresh is explicit, not a claimed live leaderboard feed.
+The four hypotheses in [research.md](docs/research.md) remain untested. No estimate can honestly be given for a new candidate. CPU training is supported by the official reference; a GPU is not inherently required. DrivenData, USGS, Dropbox and literature hosts are outside the sandbox network allowlist. Their live rules, cap, organizer data authentication, leaderboard and receipts remain unverified. Conflicting supplied leaderboard claims are not current facts.
+
+Only this repository's site is changed; the nine external sites are represented in the central summary, not edited. The existing GitHub Pages configuration is legacy `main:/`; the root redirect opens `docs/index.html`. CI tests the site evidence; legacy Pages performs deployment. Source refresh is reproducible, not falsely advertised as an official live feed.
+
+The standing brief above is a normalized, deduplicated requirements record, not a verbatim archive of the repeated prompt. Read it at the beginning of every session. Core values remain **Maximize P(Win)** and **Own the Outcome**: negative evidence is useful; fabricated readiness is not.
