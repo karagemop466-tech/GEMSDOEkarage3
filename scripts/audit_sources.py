@@ -34,5 +34,10 @@ def audit(n):
 if __name__=='__main__':
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
         rows=list(pool.map(audit,SITES))
+    # Preserve the independently pinned historical audit on refresh.
+    from build_comparison import enrich
+    audit_path=ROOT/'evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json'
+    if audit_path.exists():
+        enrich(rows,json.loads(audit_path.read_text()))
     target=ROOT/'docs'/'sites.json'
     target.write_text(json.dumps({'checked_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sites':rows},indent=2)+'\n')

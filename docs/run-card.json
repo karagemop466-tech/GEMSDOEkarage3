@@ -57,5 +57,13 @@
     "all_nine_leaders_fail_literal_overlap": true,
     "candidate_generated": false,
     "source_authentication": "owner mirrors, not organizer-authenticated"
+  },
+  "historical_audit": {
+    "evidence_class": "LOCAL-RASTER-AUDIT \u2014 not a score",
+    "report": "historical-raster-audit.json",
+    "pinned_tiffs_hash_verified": 9,
+    "directed_dot_comparisons": 72,
+    "minimum_overlap_3px": 0.8671895382207149,
+    "candidate_generated": false
   }
 }

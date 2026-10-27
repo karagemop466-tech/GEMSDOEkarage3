@@ -47,3 +47,8 @@ The pinned official reference notebook source verifies alpha=0.2/beta=0.8 for it
 - Raw training rasters contain real-valued features and a nodata sentinel, so they are never submission files. The prior rejected file was not available; its actual range-error cause remains unknown.
 - A partial historical registry can prove a duplicate failure but never a uniqueness pass. Neither the pinned 416-raster manifest nor the inspected ten artifacts establishes fresh surface completeness.
 - Restoring the core data removes a real preparation blocker, but does not restore the canonical feature cache or establish a scientifically valid baseline.
+
+
+## Reconciled parallel audit
+
+A parallel session merged an earlier [nine-file local audit](historical-raster-audit.json) during this session. It independently found all 72 directed historical winner comparisons exceed the 70% overlap cutoff (minimum 86.72%). Its selected GEMSDOE30/33 variants differ from the all-finite variants inspected in the present ten-artifact audit. That earlier audit did not have the template or dependency modules; its availability statements describe that earlier run, not current preparation status. Its source snapshots, scripts and regression tests are preserved. The current source of truth for saved-byte format checks is [historical-audit.json](historical-audit.json), explicitly against an owner-mirrored template, not organizer authentication.

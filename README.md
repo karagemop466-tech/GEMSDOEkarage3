@@ -53,6 +53,19 @@ No credentials are requested or stored. GitHub authentication is supplied by the
 
 Canonical tools are intentionally unchanged. Inspection found their path-based evaluator converts positive fields to binary masks; the writer also emits a binary mask from positive input. They **must not be presented as probability-preserving continuous evaluation/writing APIs**. Their sanitizing behavior must not conceal upstream model errors. If continuous probability support is needed, fix and test it in the shared upstream template once, not in a private fork here. See [template inspection](evidence/template-inspection/README.md).
 
+## Earlier parallel audit (preserved; superseded for preparation status)
+
+The local [raster audit](docs/historical-raster-audit.json) verifies nine pinned TIFF hashes and 72 directed dot comparisons. Every pair exceeds the protocol's 70% within-three-pixels cutoff (minimum 86.72%). GEMSDOE25 and GEMSDOE30 have identical positive masks. This is **LOCAL-RASTER-AUDIT**, not HOLDOUT-DTI or an organizer score. Historical TIFFs were downloaded for education only, remain ignored under `data/historical/`, and are not presented as new submissions.
+
+Reproduce with an optional isolated environment:
+```sh
+python -m venv .venv
+.venv/bin/pip install -r requirements-audit.txt
+.venv/bin/python scripts/verify_historical_rasters.py
+python scripts/build_comparison.py
+```
+That earlier audit recovered evaluator/writer entry points for inspection and did not have the upstream modules or data. **The present follow-up recovered the dependency modules and core data mirrors as described above**, but still lacks a feature cache, assigned lane and baseline. Earlier source provenance and hashes are retained in `evidence/upstream/recovered-manifest.json`. Its historical variants and report remain separate from the newer ten-artifact canonical-validator audit.
+
 ## Limitations and next-session priorities
 1. Obtain the parallel coordinator's actual lane assignment; the prompt contains no identifiable single-method paragraph. Do not invent one across concurrent runs.
 2. Restore the canonical cached feature stack with its checksum and source/band provenance. The observed mirrored feature raster has 19 bands, but no `.cache/gems_work/feature_stack.npy` exists here.

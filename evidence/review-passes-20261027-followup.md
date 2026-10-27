@@ -26,3 +26,6 @@
 
 ## Remaining unmet deliverables (not disguised as completion)
 No unique new TIFF, new HOLDOUT-DTI estimate, complete fresh surface/dot registry, organizer receipt, live official leaderboard/feed, or edits to the nine external repositories. The README preserves a normalized standing brief, not a verbatim archive of the repeated prompt. No human inspector waiver is requested: missing prerequisites automatically block release. Model experiments: 0; competition submission slots: 0. PR/merge and Pages outcomes are reported after execution, not assumed in this document.
+
+## Parallel integration review before merge
+PR #2 reached main while this session's PR #3 was open. Merged origin/main into the existing session branch (no branch switch), preserving the earlier audit, source snapshots, comparison builder, and its regression cases. Reconciled the current dashboard/run card with the newer core-restoration and canonical-validator evidence. Annotated earlier availability statements as historical and distinguished the earlier GEMSDOE30/33 variants. Re-ran the combined Python and DOM tests before final merge; no prior negative evidence was discarded.
