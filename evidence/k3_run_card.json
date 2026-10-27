@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "lane": "K3",
+  "generated_utc": "2026-10-27T21:28:59Z",
+  "hypothesis": "Corrected-LiDAR crest-base scarp-pair (bands by description, fixing IR-K3-01) rank-fused with depth-persistent potential-field worms finds catalogue-missing faults; greedy 300 m kernel-coverage emission beats fixed 2.8 px dotting.",
+  "mechanism": "Scarp profile dipole (lapneg crest + lappos base + step + coherence) detects sub-grid scarplets; multi-scale HG-ridge persistence detects buried basement offsets whose edges survive upward-continuation proxy; CELF greedy places each dot where uncovered kernel-weighted rank mass is maximal.",
+  "non_fault_mimic": "Lake Lahontan paleo-shorelines, terrace risers, road cuts and landslide head scarps (H3); lithologic contacts and dike margins (H1).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-only",
+    "pooled_dti": 0.05224315289366571,
+    "ci95": [
+      0.037465339940735407,
+      0.06198437328700663
+    ],
+    "n_withheld_positives": 22232,
+    "design": "FUSE@GREEDY-37654 evaluated with per-cell visible-only B=2 gate (uncensored)",
+    "champion_rule_control": {
+      "pooled_dti": 0.09920232315251677,
+      "ci95": [
+        0.0814887112450371,
+        0.12041224428978062
+      ],
+      "note": "D2.8 pre-prune mask + visible-B2 gate; literal champion mask is construction-censored (IR-K3-09)"
+    },
+    "sgmc": {
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "evidence_class": "HOLDOUT-DTI",
+      "design_cal": 0.08738779906249428,
+      "design_ci95": [
+        0.06635710553228122,
+        0.10864810039032181
+      ],
+      "final_mask_cal": 0.08919670795358435,
+      "final_mask_ci95": [
+        0.06764988867795407,
+        0.11111684556939576
+      ],
+      "champion_cal": 0.0641209376417646
+    },
+    "leaderboard_estimate": "NOT ESTIMABLE (no live-validated calibration in this repo; projection is never a score)"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_worst_abs_spearman": 0.048966015106067726,
+    "surface_worst_raster": "buffedlizard55-lab/GEMSDOE24:inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+    "final_worst_within_3px": 0.2821874551456868,
+    "final_worst_overlap_raster": "buffedlizard55-lab/GEMSDOE24:inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+    "final_worst_abs_spearman_phi": 0.006227589807756329,
+    "literal_lattice": {
+      "available": true,
+      "source": "buffedlizard55-lab/GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "lattice_dots": 206895,
+      "footprint_coverage_3px": 0.9987132726822701,
+      "uncovered_footprint_px": 6649,
+      "candidate_within_3px": 0.9992249174680637,
+      "pigeonhole_min_overlap_at_this_budget": 0.8091287498205827,
+      "note": "Literal rule vs this space-filling calibration lattice; reported for disclosure (IR-K3-02), not used as the lane gate."
+    },
+    "scope_note": "full-footprint |Spearman| <= 0.9 AND candidate dots within 3 px <= 0.7; no density exemptions"
+  },
+  "raster": {
+    "zeros_file": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+    "zeros_sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+    "zeros_bytes": 196536,
+    "zip_file": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.zip",
+    "zip_sha256": "53d97946832930cdc0e7fe71059a92cb83550236825f623e999d304dcac8039f",
+    "nan_file": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+    "nan_sha256": "04cdc5fe41fdc5ef1b148cf8352015d25d37763f1f847838f0f96cd0d342a993",
+    "dots": 34835,
+    "dots_before_b2": 37654,
+    "pruned_b2": 2819,
+    "on_catalogue_dots": 0
+  },
+  "validator": {
+    "zeros": {
+      "filename": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+      "size_bytes": 196536,
+      "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+      "mode": "zeros",
+      "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "None",
+      "emitted_positive_pixels": 34835,
+      "footprint_fraction": 0.006741,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 12279160,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "nan": {
+      "filename": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "size_bytes": 329230,
+      "sha256": "04cdc5fe41fdc5ef1b148cf8352015d25d37763f1f847838f0f96cd0d342a993",
+      "mode": "nan",
+      "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "nan",
+      "emitted_positive_pixels": 34835,
+      "footprint_fraction": 0.006741,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 5167373,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    }
+  },
+  "submission": {
+    "name": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros",
+    "note": "KARAGE3 K3 scarppair+worms greedy 34835d B2 | HOLDOUT-DTI 0.0522 vis-v3 SGMC 0.0874 | UNSCORED | id 9b2656c4",
+    "note_chars": 108
+  },
+  "gates": {
+    "G1_pooled_beats_champion_rule": {
+      "pass_": false,
+      "candidate": 0.05224315289366571,
+      "candidate_ci95": [
+        0.037465339940735407,
+        0.06198437328700663
+      ],
+      "control": 0.09920232315251677,
+      "control_ci95": [
+        0.0814887112450371,
+        0.12041224428978062
+      ],
+      "instrument": "GEMSDOE32-HOLDOUT-v3-visible-only pooled HOLDOUT-DTI, 22232 withheld positives"
+    },
+    "G2_sgmc_veto": {
+      "pass_": true,
+      "candidate": 0.08738779906249428,
+      "final_mask_candidate": 0.08919670795358435,
+      "threshold": 0.057708843877588144,
+      "champion": 0.0641209376417646,
+      "instrument": "GEMSDOE32-SGMC-CAL-v3.0 HOLDOUT-DTI"
+    },
+    "G3_genuine_uniqueness": {
+      "pass_": true,
+      "worst_within_3px": 0.2821874551456868,
+      "worst_overlap_raster": "buffedlizard55-lab/GEMSDOE24:inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+      "surface_worst_abs_spearman": 0.048966015106067726,
+      "scope": "9 focus-site bests + 2 champion-lineage controls (registry/focus9_registry.json)",
+      "literal_lattice": {
+        "available": true,
+        "source": "buffedlizard55-lab/GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "lattice_dots": 206895,
+        "footprint_coverage_3px": 0.9987132726822701,
+        "uncovered_footprint_px": 6649,
+        "candidate_within_3px": 0.9992249174680637,
+        "pigeonhole_min_overlap_at_this_budget": 0.8091287498205827,
+        "note": "Literal rule vs this space-filling calibration lattice; reported for disclosure (IR-K3-02), not used as the lane gate."
+      }
+    },
+    "G4_validator": {
+      "pass_": true,
+      "zeros": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "nan": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      }
+    },
+    "G5_canary": {
+      "pass_": true,
+      "max_auc": 0.636481920280965,
+      "n_features": 12
+    }
+  },
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "download_research": true,
+  "organizer_confirmed_score": null,
+  "owner_reported_champion": {
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "score": 0.2778,
+    "label": "OWNER-REPORTED (IR-K3-04)"
+  },
+  "elapsed_s": 17.2,
+  "experiments_used": 3
+}

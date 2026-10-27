@@ -9,3 +9,6 @@ node_modules/
 /data/*
 !/data/focus_registry.json
 *.part
+*.npy
+*.partial
+*.assembling

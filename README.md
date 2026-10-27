@@ -92,3 +92,29 @@ The organizer's public leaderboard page showed **0.4544** in first place on 2026
 Legacy Pages continues to serve the root site and retained `docs/`. A separate scheduled artifact-deployment workflow is gated because this integration received HTTP 403 when attempting to switch Pages to Actions. An authorized admin would need to enable that source and set `ACTIONS_PAGES_ENABLED=true` for it to publish and refresh snapshots on schedule. The browser checks do not change promotion state. This integration preserves the previous sites, tools and snapshots.
 
 Additional checks: `python -m unittest discover -s tests -v`, `node --test tests/test_browser_feed.js`, `python scripts/build_preflight_site.py`, and `python scripts/audit_registry.py --fetch`.
+
+## K3 lane addendum — parallel session that ran 3 experiments (2026-10-27, verdict: negative)
+
+A parallel session (branch `arena/e97d54bf-gemsdoekarage3`, PR #8) self-assigned and
+pre-registered a lane — corrected-LiDAR crest–base scarp-pair + depth-persistent
+potential-field worms with greedy kernel-coverage emission — restored the same hash-pinned
+mirrors, vendored the shared metric/holdout/writer/registry-audit libraries verbatim
+(`src/karage3/PROVENANCE.md`; library-level visible-only evaluator on binary emissions, not
+the binarising CLI wrapper flagged above), and ran the full 3-experiment budget. It does not
+change this README's decision:
+
+* **Unique research TIFF exists** (`docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif`,
+  SHA-256 `9b2656c4…fafa`, 34,835 dots, local validator PASS) — **DO NOT SUBMIT**: pooled
+  **HOLDOUT-DTI 0.0522 [0.0375, 0.0620]** (`GEMSDOE32-HOLDOUT-v3-visible-only`, 22,232
+  withheld) vs champion-rule control 0.0992. It also fails this README's literal lattice rule
+  (99.92% within 3 px of the calibration lattice; uncovered footprint re-measured at exactly
+  6,649 px), while passing a genuine-detector audit (worst 65.3% across 432 scanned rasters).
+* New measured facts for the shared record: the focus-9 bests are one nested H19-5 family
+  (exact symdiff/subset algebra in `knowledge/focus9_forensics.md`); the champion *mask* is
+  construction-censored on catalogue holdouts (0.00452) and the honest fold-local B2-rule
+  control is 0.09920; template bug **IR-K3-01** — the shared LiDAR composite reads bands
+  1/2/5 (`ex_max`/`ex_mean`/`lappos_max`) while claiming ex/step/downface (K3 reads bands by
+  description). K3 pages: [decision](docs/k3/index.html) · [executive summary](docs/k3/executive-summary.html) ·
+  [run card](evidence/k3_run_card.json) · reproduce with `scripts/build_k3_site.py` +
+  `scripts/verify_numbers.py`. Public #1 observed on main as 0.4544 (2026-10-27) supersedes
+  the 0.4413/0.4437 figures quoted in K3's brief copies.
