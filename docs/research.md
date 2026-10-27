@@ -30,3 +30,13 @@ The pinned GEMSDOE32 current-status snapshot reports no upload authorization. It
 
 ## Next session
 Assign one method lane; restore the canonical shared template and cached stack with provenance/checksums; restore the full registry including continuous surfaces; audit fold-local leakage and evaluator semantics; run at most three preregistered experiments; publish a unique TIFF only after saved-byte format checks and performance/novelty gates. Slot selection remains separate. No data, training, TIFF, or upload has been fabricated here.
+
+## Follow-up: local byte inspection (2026-10-27)
+
+[Reproducible local report](historical-raster-audit.json): downloaded the nine historical winners at the revisions named by the pinned upstream audit, verified all nine file SHA256 values, and compared finite-positive pixel masks using Euclidean distance between pixel centres. Across all 72 directed comparisons the minimum fraction within three pixels is 86.72%; all exceed the duplicate cutoff. GEMSDOE25 and GEMSDOE30 have identical masks, but distinct TIFF bytes. This independently confirms the nine-winner family overlap, not an exhaustive registry check or surface-correlation check.
+
+All finite values are in [0,1]. The chosen GEMSDOE30 and GEMSDOE33 historical variants contain nonfinite values. The official footprint/template is absent, so neither validity inside that footprint nor exact official-grid agreement is certified. All nine grids agree with each other; agreement with peers is not agreement with the official template. No historical file is offered as a new submission.
+
+The source entry points for `evaluate_holdout.py` and `submission_writer.py` were recovered and hashed under `evidence/upstream/GEMSDOE32/scripts/` for inspection only. These delegate to missing `gems32` package modules and cached data; do not execute these snapshots as a private substitute. Restore the complete pinned shared template and cache before experiments. The research priorities above remain untested, not novel across the entire parallel project, and not assigned lanes.
+
+**Interpretation of GEMSDOE32:** the inspected family and upstream B-ladder audit support catalogue-adjacent dot removal as the operational difference. That may reduce redundant or unproductive placement. It does not establish the causal reason for the owner-reported result, prove a geothermal discovery, or justify any projected leaderboard improvement. A fold-local controlled ablation and organizer receipt remain necessary.

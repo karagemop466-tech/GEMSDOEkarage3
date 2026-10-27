@@ -19,3 +19,23 @@ class GateTests(unittest.TestCase):
         c=self.valid(); c['holdout']['paired_delta_ci95']=[-.01,.02]
         self.assertEqual(assess(c)['verdict'],'negative')
 if __name__=='__main__': unittest.main()
+
+class RegressionTests(GateTests):
+    def test_malformed_sections_fail_closed(self):
+        for field in ('holdout', 'registry', 'validator'):
+            for value in (True, 42, 'bad', []):
+                with self.subTest(field=field, value=value):
+                    card=self.valid(); card[field]=value
+                    self.assertEqual(assess(card)['verdict'], 'negative')
+    def test_non_object_card(self):
+        for value in ([], None, 'bad', 1):
+            self.assertEqual(assess(value)['verdict'], 'negative')
+    def test_estimate_outside_ci(self):
+        card=self.valid(); card['holdout']['ci95']=[.3,.4]
+        self.assertEqual(assess(card)['verdict'], 'negative')
+    def test_impossible_delta(self):
+        card=self.valid(); card['holdout']['paired_delta_ci95']=[.1,2]
+        self.assertEqual(assess(card)['verdict'], 'negative')
+    def test_whitespace_lane(self):
+        card=self.valid(); card['assigned_lane']='  '
+        self.assertEqual(assess(card)['verdict'], 'negative')

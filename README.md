@@ -35,6 +35,19 @@ python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
 The promotion gate consumes evidence metadata, not raster pixels; it cannot certify receipts supplied by an untrusted producer. Only canonical tools may produce the actual evaluator/writer/validator outputs. Even a `promote` result does not authorize upload.
 
+## Follow-up review: recovered historical rasters
+
+The local [raster audit](docs/historical-raster-audit.json) verifies nine pinned TIFF hashes and 72 directed dot comparisons. Every pair exceeds the protocol's 70% within-three-pixels cutoff (minimum 86.72%). GEMSDOE25 and GEMSDOE30 have identical positive masks. This is **LOCAL-RASTER-AUDIT**, not HOLDOUT-DTI or an organizer score. Historical TIFFs were downloaded for education only, remain ignored under `data/historical/`, and are not presented as new submissions.
+
+Reproduce with an optional isolated environment:
+```sh
+python -m venv .venv
+.venv/bin/pip install -r requirements-audit.txt
+.venv/bin/python scripts/verify_historical_rasters.py
+python scripts/build_comparison.py
+```
+Shared evaluator/writer entry points were recovered as source evidence, not installed as private forks. They depend on upstream `gems32` modules and data not present here. Their existence upstream does not make this checkout's training pipeline runnable. Provenance and hashes are in `evidence/upstream/recovered-manifest.json`.
+
 ## Limitations and next-session priorities
 See [research.md](docs/research.md). Assign the lane, restore pinned shared cache/template and complete registry, establish fold-local baseline and run at most three experiments. CPU training is supported by the official reference; a GPU is not strictly required. DrivenData, USGS, Dropbox and literature hosts are outside this sandbox's network allowlist; no current cap, receipt, leaderboard or official-data authentication was verified.
 
