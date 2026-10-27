@@ -1,0 +1,11 @@
+# Python-generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Competition data and experiment outputs are private/large; keep them out of Git.
+/data/raw/
+/data/private/
+/data/cache/
+/data/interim/
+/runs/
