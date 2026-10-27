@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Refresh public source metadata; never changes submission authorization.
+"""Refresh GitHub metadata only; never access DrivenData or authorize submissions.
 
-Designed for an unrestricted GitHub Pages build runner. Failed requests are
-explicitly unavailable; a prior leaderboard observation remains labelled stale
-with its original timestamp. No portal credentials, predictions, or uploads.
+DrivenData's terms prohibit automated website access. A prior public leaderboard
+observation remains labelled stale with its original timestamp; updating it requires
+a permitted non-automated source. Failed GitHub requests are explicitly unavailable.
 """
 from __future__ import annotations
 
@@ -106,16 +106,17 @@ class SameOriginRedirect(HTTPRedirectHandler):
 
 
 def get_url(url: str, *, github: bool = False) -> bytes:
-    headers = {"User-Agent": "GEMS-research-source-monitor/1.0", "Accept": "application/json" if github else "text/html"}
+    parsed = urlsplit(url)
+    if not github or parsed.scheme != 'https' or parsed.netloc != 'api.github.com':
+        raise ValueError('Automated access is limited to the public GitHub API')
+    headers = {"User-Agent": "GEMS-research-source-monitor/1.0", "Accept": "application/json"}
     token = os.environ.get("GITHUB_TOKEN")
-    if github and token:
+    if token:
         headers["Authorization"] = "Bearer " + token
     with build_opener(SameOriginRedirect()).open(Request(url, headers=headers), timeout=12) as response:
         # Never use the GitHub token on a non-GitHub redirect destination.
         if github and not response.geturl().startswith("https://api.github.com/"):
             raise ValueError("Unexpected GitHub API redirect")
-        if not github and not response.geturl().startswith("https://www.drivendata.org/"):
-            raise ValueError("Unexpected leaderboard redirect")
         data = response.read(MAX_BYTES + 1)
         if len(data) > MAX_BYTES:
             raise ValueError("Response exceeds size limit")
@@ -126,15 +127,11 @@ def refresh(previous: dict | None = None, baseline: dict | None = None) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     baseline_sites = (baseline or {}).get("sites", {})
     previous_lb = ((previous or {}).get("leaderboard") or {}).get("last_observation")
-    leaderboard = {"url": LEADERBOARD, "checked_utc": now, "available": False,
-                   "last_observation": previous_lb, "error": None}
-    try:
-        raw = get_url(LEADERBOARD).decode("utf-8", errors="strict")
-        top = parse_leader(raw)
-        leaderboard.update(available=True, last_observation={**top, "observed_utc": now,
-            "evidence_class": "ORGANIZER-PUBLIC leaderboard snapshot; not an artifact-linked receipt"})
-    except (OSError, URLError, ValueError, UnicodeError) as e:
-        leaderboard["error"] = f"{type(e).__name__}: {str(e)[:180]}"
+    # Do not automate organizer-page access. Preserve the dated observation but
+    # never make a fresh availability/score claim from this scheduled process.
+    leaderboard = {"url": LEADERBOARD, "checked_utc": None, "available": False,
+                   "last_observation": previous_lb,
+                   "error": "Automated DrivenData access disabled; historical observation may be stale."}
     sources = []
     for site in SITES:
         api = f"https://api.github.com/repos/buffedlizard55-lab/{site}/commits/main"

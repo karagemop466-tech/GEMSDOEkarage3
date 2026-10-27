@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "measured_utc": "2026-10-27T21:14:40+00:00",
+  "shared_template": {
+    "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+    "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "archive_sha256": "c3c72cd5d9be1aea6d449ea95df6c3137b27b03c94cbfc740934b9c6cfd5002d",
+    "evaluate_holdout_sha256": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c",
+    "submission_writer_sha256": "cf7eb9948cfe5032e1db2362ddd5a075c2c744bb33ebbcfb2ba2b5ebd1b1de9b",
+    "build_features_sha256": "8232b42e06c42d00942b1b2bc3bff2a3dba3d16c171be0a47d2435ee92e39087",
+    "features_module_sha256": "58cff8551ba2f2eb5bbc5656306d8e19243c38721368ddd3d5e393c8e889e316",
+    "data_manifest_sha256": "463cf26c840a9338816e873a762beb8186c50952ae26ae572e73d71eb329bd34"
+  },
+  "owner_mirror_core": {
+    "training_features.tif": {
+      "bytes": 418912844,
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    },
+    "labels.tif": {
+      "bytes": 425830,
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "existing_faults.tif": {
+      "bytes": 425830,
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "sample_submission.tif": {
+      "bytes": 1599597,
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    }
+  },
+  "feature_stack": {
+    "channels": 35,
+    "shape": [
+      3730,
+      3292,
+      35
+    ],
+    "dtype": "float32",
+    "sha256": "f95486ffa937e0237c53c5e7f59e49cc142825ae5ea56b166d64dcbfeef5bdc0",
+    "nonfinite_values": 0,
+    "footprint_matches_mirror": true,
+    "status": "rebuilt with the pinned template; cache ignored and not included in Git"
+  },
+  "source_limitations": [
+    "All core files are owner-hosted mirrors; no organizer authentication or license to redistribute is established.",
+    "The mirrored sample contains catalogue-positive pixels despite the organizer page describing a no-fault example.",
+    "This cache is not evidence of a feature canary, valid holdout, model training, unique candidate, or upload eligibility."
+  ],
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "restore_helper_replay": {
+    "checked_utc": "2026-10-27T21:29:55+00:00",
+    "mode": "--build-stack",
+    "core_inputs": "Existing hash-verified core mirror directory reused; no network refetch was needed",
+    "stack_sha256": "f95486ffa937e0237c53c5e7f59e49cc142825ae5ea56b166d64dcbfeef5bdc0",
+    "matches_first_build": true,
+    "feature_build_seconds": 153.9,
+    "invalid_mode_returns_2": true,
+    "model_experiments": 0,
+    "fresh_extract": true,
+    "scope": "The hardened helper extracted into a fresh directory and checked builder, feature module, evaluator, writer and manifest digests; cached core files were reused."
+  }
+}

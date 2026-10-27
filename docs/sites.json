@@ -1,16 +1,18 @@
 {
-  "checked_utc": "2026-10-27T21:14:26.474903+00:00",
+  "checked_utc": "2026-10-27T21:26:19+00:00",
+  "scope": "GitHub repository heads only; historical claims are not organizer receipts.",
+  "refresh_complete": true,
   "sites": [
     {
       "site": "GEMSDOE24",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
       "owner_reported_submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
       "owner_reported_value": 0.2477,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a73f9ffba29260cc7708e8e0557c84c5bea7d47b/README.md",
@@ -18,12 +20,15 @@
           "sha256": "39383f1c39c687c7262db982f95f3b3e58d6763524c6c83390f797000725e7c5"
         }
       ],
+      "commit": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE24/contents/registry/current_status.json?ref=a73f9ffba29260cc7708e8e0557c84c5bea7d47b']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
         "filename": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
@@ -43,24 +48,27 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE25",
       "owner_reported_submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
       "owner_reported_value": 0.26,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "b13ccabae15d4951854d47cb35e17322e7537b64",
       "sources": [
         {
-          "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b13ccabae15d4951854d47cb35e17322e7537b64/README.md",
+          "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/19b219f629440b9975b093f459c74e21a42476ca/README.md",
           "local": "evidence/upstream/GEMSDOE25/README.md",
-          "sha256": "57c90502a7f540d9d0aed67bc8e4976da899ae2623461a2969a744d28b07ea28"
+          "sha256": "1dce50235b209a24fd8bcb173acf198aa14994c552783f447dd0376de671f9fb"
         }
       ],
+      "commit": "19b219f629440b9975b093f459c74e21a42476ca",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
-          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE25/contents/registry/current_status.json?ref=b13ccabae15d4951854d47cb35e17322e7537b64']' returned non-zero exit status 1."
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE25/contents/registry/current_status.json?ref=19b219f629440b9975b093f459c74e21a42476ca']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
         "filename": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
@@ -80,11 +88,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE27",
       "owner_reported_submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
       "owner_reported_value": 0.2449,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/4f34228a9f39e99da592aa34fd835c96d1b693f5/README.md",
@@ -92,12 +100,15 @@
           "sha256": "f545d23ea5cd3499002ea385c481949ae322a4493847709b867ad5b1268158d9"
         }
       ],
+      "commit": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE27/contents/registry/current_status.json?ref=4f34228a9f39e99da592aa34fd835c96d1b693f5']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
         "filename": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
@@ -117,11 +128,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE28",
       "owner_reported_submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
       "owner_reported_value": 0.271,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "4955e29c7b66503ba2178b25d356d713dc1bc534",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/4955e29c7b66503ba2178b25d356d713dc1bc534/README.md",
@@ -129,12 +140,15 @@
           "sha256": "7efe73d123ac8b849a5162fc3f3ba0920c4aedcf5a0e9d611f7a0c70b5efb022"
         }
       ],
+      "commit": "4955e29c7b66503ba2178b25d356d713dc1bc534",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE28/contents/registry/current_status.json?ref=4955e29c7b66503ba2178b25d356d713dc1bc534']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
         "filename": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
@@ -154,11 +168,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE30",
       "owner_reported_submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
       "owner_reported_value": 0.26,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/d21ddd9502f3c3911e8d77b8f1e6abfaadffc876/README.md",
@@ -166,12 +180,15 @@
           "sha256": "76b96fcb9bc57c835f64ca5c68c8930480cfd1621e16ef389c03252a8e1f409e"
         }
       ],
+      "commit": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE30/contents/registry/current_status.json?ref=d21ddd9502f3c3911e8d77b8f1e6abfaadffc876']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
         "filename": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
@@ -191,11 +208,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE31",
       "owner_reported_submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
       "owner_reported_value": 0.2708,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "88ec212955353f7590e94b8ef2a9763ffa035d45",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/88ec212955353f7590e94b8ef2a9763ffa035d45/README.md",
@@ -203,12 +220,15 @@
           "sha256": "37b55e46831812c43eeb77173132e756f284a2ff09376293edaf568cebaac925"
         }
       ],
+      "commit": "88ec212955353f7590e94b8ef2a9763ffa035d45",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE31/contents/registry/current_status.json?ref=88ec212955353f7590e94b8ef2a9763ffa035d45']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/2a7cd0c8f1c30341a3a655a01a1ff5bff67b23d2/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
         "filename": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
@@ -228,11 +248,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
       "owner_reported_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
       "owner_reported_value": 0.2778,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/README.md",
@@ -245,6 +265,9 @@
           "sha256": "2afc9c34c8af08e4d5b1405771b427e476c79c6671a99e3af191f66895225f3d"
         }
       ],
+      "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+      "default_branch": "main",
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73295a80bb4021ca972b8a07eeabd1163b9e6629/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
         "filename": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -264,11 +287,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE33",
       "owner_reported_submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
       "owner_reported_value": 0.2632,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "844f514819041c7be9efd345a24cf5cd70263f00",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/844f514819041c7be9efd345a24cf5cd70263f00/README.md",
@@ -276,12 +299,15 @@
           "sha256": "afbc2441e604e4cbb0d44eecc35386d1f8a9578e02f6225135c3fc05a8d45614"
         }
       ],
+      "commit": "844f514819041c7be9efd345a24cf5cd70263f00",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE33/contents/registry/current_status.json?ref=844f514819041c7be9efd345a24cf5cd70263f00']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/7c37df17dee1e7470cd54d0bbbc6f168810145dd/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
         "filename": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
@@ -301,11 +327,11 @@
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE36",
       "owner_reported_submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
       "owner_reported_value": 0.275,
-      "evidence_class": "OWNER-REPORT \u2014 not ORGANIZER-CONFIRMED",
+      "evidence_class": "USER/OWNER-REPORT \u2014 no organizer receipt",
+      "claim_origin": "User-supplied historical list; no file-to-score receipt verified.",
       "estimated_score": null,
       "unique": null,
       "ok_to_submit": false,
-      "commit": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
       "sources": [
         {
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7edcc9b58e6ad0f88c6e6f5ee9218761a391769d/README.md",
@@ -313,12 +339,15 @@
           "sha256": "1a872d7730a54cff5cfc86fae0d670ac7651516418fc3af9693d37d3e52d49ca"
         }
       ],
+      "commit": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
+      "default_branch": "main",
       "unavailable_sources": [
         {
           "path": "registry/current_status.json",
           "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE36/contents/registry/current_status.json?ref=7edcc9b58e6ad0f88c6e6f5ee9218761a391769d']' returned non-zero exit status 1."
         }
       ],
+      "refresh_status": "ok",
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b90418f852615aa0974cf9a53b92fa569ed133fc/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
         "filename": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",

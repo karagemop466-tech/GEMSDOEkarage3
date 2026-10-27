@@ -60,7 +60,7 @@ def main() -> int:
             "Literal all-registry overlap rule is necessarily violated for the illustrated champion-sized budget.",
             "No current complete surface/final-dot registry snapshot, same-protocol best, or fold-local holdout in this checkout.",
             "Shared GEMSDOE32 CLI wrappers silently binarize continuous predictions; upstream issue 37 is open.",
-            "Organizer-authenticated data and current account quota/receipts are unavailable; core owner mirrors were restored, but the shared cached derived feature stack is absent."
+            "Organizer-authenticated data and current account quota/receipts are unavailable. Core mirrors and the shared derived feature stack were rebuilt in ignored cache, which may be absent in another checkout."
         ],
         "geometry_audit_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "geometry_audit": "historical-audit.json",
         "official_hidden_score_estimate": None, "slot_selector": "Separate step required; not run."

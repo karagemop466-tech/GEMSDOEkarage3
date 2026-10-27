@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "run_id": "gems-karage3-preflight-20261027T211806Z",
-  "created_utc": "2026-10-27T21:18:06.393479+00:00",
+  "run_id": "gems-karage3-preflight-20261027T213631Z",
+  "created_utc": "2026-10-27T21:36:31.612671+00:00",
   "hypothesis": "PROPOSED ONLY: multi-scale gravity\u2013magnetic signed edge-offset persistence beneath weak relief; not an assigned lane and not tested.",
   "mechanism": "Relative cross-strike edge displacement persisting across spatial scales may indicate a buried structural discontinuity.",
   "named_non_fault_mimic": "Unfaulted lithologic contacts, intrusions and airborne survey/processing artifacts may generate comparable offsets.",
@@ -47,7 +47,7 @@
     "Literal all-registry overlap rule is necessarily violated for the illustrated champion-sized budget.",
     "No current complete surface/final-dot registry snapshot, same-protocol best, or fold-local holdout in this checkout.",
     "Shared GEMSDOE32 CLI wrappers silently binarize continuous predictions; upstream issue 37 is open.",
-    "Organizer-authenticated data and current account quota/receipts are unavailable; core owner mirrors were restored, but the shared cached derived feature stack is absent."
+    "Organizer-authenticated data and current account quota/receipts are unavailable. Core mirrors and the shared derived feature stack were rebuilt in ignored cache, which may be absent in another checkout."
   ],
   "geometry_audit_sha256": "75942181a6f618454f565c513722fe39a94a77ad2397ac527d8f7a200c0f30f5",
   "geometry_audit": "historical-audit.json",

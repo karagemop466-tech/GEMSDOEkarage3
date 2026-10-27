@@ -12,7 +12,7 @@
     "withheld_positive_count": null,
     "value": null,
     "ci95": null,
-    "reason": "Not run: no assigned lane, cached stack, complete registry or frozen same-protocol incumbent."
+    "reason": "Not run: no assigned lane, complete registry or frozen same-protocol incumbent; the ignored feature cache was rebuilt in a later integration pass."
   },
   "registry": {
     "pre_placement_surface_correlation": null,
@@ -25,7 +25,7 @@
       "classification": "GEOMETRY-AUDIT, not a score",
       "candidate_dots": 37654,
       "min_fraction_near_registered_lattice": 0.8234184947150369,
-      "limit": 0.70,
+      "limit": 0.7,
       "duplicate_stop_proven_for_this_budget": true
     }
   },

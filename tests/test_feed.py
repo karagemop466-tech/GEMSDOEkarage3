@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 from urllib.error import URLError
 from urllib.request import Request
-from scripts.refresh_feed import SameOriginRedirect, parse_leader, refresh
+from scripts.refresh_feed import SameOriginRedirect, get_url, parse_leader, refresh
 
 GOOD = '''<html><table><tr><th>Other</th></tr><tr><td>1</td></tr></table>
 <table><thead><tr><th>Rank</th><th>Participant</th><th>Best<br>public<br>DW-Tversky<br>(in descending order)</th></tr></thead>
@@ -31,17 +31,26 @@ class FeedTests(unittest.TestCase):
         self.assertEqual(len(report['sources']), 9)
         self.assertTrue(all(not x['available'] for x in report['sources']))
 
-    def test_refresh_treats_leaderboard_and_sites_independently(self):
+    def test_refresh_only_accesses_github_and_never_refreshes_organizer(self):
         def get(url, *, github=False):
-            if not github:
-                return GOOD.encode()
+            self.assertTrue(github)
+            self.assertTrue(url.startswith('https://api.github.com/'))
             return json.dumps({'sha': 'a'*40, 'commit': {'committer': {'date': '2026-10-27T01:00:00Z'}}}).encode()
-        with patch('scripts.refresh_feed.get_url', side_effect=get):
-            report = refresh()
-        self.assertTrue(report['leaderboard']['available'])
+        previous = {'leaderboard': {'last_observation': {'rank': 1, 'score': .4544, 'observed_utc': 'old'}}}
+        with patch('scripts.refresh_feed.get_url', side_effect=get) as mock_get:
+            report = refresh(previous)
+        self.assertEqual(mock_get.call_count, 9)
+        self.assertFalse(report['leaderboard']['available'])
+        self.assertIsNone(report['leaderboard']['checked_utc'])
+        self.assertEqual(report['leaderboard']['last_observation']['observed_utc'], 'old')
         self.assertTrue(all(x['available'] for x in report['sources']))
         self.assertFalse(report['submission_approved'])
-        self.assertIn('not an artifact-linked receipt', report['leaderboard']['last_observation']['evidence_class'])
+
+    def test_organizer_or_non_github_fetch_is_rejected(self):
+        for url in ('https://www.drivendata.org/competitions/', 'https://evil.example/',
+                    'https://api.github.com.evil.example/repos/x/y'):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                get_url(url, github=True)
 
     def test_cross_origin_redirect_rejected_before_authorization_forward(self):
         handler = SameOriginRedirect()
