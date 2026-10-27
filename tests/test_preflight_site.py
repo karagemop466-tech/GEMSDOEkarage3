@@ -24,9 +24,9 @@ class Links(HTMLParser):
 
 
 class SiteTests(unittest.TestCase):
-    def test_legacy_pages_root_redirect_and_nojekyll(self):
+    def test_legacy_pages_root_and_nojekyll(self):
         root = (ROOT / 'index.html').read_text()
-        self.assertIn('url=docs/index.html', root)
+        self.assertIn('docs/preflight.html', root)
         self.assertTrue((ROOT / '.nojekyll').is_file())
         self.assertTrue((DOCS / 'index.html').is_file())
         self.assertIn('preflight.html', (DOCS / 'index.html').read_text())

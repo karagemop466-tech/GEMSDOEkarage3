@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "gems-karage3-preflight-20261027T211806Z",
+  "created_utc": "2026-10-27T21:18:06.393479+00:00",
+  "hypothesis": "PROPOSED ONLY: multi-scale gravity\u2013magnetic signed edge-offset persistence beneath weak relief; not an assigned lane and not tested.",
+  "mechanism": "Relative cross-strike edge displacement persisting across spatial scales may indicate a buried structural discontinuity.",
+  "named_non_fault_mimic": "Unfaulted lithologic contacts, intrusions and airborne survey/processing artifacts may generate comparable offsets.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci_95": null,
+    "status": "NOT RUN; no comparable new holdout or calibrated organizer estimate."
+  },
+  "leakage_canaries": {
+    "status": "NOT RUN; no lane or model constructed",
+    "features_tested": 0
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap": null,
+    "status": "NOT RUN for a new candidate; pre-placement necessary-condition stop.",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "witness_budget": 37654,
+    "witness_uncovered": 6649,
+    "unavoidable_overlap_fraction": 0.8234184947150369,
+    "scope": "Single registered lattice witness, not full registry."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no new candidate raster",
+    "no_nan_inside": null,
+    "values_in_0_1": null,
+    "crs_matches": null,
+    "shape_matches": null,
+    "transform_matches": null,
+    "organizer_acceptance": "unknown"
+  },
+  "submission_name": null,
+  "note": "No new candidate or slot selected; do not submit.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "blockers": [
+    "No single assigned method paragraph in this prompt.",
+    "Literal all-registry overlap rule is necessarily violated for the illustrated champion-sized budget.",
+    "No current complete surface/final-dot registry snapshot, same-protocol best, or fold-local holdout in this checkout.",
+    "Shared GEMSDOE32 CLI wrappers silently binarize continuous predictions; upstream issue 37 is open.",
+    "Organizer-authenticated data and current account quota/receipts are unavailable; core owner mirrors were restored, but the shared cached derived feature stack is absent."
+  ],
+  "geometry_audit_sha256": "75942181a6f618454f565c513722fe39a94a77ad2397ac527d8f7a200c0f30f5",
+  "geometry_audit": "historical-audit.json",
+  "official_hidden_score_estimate": null,
+  "slot_selector": "Separate step required; not run."
+}

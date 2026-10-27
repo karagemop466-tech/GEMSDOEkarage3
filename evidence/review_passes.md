@@ -48,7 +48,7 @@
   are independent of that setting; the leaderboard remains a stale snapshot.
 * The initial independent suite had **26 passing Python tests and 2 browser-feed
   tests**. After integrating a parallel branch, the combined local suite has
-  **46 passing Python tests and 5 JavaScript tests**. The combined metadata
+  **67 passing pytest tests (plus 99 subtests) and 5 JavaScript tests**. The combined metadata
   gate also requires the hash-bound conservative outside/null and full-array
   diagnostic before a candidate can be considered for a separate selector. These are not evidence of
   a new model, HOLDOUT-DTI, uniqueness against the complete registry, or

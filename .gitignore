@@ -6,5 +6,6 @@ __pycache__/
 .pytest_cache/
 *.py[cod]
 node_modules/
-/data/
+/data/*
+!/data/focus_registry.json
 *.part
