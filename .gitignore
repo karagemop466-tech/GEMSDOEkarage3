@@ -1,11 +1,7 @@
-# Python-generated files
 __pycache__/
-*.py[cod]
-.pytest_cache/
+*.pyc
+.cache/
+.venv/
+/data/
 
-# Competition data and experiment outputs are private/large; keep them out of Git.
-/data/raw/
-/data/private/
-/data/cache/
-/data/interim/
-/runs/
+node_modules/

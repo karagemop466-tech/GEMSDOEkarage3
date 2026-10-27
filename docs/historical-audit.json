@@ -1,0 +1,1424 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-10-27T21:26:49.529803+00:00",
+  "evidence_class": "RASTER-AUDIT \u2014 historical byte/pixel measurements, NOT HOLDOUT-DTI or organizer scores",
+  "manifest_sha256": "ec6b3095e8fc02c226d67dd02ff5122fff169c7898ce6806f0a89fcf45207a2a",
+  "source_authentication": "owner mirrors only",
+  "complete_registry": false,
+  "continuous_surfaces_checked": false,
+  "scope": "Nine cited best-reported artifacts plus GEMSDOE28 solo base; not a complete novelty registry",
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "new_candidate_generated": false,
+  "rasters": [
+    {
+      "site": "GEMSDOE24",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/2521cb676e172c141a4417e4925b73b6a896c1eb/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+      "positive_pixels": 60069,
+      "validator": {
+        "filename": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+        "size_bytes": 863902,
+        "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 60069,
+        "footprint_fraction": 0.011625,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE25",
+        "exact_positive_pixel_duplicates": [],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 25517,
+        "extra_vs_champion": 34552,
+        "missing_vs_champion": 12137
+      }
+    },
+    {
+      "site": "GEMSDOE25",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/5a60fb475b7171af93cfce795abe6d96c4021ea2/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "positive_pixels": 44090,
+      "validator": {
+        "filename": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+        "size_bytes": 836982,
+        "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 44090,
+        "footprint_fraction": 0.008532,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [
+          "GEMSDOE30"
+        ],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 37654,
+        "extra_vs_champion": 6436,
+        "missing_vs_champion": 0
+      }
+    },
+    {
+      "site": "GEMSDOE27",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/69d6f0337581541e75480262bdb9fa436b9dd10d/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+      "positive_pixels": 61328,
+      "validator": {
+        "filename": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+        "size_bytes": 866160,
+        "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 61328,
+        "footprint_fraction": 0.011868,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 0.9801884946517089,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 25517,
+        "extra_vs_champion": 35811,
+        "missing_vs_champion": 12137
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/67dbdf4da84fc92a98dd9644ab816ed18ae36bcc/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+      "positive_pixels": 37660,
+      "validator": {
+        "filename": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+        "size_bytes": 825430,
+        "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 37660,
+        "footprint_fraction": 0.007288,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 26248,
+        "extra_vs_champion": 11412,
+        "missing_vs_champion": 11406
+      }
+    },
+    {
+      "site": "GEMSDOE30",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3c3d7255fdbb3a94375eff086522463a8eaca449/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "positive_pixels": 44090,
+      "validator": {
+        "filename": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "size_bytes": 806758,
+        "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 44090,
+        "footprint_fraction": 0.008532,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [
+          "GEMSDOE25"
+        ],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 37654,
+        "extra_vs_champion": 6436,
+        "missing_vs_champion": 0
+      }
+    },
+    {
+      "site": "GEMSDOE31",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/fbebc01703a39a99528432892b7c11b716ca5ab3/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+      "positive_pixels": 40199,
+      "validator": {
+        "filename": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+        "size_bytes": 154580,
+        "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "nan",
+        "emitted_positive_pixels": 40199,
+        "footprint_fraction": 0.007779,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [
+          "GEMSDOE28-base"
+        ],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 37654,
+        "extra_vs_champion": 2545,
+        "missing_vs_champion": 0
+      }
+    },
+    {
+      "site": "GEMSDOE32",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/1398109a23f04a2ace71c1bd2f527cfba87860b5/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_pixels": 37654,
+      "validator": {
+        "filename": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "size_bytes": 219065,
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 37654,
+        "footprint_fraction": 0.007287,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 37654,
+        "extra_vs_champion": 0,
+        "missing_vs_champion": 0
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/122e2240a835c9c84831943ee3489dbb48fd6e85/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "positive_pixels": 41865,
+      "validator": {
+        "filename": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "size_bytes": 917544,
+        "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 41865,
+        "footprint_fraction": 0.008102,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 0.9970858712528365,
+        "reference": "GEMSDOE27",
+        "exact_positive_pixel_duplicates": [],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 31614,
+        "extra_vs_champion": 10251,
+        "missing_vs_champion": 6040
+      }
+    },
+    {
+      "site": "GEMSDOE36",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7576942352382c557f074bae3f2c6eb72750fa44/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "positive_pixels": 38854,
+      "validator": {
+        "filename": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "size_bytes": 318190,
+        "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 38854,
+        "footprint_fraction": 0.007519,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 0.9757811293560509,
+        "reference": "GEMSDOE27",
+        "exact_positive_pixel_duplicates": [],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 37654,
+        "extra_vs_champion": 1200,
+        "missing_vs_champion": 0
+      }
+    },
+    {
+      "site": "GEMSDOE28-base",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/67dbdf4da84fc92a98dd9644ab816ed18ae36bcc/docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+      "file": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "positive_pixels": 40199,
+      "validator": {
+        "filename": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+        "size_bytes": 830036,
+        "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+        "mode": "zeros",
+        "geometry_reference": "sample_submission mirror, SHA256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "nodata_repr": "None",
+        "emitted_positive_pixels": 40199,
+        "footprint_fraction": 0.007779,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_finite_pixels": 5167373,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0,
+        "full_grid_finite_pixels": 12279160,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "all_checks_passed": true
+      },
+      "unique": false,
+      "ok_to_submit": false,
+      "partial_registry": {
+        "max_overlap_3px": 1.0,
+        "reference": "GEMSDOE24",
+        "exact_positive_pixel_duplicates": [
+          "GEMSDOE31"
+        ],
+        "duplicate_stop": true,
+        "complete": false
+      },
+      "champion_relationship": {
+        "shared_positive_pixels": 37654,
+        "extra_vs_champion": 2545,
+        "missing_vs_champion": 0
+      }
+    }
+  ],
+  "pairwise_final_dots": [
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5758539684450018,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9895603022773184,
+      "fraction_candidate_dots_within_3px": 0.9801884946517089,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5305834380522468,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5758539684450018,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5464471996581903,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5323675249041238,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5654109319628806,
+      "fraction_candidate_dots_within_3px": 0.9970619849516302,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5238726737066267,
+      "fraction_candidate_dots_within_3px": 0.9756781798527822,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE24",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5464471996581903,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5758539684450018,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5697740201717397,
+      "fraction_candidate_dots_within_3px": 0.9801558831202714,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6810381814871148,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": true,
+      "spearman": 1.0,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.923555278792924,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8096037696275077,
+      "fraction_candidate_dots_within_3px": 0.997038098650424,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9090384722838919,
+      "fraction_candidate_dots_within_3px": 0.9749832707057189,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE25",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9895603022773184,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5697740201717397,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5249809941387278,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5697740201717397,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5406765719408814,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5267469064435795,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5594428364432465,
+      "fraction_candidate_dots_within_3px": 0.9970858712528365,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5183562822454874,
+      "fraction_candidate_dots_within_3px": 0.9757811293560509,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE27",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5406765719408814,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5305834380522468,
+      "fraction_candidate_dots_within_3px": 0.9347916562619654,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6810381814871148,
+      "fraction_candidate_dots_within_3px": 0.9318212746654571,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5249809941387278,
+      "fraction_candidate_dots_within_3px": 0.9161557526741456,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6810381814871148,
+      "fraction_candidate_dots_within_3px": 0.9318212746654571,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7137007043580809,
+      "fraction_candidate_dots_within_3px": 0.9956217816363591,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6948043434431649,
+      "fraction_candidate_dots_within_3px": 0.9987517926382323,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6929178820463998,
+      "fraction_candidate_dots_within_3px": 0.9705004180102711,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6838404118647652,
+      "fraction_candidate_dots_within_3px": 0.9731301796468832,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE28",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7137007043580809,
+      "fraction_candidate_dots_within_3px": 0.9956217816363591,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5758539684450018,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": true,
+      "spearman": 1.0,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5697740201717397,
+      "fraction_candidate_dots_within_3px": 0.9801558831202714,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6810381814871148,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.923555278792924,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8096037696275077,
+      "fraction_candidate_dots_within_3px": 0.997038098650424,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9090384722838919,
+      "fraction_candidate_dots_within_3px": 0.9749832707057189,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE30",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5464471996581903,
+      "fraction_candidate_dots_within_3px": 0.9407847641878506,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 0.937151281469721,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5406765719408814,
+      "fraction_candidate_dots_within_3px": 0.9220910513957735,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7137007043580809,
+      "fraction_candidate_dots_within_3px": 0.9975570897503983,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 0.937151281469721,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9675873339320898,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8193151114671632,
+      "fraction_candidate_dots_within_3px": 0.9747999522273976,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9524016524466369,
+      "fraction_candidate_dots_within_3px": 0.9745714726926442,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE31",
+      "exact_same_positive_pixels": true,
+      "spearman": 1.0,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5323675249041238,
+      "fraction_candidate_dots_within_3px": 0.88476585260284,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.923555278792924,
+      "fraction_candidate_dots_within_3px": 0.8817192107053754,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5267469064435795,
+      "fraction_candidate_dots_within_3px": 0.8671895382207149,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6948043434431649,
+      "fraction_candidate_dots_within_3px": 0.9547265002655337,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.923555278792924,
+      "fraction_candidate_dots_within_3px": 0.8817192107053754,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9675873339320898,
+      "fraction_candidate_dots_within_3px": 0.9539043259782581,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7946790316005894,
+      "fraction_candidate_dots_within_3px": 0.9264301922847247,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9843213108529583,
+      "fraction_candidate_dots_within_3px": 0.9740309878004839,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE32",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9675873339320898,
+      "fraction_candidate_dots_within_3px": 0.9539043259782581,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5654109319628806,
+      "fraction_candidate_dots_within_3px": 0.9623932477650702,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8096037696275077,
+      "fraction_candidate_dots_within_3px": 0.9605806305284645,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5594428364432465,
+      "fraction_candidate_dots_within_3px": 0.9432885468301592,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6929178820463998,
+      "fraction_candidate_dots_within_3px": 0.9984067976633032,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8096037696275077,
+      "fraction_candidate_dots_within_3px": 0.9605806305284645,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8193151114671632,
+      "fraction_candidate_dots_within_3px": 0.9990547028533048,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7946790316005894,
+      "fraction_candidate_dots_within_3px": 0.9998406543793488,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7821595800141184,
+      "fraction_candidate_dots_within_3px": 0.9750347454573531,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE33",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8193151114671632,
+      "fraction_candidate_dots_within_3px": 0.9990547028533048,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5238726737066267,
+      "fraction_candidate_dots_within_3px": 0.8856148762256738,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9090384722838919,
+      "fraction_candidate_dots_within_3px": 0.8826491267861193,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5183562822454874,
+      "fraction_candidate_dots_within_3px": 0.8680374380380903,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.6838404118647652,
+      "fraction_candidate_dots_within_3px": 0.9552044609665428,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9090384722838919,
+      "fraction_candidate_dots_within_3px": 0.8826491267861193,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9524016524466369,
+      "fraction_candidate_dots_within_3px": 0.9544018507923082,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9843213108529583,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7821595800141184,
+      "fraction_candidate_dots_within_3px": 0.9271228950197062,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28-base",
+      "reference": "GEMSDOE36",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9524016524466369,
+      "fraction_candidate_dots_within_3px": 0.9544018507923082,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE24",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5464471996581903,
+      "fraction_candidate_dots_within_3px": 0.9407847641878506,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE25",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 0.937151281469721,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE27",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.5406765719408814,
+      "fraction_candidate_dots_within_3px": 0.9220910513957735,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE28",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.7137007043580809,
+      "fraction_candidate_dots_within_3px": 0.9975570897503983,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE30",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9544929397119867,
+      "fraction_candidate_dots_within_3px": 0.937151281469721,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE31",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": true,
+      "spearman": 1.0,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE32",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9675873339320898,
+      "fraction_candidate_dots_within_3px": 1.0,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE33",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.8193151114671632,
+      "fraction_candidate_dots_within_3px": 0.9747999522273976,
+      "duplicate_stop": true
+    },
+    {
+      "candidate": "GEMSDOE36",
+      "reference": "GEMSDOE28-base",
+      "exact_same_positive_pixels": false,
+      "spearman": 0.9524016524466369,
+      "fraction_candidate_dots_within_3px": 0.9745714726926442,
+      "duplicate_stop": true
+    }
+  ],
+  "champion_autopsy": {
+    "base_positive_pixels": 40199,
+    "champion_positive_pixels": 37654,
+    "removed_pixels": 2545,
+    "added_pixels": 0,
+    "exact_base_pruned_within_2px": true,
+    "minimum_champion_catalogue_distance_px": 2.23606797749979
+  },
+  "ok_to_submit": false
+}
