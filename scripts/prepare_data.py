@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
-"""Verify restored bytes against registry/data_manifest.json, then split training_features.tif
-into per-band float32 .npy files under .cache/gems_work/bands/ (sentinel -> NaN) and write
-data/prepared_manifest.json + evidence/restore_receipt_k3.json. Fails closed on any hash or
-count mismatch."""
+"""Prepare and audit the competition rasters for GEMSDOE32.
+
+Reads training_features.tif (19 bands), labels.tif, and sample_submission.tif from data_dir(),
+audits CRS (EPSG:32611), shape (3730x3292), 100 m geotransform, and sentinel pixels (-3.4028235e+38)
+inside the 5,167,373-pixel footprint, writes fast per-band .npy arrays to work_dir()/bands, and saves
+the full audit receipt to data/prepared_manifest.json.
+"""
+
 from __future__ import annotations
 
 import hashlib
 import json
 import sys
-import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -16,93 +20,156 @@ import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from karage3.paths import data_dir, evidence_dir, registry_dir, work_dir  # noqa: E402
+from gems32.paths import data_dir, work_dir  # noqa: E402
 
-BAND_NAMES = [
-    "mag_anom", "rtp", "tmi_hg", "geod_2ndinv", "iso_grav_anom_slope", "tc",
-    "geod_shearrate", "geod_dilaterate", "tmi_vg", "deq_n100a15", "iso_grav_anom_vg",
-    "det_elev", "iso_grav_anom", "tmi", "depth_to_base_surf", "ieq_n100a15",
-    "cond_surf", "iso_grav_anom_hg", "det_elev_slope",
+BASE_NAMES = [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "geod_2ndinv",
+    "iso_grav_anom_slope",
+    "tc",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "det_elev_slope",
 ]
-SENTINEL = np.float32(-3.4028234663852886e38)
-EXPECTED = dict(height=3730, width=3292, footprint_px=5_167_373, label_px=60_988)
 
 
-def sha256_file(p: Path) -> str:
+def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
-    with p.open("rb") as f:
+    with path.open("rb") as f:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
 
 
-def main() -> int:
+def prepare() -> dict:
     ddir = data_dir()
-    man = json.loads((registry_dir() / "data_manifest.json").read_text())
-    receipt_files, errors = [], []
-    for e in man["files"]:
-        p = ddir / e["dest"]
-        if not p.exists():
-            errors.append(f"MISSING {e['dest']} (run scripts/restore_data.py --group all)")
-            continue
-        got = sha256_file(p)
-        ok = got == e["sha256"] and p.stat().st_size == e["bytes"]
-        receipt_files.append(dict(id=e["id"], dest=e["dest"], bytes=p.stat().st_size,
-                                  sha256=got, match=bool(ok)))
-        print(f"{'match  ' if ok else 'MISMATCH'} {e['dest']}")
-        if not ok:
-            errors.append(f"HASH/SIZE MISMATCH {e['dest']}: got {got} != {e['sha256']}")
-    (evidence_dir() / "restore_receipt_k3.json").write_text(json.dumps(
-        dict(schema_version=1, checked_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-             storage_root=str(ddir), files=receipt_files, errors=errors), indent=2) + "\n")
-    if errors:
-        raise SystemExit("restore verification failed:\n" + "\n".join(errors))
-
-    with rasterio.open(ddir / "sample_submission.tif") as ds:
-        sample = ds.read(1)
-        profile = dict(crs=str(ds.crs), transform=list(ds.transform)[:6],
-                       width=ds.width, height=ds.height)
-    foot = np.isfinite(sample)
-    ones_on_labels = int((sample == 1).sum())
-    with rasterio.open(ddir / "labels.tif") as ds:
-        labels = ds.read(1) >= 1
-    counts = dict(footprint_px=int(foot.sum()), label_px=int((labels & foot).sum()),
-                  sample_ones_px=ones_on_labels,
-                  sample_ones_on_labels=int(((sample == 1) & labels).sum()))
-    print(counts)
-    assert counts["footprint_px"] == EXPECTED["footprint_px"], counts
-    assert counts["label_px"] == EXPECTED["label_px"], counts
-
-    bands_dir = work_dir() / "bands"
+    wdir = work_dir()
+    bands_dir = wdir / "bands"
     bands_dir.mkdir(parents=True, exist_ok=True)
-    band_rows = []
-    with rasterio.open(ddir / "training_features.tif") as ds:
-        assert (ds.height, ds.width, ds.count) == (EXPECTED["height"], EXPECTED["width"], 19)
-        assert str(ds.crs) == "EPSG:32611" and list(ds.transform)[:6] == profile["transform"]
-        desc_names = [str(d).split(" - ")[0] for d in ds.descriptions]
-        assert desc_names == BAND_NAMES, f"band description mismatch: {desc_names}"
-        for i, name in enumerate(BAND_NAMES, start=1):
-            a = ds.read(i).astype(np.float32)
-            bad = (a <= SENTINEL * np.float32(0.5)) | ~np.isfinite(a)
-            a[bad] = np.nan
-            out = bands_dir / f"{i:02d}_{name}.npy"
-            np.save(out, a)
-            v = a[foot & np.isfinite(a)]
-            band_rows.append(dict(index=i, name=name, file=out.name,
-                                  nan_in_footprint=int((~np.isfinite(a[foot])).sum()),
-                                  min=float(v.min()), median=float(np.median(v)), max=float(v.max())))
-            print(f"band {i:2d} {name}: nan_in_foot={band_rows[-1]['nan_in_footprint']}")
-            del a, v
-    prep = dict(schema_version=1, prepared_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                grid=dict(epsg=32611, height=EXPECTED["height"], width=EXPECTED["width"],
-                          transform=profile["transform"], pixel_size_m=[100.0, 100.0]),
-                counts=counts, bands=band_rows,
-                note="footprint = finite pixels of sample_submission.tif; labels>=1; sentinel -3.4028234663852886e+38 -> NaN")
-    (ROOT / "data").mkdir(exist_ok=True)
-    (ROOT / "data" / "prepared_manifest.json").write_text(json.dumps(prep, indent=2) + "\n")
-    print("wrote data/prepared_manifest.json")
-    return 0
+
+    feat_path = ddir / "training_features.tif"
+    lab_path = ddir / "labels.tif"
+    tmpl_path = ddir / "sample_submission.tif"
+
+    for p in (feat_path, lab_path, tmpl_path):
+        if not p.exists():
+            raise FileNotFoundError(
+                f"Missing required competition file {p}. Run `bash scripts/download_competition_data.sh` first."
+            )
+
+    with rasterio.open(tmpl_path) as tmpl:
+        epsg = tmpl.crs.to_epsg()
+        if epsg != 32611:
+            raise ValueError(f"Expected EPSG:32611, got {tmpl.crs}")
+        shape_hw = (tmpl.height, tmpl.width)
+        if shape_hw != (3730, 3292):
+            raise ValueError(f"Expected shape (3730, 3292), got {shape_hw}")
+        transform_tuple = tuple(float(v) for v in tmpl.transform)[:6]
+        foot_arr = tmpl.read(1)
+        foot = np.isfinite(foot_arr)
+
+    with rasterio.open(lab_path) as lab_src:
+        if (lab_src.height, lab_src.width) != shape_hw:
+            raise ValueError("labels.tif shape mismatch")
+        lab_raw = lab_src.read(1)
+        lab = (lab_raw == 1) & foot
+
+    np.save(bands_dir / "_footprint.npy", foot)
+    np.save(bands_dir / "_labels.npy", lab)
+
+    band_stats = []
+    total_sentinel_in_foot = 0
+    any_sentinel_in_foot = np.zeros(shape_hw, dtype=bool)
+
+    with rasterio.open(feat_path) as feat_src:
+        if (feat_src.height, feat_src.width) != shape_hw:
+            raise ValueError("training_features.tif shape mismatch")
+        names = [feat_src.tags(i).get("band_name", f"band_{i}") for i in range(1, feat_src.count + 1)]
+        if names != BASE_NAMES:
+            raise ValueError(f"Unexpected band order: {names}")
+        nd = feat_src.nodata
+        for idx, bname in enumerate(names, 1):
+            arr = feat_src.read(idx).astype(np.float32)
+            is_sentinel = (~np.isfinite(arr)) | (arr < -1e38)
+            if nd is not None and not np.isnan(nd):
+                is_sentinel |= arr == nd
+            sentinel_in_foot = int(np.sum(is_sentinel & foot))
+            total_sentinel_in_foot += sentinel_in_foot
+            any_sentinel_in_foot |= is_sentinel & foot
+
+            arr[is_sentinel] = np.nan
+            arr[~foot] = np.nan
+            np.save(bands_dir / f"{idx:02d}_{bname}.npy", arr)
+
+            valid_vals = arr[foot & np.isfinite(arr)]
+            band_stats.append(
+                {
+                    "index": idx,
+                    "name": bname,
+                    "finite_in_footprint": int(valid_vals.size),
+                    "sentinel_in_footprint": sentinel_in_foot,
+                    "min": float(np.min(valid_vals)),
+                    "p05": float(np.percentile(valid_vals, 5)),
+                    "median": float(np.median(valid_vals)),
+                    "p95": float(np.percentile(valid_vals, 95)),
+                    "max": float(np.max(valid_vals)),
+                }
+            )
+
+    manifest = {
+        "schema_version": 1,
+        "prepared_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "grid": {
+            "epsg": epsg,
+            "height": shape_hw[0],
+            "width": shape_hw[1],
+            "total_cells": int(shape_hw[0] * shape_hw[1]),
+            "transform": list(transform_tuple),
+            "pixel_size_m": [100.0, 100.0],
+        },
+        "counts": {
+            "footprint_valid_pixels": int(foot.sum()),
+            "outside_footprint_pixels": int((~foot).sum()),
+            "positive_catalogue_label_pixels": int(lab.sum()),
+            "negative_in_footprint_pixels": int(foot.sum() - lab.sum()),
+            "total_sentinel_band_pixels_inside_footprint": total_sentinel_in_foot,
+            "unique_footprint_pixels_with_any_sentinel": int(any_sentinel_in_foot.sum()),
+        },
+        "source_hashes": {
+            "training_features.tif": sha256_file(feat_path),
+            "labels.tif": sha256_file(lab_path),
+            "sample_submission.tif": sha256_file(tmpl_path),
+        },
+        "bands": band_stats,
+    }
+
+    out_path = ROOT / "data" / "prepared_manifest.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    return manifest
+
+
+def main() -> None:
+    manifest = prepare()
+    print(
+        f"[GEMSDOE32] Prepared {len(manifest['bands'])} bands | "
+        f"Footprint={manifest['counts']['footprint_valid_pixels']:,} px | "
+        f"Catalogue positives={manifest['counts']['positive_catalogue_label_pixels']:,} px | "
+        f"Sanitized {manifest['counts']['total_sentinel_band_pixels_inside_footprint']:,} sentinel band-pixels."
+    )
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()

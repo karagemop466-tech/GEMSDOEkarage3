@@ -36,7 +36,8 @@ def main() -> int:
     ext = json.loads((EV / "extended_uniqueness.json").read_text())["summary"]
     prep = json.loads((ROOT / "data" / "prepared_manifest.json").read_text())
     focus = json.loads((ROOT / "registry" / "focus9_registry.json").read_text())
-    sidecar = list((ROOT / "docs" / "downloads").glob("*-audit.json"))
+    sidecar_path = ROOT / "docs" / "downloads" / card["raster"]["zeros_file"].replace("-zeros.tif", "-audit.json")
+    sidecar = [sidecar_path] if sidecar_path.exists() else []
     site = (ROOT / "docs" / "k3" / "index.html").read_text() + (ROOT / "docs" / "k3" / "executive-summary.html").read_text()
 
     z = ROOT / "docs" / "downloads" / card["raster"]["zeros_file"]

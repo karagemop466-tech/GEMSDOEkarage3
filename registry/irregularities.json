@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-10-27T22:45:00Z",
+  "irregularities": [
+    {
+      "id": "IR-K3-HOLDOUT-EXTDIR-01",
+      "severity": "high",
+      "category": "shared_template_bug_fixed",
+      "location": "src/gems32/holdout.py:105",
+      "summary": "load_holdout_context opened ddir / 'external' / 'derived_sgmc_faults_100m_u8.tif', which fails with FileNotFoundError whenever paths.data_dir() resolves to .cache/gems_data/core.",
+      "resolution": "Fixed directly in shared src/gems32/holdout.py (no private fork) to resolve ext_dir = (ddir / 'external') if (ddir / 'external').exists() else (ddir.parent / 'external')."
+    },
+    {
+      "id": "IR-K3-WRITER-PREFIX-01",
+      "severity": "medium",
+      "category": "shared_template_bug_fixed",
+      "location": "src/gems32/submission.py:143 & scripts/submission_writer.py:39",
+      "summary": "write_submission_pair hardcoded filename prefix 'gemsdoe32-', preventing downstream parallel-lane repos from emitting repo-scoped unique prefixes via the shared writer.",
+      "resolution": "Added backward-compatible prefix parameter to src/gems32/submission.py (default 'gemsdoe32') and scripts/submission_writer.py (default 'gemskarage3')."
+    },
+    {
+      "id": "IR-K3-BAND12-DETELEV-01",
+      "severity": "medium",
+      "category": "data_unit_verification",
+      "location": "data/prepared_manifest.json (Band 12 det_elev)",
+      "summary": "Band 12 (det_elev) spans [-590.0, +1470.0] m (median -75.58 m), representing detrended local elevation above regional base rather than raw ASL elevation (~1,335 m Lake Lahontan highstand). Additionally, 3,061 footprint pixels (3,073 in Band 06) carry float32 -3.4028235e+38 sentinels in raw training_features.tif.",
+      "resolution": "Verified exact band statistics prior to writing crsb_gub.py; sanitized all sentinels via nearest-neighbor fill in feature_stack.npy (0 non-finite footprint cells across all 51 channels) and parameterized playa/shoreline filters in detrended elevation space."
+    },
+    {
+      "id": "IR-K3-NODATA-RANGE01-01",
+      "severity": "critical",
+      "category": "portal_validator_hazard",
+      "location": "docs/downloads/*.tif",
+      "summary": "Prior user submission failed DrivenData validation with 'Predicted values must be in range [0, 1]'. Historical *-nan.tif files store NaN outside the 5,167,373-cell footprint (7,111,787 outer cells), and raw Band 1..19 rasters contain -3.4028e+38 float32 sentinels.",
+      "resolution": "Emitted strictly '-zeros.tif' (nodata=None, 0.0 outside footprint, 12,279,160 / 12,279,160 finite float32 pixels in [0.0, 1.0]), verified saved bytes on disk via 13-check audit_geotiff, and removed the diagnostic -nan.tif file from docs/downloads/ so it can never be uploaded by mistake."
+    },
+    {
+      "id": "IR-K3-LATTICE-SPACEFILL-01",
+      "severity": "high",
+      "category": "registry_uniqueness_semantics",
+      "location": "registry/complete_registry_manifest.json",
+      "summary": "Across all 104 audited repositories (2,148 rasters, 1,793 unique SHA-256s), 13GEMSDOE contains synthetic space-filling 5-px lattices (r13-lattice-s5, 206,895 dots covering 99.8713% of the valid footprint within 3 px; pigeonhole lower bound >=82.34% for any 37,654-dot mask), and WBGGEMSDOE1/WBGGEMSDOE2/GEMSDOEkarage2 contain >5.1M-pixel continuous research surfaces (100% off-catalogue positive support).",
+      "resolution": "Reported BOTH discrete-candidate 3-px overlap across all 1,577 discrete rasters (max 66.27% <= 70%, PASS; max 65.05% across all 9 focus sites, PASS) AND literal/null-calibrated overlap + Spearman rank correlation (max |Spearman| = 0.6525 <= 0.90 across all 1,789 grid-compatible rasters) with zero silent exemptions."
+    },
+    {
+      "id": "IR-K3-PARETO-SEESAW-01",
+      "severity": "high",
+      "category": "scientific_finding",
+      "location": "evidence/crsb-gub-ablation-results.json",
+      "summary": "Unsupervised physical CRSB-GUB (EXP-1) beats the 0.2778 Champion on off-catalogue SGMC-CAL-v3.0 (0.067889 vs 0.064121, +0.003768) while scoring 0.048178 on HIDE-RECOVER-v3.0; Dual-Cover OOF + MaxEnv (EXP-3) beats the 0.2778 Champion in point HIDE-RECOVER-v3.0 (0.106042 vs 0.099202, +0.006840, 93.1% win prob, paired 95% CI [-0.002006, +0.016383]) while scoring 0.057360 on SGMC-CAL-v3.0.",
+      "resolution": "Fails closed to verdict='negative' (ok_to_submit=false) per promotion_gate.py and Protocol Rule 6 rather than spending a weekly submission slot without statistically conclusive dual-benchmark dominance."
+    },
+    {
+      "id": "IR-K3-LB-CONFLICT-01",
+      "severity": "medium",
+      "category": "prompt_provenance_conflict",
+      "location": "README.md & docs/research.md",
+      "summary": "The supplied prompt cites both 0.3195 and 0.4413 as competition leaderboard highs, and lists nine site scores (0.2449..0.2778) without portal receipt screenshots. Outbound network whitelist allows GitHub and PyPI/npm only (DrivenData, USGS, GDR, Dropbox, NLR unreachable directly).",
+      "resolution": "Preserved both 0.3195 and 0.4413 verbatim as unverified prompt claims, labeled all nine historical site scores as OWNER-REPORT (distinct from measured HOLDOUT-DTI), and verified all local rasters via SHA-256 against pinned GitHub mirrors."
+    }
+  ]
+}

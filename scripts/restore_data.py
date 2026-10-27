@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from karage3.paths import data_dir  # noqa: E402
+from gems32.paths import data_dir  # noqa: E402
 
 
 def sha256_file(p: Path) -> str:

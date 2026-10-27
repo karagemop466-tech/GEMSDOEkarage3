@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "preregistered_utc": "2026-10-27T21:20:00Z",
+  "session_branch": "arena/2df0b70e-gemsdoekarage3",
+  "locked_lane_id": "H-K3-1-CRSB-GUB",
+  "locked_lane_title": "Conjugate Riedel-Stepover Stress-Shadow & Geothermometer-Disequilibrium Upflow Bridge (CRSB-GUB)",
+  "lane_provenance": "Formulated and locked prior to model execution per prompt hypothesis-ranking directive and previous-session next-step handoff (PR #1).",
+  "budget_max_experiments": 3,
+  "budget_max_hours": 2.0,
+  "weekly_slots_authorized": 0,
+  "candidate_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H-K3-1",
+      "name": "CRSB-GUB: Conjugate Riedel-Stepover Stress-Shadow & Geothermometer-Disequilibrium Upflow Bridge",
+      "selected_for_execution": true,
+      "viable_in_sandbox": true
+    },
+    {
+      "rank": 2,
+      "id": "H-K3-2",
+      "name": "PGD-Baranov: Local Poisson Gravity-Pseudogravity Magnetite-Leaching Defect",
+      "selected_for_execution": false,
+      "viable_in_sandbox": true
+    },
+    {
+      "rank": 3,
+      "id": "H-K3-3",
+      "name": "LSO-AFCA: Lahontan Shoreline-Orthogonal Alluvial Fan Profile-Curvature Asymmetry",
+      "selected_for_execution": false,
+      "viable_in_sandbox": true
+    },
+    {
+      "rank": 4,
+      "id": "H-K3-4",
+      "name": "MT3D-InSAR: 3D Magnetotelluric Phase-Tensor Skew & Sentinel-1 InSAR Creep Discontinuities",
+      "selected_for_execution": false,
+      "viable_in_sandbox": false,
+      "blocked_sources": [
+        "https://gdr.openei.org/ (3D MT Great Basin resistivity volumes)",
+        "https://asf.alaska.edu/ (Sentinel-1 ARIA unwrapped interferograms)",
+        "https://earthquake.usgs.gov/ (Relocated 2020 Monte Cristo Range aftershock catalog)"
+      ]
+    }
+  ],
+  "gates": {
+    "max_single_feature_oriented_auc": 0.90,
+    "max_surface_abs_spearman": 0.90,
+    "max_final_abs_spearman": 0.90,
+    "max_final_3px_overlap": 0.70,
+    "primary_evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "secondary_evaluator": "GEMSDOE32-SGMC-CAL-v3.0",
+    "require_paired_95ci_above_zero_vs_champion": true,
+    "require_13_point_geotiff_byte_audit": true
+  }
+}

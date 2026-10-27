@@ -10,6 +10,12 @@ An evidence-first workspace for the [DOE GEMS Prize Challenge](https://www.drive
 
 The best of the **user-reported, unverified** historical focus-site values is GEMSDOE32’s **0.2778**; no submission-page receipt here binds that value to the raster. It is already reported, not a new submission. All nine pinned historical files fail the focus-site proximity test. The [site](index.html) and [executive submission guide](executive-summary.html) put the decision and evidence up front. No competition submission was made.
 
+> **Latest Method-Lane Update (`H-K3-1: CRSB-GUB`, branch `arena/2df0b70e-gemsdoekarage3`):**
+> - **Dashboard & Step-by-Step Submission Guide:** [`docs/crsb-gub/index.html`](docs/crsb-gub/index.html) · [`docs/crsb-gub/executive-summary.html`](docs/crsb-gub/executive-summary.html) · [`docs/crsb-gub/research.md`](docs/crsb-gub/research.md) · [`docs/crsb-gub/run-card.json`](docs/crsb-gub/run-card.json)
+> - **Validated Unique GeoTIFF (`13/13` `[0, 1]` checks `PASS`):** [`docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif) (`212,468` B, SHA-256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3`) and [single-file `.zip`](docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.zip) (`179,446` B, SHA-256 `3ab00ae5be1068bd80df4788a403825162490a57942c70e1492a51185ea3556d`).
+> - **Submission Note (`111 / 140` chars):** `H-K3-1 CRSB-GUB: Verduzco THDR+Riedel stepover+GDR1391 geotherm diseq+DualCover OOF d=3.0 (37654d, [0,1] zeros)`
+> - **Scientific Verdict (`verdict: "negative"`, `ok_to_submit: false` — HOLD WEEKLY SLOT):** `EXP-3` (`CRSB-GUB MaxEnv`, `37,654` dots) beats the `0.2778` `GEMSDOE32` Champion rule in point `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`: **`0.106042`** `[0.0915, 0.1192]` vs. `0.099202`, **`+0.006840` / `+6.9%`**, `93.1%` bootstrap win prob) and unsupervised `EXP-1` beats the Champion on off-catalogue `SGMC-CAL-v3.0` (**`0.067889`** vs. `0.064121`), while passing discrete uniqueness across **`1,577` candidate rasters in `104` repositories** (`max 3-px overlap = 66.27% <= 70%`, `44.11%` vs. `GEMSDOE32`, `max |Spearman| = 0.6525 <= 0.90`; literal `r13-lattice-s5` `206,895`-dot grid overlap `98.85%` reported transparently without silent exemption). Because the 256-block paired 95% CI (`[-0.002006, +0.016383]`) narrowly crosses zero and `EXP-3`'s `SGMC-CAL-v3.0` is `0.057360`, **do not spend a weekly submission slot without cross-lane selector authorization.**
+
 ## Mission and standing instructions
 
 * **Maximize P(Win):** prioritize well-supported, generalizable fault discovery, responsible uncertainty, and conservation of weekly slots—not cosmetic hash changes or leaderboard guessing.
@@ -118,3 +124,25 @@ change this README's decision:
   [run card](evidence/k3_run_card.json) · reproduce with `scripts/build_k3_site.py` +
   `scripts/verify_numbers.py`. Public #1 observed on main as 0.4544 (2026-10-27) supersedes
   the 0.4413/0.4437 figures quoted in K3's brief copies.
+
+## Lane H-K3-1 (`CRSB-GUB`) addendum — 3/3 experiments, 104-repo registry scan & 9-site audit (`verdict: negative`)
+
+Branch `arena/2df0b70e-gemsdoekarage3` pre-registered four ranked geological hypotheses ([`docs/research/hypotheses-preregistration-karage3.md`](docs/research/hypotheses-preregistration-karage3.md), [`registry/preregistration.json`](registry/preregistration.json)) and executed **Lane `H-K3-1: CRSB-GUB`** (*Conjugate Riedel-Stepover Blind-Fault & Geothermometer Upflow Bridge*, `src/gems32/crsb_gub.py`) across 3 controlled experiments:
+
+1. **51-Channel Single-Feature Leakage Canary (`Gate G1`):** All 35 base + 16 physical `CRSB-GUB` channels passed (`max(AUC, 1-AUC) = 0.586868 <= 0.90`; `dist_known_fault_px` dropped and asserted absent in code; [`evidence/leakage-canary-51ch.json`](evidence/leakage-canary-51ch.json)).
+2. **Controlled 3-Experiment Ablation ([`evidence/crsb-gub-ablation-results.json`](evidence/crsb-gub-ablation-results.json)):**
+   - `EXP-1` (Unsupervised physical `CRSB-GUB`, zero `labels.tif`): `SGMC-CAL-v3.0 = 0.067889` (`+0.003768` over `0.2778` Champion `0.064121`), `HIDE-RECOVER-v3.0 = 0.048178`.
+   - `EXP-2` (Dual-Cover `51`-ch / `48`-ch LiDAR-free SAR-PU OOF): `HIDE-RECOVER-v3.0 = 0.100830` (`+0.001628`), `SGMC-CAL-v3.0 = 0.056375`.
+   - `EXP-3` (`CRSB-GUB MaxEnv`, `min_sep_px = 3.0`, `37,654` dots, emitted): **`HIDE-RECOVER-v3.0 = 0.106042`** (`95% CI [0.091475, 0.119194]`, **`+0.006840` / `+6.9%`** over `0.2778` Champion `0.099202`, `93.1%` bootstrap win prob; paired `CI95 = [-0.002006, +0.016383]`), `SGMC-CAL-v3.0 = 0.057360`.
+3. **104-Repo / 1,789-Raster Uniqueness & 9-Site Forensic Byte Audit:** Continuous surface `max |Spearman| = 0.6525 <= 0.90`; discrete candidate `max 3-px overlap = 66.27% <= 70.00%` across `1,577` rasters (`44.11%` vs. `GEMSDOE32` `0.2778`; [`evidence/complete-registry-uniqueness-scan.json`](evidence/complete-registry-uniqueness-scan.json), [`evidence/nine-site-audit-20261027.json`](evidence/nine-site-audit-20261027.json)):
+   - **`GEMSDOEkarage3` (`H-K3-1: CRSB-GUB`):** `gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif` (`37,654` dots) · `HIDE-RECOVER-v3.0 = 0.106042` / `SGMC-CAL-v3.0 = 0.057360` · Format & discrete uniqueness `PASS` · **HOLD SLOT (`verdict: negative`)**
+   - **`GEMSDOE32`:** `e5eb6e7e-zeros.tif` (`37,654`d, `0.2778` `OWNER-REPORT`, `0` dots `<=2px` cat, `SGMC=0.064121`, `44.11%` ov vs `H-K3-1`)
+   - **`GEMSDOE36`:** `9b9ea4e6-zeros.tif` (`38,854`d, `0.2750` `OWNER-REPORT`, `GEMSDOE32 + 1,200` PINN dots, `SGMC=0.064444`, `44.70%` ov)
+   - **`GEMSDOE28`:** `b531dae0a36f-allfinite.tif` (`37,660`d, `0.2710` `OWNER-REPORT`, `2,353` `<=2px` cat, `SGMC=0.062967`, `45.14%` ov)
+   - **`GEMSDOE31`:** `8acb75e1f2cc-allfinite.tif` (`55,304`d, `0.2708` `OWNER-REPORT`, `5,936` `<=2px` cat, `SGMC=0.057724`, `47.68%` ov)
+   - **`GEMSDOE33`:** `cb490425926e.tif` (`41,865`d, `0.2632` `OWNER-REPORT`, `3,894` `<=2px` cat, `SGMC=0.062551`, `46.25%` ov)
+   - **`GEMSDOE25` & `GEMSDOE30`:** pixel-identical SHA `91eae1ca` (`44,090`d, `0.2600` `OWNER-REPORT`, `6,436` `<=2px` cat, `HR=0.099202`, `SGMC=0.060592`, `46.64%` ov)
+   - **`GEMSDOE24`:** `989f59505db1-allfinite.tif` (`60,069`d `d=1.5`, `0.2477` `OWNER-REPORT`, `HR=0.097204`, `SGMC=0.057932`, `48.26%` ov)
+   - **`GEMSDOE27`:** `5512495c6bd1-allfinite.tif` (`61,328`d `d=1.5`, `0.2449` `OWNER-REPORT`, `HR=0.096778`, `SGMC=0.058262`, `48.84%` ov)
+4. **Pages & Reproduction:** [Executive Summary & Validated GeoTIFF Desk](docs/crsb-gub/index.html) · [Submission Guide](docs/crsb-gub/executive-summary.html) · [PhD Monograph](docs/crsb-gub/research.md) · [Run Card](docs/crsb-gub/run-card.json) · [Three-Pass Review](evidence/review-passes-crsb-gub.md). Reproduce via `scripts/build_crsb_features.py`, `scripts/run_crsb_ablation.py`, and `scripts/audit_exact_nine_winners.py`.
+
