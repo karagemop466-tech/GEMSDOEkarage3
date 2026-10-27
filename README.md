@@ -13,12 +13,27 @@ maximizes the probability of winning the DOE GEMS Prize — emotions aside.
 **Own the Outcome.** Results are owned end-to-end. When problems arise and we have the
 means to act, we act without waiting for permission. Failure and success are both signals.
 
-## Current decision
+## Current decision (2026-10-27, K3 complete: 3/3 experiments)
 
-See the banner in [`docs/executive-summary.html`](docs/executive-summary.html) and the JSON run card
-`evidence/k3_run_card.json`. A file is **OK TO SUBMIT** only if the run card verdict is
-`promote` (all gates in the pre-registration pass). Anything else is a research download only.
-Promotion to a real weekly slot is a separate selector step by the owner.
+🔴 **DO NOT SUBMIT — verdict `negative`.** Research download only:
+[`docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif`](docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif)
+(SHA-256 `9b2656c4…fafa`, 34,835 dots, validator PASS, genuinely unique: worst 65.3 % within-3 px
+across 432 scanned registry rasters, 24.3 % vs the champion). HOLDOUT-DTI pooled **0.0522**
+[0.0375, 0.0620] (`GEMSDOE32-HOLDOUT-v3-visible-only`, 22,232 withheld) vs champion-rule
+control **0.0992** → gate G1 fails; SGMC-cal 0.0892 beats the champion's 0.0641 (G2 pass);
+G3/G4/G5 pass. Leaderboard estimate: **NOT ESTIMABLE**. Full banner + tables in
+[`docs/executive-summary.html`](docs/executive-summary.html); machine verdict in
+`evidence/k3_run_card.json` (re-check with `scripts/verify_numbers.py`, 23/23).
+A file is **OK TO SUBMIT** only if a future run card verdict is `promote`; promotion to a
+real weekly slot is a separate selector step by the owner.
+
+**Next session (suggestions, in expected-value order):** (1) obtain sub-km raw seismicity
+(USGS ComCat/FDSN — free/official, unreachable from this sandbox) or another *independent*
+blind-fault signal and repeat the visible-only screen before any slot; (2) test whether the
+corrected-LiDAR SGMC advantage survives fold-local B2-refill at fixed budget against the
+champion *dots* as base (a selector-level blend — would not be lane-unique, so it belongs to
+the selector, not a parallel lane); (3) upstream the IR-K3-01 band fix into the template repo;
+(4) re-verify the live leaderboard #1 manually (≈0.44 cited; sandbox cannot fetch it).
 
 ## What this repo is
 
