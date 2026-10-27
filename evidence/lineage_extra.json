@@ -1,0 +1,202 @@
+{
+  "GEMSDOE24": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 60069,
+      "intersection": 25517,
+      "symdiff": 46689,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.3533916849015317
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 60069,
+      "intersection": 60069,
+      "symdiff": 61062,
+      "a_subset_b": false,
+      "b_subset_a": true,
+      "jaccard": 0.4959011318324789
+    }
+  },
+  "GEMSDOE25": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 44090,
+      "intersection": 37654,
+      "symdiff": 6436,
+      "a_subset_b": true,
+      "b_subset_a": false,
+      "jaccard": 0.8540258562032207
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 44090,
+      "intersection": 44090,
+      "symdiff": 77041,
+      "a_subset_b": false,
+      "b_subset_a": true,
+      "jaccard": 0.36398609769588297
+    }
+  },
+  "GEMSDOE27": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 61328,
+      "intersection": 25517,
+      "symdiff": 47948,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.34733546586810043
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 61328,
+      "intersection": 60069,
+      "symdiff": 62321,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.4907999019527739
+    }
+  },
+  "GEMSDOE28": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 37660,
+      "intersection": 26248,
+      "symdiff": 22818,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.5349529205559859
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 37660,
+      "intersection": 37660,
+      "symdiff": 83471,
+      "a_subset_b": false,
+      "b_subset_a": true,
+      "jaccard": 0.31090307188085625
+    }
+  },
+  "GEMSDOE30": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 44090,
+      "intersection": 37654,
+      "symdiff": 6436,
+      "a_subset_b": true,
+      "b_subset_a": false,
+      "jaccard": 0.8540258562032207
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 44090,
+      "intersection": 44090,
+      "symdiff": 77041,
+      "a_subset_b": false,
+      "b_subset_a": true,
+      "jaccard": 0.36398609769588297
+    }
+  },
+  "GEMSDOE31": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 40199,
+      "intersection": 37654,
+      "symdiff": 2545,
+      "a_subset_b": true,
+      "b_subset_a": false,
+      "jaccard": 0.9366899674121246
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 40199,
+      "intersection": 40199,
+      "symdiff": 80932,
+      "a_subset_b": false,
+      "b_subset_a": true,
+      "jaccard": 0.3318638498815332
+    }
+  },
+  "GEMSDOE33": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 41865,
+      "intersection": 31614,
+      "symdiff": 16291,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.6599311136624569
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 41865,
+      "intersection": 41732,
+      "symdiff": 79532,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.34414170734925453
+    }
+  },
+  "GEMSDOE36": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 38854,
+      "intersection": 37654,
+      "symdiff": 1200,
+      "a_subset_b": true,
+      "b_subset_a": false,
+      "jaccard": 0.969115149019406
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 38854,
+      "intersection": 37655,
+      "symdiff": 84675,
+      "a_subset_b": false,
+      "b_subset_a": false,
+      "jaccard": 0.30781492683724354
+    }
+  },
+  "CONTROL-H19-5-parent": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 121131,
+      "intersection": 37654,
+      "symdiff": 83477,
+      "a_subset_b": true,
+      "b_subset_a": false,
+      "jaccard": 0.3108535387307956
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 121131,
+      "intersection": 121131,
+      "symdiff": 0,
+      "a_subset_b": true,
+      "b_subset_a": true,
+      "jaccard": 1.0
+    }
+  },
+  "CONTROL-solo-02708": {
+    "vs_champion": {
+      "a_dots": 37654,
+      "b_dots": 40199,
+      "intersection": 37654,
+      "symdiff": 2545,
+      "a_subset_b": true,
+      "b_subset_a": false,
+      "jaccard": 0.9366899674121246
+    },
+    "vs_parent": {
+      "a_dots": 121131,
+      "b_dots": 40199,
+      "intersection": 40199,
+      "symdiff": 80932,
+      "a_subset_b": false,
+      "b_subset_a": true,
+      "jaccard": 0.3318638498815332
+    }
+  }
+}
