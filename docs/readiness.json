@@ -52,5 +52,6 @@
       "detail": "No baseline rerun in this checkout"
     }
   ],
-  "limitations": "Availability is not scientific validation. No lane, dataset provenance, or complete registry is inferred from filenames."
+  "limitations": "Availability is not scientific validation. No lane, dataset provenance, or complete registry is inferred from filenames.",
+  "snapshot_scope": "Availability was checked in an earlier parallel workspace; ignored data may be absent in a fresh checkout. Re-run scripts/check_readiness.py for current local state."
 }

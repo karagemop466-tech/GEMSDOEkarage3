@@ -39,7 +39,8 @@ def readiness():
     ]
     return dict(schema_version=1, ready_for_experiment=all(c['passed'] for c in checks),
                 ok_to_submit=False, checks=checks,
-                limitations='Availability is not scientific validation. No lane, dataset provenance, or complete registry is inferred from filenames.')
+                limitations='Availability is not scientific validation. No lane, dataset provenance, or complete registry is inferred from filenames.',
+                snapshot_scope='Availability was measured at script execution; ignored data may be absent in another checkout. Re-run for current local state.')
 
 
 if __name__ == '__main__':

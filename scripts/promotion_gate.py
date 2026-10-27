@@ -94,6 +94,23 @@ def assess(card):
     sha = card.get('raster_sha256')
     require(digest(sha), 'missing raster SHA256')
     require(digest(sha) and v.get('raster_sha256') == sha, 'validator not bound to candidate bytes')
+    # The upstream all-finite validator alone does not settle outside-null
+    # semantics or portable mask sidecars. Require the separate, conservative
+    # saved-byte diagnostic too; metadata remains a claim, not proof of execution.
+    diagnostic = mapping(card.get('format_diagnostic'))
+    dc = mapping(diagnostic.get('checks'))
+    diagnostic_keys = (
+        'template_epsg32611_and_100m_unrotated', 'geotiff',
+        'self_contained_no_sidecars', 'single_band', 'float32',
+        'crs_shape_transform_match_template', 'inside_finite_and_in_range',
+        'inside_not_masked', 'no_positive_outside_footprint',
+        'all_cell_finite_range', 'outside_null_or_nan',
+    )
+    require(diagnostic.get('strict_format_gate_pass') is True
+            and digest(sha) and diagnostic.get('sha256') == sha
+            and digest(diagnostic.get('template_sha256'))
+            and all(dc.get(key) is True for key in diagnostic_keys),
+            'missing hash-bound strict outside/null and whole-array format diagnostic')
     require(text(card.get('submission_name')) and text(card.get('note')) and len(card['note']) <= 140,
             'invalid submission name/note')
     return {'verdict': 'negative' if reasons else 'promote', 'ok_to_submit': False,

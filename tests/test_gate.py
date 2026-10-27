@@ -19,7 +19,15 @@ class GateTests(unittest.TestCase):
             validator=dict(raster_sha256='a' * 64, **{k: True for k in [
                 'saved_bytes_checked', 'single_band', 'finite_inside', 'range_0_1',
                 'crs_match', 'shape_match', 'transform_match']}),
-            raster_sha256='a' * 64, submission_name='test', note='test only')
+            raster_sha256='a' * 64,
+            format_diagnostic=dict(sha256='a' * 64, template_sha256='d' * 64,
+                strict_format_gate_pass=True, checks={k: True for k in [
+                    'template_epsg32611_and_100m_unrotated', 'geotiff',
+                    'self_contained_no_sidecars', 'single_band', 'float32',
+                    'crs_shape_transform_match_template', 'inside_finite_and_in_range',
+                    'inside_not_masked', 'no_positive_outside_footprint',
+                    'all_cell_finite_range', 'outside_null_or_nan']}),
+            submission_name='test', note='test only')
 
     def test_malformed_objects_fail_closed(self):
         for bad in [None, [], '', 1, {}, {'holdout': []}, {'registry': 'bad'}, {'validator': 2}]:
@@ -30,6 +38,13 @@ class GateTests(unittest.TestCase):
         result = assess(self.valid())
         self.assertEqual(result['verdict'], 'promote')
         self.assertFalse(result['ok_to_submit'])
+
+    def test_missing_strict_diagnostic_fails_closed(self):
+        card = self.valid()
+        card.pop('format_diagnostic')
+        result = assess(card)
+        self.assertEqual(result['verdict'], 'negative')
+        self.assertIn('missing hash-bound strict outside/null and whole-array format diagnostic', result['reasons'])
 
     def test_mutations_rejected(self):
         changes = [
@@ -42,6 +57,12 @@ class GateTests(unittest.TestCase):
             ('holdout.baseline.evaluator_version', 'other'),
             ('holdout.baseline.fold_manifest_sha256', 'c' * 64),
             ('holdout.baseline.dti', .25), ('validator.transform_match', False),
+            ('format_diagnostic.sha256', 'c' * 64),
+            ('format_diagnostic.template_sha256', None),
+            ('format_diagnostic.strict_format_gate_pass', False),
+            ('format_diagnostic.checks.outside_null_or_nan', False),
+            ('format_diagnostic.checks.all_cell_finite_range', False),
+            ('format_diagnostic.checks.self_contained_no_sidecars', False),
             ('registry.reference_ids', []), ('registry.reference_ids', ['r1', 'missing']),
             ('registry.reference_ids', ['r1', 'r1']),
             ('registry.surface.comparisons', []), ('registry.surface.comparisons', [None]),

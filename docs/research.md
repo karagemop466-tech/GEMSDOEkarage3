@@ -1,5 +1,7 @@
 # Research preregistration — 2026-10-27
 
+> This is a preserved record of an earlier parallel session. For later public-source verification, the literal lattice bound, and four additional planning hypotheses, see the [independent review](preflight-research.html). Earlier statements about unread pages and local availability refer to that session, not the combined project. Core data are ignored and may require restoration in a fresh checkout.
+
 ## Scope and limits
 No model experiment has been run. The initial project began as an evidence desk; this follow-up recovered core data mirrors and pinned canonical source, then ran historical saved-byte forensics. No method lane was supplied. Three experiments or two hours is the hard experiment budget; this audit used zero experiments and zero submission slots. Do not infer novelty across the parallel projects from novelty in this empty checkout.
 

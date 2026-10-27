@@ -23,6 +23,7 @@
     "validator: transform_match",
     "missing raster SHA256",
     "validator not bound to candidate bytes",
+    "missing hash-bound strict outside/null and whole-array format diagnostic",
     "invalid submission name/note"
   ]
 }

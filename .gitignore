@@ -1,9 +1,11 @@
-# Data and artifacts are reproducibly fetched, not committed.
+# Local dependencies, generated caches and competition data
+.arena/
 .cache/
 .venv/
-/data/*
-!/data/focus_registry.json
-node_modules/
 __pycache__/
 .pytest_cache/
-*.pyc
+*.py[cod]
+node_modules/
+/data/*
+!/data/focus_registry.json
+*.part
