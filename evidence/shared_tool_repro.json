@@ -1,0 +1,54 @@
+{
+  "evidence_class": "SOFTWARE-UNIT-TEST (not HOLDOUT-DTI)",
+  "upstream_commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+  "upstream_script": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/evaluate_holdout.py",
+  "upstream_script_sha256": "d786273021c86b62af2504060309554218ca1442ed84d717f13334dddeea892c",
+  "input_arrays": [
+    [
+      [
+        0.1,
+        0.9
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    [
+      [
+        0.9,
+        0.1
+      ],
+      [
+        0,
+        0
+      ]
+    ]
+  ],
+  "captured_inputs_to_evaluator": [
+    [
+      [
+        true,
+        true
+      ],
+      [
+        false,
+        false
+      ]
+    ],
+    [
+      [
+        true,
+        true
+      ],
+      [
+        false,
+        false
+      ]
+    ]
+  ],
+  "different_probabilities_collapsed_to_same_boolean_mask": true,
+  "method": "Called actual evaluate_path with holdout functions stubbed only to capture their inputs; no data, scores, training or TIFF produced.",
+  "existing_issue": "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37",
+  "resolution": "Open upstream issue; no private evaluator/writer fork."
+}

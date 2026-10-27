@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+  "leaderboard": {
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+    "available": false,
+    "last_observation": {
+      "rank": 1,
+      "score": 0.4544,
+      "display_score": "0.4544",
+      "observed_utc": "2026-10-27 UTC (time not retained)",
+      "evidence_class": "ORGANIZER-PUBLIC leaderboard snapshot; not an artifact-linked receipt",
+      "method": "Read through Arena page extraction; raw HTML not retained."
+    },
+    "error": "URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+  },
+  "sources": [
+    {
+      "site": "GEMSDOE24",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
+      "commit_utc": "2026-10-27T19:39:46Z",
+      "snapshot_commit": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE25",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "19b219f629440b9975b093f459c74e21a42476ca",
+      "commit_utc": "2026-10-27T21:16:48Z",
+      "snapshot_commit": "b13ccabae15d4951854d47cb35e17322e7537b64",
+      "changed_since_snapshot": true,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE27",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
+      "commit_utc": "2026-10-27T19:16:43Z",
+      "snapshot_commit": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE28",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "4955e29c7b66503ba2178b25d356d713dc1bc534",
+      "commit_utc": "2026-10-27T19:07:29Z",
+      "snapshot_commit": "4955e29c7b66503ba2178b25d356d713dc1bc534",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE30",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE30",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
+      "commit_utc": "2026-10-27T18:09:31Z",
+      "snapshot_commit": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE31",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE31",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "88ec212955353f7590e94b8ef2a9763ffa035d45",
+      "commit_utc": "2026-10-27T18:36:28Z",
+      "snapshot_commit": "88ec212955353f7590e94b8ef2a9763ffa035d45",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE32",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+      "commit_utc": "2026-10-27T19:41:26Z",
+      "snapshot_commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE33",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE33",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "844f514819041c7be9efd345a24cf5cd70263f00",
+      "commit_utc": "2026-10-27T17:58:11Z",
+      "snapshot_commit": "844f514819041c7be9efd345a24cf5cd70263f00",
+      "changed_since_snapshot": false,
+      "error": null
+    },
+    {
+      "site": "GEMSDOE36",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+      "available": true,
+      "checked_utc": "2026-10-27T21:21:13.406754+00:00",
+      "commit": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
+      "commit_utc": "2026-10-27T19:38:42Z",
+      "snapshot_commit": "7edcc9b58e6ad0f88c6e6f5ee9218761a391769d",
+      "changed_since_snapshot": false,
+      "error": null
+    }
+  ],
+  "scope": "Metadata freshness only. No automated source refresh changes scientific evidence or submission approval.",
+  "submission_approved": false
+}

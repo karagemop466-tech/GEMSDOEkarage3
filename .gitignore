@@ -1,0 +1,11 @@
+# Reproducible caches, local dependencies and large competition datasets
+.arena/
+.cache/
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+data/raw/
+data/external/
+data/cache/
+*.part
