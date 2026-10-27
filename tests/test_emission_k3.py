@@ -1,7 +1,10 @@
-import numpy as np
-from scipy.ndimage import distance_transform_edt
+import sys
+from pathlib import Path
 
-from karage3.emission_k3 import greedy_coverage, poisson_disk_thin_priority, top_n_mask
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from karage3.emission_k3 import greedy_coverage, poisson_disk_thin_priority, top_n_mask  # noqa: E402
 
 
 def _grid(n=40):

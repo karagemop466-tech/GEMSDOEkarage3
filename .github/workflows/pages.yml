@@ -1,0 +1,30 @@
+name: Evidence desk checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: node --check docs/dashboard.js
+      - name: Public JSON must be browser-parseable
+        run: node -e 'for (const p of require("fs").readdirSync("docs").filter(p=>p.endsWith(".json"))) JSON.parse(require("fs").readFileSync("docs/"+p,"utf8"))'
+# Existing Pages is legacy main:/, not workflow-deployed. GitHub's native Pages
+# build publishes the root site and retained docs/. Do not invoke configure-pages
+# without permissions to change that deployment mode.

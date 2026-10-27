@@ -37,7 +37,7 @@ def main() -> int:
     prep = json.loads((ROOT / "data" / "prepared_manifest.json").read_text())
     focus = json.loads((ROOT / "registry" / "focus9_registry.json").read_text())
     sidecar = list((ROOT / "docs" / "downloads").glob("*-audit.json"))
-    site = (ROOT / "docs" / "index.html").read_text() + (ROOT / "docs" / "executive-summary.html").read_text()
+    site = (ROOT / "docs" / "k3" / "index.html").read_text() + (ROOT / "docs" / "k3" / "executive-summary.html").read_text()
 
     z = ROOT / "docs" / "downloads" / card["raster"]["zeros_file"]
     ck("raster sha matches file", sha(z) == card["raster"]["zeros_sha256"])
