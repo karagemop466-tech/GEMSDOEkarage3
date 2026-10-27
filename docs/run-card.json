@@ -29,7 +29,7 @@
   },
   "raster_sha256": null,
   "validator": {
-    "status": "NOT RUN \u2014 no generated raster",
+    "status": "NOT RUN for a new candidate \u2014 no new raster generated; historical files validated separately",
     "saved_bytes_checked": false,
     "single_band": null,
     "finite_inside": null,
@@ -39,16 +39,25 @@
     "transform_match": null
   },
   "submission_name": null,
-  "note": "Audit only: missing assigned lane, cached stack and complete registry. No new TIFF generated; DO NOT SUBMIT.",
+  "note": "Historical audit only; core mirrors restored. Missing assigned lane, shared cache and complete registry. No new TIFF; DO NOT SUBMIT.",
   "verdict": "negative",
   "ok_to_submit": false,
   "blockers": [
-    "No explicit method lane",
-    "No local cached feature stack or template pipeline",
-    "No complete local raster registry",
-    "No measured baseline or candidate holdout",
-    "No saved-byte GeoTIFF validation or selector authorization"
+    "No explicit assigned method lane",
+    "Canonical cached feature stack absent (source snapshot and core data mirrors recovered)",
+    "No complete fresh raster/surface registry",
+    "No same-evaluator baseline or candidate holdout",
+    "No generated new candidate or selector authorization"
   ],
+  "experiment_elapsed_seconds": 0,
+  "historical_evidence": {
+    "report": "historical-audit.json",
+    "artifacts_byte_checked": 10,
+    "format_passed": 10,
+    "all_nine_leaders_fail_literal_overlap": true,
+    "candidate_generated": false,
+    "source_authentication": "owner mirrors, not organizer-authenticated"
+  },
   "historical_audit": {
     "evidence_class": "LOCAL-RASTER-AUDIT \u2014 not a score",
     "report": "historical-raster-audit.json",

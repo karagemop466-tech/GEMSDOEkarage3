@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-10-27T21:01:02.368463+00:00",
+  "checked_utc": "2026-10-27T21:14:26.474903+00:00",
   "sites": [
     {
       "site": "GEMSDOE24",
@@ -16,6 +16,12 @@
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a73f9ffba29260cc7708e8e0557c84c5bea7d47b/README.md",
           "local": "evidence/upstream/GEMSDOE24/README.md",
           "sha256": "39383f1c39c687c7262db982f95f3b3e58d6763524c6c83390f797000725e7c5"
+        }
+      ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE24/contents/registry/current_status.json?ref=a73f9ffba29260cc7708e8e0557c84c5bea7d47b']' returned non-zero exit status 1."
         }
       ],
       "historical_artifact": {
@@ -49,6 +55,12 @@
           "sha256": "57c90502a7f540d9d0aed67bc8e4976da899ae2623461a2969a744d28b07ea28"
         }
       ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE25/contents/registry/current_status.json?ref=b13ccabae15d4951854d47cb35e17322e7537b64']' returned non-zero exit status 1."
+        }
+      ],
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
         "filename": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
@@ -78,6 +90,12 @@
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/4f34228a9f39e99da592aa34fd835c96d1b693f5/README.md",
           "local": "evidence/upstream/GEMSDOE27/README.md",
           "sha256": "f545d23ea5cd3499002ea385c481949ae322a4493847709b867ad5b1268158d9"
+        }
+      ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE27/contents/registry/current_status.json?ref=4f34228a9f39e99da592aa34fd835c96d1b693f5']' returned non-zero exit status 1."
         }
       ],
       "historical_artifact": {
@@ -111,6 +129,12 @@
           "sha256": "7efe73d123ac8b849a5162fc3f3ba0920c4aedcf5a0e9d611f7a0c70b5efb022"
         }
       ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE28/contents/registry/current_status.json?ref=4955e29c7b66503ba2178b25d356d713dc1bc534']' returned non-zero exit status 1."
+        }
+      ],
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
         "filename": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
@@ -142,6 +166,12 @@
           "sha256": "76b96fcb9bc57c835f64ca5c68c8930480cfd1621e16ef389c03252a8e1f409e"
         }
       ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE30/contents/registry/current_status.json?ref=d21ddd9502f3c3911e8d77b8f1e6abfaadffc876']' returned non-zero exit status 1."
+        }
+      ],
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
         "filename": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
@@ -171,6 +201,12 @@
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/88ec212955353f7590e94b8ef2a9763ffa035d45/README.md",
           "local": "evidence/upstream/GEMSDOE31/README.md",
           "sha256": "37b55e46831812c43eeb77173132e756f284a2ff09376293edaf568cebaac925"
+        }
+      ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE31/contents/registry/current_status.json?ref=88ec212955353f7590e94b8ef2a9763ffa035d45']' returned non-zero exit status 1."
         }
       ],
       "historical_artifact": {
@@ -240,6 +276,12 @@
           "sha256": "afbc2441e604e4cbb0d44eecc35386d1f8a9578e02f6225135c3fc05a8d45614"
         }
       ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE33/contents/registry/current_status.json?ref=844f514819041c7be9efd345a24cf5cd70263f00']' returned non-zero exit status 1."
+        }
+      ],
       "historical_artifact": {
         "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/7c37df17dee1e7470cd54d0bbbc6f168810145dd/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
         "filename": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
@@ -269,6 +311,12 @@
           "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7edcc9b58e6ad0f88c6e6f5ee9218761a391769d/README.md",
           "local": "evidence/upstream/GEMSDOE36/README.md",
           "sha256": "1a872d7730a54cff5cfc86fae0d670ac7651516418fc3af9693d37d3e52d49ca"
+        }
+      ],
+      "unavailable_sources": [
+        {
+          "path": "registry/current_status.json",
+          "error": "Command '['gh', 'api', 'repos/buffedlizard55-lab/GEMSDOE36/contents/registry/current_status.json?ref=7edcc9b58e6ad0f88c6e6f5ee9218761a391769d']' returned non-zero exit status 1."
         }
       ],
       "historical_artifact": {

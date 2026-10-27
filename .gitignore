@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 .cache/
-data/
-
 .venv/
+/data/
+
+node_modules/
