@@ -1,0 +1,8 @@
+.cache/
+.venv/
+data/*.tif
+*.npy
+__pycache__/
+.pytest_cache/
+*.partial
+*.assembling
