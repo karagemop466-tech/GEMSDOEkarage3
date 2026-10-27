@@ -1,0 +1,1314 @@
+{
+ "schema_version": 1,
+ "updated_utc": "2026-10-27T19:25:00Z",
+ "single_source_of_truth": "README top block and every site page render from this file; update it, never add a second banner",
+ "any_file_ok_to_submit": false,
+ "headline": "No file is authorized for upload. H48-1-FBGR is the newest stationary research/audit artifact (37,654 dots, B=2, min_sep_px=2.8): EXP3 beats the 0.2778 Champion on GEMSDOE32-HIDE-RECOVER-v3.0 (HOLDOUT-DTI = 0.115341 [0.100168, 0.130524] vs 0.099202, paired delta +0.016217 [+0.008599, +0.024287], p=1.000), sets a stationary repo high on Detached >=600 m withheld segments (0.101168 [0.085002, 0.117569] vs Champion 0.094324 and H47-1 0.091842), lifts SGMC-cal by +39.4% over d=0.0 EXP2 (0.056798 vs 0.040721, p=1.000), cuts 3-px clumping to 0.98% (allocating 30.4% = 11,452 dots inside the 24.63% 1 m LiDAR gap via strictly LiDAR-free 71-ch M_Sub), and passes genuine uniqueness across all 439 discrete <=100k-dot rasters across 9 focus sites + extra scored + sibling orgs (max focus-site 3-px overlap 65.94% <= 70.0%, max all-org discrete overlap 68.82% <= 70.0%, max |Spearman| 0.63146 <= 0.90), but remains held fail-closed (DO NOT SUBMIT) because off-catalogue SGMC-cal (0.056798) trails the 0.2778 Champion (0.064121) and literal unexempted overlap hits the r13-lattice-s5 calibration grid (99.78%, IR-51-LATTICE-01).",
+ "gate_rule": "OK TO SUBMIT requires an explicitly assigned method lane; all feature-only leakage canaries <=0.90; a fold-local HOLDOUT-DTI win with paired 95% CI >0 against the current same-evaluator repo best; no SGMC-cal regression against the Champion; literal surface/final-dot uniqueness against every registry raster (Spearman <=0.90 and <=70% within 3 px); exact saved-byte format/range validation; and separate weekly-slot selector approval. No human inspection.",
+ "best_scored": {
+  "file": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "score": 0.2778,
+  "evidence_class": "OWNER-REPORT (owner-provided submission-log claim; no submission-page receipt linking this raster hash to the score is present in this repository)",
+  "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "dots": 37654,
+  "advice": "already submitted - do not resubmit (a resubmission spends a slot and adds no information)"
+ },
+ "newest_unique": {
+  "file": "docs/downloads/gemsdoe32-h48-fbgr-dualcover-axial28-37654-20261027T180500Z-4d38a240-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-h48-fbgr-dualcover-axial28-37654-20261027T180500Z-4d38a240-zeros.zip",
+  "receipt": "docs/downloads/gemsdoe32-h48-fbgr-dualcover-axial28-37654-20261027T180500Z-4d38a240-audit.json",
+  "run_card": "evidence/h48_fbgr_run_card.json",
+  "preregistration": "docs/research/h48-fbgr-preregistration-20261027.md",
+  "results_doc": "docs/research/h48-fbgr-results-and-nine-site-executive-summary-20261027.md",
+  "sha256": "4177f236b7c6a26fdf39d85f0896d1a83da745c9a36b04be7fe201a0076bf29f",
+  "bytes": 211799,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-H48-FBGR-4D38A240",
+  "note": "H48-1 FBGR dualcover d2.8 37654d B2 | HR=0.1153 SGMC=0.0568 | DO NOT SUBMIT",
+  "verdict": "DO NOT SUBMIT \u2014 research/audit artifact; SGMC-cal below 0.2778 Champion & literal calibration-lattice stop",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "H48-1-FBGR: Fourier-Continued Basement-Graben Relay (z=500m, 2km), GeoDAWN 4-Block Standardized 214Bi Radon & Silica/Potassic DoG Zonation + BLM Epithermal Claims, and Stationary Dual-Cover (83-ch M_Full + 71-ch LiDAR-free M_Sub) Axial d=2.8 CELF (37,654 dots, B=2, zero eta switch).",
+  "canary": {
+   "n_pass": 83,
+   "n_channels": 83,
+   "max_auc": 0.586868,
+   "worst_channel": "curv_s2"
+  },
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives, 95% spatial-block CI",
+  "holdout": {
+   "H48-1-FBGR Dual-Cover Axial d=2.8 (EXP3)": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.115341,
+    "ci95": [
+     0.100168,
+     0.130524
+    ]
+   },
+   "H48-1 Single-83ch Axial d=2.8 (EXP1)": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.115254,
+    "ci95": [
+     0.100591,
+     0.129625
+    ]
+   },
+   "H48-1 Dual-Cover Raw CELF d=0.0 (EXP2)": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.103264,
+    "ci95": [
+     0.088533,
+     0.117621
+    ]
+   },
+   "fold-collared B2 Champion proxy": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.099202,
+    "ci95": [
+     0.085951,
+     0.112668
+    ]
+   },
+   "H48-1 Detached >=600m segments (n=15,504)": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0-detached600m",
+    "n_withheld_positives": 15504,
+    "dti": 0.101168,
+    "ci95": [
+     0.085002,
+     0.117569
+    ]
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 USGS SGMC off-catalogue positives, prevalence-calibrated 95% CI",
+  "off_catalogue_instrument": {
+   "H48-1-FBGR Dual-Cover Axial d=2.8 (EXP3)": {
+    "dti": 0.056798,
+    "ci95": [
+     0.050345,
+     0.063015
+    ]
+   },
+   "0.2778 Champion proxy": {
+    "dti": 0.064121,
+    "ci95": [
+     0.05673,
+     0.071649
+    ]
+   }
+  },
+  "uniqueness": {
+   "manifest_rasters": 519,
+   "unique_hash_rasters_checked": 463,
+   "genuine_rasters_checked": 439,
+   "focus_site_genuine_checked": 397,
+   "preplacement_surface_passed": true,
+   "max_abs_spearman": 0.63146,
+   "genuine_final_dots_passed": true,
+   "max_genuine_3px_overlap": 0.688187,
+   "max_focus_site_3px_overlap": 0.659425,
+   "literal_lattice_overlap": 0.997769,
+   "literal_all_registry_passed": false,
+   "registry_refreshed_utc": "2026-10-27T19:11:58Z"
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true
+  },
+  "reasons": [
+   "EXP3 beats the 0.2778 Champion on GEMSDOE32-HIDE-RECOVER-v3.0 (0.115341 [0.100168, 0.130524] vs 0.099202, paired delta +0.016217 [+0.008599, +0.024287], p=1.000) and achieves the repository's highest stationary Detached >=600 m withheld-segment DTI (0.101168 [0.085002, 0.117569] vs Champion 0.094324 and H47-1 0.091842), while min_sep_px=2.8 beats d=0.0 EXP2 by +0.012020 on HIDE-RECOVER (p=1.000) and +0.016038 (+39.4%) on SGMC-cal (p=1.000).",
+   "Passes all 83 feature leakage canaries (max AUC = 0.586868 <= 0.90), 13/13 automated GeoTIFF byte/range checks (0 NaNs anywhere in 12,279,160 cells, float32 in [0,1]), and genuine uniqueness across 439 discrete <=100k-dot rasters from 9 focus sites + extra scored + KANLERGEMSDOE1..3 + WBGGEMSDOE1..3 (max focus-site 3-px overlap 65.94% <= 70.0%; max all-org <=100k overlap 68.82% <= 70.0%; max |Spearman| 0.63146 <= 0.90).",
+   "Held fail-closed as DO NOT SUBMIT (verdict=negative, 0 weekly slots spent) because: (1) off-catalogue SGMC-cal v3.0 (0.056798) trails the 0.2778 Champion (0.064121) due to multiplicative OOF decay beyond 1.5 km; (2) literal unexempted release_gate.compare_registry hits the 206,895-dot r13-lattice-s5 calibration grid (99.78%, IR-51-LATTICE-01) and WBGGEMSDOE1/2 continuous 5.1M-pixel surfaces (IR-48-WBG-SURFACE-01); and (3) weekly slot promotion requires separate human selector approval."
+  ]
+ },
+ "withdrawn": [
+  {
+   "file": "docs/downloads/gemsdoe32-h42-hwci-37654-20261026T001226Z-b91008fa-zeros.tif",
+   "status": "DO NOT SUBMIT",
+   "reason": "H42-1 HWCI (parallel session): HOLDOUT-DTI 0.1529 [0.1400, 0.1674] on gems57-pooled-hide-v2, but failed G4 lane gate (81.9% within 3 px of GEMSDOE25 h38-greedy-credit > 70%) and scored 0.0545 < random 0.0709 on off-catalogue SGMC (IR-42-INSTR-01)."
+  },
+  {
+   "file": "docs/downloads/gemsdoe32-h32-winning-46090-prune400-20261025T203017Z-c3459dcd-zeros.tif",
+   "status": "DO NOT SUBMIT",
+   "reason": "IR-42-README-01: champion-family variant (37,298 shared dots, Jaccard 0.803, 84.0% within 3 px); claimed holdout margin 0.14840 vs 0.14801 inside its CI [0.115, 0.182]; SGMC off-catalogue instrument indistinguishable from the champion (delta +0.0001 [-0.0010, +0.0013])."
+  },
+  {
+   "file": "docs/downloads/gemsdoe32-h-geo-conduit-37654-20261025T235617Z-2d0d0c5e-zeros.tif",
+   "status": "DO NOT SUBMIT",
+   "reason": "IR-R6-02 (Round-6 session): 70.24% of dots within 3 px of GEMSDOE28 h28-dotted-ridge exceeds the 70% lane gate; SGMC-calibrated 0.0462 below champion 0.0641."
+  }
+ ],
+ "how_to_submit": "executive-summary.html",
+ "leaderboard_top": {
+  "score": 0.4437,
+  "team": "xiaofanhu",
+  "rank": 1,
+  "read_utc": "2026-10-26T04:32:28Z",
+  "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "source_note": "Direct official public page read at 2026-10-26T04:32:28Z; at that timestamp xiaofanhu was #1 at 0.4437. This supersedes the cached 2026-10-25 snapshot of 0.4413; 0.3195 is an older historical figure in the supplied prompt. Public observation only, not a score for this team or a private/final-round result."
+ },
+ "knowledge": "knowledge/05_h42_outcome_instrument_artifact_and_fault_discovery_science_2026-10-25.md",
+ "round6_candidate": {
+  "file": "docs/downloads/gemsdoe32-r6-stepprofile-b2-37654-20261026T002502Z-23fbbb51-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-r6-stepprofile-b2-37654-20261026T002502Z-23fbbb51-zeros.zip",
+  "sha256": "c7f094c1f4d00f2dd9a056dc80fecc94bf1d636363acd020c9da3659eae56547",
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-R6-STEP-23FBBB51",
+  "verdict": "DO NOT SUBMIT - audit artifact only",
+  "origin": "parallel Round-6 session (PR #18); its own run card recorded a positive verdict, withdrawn by the fail-closed release review (PR #21)",
+  "reasons": [
+   "Release review (PR #21, evidence/current_release_review.json): no assigned method paragraph for that session; its B=2 mask was derived from the full catalogue rather than fold-locally, so fold-local hide-and-recover evidence is missing.",
+   "IR-42-INSTR-02 (this session): the SGMC instrument behind its positive verdict does not track live scores outside the champion family - SGMC-tracing files score 0.6483 (GEMSDOE72) and 0.5607 (GEMSDOE29) on it, 6-7x the champion, yet scored 0.0492 and 0.0512 live.",
+   "The review's lattice-overlap reason (97.82% within 3 px of the 13gems calibration lattice) does not discriminate: random dots score 0.9988 and the champion 0.9992 on that test (IR-42-UNIQ-01)."
+  ],
+  "confirmed_independently": [
+   "SGMC off-catalogue instrument (template evaluator): 0.1419 vs champion 0.0954 vs random 0.0702; paired vs champion +0.0465 [+0.0255, +0.0681]",
+   "lane-unique vs 205 registry rasters (worst informative overlap 0.414; max Spearman 0.016)",
+   "format-valid (its own dual validators; zeros variant all-finite in [0,1])"
+  ],
+  "evidence": [
+   "evidence/current_release_review.json",
+   "evidence/round6_run_card.json",
+   "evidence/r6_independent_recheck.json",
+   "evidence/sgmc_instrument_live_counterexamples.json"
+  ]
+ },
+ "arena8a_candidate": {
+  "file": "docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-zeros.zip",
+  "receipt": "docs/downloads/checks-gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-zeros.tif.json",
+  "sha256": "0bbb3128c0e91a5f10003b1f92f2ef6030822a27b231299f7ce3c22d2d4d13e5",
+  "bytes": 230921,
+  "dots": 44090,
+  "submission_name": "GEMSDOE32-A8A-MDRC-CE1ABD39",
+  "note": "GEMSDOE32 A8A MDRC 44090d B2 | visHoldout 0.1068 SGMC 0.0551 | DO-NOT-SUBMIT",
+  "verdict": "DO NOT SUBMIT",
+  "ok_to_submit": false,
+  "hypothesis": "A8A-H1 Multi-Domain Ridge-Crest Concordance (MDRC, 44,090 dots, B=2)",
+  "gates": {
+   "G1_canary": true,
+   "G2_format_01": true,
+   "G3_lane_unique_genuine": true,
+   "G4_visible_only_holdout_vs_ctrl_and_d28": true,
+   "G4_subbar_3x_submodular_random": false,
+   "G5_sgmc_beats_champion": false
+  },
+  "reasons": [
+   "Fold-local visible-only HOLDOUT-DTI (GEMSDOE32-HOLDOUT-v3-visible-only, 22,232 withheld positives) = 0.1068 [0.0877, 0.1285], beating BOTH CTRL-35ch (0.0989) and D2.8 vis-B2 (0.0992, winning 7/8 cells, paired diff 95% CI [+0.0040, +0.0111]), while reaching 2.29x vs the conservative 3.0x submodular-random sub-bar (0.1398).",
+   "Gate G5 FAILED on off-catalogue USGS SGMC faults (62,703 off-cat px): MDRC scores 0.0551 (beating CTRL-35ch 0.0502 by +9.8%), but trails the 0.2778 champion (0.0641) because binary cross-entropy on ~labels treats unmapped pre-Quaternary SGMC faults as y=0 negatives (IR-A8A-PU-BIAS-01; unsupervised D1_LiDAR_Dipole scored 0.1027 and MDRC_Unsup_4Domain scored 0.0765).",
+   "Lane-unique against all 19 genuine detector/submission rasters (pre-placement surface |rho| <= 0.4209 <= 0.90; final within-3px <= 64.96% <= 70%: 52.89% vs 0.2778 champion, 22.06% vs H42, 19.37% vs R6-1, 33.58% vs H-GEO-CONDUIT; literal one-way overlap vs 206,895-dot 5-px calibration lattice is 99.04% vs 99.92% for champion, IR-42-UNIQ-01)."
+  ],
+  "holdout": {
+   "MDRC_Crest_CreditBar_44090": {
+    "dti": 0.1068,
+    "ci95": [
+     0.0877,
+     0.1285
+    ]
+   },
+   "MDRC_Crest_37654": {
+    "dti": 0.1055,
+    "ci95": [
+     0.0857,
+     0.1277
+    ]
+   },
+   "D28_vis_B2_incumbent": {
+    "dti": 0.0992,
+    "ci95": [
+     0.0815,
+     0.1204
+    ]
+   },
+   "CTRL_35ch_OOF": {
+    "dti": 0.0989,
+    "ci95": [
+     0.0802,
+     0.1197
+    ]
+   },
+   "RANDOM_B2_submod": {
+    "dti": 0.0466,
+    "ci95": [
+     0.0369,
+     0.058
+    ]
+   }
+  },
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HOLDOUT-v3-visible-only (fold-local B=2), 22,232 withheld positives, 95% CI",
+  "off_catalogue_instrument": {
+   "D1_LiDAR_Dipole_unsup": {
+    "dti": 0.1027,
+    "ci95": [
+     0.091,
+     0.1145
+    ]
+   },
+   "MDRC_Unsup_4Domain": {
+    "dti": 0.0765,
+    "ci95": [
+     0.0665,
+     0.087
+    ]
+   },
+   "CHAMPION_0.2778": {
+    "dti": 0.0641,
+    "ci95": [
+     0.0555,
+     0.0732
+    ]
+   },
+   "MDRC_Crest_CreditBar_44090": {
+    "dti": 0.0551,
+    "ci95": [
+     0.0472,
+     0.0634
+    ]
+   },
+   "CTRL_35ch_OOF": {
+    "dti": 0.0502,
+    "ci95": [
+     0.0426,
+     0.0582
+    ]
+   }
+  },
+  "off_catalogue_label": "SGMC prevalence-calibrated DTI (>200 m off-catalogue, 62,703 px)",
+  "uniqueness": {
+   "registry_rasters": 20,
+   "max_spearman": 0.4209,
+   "worst_informative_overlap": 0.6496,
+   "worst_informative_raster": "GEMSDOE25/30:d2.8-44090 (52.89% vs 0.2778 champion; 19.37% vs R6-1; 22.06% vs H42)",
+   "calibration_lattice_oneway_fraction": 0.99036
+  },
+  "run_card": "evidence/arena8a_run_card.json"
+ },
+ "h38_multiphysics_lane": {
+  "file": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-zeros.zip",
+  "nan_twin": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-nan.tif",
+  "receipt": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-audit.json",
+  "run_card": "evidence/h38_run_card.json",
+  "sha256": "6efe140229c46b274ab7431bab0b9c1318ade642096ca8a1ff8c36317d2d68ff",
+  "bytes": 209987,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-EXP3_H38_G1_CORROB-35859E28",
+  "note": "GEMS32 EXP3_H38_G1_CORROB 53ch LiDAR+GeoDAWN+GDR CELF 37654px HR=0.1170 SGMC=0.0504 HOLD-DO-NOT-SUBMIT",
+  "verdict": "DO NOT SUBMIT",
+  "ok_to_submit": false,
+  "hide_and_recover_pooled_dti": 0.116958,
+  "hide_and_recover_ci95": [
+   0.100533,
+   0.13204
+  ],
+  "sgmc_prevalence_calibrated_dti": 0.050374
+ },
+ "arena9_candidate": {
+  "file": "docs/downloads/gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-zeros.zip",
+  "receipt": "docs/downloads/gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-audit.json",
+  "run_card": "evidence/arena9_run_card.json",
+  "preregistration": "docs/research/arena9-preregistration-and-hypotheses.md",
+  "sha256": "8eee6e1a85708c9188c7b9d7f436deab621657aab22c3d9d48da9dd64c84e609",
+  "bytes": 210920,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-A9-PGRN-PU-4F7ABA9B",
+  "note": "GEMS32 A9 PGRN-PU 37654d | HR 0.0579 SGMC 0.0878 | research; DO-NOT-SUBMIT",
+  "verdict": "DO NOT SUBMIT",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "A9-H1 physics-guarded reliable-negative PU on the 57-channel MDRC stack",
+  "reasons": [
+   "Primary HOLDOUT-DTI failed: 0.05791 [0.04849, 0.06719] < Champion 0.09920 and repository best H38 0.11696; paired delta vs Champion -0.04129 [-0.05498, -0.02770].",
+   "Independent off-catalogue SGMC improved to 0.08780 [0.07392, 0.09958] vs Champion 0.06412, but proxy improvement cannot override the failed primary holdout.",
+   "Surface uniqueness passed across 304 refreshed registry files (max |Spearman| 0.12942), but final-dot lane uniqueness failed at 99.43% > 70% against the registered spacing-5 calibration lattice.",
+   "The dot mask is not pixel-identical to any refreshed registry raster and the GeoTIFF is cryptographically new, but that is weaker than the mandatory lane-overlap rule.",
+   "The full-grid format validator passes; format validity alone is not scientific or slot authorization."
+  ],
+  "holdout": {
+   "A9 PGRN80": {
+    "dti": 0.057907939861141074,
+    "ci95": [
+     0.048492161901158015,
+     0.06718644625080894
+    ]
+   },
+   "0.2778 Champion": {
+    "dti": 0.09920232315251679,
+    "ci95": [
+     0.08623342632409434,
+     0.11260559078337257
+    ]
+   },
+   "H38 repository best": {
+    "dti": 0.116958,
+    "ci95": [
+     0.100533,
+     0.13204
+    ]
+   }
+  },
+  "holdout_label": "HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.0, 22232 withheld positives, 95% spatial-block CI)",
+  "off_catalogue_instrument": {
+   "A9 PGRN80": {
+    "dti": 0.08780043882036752,
+    "ci95": [
+     0.07392258988292762,
+     0.09958457095904728
+    ]
+   },
+   "0.2778 Champion": {
+    "dti": 0.0641209376417646,
+    "ci95": [
+     0.05667573628390423,
+     0.07177500521629192
+    ]
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI (GEMSDOE32-SGMC-CAL-v3.0, 62703 off-catalogue SGMC positives, 95% spatial-block CI)",
+  "surface_worst_abs_spearman": 0.12942373916290661,
+  "final_worst_abs_spearman": 0.07198093548723625,
+  "final_worst_within_3px": 0.9943166728634408,
+  "registry_rasters": 304,
+  "exact_mask_matches": 0,
+  "format_test_registry_irregularities": 1,
+  "gates": {
+   "G1_leakage_canary": true,
+   "G2_holdout_beats_champion_and_repo_best": false,
+   "G3_sgmc_beats_champion": true,
+   "G4_surface_registry_unique": true,
+   "G4_final_registry_unique": false,
+   "G5_format_and_range": true
+  }
+ },
+ "h44_spcp_lane": {
+  "file": "docs/downloads/gemsdoe32-h44-spcp-sarpu-curvconduit-37654-20261026T053000Z-38f7995a-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-h44-spcp-sarpu-curvconduit-37654-20261026T053000Z-38f7995a-zeros.zip",
+  "nan_twin": "docs/downloads/gemsdoe32-h44-spcp-sarpu-curvconduit-37654-20261026T053000Z-38f7995a-nan.tif",
+  "receipt": "docs/downloads/gemsdoe32-h44-spcp-sarpu-curvconduit-37654-20261026T053000Z-38f7995a-audit.json",
+  "run_card": "evidence/h44_spcp_run_card.json",
+  "preregistration": "docs/research/h44-spcp-preregistration-20261026.md",
+  "sha256": "386a4aad59a5c742b28541835892f9f6e0cb306cbbe4e296741bbad8e4bff235",
+  "bytes": 216377,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-H44-SPCP-38F7995A",
+  "note": "H44-1 SPCP SAR-PU curv+conduit 37654d B2 | HR=0.0698 SGMC=0.0777 | DO NOT SUBMIT",
+  "verdict": "DO NOT SUBMIT",
+  "ok_to_submit": false,
+  "download_for_research_ok": true,
+  "hypothesis": "H44-1 (SPCP): SAR-PU Propensity-Debiased Potential-Field Curvature Tensor & Hydrothermal-Conduit Breach (37,654 dots, B=2)",
+  "hide_and_recover_pooled_dti": 0.069841,
+  "hide_and_recover_ci95": [
+   0.060297,
+   0.079276
+  ],
+  "detached_600m_dti": 0.063641,
+  "detached_600m_ci95": [
+   0.053392,
+   0.074096
+  ],
+  "sgmc_raw_pooled_dti": 0.116056,
+  "sgmc_prevalence_calibrated_dti": 0.077736,
+  "sgmc_calibrated_ci95": [
+   0.069192,
+   0.085644
+  ],
+  "sgmc_paired_delta_vs_champion": {
+   "mean_boot_delta": 0.013280440849281927,
+   "ci95": [
+    0.0030021949283572046,
+    0.024790113512442893
+   ],
+   "prob_positive": 0.998
+  },
+  "sgmc_sarpu_lift_over_naive": {
+   "mean_boot_delta": 0.03083198908693093,
+   "ci95": [
+    0.021274898085628168,
+    0.04023858201313477
+   ],
+   "prob_positive": 1.0
+  },
+  "uniqueness": {
+   "n_unique_rasters_checked": 289,
+   "n_genuine_rasters_checked": 288,
+   "genuine_pre_placement_surface_passed": true,
+   "genuine_final_dots_passed": true,
+   "max_abs_surface_spearman": 0.120401,
+   "worst_genuine_surface_peer": {
+    "name": "GEMSDOE24:inputs/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+    "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+    "other_dots": 123939,
+    "raw_in_foot_finite": true,
+    "is_calibration_lattice": false,
+    "surface_spearman": 0.120401,
+    "dots_spearman": 0.017695,
+    "within_3px_fraction": 0.351782
+   },
+   "max_genuine_3px_dot_overlap": 0.444813,
+   "worst_genuine_overlap_peer": {
+    "name": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+    "sha256": "d7977d7b93287f17fbf3cb85f10fdbee4acc5c8453a7faa451e760363433a286",
+    "other_dots": 85526,
+    "raw_in_foot_finite": true,
+    "is_calibration_lattice": false,
+    "surface_spearman": 0.041375,
+    "dots_spearman": 0.005899,
+    "within_3px_fraction": 0.444813
+   },
+   "literal_5px_calibration_lattice_probe": {
+    "name": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "other_dots": 206895,
+    "raw_in_foot_finite": true,
+    "is_calibration_lattice": true,
+    "surface_spearman": 3.6e-05,
+    "dots_spearman": -0.000483,
+    "within_3px_fraction": 0.996893
+   },
+   "literal_all_rasters_final_passed": false,
+   "genuine_rasters_checked": 289,
+   "vs_arena9_within_3px": 0.4277
+  }
+ },
+ "h46_candidate": {
+  "file": "docs/downloads/gemsdoe32-h46-trhv-tworegime-ventconduit-37654-20261026T173000Z-6437b275-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-h46-trhv-tworegime-ventconduit-37654-20261026T173000Z-6437b275-zeros.zip",
+  "receipt": "docs/downloads/gemsdoe32-h46-trhv-tworegime-ventconduit-37654-20261026T173000Z-6437b275-audit.json",
+  "run_card": "evidence/h46_trhv_run_card.json",
+  "preregistration": "docs/research/h46-trhv-preregistration-20261026.md",
+  "sha256": "9f42346d3acecb8d873fb35c70d988ae0afeb99781c6104c644d8cf9f85e0dc3",
+  "bytes": 212436,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-H46-TRHV-6437B275",
+  "note": "H46-1 TRHV 2-regime vent+TIGER 37654d B2 | HR=0.1094 SGMC=0.0448 | DO NOT SUBMIT",
+  "verdict": "DO NOT SUBMIT \u2014 exploratory negative; lane/preregistration/holdout/registry gates failed",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "H46-1 (TRHV): Unmapped Great Basin faults span two disjoint observability regimes \u2014 exposed/near-tip scarps vs. blind basin-interior conduits marked by UNR/DOE GDR #1391 2-m temperature probe plumes (2,782 in-footprint stations, F2mDAB & sanitized T2m-T1.5m) and mapped paleo-geothermal sinter/travertine/tufa/silicified deposit points (281 in-footprint features; not fault labels) coupled to subsurface gravity/magnetic/MT curvature \u2014 requiring sequential two-regime residual-coverage CELF allocation (72% Exposed-63 + 28% Vent-SARPU-63 via emitter.emit initial_mask) plus Census TIGER 2024 road-prism vetoing to jointly exceed the 0.2778 Champion on BOTH GEMSDOE32-HIDE-RECOVER-v3.0 and GEMSDOE32-SGMC-CAL-v3.0.",
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives, 95% spatial-block CI",
+  "holdout": {
+   "H46-1-TRHV-exploratory": {
+    "dti": 0.109361,
+    "ci95": [
+     0.094695,
+     0.122341
+    ]
+   },
+   "fold-collared B2 Champion proxy": {
+    "dti": 0.099202,
+    "ci95": [
+     0.085951,
+     0.112668
+    ]
+   },
+   "prior H38 repo best": {
+    "dti": 0.116958,
+    "ci95": [
+     0.100533,
+     0.13204
+    ]
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 USGS SGMC off-catalogue positives, prevalence-calibrated 95% CI",
+  "off_catalogue_instrument": {
+   "H46-1-TRHV-exploratory": {
+    "dti": 0.044756,
+    "ci95": [
+     0.039243,
+     0.050114
+    ]
+   },
+   "0.2778 Champion proxy": {
+    "dti": 0.064121,
+    "ci95": [
+     0.05673,
+     0.071649
+    ]
+   }
+  },
+  "uniqueness": {
+   "manifest_rasters": 354,
+   "unique_hash_rasters_checked": 336,
+   "genuine_rasters_checked": 335,
+   "preplacement_surface_passed": true,
+   "max_abs_spearman": 0.166685,
+   "genuine_final_dots_passed": true,
+   "max_genuine_3px_overlap": 0.665587,
+   "literal_lattice_overlap": 0.99267,
+   "literal_all_registry_passed": false,
+   "new_H45_main_candidate_overlap": null,
+   "registry_refreshed_utc": "2026-10-26T18:23:32Z",
+   "new_H45_main_candidate_overlaps": [
+    {
+     "file": "GEMSDOE32:docs/downloads/gemsdoe32-h45-kernelspacing-37654dots-20261026T163401Z-2fe5944c-zeros.tif",
+     "sha256": "b14bba00d6053e75e5c72d9e68fac52f607fe40de1c356111baea85e1ceee538",
+     "directional_within_3px_fraction": 0.62989324,
+     "dots": 37654
+    },
+    {
+     "file": "GEMSDOE32:docs/downloads/gemsdoe32-h45-tworegime-split-37654-20261026T161610Z-35245379-zeros.tif",
+     "sha256": "968949a92aeb6f46f880a07d8eee03c674bb85d03672f45b3b4c8a95df21feee",
+     "directional_within_3px_fraction": 0.58171775,
+     "dots": 37654
+    }
+   ]
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true
+  },
+  "reasons": [
+   "HOLDOUT-DTI point estimate 0.109361 is below the recorded same-evaluator H38 repository best 0.116958; no paired bootstrap draws against H38 are archived.",
+   "The literal all-registry 3-px rule fails against the synthetic r13-lattice-s5 reference (99.267% overlap > 70%).",
+   "The off-catalogue SGMC-cal diagnostic is below the Champion and its paired 95% CI is negative.",
+   "The explicit single-method lane paragraph is absent from the prompt context; the lane authorization is unresolved.",
+   "The executed H46 arm deviated from its frozen preregistration (budget split, F2mDAB threshold, TIGER scale, and point-edge handling); its local holdout values are descriptive only."
+  ],
+  "protocol_audit": {
+   "assigned_single_method_paragraph_present_in_prompt_context": false,
+   "lane_authorization": "NOT ESTABLISHED: standing project README states the session lane paragraph was absent; H46 was selected from a prior next-step suggestion. No promotion is permitted under the literal lane rule.",
+   "preregistration_deviations": [
+    "Frozen pre-registration specified a 70/30 Regime-A/Regime-B budget split (26,358 / 11,296 dots); the executed run used 72/28 (27,111 / 10,543). The executed experiment is therefore not the preregistered split.",
+    "Frozen pre-registration specified F2mDAB > +1 C; the executed plume input used every positive value > 0 C before clipping.",
+    "The frozen plan named T2m-T1m; the executed vertical-gradient channel instead used T2m-T15m, where the source schema labels T15m as 1.5 m.",
+    "Frozen pre-registration specified a 150 m TIGER road veto scale; the executed feature used 180 m.",
+    "The executed point importer retained points within a 24-pixel padding and clipped their coordinates to the footprint edge, rather than filtering to true in-footprint points before plume interpolation. The code was corrected after execution; the corrected feature stack was not rebuilt or validated in this run."
+   ],
+   "impact": "H46 model holdout and SGMC numbers are exploratory diagnostics only, not admissible preregistered promotion evidence. The output remains a valid saved-byte format artifact, but it must not be submitted.",
+   "corrective_shared_code_changes_after_run": [
+    "src/gems32/trhv.py now filters mapped 2-m probe and paleo-geothermal points to the actual finite sample_submission.tif footprint before rasterization, rather than clipping points outside the footprint onto edge cells. The executed candidate used the earlier edge-clipping implementation.",
+    "The runner/module now use the preregistered 70/30 allocation, F2mDAB > 1 C threshold, and 150 m TIGER scale. The executed candidate used 72/28, F2mDAB > 0 C, and 180 m."
+   ],
+   "no_rebuild_after_stop": "No corrected H46 rerun was performed: the prompt does not provide an explicit assigned lane and the preregistered three-arm budget has already been consumed.",
+   "shared_emitter_fix_timing": "The shared emitter initial_mask residual-coverage implementation and rho acceptance-bar correction were committed to the working tree and unit-tested before the completed H46 run; 13 emitter tests passed at that point.",
+   "postrun_reviewed_utc": "2026-10-26T18:12:41Z",
+   "point_boundary_audit": {
+    "source_crs_from_prj": "EPSG:4269 (NAD83)",
+    "gdr_2m_probe_records_parsed": 3800,
+    "gdr_2m_probe_points_within_24px_margin": 3441,
+    "gdr_2m_probe_points_inside_exact_footprint": 2782,
+    "gdr_2m_probe_outside_points_clipped_to_raster_edge_in_executed_build": 659,
+    "paleo_feature_records_parsed": 709,
+    "paleo_points_within_24px_margin": 402,
+    "paleo_points_inside_exact_footprint": 281,
+    "paleo_outside_points_clipped_to_raster_edge_in_executed_build": 121,
+    "corrected_builder_filters_to_exact_finite_template_footprint": true,
+    "corrected_builder_was_not_rerun_for_this_candidate": true
+   }
+  }
+ },
+ "release_gates_latest": {
+  "lane_explicitly_assigned": true,
+  "lane_note": "IR-ARENA49-LANE-01: prompt method paragraph absent; Rank-1 hypothesis adopted as lane in frozen pre-registration docs/research/arena49-pc-preregistration-20261026.md",
+  "canary": true,
+  "beats_repository_best_holdout_point": true,
+  "paired_holdout_ci_vs_repository_best": true,
+  "beats_champion_on_sgmc_calibrated": true,
+  "genuine_surface_uniqueness": true,
+  "genuine_final_dot_uniqueness": true,
+  "literal_all_registry_uniqueness": false,
+  "format_saved_bytes": true,
+  "weekly_slot_selector": false,
+  "verdict": "HOLD-DO-NOT-SUBMIT-YET (selector + lattice disposition required)"
+ },
+ "arena47_candidate": {
+  "file": "docs/downloads/gemsdoe32-arena47-perturb-h38-unique-20261026T202108Z-9ab73056-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-arena47-perturb-h38-unique-20261026T202108Z-9ab73056-zeros.zip",
+  "nan_twin": "docs/downloads/gemsdoe32-arena47-perturb-h38-unique-20261026T202108Z-9ab73056-nan.tif",
+  "receipt": "docs/downloads/gemsdoe32-arena47-perturb-h38-unique-20261026T202108Z-9ab73056-audit.json",
+  "run_card": "evidence/arena47_perturb_run_card.json",
+  "preregistration": "docs/research/arena47-preregistration-and-hypotheses.md",
+  "sha256": "f2c238b48468e3626f00ddf2378d863285850d11507c470c962676bf7715992a",
+  "bytes": 192561,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-ARENA47-PERTURB-9AB73056",
+  "note": "ARENA47 perturb-H38 unique 37654d B2 | HR=0.0044 SGMC=0.0438 | 9ab73056 | research artifact",
+  "verdict": "DO NOT SUBMIT \u2014 audit/research artifact (verdict = negative): genuine-unique and format-valid but HOLDOUT-DTI not > champion (delta -0.00007 CI [-0.00078,0.00066]) and lattice overlap 99.67% >70% (IR-42-UNIQ-01).",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "ARENA47-H1-SYNTH-PERTURB: relocate 6424 of 29,203 hcvf2-overlapping dots (~22%) via exact residual-coverage to off-catalogue off-TIGER curvature crests >3px from hcvf2, achieving genuine 66.6% overlap <=70% while retaining B=2 support confinement.",
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives, 95% spatial-block CI",
+  "holdout": {
+   "ARENA47-perturb": {
+    "dti": 0.004446743600033143,
+    "ci95": [
+     0.0037219304287182883,
+     0.0051564434967379036
+    ]
+   },
+   "fold-collared B2 Champion proxy": {
+    "dti": 0.00451537871535044,
+    "ci95": [
+     0.0038164175817344387,
+     0.005261598301920283
+    ]
+   },
+   "delta": {
+    "dti": -6.86e-05,
+    "ci95": [
+     -0.00077551,
+     0.00065812
+    ],
+    "p_pos": 0.402
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 SGMC off-catalogue positives",
+  "off_catalogue_instrument": {
+   "ARENA47-perturb": {
+    "dti": 0.04383876439242026,
+    "ci95": [
+     0.038384649643829774,
+     0.04872758324551672
+    ]
+   },
+   "0.2778 Champion proxy": {
+    "dti": 0.0641209376417646,
+    "ci95": [
+     0.056730181217206584,
+     0.0716486609703412
+    ]
+   }
+  },
+  "uniqueness": {
+   "manifest_rasters": 354,
+   "unique_hash_rasters_checked": 336,
+   "genuine_rasters_checked": 335,
+   "preplacement_surface_passed": true,
+   "max_abs_spearman": 0.594432070604282,
+   "genuine_final_dots_passed": true,
+   "max_genuine_3px_overlap": 0.66633,
+   "worst_genuine_peer": "gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-zeros.tif",
+   "literal_lattice_overlap": 0.9967599723800924,
+   "literal_all_registry_passed": false,
+   "registry_refreshed_utc": "2026-10-26T20:22:45.778325Z"
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true
+  },
+  "reasons": [
+   "HOLDOUT-DTI point estimate 0.00445 is below the fold-local Champion proxy 0.00451 with paired 95% CI straddling zero [-0.00078, +0.00066], p(pos)>0.402.",
+   "Off-catalogue SGMC-cal diagnostic 0.0438 is below Champion 0.0641 (delta -0.020).",
+   "Literal all-registry gate fails against the synthetic 5-px calibration lattice (99.68% overlap >70%) due to pigeonhole coverage 99.87% \u2014 same failure as champion 99.92% (IR-42-UNIQ-01).",
+   "No paired win against H38 repo best (0.1169) on GEMSDOE32-HIDE-RECOVER-v3.0 per-cell OOF metric; flat-mask HR is not comparable to per-cell OOF HR."
+  ]
+ },
+ "h50_candidate": {
+  "file": "docs/downloads/gemsdoe32-h50-tmspi-dualconcord-37654-20261026T214025Z-f0e385b9-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-h50-tmspi-dualconcord-37654-20261026T214025Z-f0e385b9-zeros.zip",
+  "nan_twin": "docs/downloads/gemsdoe32-h50-tmspi-dualconcord-37654-20261026T214025Z-f0e385b9-nan.tif",
+  "receipt": "docs/downloads/gemsdoe32-h50-tmspi-dualconcord-37654-20261026T214025Z-f0e385b9-audit.json",
+  "run_card": "evidence/h50_tmspi_run_card.json",
+  "preregistration": "docs/research/h50-tmspi-preregistration-20261026.md",
+  "sha256": "c534effe023f2876b08239384d075be313d489a8dc3bf8dbf22f7d6509872112",
+  "bytes": 146967,
+  "dots": 37121,
+  "submission_name": "GEMSDOE32-H50-TMSPI-F0E385B9",
+  "note": "H50 TM-SPI dual-concord 37121d B2 | HR=0.0126 vis=0.0126 | research",
+  "verdict": "DO NOT SUBMIT \u2014 audit/research artifact (verdict=negative): unique vs genuine local rasters (max 3px 18.5% vs h45-kernelspacing, |rho|=0.0095) and format-valid, but SGMC-cal 0.0164 < champion 0.0641, absolute HOLDOUT-DTI 0.0126 is a flat-mask instrument (same 0.0045 as champion on this evaluator, not the 0.0992 callable), and the literal lattice raster is absent so that gate fail-closes (IR-42-UNIQ-01). 0 weekly slots used.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "Unsupervised dual-field Thurston\u2013Smith local-wavenumber (SPI) contact skeleton weighted by the Wijns (2005) theta-map edge strength and geometrically concordant across magnetics (tmi_hg, tmi_vg) and isostatic gravity (iso_grav_anom_slope, iso_grav_anom_vg), morphological-NMS 1-px crests, 37,654-dot 300 m CELF, B=2.",
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HOLDOUT-v3-visible-gated (flat mask), 22,232 withheld positives, 95% CI",
+  "holdout": {
+   "H50-TM-SPI": {
+    "dti": 0.012607589883044272,
+    "ci95": [
+     0.010914444541434481,
+     0.014199602781237178
+    ]
+   },
+   "champion_flat_same_evaluator": {
+    "dti": 0.00451537871535044,
+    "ci95": [
+     0.0039027413550480616,
+     0.005238036860409415
+    ]
+   },
+   "delta": {
+    "dti": 0.008089036271511486,
+    "ci95": [
+     0.005749211583624467,
+     0.010058932027430627
+    ],
+    "p_pos": 1.0
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 SGMC off-catalogue positives",
+  "off_catalogue_instrument": {
+   "H50-TM-SPI": {
+    "dti": 0.016442277890077014,
+    "ci95": [
+     0.014270258963665352,
+     0.018640052983726774
+    ]
+   },
+   "0.2778 Champion proxy": {
+    "dti": 0.0641209376417646,
+    "ci95": [
+     0.056730181217206584,
+     0.0716486609703412
+    ]
+   }
+  },
+  "uniqueness": {
+   "max_genuine_abs_spearman": 0.002438192794001281,
+   "max_genuine_3px_dot_overlap": 0.18515126208884458,
+   "worst_genuine_overlap_peer": "gemsdoe32-h45-kernelspacing-37654dots-20261026T163401Z-2fe5944c-zeros.tif",
+   "genuine_final_passed": true,
+   "lattice_overlap": null,
+   "lattice_name": null,
+   "literal_lattice_passed": false,
+   "literal_lattice_note": "No r13-lattice-s5 raster in local docs/downloads; fail-closed on the literal lattice rule (IR-42-UNIQ-01). Self-files excluded.",
+   "n_files_checked": 29,
+   "self_excluded": true,
+   "max_genuine_abs_spearman_continuous_surface": 0.009518196460690631,
+   "champion_3px": 0.142
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true
+  },
+  "reasons": [
+   "Genuine uniqueness PASS: max |Spearman| 0.0095, max 3px 18.5% vs h45-kernelspacing, 14.2% vs 0.2778 champion (limit 70%).",
+   "HOLDOUT-DTI 0.01261 [0.01091, 0.01420] on GEMSDOE32-HOLDOUT-v3-visible-gated (flat mask, 22,232 withheld). Paired \u0394 vs the same-evaluator champion flat mask +0.00809 [0.00575, 0.01006]. This is NOT the 0.09920 callable/OOF champion number (IR-45-EVAL-02) and is not a live-score projection.",
+   "SGMC-cal 0.01644 [0.01427, 0.01864] < champion 0.06412 \u2014 off-catalogue diagnostic fails.",
+   "Literal lattice raster absent from local downloads; fail-closed (IR-42-UNIQ-01).",
+   "Canary PASS (9/9, max AUC 0.5206 <= 0.90). Format 13/13 PASS, all 12,279,160 cells finite in [0,1].",
+   "0 weekly slots used. Selector required. DO NOT SUBMIT."
+  ]
+ },
+ "arena49_candidate": {
+  "file": "docs/downloads/gemsdoe32-arena49-pcg-dualconcord-37654-20261026T220056Z-54e97629-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-arena49-pcg-dualconcord-37654-20261026T220056Z-54e97629-zeros.zip",
+  "nan_twin": "docs/downloads/gemsdoe32-arena49-pcg-dualconcord-37654-20261026T220056Z-54e97629-nan.tif",
+  "receipt": "docs/downloads/gemsdoe32-arena49-pcg-dualconcord-37654-20261026T220056Z-54e97629-audit.json",
+  "run_card": "evidence/arena49_pcg_run_card.json",
+  "preregistration": "docs/research/arena49-pc-preregistration-20261026.md",
+  "results_doc": "docs/research/arena49-results-and-nine-site-executive-summary-20261026.md",
+  "sha256": "93c21c4cc18735aaeea44626b0697d72b96f9048ab817d9f0c5fb27381ef5f0f",
+  "bytes": 209001,
+  "dots": 35487,
+  "submission_name": "GEMSDOE32-ARENA49-PCG-54E97629",
+  "note": "ARENA49 PCG dual-concord 35487d B2 | HR=0.0283 vis=0.0283 | research",
+  "verdict": "HOLD \u2014 DO NOT SUBMIT YET: shared promotion_decision=promote, but separate weekly-slot selector approval and IR-42-UNIQ-01 literal-lattice disposition are still required. 0 weekly slots used.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "Kovesi (1999) log-Gabor phase-congruency step skeleton (4 scales x 6 orientations, frequency-spread weighting, amplitude-invariant) on det_elev (Band 12) and iso_grav_anom (Band 13), floored geometric-mean dual-field concordance, percentile-90 support, 37,654-dot 300 m CELF, B=2.",
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives, 95% CI",
+  "holdout": {
+   "ARENA49-PCG": {
+    "dti": 0.028259356378974695,
+    "ci95": [
+     0.022343291345236292,
+     0.033857015662417084
+    ],
+    "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+    "n_withheld_positives": 22232
+   },
+   "champion_flat_same_evaluator": {
+    "dti": 0.00451537871535044,
+    "ci95": [
+     0.00393145233068099,
+     0.0053179608896905765
+    ]
+   },
+   "delta": {
+    "delta_mean": 0.02360182164735296,
+    "ci95": [
+     0.01775453287310362,
+     0.029440193177944694
+    ],
+    "p_pos": 1.0,
+    "n_cells": 8
+   },
+   "hide_and_recover": {
+    "dti": 0.028259356378974698,
+    "ci95": [
+     0.023726845570664817,
+     0.032374015364267164
+    ],
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 SGMC off-catalogue positives",
+  "off_catalogue_instrument": {
+   "ARENA49-PCG": {
+    "dti": 0.07033465936843546,
+    "ci95": [
+     0.06364446689047121,
+     0.07608476501868773
+    ]
+   },
+   "0.2778 Champion proxy": {
+    "dti": 0.0641209376417646
+   }
+  },
+  "canary": {
+   "n_channels": 5,
+   "max_auc": 0.5531064127369318,
+   "aucs": {
+    "pc_dem": 0.5463412938610874,
+    "pc_grav": 0.5105755840493211,
+    "concordance": 0.5356896741982029,
+    "pc_dem_max_orient": 0.5531064127369318,
+    "pc_grav_max_orient": 0.5133634191972191
+   },
+   "passed": true
+  },
+  "uniqueness": {
+   "max_genuine_abs_spearman": 0.0663927119692274,
+   "max_genuine_3px_dot_overlap": 0.43089018513821964,
+   "worst_genuine_overlap_peer": "gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-zeros.tif",
+   "genuine_final_passed": true,
+   "lattice_overlap": 1.0,
+   "lattice_name": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+   "literal_lattice_passed": false,
+   "literal_lattice_note": "Synthetic 5-px calibration covering grid; dense maps fail by pigeonhole (IR-42-UNIQ-01, champion/random ~0.999). Reported, not exempted.",
+   "n_files_checked": 43,
+   "max_genuine_abs_spearman_continuous_surface": 0.0663927119692274,
+   "champion_3px": 0.1611
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true
+  },
+  "reasons": [
+   "Genuine uniqueness PASS: max |Spearman| 0.0664, max 3px 43.09% vs gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-zeros.tif, 16.11% vs 0.2778 champion (limits 0.90 / 70%).",
+   "HOLDOUT-DTI 0.02826 [0.02234, 0.03386] on GEMSDOE32-HOLDOUT-v3-visible-gated (flat mask, 22,232 withheld); paired \u0394 vs same-evaluator champion flat mask +0.02360 [0.01775, 0.02944]. NOT the 0.09920 callable champion number (IR-45-EVAL-02) and NOT a live-score projection.",
+   "SGMC-cal 0.07033 > champion 0.06412 \u2014 no off-catalogue regression (first genuine-unique candidate here to clear both).",
+   "Literal lattice overlap 1.000 \u2014 FAIL-CLOSED under the literal rule (IR-42-UNIQ-01 pigeonhole; champion/random also ~0.999). Selector disposition required.",
+   "Canary PASS (5/5, max AUC 0.5531 <= 0.90). Format strict-finite PASS, all 12,279,160 cells finite in [0,1], 0 on-catalogue, 0 within 2 px.",
+   "promotion_decision=promote on the shared gates, but ok_to_submit=false: separate weekly-slot selector required. 0 weekly slots used."
+  ]
+ },
+ "arena48_jxstep_candidate": {
+  "file": "docs/downloads/gemsdoe32-arena48-jxstep-37654-20261026T215839Z-6a28221e-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-arena48-jxstep-37654-20261026T215839Z-6a28221e-zeros.zip",
+  "nan_twin": "docs/downloads/gemsdoe32-arena48-jxstep-37654-20261026T215839Z-6a28221e-nan.tif",
+  "receipt": "docs/downloads/gemsdoe32-arena48-jxstep-37654-20261026T215839Z-6a28221e-audit.json",
+  "run_card": "evidence/arena48_jxstep_run_card.json",
+  "preregistration": "docs/research/arena48-preregistration-and-hypotheses.md",
+  "executive_summary": "docs/research/arena48-results-and-nine-site-executive-summary.md",
+  "figure": "docs/assets/fig_arena48_jxstep.png",
+  "pass2_verification": "evidence/arena48_pass2_verification.json",
+  "focus9_byte_audit": "evidence/arena48_focus9_overlap.json",
+  "sha256": "4aa4d8f2f5fb39af64af69d575a13c14f146204e5147e9ee10cbb267895c43a6",
+  "bytes": 215180,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-A48-JXSTEP-4AA4D8F2",
+  "note": "A48-H1 JXSTEP juxtaposition 37654d B2 | HR=0.1063 SGMC=0.0614 | research artifact",
+  "verdict": "DO NOT SUBMIT \u2014 research artifact (verdict = negative): unique and format-valid, but HR HOLDOUT-DTI 0.1063 does not clear H38 0.1170, paired win vs champion recipe is not significant (CI straddles 0), SGMC 0.0614 < champion 0.0641, literal lattice overlap 99.78% (IR-42-UNIQ-01).",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "A48EXP3_TWOSTAGE_QUIESCENT15: fault-juxtaposition step concordance \u2014 same-orientation step-vs-ramp steps in basement depth, gravity, conductivity, radiometric TC and DEM roughness (7 label-free JX channels, docs/research/arena48-preregistration-and-hypotheses.md) recover faults missing from the surface-scarp catalogue; EXP2 OOF 85% + jx_quiescent 15% sequential residual-coverage (preregistered)",
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives, 95% spatial-block CI",
+  "holdout": {
+   "ARENA48-JXSTEP-EXP3": {
+    "dti": 0.10629585899356905,
+    "ci95": [
+     0.09205057815707464,
+     0.12066825709162489
+    ]
+   },
+   "champion recipe same evaluator": {
+    "dti": 0.09920232315251679
+   },
+   "H38 repository best same evaluator": {
+    "dti": 0.116958,
+    "ci95": [
+     0.100533,
+     0.13204
+    ]
+   },
+   "delta_vs_champion_recipe": {
+    "dti": 0.007094,
+    "ci95": [
+     -0.000379,
+     0.014265
+    ],
+    "p_pos": 0.969
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 SGMC off-catalogue positives",
+  "off_catalogue_instrument": {
+   "ARENA48-JXSTEP-EXP3": {
+    "dti": 0.061414755328590885,
+    "ci95": [
+     0.053272851289907615,
+     0.06834797348604127
+    ]
+   },
+   "0.2778 Champion same evaluator": {
+    "dti": 0.0641209376417646
+   },
+   "delta_vs_champion": {
+    "dti": -0.002706,
+    "ci95": [
+     -0.009976,
+     0.00421
+    ],
+    "p_pos": 0.229
+   }
+  },
+  "model_projection_not_a_score": {
+   "label": "MODEL projection \u2014 NOT a score, NOT organizer-confirmed",
+   "method": "leave-one-out linear fit owner-reported live ~ drift_corrected_holdout_mean, 12 artifacts in evidence/instrument_calibration.json",
+   "n_calibration": 12,
+   "spearman_rho_live_vs_drift": 0.529,
+   "loo_mae": 0.0534,
+   "loo_rmse": 0.0634,
+   "candidate_drift_corrected_holdout_mean": 0.039922,
+   "projected_live_dti_point": 0.0979,
+   "projected_live_dti_interval_pm1.96rmse": [
+    0.0,
+    0.2221
+   ],
+   "warning": "Calibration rho is not statistically significant at n=12 (p~0.09 in docs/research/instrument-calibration.md); interval is an uncertainty statement about a weak instrument, not a promise."
+  },
+  "uniqueness": {
+   "manifest_rasters": 375,
+   "unique_masks_or_surfaces": 197,
+   "malformed_or_missing": 2,
+   "malformed_named": [
+    "GEMSDOE31:docs/downloads/gemsdoe31-csdu-stepover-8cf9dc27-nan.tif (nonfinite_inside_footprint, IR-A48-REG-01)",
+    "GEMSDOE36:docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif (grid_mismatch, IR-A48-REG-02)"
+   ],
+   "preplacement_surface_passed": true,
+   "max_abs_spearman": 0.2384882838070735,
+   "worst_surface_peer": "GEMSDOE32:docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-nan.tif",
+   "jx_quiescent_surface_max_abs_spearman": 0.06270263228394188,
+   "genuine_final_dots_passed": true,
+   "max_genuine_3px_overlap": 0.6846019015244065,
+   "worst_genuine_peer": "GEMSDOE32:docs/downloads/gemsdoe32-hcvf2-cvgbm35-b2-greedy37654-20261025T202730Z-f9b36c7e-nan.tif",
+   "literal_lattice_overlap": 0.9977691613108833,
+   "literal_all_registry_passed": false,
+   "registry_refreshed_utc": "2026-10-26T21:58:39Z"
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true,
+   "full_grid_finite_pixels": 12279160,
+   "on_catalogue_positive_pixels": 0
+  },
+  "reasons": [
+   "HR HOLDOUT-DTI point 0.10630 is below the H38 same-evaluator repo best 0.116958 (preregistered gate).",
+   "Paired HR vs champion recipe +0.00709 has 95% CI [-0.00038, +0.01427] straddling zero (p(pos)=0.969) \u2014 not the required CI>0 win.",
+   "Off-catalogue SGMC-cal 0.06141 is below champion 0.06412 (paired delta -0.00271, CI [-0.00998, +0.00421]).",
+   "Literal all-registry gate fails only against the 206,895-dot calibration lattice (99.78% >70%); genuine-detector uniqueness passes (68.46% vs local unsubmitted hcvf2) \u2014 IR-42-UNIQ-01.",
+   "MODEL projection of live score \u22480.098 [0, 0.222] (weak instrument, n=12, not a score) gives no evidence of beating 0.2778 (OWNER-REPORT).",
+   "IR-A48-JX-01: rectilinear flight-line-like texture in jx_concordant \u2014 block normalization (A48-H3) required before any JXSTEP rerun."
+  ]
+ },
+ "arena48_focus9_byte_audit": {
+  "evidence": "evidence/arena48_focus9_overlap.json",
+  "registry_rasters_refreshed": 375,
+  "min_pairwise_within_3px_overlap_among_9_winners": 0.86719,
+  "finding": "All 9 focus winners are one H19-5 family (NO unique); GEMSDOE30 dot-identical to GEMSDOE25; champion exact subset of GEMSDOE36 (+1,200) and of GEMSDOE25 D2.8. Champion B-ladder verified from bytes: B=1 removed 3,891 dots all at d=1.0px to catalogue; B=2 removed 2,545 dots all in (1,2]px; champion has 0 dots within 2px (evidence/arena48_pass2_verification.json)."
+ },
+ "arena48_executive_summary": "docs/research/arena48-results-and-nine-site-executive-summary.md",
+ "arena51_audit": {
+  "report": "docs/research/arena51-livescore-covariates-20261026.md",
+  "evidence": "evidence/livescore_covariates_20261026.json",
+  "kind": "retrospective portfolio audit; 0 new experiments; 0 weekly slots; no lane assigned so no candidate generated",
+  "evidence_class": "OWNER-REPORT-fitted diagnostics; not score predictions",
+  "relationship_to_parallel_instruments": "complementary: H47 LLI models hidden-truth density strata (111 rasters, PROJECTIONS); ARENA49-PCG is the first genuine-unique candidate to beat the champion on both recorded instruments (visible-gated HR 0.02826 vs 0.00452; SGMC-cal 0.07033 vs 0.06412) but remains held for the selector and its run-card registry block is empty, so the literal lattice rule (impassable above 22,163 dots, IR-51-LATTICE-01) cannot have been included; Arena51 quantifies the portfolio structure around that decision",
+  "n_unique_scored_masks": 53,
+  "spearman_score_vs_family_membership": 0.844,
+  "spearman_score_vs_champion_overlap": 0.865,
+  "loo_all_features": {
+   "r2": 0.72,
+   "spearman": 0.861,
+   "mae": 0.0256
+  },
+  "loo_family_dotcount": {
+   "r2": 0.881,
+   "spearman": 0.765,
+   "mae": 0.0072
+  },
+  "family_max_owner_report": 0.2778,
+  "non_family_max_owner_report": 0.2478,
+  "non_family_n": 36,
+  "champion_residual_vs_family_trend": 0.0101,
+  "lattice_pigeonhole_bound": {
+   "hole_pixels": 6649,
+   "max_dots_that_could_pass_literal_rule": 22163
+  },
+  "byte_identical_cross_site_masks": [
+   {
+    "score": 0.26,
+    "dots": 44090,
+    "digest": "426073b6b4abda02",
+    "sites": [
+     "GEMSDOE25",
+     "GEMSDOE30",
+     "GEMSDOE29"
+    ]
+   },
+   {
+    "score": 0.2708,
+    "dots": 40199,
+    "digest": "dbb809101d86489d",
+    "sites": [
+     "GEMSDOE28",
+     "GEMSDOE31"
+    ]
+   },
+   {
+    "score": 0.1563,
+    "dots": 172974,
+    "digest": "a84d22001224582a",
+    "sites": [
+     "GEMSDOE",
+     "5GEMSDOE",
+     "8GEMSDOE"
+    ]
+   }
+  ],
+  "extra_scored_rasters_manifest": "registry/extra_scored_manifest.json",
+  "decision": "No upload authorized; see the report for the exact blockers and next steps."
+ },
+ "history_newest_unique": [
+  {
+   "file": "docs/downloads/gemsdoe32-h47-ldgi-dualhorizon-corridor-37654-20261026T230609Z-0eb8a25c-zeros.tif",
+   "label": "H47-1-LDGI"
+  },
+  {
+   "file": "docs/downloads/gemsdoe32-arena49-pcg-dualconcord-37654-20261026T220056Z-54e97629-zeros.tif",
+   "label": "ARENA49-PCG"
+  },
+  {
+   "file": "docs/downloads/gemsdoe32-h50-tmspi-dualconcord-37654-20261026T214025Z-f0e385b9-zeros.tif",
+   "label": "H50-TMSPI"
+  },
+  {
+   "file": "docs/downloads/gemsdoe32-h46-trhv-tworegime-ventconduit-37654-20261026T173000Z-6437b275-zeros.tif",
+   "label": "H46-TRHV"
+  }
+ ],
+ "h47_ldgi_candidate": {
+  "file": "docs/downloads/gemsdoe32-h47-ldgi-dualhorizon-corridor-37654-20261026T230609Z-0eb8a25c-zeros.tif",
+  "zip": "docs/downloads/gemsdoe32-h47-ldgi-dualhorizon-corridor-37654-20261026T230609Z-0eb8a25c-zeros.zip",
+  "receipt": "docs/downloads/gemsdoe32-h47-ldgi-dualhorizon-corridor-37654-20261026T230609Z-0eb8a25c-audit.json",
+  "run_card": "evidence/h47_ldgi_run_card.json",
+  "preregistration": "docs/research/h47-ldgi-preregistration-20261026.md",
+  "sha256": "d82d63ab9c935b4eb6d8886129a7820da4642d20c3304c57364c55380438f27a",
+  "bytes": 211243,
+  "dots": 37654,
+  "submission_name": "GEMSDOE32-H47-LDGI-0EB8A25C",
+  "note": "H47-1 LDGI dual-horizon 37654d B2 | HR=0.1198 SGMC=0.0659 | DO NOT SUBMIT",
+  "verdict": "DO NOT SUBMIT \u2014 research/audit artifact; paired H38 bootstrap vector unarchived & literal 5-px lattice overlap > 70%",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "hypothesis": "H47-1 (LDGI-WCR): Lineament-Density, Getis-Ord Gi*, Bivariate Moran's I & Multi-Scale 2-D Ricker Wavelet Dual-Horizon Allocation (18,846 Horizon-A + 18,808 Horizon-B LDGI-Crest = 37,654 dots, B=2) via the leak-free Catalogue-to-Lineament Completeness Ratio eta(V) = |V cap foot| / sum_{foot} rho_lin.",
+  "holdout_label": "HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives, 95% spatial-block CI",
+  "holdout": {
+   "H47-1-LDGI-dualhorizon (EXP3)": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.119765,
+    "ci95": [
+     0.105732,
+     0.132895
+    ]
+   },
+   "H47-1-EXPOSED71-GI (EXP2)": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.121959,
+    "ci95": [
+     0.107709,
+     0.134901
+    ]
+   },
+   "fold-collared B2 Champion proxy": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.099202,
+    "ci95": [
+     0.085951,
+     0.112668
+    ]
+   },
+   "prior H38 repo best": {
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "n_withheld_positives": 22232,
+    "dti": 0.116958,
+    "ci95": [
+     0.100533,
+     0.13204
+    ]
+   }
+  },
+  "off_catalogue_label": "HOLDOUT-DTI diagnostic, GEMSDOE32-SGMC-CAL-v3.0, 62,703 USGS SGMC off-catalogue positives, prevalence-calibrated 95% CI",
+  "off_catalogue_instrument": {
+   "H47-1-LDGI-dualhorizon (EXP3)": {
+    "dti": 0.065888,
+    "ci95": [
+     0.057664,
+     0.072551
+    ]
+   },
+   "H47-1-UNSUP-LDGI-CREST (EXP1)": {
+    "dti": 0.07651,
+    "ci95": [
+     0.064668,
+     0.086451
+    ]
+   },
+   "0.2778 Champion proxy": {
+    "dti": 0.064121,
+    "ci95": [
+     0.05673,
+     0.071649
+    ]
+   }
+  },
+  "uniqueness": {
+   "manifest_rasters": 362,
+   "unique_hash_rasters_checked": 344,
+   "genuine_rasters_checked": 343,
+   "preplacement_surface_passed": true,
+   "max_abs_spearman": 0.153728,
+   "genuine_final_dots_passed": true,
+   "max_genuine_3px_overlap": 0.586657,
+   "literal_lattice_overlap": 0.996149,
+   "literal_all_registry_passed": false,
+   "registry_refreshed_utc": "2026-10-26T23:15:06Z"
+  },
+  "validator": {
+   "strict_cli_passed": true,
+   "geotiff_13_checks_passed": true,
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "dtype": "float32",
+   "nodata": null,
+   "nan_anywhere": 0,
+   "values_in_0_1": true
+  },
+  "reasons": [
+   "EXP2 (0.121959 [0.107709, 0.134901]) and EXP3 (0.119765 [0.105732, 0.132895]) both exceed the prior H38 repository best (0.116958) in point estimate on GEMSDOE32-HIDE-RECOVER-v3.0 (n=22,232 withheld positives) and beat the 0.2778 Champion (0.099202) with paired 95% CI strictly above zero (+0.020831 [+0.010857, +0.030863], p=1.000), while EXP3 also beats the 0.2778 Champion on off-catalogue SGMC-cal v3.0 (0.065888 vs 0.064121; EXP1 alone achieves 0.076510).",
+   "Passes the genuine 9-site registry uniqueness gate across 343 unique-hash genuine rasters (max |Spearman| = 0.153728 <= 0.90; max genuine 3-px dot overlap = 58.67% <= 70.0%, 32.49% vs 0.2778 Champion), and passes all 71 feature leakage canaries (max AUC = 0.586868 <= 0.90).",
+   "Held fail-closed as DO NOT SUBMIT (verdict=negative, 0 weekly slots spent) because: (1) evidence/h38_run_card.json did not archive its 1,000 spatial-bootstrap draw vector so paired_delta_vs_repository_best_h38 is None; (2) the literal unexempted all-registry check hits the synthetic 5-px calibration lattice r13-lattice-s5 (99.615% > 70%, IR-32-PIGEONHOLE-01); and (3) spending a scarce weekly slot requires separate human selector approval."
+  ],
+  "results_doc": "docs/research/h47-ldgi-results-and-nine-site-executive-summary-20261026.md"
+ }
+}
