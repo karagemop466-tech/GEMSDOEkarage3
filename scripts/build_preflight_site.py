@@ -58,7 +58,7 @@ home = '''
 <aside class="status-card" aria-label="Current submission readiness"><div class="card-head"><span>SUBMISSION CHECKPOINT</span><span class="tag red">Not ready</span></div><h2 class="card-title">No file is ready<br>to submit.</h2><p>There is no new, validated TIFF or authorized weekly slot. Historical files below are research references—not new submissions.</p>
 <div class="status-checks"><div class="status-check"><b>×</b> Assigned method lane not supplied</div><div class="status-check"><b>×</b> Literal registry rule blocks the usual dot budget</div><div class="status-check"><b>×</b> No new holdout or candidate file</div></div>
 <a class="card-link" href="preflight-executive.html">See the full decision &nbsp; →</a></aside></div></section>
-<section class="ticker"><div class="wrap ticker-grid"><div class="stat"><span class="stat-icon">↗</span><div><small>Public leaderboard leader</small><strong id="public-score">0.4544</strong><span class="evidence" id="public-score-detail">PUBLIC snapshot · 27 Oct 2026 · may be stale</span></div></div>
+<section class="ticker"><div class="wrap ticker-grid"><div class="stat"><span class="stat-icon">↗</span><div><small>Public leaderboard leader</small><strong id="public-score">0.4544</strong><span class="evidence" id="public-score-detail">PUBLIC snapshot · 28 Oct 2026 22:34 UTC · may be stale</span></div></div>
 <div class="stat"><span class="stat-icon">◈</span><div><small>Best historical claim · 9 sites</small><strong>0.2778</strong><span class="evidence">USER-REPORTED / not receipt-verified</span></div></div>
 <div class="stat"><span class="stat-icon">⌁</span><div><small>New validated candidate</small><strong>None</strong><span class="evidence">No HOLDOUT-DTI run this session</span></div></div></div></section>
 <section class="section" id="evidence"><div class="wrap"><div class="section-head"><div><div class="section-label">THE EVIDENCE PIPELINE</div><h2>A better score starts with a better test.</h2></div><p>Format is necessary, but it is not evidence that a prediction is unique or will generalize to hidden faults.</p></div>
@@ -82,12 +82,12 @@ executive = '''
 research = '''
 <section class="page-hero"><div class="wrap"><div class="eyebrow">SCIENCE &amp; SOURCES</div><h1>Reason from the geology.</h1><p>Four prospective mechanisms, a precise account of what the raster evidence can—and cannot—say, and links to the official data.</p></div></section>
 <section class="section tight"><div class="wrap research-body"><div class="alert"><span class="alert-icon">!</span><div><strong>PROPOSALS ONLY · NO METHOD LANE ASSIGNED</strong><p>No hypothesis below has been fit or validated in this checkout. Expected impact is qualitative, not a score forecast.</p></div></div>
-<div class="panel"><div class="section-label">PHYSICAL HYPOTHESES / QUALITATIVE ORDER</div><h2>Ideas worth a controlled test.</h2><p>All four differ from code in this initially empty checkout; global novelty across sibling sites has not been established.</p>
+<div class="panel"><div class="section-label">ARCHIVED 27 OCTOBER HYPOTHESIS SLATE</div><h2>Earlier ideas, preserved for comparison.</h2><p>These prior proposals overlap existing lines of research; global novelty and feasibility are unverified. <a href="../research.html">See the current four-hypothesis slate and controls →</a></p>
 <h3>01 &nbsp; Paired signed gravity–magnetic profiles <span class="tag green">Medium cost</span></h3><p>Orient cross-sections through gravity, TMI/RTP and detrended terrain; compare signed multiscale changes and offsets to seek a concealed discontinuity. Lithologic contacts, remanence and survey leveling can mimic it. Related edge approaches exist in sibling sites. The provided feature stack is currently absent.</p>
 <h3>02 &nbsp; Cross-fan drainage-offset consistency <span class="tag grey">High cost</span></h3><p>Use USGS 3DEP terrain to match multiple channels across a persistent break in slope. A coherent offset may indicate a subdued fault; fan avulsion, stream capture and roads can imitate it. Tile coverage and actual binary access remain unverified.</p>
 <h3>03 &nbsp; Depth-differential conductance reversal <span class="tag grey">Medium / high cost</span></h3><p>Compare gradients in USGS MT conductance layers at different depths with gravity margins. Clay, saline fluids and inversion resolution are alternatives. The official source lists files, but their local bytes and suitability for trace-scale mapping remain unverified.</p>
 <h3>04 &nbsp; Cross-line residual thermal gradient <span class="tag grey">High cost</span></h3><p>Correct well/spring temperatures for depth and sampling density before testing a residual contrast across independent lineaments. Uneven sampling, lithology and anthropogenic wells are serious confounders. The public source lists a downloadable archive; binary access and full provenance remain unchecked.</p>
-<a class="text-link" href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/research/2026-10-27-review.md">Read the full scientific review &amp; prerequisites →</a></div>
+<a class="text-link" href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/research/2026-10-27-review.md">Read the archived review &amp; prerequisites →</a></div>
 <div class="panel"><div class="section-label">B2 FORENSICS</div><h2>Why might the historical file have scored well?</h2><p>On hash-checked public mirrors, GEMSDOE32 is exactly GEMSDOE31 after removing 2,545 dots near mapped faults. Under a distance-weighted Tversky metric, such a deletion can help if the reduction in false-positive cost outweighs lost truth coverage. Hidden truth and score-to-file receipts are unavailable, so causation and any improvement beyond the USER-REPORTED 0.2778 remain unknown.</p><p>The competition asks for faults indicative of geothermal resources—not confirmed vents. A lineament, a model probability, and a geothermal discovery are different claims.</p><a class="text-link" href="data/geometry_audit.json">Inspect the independent geometry audit →</a></div>
 <div class="panel" id="sources"><div class="section-label">OFFICIAL &amp; TRUSTED SOURCES</div><h2>Follow the evidence.</h2><p>These are source pages reviewed during this session. Availability of a source page does not prove that all binary data or usage rights have been verified locally.</p>
 <ul class="source-list"><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"><strong>DrivenData · problem and metric ↗</strong><span>Official targets, distance-weighted Tversky and format.</span></a></li>
@@ -111,10 +111,9 @@ executive_page = shell('Executive summary', 'executive', executive)
 # replace those authoritative review pages.
 shutil.copyfile(ROOT / 'registry' / 'historical.json', DOCS / 'data' / 'historical.json')
 shutil.copyfile(ROOT / 'evidence' / 'geometry_audit.json', DOCS / 'data' / 'geometry_audit.json')
-current_run_card = ROOT / 'evidence' / 'run_card.json'
-shutil.copyfile(current_run_card, DOCS / 'data' / 'run_card.json')
-# This is the latest current-session card. Keep the historical candidate card at
-# docs/run-card.json intact for build_review_status.py's forensic evidence page.
-shutil.copyfile(current_run_card, DOCS / 'data' / 'latest-run-card.json')
-shutil.copyfile(ROOT / 'research' / '2026-10-27-review.md', DOCS / 'data' / 'review.md')
+# Preserve the old and parallel preflight cards separately. The public latest
+# alias points to this session's negative card, not an older review.
+shutil.copyfile(ROOT / 'evidence' / 'run_card.json', DOCS / 'data' / 'run_card.json')
+shutil.copyfile(DOCS / 'data' / 'latest-run.json', DOCS / 'data' / 'latest-run-card.json')
+shutil.copyfile(ROOT / 'research' / '2026-10-28-literal-review.md', DOCS / 'data' / 'review.md')
 print('Built overview, executive summary and research pages from pinned evidence.')

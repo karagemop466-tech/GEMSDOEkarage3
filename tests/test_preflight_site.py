@@ -62,9 +62,18 @@ class SiteTests(unittest.TestCase):
         self.assertIn('NO FILE IS APPROVED FOR SUBMISSION', page)
         self.assertIn('No submission file available', page)
 
+    def test_older_research_slate_is_labeled_and_current_review_is_linked(self):
+        research = (DOCS / 'preflight-research.html').read_text()
+        home = (ROOT / 'index.html').read_text()
+        self.assertIn('ARCHIVED 27 OCTOBER HYPOTHESIS SLATE', research)
+        self.assertIn('href="../research.html"', research)
+        self.assertIn('href="docs/release-review.html">Latest safety review', home)
+        self.assertNotIn('initially empty checkout', research)
+
     def test_no_stale_feed_can_approve_a_slot(self):
         feed = json.loads((DOCS / 'data/feed.json').read_text())
-        card = json.loads((ROOT / 'evidence/run_card.json').read_text())
+        card = json.loads((DOCS / 'data/latest-run.json').read_text())
+        self.assertEqual(card, json.loads((DOCS / 'data/latest-run-card.json').read_text()))
         self.assertFalse(feed['submission_approved'])
         self.assertFalse(card['ok_to_submit'])
         self.assertFalse(card['slot_selected'])

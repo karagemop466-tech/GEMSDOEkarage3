@@ -130,7 +130,11 @@ npm ci --no-audit --no-fund
 .venv/bin/python -m unittest discover -s tests -v
 npm test
 node --test tests/test_browser_feed.js
+.venv/bin/python scripts/build_preflight_site.py
+.venv/bin/python scripts/build_review_status.py
+.venv/bin/python scripts/build_release_review.py
 .venv/bin/python scripts/build_site.py --check
+.venv/bin/python scripts/verify_numbers.py
 ```
 
 Optional forensic reruns download only pinned public owner-mirror bytes; choose
@@ -139,6 +143,7 @@ new paths to avoid overwriting receipts:
 ```bash
 .venv/bin/python scripts/audit_historical.py --cache-dir .cache/audit --out .cache/historical-new.json
 .venv/bin/python scripts/audit_k3c_literal_witness.py --out .cache/witness-new.json
+.venv/bin/python scripts/audit_saved_tiffs.py --fetch --verify-receipt evidence/saved-tiffs-literal-20261028.json
 .venv/bin/python scripts/check_submission.py FILE.tif --template TEMPLATE.tif --strict-finite
 ```
 

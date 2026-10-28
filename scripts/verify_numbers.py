@@ -53,13 +53,14 @@ def main() -> int:
        and latest['raster_sha256'] is None and latest['holdout_dti']['value'] is None
        and latest['experiments_run'] == latest['weekly_slots_used'] == 0
        and sha(ROOT / 'docs/data/latest-run.json') == sha(ROOT / 'evidence/run-card-20261028-session.json')
+       == sha(ROOT / 'docs/data/latest-run-card.json')
        and latest['evidence']['historical_audit_sha256'] == sha(ROOT / 'evidence/historical-reaudit-20261028-session.json'))
     ck('current card has no new raster, holdout or slot',
        current['verdict'] == 'negative' and current['ok_to_submit'] is False
        and current['raster_sha256'] is None and current['holdout_dti']['value'] is None
        and current['experiments_run'] == current['weekly_slots_used'] == 0
        and current['slot_selected'] is False)
-    ck('current card mirror matches evidence',
+    ck('parallel preflight card matches its evidence copy',
        sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json'))
     ck('current card binds both saved audit receipts',
        current['geometry_audit_sha256'] == sha(ROOT / 'docs/data/historical-audit.json')

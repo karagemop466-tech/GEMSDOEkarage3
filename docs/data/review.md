@@ -1,164 +1,81 @@
-# Evidence review and next research slate
+# Literal registry review and research slate — 28 October 2026
 
-**Decision: no new TIFF; no submission is authorized.** This is a zero-experiment
-preflight, not a negative model result. The numbered results from the user's
-request are **USER-REPORTED / UNVERIFIED**: no submission-page receipt was
-available linking any score to a hash. The publicly visible leaderboard is a
-separate **ORGANIZER-PUBLIC observation**, not such a receipt. A live score for a
-new candidate is **not estimable** from the evidence here.
+> Independent parallel-session review. Input availability and shared-tool descriptions below are dated to that session; see the [later session review](../docs/review-2026-10-28-session.md) and [latest run card](../docs/data/latest-run.json) for restored raw mirrors, the exact shared-template pin and the current decision. Neither review authorizes submission.
 
-## Official task and metric
+## Decision
 
-[DrivenData's problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-says the target is *faults indicative of geothermal resources*, not geothermal
-vents themselves. Its expert-hidden faults are not the training catalogue; in
-the final round the organizer will expand the labels following expert review.
-A detected line is neither a proven fault nor a proven geothermal resource.
+**NO FILE IS APPROVED FOR SUBMISSION.** The former K3C PROMOTE verdict was based on replacing the requested literal overlap test with a null-calibrated excess metric. That substitution was not authorized. The corrected screen is negative; no new geological experiment, TIFF, leaderboard estimate, slot selection or upload was made in this review. The standalone [current JSON card](../docs/data/current-run.json) is the authoritative record for this review.
 
-The official distance-weighted Tversky index is
-`TPw / (TPw + 0.2 FPw + 0.8 FNw + ε)`, with triangular weight
-`max(1 - distance / 300m, 0)`. TP credit at a truth pixel is the *maximum*
-weighted predicted confidence within the kernel, not a sum. This makes closely
-spaced redundant predictions potentially costly in FP without commensurate
-additional recall. The official formula and format are in the
-[problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric).
+The pinned witness is a registered **calibration lattice**, not a geological model. The literal rule treats it like any other raster. A duplicate stop against it is a geometric protocol result, not proof that two methods or geology are identical. Changing the rule requires an explicit user decision; neither a filename change nor a statistical normalization supplies an exception.
 
-## What the B2 lineage actually establishes
+## Exact bytes and the pigeonhole stop
 
-We independently downloaded and SHA-256-checked the nine pinned TIFFs, labels,
-and template from public GitHub mirrors. [Our geometry audit](../evidence/geometry_audit.json)
-and [manifest](../registry/historical.json) contain the exact bytes and pins;
-those pins establish integrity, **not** organizer authenticity.
+Reopened all eight TIFFs under `docs/`, recomputed hashes, grid/range/mask diagnostics, and compared their in-footprint positive pixels with the hash-pinned 13GEMSDOE lattice. [Machine-readable saved-byte report](../evidence/saved-tiffs-literal-20261028.json); reproduce with `.venv/bin/python scripts/audit_saved_tiffs.py --fetch`. The reference template and lattice are owner-published mirrors, hash pinned but not independently authenticated by the organizer. This is a one-witness disproof, **not** a complete registry or pre-placement surface audit.
 
-* **GEOMETRY-AUDIT:** G25 and G30 are the same binary support *inside the mirrored
-  footprint*, despite different TIFF bytes. G31 is a subset of G25. G32 is
-  exactly G31 after removing pixels within two Euclidean pixels of the mirrored
-  catalogue: 2,545 pixels removed. G36 contains G32 plus 1,200 pixels.
-* **USER-REPORTED / UNVERIFIED:** G31 was attributed 0.2708 and G32 0.2778;
-  G25 and G30 were each attributed 0.2600. These are not independently
-  authenticated organizer results and the hidden truth is unavailable.
-* **Plausible, unproven explanation:** removing dots near already-mapped traces
-  might lower FP cost on newly labeled faults more than it loses TP credit.
-  Mapping/delineation differences, data splits, and unobserved ground truth are
-  alternative explanations. The lineage alone cannot establish causation or show
-  that a new model will exceed 0.2778.
+| Retained file group | Directed share of candidate dots ≤3 px from witness | Decision |
+|---|---:|---|
+| K3-CCL | 99.9097% | DO NOT SUBMIT |
+| H-K3B-1 CSST-BGHF | 99.3626% | DO NOT SUBMIT |
+| H-K3-SMGC, NaN and zero twins | 99.6866% each | DO NOT SUBMIT |
+| H-K3-1 CRSB-GUB | 99.3387% | DO NOT SUBMIT |
+| K3-FUSE, NaN and zero twins | 99.9225% each | DO NOT SUBMIT |
+| H-K3C | 99.3520% | DO NOT SUBMIT |
 
-For a fixed binary raster and evaluation mask, let removal reduce TP by `dT`
-and FP by `dF`, and let `G = TP + FN` be the fixed truth count. Given positive
-old and new denominators, removal improves DTI exactly when
-`0.2 * TP * dF > dT * (0.2 * FP + 0.8 * G + ε)`. This follows directly from
-cross-multiplication of the official metric. Neither `dT` nor `dF` on the hidden
-set is known, so this is **not** a score forecast or a tuning recipe.
+The eight include multiple encodings of the same dot support; a distinct hash alone is not distinct geometry. The historical K3C card also reports worst **literal** final overlap of 100% in its older scan, while some fields labeled `overlap_3px` instead hold calibrated excess. Its surface-stage overlap is not demonstrated by a measured preregistered support mask. The 99.3520% lattice figure above is freshly recomputed from K3C saved bytes and is sufficient to reject it.
 
-## Literal uniqueness stop
+K3C SHA-256: `0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df`. Its raw band is finite and within [0,1], with the pinned 3730 × 3292 grid, EPSG:32611 and 100 m transform. It does **not** encode outside-footprint cells as null in our conservative mask-based interpretation, so `scripts/check_format.py`'s combined local check fails. Conversely, the NaN-outside twins satisfy the conservative null interpretation but fail the separate all-cell-finite diagnostic. No encoding has been verified by a DrivenData receipt; the cause of the user's prior range error is unknown. An internal TIFF mask can represent null outside with finite raw values in a synthetic local test, but that is not evidence of portal acceptance. Historical writer phrases claiming a permanent fix or `validator_range_0_1_guaranteed` are not organizer guarantees.
 
-**GEOMETRY-AUDIT, not a score:** all 72 directional comparisons among the nine
-historical files exceed 70% of the candidate dots within three pixels of some
-other historical file. These are prior files, not candidates for resubmission.
-Pre-placement surfaces are not available and were not audited. The subset is
-not a complete current registry.
+The pinned lattice has 206,895 positive pixels and covers 5,160,724 of the 5,167,373 mirror-footprint pixels within 3 pixels, leaving 6,649 uncovered. Any set of N distinct in-footprint dots must overlap by at least `max(0, N − 6,649) / N`. For N=37,654, this is 31,005/37,654 = **82.3418%**, above 70%. The first budget proved to fail is **22,164**. Budgets at or below 22,163 are merely *not ruled out by this bound*; they need the full literal registry and scientific tests. Do not optimize artificial geometry solely to hide in lattice gaps.
 
-The hash-pinned [13GEMSDOE spacing-five lattice](https://github.com/buffedlizard55-lab/13GEMSDOE/blob/92ee6f074323f161eed837b80ec3ee5b662e26f5/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif)
-is present in the [GEMSDOE32 focus registry](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/registry/focus_registry_manifest.json).
-It is a calibration grid rather than geological evidence, but the prompt says
-**any** registered raster. We did not silently exempt it.
+## Nine-site analysis
 
-Our independent reproduction found 5,167,373 footprint pixels, of which 6,649
-are more than three pixels from the lattice. For `N` distinct in-footprint dots,
-the directional overlap is at least `max(0, N - 6649) / N`. For the historical
-37,654-dot budget, the minimum is 31,005/37,654 = **82.34%**, already over the
-strict 70% threshold. This is a budget-specific proof, not proof that every
-smaller raster is impossible. Exploiting the uncovered holes to pass the
-benchmark would not itself be geological discovery. A different, genuinely
-motivated budget might escape this *one bound* but would still need the complete
-registry, surface guard, holdout, and independent selector.
+The [executive comparison](../executive-summary.html#site-details) lists each exact pinned historical file, provenance/hash, claimed value, format diagnostics and directional overlaps. In the historical snapshot, all 72 directional comparisons among those nine files exceed 70%; none is a new authorized submission. No hidden-score estimate is justified, and the rankings below are **USER-REPORTED / UNVERIFIED**, not organizer receipts.
 
-## Ranked hypotheses — planning only, no assigned lane
+| Site | Historical claim | Current published page reviewed (not independently replayed) |
+|---|---:|---|
+| [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/) | 0.2477 | S3DEP1 is a research-only point-best; page flags the lattice, domain-shift checks and unreproduced results. |
+| [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/) | 0.2600 | H80's reported screen is negative against its same-run H35 comparator; page notes mismatched registry transform and no TIFF. |
+| [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/) | 0.2449 | H28-6 says duplicate stop and no new file; H33 is research-only and its uniqueness claim covers a limited set, not the full registry. |
+| [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/) | 0.2710 | S27 says no candidate; archived S25 is reported below a matched random control. Stale sections use inconsistent local input-availability snapshots. |
+| [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/) | 0.2600 | CSR-1 and newer artifacts are lattice-stopped; an older screen omitted the witness. Some reported holdouts lack fold-local construction. |
+| [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/) | 0.2708 | H31-CC is research-only, with a negative paired comparison and a literal lattice stop; a format claim is not a portal receipt. |
+| [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) | 0.2778 | Highest supplied claim, not hash-linked to a receipt. Newer H51-1 is withheld because of 99.45% lattice overlap and other gates. |
+| [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | 0.2632 | R7's reported surface overlap exceeds 70%; a later final-dot pass cannot erase that pre-placement stop. Prior full-catalogue threshold fits are exploratory. |
+| [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/) | 0.2750 | No candidate authorized; the page explicitly distinguishes lattice degeneracy from geological identity. |
 
-The requested “single method paragraph below” is absent. These proposals are
-unimplemented in this initially empty checkout; we cannot assert global novelty
-across all sibling work. Rank is qualitative judgment about *possible* DTI
-impact, not a numerical projection. All require pre-registration before use,
-feature-only AUC canaries, whole-segment buffered visible-only folds, and an
-honest same-instrument matched baseline.
+These are dated page observations, not replays or cross-evaluator comparisons. Main-branch metadata was refreshed for all nine; a changing head does not audit new bytes. The official public leaderboard directly displayed **0.4544 at rank 1 on 2026-10-28 around 22:34 UTC**. This is a public-board snapshot only, not the private result or a score for our file; [check the current board](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/). An earlier automated attempt could not fetch DrivenData; the current metadata feed is GitHub-only because DrivenData's terms prohibit automated monitoring. The displayed board observation is dated and must be checked directly on the official page.
 
-| Rank / cost | Layers and transform; potential unmapped signal | Non-fault mimic / differences and access |
-| --- | --- | --- |
-| 1 · medium | **Paired signed gravity–magnetic profiles.** From provided isostatic gravity, TMI/RTP and detrended terrain, orient candidate transects by the local gradient, then compare signed multiscale changes and their spatial offsets rather than multiplying positive edge strengths. A buried offset could persist where mapped surface traces are incomplete; estimate any catalogue proximity solely from each fold's visible faults and mask visible pixels exactly. | Lithologic contacts, remanent magnetization, survey flightline/leveling artifacts. Related edge-based and signed-contrast proposals exist on sibling sites. The parallel [research slate](../docs/research.md) also proposed a cross-field edge-offset hypothesis; the oriented signed transects proposed here are a related elaboration, not a demonstrated new lane. This exact profile has not been implemented or tested here and is not proven globally novel. The [organizer lists these bands](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#provided-features); the actual stack and cached features are absent locally. |
-| 2 · high | **Cross-fan drainage-offset consistency.** Use official USGS 3DEP elevation, hydrography derived from the DEM, and a persistent transverse slope break. Match several comparable small channel paths on opposite sides and test for a coherent signed offset, excluding channels already used to define the line. A buried or subdued fault can cross young fan deposits not represented in the catalogue. | Fan avulsion, stream capture, erosion, roads, and lacustrine shorelines. This is a paired-channel displacement test, not simply a scarp filter. [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) says products are free and unrestricted; the actual tiles, coverage and byte access have not been verified in this runtime. |
-| 3 · medium/high | **Depth-differential conductance reversal.** Compare gradients in USGS MT 2–12 km and 12–20 km conductance layers, and test whether opposite-signed changes align consistently with gravity-basement margins. A deep transition with subdued surface expression could highlight a covered structure. | Clay-rich strata, saline fluids, inversion resolution and station coverage. Distinct from a single-depth conductivity edge. [GEMSDOE25's later H79 report](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/19b219f629440b9975b093f459c74e21a42476ca/knowledge/40_h79_cthm_poe_outcome_2026-10-27.md) reports testing strike-weighted SGMC reactivation and lists deep MT phase-tensor skew as deferred. This proposed reversal differs from both exact operators but shares ingredients, and broader novelty is unproven. [USGS release](https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b) lists downloadable maps; binary files were not obtained here and their resolution may be too coarse for a 100 m trace. |
-| 4 · high | **Cross-line residual thermal gradient.** Fit depth- and sampling-density-aware regional background temperatures from the [INGENIOUS well/spring compilation](https://gdr.openei.org/submissions/1391); test sustained residual contrast on opposite sides of independent magnetic or terrain lineaments rather than simply ranking proximity to hot points. A fluid-conduit boundary might manifest where the mapped trace is incomplete. | Unequal sampling, deep circulation unrelated to a fault, lithology, anthropogenic wells and clustered observations. The public GDR page lists a CC-BY archive, but binary bytes/coverage and use permissions of each upstream contribution were not independently checked here. |
+### Why might 0.2778 be higher?
 
-A candidate cannot be called viable merely because its source page exists. The
-required exact data, coverage, scale, license, fold-local processing, and
-performance are still unverified. No candidate was fit, placed or scored in
-this session, and no weekly slot was spent.
+The pinned pixel audit finds GEMSDOE25 and GEMSDOE30 have identical in-footprint supports. GEMSDOE32 is GEMSDOE31 with 2,545 near-catalogue dots removed; GEMSDOE36 contains GEMSDOE32's dots plus 1,200. Under the [official metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), for each truth pixel the best nearby confidence is multiplied by `max(1 − d/300 m, 0)`, and prediction mass far from truth contributes weighted false positives. At 100 m spacing, single-pixel offsets of 0, 1, 2, 3 pixels have kernel weights 1, 2/3, 1/3, 0—not full credit throughout a 3-pixel disk. Pruning or thinning can improve coverage per unit false-positive mass, but removing true positives can hurt. Hidden expert labels, causal attribution, and a receipt are absent; we cannot prove why 0.2778 happened or promise an improvement.
 
-## Input, tooling and format irregularities
+Prior K3C reports **HOLDOUT-DTI 0.111044** (95% CI [0.098990, 0.122727], `GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, 66,904 withheld-positive occurrences) versus same-card champion-rule 0.100798, paired delta CI [+0.003019, +0.017272]. These are historical source claims, not rerun, not a live score, not proof of a compliant whole-segment buffered split, and not proof against the current same-protocol best. In particular the shared template's [issue #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60) documents that its collar is not a truth-to-visible buffer.
 
-1. The organizer's [data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
-   redirected the research page fetch to login. Pinned public GitHub mirrors
-   supplied the grid, labels and historical rasters, not organizer-authenticated
-   files. The claimed feature cache is missing; the 419 MB owner mirror of the
-   feature TIFF was not downloaded in this session. A parallel run saved a [core-data receipt](../docs/core-data-receipt.json), but ignored data must be restored in a fresh checkout. GPU availability was not verified.
-2. The mirrored `sample_submission.tif` contains 60,988 positive pixels and
-   its support exactly equals the mirrored label raster. The official page
-   describes an all-absence sample. This discrepancy prevents authenticating
-   the sample's contents; use it only for grid/footprint geometry and never as
-   an independent truth or prediction.
-3. At pinned GEMSDOE32 commit `73485f27cf230af770167397c2b72cb9ce3b3f25`,
-   the shared [holdout CLI](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/evaluate_holdout.py#L48-L56)
-   and [writer](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af770167397c2b72cb9ce3b3f25/scripts/submission_writer.py#L68-L76)
-   silently turn every finite positive probability into `True`. A full-catalogue
-   prediction passed to the CLI is not automatically fold-local either. This
-   can corrupt probabilistic scoring and can leak if a raster was built using
-   hidden labels. Existing [upstream issue #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)
-   documents the binarization defect. We independently reproduced it on the
-   actual current CLI with stubbed holdout calls and two 2×2 probability arrays;
-   [the software-only receipt](../evidence/shared_tool_repro.json) is not a
-   scientific experiment. We made no private evaluator/writer fork; an upstream
-   repair or explicit binary-only rejection is needed. The current checkout cannot
-   push to that separate repository under this session's branch restriction. An
-   attempted comment on the existing issue returned “Resource not accessible by
-   integration,” so no new upstream comment or patch was posted.
-4. The official page says outside data should be null or NaN; the reported portal
-   rejection was `[0,1]`. NaN-outside files may fail a whole-array range test;
-   all-finite zeros outside lack an explicit null mask. `scripts/check_format.py`
-   reports both properties on saved bytes and never silently repairs inputs.
-   Passing local checks is not proof of portal acceptance.
-5. The user-provided 0.3195 and 0.4413 were conflicting/stale as claims about the
-   leader. The organizer's public leaderboard page read during this review showed
-   **ORGANIZER-PUBLIC 0.4544**, rank 1 on 2026-10-27 UTC. This is a public page
-   snapshot, not a submission receipt, and may change.
-6. The [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf),
-   §3.2–3.5, states three submissions per week, subject to the website's limits;
-   this session has no account access and cannot see the remaining allowance. It
-   also requires a narrative disclosure of generative-AI use and, for finalists,
-   complete reproducible code/documentation. The PDF points to the website for
-   current dates; its appendix also mentions a 5 p.m. ET cutoff, while the
-   competition homepage displays 11:59 p.m. UTC. Whether these apply to the
-   same deliverable is unclear; seek the organizer's clarification rather than
-   assuming the later time.
-7. A metadata check detected GEMSDOE25 changing from `b13ccaba` to `19b219f6`
-   during this review. The pinned [H79 report](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/19b219f629440b9975b093f459c74e21a42476ca/knowledge/40_h79_cthm_poe_outcome_2026-10-27.md)
-   describes a newer research-only candidate and a density-aware exclusion of
-   dense halos; it also acknowledges the literal lattice conflict and says not
-   to submit. Its new experiment and scores were not independently replayed
-   here, and no exemption from this project's literal rule is implied. The
-   historical raster comparison remains pinned to immutable files.
+## Ranked hypotheses — proposals only
 
-## Next actions
+Order is qualitative expected fault-recovery potential, not a score projection. The exact operators were not identified in the reviewed local implementations; exhaustive novelty across all siblings is not established. The experiment is blocked until one method paragraph is explicitly assigned and the central template and inputs are ready.
 
-* Resolve the missing lane and registry-control policy with the parallel-run
-  coordinator; do not silently exempt controls or optimize into lattice holes.
-* Restore the complete, current registry and the exact upstream shared tools;
-  repair issue #37 **upstream**, not by creating a local fork.
-* Restore the stack and license-checked data; freeze a matched same-evaluator
-  incumbent. Derive every catalogue-dependent feature inside each fold, test
-  each feature alone for AUC > 0.90, and check surface before emission and final
-  dots against every registry raster. Stop immediately on a duplicate.
-* Run no more than three experiments / two hours; compare pooled DTI with paired
-  spatial-block 95% CI, and do not call the proxy a leaderboard estimate.
-* Only a separate automated weekly-slot selector can promote an eligible run.
-  Validate exact saved bytes and record an organizer receipt and raster hash after
-  a real upload. No upload, account access, or slot decision occurred here.
+| Rank / estimated implementation cost | Layers and measurable signature; why it might reach off-catalogue faults | Distinction, named mimic and access |
+|---|---|---|
+| 1 / medium–high | **Paired texture displacement:** supplied RTP/TMI and detrended elevation; phase-correlate corresponding texture windows across a candidate line and require a consistent signed displacement along strike and across scales. A fault hidden beneath cover could offset a marker without a surface scarp. | Unlike pointwise gravity–magnetic edge coincidence, this estimates a shared-pattern shift. Volcanic facies, remanence and survey striping can mimic it; require shifted-null and texture-only controls. The shared derived feature cache is absent; its source authenticity is unverified. |
+| 2 / high | **Repeated cross-fan channel offsets:** [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) DEM and derived channels; compare signed displacements of multiple independent channels crossing an independently defined break in slope. A subdued fan-crossing fault may lack a mapped scarp. | Tests paired-channel offset rather than a single curvature or drainage veto. Avulsion, stream capture, roads and ancient shorelines mimic it; actual tiles and coverage not verified. |
+| 3 / medium–high | **Cross-fitted shallow-temperature residuals:** [INGENIOUS GDR](https://gdr.openei.org/submissions/1391) 2 m probe observations, terrain and conductivity; remove spatial/terrain sampling background out of fold, then test coherent residuals against independent structural edges. A covered fluid pathway could be missed by a surface catalogue. | Models measurement/sampling confounders rather than simply distance to a spring; sun, groundwater and uneven surveys mimic anomalies. Source declares CC BY 4.0; specific bytes and coverage are unverified. |
+| 4 / medium–high | **Acquisition-block radiometric residual:** [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) K/eTh/eU, flightline metadata and independent magnetic edges; seek alteration residuals stable in held-out survey blocks. Concealed mineral alteration might support a hidden structure. | Tests cross-acquisition invariance, not raw radioelement ratio hotspots. Rock type, soil moisture and leveling seams mimic it; survey grids/coverage have not been obtained. |
+
+Potential-field texture alone does not prove a fault; thermal/alteration signals do not establish a vent or economic resource. Conductance at 2–200 km depths from the [USGS ScienceBase model](https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b) is too coarse to assume 100 m trace localization. All external data require exact coverage, licensing, provenance and binary verification before use.
+
+## Blockers and next steps
+
+1. Obtain the single method paragraph; do not silently adopt this slate as an assignment.
+2. The authenticated account has **read-only** access to the shared GEMSDOE32 template. Central issues [#42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42) (surface gate), [#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60) (buffer), [#37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37) (soft-input wrappers), and [#63](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63) (registry completeness) remain open. Pin and regression-test fixes in the template, not a private fork. Local experimental entry points stop until then.
+3. Restore organizer-authenticated features, labels and the shared cache; freeze a complete current registry including every applicable raster and define a measurable preregistered surface support. A missing/undefined comparison is a stop.
+4. Freeze buffered whole-segment folds and the matched current best. Compute each catalogue feature from visible faults only; mask visible faults pixel-exactly; run per-feature leakage canaries (oriented AUC >0.90 stops); calculate pooled DTI and paired spatial 95% CI. Run no more than three experiments or two hours.
+5. Check literal correlation and overlap both before placement and on final saved dots, then independently validate exact TIFF bytes. Only an independent selector can authorize a slot, after checking the live account quota. The [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) specify three feedback submissions per week subject to current site limits and require disclosure of generative-AI use; the account's remaining quota is unknown.
+
+## Engineering review passes
+
+1. **Implement and verify.** Independently reopened the eight retained TIFFs and recomputed their SHA-256, lattice overlaps and local format diagnostics. Replaced the null-calibrated promotion logic with a literal, fail-closed card screen, stopped the known-bad budget in the experiment entry points, and rebuilt the public decision pages. Initial browser test setup lacked `jsdom`; installed the lockfile dependencies and reran it.
+2. **Review and fix.** Found that direct `python scripts/...` invocations could fail on an import rather than reach the safety preflight; corrected their module path and added direct-CLI regression tests. Also strengthened the screen to require defined surface support, per-feature canary coverage, the known witness, fold-local buffered holdout claims, budget limits and a separate selector; rejected ambiguous calibrated primary rules. Verification after fixes: 130 Python tests passed, one optional-cache test skipped and 66 subtests passed; browser-feed tests 2/2 and dashboard tests 4/4 passed. These are engineering checks, not science results.
+3. **Prompt and integration recheck.** Reconciled the independent parallel main-branch review without changing the central template or suppressing the user’s literal rule. Its K3C witness calculation exactly agrees with the eight-file audit; unrelated 5-pixel diagnostics are not treated as the 3-pixel rule. Replaced a stale historical numbers verifier with a current hash-bound, fail-closed consistency check. Post-integration verification: 133 pytest tests passed, 66 subtests passed, and one SMGC feature-cache integration test was skipped because the cache is absent; `unittest` passed 66; dashboard tests passed 4/4; browser-feed tests passed 2/2; 17/17 evidence consistency checks and deterministic site builds passed. Remaining blockers are listed above; no scientific experiment or competition slot was used. See the final PR checks for deployment status.
+
+A post-deployment navigation recheck labeled the older preflight hypothesis slate as archived and made the `latest-run-card.json` alias match that session's negative card. Integration now points the alias to the later session's negative card instead. Final local checks after that follow-up: 134 pytest tests passed, one SMGC-cache integration test skipped, 67 subtests passed; `unittest` passed 67; dashboard tests passed 4/4 and browser-feed tests passed 2/2. This did not produce a new experiment or submission.
