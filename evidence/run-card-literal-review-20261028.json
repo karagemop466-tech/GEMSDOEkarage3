@@ -1,0 +1,37 @@
+{
+  "hypothesis": "No assigned method lane; no new hypothesis was evaluated in this session.",
+  "mechanism": "No new detector constructed; independent one-witness comparison of retained H-K3C raster.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts can mimic magnetic and gravity edges; not tested here.",
+  "experiments_run": 0,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "Not run; prior holdout is not reproduced."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "surface_overlap_3px": null,
+    "final_rank_correlation": null,
+    "final_overlap_3px": 0.9935199447601848,
+    "scope": "One pinned lattice; no complete registry or surface audit. Literal duplicate stop."
+  },
+  "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "raster_scope": "Historical H-K3C raster, not a new submission.",
+  "validator_output": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "whole_array_finite_range": true,
+    "crs_shape_transform_match": true,
+    "template": "SHA-pinned owner mirror, not authenticated organizer sample",
+    "outside_template_null_pass": false,
+    "organizer_acceptance": "unknown"
+  },
+  "submission_name": null,
+  "note": "No new file; duplicate stop. Do not submit.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "slot_selected": false
+}

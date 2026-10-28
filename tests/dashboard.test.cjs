@@ -9,7 +9,7 @@ test('live docs page publishes the literal duplicate stop without dynamic approv
   for (const page of ['docs/index.html', 'docs/executive-summary.html']) {
     const content = fs.readFileSync(page, 'utf8');
     assert.match(content, /Submission blocked: duplicate-stop/);
-    assert.match(content, /99\.6866%/);
+    assert.match(content, /99\.35%/);
     assert.match(content, /NOT CLEARED FOR SUBMISSION/);
     assert.doesNotMatch(content, /src=["']dashboard\.js/);
   }
