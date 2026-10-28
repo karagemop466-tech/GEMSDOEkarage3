@@ -37,7 +37,7 @@ def assess(card):
     require(isinstance(ci,list) and len(ci)==2 and all(finite(x) for x in ci) and 0<ci[0]<=ci[1], 'no paired holdout improvement')
     require(h.get('same_evaluator_current_best') is True, 'current same-evaluator baseline not established')
     auc=card.get('feature_auc')
-    require(isinstance(auc,list) and bool(auc) and all(finite(x) and 0<=x<=.90 for x in auc), 'missing or leaking feature canaries')
+    require(isinstance(auc,list) and bool(auc) and all(finite(x) and 0<=x<=1 and max(x,1-x)<=.90 for x in auc), 'missing or leaking feature canaries')
     registry = card.get('registry') if isinstance(card.get('registry'), dict) else {}
     # Aggregate 'complete' flags from legacy cards silently excluded dense and
     # calibration rasters. Never promote without an explicit literal audit.

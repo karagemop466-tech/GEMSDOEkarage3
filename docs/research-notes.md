@@ -1,3 +1,7 @@
+> **2026-10-28: promotion withdrawn. DO NOT SUBMIT retained TIFFs.**
+> Literal registry overlap fails; this document is historical research, not authorization.
+> See [current review](../research/2026-10-28-review.md).
+
 # Research directions and evidence limits
 
 **Status: proposals only. No assigned lane, new model, canary, holdout, or new TIFF in this session.** Rank is qualitative judgment about potential contribution to fault-recovery DTI versus implementation cost, not a projected score. This checkout started empty, so none is implemented **here**. The sibling repositories are extensive: descriptions below distinguish the proposed tests from the specific prior art we inspected, but we cannot honestly certify that every component is untried across all sibling projects. Do not select a lane without the parallel-run assignment.

@@ -46,4 +46,10 @@ class GateTests(unittest.TestCase):
     def test_missing_ci(self):
         c=self.valid(); c['holdout']['paired_delta_ci95']=[-.01,.02]
         self.assertEqual(assess(c)['verdict'],'negative')
+    def test_point_outside_ci_rejected(self):
+        c=self.valid(); c['holdout']['dti']=.9
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_reverse_label_leakage_rejected(self):
+        c=self.valid(); c['feature_auc']=[.05]
+        self.assertEqual(assess(c)['verdict'],'negative')
 if __name__=='__main__': unittest.main()
