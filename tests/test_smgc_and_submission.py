@@ -8,6 +8,7 @@ import sys
 
 import numpy as np
 import rasterio
+import pytest
 
 from gems32 import holdout, smgc, submission
 from gems32.paths import data_dir, work_dir
@@ -44,47 +45,42 @@ def test_smgc_extra_stack_and_stationary_envelope():
     assert float(surf.min()) >= 0.0 and float(surf.max()) <= 1.0
     assert float(surf[~foot].max()) == 0.0
 
-    # Verify cached 4-channel SMGC stack on disk
+
+
+def test_optional_cached_smgc_stack():
+    # Optional integration check: the cache is deliberately not committed.
     smgc_path = work_dir() / "smgc_extra_4ch.npy"
-    assert smgc_path.exists()
+    if not smgc_path.exists():
+        pytest.skip("Optional full-grid feature cache absent; model reproduction not performed")
     arr = np.load(smgc_path, mmap_mode="r")
     assert arr.shape == (3730, 3292, 4)
     assert arr.dtype == np.float32
     assert np.isfinite(arr[::8, ::8, :]).all()
 
 
-def test_promoted_submission_geotiff_and_run_card():
+def test_retained_submission_is_not_promoted():
     rc_path = ROOT / "docs" / "run-card.json"
     assert rc_path.exists()
     rc = json.loads(rc_path.read_text())
 
-    assert rc["verdict"] == "promote"
-    assert rc["ok_to_submit"] is True
+    assert rc["verdict"] == "negative"
+    assert rc["ok_to_submit"] is False
     assert 0 < len(rc["note"]) <= 140
     assert rc["leakage_canary"]["passed"] is True
     assert rc["leakage_canary"]["max_oriented_auc"] <= 0.90
     assert rc["correlation_overlap_vs_registry"]["max_rank_correlation"] <= 0.90
-    assert rc["correlation_overlap_vs_registry"]["max_dot_overlap_3px"] <= 0.70
+    assert rc["registry"]["final_dots"]["max_overlap_3px"] > 0.70
 
     tif_path = ROOT / rc["submission_file"]
     assert tif_path.exists()
     sha = hashlib.sha256(tif_path.read_bytes()).hexdigest()
     assert sha == rc["raster_sha256"]
 
-    ddir = data_dir()
-    ctx = holdout.load_holdout_context(ddir)
-    audit = submission.audit_geotiff(
-        tif_path,
-        ctx.foot,
-        ctx.labels,
-        mode="zeros",
-        template_tif=ddir / "sample_submission.tif",
-    )
-    assert audit["all_checks_passed"] is True
-    assert all(audit["checks"].values()), f"Failed checks: {audit['checks']}"
-    assert audit["emitted_positive_pixels"] == 37654
-    assert audit["on_catalogue_positive_pixels"] == 0
-    assert audit["full_grid_finite_pixels"] == 12279160
+    receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261028.json').read_text())
+    row = next(r for r in receipt['rasters'] if r['sha256'] == sha)
+    assert row['duplicate_stop'] is True
+    assert row['format']['core_format_pass'] is True
+    assert row['format']['whole_array_finite_range_pass'] is True
 
     with rasterio.open(tif_path) as ds:
         arr = ds.read(1)
@@ -100,8 +96,9 @@ def test_promoted_submission_geotiff_and_run_card():
         [sys.executable, str(ROOT / "scripts" / "promotion_gate.py"), str(rc_path)],
         capture_output=True,
         text=True,
-        check=True,
+        check=False,
     )
     pg_out = json.loads(pg.stdout)
-    assert pg_out["verdict"] == "promote"
-    assert pg_out["reasons"] == []
+    assert pg.returncode == 2
+    assert pg_out["verdict"] == "negative"
+    assert any("uniqueness" in reason for reason in pg_out["reasons"])

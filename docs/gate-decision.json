@@ -3,27 +3,7 @@
   "ok_to_submit": false,
   "selector_required": true,
   "reasons": [
-    "missing assigned method lane",
-    "missing versioned HOLDOUT-DTI",
-    "missing withheld positives",
-    "missing valid holdout DTI",
-    "missing valid holdout 95% CI containing point estimate",
-    "no paired holdout improvement",
-    "current same-evaluator/fold baseline improvement not established",
-    "missing or leaking feature canaries",
-    "missing nonempty registry inventory",
-    "surface uniqueness incomplete",
-    "final_dots uniqueness incomplete",
-    "validator: saved_bytes_checked",
-    "validator: single_band",
-    "validator: finite_inside",
-    "validator: range_0_1",
-    "validator: crs_match",
-    "validator: shape_match",
-    "validator: transform_match",
-    "missing raster SHA256",
-    "validator not bound to candidate bytes",
-    "missing hash-bound strict outside/null and whole-array format diagnostic",
-    "invalid submission name/note"
+    "surface uniqueness incomplete or duplicate",
+    "final_dots uniqueness incomplete or duplicate"
   ]
 }

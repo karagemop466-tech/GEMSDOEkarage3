@@ -8,6 +8,10 @@ SOURCE = 'https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af77
 def enrich(rows, audit):
     winners = {item['site']: item for item in audit['winners']}
     for row in rows:
+        row.update(evidence_class='USER-REPORTED / UNVERIFIED; no organizer submission receipt',
+                   estimated_score=None, unique=False, ok_to_submit=False)
+        if 'other_confirmed_submissions' in row:
+            row['other_reported_submissions'] = row.pop('other_confirmed_submissions')
         winner = winners[row['site']]
         row['historical_artifact'] = {
             'url': f"{row['repository']}/blob/{winner['repo_ref']}/{winner['file']}",
@@ -37,5 +41,7 @@ if __name__ == '__main__':
     target = ROOT / 'docs/sites.json'
     document = json.loads(target.read_text())
     audit = json.loads((ROOT / 'evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json').read_text())
+    document['promoted_candidate'] = None
+    document['decision_review_date'] = '2026-10-28'
     enrich(document['sites'], audit)
     target.write_text(json.dumps(document, indent=2) + '\n')

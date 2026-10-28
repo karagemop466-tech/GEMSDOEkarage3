@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-28",
+  "passes": [
+    {
+      "pass_number": 1,
+      "actions": [
+        "Audited repository and conflicting public decisions",
+        "Fetched and SHA256-checked pinned historical inputs",
+        "Reproduced historical geometry exactly excluding timestamp",
+        "Audited five retained TIFFs; all literal overlap stops"
+      ]
+    },
+    {
+      "pass_number": 2,
+      "actions": [
+        "Reconciled active notices and card decisions",
+        "Added shared necessary-condition preflight to archived runners",
+        "Hardened CI containment, oriented AUC, and final-dot rank checks",
+        "Rebuilt nine-site JSON without unsupported organizer labels or projections"
+      ]
+    },
+    {
+      "pass_number": 3,
+      "actions": [
+        "Python pytest: 95 passed, 1 optional cache integration test skipped, 49 subtests passed",
+        "Python unittest: 49 tests passed",
+        "Node dashboard: 3 passed; browser feed: 2 passed",
+        "Root site --check and deterministic preflight builder passed",
+        "Exact geometry reproduction passed",
+        "Both archived model runners stopped before placement with expected nonzero status",
+        "git diff --check passed"
+      ]
+    }
+  ],
+  "limitations": [
+    "No new lane assigned",
+    "No new model trained or holdout reproduced",
+    "No new authorized TIFF",
+    "No organizer-linked score receipts or authenticated DrivenData access",
+    "One sufficient duplicate witness, not a fresh complete registry scan"
+  ],
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative"
+}

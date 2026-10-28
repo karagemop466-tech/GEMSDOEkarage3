@@ -16,12 +16,12 @@ def assess(card):
     require(type(h.get('withheld_positives')) is int and h['withheld_positives']>0, 'missing withheld positives')
     require(finite(h.get('dti')) and 0<=h['dti']<=1, 'missing valid holdout DTI')
     interval=h.get('ci95')
-    require(isinstance(interval,list) and len(interval)==2 and all(finite(x) for x in interval) and 0<=interval[0]<=interval[1]<=1, 'missing valid holdout 95% CI')
+    require(isinstance(interval,list) and len(interval)==2 and all(finite(x) for x in interval) and finite(h.get('dti')) and 0<=interval[0]<=h['dti']<=interval[1]<=1, 'missing valid holdout 95% CI')
     ci=h.get('paired_delta_ci95')
     require(isinstance(ci,list) and len(ci)==2 and all(finite(x) for x in ci) and 0<ci[0]<=ci[1], 'no paired holdout improvement')
     require(h.get('same_evaluator_current_best') is True, 'current same-evaluator baseline not established')
     auc=card.get('feature_auc')
-    require(isinstance(auc,list) and bool(auc) and all(finite(x) and 0<=x<=.90 for x in auc), 'missing or leaking feature canaries')
+    require(isinstance(auc,list) and bool(auc) and all(finite(x) and 0<=x<=1 and max(x,1-x)<=.90 for x in auc), 'missing or leaking feature canaries')
     for stage in ('surface','final_dots'):
         r=(card.get('registry') or {}).get(stage) or {}
         require(r.get('complete') is True and finite(r.get('max_abs_spearman')) and 0<=r['max_abs_spearman']<=.90 and finite(r.get('max_overlap_3px')) and 0<=r['max_overlap_3px']<=.70, f'{stage} uniqueness incomplete or duplicate')

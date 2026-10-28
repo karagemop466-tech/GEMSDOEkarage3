@@ -618,6 +618,9 @@ def render_diagnostic_figure(
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate
+    require_budget_not_proven_duplicate(37654)
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()
