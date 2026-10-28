@@ -1,0 +1,87 @@
+{
+ "evidence_class": "OWNER-REPORTED scores (no organizer receipts); overlaps are GEOMETRY-AUDIT on exact bytes",
+ "source": "evidence/uniqueness_frontier.json",
+ "rows": [
+  {
+   "site": "GEMSDOE24",
+   "submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "owner_reported_score": 0.2477,
+   "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+   "dots": 60069,
+   "ov_h195_3px": 1.0,
+   "ov_champion_3px": 0.8848
+  },
+  {
+   "site": "GEMSDOE25",
+   "submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "owner_reported_score": 0.26,
+   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "dots": 44090,
+   "ov_h195_3px": 1.0,
+   "ov_champion_3px": 0.8817
+  },
+  {
+   "site": "GEMSDOE27",
+   "submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "owner_reported_score": 0.2449,
+   "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+   "dots": 61328,
+   "ov_h195_3px": 0.9806,
+   "ov_champion_3px": 0.8672
+  },
+  {
+   "site": "GEMSDOE28",
+   "submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+   "owner_reported_score": 0.271,
+   "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+   "dots": 37660,
+   "ov_h195_3px": 1.0,
+   "ov_champion_3px": 0.9547
+  },
+  {
+   "site": "GEMSDOE30",
+   "submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+   "owner_reported_score": 0.26,
+   "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+   "dots": 44090,
+   "ov_h195_3px": 1.0,
+   "ov_champion_3px": 0.8817
+  },
+  {
+   "site": "GEMSDOE31",
+   "submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
+   "owner_reported_score": 0.2708,
+   "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+   "dots": 40199,
+   "ov_h195_3px": 1.0,
+   "ov_champion_3px": 0.9539
+  },
+  {
+   "site": "GEMSDOE32",
+   "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "owner_reported_score": 0.2778,
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "dots": 37654,
+   "ov_h195_3px": 1.0,
+   "ov_champion_3px": 1.0
+  },
+  {
+   "site": "GEMSDOE33",
+   "submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+   "owner_reported_score": 0.2632,
+   "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+   "dots": 41865,
+   "ov_h195_3px": 0.9971,
+   "ov_champion_3px": 0.9264
+  },
+  {
+   "site": "GEMSDOE36",
+   "submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+   "owner_reported_score": 0.275,
+   "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "dots": 38854,
+   "ov_h195_3px": 0.9775,
+   "ov_champion_3px": 0.974
+  }
+ ]
+}

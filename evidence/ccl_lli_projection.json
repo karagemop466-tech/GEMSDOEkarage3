@@ -1,0 +1,37 @@
+{
+ "label": "LIVE-LEDGER PROJECTION \u2014 NOT A SCORE",
+ "instrument": "LLI fitted upstream (GEMSDOE32@8a73310, 111 owner-reported live rasters)",
+ "designs": {
+  "S0": {
+   "loo_mae": 0.02206859815698794,
+   "leave_site_out_mae": 0.022431280094728386,
+   "projected_dti": {
+    "GEMSDOE32 champion (owner-reported 0.2778)": 0.286,
+    "GEMSDOE70 p5 (owner-reported 0.2478)": 0.1385,
+    "ccl_live_dots_b3.npy": 0.0747,
+    "ccl_live_dots_b5.npy": 0.0997
+   }
+  },
+  "S3": {
+   "loo_mae": 0.02194541449612522,
+   "leave_site_out_mae": 0.02234471596410571,
+   "projected_dti": {
+    "GEMSDOE32 champion (owner-reported 0.2778)": 0.2843,
+    "GEMSDOE70 p5 (owner-reported 0.2478)": 0.135,
+    "ccl_live_dots_b3.npy": 0.0747,
+    "ccl_live_dots_b5.npy": 0.0956
+   }
+  },
+  "S4": {
+   "loo_mae": 0.02217456283210508,
+   "leave_site_out_mae": 0.022629907487429466,
+   "projected_dti": {
+    "GEMSDOE32 champion (owner-reported 0.2778)": 0.2847,
+    "GEMSDOE70 p5 (owner-reported 0.2478)": 0.1371,
+    "ccl_live_dots_b3.npy": 0.0756,
+    "ccl_live_dots_b5.npy": 0.0968
+   }
+  }
+ },
+ "reading": "B=5 projects above B=3 in all three designs (+0.021 to +0.025). The LLI under-projects the closest off-H19-5 comparator (GEMSDOE70, owner-reported 0.2478) by ~0.11, so it is pessimistic for off-network files; even so it gives no support for exceeding 0.2778."
+}
