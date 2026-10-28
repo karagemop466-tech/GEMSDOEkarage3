@@ -2,7 +2,7 @@
 
 Before work, read `README.md`, `docs/PROJECT_BRIEF.md`, the latest dated reviews in `docs/` and `research/`, and both current cards: `evidence/run-card-20261028.json` and `evidence/run_card.json`. Follow the parallel-run protocol and its stop conditions. Do not claim organizer confirmation without an artifact-linked receipt. Do not present historical/research TIFFs as new submissions. Do not promote on format alone.
 
-The 2026-10-28 saved-byte and registry reviews supersede older PROMOTE claims. Duplicate rule (session 4, IR-K3-17): apply the 70 % / 3 px test to the null-calibrated excess overlap `(obs − p0)/(1 − p0)` against **every** registry raster (lattices and blankets included — none exempt), and always disclose the literal value. The literal rule alone is unsatisfiable for ≥ 22,164 dots (IR-K3-02) and is no longer a stop.
+The user's current protocol requires the literal 70% / 3 px threshold against **every** registry raster, with no lattice, blanket, density, or null-calibration exception. Null-calibrated excess overlap may be retained as a diagnostic only; it cannot clear a literal failure. The prior H-K3C `PROMOTE` decision used an exception and is withdrawn; see `docs/review-2026-10-28-strict-literal-gate.md`. Do not game the threshold by placing points in uncovered lattice holes.
 ## 2026-10-28 lane K3-CCL (read before any catalogue-geometry work)
 
 Also read `research/2026-10-28-ccl.md` and `evidence/ccl_run_card.json`. Three rules follow from it:

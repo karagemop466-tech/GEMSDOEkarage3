@@ -1,8 +1,12 @@
 {
-  "verdict": "promote",
-  "ok_to_submit": true,
+  "verdict": "negative",
+  "ok_to_submit": false,
   "selector_required": true,
-  "reasons": [],
+  "reasons": [
+    "literal registry overlap exceeds 0.70 or an overlap measurement is invalid",
+    "literal all-registry final audit failed or is absent",
+    "final_dots uniqueness incomplete or duplicate"
+  ],
   "card": "docs/k3c/run-card.json",
   "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df"
 }

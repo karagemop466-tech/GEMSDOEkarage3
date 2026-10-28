@@ -91,8 +91,8 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
     if ok:
         aside = (f'<aside style="padding:16px;background:#ecfdf5;color:#064e3b;border-bottom:3px solid #059669"><strong>OK TO SUBMIT? YES — one file is cleared '
                  f'(lane H-K3C, {H(card["generated_utc"][:10])}).</strong> <code>{H(card["submission_name"])}</code> (SHA-256 {sha8}…) passed every automated gate: '
-                 f'format/[0,1]/zero-NaN, leakage canaries, null-calibrated registry uniqueness, and HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) '
-                 f'{hr} vs the 0.2778 champion rule {champ} with paired 95% CI [{pd[0]:+.4f}, {pd[1]:+.4f}] excluding zero. The selector decides whether to spend a weekly slot. '
+                 f'format/[0,1]/zero-NaN, leakage canaries, strict literal registry uniqueness, and HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) '
+                 f'{hr} vs the champion rule {champ} with paired 95% CI [{pd[0]:+.4f}, {pd[1]:+.4f}] excluding zero. The selector decides whether to spend a weekly slot. '
                  f'<a href="{H(dl)}" download>Download .tif</a> · <a href="{H(zp)}" download>.zip</a> · <a href="docs/k3c/index.html">Executive summary</a> · '
                  f'<a href="docs/k3c/how-to-submit.html">How to submit</a> · <a href="docs/k3c/run-card.json">Run card</a></aside>')
         card_html = (f'<div class="release-card" aria-label="Current submission decision">\n'
@@ -105,7 +105,7 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
     else:
         reasons = H("; ".join(gate["reasons"]))
         aside = (f'<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO. As of {H(card["generated_utc"][:10])} no file in this repository is authorized.</strong> '
-                 f'Newest lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) HOLDOUT-DTI {hr} vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); '
+                 f'Newest lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) {hr} vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); '
                  f'gate verdict <strong>{H(gate["verdict"].upper())}</strong>: {reasons}. '
                  f'<a href="docs/k3c/index.html">H-K3C executive summary &amp; research-only TIFF</a> · <a href="docs/k3c/how-to-submit.html">How to submit (when a file is cleared)</a> · '
                  f'<a href="docs/csst-bghf/index.html">Previous lane CSST-BGHF</a> · <a href="docs/release-review.html">Saved-byte audit</a></aside>')
@@ -189,13 +189,22 @@ def build() -> None:
                if lli_proj is not None else "LLI projection unavailable (see run card)")
     sgmc = hold["sgmc_off_catalogue_v3"]
 
+    if ok:
+        artifact_actions = (f'<p><a class="btn ok" href="{H(tif_rel)}" download>Download submission .tif</a> '
+                            f'<a class="btn light" href="{H(zip_rel)}" download>Download single-file .zip</a> '
+                            '<a class="btn light" href="run-card.json">Run card (JSON)</a></p>')
+        gate_summary = 'All preregistered gates passed; a separate selector must still approve spending a weekly slot.'
+    else:
+        artifact_actions = ('<p><strong>Research artifact only — not cleared for download or submission.</strong> '
+                            f'Archived filename: <code>{H(card["submission_name"])}</code>. '
+                            f'<a class="btn light" href="run-card.json">Review the archived run card (JSON)</a></p>')
+        gate_summary = 'Failed gates: ' + H('; '.join(gate['reasons']))
     verdict_box = f"""<div class="verdict {'ok' if ok else 'no'}"><h2>{'OK TO DOWNLOAD AND SUBMIT: YES' if ok else 'OK TO SUBMIT: NO — DO NOT SUBMIT'}</h2>
-<p>Automated verdict <strong>{H(gate['verdict'].upper())}</strong> from <code>scripts/promotion_gate.py</code> (v3) on the run card generated {H(card['generated_utc'])}.
-{'All preregistered gates passed: format, [0,1] range, leakage canaries, registry uniqueness (null-calibrated), and a paired 24-cell holdout improvement whose 95% CI excludes zero. You, the selector, decide whether to spend one weekly slot on it.' if ok else 'Failed gates: ' + H('; '.join(gate['reasons']))}</p>
-<p><a class="btn {'ok' if ok else 'no'}" href="{H(tif_rel)}" download>{'Download submission .tif' if ok else 'Download research-only .tif (NOT CLEARED)'}</a>
-<a class="btn light" href="{H(zip_rel)}" download>Download single-file .zip</a> <a class="btn light" href="run-card.json">Run card (JSON)</a></p>
+<p>Automated verdict <strong>{H(gate['verdict'].upper())}</strong> from <code>scripts/promotion_gate.py</code> (strict literal gate) on the run card generated {H(card['generated_utc'])}.
+{gate_summary}</p>
+{artifact_actions}
 <p class="small">File <code>{H(card['submission_name'])}</code><br>SHA-256 <code>{H(card['raster_sha256'])}</code><br>Suggested DrivenData note ({len(card['note'])}/140 chars): <code>{H(card['note'])}</code></p>
-<p class="small"><strong>What "cleared" does and does not mean.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's live 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. The narrowest uniqueness margin is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} excess overlap vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code> (limit 70%, IR-K3-22). Treat a live score below 0.2778 as a real possibility; the slot decision is the selector's.</p></div>"""
+<p class="small"><strong>What "cleared" does and does not mean.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's live 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. The null-calibrated diagnostic is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code>, but it cannot override the literal 100% overlap stop reported in the validation table below. Treat any live score as unknown; no live estimate is defensible, and the slot decision is a separate selector's responsibility.</p></div>"""
 
     def row(site, url):
         s = nine_by.get(site, {})
@@ -212,10 +221,14 @@ def build() -> None:
                 f"<td>Historical — do not resubmit (best file is in the H19-5 family; see forensics)</td></tr>")
 
     site_rows = "".join(row(s, u) for s, u in FOCUS_SITES)
-    ours = (f"<tr style='background:#eef3eb'><td><strong>GEMSDOEkarage3 · Lane H-K3C (this session)</strong><br><a class='file-link' href='{H(tif_rel)}' download>{H(card['submission_name'])}</a></td>"
-            f"<td><span class='label'>no live score yet</span><br><span class='small'>{H(lli_txt)}</span></td>"
+    current_artifact = (f"<a class='file-link' href='{H(tif_rel)}' download>{H(card['submission_name'])}</a>"
+                        if ok else f"<span class='warning-text'>Archived research only · DO NOT SUBMIT</span><br><code>{H(card['submission_name'])}</code>")
+    current_uniqueness = (f"Literal registry checks passed; max final overlap {pct(reg['literal_worst_any_raster']['within_3px_fraction'])}"
+                          if ok else f"<span class='warning-text'>NOT UNIQUE under literal rule</span><br>max overlap {pct(reg['literal_worst_any_raster']['within_3px_fraction'])}")
+    ours = (f"<tr style='background:#eef3eb'><td><strong>GEMSDOEkarage3 · Lane H-K3C (this session)</strong><br>{current_artifact}</td>"
+            f"<td><span class='label'>no organizer-confirmed score</span><br><span class='small'>{H(lli_txt)}</span></td>"
             f"<td><strong>{f4(hold['dti'])}</strong> {H(str(hold['ci95']))} <span class='label'>HOLDOUT-DTI {H(hold['evaluator_version'])}, n={hold['withheld_positives']:,}</span><br><span class='small'>champion rule same evaluator {f4(hold['champion_02778_same_evaluator_dti'])}; paired Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}; SGMC-cal {f4(sgmc['prevalence_calibrated_dti'])} vs champion {f4(sgmc['champion_02778_calibrated_dti'])}</span></td>"
-            f"<td>max vs 9 sites {pct(reg['focus9_max_3px_overlap'])}; max vs any ≤100k-dot raster {pct(reg['discrete_le100k_max_literal_3px_overlap'])}; vs 0.2778 champion {pct(card['spatial_allocation']['overlap_3px_vs_champion_02778'])} → <strong>unique</strong></td>"
+            f"<td>{current_uniqueness}</td>"
             f"<td><strong>{'SUBMIT (selector decides slot)' if ok else 'DO NOT SUBMIT'}</strong></td></tr>")
 
     table = f"""<h2>Per-site executive table — what to download, what it is estimated to score, is it unique</h2>
@@ -257,7 +270,7 @@ def build() -> None:
 <tr><td>Leakage canary: every feature alone ≤ 0.90 AUC on withheld truth ({card['leakage_canary']['n_features_tested']} features)</td><td>{'PASS' if card['leakage_canary']['passed'] else 'FAIL'} — max {f4(card['leakage_canary']['max_oriented_auc'])}; strain-deficit prior alone {f4(card['leakage_canary']['strain_deficit_prior_alone_auc'])}</td></tr>
 <tr><td>Uniqueness — surface rank-correlation vs {reg['unique_rasters_checked']:,} unique registry rasters (113 repos) ≤ 0.90</td><td>max |ρ| = {f4(reg['surface_max_abs_spearman'])} ({H(reg['surface_worst_raster'])})</td></tr>
 <tr><td>Uniqueness — final dots within 3 px of any ≤100k-dot detector raster ≤ 70%</td><td>max {pct(reg['discrete_le100k_max_literal_3px_overlap'])} ({H(reg['discrete_worst_raster'])}); nine focus sites max {pct(reg['focus9_max_3px_overlap'])}</td></tr>
-<tr><td>Uniqueness — null-calibrated excess overlap vs every raster incl. space-filling lattice/blankets (IR-K3-17)</td><td>{'PASS' if card['registry']['null_calibrated_all_rasters_final_passed'] else 'FAIL'} — literal worst {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}), p0 = {reg['literal_worst_any_raster'].get('p0')}, excess = {reg['literal_worst_any_raster'].get('excess_overlap_3px')}</td></tr>
+<tr><td>Uniqueness — literal final-dot overlap against every registry raster must be ≤ 70% (no calibration or lattice exception)</td><td>{'PASS' if card['registry']['literal_all_rasters_final_passed'] else 'FAIL — DO NOT SUBMIT'} — maximum literal overlap {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}); null-calibrated excess is diagnostic only</td></tr>
 <tr><td>Holdout: paired improvement over the 0.2778 champion rule, same evaluator, 95% CI excludes 0</td><td>{'PASS' if hold['paired_delta_ci95'][0] > 0 else 'FAIL'} — Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}</td></tr>
 <tr><td>Overall promotion-gate verdict</td><td><strong>{H(gate['verdict'].upper())}</strong> {('— ' + H('; '.join(gate['reasons']))) if gate['reasons'] else ''}</td></tr>
 </tbody></table></div>
@@ -273,15 +286,26 @@ PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python s
 <p><a href="../research/k3c-preregistration-20261028.md">Locked preregistration</a> · <a href="../../knowledge/irregularities.md">Irregularities register</a> · <a href="../../research/2026-10-28-k3c.md">Research note</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a></p>"""
     (ROOT / "docs/k3c/index.html").write_text(shell("H-K3C executive summary — GEMSDOEkarage3", body), encoding="utf-8")
 
-    howto = f"""<h1>How to submit the cleared file to DrivenData</h1>
-{verdict_box}
+    if ok:
+        submission_steps = f"""<ol class="steps">
+<li><strong>Download</strong> <a href="{H(tif_rel)}" download>{H(card['submission_name'])}</a> (or the <a href="{H(zip_rel)}" download>.zip</a> containing exactly one GeoTIFF). Verify the published SHA-256.</li>
+<li><strong>Open</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the competition's submissions page</a> and click <em>New submission</em>. Upload one single-band GeoTIFF or a ZIP containing one, matching the official sample's CRS, shape and geotransform.</li>
+<li><strong>Enter the note</strong> (≤ 140 characters): <code>{H(card['note'])}</code>.</li>
+<li><strong>Submit only after selector approval.</strong> Check the current weekly cap before using a slot.</li>
+<li><strong>Record the organizer receipt</strong> against this exact filename and SHA-256; only the receipt can make a score ORGANIZER-CONFIRMED.</li>
+</ol>"""
+    else:
+        submission_steps = """<div class="verdict no"><strong>STOP — the archived H-K3C raster is not approved.</strong> Do not download it for submission and do not upload it. It fails the literal registry-overlap gate. The form below is included as generic guidance for a future candidate only; there is currently no approved file, name, or note.</div>
 <ol class="steps">
-<li><strong>Download</strong> <a href="{H(tif_rel)}" download>{H(card['submission_name'])}</a> (or the <a href="{H(zip_rel)}" download>.zip</a> containing exactly that one GeoTIFF). Verify the SHA-256 shown above (<code>sha256sum &lt;file&gt;</code>).</li>
-<li><strong>Open</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the competition's submissions page</a> and click <em>New submission</em>. The form accepts a single-band GeoTIFF or a .zip containing one; the file must match the sample submission's CRS (EPSG:32611), shape (3730 × 3292) and geotransform — this file was validated against the pinned <code>sample_submission.tif</code> on saved bytes.</li>
-<li><strong>Choose the file</strong>, then paste this note (≤ 140 characters) so you can tell submissions apart later:<br><code>{H(card['note'])}</code></li>
-<li><strong>Submit.</strong> The former error "Predicted values must be in range [0, 1]" cannot occur: every one of the 12,279,160 pixels is finite and in [0, 1] (zeros outside the footprint, no NaN, nodata unset).</li>
-<li><strong>Record the receipt.</strong> Copy the returned score next to the file name and SHA-256 into <code>registry/owner_score_ledger.csv</code> — that is the only way a number becomes ORGANIZER-CONFIRMED in this project.</li>
-</ol>
+<li>Wait until a future candidate passes the strict literal registry audit, saved-byte validator, leakage canaries and same-evaluator paired holdout gate.</li>
+<li>Use the separate selector to confirm eligibility and the current weekly slot limit.</li>
+<li>For an approved candidate only, open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the competition submissions page</a>, click <em>New submission</em>, and upload the approved single-band GeoTIFF or a ZIP containing exactly one GeoTIFF.</li>
+<li>Enter the approved candidate's unique name and note (maximum 140 characters), then submit only that exact-byte file.</li>
+<li>Save the organizer's receipt and bind any reported score to its filename and SHA-256. Do not treat a holdout metric or projection as an organizer score.</li>
+</ol>"""
+    howto = f"""<h1>How to submit to DrivenData — current decision first</h1>
+{verdict_box}
+{submission_steps}
 <p class="small">Weekly slot cap: check the number shown on the submission page before uploading; this project never spends a slot by itself.</p>"""
     (ROOT / "docs/k3c/how-to-submit.html").write_text(shell("How to submit — H-K3C", howto), encoding="utf-8")
 
@@ -290,7 +314,7 @@ PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python s
 {verdict_box.replace('href="' + H(tif_rel), 'href="k3c/' + H(tif_rel)).replace('href="' + H(zip_rel), 'href="k3c/' + H(zip_rel)).replace('href="run-card.json"', 'href="k3c/run-card.json"')}
 <p><a class="btn light" href="k3c/index.html">Full executive summary (per-site table, hypotheses, experiments)</a> <a class="btn light" href="k3c/how-to-submit.html">How to submit</a></p>
 <h2>Previous lanes (research only — DO NOT SUBMIT)</h2><ul>
-<li>H-K3B-1 CSST-BGHF (2026-10-28 session 3): <a href="csst-bghf/index.html">dashboard</a> — gate negative (8-cell paired CI spanned zero; literal lattice rule, since replaced by the null-calibrated rule IR-K3-17).</li>
+<li>H-K3B-1 CSST-BGHF (2026-10-28 session 3): <a href="csst-bghf/index.html">dashboard</a> — gate negative (8-cell paired CI spanned zero; its archived null-calibrated exception is not valid under the current strict literal rule).</li>
 <li>K3-CCL: <a href="ccl/index.html">summary</a> — duplicate stop vs 21 catalogue-halo rasters; holdout instrument bias IR-K3-12.</li>
 <li>Archived SMGC / CRSB-GUB / K3-fuse TIFFs in <code>docs/downloads/</code> — negative; see <a href="release-review.html">release review</a>.</li></ul>"""
     top_html = shell("GEMSDOEkarage3 — submission decision", top, depth=0)

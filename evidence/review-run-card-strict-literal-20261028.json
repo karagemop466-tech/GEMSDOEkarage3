@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "run_id": "strict-literal-gate-review-20261028",
+  "hypothesis": "No new geological hypothesis was tested. The review checks whether the archived H-K3C candidate satisfies the request's literal registry uniqueness rule.",
+  "mechanism": "No new mechanism evaluated; fail closed on any registry raster with rank-correlation above 0.90 or more than 70% final-dot overlap within 3 pixels.",
+  "named_non_fault_process_that_could_mimic_it": "Dense catalogue-halo blankets or calibration lattices can mechanically produce high pixel overlap without representing a shared fault mechanism; the user's stated rule nevertheless treats any such overlap as a stop.",
+  "experiments_run": 0,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "No new holdout run. Archived H-K3C result only: HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.1-24cell, n=66904, 0.111044 [0.098990, 0.122727]. Not an organizer score or leaderboard estimate."
+  },
+  "correlation_overlap_vs_registry": {
+    "archived_surface_max_abs_spearman": 0.526987,
+    "archived_final_dots_max_literal_overlap_3px": 1.0,
+    "literal_overlap_limit": 0.7,
+    "archived_literal_all_rasters_passed": false,
+    "null_calibrated_excess_is_authorizing": false,
+    "status": "NEGATIVE: archived H-K3C card records a 100% literal final-dot overlap witness; strict threshold fails. No new surface or dot set was created."
+  },
+  "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "raster_sha256_scope": "Existing H-K3C historical research TIFF, not a new submission",
+  "validator_output": {
+    "historical_saved_bytes_were_checked": true,
+    "historical_no_nan_inside_footprint": true,
+    "historical_values_in_0_1": true,
+    "historical_crs_shape_transform_match": true,
+    "status": "Historical format checks passed; this review did not re-read the TIFF because rasterio and competition template/cache are absent. Format pass does not authorize submission."
+  },
+  "submission_name": null,
+  "note": "No new TIFF; archived H-K3C file fails strict literal uniqueness. Do not submit.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "slot_selected": false,
+  "organizer_confirmed_score": null,
+  "limitations": [
+    "Feature cache absent from the local checkout",
+    "No fresh complete registry scan in this review",
+    "No new holdout experiment or current same-session baseline",
+    "No organizer receipt or account quota verification"
+  ]
+}

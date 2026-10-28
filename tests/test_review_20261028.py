@@ -11,12 +11,11 @@ from scripts.promotion_gate import assess
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_normal_budget_warns_but_does_not_stop_under_v3_rule():
-    # v3 (IR-K3-17): the literal lattice bound is disclosed as a warning; the gate uses the null-calibrated rule.
-    with pytest.warns(UserWarning, match='null-calibrated'):
-        assert require_budget_not_proven_duplicate(37654) is None
+def test_literal_budget_bound_stops_before_placement():
+    with pytest.raises(ValueError, match='above 70%'):
+        require_budget_not_proven_duplicate(37654)
     assert require_budget_not_proven_duplicate(1000) is None
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match='budget must be positive'):
         require_budget_not_proven_duplicate(0)
 
 
@@ -51,13 +50,13 @@ def test_active_decisions_agree_and_not_linked_to_organizer_scores():
     assert card['verdict'] == review['verdict'] == 'negative'
     assert not card['ok_to_submit'] and not review['ok_to_submit']
     assert review['experiments_run'] == review['weekly_slots_used'] == 0
-    # The public decision must agree with the current card and the gate re-run on it
-    assert decision['verdict'] == current['verdict'] == assess(current)['verdict']
+    # The lane card preserves its historical result; the current gate deliberately re-evaluates it
+    # under the strict literal protocol and the public selector field must remain empty.
+    assert current['verdict'] == 'promote'  # immutable experiment record, not current authorization
+    assert decision['verdict'] == assess(current)['verdict'] == 'negative'
+    assert decision['ok_to_submit'] is False
     assert decision['raster_sha256'] == current['raster_sha256']
-    if current['verdict'] == 'promote':
-        assert sites['promoted_candidate'] == current['submission_name']
-    else:
-        assert sites['promoted_candidate'] is None
+    assert sites['promoted_candidate'] is None
     # Historical nine-site rows never carry an organizer score estimate
     assert all(r['estimated_score'] is None and not r['ok_to_submit'] for r in sites['sites'])
     assert 'DO NOT SUBMIT' in (ROOT / 'README.md').read_text()
