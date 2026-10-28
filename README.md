@@ -1,35 +1,70 @@
-# GEMSDOEkarage3 — evidence before submission
+# GEMSDOEkarage3 — evidence-led fault discovery
 
-**Current decision: NOT OK TO SUBMIT.** No newly generated candidate is approved. Do not upload the historical TIFFs. [Executive summary and nine-site comparison](index.html) · [Submission guide](executive-summary.html) · [Research slate](research/2026-10-27-review.md) · [Latest safety review](docs/review-2026-10-28.md) · [Current run card](docs/data/current-run.json).
+## Current decision (2026-10-28): DO NOT SUBMIT
 
-## Starting point for every session
+**The previous “PROMOTE / OK TO SUBMIT” recommendation is retracted.**
+The retained SMGC TIFF's own registry evidence records **99.6866%** overlap within
+3 px of the registered calibration lattice, over the literal **70%** limit.
+Dense-raster exemptions were not authorized. Stop means stop: no new raster,
+experiments, or competition slots in this review.
 
-Read the [standing project brief](docs/PROJECT_BRIEF.md), a consolidated (not verbatim) record of the user's repeated prompt; [prior review](research/2026-10-27-review.md); and [current run card](docs/data/current-run.json). The objective is a genuinely unique, high-performing, validated GeoTIFF, not merely a differently named copy. Respect the parallel-run protocol, three-experiment/two-hour budget, literal all-registry stop, fold-local hide-and-recover, leakage canaries, and separate slot selector. **Maximize P(Win)** by measuring tradeoffs and **Own the Outcome** by reporting failures and limitations. Do not invent an assigned method lane, score receipt or organizer acceptance.
+- [Executive summary and nine-site table](docs/executive-summary.html)
+- [Three-pass review, ranked hypotheses, limitations and next steps](docs/review-2026-10-28.md)
+- [Corrected candidate card](docs/run-card.json) · [Automated gate](docs/current-gate-decision.json)
+- [Historical forensics and source links](executive-summary.html)
 
-## Executive decision
+### Retained artifact — research download only, NOT CLEARED
 
-| Item | Evidence and action |
-| --- | --- |
-| New submission file | **None approved; do not submit.** Prior GeoTIFFs remain available as research artifacts only. |
-| New leaderboard score estimate | **Unavailable.** A local holdout is not an estimate of the hidden organizer score without calibration. |
-| Focus sites | GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36. [Site-by-site table and exact historical filenames](index.html#scorecard). |
-| Historical high claim | GEMSDOE32 H33-B2 **0.2778, USER-REPORTED / UNVERIFIED**; no hash-linked organizer receipt was found. No current leaderboard position can be inferred. |
-| Why might H33-B2 perform well? | On the pinned mirrors, B2 removes pixels near mapped faults from the preceding raster. Under the distance-weighted metric, fewer redundant predictions could improve the precision–recall tradeoff. The hidden truth and receipt are unavailable; this is a hypothesis, not proof or a forecast. [Detailed audit](research/2026-10-27-review.md). |
-| Critical uniqueness failure | The older SMGC candidate's own record reports **99.6866%** directional overlap with a registered lattice and `literal_all_rasters_final_passed: false`; it is not eligible under the literal 70% stop. A filtered subset had been incorrectly presented as a complete pass. [Historical run card](evidence/hk3_smgc_run_card.json) and [review](docs/review-2026-10-28.md). |
-| Previous CRSB-GUB artifact | Research only: `gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`, SHA-256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3`. Its scientific gate is negative; its filtered uniqueness claim is not a literal all-registry pass. No organizer acceptance is established. |
+[`gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif`](docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif)
 
-## Known limitations and next steps
+SHA256: `f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f`.
+Byte novelty and [0,1] format validity do not establish lane uniqueness or high scores.
+Saved HOLDOUT-DTI: `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives,
+0.107297, 95% CI [0.093004, 0.120923]. **Not reproduced this review; not a
+leaderboard estimate.** No organizer receipt authenticates the supplied historical results.
 
-The new request does not identify its promised single method paragraph. Historical preregistrations describe different previous lanes, not a reliable assignment for this session. Competition data in this checkout, the cached feature stack, complete current registry and matched baseline are absent; ignored files may differ across workspaces. Organizer-authenticated data, quota, receipts and leaderboard access are not available in this sandbox. Public GitHub mirrors are not proof of organizer authenticity. The legacy SMGC runner is disabled because it excluded registry classes from promotion, wrote before the final literal check, and deleted existing downloads. Its historical evidence has not been erased.
+Earlier CRSB-GUB artifact (also research only):
+`gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`
+SHA256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3`.
+Use its [archive card](docs/crsb-gub/run-card.json) for the exact filename and context.
 
-Next: coordinate a specific lane and resolve the literal lattice conflict; obtain authorized official data and complete hash-pinned registry/cache; repair the shared upstream evaluator/writer (see [issue #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)); run per-feature leakage canaries and matched, buffered whole-segment holdout with CIs; check both stages against **every** registered raster; verify exact saved bytes against the official template; then use a separate selector. Do not use a weekly slot without these gates. Historical hypotheses, input sources and availability caveats are documented in the [research slate](research/2026-10-27-review.md).
+## Standing owner prompt — read at the start of every session
 
-## Local checks
+The deduplicated prompt is maintained in [knowledge/owner_brief.md](knowledge/owner_brief.md).
+It is a requirements summary, not a verbatim transcript. Focus sites:
+GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31,
+GEMSDOE32, GEMSDOE33, GEMSDOE36.
+
+Generate genuinely unique GeoTIFFs, never copied submissions. Apply the literal
+registry correlation and 3-px overlap stops before placement and on final dots.
+Reuse the shared cached features, `evaluate_holdout.py`, and `submission_writer.py`.
+Withhold buffered whole segments, rebuild catalogue features using visible faults
+only, mask visible pixels exactly, and report pooled HOLDOUT-DTI with evaluator,
+withheld-positive count and 95% CI. Test every feature alone; AUC above 0.90 is
+leakage until disproven. Never label a projection as a score or a reported result
+as ORGANIZER-CONFIRMED without a submission-page receipt. Stop after three
+experiments or two hours. Slot selection is separate and subject to the actual
+weekly cap. Negative results are deliverables.
+
+Make download status obvious; include unique name and note <=140 characters.
+Validate saved single-band bytes, finite [0,1] values, CRS/shape/transform against
+the real template. Do not claim validation when data is absent. Rank geological
+hypotheses before implementation; establish external data availability before
+calling an idea viable. Perform three review passes. Preserve official links,
+provenance, limitations and irregularities. Maximize P(Win); own the outcome.
+
+## Reproduce this decision
 
 ```sh
-python scripts/check_readiness.py  # exits 2 when prerequisites are missing
-python scripts/build_site.py --check
-python -m pytest -q
+python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/promotion_gate.py docs/run-card.json # expected exit 2 (negative)
+.venv/bin/python scripts/build_review_status.py
+.venv/bin/python -m pytest -q
 ```
 
-Readiness is measured at execution time, not a live feed. Page metadata refresh does not authenticate scores, validate files, or grant a submission slot. Official references: [competition problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [submission data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), and [DOE INGENIOUS dataset](https://gdr.openei.org/submissions/1391).
+Ignored data/cache must be restored separately for integration training and
+holdout reproduction. This runtime only permits GitHub and package-registry
+network access; official competition pages and Dropbox cannot be reverified.
+No claim of winning, hidden-score estimation, complete current registry coverage,
+or a newly generated submission is made.

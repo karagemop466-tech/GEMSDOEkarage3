@@ -12,6 +12,20 @@ def assess(card):
         return {'verdict': 'negative', 'ok_to_submit': False, 'selector_required': True, 'reasons': ['invalid run card']}
     def require(ok, reason):
         if not ok: reasons.append(reason)
+    # Never let a density-filtered summary override literal registry evidence.
+    def literal_failures(node, path='card'):
+        if isinstance(node, dict):
+            for key, value in node.items():
+                here = f'{path}.{key}'
+                if key == 'literal_all_rasters_final_passed':
+                    require(value is True, f'{here}: literal registry failed')
+                if key in ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap'):
+                    require(finite(value) and 0 <= value <= .70, f'{here}: duplicate or invalid overlap')
+                literal_failures(value, here)
+        elif isinstance(node, list):
+            for i, value in enumerate(node):
+                literal_failures(value, f'{path}[{i}]')
+    literal_failures(card)
     require(bool(card.get('assigned_lane')), 'missing assigned method lane')
     h=card.get('holdout') if isinstance(card.get('holdout'), dict) else {}
     require(h.get('evidence_class')=='HOLDOUT-DTI' and bool(h.get('evaluator_version')), 'missing versioned HOLDOUT-DTI')
