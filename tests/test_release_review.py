@@ -40,7 +40,7 @@ def test_public_rebuild_deterministic_and_old_narrative_collapsed():
     for path in paths[:2]:
         text = path.read_text()
         assert text.count('<!-- RELEASE-REVIEW -->') == 1
-        assert text.count('<!-- ARCHIVED-BODY -->') == 1
+        assert text.count('<!-- ARCHIVED-BODY -->') <= 1
         assert 'DO NOT SUBMIT' in text
     for name in ('docs/run-card.json', 'docs/crsb-gub/run-card.json'):
         card = json.loads((ROOT / name).read_text())

@@ -6,6 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
+import pytest
 import numpy as np
 import rasterio
 
@@ -46,21 +47,18 @@ def test_smgc_extra_stack_and_stationary_envelope():
 
 
 
-def test_optional_cached_smgc_stack():
-    import pytest
-    # Integration prerequisite is not checked into Git.
-    if not (work_dir() / "smgc_extra_4ch.npy").exists():
-        pytest.skip("Restore hash-verified shared SMGC cache for integration test")
-    # Verify cached 4-channel SMGC stack on disk
+def test_cached_smgc_stack_integration():
+    # Optional large-data integration, never a prerequisite for synthetic tests.
     smgc_path = work_dir() / "smgc_extra_4ch.npy"
-    assert smgc_path.exists()
+    if not smgc_path.exists():
+        pytest.skip("Restore ignored SMGC feature cache for integration check")
     arr = np.load(smgc_path, mmap_mode="r")
     assert arr.shape == (3730, 3292, 4)
     assert arr.dtype == np.float32
     assert np.isfinite(arr[::8, ::8, :]).all()
 
 
-def test_promoted_submission_geotiff_and_run_card():
+def test_retracted_submission_geotiff_and_run_card():
     rc_path = ROOT / "docs" / "run-card.json"
     assert rc_path.exists()
     rc = json.loads(rc_path.read_text())
@@ -71,20 +69,12 @@ def test_promoted_submission_geotiff_and_run_card():
     assert rc["leakage_canary"]["passed"] is True
     assert rc["leakage_canary"]["max_oriented_auc"] <= 0.90
     assert rc["correlation_overlap_vs_registry"]["max_rank_correlation"] <= 0.90
-    assert rc["correlation_overlap_vs_registry"]["max_dot_overlap_3px"] <= 0.70
+    assert rc["correlation_overlap_vs_registry"]["max_dot_overlap_3px"] > 0.70
 
     tif_path = ROOT / rc["submission_file"]
     assert tif_path.exists()
     sha = hashlib.sha256(tif_path.read_bytes()).hexdigest()
     assert sha == rc["raster_sha256"]
-
-    # Independent saved-byte audit is hash-bound; do not reconstruct a holdout
-    # from absent ignored data or confuse a format pass with release approval.
-    review = json.loads((ROOT / "evidence/release-audit-20261028.json").read_text())
-    row = next(r for r in review["rows"] if r["sha256"] == sha)
-    assert row["validator"]["whole_array_finite_range_pass"] is True
-    assert row["duplicate_stop"] is True
-    assert row["within_3px_fraction"] > .70
 
     with rasterio.open(tif_path) as ds:
         arr = ds.read(1)
@@ -105,4 +95,5 @@ def test_promoted_submission_geotiff_and_run_card():
     pg_out = json.loads(pg.stdout)
     assert pg.returncode == 2
     assert pg_out["verdict"] == "negative"
-    assert "superseded release evidence; rerun literal registry checks" in pg_out["reasons"]
+    assert pg_out["ok_to_submit"] is False
+    assert any("literal registry failed" in reason for reason in pg_out["reasons"])

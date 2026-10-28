@@ -331,8 +331,8 @@ def scan_full_registry(
     top_ov_candidates = sorted(rows, key=lambda r: -r["within_3px_fraction"])[:5]
     worst_ov_all = max(rows, key=lambda r: r["within_3px_fraction"])
 
-    verify_surf_shas = {r["sha256"] for r in (top_surf_candidates + top_ov_candidates)}
-    verify_final_shas = {r["sha256"] for r in top_ov_candidates}
+    verify_surf_shas = {r["sha256"] for r in rows}
+    verify_final_shas = {r["sha256"] for r in rows}
     rg_surf_comparisons = []
     rg_final_comparisons = []
     for sha in sorted(verify_surf_shas | verify_final_shas):
@@ -618,6 +618,10 @@ def render_diagnostic_figure(
 
 
 def main() -> int:
+    # Historical runner excludes dense/lattice rasters from release-gate inputs,
+    # writes before the final literal check and deletes existing downloads.
+    # Disable it rather than silently authorizing a protocol-violating candidate.
+    raise SystemExit("STOP: legacy SMGC runner is disabled; literal registry gate and safe output handling require repair. See evidence/review-2026-10-28.md.")
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()
@@ -856,7 +860,7 @@ def main() -> int:
         f"({pre_scan['worst_genuine_surface']['name']})",
         flush=True,
     )
-    if not pre_scan["genuine_surface_passed"]:
+    if not pre_scan["release_gate_direct_surface"]["passed"]:
         raise SystemExit(f"STOP: Pre-placement continuous surface Spearman > 0.90: {pre_scan['worst_genuine_surface']}")
 
     exp3_full_dots, exp3_emit_log = fbgr.emit_fbgr_submodular(
@@ -932,8 +936,8 @@ def main() -> int:
         f"literal lattice={final_scan['worst_literal_overlap']['within_3px_fraction']:.4f} (RSS={peak_rss_mb()} MB)",
         flush=True,
     )
-    if not final_scan["genuine_final_dots_passed"]:
-        raise SystemExit(f"STOP: Final-dot genuine registry uniqueness failed: {final_scan['worst_genuine_overlap']}")
+    if not final_scan["literal_all_rasters_final_passed"]:
+        raise SystemExit(f"STOP: Final-dot literal registry uniqueness failed: {final_scan['worst_literal_overlap']}")
 
     # Independent strict CLI validator (`scripts/check_submission.py --strict-finite`)
     sub_env = {**os.environ, "PYTHONPATH": str(ROOT / "src"), "GEMS_DATA_DIR": str(ddir)}
@@ -1057,8 +1061,11 @@ def main() -> int:
         paired_delta_ci95=paired_hr_vs_champ["ci95"],
     )
 
+    if not final_scan["literal_all_rasters_final_passed"]:
+        gate_decision["gates"]["final"] = False
+        gate_decision["verdict"] = "negative"
     final_verdict = "promote" if gate_decision["verdict"] == "promote" else "negative"
-    ok_submit = final_verdict == "promote"
+    ok_submit = False  # A recommendation never allocates a weekly slot.
 
     def _clean_arm(res: dict) -> dict:
         return {

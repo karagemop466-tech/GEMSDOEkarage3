@@ -1,0 +1,24 @@
+{
+  "file": "docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif",
+  "sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
+  "single_band": true,
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "all_finite": true,
+  "range_0_1": true,
+  "positive_pixels": 37654,
+  "template_match_rechecked": false,
+  "reason": "Core template absent in this checkout. Metadata matches saved receipt, not fresh organizer authentication.",
+  "ok_to_submit": false
+}

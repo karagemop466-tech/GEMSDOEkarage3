@@ -41,8 +41,9 @@ def build():
         text = text.replace('<!-- ARCHIVED-BODY --><details><summary>Superseded narrative — not current submission instructions</summary>', '').replace('</details><!-- /ARCHIVED-BODY -->', '')
         text = re.sub(r'(<body\b[^>]*>)\s*', r'\1\n', text, count=1, flags=re.I)
         text = re.sub(r'\s*</body>', '\n</body>', text, flags=re.I)
-        text = text.replace('</body>', '</details><!-- /ARCHIVED-BODY -->\n</body>')
-        banner += '<!-- ARCHIVED-BODY --><details><summary>Superseded narrative — not current submission instructions</summary>'
+        if 'PROMOTE — OK TO DOWNLOAD' in text:
+            text = text.replace('</body>', '</details><!-- /ARCHIVED-BODY -->\n</body>')
+            banner += '<!-- ARCHIVED-BODY --><details><summary>Superseded narrative — not current submission instructions</summary>'
         text = re.sub(r'(<body\b[^>]*>)', lambda m: m[1] + '\n' + banner, text, count=1, flags=re.I)
         p.write_text(text)
 

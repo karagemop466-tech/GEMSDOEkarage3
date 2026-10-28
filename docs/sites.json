@@ -1,39 +1,17 @@
 {
   "checked_utc": "2026-10-27T23:45:27.329159+00:00",
-  "promoted_candidate": {
-    "site": "GEMSDOEkarage3",
-    "repository": "https://github.com/karagemop466-tech/GEMSDOEkarage3",
-    "candidate_id": "H-K3-1-SMGC-CT",
-    "submission_file": "docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif",
-    "submission_name": "GEMSDOEKARAGE3-HK3-SMGC-C886C782",
-    "submission_note": "GEMSDOEkarage3 H-K3-1 SMGC-CT maxenv d2.8 37654d B2 | HR=0.1073 SGMC=0.0660",
-    "raster_sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
-    "holdout_dti_hide_recover_v3": 0.107297,
-    "holdout_dti_hide_recover_ci95": [
-      0.093004,
-      0.120923
-    ],
-    "holdout_dti_sgmc_calibrated_v3": 0.066011,
-    "max_3px_overlap_vs_registry": 0.9968662027938598,
-    "max_abs_spearman_vs_registry": 0.201012,
-    "verdict": "negative",
-    "ok_to_submit": false,
-    "release_review": "release-review.html"
-  },
+  "promoted_candidate": null,
   "sites": [
     {
       "site": "GEMSDOE24",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
       "owner_reported_submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
       "owner_reported_value": 0.2477,
-      "other_confirmed_submissions": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros: 0.0859",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/24gems-blind-upwelling-20261026T162611Z-a23f2207f2c0-zeros.tif",
       "latest_inspected_sha256": "a59b772423a42676fadbdaf6bdc556e350e51c0f13a560b96d40821822550122",
       "latest_emitted_dots": 37722,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.04087,
-      "holdout_dti_sgmc_calibrated": 0.057266,
       "within_3px_of_02778_champion": 0.177,
       "within_3px_of_hk3_smgc": 0.2243,
       "estimated_score": null,
@@ -59,21 +37,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 1.0
-      }
+      },
+      "other_reported_submissions": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros: 0.0859"
     },
     {
       "site": "GEMSDOE25",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE25",
       "owner_reported_submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
       "owner_reported_value": 0.26,
-      "other_confirmed_submissions": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros: 0.0742",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
       "latest_inspected_sha256": "6648cbebcf724f82f18682632d1770084bc293a1db63d1394bb42871de5279fc",
       "latest_emitted_dots": 43798,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.002758,
-      "holdout_dti_sgmc_calibrated": 0.084317,
       "within_3px_of_02778_champion": 0.2221,
       "within_3px_of_hk3_smgc": 0.2643,
       "estimated_score": null,
@@ -99,21 +75,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 1.0
-      }
+      },
+      "other_reported_submissions": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros: 0.0742"
     },
     {
       "site": "GEMSDOE27",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE27",
       "owner_reported_submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
       "owner_reported_value": 0.2449,
-      "other_confirmed_submissions": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite: 0.2250; h29: 0.2190",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
       "latest_inspected_sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
       "latest_emitted_dots": 37654,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.01434,
-      "holdout_dti_sgmc_calibrated": 0.060466,
       "within_3px_of_02778_champion": 0.5023,
       "within_3px_of_hk3_smgc": 0.5366,
       "estimated_score": null,
@@ -139,21 +113,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 0.9801884946517089
-      }
+      },
+      "other_reported_submissions": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite: 0.2250; h29: 0.2190"
     },
     {
       "site": "GEMSDOE28",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE28",
       "owner_reported_submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
       "owner_reported_value": 0.271,
-      "other_confirmed_submissions": "h27-4: 0.2708; h38-1: 0.2707; h32-1: 0.2649; s18: 0.0217; s21: 0.0206",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/gems28-s22-ctxhgb-20261026-e23dabcec6e2-allfinite.tif",
       "latest_inspected_sha256": "77934be607d48a4daec5b046009cdabf61d3fdee210aadc75be82ac70f3beb2e",
       "latest_emitted_dots": 37654,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.017036,
-      "holdout_dti_sgmc_calibrated": 0.050532,
       "within_3px_of_02778_champion": 0.4205,
       "within_3px_of_hk3_smgc": 0.385,
       "estimated_score": null,
@@ -179,21 +151,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 1.0
-      }
+      },
+      "other_reported_submissions": "h27-4: 0.2708; h38-1: 0.2707; h32-1: 0.2649; s18: 0.0217; s21: 0.0206"
     },
     {
       "site": "GEMSDOE30",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE30",
       "owner_reported_submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
       "owner_reported_value": 0.26,
-      "other_confirmed_submissions": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a: 0.1462",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/GEMSDOE30-blind-thermal-corridor-h1-annulus-20261026T202136Z.tif",
       "latest_inspected_sha256": "20fc7b107e9e1a3a19e5e082d41720f0ce2204ad0ae8ca632b9884d16534af26",
       "latest_emitted_dots": 18766,
       "latest_whole_array_finite": false,
-      "holdout_dti_static_hide_recover": 0.025448,
-      "holdout_dti_sgmc_calibrated": 8.1e-05,
       "within_3px_of_02778_champion": 0.1734,
       "within_3px_of_hk3_smgc": 0.2393,
       "estimated_score": null,
@@ -219,21 +189,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 1.0
-      }
+      },
+      "other_reported_submissions": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a: 0.1462"
     },
     {
       "site": "GEMSDOE31",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE31",
       "owner_reported_submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
       "owner_reported_value": 0.2708,
-      "other_confirmed_submissions": "Identical 40,199-dot B=1 sibling of GEMSDOE28 h27-4",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/gemsdoe31-h31u-strainseis-corrob-37654-20261026-a02579ff-zeros.tif",
       "latest_inspected_sha256": "e9befc533069ad98b1c44764c89161398c61c3109560173ce96ba296040fe3b0",
       "latest_emitted_dots": 37654,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.00572,
-      "holdout_dti_sgmc_calibrated": 0.046681,
       "within_3px_of_02778_champion": 0.2647,
       "within_3px_of_hk3_smgc": 0.2886,
       "estimated_score": null,
@@ -259,21 +227,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 1.0
-      }
+      },
+      "other_reported_submissions": "Identical 40,199-dot B=1 sibling of GEMSDOE28 h27-4"
     },
     {
       "site": "GEMSDOE32",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
       "owner_reported_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
       "owner_reported_value": 0.2778,
-      "other_confirmed_submissions": "Highest ORGANIZER-CONFIRMED score among all GEMSDOE sites (37,654 dots, B=2)",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
       "latest_inspected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
       "latest_emitted_dots": 37654,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.004515,
-      "holdout_dti_sgmc_calibrated": 0.064121,
       "within_3px_of_02778_champion": 1.0,
       "within_3px_of_hk3_smgc": 0.4932,
       "estimated_score": null,
@@ -304,21 +270,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 1.0
-      }
+      },
+      "other_reported_submissions": "Highest USER-REPORTED / UNVERIFIED score among all GEMSDOE sites (37,654 dots, B=2)"
     },
     {
       "site": "GEMSDOE33",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE33",
       "owner_reported_submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
       "owner_reported_value": 0.2632,
-      "other_confirmed_submissions": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros: 0.0963",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "archive/legacy_candidates/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif",
       "latest_inspected_sha256": "b64e198f99108b7678c2d0a78864d9677299206cf5b642388c831435c8272f33",
       "latest_emitted_dots": 40199,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.030516,
-      "holdout_dti_sgmc_calibrated": 0.06301,
       "within_3px_of_02778_champion": 0.9539,
       "within_3px_of_hk3_smgc": 0.4955,
       "estimated_score": null,
@@ -344,21 +308,19 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 0.9970858712528365
-      }
+      },
+      "other_reported_submissions": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros: 0.0963"
     },
     {
       "site": "GEMSDOE36",
       "repository": "https://github.com/buffedlizard55-lab/GEMSDOE36",
       "owner_reported_submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
       "owner_reported_value": 0.275,
-      "other_confirmed_submissions": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros: 0.1647",
-      "evidence_class": "USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt",
+      "evidence_class": "USER-REPORTED / UNVERIFIED",
       "latest_inspected_download": "docs/downloads/gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros.tif",
       "latest_inspected_sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
       "latest_emitted_dots": 37654,
       "latest_whole_array_finite": true,
-      "holdout_dti_static_hide_recover": 0.003086,
-      "holdout_dti_sgmc_calibrated": 0.044458,
       "within_3px_of_02778_champion": 0.5613,
       "within_3px_of_hk3_smgc": 0.6494,
       "estimated_score": null,
@@ -384,8 +346,8 @@
         "positive_mask_locally_inspected": true,
         "local_audit": "historical-raster-audit.json",
         "max_peer_overlap_3px": 0.9757811293560509
-      }
+      },
+      "other_reported_submissions": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros: 0.1647"
     }
-  ],
-  "release_status": "DO NOT SUBMIT \u2014 2026-10-28 literal-registry audit"
+  ]
 }
