@@ -2,6 +2,7 @@
 
 [![Validation Gate](https://img.shields.io/badge/Automated_Validator-20%2F20_Checks_PASS-10b981)](#1-executive-summary--ready-to-submit-unique-geotiff)
 [![Release Gate Verdict](https://img.shields.io/badge/Release_Gate-PROMOTE_(OK_TO_SUBMIT)-10b981)](#1-executive-summary--ready-to-submit-unique-geotiff)
+[![Branch](https://img.shields.io/badge/Branch-arena%2Fa4439840--gemsdoekarage3-0369a1)](#1-executive-summary--ready-to-submit-unique-geotiff)
 [![Hide-and-Recover v3.0](https://img.shields.io/badge/HOLDOUT--DTI_(Hide--Recover_v3.0)-0.107297_(vs_0.099202_Champ)-38bdf8)](#4-pre-registered-3-experiment-ablation--dual-benchmark-pareto-win)
 [![SGMC Off-Catalogue v3.0](https://img.shields.io/badge/HOLDOUT--DTI_(SGMC--cal_v3.0)-0.066011_(vs_0.064121_Champ)-a78bfa)](#4-pre-registered-3-experiment-ablation--dual-benchmark-pareto-win)
 [![Registry Uniqueness](https://img.shields.io/badge/Max_3px_Overlap-63.47%25_(%3C%3D70%25_Gate)-f59e0b)](#5-nine-focus-site-executive-summary--comparison-table)
