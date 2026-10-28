@@ -43,6 +43,7 @@ The [official public leaderboard](https://www.drivendata.org/competitions/306/co
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/audit_saved_tiffs.py --fetch  # reads public pinned mirrors; never uploads
 .venv/bin/python scripts/build_run_card.py
+.venv/bin/python scripts/build_preflight_site.py
 .venv/bin/python scripts/build_review_status.py
 .venv/bin/python scripts/build_release_review.py
 .venv/bin/python scripts/verify_numbers.py  # consistency, not authorization
