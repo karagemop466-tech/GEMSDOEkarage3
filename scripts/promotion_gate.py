@@ -18,8 +18,19 @@ import json
 import math
 import sys
 
-LITERAL_KEYS = ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap',
-                'literal_overlap_3px', 'max_literal_overlap_3px')
+# Only explicit 3-pixel raw overlaps implement the active stop rule. A 5-pixel
+# lattice diagnostic is useful evidence, but cannot itself reject or clear a file.
+LITERAL_KEYS = ('within_3px_fraction', 'literal_overlap_3px', 'max_literal_overlap_3px')
+
+
+def _literal_overlap(row, calibrated_claim: bool):
+    """Return a 3-px raw overlap; never substitute a null-calibrated excess."""
+    for key in ('literal_overlap_3px', 'within_3px_fraction'):
+        if key in row:
+            return row[key]
+    if not calibrated_claim and 'overlap_3px' in row:
+        return row['overlap_3px']
+    return None
 
 
 def finite(x):
@@ -86,6 +97,7 @@ def assess(card):
     manifest = registry.get('manifest_sha256')
     manifest_ok = isinstance(manifest, str) and len(manifest) == 64 and all(c in '0123456789abcdef' for c in manifest)
     require(inventory_ok and manifest_ok, 'missing nonempty unique registry inventory or manifest digest')
+    calibrated_claim = 'null-calibrated' in str(registry.get('duplicate_rule', '')).lower()
     for stage in ('surface', 'final_dots'):
         r = registry.get(stage) if isinstance(registry.get(stage), dict) else {}
         comparisons = r.get('comparisons')
@@ -95,7 +107,7 @@ def assess(card):
             rows_ok = (inventory_ok and all(isinstance(x, str) for x in ids)
                        and len(ids) == len(inventory) and len(set(ids)) == len(ids)
                        and set(ids) == set(inventory))
-        raw_values = [x.get('literal_overlap_3px') for x in comparisons] if rows_ok else []
+        raw_values = [_literal_overlap(row, calibrated_claim) for row in comparisons] if rows_ok else []
         raw_ok = (bool(raw_values) and all(finite(x) and 0 <= x <= .70 for x in raw_values)
                   and finite(r.get('max_literal_overlap_3px'))
                   and r.get('max_literal_overlap_3px') <= .70

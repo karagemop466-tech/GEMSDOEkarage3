@@ -136,6 +136,18 @@ class GateTests(unittest.TestCase):
         card['evidence'] = {'is_calibration_lattice': True, 'within_3px_fraction': .996866}
         self.assertEqual(assess(card)['verdict'], 'negative')
 
+    def test_five_pixel_diagnostic_is_not_the_three_pixel_stop_rule(self):
+        card = self.valid()
+        card['evidence'] = {'literal_5px_calibration_lattice_overlap': .99}
+        self.assertEqual(assess(card)['verdict'], 'promote')
+
+    def test_calibrated_claim_cannot_fall_back_to_generic_overlap(self):
+        card = self.valid()
+        card['registry']['duplicate_rule'] = 'null-calibrated excess is diagnostic only'
+        card['registry']['surface']['comparisons'][0]['overlap_3px'] = .5
+        del card['registry']['surface']['comparisons'][0]['literal_overlap_3px']
+        self.assertEqual(assess(card)['verdict'], 'negative')
+
     def test_ci_must_contain_estimate(self):
         card = self.valid()
         card['holdout']['ci95'] = [.3, .4]
