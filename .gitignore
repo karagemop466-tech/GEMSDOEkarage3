@@ -31,3 +31,6 @@ data/*
 .idea/
 .DS_Store
 Thumbs.db
+
+# JavaScript test dependencies
+node_modules/

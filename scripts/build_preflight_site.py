@@ -69,7 +69,7 @@ home = '''
 <section class="section tight" style="padding-top:0"><div class="wrap"><div class="watch"><div><strong><span class="status-dot"></span>Source watch</strong><p id="watch-detail">Loading source metadata; the checked-in snapshot may be stale. Refresh never approves a submission.</p></div><a class="text-link" href="data/feed.json">View feed JSON &nbsp; →</a></div></div></section>'''
 
 executive = '''
-<section class="page-hero"><div class="wrap"><div class="eyebrow">DECISION BRIEF &nbsp; / &nbsp; 27 OCT 2026</div><h1>Submission executive summary.</h1><p>The strongest defensible recommendation is to protect the next slot. A downloadable archive is not the same as a new, unique, validated submission.</p></div></section>
+<section class="page-hero"><div class="wrap"><div class="eyebrow">DECISION BRIEF &nbsp; / &nbsp; 28 OCT 2026</div><h1>Submission executive summary.</h1><p>The strongest defensible recommendation is to protect the next slot. A downloadable archive is not the same as a new, unique, validated submission.</p></div></section>
 <section class="section tight"><div class="wrap"><div class="alert"><span class="alert-icon">!</span><div><strong>NO FILE IS APPROVED FOR SUBMISSION</strong><p>No new TIFF was generated in this run. Do not upload, rename, or resubmit the historical research files listed below.</p></div></div>
 <div class="two-col"><div class="panel"><div class="section-label">CURRENT DECISION</div><h2>Download is locked for now.</h2><p>There is no new file, defensible leaderboard estimate, artifact-linked organizer receipt, or selected weekly slot. The method lane is missing, and the literal registry rule blocks the customary dot budget.</p><div class="actions"><span class="btn" aria-disabled="true">No submission file available &nbsp; ⊘</span><a class="text-link" href="preflight-research.html">Understand the blockers →</a></div></div>
 <div class="panel"><div class="section-label">WHEN A CANDIDATE EXISTS</div><h2>Required evidence</h2><div class="mini-grid"><div class="mini"><small>Format</small><strong>Saved-byte checks</strong></div><div class="mini"><small>Uniqueness</small><strong>Complete registry</strong></div><div class="mini"><small>Performance</small><strong>Paired holdout win</strong></div><div class="mini"><small>Decision</small><strong>Separate selector</strong></div></div></div></div>
@@ -101,11 +101,22 @@ research = '''
 
 DOCS.mkdir(exist_ok=True)
 (DOCS / 'data').mkdir(exist_ok=True)
-(DOCS / 'preflight.html').write_text(shell('Overview', 'home', home), encoding='utf-8')
-(DOCS / 'preflight-executive.html').write_text(shell('Executive summary', 'executive', executive), encoding='utf-8')
+home_page = shell('Overview', 'home', home)
+executive_page = shell('Executive summary', 'executive', executive)
+(DOCS / 'preflight.html').write_text(home_page, encoding='utf-8')
+(DOCS / 'preflight-executive.html').write_text(executive_page, encoding='utf-8')
 (DOCS / 'preflight-research.html').write_text(shell('Research & sources', 'research', research), encoding='utf-8')
+# GitHub Pages serves docs/index.html directly when /docs/ is opened. Keep these
+# conventional entry points synchronized with the fail-closed preflight pages.
+(DOCS / 'index.html').write_text(home_page, encoding='utf-8')
+(DOCS / 'executive-summary.html').write_text(executive_page, encoding='utf-8')
 shutil.copyfile(ROOT / 'registry' / 'historical.json', DOCS / 'data' / 'historical.json')
 shutil.copyfile(ROOT / 'evidence' / 'geometry_audit.json', DOCS / 'data' / 'geometry_audit.json')
-shutil.copyfile(ROOT / 'evidence' / 'run_card.json', DOCS / 'data' / 'run_card.json')
+current_run_card = ROOT / 'evidence' / 'run_card.json'
+shutil.copyfile(current_run_card, DOCS / 'data' / 'run_card.json')
+# Older session artifacts remain under evidence/; conventional "current/latest" URLs
+# must never keep advertising a superseded candidate as promotable.
+shutil.copyfile(current_run_card, DOCS / 'run-card.json')
+shutil.copyfile(current_run_card, DOCS / 'data' / 'latest-run-card.json')
 shutil.copyfile(ROOT / 'research' / '2026-10-27-review.md', DOCS / 'data' / 'review.md')
 print('Built overview, executive summary and research pages from pinned evidence.')

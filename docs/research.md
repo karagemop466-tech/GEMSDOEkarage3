@@ -1,6 +1,8 @@
-# PhD Research Monograph: Forensic Analysis of `GEMSDOE32` (`0.2778`), 5 Novel Geological Hypotheses, and Stationary Max-Envelope Validation (`H-K3-1 SMGC-CT`)
+# Archived Research Monograph: H-K3-1 SMGC-CT (historical; not approved)
 
-**Session Branch:** `arena/d834dcd0-gemsdoekarage3` · **Date:** `2026-10-27` · **Promoted Artifact:** [`docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif`](downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif) (`SHA256 = f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f`)
+> **Current status supersedes this report: DO NOT SUBMIT the archived candidate.** The present run card is negative with zero experiments/no new raster, and the literal 3-px registry witness stops the 37,654-dot budget. The numerical results and promotion/uniqueness statements below are retained for historical research, not current release authorization. The cited `0.2778` lacks an artifact-linked organizer receipt in this checkout.
+
+**Historical session:** `arena/d834dcd0-gemsdoekarage3` · **Date:** `2026-10-27` · **Archived research artifact:** [`docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif`](downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif) (`SHA256 = f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f`)
 
 ---
 
