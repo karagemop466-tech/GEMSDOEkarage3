@@ -75,10 +75,10 @@ Before any future test: resolve the lane with the parallel-run coordinator; rest
 - Added `node_modules/` to `.gitignore`; local Python environment and installed test dependencies are ignored.
 
 ### Pass 3 — final verification against the request
-- `.venv/bin/python -m pytest -q`: PASS, 97 passed and 1 ignored-cache integration skipped.
-- `.venv/bin/python -m unittest discover -s tests -q`: PASS, 54 tests.
+- `.venv/bin/python -m pytest -q`: PASS, 129 passed and 1 ignored-cache integration skipped.
+- `.venv/bin/python -m unittest discover -s tests -q`: PASS, 79 tests.
 - `npm test`: PASS, 4/4 dashboard tests; browser-feed tests PASS, 2/2.
-- `python scripts/build_preflight_site.py` and `python scripts/build_review_status.py`: PASS; `python scripts/build_site.py --check`: PASS.
+- `python scripts/build_preflight_site.py`, `python scripts/build_review_status.py`, `python scripts/build_release_review.py`, and `python scripts/build_site.py --check`: PASS.
 - JSON parsing, JavaScript syntax checks, and `git diff --check`: PASS.
 - `.venv/bin/python scripts/check_readiness.py`: intentionally returns `2` / not ready, listing absent lane, data, cache, registry rasters, and same-evaluator baseline.
 - No hypothesis experiment, new TIFF creation, leaderboard upload, slot selection, or organizer-score confirmation occurred.
