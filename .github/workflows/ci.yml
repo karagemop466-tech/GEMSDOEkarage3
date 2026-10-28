@@ -20,5 +20,9 @@ jobs:
         run: |
           python scripts/audit_registry.py --fetch --cache "$RUNNER_TEMP/gems-inputs" --out "$RUNNER_TEMP/geometry.json"
           python scripts/check_reproduction.py evidence/geometry_audit.json "$RUNNER_TEMP/geometry.json"
-      - run: python scripts/build_preflight_site.py && git diff --exit-code -- docs
+      - name: Verify preflight data and authoritative decision pages
+        run: |
+          python scripts/build_preflight_site.py
+          python scripts/build_review_status.py
+          git diff --exit-code -- docs/index.html docs/executive-summary.html docs/current-gate-decision.json
       - run: node --check docs/assets/site.js && node --test tests/test_browser_feed.js

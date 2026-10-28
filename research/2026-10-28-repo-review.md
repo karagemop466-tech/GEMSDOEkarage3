@@ -68,16 +68,18 @@ Before any future test: resolve the lane with the parallel-run coordinator; rest
 
 ### Pass 2 — repair user-facing inconsistencies and regression coverage
 - Replaced the README's initial “ready to submit” card with the current negative decision and marked the previous H-K3 report as historical/superseded.
-- Rebuilt `/docs/` landing and executive-summary aliases from the fail-closed preflight generator; the direct `/docs/` entry now shows no submission download and includes the nine-site summary.
-- Replaced stale browser tests that were aimed at a previous dynamic dashboard with tests of current checked-in pages and the current negative card.
+- Reconciled both page generators: `build_preflight_site.py` owns the preflight subpages and current-session data aliases; `build_review_status.py` owns the canonical `/docs/` landing and executive summary. The canonical entry pages now retract the former approval, show the duplicate stop, and label all nine reported scores unverified.
+- Preserved the historical negative candidate card at `docs/run-card.json`, while the current-session zero-experiment card is exposed at `docs/data/latest-run-card.json`; neither path authorizes submission.
+- Integrated the newer fail-closed gate and review changes from `main` without leaving the assigned branch. They retain the full historical candidate audit and fix the previously disabled runner/gate behavior.
 - Replaced old H-K3-deliverable tests that asserted a now-conflicted uniqueness pass with checks for the current fail-closed decision, archived raster byte format, and the literal lattice overlap stop.
 - Added `node_modules/` to `.gitignore`; local Python environment and installed test dependencies are ignored.
 
 ### Pass 3 — final verification against the request
-- `npm test`: PASS, 3/3 tests.
-- `.venv/bin/python -m unittest discover -s tests -v`: PASS, 45 tests.
-- `python scripts/build_site.py --check`: PASS; generated root pages are in sync.
-- JSON parsing and JavaScript syntax check: PASS; `git diff --check`: PASS.
+- `.venv/bin/python -m pytest -q`: PASS, 97 passed and 1 ignored-cache integration skipped.
+- `.venv/bin/python -m unittest discover -s tests -q`: PASS, 54 tests.
+- `npm test`: PASS, 4/4 dashboard tests; browser-feed tests PASS, 2/2.
+- `python scripts/build_preflight_site.py` and `python scripts/build_review_status.py`: PASS; `python scripts/build_site.py --check`: PASS.
+- JSON parsing, JavaScript syntax checks, and `git diff --check`: PASS.
 - `.venv/bin/python scripts/check_readiness.py`: intentionally returns `2` / not ready, listing absent lane, data, cache, registry rasters, and same-evaluator baseline.
 - No hypothesis experiment, new TIFF creation, leaderboard upload, slot selection, or organizer-score confirmation occurred.
 

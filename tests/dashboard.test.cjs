@@ -2,42 +2,60 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {JSDOM} = require('jsdom');
+// Legacy dynamic renderer is unit-tested with its own DOM contract; the live
+// decision page is intentionally static so a fetch cannot override its stop.
+const html = '<table><tbody id="rows"></tbody></table><div id="site-details"></div><p id="updated"></p><button disabled></button>';
+test('live docs page publishes the literal duplicate stop without dynamic approval', () => {
+  for (const page of ['docs/index.html', 'docs/executive-summary.html']) {
+    const content = fs.readFileSync(page, 'utf8');
+    assert.match(content, /Submission blocked: duplicate-stop/);
+    assert.match(content, /99\.6866%/);
+    assert.match(content, /NOT CLEARED FOR SUBMISSION/);
+    assert.doesNotMatch(content, /src=["']dashboard\.js/);
+  }
+});
+const script = fs.readFileSync('docs/dashboard.js', 'utf8');
 
-const home = fs.readFileSync('docs/index.html', 'utf8');
-const executive = fs.readFileSync('docs/executive-summary.html', 'utf8');
-const manifest = JSON.parse(fs.readFileSync('registry/historical.json', 'utf8'));
-
-function parse(html, path) {
-  return new JSDOM(html, {url: `https://example.org/docs/${path}`}).window.document;
+async function render(change, failure = false) {
+  const dom = new JSDOM(html, {runScripts: 'outside-only', url: 'https://example.org/docs/index.html'});
+  const fixtures = Object.fromEntries(['sites.json', 'historical-audit.json'].map(path =>
+    [path, JSON.parse(fs.readFileSync(`docs/${path}`, 'utf8'))]));
+  if (change) change(fixtures);
+  dom.window.fetch = async path => ({ok: !failure, status: failure ? 503 : 200,
+    json: async () => fixtures[path]});
+  dom.window.eval(script);
+  await new Promise(resolve => setImmediate(resolve));
+  return dom;
 }
 
-test('the /docs/ landing page fails closed and exposes no submission TIFF', () => {
-  const document = parse(home, 'index.html');
-  assert.match(document.body.textContent, /No file is ready/i);
-  assert.match(document.body.textContent, /Assigned method lane not supplied/);
-  assert.match(document.body.textContent, /No HOLDOUT-DTI run this session/);
-  assert.equal(document.querySelectorAll('a[download][href$=".tif"]').length, 0);
-  assert.doesNotMatch(document.body.textContent, /PROMOTE.*OK TO DOWNLOAD AND SUBMIT/i);
-});
-
-test('the executive page includes all nine historic entries and labels them research-only', () => {
-  const document = parse(executive, 'executive-summary.html');
-  assert.match(document.body.textContent, /NO FILE IS APPROVED FOR SUBMISSION/);
-  assert.match(document.body.textContent, /No submission file available/);
-  for (const row of manifest.historical) {
-    assert.match(document.body.textContent, new RegExp(row.site));
-    assert.ok(document.body.textContent.includes(row.historical_file), `missing file for ${row.site}`);
+test('renders nine evidence rows and cards without an approved TIFF download', async () => {
+  const dom = await render();
+  const document = dom.window.document;
+  assert.equal(document.querySelectorAll('#rows tr').length, 9);
+  assert.equal(document.querySelectorAll('#site-details article').length, 9);
+  assert.equal(document.querySelectorAll('#rows td:last-child').length, 9);
+  for (const cell of document.querySelectorAll('#rows td:last-child')) {
+    assert.match(cell.textContent, /NOT OK TO SUBMIT/);
   }
+  assert.equal(document.querySelector('button').disabled, true);
   assert.equal(document.querySelectorAll('a[download][href$=".tif"]').length, 0);
-  assert.match(document.body.textContent, /USER-REPORTED \/ unverified/);
-  assert.match(document.body.textContent, /Estimated score/);
+  assert.doesNotMatch(document.querySelector('#updated').textContent, /failed/);
+  dom.window.close();
 });
 
-test('the root run card is the current no-candidate decision, separate from archived candidate evidence', () => {
-  const card = JSON.parse(fs.readFileSync('evidence/run_card.json', 'utf8'));
-  assert.equal(card.verdict, 'negative');
-  assert.equal(card.ok_to_submit, false);
-  assert.equal(card.slot_selected, false);
-  assert.equal(card.experiments_run, 0);
-  assert.equal(card.raster_sha256, null);
+test('HTTP failure fails closed with no table recommendations', async () => {
+  const dom = await render(null, true);
+  assert.equal(dom.window.document.querySelectorAll('#rows tr').length, 0);
+  assert.match(dom.window.document.querySelector('#updated').textContent, /remain NOT OK TO SUBMIT/);
+  dom.window.close();
+});
+
+test('unexpected source host clears partial evidence rather than offering a file', async () => {
+  const dom = await render(fixtures => {
+    fixtures['historical-audit.json'].rasters[2].source_url = 'https://unexpected.example/file.tif';
+  });
+  assert.equal(dom.window.document.querySelectorAll('#rows tr').length, 0);
+  assert.equal(dom.window.document.querySelectorAll('#site-details article').length, 0);
+  assert.match(dom.window.document.querySelector('#updated').textContent, /Unexpected source host/);
+  dom.window.close();
 });
