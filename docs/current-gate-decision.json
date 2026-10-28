@@ -1,7 +1,10 @@
 {
   "verdict": "negative",
+  "technically_eligible": false,
   "ok_to_submit": false,
   "selector_required": true,
+  "selector_approval": false,
+  "slot_used": false,
   "reasons": [
     "card.registry.final_dots: duplicate or invalid literal overlap (limit 0.70)",
     "card.registry_summary.literal_worst_any_raster: duplicate or invalid literal overlap (limit 0.70)",
@@ -102,10 +105,18 @@
     "card.registry_summary.over70_blankets[94]: duplicate or invalid literal overlap (limit 0.70)",
     "card.registry_summary.worst_null_calibrated_excess_overlap: duplicate or invalid literal overlap (limit 0.70)",
     "card.registry_summary.worst_null_calibrated_excess_overlap_identifiable: duplicate or invalid literal overlap (limit 0.70)",
+    "shared evaluator provenance missing or implementation has unresolved protocol defects",
+    "missing complete fold/buffer/leakage/FP protocol audit",
+    "current best not evidenced on the same evaluator, implementation, folds and positives",
     "literal all-registry final audit failed or missing",
     "literal final overlap exceeds 0.70 or is invalid",
     "surface uniqueness incomplete or duplicate",
-    "final_dots uniqueness incomplete or duplicate"
+    "final_dots uniqueness incomplete or duplicate",
+    "validator: geotiff",
+    "validator: float32",
+    "validator: inside_unmasked",
+    "validator: self_contained_tiff",
+    "validator: outside_policy_checked"
   ],
   "card": "docs/k3c/run-card.json",
   "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df"

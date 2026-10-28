@@ -81,12 +81,14 @@ table{{min-width:0}}td,th{{font-size:12px}}code{{overflow-wrap:anywhere}}.small{
 def reason_summary(gate: dict) -> str:
     """Keep the public banner readable; the JSON decision retains every reason."""
     reasons = gate.get('reasons', [])
+    if not reasons:
+        return "technical screen only; independent selector approval and slot check not performed"
     return '; '.join(reasons[:3]) + (f'; and {len(reasons)-3} more (see decision JSON)' if len(reasons) > 3 else '')
 
 
 def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
     """Landing-page banner and release card HTML for the current card (shared with scripts/build_site.py)."""
-    ok = gate["verdict"] == "promote"
+    ok = (gate.get("ok_to_submit") is True and gate.get("selector_approval") is True)
     hold = card["holdout"]
     dl = "docs/" + card["submission_file"].removeprefix("docs/")
     zp = "docs/" + card["zip_submission_file"].removeprefix("docs/")
@@ -106,21 +108,21 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
                      f'      <h2>One file cleared<br>for submission.</h2>\n'
                      f'      <p>Lane H-K3C · HOLDOUT-DTI {hr} ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) vs champion rule {champ}; paired Δ CI [{pd[0]:+.4f}, {pd[1]:+.4f}]. Note: <code>{H(card["note"])}</code></p>\n'
                      f'      <a class="button" href="{H(dl)}" download>Download submission .tif <span aria-hidden="true">↓</span></a>\n'
-                     f'      <div class="card-foot"><span id="download-explanation">SHA-256 {H(card["raster_sha256"])}</span><a href="docs/k3c/run-card.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
+                     f'      <div class="card-foot"><span id="download-explanation">SHA-256 {H(card["raster_sha256"])}</span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
                      f'    </div>')
     else:
         reasons = H(reason_summary(gate))
         aside = (f'<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO. As of {H(card["generated_utc"][:10])} no file in this repository is authorized.</strong> '
-                 f'Newest lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) HOLDOUT-DTI {hr} vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); '
+                 f'Historical lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) exploratory HOLDOUT-DTI {hr} ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); buffer and pooling defects prevent a qualifying comparison. '
                  f'gate verdict <strong>{H(gate["verdict"].upper())}</strong>: {reasons}. '
                  f'<a href="docs/k3c/index.html">H-K3C executive summary &amp; research-only TIFF</a> · <a href="docs/k3c/how-to-submit.html">How to submit (when a file is cleared)</a> · '
-                 f'<a href="docs/csst-bghf/index.html">Previous lane CSST-BGHF</a> · <a href="docs/release-review.html">Saved-byte audit</a></aside>')
+                 f'<a href="docs/csst-bghf/index.html">Previous lane CSST-BGHF</a> · <a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/review-2026-10-28-session.md">Latest review</a></aside>')
         card_html = (f'<div class="release-card" aria-label="Current submission decision">\n'
                      f'      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>\n'
                      f'      <h2>No file cleared<br>for submission.</h2>\n'
                      f'      <p>Lane H-K3C verdict {H(gate["verdict"])}: {reasons}. The file is published for research only.</p>\n'
                      f'      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>\n'
-                     f'      <div class="card-foot"><span id="download-explanation">Download locked · do not submit</span><a href="docs/k3c/run-card.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
+                     f'      <div class="card-foot"><span id="download-explanation">Download locked · do not submit</span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
                      f'    </div>')
     return aside, card_html
 
@@ -143,7 +145,7 @@ def apply_guide_decision(html: str) -> str:
     gate = assess(card)
     aside, _ = root_decision_html(card, gate)
     html, n1 = re.subn(r'<aside style="padding:16px;background:#(?:fff1f2|ecfdf5)[^"]*">.*?</aside>', lambda m: aside, html, count=1, flags=re.S)
-    if gate["verdict"] == "promote":
+    if (gate.get("ok_to_submit") is True and gate.get("selector_approval") is True):
         banner = ('<div class="banner" style="background:#ecfdf5;color:#064e3b"><span class="banner-icon" aria-hidden="true">✓</span><div><strong>OK TO SUBMIT · one new TIFF is cleared by every automated gate (lane H-K3C)</strong>'
                   f'<p>Download it from the <a href="docs/k3c/index.html">H-K3C executive summary</a> and follow <a href="docs/k3c/how-to-submit.html">how to submit</a>. SHA-256 {H(card["raster_sha256"])}. '
                   'The nine historical files below remain research-only. No organizer score estimate is defensible; see the expected-live-score caveat on the decision page.</p></div></div>')
@@ -173,7 +175,7 @@ def build() -> None:
     tif_abs = ROOT / card["submission_file"]
     if hashlib.sha256(tif_abs.read_bytes()).hexdigest() != card["raster_sha256"]:
         raise SystemExit("saved raster hash does not match the run card")
-    ok = gate["verdict"] == "promote"
+    ok = (gate.get("ok_to_submit") is True and gate.get("selector_approval") is True)
     hold = card["holdout"]
     ex = card["experiments"]
     e1 = ex["E1_power_24cell"]
@@ -205,7 +207,7 @@ def build() -> None:
 <p><a class="btn {'ok' if ok else 'no'}" href="{H(tif_rel)}" download>{'Download submission .tif' if ok else 'Download research-only .tif (NOT CLEARED)'}</a>
 <a class="btn light" href="{H(zip_rel)}" download>{'Download single-file .zip' if ok else 'Download research-only .zip (NOT CLEARED)'}</a> <a class="btn light" href="run-card.json">Run card (JSON)</a></p>
 <p class="small">File <code>{H(card['submission_name'])}</code><br>SHA-256 <code>{H(card['raster_sha256'])}</code><br>{'Suggested DrivenData note' if ok else 'Historical note — do not submit'} ({len(card['note'])}/140 chars): <code>{H(card['note'])}</code></p>
-<p class="small"><strong>Historical evidence, not clearance.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's owner-reported 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. For context only, the historical null-calibrated diagnostic is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} excess overlap vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code> (limit 70%, IR-K3-22). The historical holdout has not been reproduced in this review; no hidden score can be inferred.</p></div>"""
+<p class="small"><strong>Exploratory historical evidence, not a qualifying comparison or clearance.</strong> The old HOLDOUT-DTI report estimated an apparent difference between construction rules ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's owner-reported 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. For context only, the historical null-calibrated diagnostic is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} excess overlap vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code> (limit 70%, IR-K3-22). The historical holdout has not been reproduced in this review; upstream buffer and zero-truth FP-pooling defects invalidate its use as a protocol-conforming promotion gate. No hidden score can be inferred.</p></div>"""
 
     def row(site, url):
         s = nine_by.get(site, {})
@@ -230,7 +232,7 @@ def build() -> None:
 
     table = f"""<h2>Per-site executive table — what to download, what it is estimated to score, is it unique</h2>
 <div class="table-wrap"><table><thead><tr><th>Site · file to download</th><th>Estimated / reported score</th><th>HOLDOUT-DTI (hide-and-recover; SGMC-cal)</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>{ours}{site_rows}</tbody></table></div>
-<p class="table-note">Holdout numbers for the nine sites come from <code>evidence/nine-site-audit-k3c-20261028.json</code> (byte-verified rasters from each site's pinned commit, evaluated on the template 8-cell HOLDOUT-DTI (n=22,232 withheld positives, 95% CI shown) <code>{H(nine.get('evaluator_versions',{}).get('hide_recover','GEMSDOE32-HIDE-RECOVER-v3.0') if isinstance(nine.get('evaluator_versions'),dict) else 'GEMSDOE32-HIDE-RECOVER-v3.0')}</code>). Pinned historical files include a related dot-set family (exact set algebra in <code>knowledge/focus9_forensics.md</code>): GEMSDOE25 ≡ GEMSDOE30, GEMSDOE31 ≡ the "solo" control, GEMSDOE32 = solo − 2,545 collar dots, GEMSDOE36 = GEMSDOE32 + 1,200 dots.</p>"""
+<p class="table-note"><strong>Historical exploratory only: the shared holdout has unresolved buffer and FP-pooling defects and is not a qualifying instrument.</strong> Holdout numbers for the nine sites come from <code>evidence/nine-site-audit-k3c-20261028.json</code> (byte-verified rasters from each site's pinned commit, evaluated on the template 8-cell HOLDOUT-DTI (n=22,232 withheld positives, 95% CI shown) <code>{H(nine.get('evaluator_versions',{}).get('hide_recover','GEMSDOE32-HIDE-RECOVER-v3.0') if isinstance(nine.get('evaluator_versions'),dict) else 'GEMSDOE32-HIDE-RECOVER-v3.0')}</code>). Pinned historical files include a related dot-set family (exact set algebra in <code>knowledge/focus9_forensics.md</code>): GEMSDOE25 ≡ GEMSDOE30, GEMSDOE31 ≡ the "solo" control, GEMSDOE32 = solo − 2,545 collar dots, GEMSDOE36 = GEMSDOE32 + 1,200 dots.</p>"""
 
     why = """<h2>Why did the GEMSDOE32 file reportedly perform well?</h2>
 <p>The owner's reported result is unverified: no organizer receipt linked to the file has been supplied. The
@@ -251,7 +253,7 @@ Fault prediction is not direct validation of a geothermal vent. <a href="../../k
     def hr_cell(d):
         return f"{f4(d['pooled_dti'])} {H(str(d['ci95']))}"
 
-    exp = f"""<h2>Preregistered experiments (budget 3 of 3 used) — all HOLDOUT-DTI, evaluator <code>{H(hold['evaluator_version'])}</code>, 24 cells = 4 quadrants × draws 20–25</h2>
+    exp = f"""<h2>Historical experiments (previous session, not reproduced; not protocol-cleared) — exploratory HOLDOUT-DTI, evaluator <code>{H(hold['evaluator_version'])}</code>, 24 cells = 4 quadrants × draws 20–25</h2>
 <div class="table-wrap"><table><thead><tr><th>Arm</th><th>Hide-and-recover (pooled, 95% CI)</th><th>Detached ≥ 600 m</th><th>Paired Δ</th></tr></thead><tbody>
 <tr><td>Control: 0.2778 champion rule (D2.8 + visible B=2)</td><td>{hr_cell(e1['CTRL_champion_rule'])}<br><span class="small">n withheld = {e1['CTRL_champion_rule']['n_withheld_positives']:,}</span></td><td>{hr_cell(e1['detached_600m']['CTRL'])}</td><td>—</td></tr>
 <tr><td>E1: CSST-BGHF (previous lane) re-measured on 24 cells</td><td>{hr_cell(e1['E1_csst_bghf'])}</td><td>{hr_cell(e1['detached_600m']['E1'])}</td><td>E1 − CTRL {e1['paired_E1_minus_CTRL']['mean_boot_delta']:+.4f} CI {H(str(e1['paired_E1_minus_CTRL']['ci95']))}, P(&gt;0) = {e1['paired_E1_minus_CTRL']['prob_positive']}</td></tr>
@@ -268,7 +270,7 @@ Fault prediction is not direct validation of a geothermal vent. <a href="../../k
 <tr><td>Historical, not reproduced: surface rank-correlation vs {reg['unique_rasters_checked']:,} unique registry rasters (113 repos) ≤ 0.90</td><td>max |ρ| = {f4(reg['surface_max_abs_spearman'])} ({H(reg['surface_worst_raster'])})</td></tr>
 <tr><td>Historical subset only — final dots within 3 px of any ≤100k-dot detector raster ≤ 70%</td><td>max {pct(reg['discrete_le100k_max_literal_3px_overlap'])} ({H(reg['discrete_worst_raster'])}); nine focus sites max {pct(reg['focus9_max_3px_overlap'])}</td></tr>
 <tr><td>Uniqueness — literal overlap with every registry raster (required; null calibration is diagnostic only)</td><td>{'PASS' if card['registry']['literal_all_rasters_final_passed'] else 'FAIL'} — literal worst {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}), p0 = {reg['literal_worst_any_raster'].get('p0')}, excess = {reg['literal_worst_any_raster'].get('excess_overlap_3px')}</td></tr>
-<tr><td>Historical holdout (not reproduced): paired improvement over the 0.2778 champion rule, same evaluator, 95% CI excludes 0</td><td>{'PASS' if hold['paired_delta_ci95'][0] > 0 else 'FAIL'} — Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}</td></tr>
+<tr><td>Historical holdout (not reproduced): paired improvement over the 0.2778 champion rule, same evaluator, 95% CI excludes 0</td><td>UNVERIFIED — old CI does not establish a qualifying win; Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}</td></tr>
 <tr><td>Overall promotion-gate verdict</td><td><strong>{H(gate['verdict'].upper())}</strong> {('— ' + H(reason_summary(gate))) if gate['reasons'] else ''}</td></tr>
 </tbody></table></div>
 <p class="small">Spatial allocation of the shipped dots: {pct(card['spatial_allocation']['near_apron_2_8px_frac'])} within 8 px of the catalogue, {pct(card['spatial_allocation']['stepover_8_35px_frac'])} at 8–35 px, {pct(card['spatial_allocation']['far_field_gt1500m_frac'])} beyond 1.5 km; {pct(card['spatial_allocation']['lidar_gap_dot_frac'])} inside the 1 m LiDAR gap; median strain-deficit prior at dots {card['spatial_allocation']['prior_live_median_at_dots']}.</p>"""
@@ -277,10 +279,7 @@ Fault prediction is not direct validation of a geothermal vent. <a href="../../k
 <p class="lede">Historical evidence and the current decision. No new file is cleared; no defensible organizer-score estimate exists. Generated from <code>docs/k3c/run-card.json</code> on {H(card['generated_utc'])}; elapsed {card['elapsed_seconds']} s, peak RSS {card['peak_rss_mb']} MB.</p>
 {verdict_box}{table}{why}{hyp}{exp}{checks}
 <p>See the <a href="../review-literal-20261028.md">current review</a> and <a href="../current-gate-decision.json">gate decision</a>. These old experiments are not reproduced in this session.</p>
-<h2>Historical reproduction commands (not run in this review)</h2><pre class="code">.venv/bin/python scripts/restore_data.py && .venv/bin/python scripts/prepare_data.py && .venv/bin/python scripts/restore_pinned_registry.py
-.venv/bin/python scripts/fetch_all_registry.py
-PYTHONPATH=src .venv/bin/python scripts/build_features.py && PYTHONPATH=src .venv/bin/python scripts/build_crsb_features.py && PYTHONPATH=src .venv/bin/python scripts/build_csst_features.py
-PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python scripts/build_k3c_site.py && .venv/bin/pytest -q</pre>
+<h2>Reproduction status</h2><p>Historical generation entry points are disabled pending a specified lane, a conforming shared holdout, and complete registry checks. Rebuild this page with <code>.venv/bin/python scripts/build_k3c_site.py</code>; see the <a href="../review-2026-10-28-session.md">current review</a> for prerequisites.</p>
 <p><a href="../research/k3c-preregistration-20261028.md">Locked preregistration</a> · <a href="../../knowledge/irregularities.md">Irregularities register</a> · <a href="../../research/2026-10-28-k3c.md">Research note</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a></p>"""
     (ROOT / "docs/k3c/index.html").write_text(shell("H-K3C executive summary — GEMSDOEkarage3", body), encoding="utf-8")
 
@@ -293,7 +292,7 @@ PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python s
 <li>Choose the validated single-band TIFF (or ZIP containing one TIFF), enter the candidate's short note, and submit.</li>
 <li>Record the organizer receipt, candidate hash and returned score together. A format check alone is not organizer acceptance.</li>
 </ol><p>As described in the supplied form, predictions must be in [0,1] and match the sample CRS, shape and transform.
-Current rules, authentication and acceptance could not be independently verified in this environment.</p>"""
+The <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> allow up to three submissions per week and one selected final submission. Authentication, current quota and acceptance remain unverified.</p>"""
     (ROOT / "docs/k3c/how-to-submit.html").write_text(shell("How to submit — H-K3C", howto), encoding="utf-8")
 
     # top-level decision pages

@@ -10,6 +10,21 @@ import sys
 
 LITERAL_KEYS = ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap', 'max_literal_overlap_3px')
 
+# This exact shared implementation has an open truth/visible buffer defect and
+# an open zero-truth FP-pooling defect. Copying it exactly is important, but it
+# is not an eligible evaluation instrument until fixed in the shared template.
+BLOCKED_HOLDOUT_IMPLEMENTATIONS = {
+    '9ce9cf359f4d7b7fa844dd8f208ec00c3e6c15afef5d724d9014320b944d318d',
+}
+PROTOCOL_AUDITS = (
+    'whole_fault_segments', 'truth_visible_buffer', 'visible_only_catalogue_features',
+    'visible_pixels_masked_exactly', 'zero_truth_false_positives_conserved',
+)
+
+
+def digest(value, length=64):
+    return isinstance(value, str) and len(value) == length and all(c in '0123456789abcdef' for c in value)
+
 
 def finite(x):
     return type(x) in (int, float) and math.isfinite(x)
@@ -24,7 +39,9 @@ def _node_overlap_ok(node):
 def assess(card):
     reasons = []
     if not isinstance(card, dict):
-        return {'verdict': 'negative', 'ok_to_submit': False, 'selector_required': True, 'reasons': ['invalid run card']}
+        return {'verdict': 'negative', 'technically_eligible': False, 'ok_to_submit': False,
+                'selector_required': True, 'selector_approval': False, 'slot_used': False,
+                'reasons': ['invalid run card']}
 
     def require(ok, reason):
         if not ok:
@@ -41,17 +58,46 @@ def assess(card):
                 walk(value, f'{path}[{i}]')
     walk(card)
 
-    require(bool(card.get('assigned_lane')), 'missing assigned method lane')
+    lane = card.get('assigned_lane')
+    require(isinstance(lane, str) and bool(lane.strip()), 'missing assigned method lane')
+    require(isinstance(card.get('mechanism'), str) and bool(card['mechanism'].strip()), 'missing mechanism')
+    require(isinstance(card.get('named_non_fault_mimic'), str) and bool(card['named_non_fault_mimic'].strip()),
+            'missing named non-fault mimic')
     h = card.get('holdout') if isinstance(card.get('holdout'), dict) else {}
-    require(h.get('evidence_class') == 'HOLDOUT-DTI' and bool(h.get('evaluator_version')), 'missing versioned HOLDOUT-DTI')
+    require(h.get('evidence_class') == 'HOLDOUT-DTI' and isinstance(h.get('evaluator_version'), str)
+            and bool(h['evaluator_version'].strip()), 'missing versioned HOLDOUT-DTI')
     require(type(h.get('withheld_positives')) is int and h['withheld_positives'] > 0, 'missing withheld positives')
     require(finite(h.get('dti')) and 0 <= h['dti'] <= 1, 'missing valid holdout DTI')
     interval = h.get('ci95')
     require(isinstance(interval, list) and len(interval) == 2 and all(finite(x) for x in interval) and finite(h.get('dti'))
             and 0 <= interval[0] <= h['dti'] <= interval[1] <= 1, 'missing valid holdout 95% CI')
     ci = h.get('paired_delta_ci95')
-    require(isinstance(ci, list) and len(ci) == 2 and all(finite(x) for x in ci) and 0 < ci[0] <= ci[1], 'no paired holdout improvement')
-    require(h.get('same_evaluator_current_best') is True, 'current same-evaluator baseline not established')
+    require(isinstance(ci, list) and len(ci) == 2 and all(finite(x) for x in ci) and 0 < ci[0] <= ci[1] <= 1,
+            'no paired holdout improvement')
+    implementation = h.get('holdout_implementation_sha256')
+    require(digest(h.get('shared_template_commit'), 40) and digest(h.get('evaluator_sha256'))
+            and digest(implementation) and implementation not in BLOCKED_HOLDOUT_IMPLEMENTATIONS,
+            'shared evaluator provenance missing or implementation has unresolved protocol defects')
+    fold_hash = h.get('fold_assignment_sha256')
+    protocol = h.get('protocol_audit') if isinstance(h.get('protocol_audit'), dict) else {}
+    require(digest(fold_hash) and digest(protocol.get('report_sha256'))
+            and all(protocol.get(key) is True for key in PROTOCOL_AUDITS),
+            'missing complete fold/buffer/leakage/FP protocol audit')
+    baseline = h.get('current_best') if isinstance(h.get('current_best'), dict) else {}
+    baseline_ci = baseline.get('ci95')
+    baseline_dti = baseline.get('dti')
+    baseline_ok = (baseline.get('evidence_class') == 'HOLDOUT-DTI'
+                   and baseline.get('evaluator_version') == h.get('evaluator_version')
+                   and baseline.get('evaluator_sha256') == h.get('evaluator_sha256')
+                   and baseline.get('holdout_implementation_sha256') == implementation
+                   and baseline.get('fold_assignment_sha256') == fold_hash
+                   and baseline.get('withheld_positives') == h.get('withheld_positives')
+                   and finite(baseline_dti) and isinstance(baseline_ci, list) and len(baseline_ci) == 2
+                   and all(finite(x) for x in baseline_ci)
+                   and 0 <= baseline_ci[0] <= baseline_dti <= baseline_ci[1] <= 1
+                   and finite(h.get('dti')) and h['dti'] > baseline_dti)
+    require(h.get('same_evaluator_current_best') is True and baseline_ok,
+            'current best not evidenced on the same evaluator, implementation, folds and positives')
     auc = card.get('feature_auc')
     require(isinstance(auc, list) and bool(auc) and all(finite(x) and 0 <= x <= 1 and max(x, 1 - x) <= .90 for x in auc),
             'missing or leaking feature canaries')
@@ -97,7 +143,9 @@ def assess(card):
         require(r.get('complete') is True and surface_ok and final_ok, f'{stage} uniqueness incomplete or duplicate')
     require(not card.get('release_review'), 'superseded release evidence; rerun literal registry checks')
     v = card.get('validator') if isinstance(card.get('validator'), dict) else {}
-    for key in ('saved_bytes_checked', 'single_band', 'finite_inside', 'range_0_1', 'whole_array_finite_range', 'crs_match', 'shape_match', 'transform_match'):
+    for key in ('saved_bytes_checked', 'geotiff', 'single_band', 'float32', 'finite_inside', 'inside_unmasked',
+                'self_contained_tiff', 'range_0_1', 'whole_array_finite_range', 'outside_policy_checked',
+                'crs_match', 'shape_match', 'transform_match'):
         require(v.get(key) is True, f'validator: {key}')
     sha = card.get('raster_sha256')
     require(isinstance(sha, str) and len(sha) == 64 and all(c in '0123456789abcdef' for c in sha), 'missing raster SHA256')
@@ -105,7 +153,11 @@ def assess(card):
     require(bool(card.get('submission_name')) and isinstance(card.get('note'), str) and 0 < len(card['note']) <= 140,
             'invalid submission name/note')
     verdict = 'negative' if reasons else 'promote'
-    return {'verdict': verdict, 'ok_to_submit': verdict == 'promote', 'selector_required': True, 'reasons': reasons}
+    # This is a self-reported technical screen, never the independent selector.
+    # Neither a card field nor a CLI caller may turn this result into slot approval.
+    return {'verdict': verdict, 'technically_eligible': verdict == 'promote',
+            'ok_to_submit': False, 'selector_required': True, 'selector_approval': False,
+            'slot_used': False, 'reasons': reasons}
 
 
 if __name__ == '__main__':

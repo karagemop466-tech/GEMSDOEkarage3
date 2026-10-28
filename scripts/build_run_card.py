@@ -59,7 +59,7 @@ def main() -> int:
             "No single assigned method paragraph in this prompt.",
             "Literal all-registry overlap rule is necessarily violated for the illustrated champion-sized budget.",
             "No current complete surface/final-dot registry snapshot, same-protocol best, or fold-local holdout in this checkout.",
-            "Shared GEMSDOE32 CLI wrappers silently binarize continuous predictions; upstream issue 37 is open.",
+            "Pinned shared CLI now rejects non-binary inputs, but its holdout and release gate have unresolved upstream protocol defects.",
             "Organizer-authenticated data and current account quota/receipts are unavailable; core owner mirrors were restored, but the shared cached derived feature stack is absent."
         ],
         "geometry_audit_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "geometry_audit": "historical-audit.json",

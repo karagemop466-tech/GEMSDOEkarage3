@@ -43,6 +43,9 @@ MANIFEST = ROOT / "registry" / "complete_registry_manifest.json"
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--budget", type=int, default=37654)
     ap.add_argument("--b-px", type=float, default=2.0)

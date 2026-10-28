@@ -46,6 +46,9 @@ def lattice_audit(final_mask: np.ndarray, foot: np.ndarray) -> dict:
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     t0 = time.time()
     ddir = data_dir()
     surf_dir = work_dir() / "surfaces"

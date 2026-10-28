@@ -443,6 +443,9 @@ def render_csst_diagnostic_figure(
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()

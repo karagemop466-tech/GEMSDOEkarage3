@@ -41,7 +41,7 @@ def build() -> dict[Path, str]:
               f'duplicate stop: its final dots fall more than 70% within 3 px of {ndup} registry rasters (the '
               f'catalogue-halo lane), and it also fails the literal lattice rule. Its live-ledger projection, '
               f'{lo:.3f}–{hi:.3f}, is a projection rather than a score, and it is far below 0.2778. No competition '
-              f'slot was used, and none of the nine historical files below is a new submission.</p></aside>')
+              f'slot was used, and none of the nine historical files below is a new submission. Historical holdouts are exploratory and not qualifying evidence: the shared buffer and FP-pooling defects remain open.</p></aside>')
     rows = [
         "<tr><th scope='row'>GEMSDOEkarage3 (this session, lane K3-CCL)</th>"
         f"<td><a href='downloads/{esc(tif)}'>{esc(tif)}</a><br><small>SHA-256 {esc(card['raster_sha256'])}</small></td>"
@@ -78,8 +78,8 @@ def build() -> dict[Path, str]:
 <h2>What was tested</h2>
 <p><strong>Hypothesis.</strong> Uncatalogued faults are the missing pieces of catalogued systems: tip continuations, parallel splays and linkage zones. A learner trained on simulated catalogue incompleteness, with visible-catalogue geometry as input, should recover them.</p>
 <div role="region" aria-label="Holdout results" tabindex="0"><table><thead><tr><th scope="col">Arm (budget-matched)</th><th scope="col">HOLDOUT-DTI</th><th scope="col">95% CI</th></tr></thead><tbody>{arm_rows}</tbody></table></div>
-<p>The catalogue geometry roughly doubled holdout DTI: mechanism Δ {exp['paired_E1_vs_E3_mechanism']['delta_point']:+.4f} [{exp['paired_E1_vs_E3_mechanism']['delta_ci95'][0]:+.4f}, {exp['paired_E1_vs_E3_mechanism']['delta_ci95'][1]:+.4f}]. The leakage canary passed (max single-feature AUC {card['leakage_canary_max_single_feature_oriented_auc']:.3f}).</p>
-<p><strong>Why it still fails.</strong> The holdout withholds catalogue fragments that sit next to visible traces, so they are easy to recover. Live new faults are depleted near the catalogue. Under the live catalogue the learner concentrates its dots in the catalogue halo, which is already occupied by registered rasters. This is the duplicate stop. Fixing the holdout comes first (see the research note, §4 and §8).</p>
+<p>The historical, unreplicated report estimated a catalogue-geometry mechanism Δ {exp['paired_E1_vs_E3_mechanism']['delta_point']:+.4f} [{exp['paired_E1_vs_E3_mechanism']['delta_ci95'][0]:+.4f}, {exp['paired_E1_vs_E3_mechanism']['delta_ci95'][1]:+.4f}]. The historical, unreplicated canary report showed max single-feature AUC {card['leakage_canary_max_single_feature_oriented_auc']:.3f}; this is not a current protocol pass.</p>
+<p><strong>Why it still fails.</strong> The historical holdout withheld catalogue fragments near visible traces, potentially making recovery easier. Under the full catalogue the historical learner concentrated its dots near known traces, where registered rasters also occur. Hidden live labels are unavailable. This is the duplicate stop. Fixing the holdout comes first (see the research note, §4 and §8).</p>
 <h2>Why GEMSDOE32 scored 0.2778 (OWNER-REPORTED)</h2>
 <p>The historical support is a subset of GEMSDOE31 after removing dots near the mirrored fault catalogue. Reduced redundancy and false-positive mass could explain part of the reported result, but the hidden labels are unavailable; the contribution of individual removed dots and the cause of the reported result are not established.</p>
 """

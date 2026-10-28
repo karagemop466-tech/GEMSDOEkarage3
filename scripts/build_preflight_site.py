@@ -97,7 +97,7 @@ research = '''
 <li><a href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b"><strong>USGS · Great Basin conductance ↗</strong><span>Five modeled depth ranges and downloadable layers.</span></a></li>
 <li><a href="https://gdr.openei.org/submissions/1391"><strong>DOE GDR · INGENIOUS ↗</strong><span>Regional datasets, attribution and license information.</span></a></li>
 <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution"><strong>DrivenData · reference solution ↗</strong><span>Official starting code and environment.</span></a></li>
-<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37"><strong>Shared-tool defect · issue #37 ↗</strong><span>Probabilistic inputs are silently binarized; upstream repair required.</span></a></li></ul></div></div></section>'''
+<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60"><strong>Shared holdout defects · issue #60 ↗</strong><span>Buffered folds and FP pooling need upstream repair. The pinned binary CLI now rejects probabilities.</span></a></li></ul></div></div></section>'''
 
 DOCS.mkdir(exist_ok=True)
 (DOCS / 'data').mkdir(exist_ok=True)

@@ -29,6 +29,9 @@ BUDGETS = (20_000, 37_654)
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     t0 = time.time()
     ddir = data_dir()
     bands_dir = work_dir() / "bands"

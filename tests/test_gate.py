@@ -2,13 +2,60 @@ import unittest
 from scripts.promotion_gate import assess
 class GateTests(unittest.TestCase):
     def valid(self):
-        return dict(assigned_lane='test',holdout=dict(evidence_class='HOLDOUT-DTI',evaluator_version='test-v1',withheld_positives=1,dti=.2,ci95=[.1,.3],paired_delta_ci95=[.01,.02],same_evaluator_current_best=True),feature_auc=[.6],registry={**{s:dict(complete=True,max_abs_spearman=.9,max_overlap_3px=.7, comparisons=[dict(sha256='b'*64,abs_spearman=.9,overlap_3px=.7)]) for s in ['surface','final_dots']}, 'inventory_sha256':['b'*64], 'manifest_sha256':'d'*64, 'literal_all_rasters_final_passed':True},validator={**{k:True for k in ['saved_bytes_checked','single_band','finite_inside','range_0_1','whole_array_finite_range','crs_match','shape_match','transform_match']}, 'raster_sha256':'a'*64},raster_sha256='a'*64,submission_name='test',note='test only')
+        # Fully synthetic evidence exercises the screen, not a real evaluation.
+        shared = dict(evaluator_version='test-v1', evaluator_sha256='e'*64,
+                      holdout_implementation_sha256='c'*64, fold_assignment_sha256='f'*64,
+                      withheld_positives=1)
+        baseline = dict(evidence_class='HOLDOUT-DTI', **shared, dti=.18, ci95=[.1,.2])
+        holdout = dict(evidence_class='HOLDOUT-DTI', **shared, shared_template_commit='1'*40,
+                       dti=.2, ci95=[.1,.3], paired_delta_ci95=[.01,.02],
+                       same_evaluator_current_best=True, current_best=baseline,
+                       protocol_audit={**{k: True for k in ('whole_fault_segments', 'truth_visible_buffer',
+                           'visible_only_catalogue_features', 'visible_pixels_masked_exactly',
+                           'zero_truth_false_positives_conserved')}, 'report_sha256':'2'*64})
+        stages = {s:dict(complete=True,max_abs_spearman=.9,max_overlap_3px=.7,
+                         comparisons=[dict(sha256='b'*64,abs_spearman=.9,overlap_3px=.7)])
+                  for s in ('surface','final_dots')}
+        registry = {**stages, 'inventory_sha256':['b'*64], 'manifest_sha256':'d'*64,
+                    'literal_all_rasters_final_passed':True}
+        validator = {**{k:True for k in ('saved_bytes_checked','geotiff','single_band','float32','finite_inside','inside_unmasked',
+                        'self_contained_tiff','range_0_1','whole_array_finite_range','outside_policy_checked',
+                        'crs_match','shape_match','transform_match')}, 'raster_sha256':'a'*64}
+        return dict(assigned_lane='test', mechanism='test mechanism', named_non_fault_mimic='test mimic',
+                    holdout=holdout, feature_auc=[.6], registry=registry, validator=validator,
+                    raster_sha256='a'*64, submission_name='test', note='test only')
     def test_missing(self): self.assertEqual(assess({})['verdict'],'negative')
-    def test_valid_promotes_and_clears_for_selector(self):
-        r=assess(self.valid()); self.assertEqual(r['verdict'],'promote'); self.assertTrue(r['ok_to_submit']); self.assertTrue(r['selector_required'])
+    def test_valid_screen_still_requires_independent_selector(self):
+        c=self.valid(); c['selector_approval']=True; c['ok_to_submit']=True
+        r=assess(c)
+        self.assertEqual(r['verdict'],'promote')
+        self.assertTrue(r['technically_eligible'])
+        self.assertFalse(r['ok_to_submit'])
+        self.assertFalse(r['selector_approval'])
+        self.assertFalse(r['slot_used'])
+        self.assertTrue(r['selector_required'])
     def test_negative_never_ok_to_submit(self):
         c=self.valid(); c['holdout']['paired_delta_ci95']=[-.01,.02]
         r=assess(c); self.assertEqual(r['verdict'],'negative'); self.assertFalse(r['ok_to_submit'])
+    def test_incomplete_protocol_or_defective_shared_implementation_stops(self):
+        for key in ('whole_fault_segments', 'truth_visible_buffer', 'visible_only_catalogue_features',
+                    'visible_pixels_masked_exactly', 'zero_truth_false_positives_conserved'):
+            c=self.valid(); c['holdout']['protocol_audit'][key]=False
+            self.assertEqual(assess(c)['verdict'],'negative')
+        c=self.valid(); c['holdout']['holdout_implementation_sha256']='9ce9cf359f4d7b7fa844dd8f208ec00c3e6c15afef5d724d9014320b944d318d'
+        c['holdout']['current_best']['holdout_implementation_sha256']=c['holdout']['holdout_implementation_sha256']
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_baseline_must_be_evidenced_on_the_same_folds(self):
+        c=self.valid(); c['holdout']['current_best']['fold_assignment_sha256']='9'*64
+        self.assertEqual(assess(c)['verdict'],'negative')
+        c=self.valid(); c['holdout']['current_best']['dti']=.21
+        self.assertEqual(assess(c)['verdict'],'negative')
+        c=self.valid(); del c['holdout']['current_best']
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_mask_and_external_sidecars_are_not_optional(self):
+        for key in ('geotiff','float32','inside_unmasked','self_contained_tiff','outside_policy_checked'):
+            c=self.valid(); c['validator'][key]=False
+            self.assertEqual(assess(c)['verdict'],'negative')
     def test_null_calibration_never_overrides_literal_failure(self):
         c = self.valid()
         c['registry']['literal_all_rasters_final_passed'] = False

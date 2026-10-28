@@ -747,6 +747,9 @@ def _pack_arm_summary(res: dict) -> dict:
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     sys.path.insert(0, str(ROOT))
     from scripts.protocol_preflight import require_budget_not_proven_duplicate
     require_budget_not_proven_duplicate(37654)

@@ -35,6 +35,9 @@ def spearman_via_ranks(ra: np.ndarray, rb: np.ndarray, foot: np.ndarray) -> floa
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     t0 = time.time()
     ddir = data_dir()
     surf_dir = work_dir() / "surfaces"

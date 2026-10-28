@@ -72,6 +72,17 @@ def test_reject_transform_dtype_and_multiband(tmp_path, template):
     assert not audit(bad_bands, template)["checks"]["single_band"]
 
 
+def test_non_geotiff_is_rejected_even_if_values_are_valid(tmp_path, template):
+    candidate = tmp_path / 'grid.asc'
+    with rasterio.open(candidate, 'w', driver='AAIGrid', width=3, height=2, count=1,
+                       dtype='float32', crs='EPSG:32611',
+                       transform=from_origin(243350, 4508550, 100, 100)) as ds:
+        ds.write(np.zeros((2, 3), dtype=np.float32), 1)
+    result = audit(candidate, template)
+    assert result['checks']['geotiff'] is False
+    assert result['core_format_pass'] is False
+
+
 def test_reject_shape_and_crs(tmp_path, template):
     shape = write(tmp_path / "shape.tif", np.zeros((3, 3)))
     assert not audit(shape, template)["core_format_pass"]

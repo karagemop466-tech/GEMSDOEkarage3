@@ -4,7 +4,8 @@
 Delegates strictly to `gems32.submission` (zero private fork):
   - Enforces exact CRS (`EPSG:32611`), shape (`3730 x 3292`), and affine geotransform matching
     `sample_submission.tif`.
-  - Clips and verifies all predictions strictly inside `[0.0, 1.0]` with `0` NaNs anywhere in the
+  - Accepts explicit binary emissions only; rejects implicit probability thresholding.
+    Verifies all saved predictions strictly inside `[0.0, 1.0]` with `0` NaNs anywhere in the
     12,279,160-cell raster (`-zeros.tif`, `nodata=None`), preventing DrivenData's portal error
     `Predicted values must be in range [0, 1]` (`IR-34-NODATA-01`).
   - Masks known USGS/INGENIOUS catalogue traces (`labels.tif`) to `0.0` and builds a single-GeoTIFF `.zip`.
@@ -36,29 +37,35 @@ def write_validated_submission(
     ddir: Path | None = None,
     out_dir: Path | None = None,
     timestamp_tag: str | None = None,
-    prefix: str = "gemsdoe32",
 ) -> dict:
+    # Legacy argument name retained for callers; probabilities must be emitted explicitly.
     ddir = ddir or data_dir()
     out_dir = out_dir or (ROOT / "docs" / "downloads")
     sample_tif = ddir / "sample_submission.tif"
     labels_tif = ddir / "labels.tif"
     with rasterio.open(sample_tif) as ds:
-        foot = np.isfinite(ds.read(1))
-    arr_in = np.asarray(mask_or_probs)
+        foot = np.isfinite(ds.read(1)) & (ds.read_masks(1) > 0)
+        template_grid = (ds.crs, ds.shape, ds.transform)
+    arr_in = submission.require_binary_mask(mask_or_probs, foot)
     if arr_in.shape != foot.shape:
         raise ValueError(f"Expected grid shape {foot.shape}, got {arr_in.shape}")
     for nk in ("submission_note_zeros", "submission_note_nan"):
         if nk in candidate_meta and len(str(candidate_meta[nk])) > 140:
             raise ValueError(f"{nk} exceeds 140 characters ({len(str(candidate_meta[nk]))} chars)")
     with rasterio.open(labels_tif) as ds:
-        labels = (ds.read(1) > 0) & foot
+        if (ds.crs, ds.shape, ds.transform) != template_grid or ds.count != 1:
+            raise ValueError("Catalogue grid does not match the template")
+        raw_labels = ds.read(1)
+        if not np.isfinite(raw_labels[foot]).all():
+            raise ValueError("Catalogue contains nonfinite values inside footprint")
+        labels = (raw_labels > 0) & foot
     ts = timestamp_tag or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
     meta_full = {
-        "catalogue_hidden_mean": 0.0,
+        "catalogue_hidden_mean": None,
         "catalogue_hidden_per_quadrant": {},
-        "sgmc_prevalence_calibrated_dti": 0.0,
-        "drift_corrected_holdout_mean": 0.0,
+        "sgmc_prevalence_calibrated_dti": None,
+        "drift_corrected_holdout_mean": None,
         "drift_corrected_per_quadrant": {},
         "predicted_leaderboard_dti": None,
         "ei_drift_corrected": None,
@@ -66,13 +73,8 @@ def write_validated_submission(
     }
     meta_full.update(candidate_meta)
 
-    if arr_in.dtype == np.bool_:
-        clean_input = arr_in & foot & ~labels
-    else:
-        clean_input = np.where(foot & ~labels & np.isfinite(arr_in), np.clip(arr_in, 0.0, 1.0), 0.0).astype(np.float32)
-
     bundle = submission.write_submission_pair(
-        mask=clean_input,
+        mask=arr_in & ~labels,
         foot=foot,
         labels=labels,
         template_tif=sample_tif,
@@ -80,7 +82,6 @@ def write_validated_submission(
         slug=slug,
         timestamp_tag=ts,
         candidate_meta=meta_full,
-        prefix=prefix,
     )
     zeros_path = out_dir / bundle["zeros_tif"]["filename"]
     zip_path = zeros_path.with_suffix(".zip")
@@ -97,11 +98,10 @@ def write_validated_submission(
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("mask_npy", type=Path, help="Boolean or float .npy mask on the 3730x3292 grid")
+    ap.add_argument("mask_npy", type=Path, help="Boolean or exact {0,1} .npy emission mask on the 3730x3292 grid")
     ap.add_argument("--slug", required=True)
     ap.add_argument("--candidate-id", required=True)
     ap.add_argument("--note", required=True, help="Short DrivenData portal note (<= 140 chars)")
-    ap.add_argument("--prefix", default="gemsdoe32", help="Filename prefix (e.g. gemsdoekarage3)")
     ap.add_argument("--out-dir", type=Path, default=ROOT / "docs" / "downloads")
     ap.add_argument("--data-dir", type=Path, default=None)
     args = ap.parse_args()
@@ -117,12 +117,7 @@ def main() -> int:
         "submission_note_nan": args.note,
     }
     bundle = write_validated_submission(
-        arr,
-        slug=args.slug,
-        candidate_meta=meta,
-        ddir=args.data_dir or data_dir(),
-        out_dir=args.out_dir,
-        prefix=args.prefix,
+        arr, slug=args.slug, candidate_meta=meta, ddir=args.data_dir or data_dir(), out_dir=args.out_dir
     )
     print(json.dumps(bundle, indent=2))
     return 0

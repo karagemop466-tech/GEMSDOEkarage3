@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+  "commit": "97597a066d1c61d2c226fdba349716f41b30c1c6",
+  "checked_utc_date": "2026-10-28",
+  "scope": "Exact shared template files; byte equality is provenance, not protocol validation or authorization.",
+  "files": {
+    "scripts/evaluate_holdout.py": "21ed7f6460d876dc0eb83d8c01d3843ee660f43bb73576eb3f0adb1a07e61dbb",
+    "scripts/submission_writer.py": "663bc075d90cdfa8d440fa201eeb87fba2783c503562e06044a705963d76bcf6",
+    "src/gems32/holdout.py": "9ce9cf359f4d7b7fa844dd8f208ec00c3e6c15afef5d724d9014320b944d318d",
+    "src/gems32/submission.py": "d397118a7165f674ba45bdea89b65852f2a24450edaa9b7e00e7cd5b87f0b9e1",
+    "src/gems32/release_gate.py": "4273aa0bb4fa6b1cd327ee9d48983550cb531ff77e694f829d6361897a3e120f",
+    "src/gems32/metric.py": "382de3eb6d77d549e01bafa718fd01f5a7132263be0b6925dbd5a40a24025289",
+    "src/gems32/paths.py": "ceb7c79097958beff1f618e608491c3528341b14ee8b2e9cdcfafe1406230b69"
+  },
+  "known_open_issues": [
+    "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60",
+    "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/41",
+    "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/61",
+    "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42",
+    "https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66"
+  ],
+  "operational_status": "BLOCKED: shared holdout and surface gate need upstream fixes; no authorized lane or selector approval."
+}

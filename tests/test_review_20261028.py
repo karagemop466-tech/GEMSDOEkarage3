@@ -19,7 +19,7 @@ def test_proven_duplicate_budget_stops():
         require_budget_not_proven_duplicate(0)
 
 
-def test_registry_has_no_lattice_exemption_and_reports_dot_correlation():
+def test_shared_final_gate_has_no_lattice_exemption():
     rng = np.random.default_rng(4)
     foot = np.ones((20, 20), bool)
     surface = rng.random(foot.shape)
@@ -28,7 +28,9 @@ def test_registry_has_no_lattice_exemption_and_reports_dot_correlation():
     result = compare_registry(surface, dots, foot, {'calibration_lattice': (other, dots)}, stage='final')
     assert result['stop'] and not result['passed']
     assert result['comparisons'][0]['within_3px_fraction'] == 1
-    assert result['comparisons'][0]['dots_spearman'] == pytest.approx(1)
+    # The exact pinned upstream implementation does not report dot-rank
+    # correlation. Do not infer that a complete final audit was performed.
+    assert 'dots_spearman' not in result['comparisons'][0]
 
 
 def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():

@@ -28,25 +28,33 @@ def audit(candidate: Path, template: Path) -> dict:
     candidate = Path(candidate)
     template = Path(template)
     with rasterio.open(template) as reference:
-        if reference.count != 1 or reference.crs is None:
-            raise ValueError("Template must contain one band and a CRS")
+        if reference.driver != 'GTiff' or reference.count != 1 or reference.crs is None:
+            raise ValueError("Template must be a GeoTIFF with one band and a CRS")
+        if any(Path(p).resolve() != template.resolve() for p in reference.files):
+            raise ValueError("Template depends on external sidecar files; hash and package the reference first")
         ref_values = reference.read(1)
         footprint = (reference.read_masks(1) != 0) & np.isfinite(ref_values)
         if not footprint.any():
             raise ValueError("Template footprint is empty")
         ref_shape, ref_crs, ref_transform = reference.shape, reference.crs, reference.transform
     with rasterio.open(candidate) as ds:
+        # A TIFF submitted by itself must not silently depend on an external .msk
+        # or .aux.xml that is absent from the upload and from the TIFF SHA-256.
+        sidecars = [p for p in ds.files if Path(p).resolve() != candidate.resolve()]
         basic = {
+            "geotiff": ds.driver == "GTiff",
             "single_band": ds.count == 1,
             "float32": ds.count == 1 and ds.dtypes[0] == "float32",
             "shape_matches": ds.shape == ref_shape,
             "crs_matches": ds.crs == ref_crs,
             "transform_matches": ds.transform == ref_transform,
+            "self_contained_tiff": not sidecars,
         }
         # Do not interpret unsupported dtypes, bands or mismatched grids as probabilities.
         if not all(basic.values()):
             return {"candidate": str(candidate), "candidate_sha256": sha256(candidate),
-                    "template_sha256": sha256(template), "checks": basic, "core_format_pass": False,
+                    "template_sha256": sha256(template), "candidate_sidecars": sidecars,
+                    "checks": basic, "core_format_pass": False,
                     "outside_template_null_pass": None, "whole_array_finite_range_pass": None,
                     "organizer_acceptance": "unknown", "authorization": "NOT AUTHORIZED"}
         arr = ds.read(1, masked=False)
@@ -65,7 +73,7 @@ def audit(candidate: Path, template: Path) -> dict:
         return {
             "candidate": str(candidate), "candidate_sha256": sha256(candidate),
             "template": str(template), "template_sha256": sha256(template),
-            "checks": basic, "core_format_pass": all(basic.values()),
+            "candidate_sidecars": sidecars, "checks": basic, "core_format_pass": all(basic.values()),
             "inside_nonfinite_count": int((~finite).sum()),
             "inside_masked_count": int((~valid_mask[footprint]).sum()),
             "inside_min": float(inner.min()) if finite.all() and inner.size else None,

@@ -124,6 +124,9 @@ def sha256_file(p: Path) -> str:
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     t0 = time.time()
     ddir, wdir, edir = data_dir(), work_dir(), evidence_dir()
     out_dir = ROOT / "docs" / "k3c" / "downloads"

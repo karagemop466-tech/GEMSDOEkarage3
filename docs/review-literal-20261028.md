@@ -1,5 +1,7 @@
 # Three-pass review — literal duplicate stop
 
+> Historical review. For current shared-tool behavior and the latest decision, see [the 28 October session review](review-2026-10-28-session.md).
+
 **Decision: negative / DO NOT SUBMIT.** No new geological experiment, candidate,
 score estimate or competition upload was made. The requested method paragraph
 is not identifiable in the prompt. The ignored feature stack is absent in this
@@ -19,7 +21,7 @@ not organizer data and this one-witness check is not a complete registry audit.
 The saved raster's whole array was finite and in [0,1]; band count, CRS, shape
 and transform matched that owner mirror. Outside-footprint null checking failed,
 which is distinct from the whole-array check; official acceptance remains unknown.
-Reproduce with `.venv/bin/python -m scripts.audit_k3c_literal_witness` (GitHub
+Reproduce with `.venv/bin/python -m scripts.audit_k3c_literal_witness --out .cache/k3c-recheck.json` (choose a new path; existing receipts are never overwritten) (GitHub
 access required when the cache is empty).
 
 The earlier numerical **HOLDOUT-DTI** results remain historical and are not
