@@ -3,13 +3,18 @@ import hashlib
 import json
 from pathlib import Path
 
-import numpy as np
-import pytest
+import sys
+import unittest
 
-from karage3 import ccl
-from scripts.promotion_gate import assess
+import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+for _p in (ROOT / "src", ROOT):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
+
+from karage3 import ccl  # noqa: E402
+from scripts.promotion_gate import assess  # noqa: E402
 
 
 def test_greedy_dots_respects_separation_budget_and_mask():
@@ -64,7 +69,7 @@ def test_ccl_run_card_is_negative_and_bound_to_bytes():
 
 
 def test_ccl_tif_format_on_saved_bytes():
-    rasterio = pytest.importorskip("rasterio")
+    import rasterio
     card = json.loads((ROOT / "evidence/ccl_run_card.json").read_text())
     with rasterio.open(ROOT / card["files"]["tif"]) as ds:
         a = ds.read(1)
@@ -79,3 +84,29 @@ def test_ccl_site_is_deterministic_and_says_do_not_submit():
     for path, text in b.build().items():
         assert path.read_text() == text
         assert "DO NOT SUBMIT" in text or "NO file" in text
+
+
+class CCLTests(unittest.TestCase):
+    """unittest entry points (CI runs `python -m unittest discover -s tests`)."""
+
+    def test_greedy_dots(self):
+        test_greedy_dots_respects_separation_budget_and_mask()
+
+    def test_quota(self):
+        test_greedy_quota_caps_zone()
+
+    def test_along_strike(self):
+        test_along_strike_feature_separates_tip_continuation_from_parallel_splay()
+
+    def test_run_card(self):
+        test_ccl_run_card_is_negative_and_bound_to_bytes()
+
+    def test_tif_format(self):
+        test_ccl_tif_format_on_saved_bytes()
+
+    def test_site(self):
+        test_ccl_site_is_deterministic_and_says_do_not_submit()
+
+
+if __name__ == "__main__":
+    unittest.main()
