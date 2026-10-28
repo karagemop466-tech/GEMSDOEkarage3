@@ -1,0 +1,51 @@
+{
+  "preregistered_utc": "2026-10-28T05:55:00Z",
+  "locked_before_implementation": true,
+  "branch": "arena/029670eb-gemsdoekarage3",
+  "selected_lane_id": "H-K3B-1",
+  "selected_lane_short_name": "CSST-BGHF",
+  "selected_lane_title": "Coulomb Stress-Shadow Transfer, Baranov Pseudogravity Magnetite-Leaching Defect, Reid N=0 Basement-Matched Euler Contacts & Piedmont Toe-Flexure Dual-Cover Allocation",
+  "candidate_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H-K3B-1",
+      "short_name": "CSST-BGHF",
+      "viable_in_sandbox": true,
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "id": "H-K3B-2",
+      "short_name": "AGFM-Relay",
+      "viable_in_sandbox": true,
+      "selected": false
+    },
+    {
+      "rank": 3,
+      "id": "H-K3B-3",
+      "short_name": "FFT-Notch-Rad",
+      "viable_in_sandbox": true,
+      "selected": false
+    },
+    {
+      "rank": 4,
+      "id": "H-K3B-4",
+      "short_name": "MicroSeis-InSAR",
+      "viable_in_sandbox": false,
+      "external_sources": [
+        "https://earthquake.usgs.gov/fdsnws/event/1/",
+        "https://asf.alaska.edu/data-sets/derived-data-sets/sentinel-1-interferograms/"
+      ],
+      "selected": false
+    }
+  ],
+  "max_experiments": 3,
+  "planned_experiments": [
+    "EXP1_CSST_BGHF_UNSUP_PHYS_D31",
+    "EXP2_CSST_BGHF_DUAL57_OOF_ISOTROPIC_D31",
+    "EXP3_CSST_BGHF_COULOMB_MAXENV_D31"
+  ],
+  "target_budget_dots": 37654,
+  "visible_collar_px": 2.0,
+  "axial_min_sep_px": 3.1
+}

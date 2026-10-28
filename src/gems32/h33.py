@@ -147,12 +147,13 @@ def _external(ddir: Path, rel: str, band: int, foot: np.ndarray) -> np.ndarray:
 
 
 def lidar_scarp_composite(ddir: Path, foot: np.ndarray) -> np.ndarray:
-    """0.45*ex_max + 0.35*step_max + 0.20*downface_max — the repository's H32 convention, reused."""
+    """0.45*ex_max + 0.35*step_max + 0.20*downface_max — fixes IR-K3-01 (bands 1, 3, 6 + band 12 valid mask)."""
     with rasterio.open(ddir / "external" / "lidar_scarp_features_u8.tif") as ds:
         b1 = ds.read(1).astype(np.float32) / 255.0
-        b2 = ds.read(2).astype(np.float32) / 255.0
-        b5 = ds.read(5).astype(np.float32) / 255.0 if ds.count >= 5 else b1
-    return np.where(foot, 0.45 * b1 + 0.35 * b2 + 0.20 * b5, np.nan)
+        b3 = ds.read(3).astype(np.float32) / 255.0 if ds.count >= 3 else b1
+        b6 = ds.read(6).astype(np.float32) / 255.0 if ds.count >= 6 else b1
+        valid = (ds.read(12) > 0) if ds.count >= 12 else np.ones(b1.shape, dtype=bool)
+    return np.where(foot & valid, 0.45 * b1 + 0.35 * b3 + 0.20 * b6, np.nan)
 
 
 # --------------------------------------------------------------------------------------------

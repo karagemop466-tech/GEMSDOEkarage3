@@ -131,18 +131,45 @@ REPOS = [
     ("ginnymcfiner23-ux", "GINNYGEMSDOE3", "sibling"),
     ("karagemop466-tech", "GEMSDOEkarage1", "sibling"),
     ("karagemop466-tech", "GEMSDOEkarage2", "sibling"),
+    ("apartanish22-droid", "ApartGEMSDOE1", "sibling"),
+    ("apartanish22-droid", "ApartGEMSDOE2", "sibling"),
+    ("apartanish22-droid", "ApartGEMSDOE3", "sibling"),
+    ("sassnarep3-star", "GEMSDOESASS1", "sibling"),
+    ("sassnarep3-star", "GEMSDOESASS2", "sibling"),
+    ("sassnarep3-star", "GEMSDOESASS3", "sibling"),
 ]
 
 ALLOWED_PREFIXES = (
     "docs/",
+    "downloads/",
     "inputs/",
     "archive/",
     "evidence/",
+    "data/evidence/",
     "submissions/",
+    "outputs/",
+    "artifacts/",
+    "candidates/",
+    "site/",
     "data_public/",
     "data/scored/",
     "data/registry_rasters/",
 )
+EXCLUDED_BASENAMES = frozenset({
+    "example_submission.tif",
+    "sample_submission.tif",
+    "existing_faults.tif",
+    "labels.tif",
+    "training_features.tif",
+    "gems-geodawn-numerical-features.tif",
+    "lidar_scarp_features_u8.tif",
+    "geodawn_rad_u8.tif",
+    "geodawn_extensions_u8.tif",
+    "derived_sgmc_faults_100m_u8.tif",
+    "tiger_road_distance_m.tif",
+    "acquisition_block_id_100m.tif",
+    "blm_closed_claim_distance_m.tif",
+})
 MAX_BYTES = 25_000_000
 
 
@@ -185,6 +212,8 @@ def fetch_repo_rasters(owner: str, repo: str, group: str, cache_dir: Path) -> tu
                     rel = member.name.split("/", 1)[1]
                     low = rel.lower()
                     if not low.endswith((".tif", ".tiff")):
+                        continue
+                    if Path(rel).name.lower() in EXCLUDED_BASENAMES:
                         continue
                     if not rel.startswith(ALLOWED_PREFIXES):
                         continue
@@ -253,6 +282,25 @@ def main() -> int:
                     "group": "calibration_and_scored",
                     "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
                     "path": f"scored/{p.name}",
+                    "bytes": p.stat().st_size,
+                    "sha256": sha256_file(p),
+                    "local": str(p.relative_to(ROOT)),
+                    "status": "ok",
+                }
+            )
+
+    # Also include prior GEMSDOEkarage3 rasters cached before replacement so we never collide with earlier PRs
+    prior_k3_dir = args.cache / "karagemop466-tech" / "GEMSDOEkarage3_prior" / "docs" / "downloads"
+    if prior_k3_dir.exists():
+        for p in sorted(prior_k3_dir.glob("*.tif")):
+            all_rows.append(
+                {
+                    "owner": "karagemop466-tech",
+                    "repo": "karagemop466-tech/GEMSDOEkarage3",
+                    "short_repo": "GEMSDOEkarage3_prior",
+                    "group": "sibling",
+                    "ref": "e9b42b450da00528e8916c7b08df0f48019c2bdd",
+                    "path": f"docs/downloads/{p.name}",
                     "bytes": p.stat().st_size,
                     "sha256": sha256_file(p),
                     "local": str(p.relative_to(ROOT)),

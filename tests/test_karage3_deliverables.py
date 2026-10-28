@@ -1,19 +1,28 @@
-"""End-to-end automated verification tests for GEMSDOEkarage3 Lane H-K3-1 (CRSB-GUB) deliverables."""
+"""End-to-end automated verification tests for GEMSDOEkarage3 Lane H-K3B-1 (CSST-BGHF) deliverables.
+Works both locally (with `.cache/`) and on clean GitHub Actions CI checkouts (without `.cache/`).
+"""
 from __future__ import annotations
 
 import hashlib
 import json
 import re
+import sys
+import tempfile
 import unittest
 import zipfile
 from pathlib import Path
 
 import numpy as np
 import rasterio
-
-from scripts.promotion_gate import assess
+from rasterio.transform import from_origin
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
+
+from gems32 import csst_bghf, submission  # noqa: E402
+from scripts.promotion_gate import assess  # noqa: E402
+
 FOCUS_9 = {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}
 
 
@@ -23,23 +32,26 @@ def sha256_bytes(b: bytes) -> str:
 
 class DeliverableVerificationTests(unittest.TestCase):
     def setUp(self) -> None:
-        self.card = json.loads((ROOT / "docs" / "crsb-gub" / "run-card.json").read_text(encoding="utf-8"))
-        self.ev_card = json.loads((ROOT / "evidence" / "crsb_gub_run_card.json").read_text(encoding="utf-8"))
-        self.ablation = json.loads((ROOT / "evidence" / "crsb-gub-ablation-results.json").read_text(encoding="utf-8"))
-        self.canary = json.loads((ROOT / "evidence" / "leakage-canary-51ch.json").read_text(encoding="utf-8"))
+        self.card = json.loads((ROOT / "docs" / "csst-bghf" / "run-card.json").read_text(encoding="utf-8"))
+        self.root_card = json.loads((ROOT / "docs" / "run-card.json").read_text(encoding="utf-8"))
+        self.ev_card = json.loads((ROOT / "evidence" / "csst_bghf_run_card.json").read_text(encoding="utf-8"))
+        self.ablation = json.loads((ROOT / "evidence" / "csst-bghf-ablation-results.json").read_text(encoding="utf-8"))
+        self.canary = json.loads((ROOT / "evidence" / "leakage-canary-57ch.json").read_text(encoding="utf-8"))
         self.uniq = json.loads((ROOT / "evidence" / "complete-registry-uniqueness-scan.json").read_text(encoding="utf-8"))
-        self.nine = json.loads((ROOT / "evidence" / "nine-site-audit-20261027.json").read_text(encoding="utf-8"))
+        self.nine = json.loads((ROOT / "evidence" / "nine-site-audit-20261028.json").read_text(encoding="utf-8"))
 
     def test_saved_geotiff_and_zip_strict_0_1_and_no_nan_hazard(self) -> None:
         self.assertEqual(self.card, self.ev_card)
+        self.assertEqual(self.card, self.root_card)
         dl_dir = ROOT / "docs" / "downloads"
-        nan_files = list(dl_dir.glob("gemskarage3-*-nan.tif"))
-        self.assertEqual(nan_files, [], "No gemskarage3 -nan.tif hazard file may remain in docs/downloads/")
+        nan_files = list(dl_dir.glob("*-nan.tif"))
+        self.assertEqual(nan_files, [], "No -nan.tif hazard file may remain in docs/downloads/")
 
         tif_path = dl_dir / self.card["submission_name"]
         zip_path = dl_dir / self.card["zip_submission_name"]
         self.assertTrue(tif_path.exists(), f"Missing {tif_path}")
         self.assertTrue(zip_path.exists(), f"Missing {zip_path}")
+        self.assertTrue(self.card["submission_name"].startswith("gemsdoekarage3-"))
 
         tif_bytes = tif_path.read_bytes()
         self.assertEqual(sha256_bytes(tif_bytes), self.card["raster_sha256"])
@@ -65,55 +77,142 @@ class DeliverableVerificationTests(unittest.TestCase):
         self.assertLessEqual(float(arr.max()), 1.0)
         self.assertEqual(int((arr > 0.5).sum()), 37654)
 
-    def test_leakage_canary_and_dropped_dist_known_fault(self) -> None:
+    def test_leakage_canary_57ch_and_strict_lidar_isolation(self) -> None:
         self.assertTrue(self.canary["passed"])
-        self.assertEqual(self.canary["n_features_tested"], 51)
+        self.assertEqual(self.canary["n_features_tested"], 57)
         self.assertLessEqual(self.canary["max_oriented_auc"], 0.90)
-        crsb_src = (ROOT / "src" / "gems32" / "crsb_gub.py").read_text(encoding="utf-8")
-        self.assertIn('assert "dist_known_fault_px" not in ws_df.columns', crsb_src)
-        self.assertIn('assert "dist_known_fault_px" not in vv_df.columns', crsb_src)
+        self.assertEqual(csst_bghf.LIDAR_GLOBAL_COLS_57, {45, 46, 47, 48, 54})
+        self.assertEqual(len(csst_bghf.MNOLIDAR_COL_INDICES_52), 52)
+        for col in csst_bghf.LIDAR_GLOBAL_COLS_57:
+            self.assertNotIn(col, csst_bghf.MNOLIDAR_COL_INDICES_52)
 
-    def test_uniqueness_across_104_repos_and_focus9(self) -> None:
-        self.assertGreaterEqual(self.uniq["n_unique_rasters_checked"], 1780)
-        self.assertTrue(self.uniq["stage1_surface_passed_all_1793"])
+    def test_uniqueness_across_112_repos_and_focus9(self) -> None:
+        self.assertGreaterEqual(self.uniq["n_unique_rasters_checked"], 1900)
+        self.assertTrue(self.uniq["stage1_surface_passed_all_rasters"])
         self.assertTrue(self.uniq["stage2_discrete_candidates_passed"])
         self.assertTrue(self.uniq["focus9_all_passed"])
         self.assertLessEqual(abs(self.uniq["worst_surface_spearman_all"]["surface_spearman"]), 0.90)
+        self.assertLessEqual(abs(self.uniq["worst_dots_spearman_all"]["dots_spearman"]), 0.90)
         self.assertLessEqual(self.uniq["worst_discrete_3px_overlap"]["within_3px_fraction"], 0.70)
         self.assertEqual(set(self.uniq["per_focus_site"].keys()), FOCUS_9)
 
-    def test_three_experiment_budget_and_gate_consistency(self) -> None:
-        self.assertLessEqual(self.card["experiments_run"], 3)
+    def test_three_experiment_budget_dual_point_win_and_gate_consistency(self) -> None:
+        self.assertEqual(self.card["experiments_run"], 3)
         self.assertEqual(self.ablation["experiments_executed"], 3)
         self.assertLessEqual(len(self.card["note"]), 140)
+
+        exp3 = self.ablation["experiments"]["EXP-3"]
+        champ = self.ablation["baseline_champion_02778"]
+        self.assertGreater(exp3["hide_and_recover_v3"]["pooled_dti"], champ["hide_and_recover_v3"]["pooled_dti"])
+        self.assertGreater(exp3["detached_600m_segments"]["pooled_dti"], champ["detached_600m_segments"]["pooled_dti"])
+        self.assertGreater(
+            exp3["sgmc_off_catalogue_v3"]["prevalence_calibrated_dti"],
+            champ["sgmc_off_catalogue_v3"]["prevalence_calibrated_dti"],
+        )
+
         gate_res = assess(self.card)
         self.assertEqual(gate_res["verdict"], self.card["verdict"])
         self.assertFalse(gate_res["ok_to_submit"])
         self.assertFalse(self.card["ok_to_submit"])
 
-    def test_nine_sites_and_html_links_consistent(self) -> None:
+    def test_csst_operators_and_soft_submission_unit(self) -> None:
+        rng = np.random.default_rng(7)
+        h, w = 48, 48
+        foot = np.ones((h, w), dtype=bool)
+        foot[:3, :] = False
+        rtp = rng.normal(0.0, 25.0, size=(h, w)).astype(np.float32)
+        hgrad, z_n0, pg = csst_bghf._baranov_pseudogravity_and_euler_depth(
+            rtp, foot, dx_m=100.0, z_stab_m=150.0, compute_pseudograv=True, pad_px=8
+        )
+        self.assertEqual(hgrad.shape, (h, w))
+        self.assertEqual(pg.shape, (h, w))
+        self.assertEqual(pg.dtype, np.float32)
+        self.assertTrue(np.isfinite(pg).all())
+        self.assertEqual(z_n0.shape, (h, w))
+        self.assertTrue(np.isfinite(z_n0).all())
+        self.assertGreaterEqual(float(z_n0[foot].min()), 0.0)
+
+        vis = np.zeros((h, w), dtype=bool)
+        vis[12:34, 24] = True
+        gm, d_vis = csst_bghf.coulomb_tip_vs_shadow_gate(vis, foot)
+        self.assertEqual(gm.shape, (h, w))
+        self.assertTrue(np.isfinite(gm).all())
+        # Tip ahead of termination (row 10, col 24) must exceed interior broadside shadow (row 23, col 29)
+        self.assertGreater(float(gm[10, 24]), float(gm[23, 29]))
+        self.assertEqual(float(gm[~foot].max()), 0.0)
+
+        # Verify IR-K3-11 / IR-37 soft [0, 1] probability & prefix preservation in submission.write_submission_pair
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as td, patch.multiple(
+            submission,
+            EXPECTED_HEIGHT=16,
+            EXPECTED_WIDTH=16,
+            EXPECTED_FOOTPRINT_PIXELS=256,
+            EXPECTED_TOTAL_PIXELS=256,
+        ):
+            td_p = Path(td)
+            tmpl = td_p / "tmpl.tif"
+            with rasterio.open(
+                tmpl, "w", driver="GTiff", height=16, width=16, count=1, dtype="float32",
+                crs="EPSG:32611", transform=from_origin(243350.0, 4508550.0, 100.0, 100.0), nodata=None,
+            ) as ds:
+                ds.write(np.zeros((16, 16), dtype=np.float32), 1)
+            f16 = np.ones((16, 16), dtype=bool)
+            l16 = np.zeros((16, 16), dtype=bool)
+            probs = np.full((16, 16), 0.37, dtype=np.float32)
+            rec = submission.write_submission_pair(
+                probs, f16, l16, tmpl, td_p, slug="soft-test", timestamp_tag="20261028T000000Z",
+                candidate_meta={"candidate_id": "SOFT"}, prefix="gemsdoekarage3",
+            )
+            self.assertTrue(rec["zeros_tif"]["filename"].startswith("gemsdoekarage3-soft-test-"))
+            self.assertTrue(rec["zeros_tif"]["all_checks_passed"])
+            with rasterio.open(td_p / rec["zeros_tif"]["filename"]) as ds:
+                read_back = ds.read(1)
+            self.assertAlmostEqual(float(read_back[5, 5]), 0.37, places=5)
+
+    def test_nine_sites_html_links_and_rfc8259_json(self) -> None:
         audited_sites = {s["site"] for s in self.nine["sites"]}
         self.assertEqual(audited_sites, FOCUS_9)
 
         sha = self.card["raster_sha256"]
         fname = self.card["submission_name"]
-        for doc_rel in ("README.md", "docs/crsb-gub/index.html", "docs/crsb-gub/executive-summary.html", "docs/crsb-gub/research.md"):
+        for doc_rel in (
+            "README.md",
+            "docs/csst-bghf/index.html",
+            "docs/csst-bghf/executive-summary.html",
+            "docs/csst-bghf/research.md",
+            "docs/executive-summary.html",
+        ):
             txt = (ROOT / doc_rel).read_text(encoding="utf-8")
             self.assertIn(sha, txt, f"{doc_rel} missing exact GeoTIFF SHA-256")
             self.assertIn(fname, txt, f"{doc_rel} missing exact GeoTIFF filename")
-            if doc_rel != "docs/crsb-gub/executive-summary.html":
+            if doc_rel != "docs/csst-bghf/executive-summary.html":
                 for site in FOCUS_9:
                     self.assertIn(site, txt, f"{doc_rel} missing {site}")
 
-        for html_name in ("index.html", "executive-summary.html"):
-            html_dir = ROOT / "docs" / "crsb-gub"
-            html_txt = (html_dir / html_name).read_text(encoding="utf-8")
+        for html_rel in (
+            "docs/csst-bghf/index.html",
+            "docs/csst-bghf/executive-summary.html",
+            "docs/index.html",
+            "docs/executive-summary.html",
+            "docs/crsb-gub/index.html",
+            "docs/crsb-gub/executive-summary.html",
+        ):
+            hp = ROOT / html_rel
+            html_txt = hp.read_text(encoding="utf-8")
             for attr_m in re.finditer(r'(?:href|src)="([^"]+)"', html_txt):
                 target = attr_m.group(1)
                 if target.startswith(("http://", "https://", "#", "mailto:")):
                     continue
-                resolved = (html_dir / target).resolve()
-                self.assertTrue(resolved.exists(), f"Broken relative link {target} in docs/crsb-gub/{html_name}")
+                resolved = (hp.parent / target.split("#")[0]).resolve()
+                self.assertTrue(resolved.exists(), f"Broken relative link {target} in {html_rel}")
+
+        # Verify strict RFC 8259 JSON compliance (no bare NaN/Infinity) across all public docs/ JSONs
+        for jp in (ROOT / "docs").rglob("*.json"):
+            json.loads(
+                jp.read_text(encoding="utf-8"),
+                parse_constant=lambda c: (_ for _ in ()).throw(ValueError(f"Invalid JSON token {c} in {jp}")),
+            )
 
 
 if __name__ == "__main__":

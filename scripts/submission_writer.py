@@ -36,6 +36,7 @@ def write_validated_submission(
     ddir: Path | None = None,
     out_dir: Path | None = None,
     timestamp_tag: str | None = None,
+    prefix: str = "gemsdoe32",
 ) -> dict:
     ddir = ddir or data_dir()
     out_dir = out_dir or (ROOT / "docs" / "downloads")
@@ -65,8 +66,13 @@ def write_validated_submission(
     }
     meta_full.update(candidate_meta)
 
+    if arr_in.dtype == np.bool_:
+        clean_input = arr_in & foot & ~labels
+    else:
+        clean_input = np.where(foot & ~labels & np.isfinite(arr_in), np.clip(arr_in, 0.0, 1.0), 0.0).astype(np.float32)
+
     bundle = submission.write_submission_pair(
-        mask=(np.isfinite(arr_in) & (arr_in > 0)) & foot & ~labels,
+        mask=clean_input,
         foot=foot,
         labels=labels,
         template_tif=sample_tif,
@@ -74,6 +80,7 @@ def write_validated_submission(
         slug=slug,
         timestamp_tag=ts,
         candidate_meta=meta_full,
+        prefix=prefix,
     )
     zeros_path = out_dir / bundle["zeros_tif"]["filename"]
     zip_path = zeros_path.with_suffix(".zip")
@@ -94,6 +101,7 @@ def main() -> int:
     ap.add_argument("--slug", required=True)
     ap.add_argument("--candidate-id", required=True)
     ap.add_argument("--note", required=True, help="Short DrivenData portal note (<= 140 chars)")
+    ap.add_argument("--prefix", default="gemsdoe32", help="Filename prefix (e.g. gemsdoekarage3)")
     ap.add_argument("--out-dir", type=Path, default=ROOT / "docs" / "downloads")
     ap.add_argument("--data-dir", type=Path, default=None)
     args = ap.parse_args()
@@ -109,7 +117,12 @@ def main() -> int:
         "submission_note_nan": args.note,
     }
     bundle = write_validated_submission(
-        arr, slug=args.slug, candidate_meta=meta, ddir=args.data_dir or data_dir(), out_dir=args.out_dir
+        arr,
+        slug=args.slug,
+        candidate_meta=meta,
+        ddir=args.data_dir or data_dir(),
+        out_dir=args.out_dir,
+        prefix=args.prefix,
     )
     print(json.dumps(bundle, indent=2))
     return 0

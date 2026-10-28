@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Summary &amp; DrivenData Submission Guide — GEMSDOEkarage3 (H-K3B-1 CSST-BGHF)</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-alt: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --emerald: #10b981;
+      --sky: #38bdf8;
+      --amber: #f59e0b;
+      --violet: #a78bfa;
+      --rose: #f43f5e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 24px 18px 64px;
+    }
+    .container { max-width: 1320px; margin: 0 auto; }
+    header {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 24px;
+    }
+    .brand { font-size: 1.15rem; font-weight: 800; color: var(--text); text-decoration: none; }
+    .brand span { color: var(--emerald); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .nav-links a {
+      color: var(--sky); text-decoration: none; padding: 7px 13px; border: 1px solid var(--border);
+      border-radius: 6px; background: var(--panel); font-size: 0.9rem; font-weight: 600;
+    }
+    .nav-links a:hover { border-color: var(--sky); background: var(--panel-alt); }
+    .hero-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(17, 24, 39, 0.97));
+      border: 2px solid var(--emerald); border-radius: 12px; padding: 24px; margin-bottom: 28px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .pass-pill {
+      display: inline-block; background: rgba(16, 185, 129, 0.18); color: #6ee7b7;
+      border: 1px solid var(--emerald); font-weight: 700; font-size: 0.78rem; padding: 4px 10px; border-radius: 999px;
+    }
+    .hold-pill {
+      display: inline-block; background: rgba(245, 158, 11, 0.18); color: #fcd34d;
+      border: 1px solid var(--amber); font-weight: 700; font-size: 0.78rem; padding: 4px 10px; border-radius: 999px;
+    }
+    .fail-pill {
+      display: inline-block; background: rgba(244, 63, 94, 0.18); color: #fda4af;
+      border: 1px solid var(--rose); font-weight: 700; font-size: 0.78rem; padding: 4px 10px; border-radius: 999px;
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--emerald); color: #022c22;
+      font-weight: 800; font-size: 0.98rem; padding: 12px 20px; border-radius: 8px; text-decoration: none;
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--panel-alt); color: var(--text);
+      border: 1px solid var(--border); font-weight: 600; font-size: 0.92rem; padding: 11px 16px;
+      border-radius: 8px; text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: var(--sky); color: var(--sky); }
+    .kpi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 18px;
+    }
+    .kpi-card {
+      background: rgba(15, 23, 42, 0.88); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px;
+    }
+    .kpi-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .kpi-val { font-size: 1.38rem; font-weight: 800; color: var(--text); margin: 4px 0; }
+    .kpi-sub { font-size: 0.82rem; color: var(--muted); }
+    section {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px 24px; margin-bottom: 24px;
+    }
+    h1, h2, h3 { margin-top: 0; color: var(--text); }
+    h1 { font-size: 1.72rem; line-height: 1.28; margin-bottom: 10px; }
+    h2 { font-size: 1.28rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 16px; }
+    h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--sky); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { background: var(--panel-alt); color: #e2e8f0; font-weight: 700; white-space: nowrap; }
+    tr:hover td { background: rgba(30, 41, 59, 0.55); }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code { background: rgba(30, 41, 59, 0.9); padding: 2px 6px; border-radius: 4px; font-size: 0.84em; color: #e2e8f0; }
+    pre {
+      background: #090d16; border: 1px solid var(--border); border-radius: 8px; padding: 14px;
+      overflow-x: auto; font-size: 0.82rem; color: #cbd5e1;
+    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+    .subcard { background: var(--panel-alt); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+    .fig-box { text-align: center; margin: 14px 0; }
+    .fig-box img { max-width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); }
+    a { color: var(--sky); }
+    small, .muted { color: var(--muted); }
+    footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 32px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <a class="brand" href="index.html">GEMSDOE<span>karage3</span> · Executive Submission Guide</a>
+    <nav class="nav-links" aria-label="Submission guide navigation">
+      <a href="index.html">← Back to CSST-BGHF Hub</a>
+      <a href="../../index.html">Root Overview</a>
+      <a href="../../executive-summary.html">Root Submission Guide</a>
+      <a href="run-card.json">JSON Run Card</a>
+    </nav>
+  </header>
+
+  <div class="hero-box">
+    <div class="pill-row">
+      <span class="pass-pill">13/13 GEOTIFF [0, 1] CHECKS PASSED</span>
+      <span class="pass-pill">0 NaN PIXELS ANYWHERE (12,279,160 / 12,279,160 FINITE)</span>
+      <span class="pass-pill">100% UNIQUE ACROSS 112 REPOS (max discrete 66.53% ≤ 70%)</span>
+      <span class="hold-pill">SLOT DISCIPLINE: SELECTOR SIGN-OFF REQUIRED (ok_to_submit=false)</span>
+    </div>
+    <h1>How to Download &amp; Submit to DrivenData DOE GEMS (#306)</h1>
+    <p>
+      This page explains at a glance whether our generated GeoTIFF is technically safe, unique, and validated,
+      why previous uploads failed with <code>"Predicted values must be in range [0, 1]"</code>, and the exact 4-step
+      procedure if the programme selector chooses to spend one of the 3 weekly DrivenData submission slots on
+      <strong>Lane H-K3B-1 (<code>CSST-BGHF</code>)</strong>.
+    </p>
+    <div class="cta-row">
+      <a class="btn-primary" href="../downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif" download>1. Click to Download Validated .tif ↓</a>
+      <a class="btn-secondary" href="../downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip" download>Alternative: Download Single-File .zip ↓</a>
+      <a class="btn-secondary" href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Open DrivenData Submissions Page ↗</a>
+    </div>
+  </div>
+
+  <section>
+    <h2>Step-by-Step DrivenData Upload Checklist (Zero Human Inspector Needed for Format/Uniqueness)</h2>
+    <ol>
+      <li><strong>Verify Slot Policy First:</strong> Automated technical validation (<code>13/13</code> GeoTIFF format checks, <code>57/57</code> leakage canaries ≤ <code>0.6180</code>, and <code>1,913</code>-raster uniqueness ≤ <code>66.53%</code>) is <strong>100% GREEN</strong>, and point HOLDOUT-DTI beats the <code>0.2778</code> Champion across all 3 benchmarks (<code>+0.0055</code> Hide-Recover, <code>+0.0056</code> Detached≥600m, <code>+0.0061</code> SGMC-cal). Because the two-sided 95% paired bootstrap CI (<code>[-0.003328, +0.013882]</code>, <code>P=88.9%</code>) spans zero, <code>promotion_gate.py</code> sets <code>verdict="negative"</code> / <code>ok_to_submit=false</code> so a weekly slot is never burned without selector sign-off.</li>
+      <li><strong>Download the All-Finite <code>-zeros.tif</code> (or <code>-zeros.zip</code>):</strong> Click <a href="../downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif" download><code>gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif</code></a> (SHA-256: <code>4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b</code>) or <a href="../downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip" download><code>gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip</code></a> (SHA-256: <code>08159cb3c603dc1e629da3bb49b71e4b65abb0094ebf01b6293357a20ffd31eb</code>). <em>Why this fixes the prior upload failure:</em> Earlier <code>-nan.tif</code> files stored <code>NaN</code> across the <code>7,111,787</code> outside-footprint pixels, triggering DrivenData's whole-array <code>(arr &gt;= 0) &amp; (arr &lt;= 1)</code> validator error <code>"Predicted values must be in range [0, 1]"</code>. Our <code>-zeros.tif</code> has <strong><code>0</code> NaN pixels anywhere in all <code>12,279,160</code> pixels</strong> (values strictly <code>{0.0, 1.0}</code>, <code>nodata=None</code>), and no <code>-nan.tif</code> file is present in <code>docs/downloads/</code>.</li>
+      <li><strong>Paste the ≤140-Char Submission Note:</strong> Copy verbatim (107 chars):<br>
+        <code>H-K3B-1 CSST-BGHF: Coulomb shadow+Baranov leach+Euler N0+Bajada hinge+Dual57 OOF d=3.1 (37654d [0,1] zeros)</code>
+      </li>
+      <li><strong>Record Organizer Receipt:</strong> After DrivenData finishes scoring, record the exact score receipt before labeling any number <code>ORGANIZER-CONFIRMED</code>.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Automated 13-Check Saved-Bytes Validator Receipt (<code>scripts/submission_writer.py</code>)</h2>
+    <div class="table-wrap" role="region" tabindex="0" aria-label="13-check GeoTIFF validator receipt">
+      <table>
+        <thead><tr><th scope="col">Automated Check</th><th scope="col">Verified Status on Saved Disk Bytes</th></tr></thead>
+        <tbody><tr><td><code>exact_reference_grid_match</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>single_band</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>dtype_float32</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>dimensions_3730x3292</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>crs_epsg_32611</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>in_footprint_all_finite</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>in_footprint_zero_nan</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>in_footprint_zero_inf</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>in_footprint_zero_sentinel</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>in_footprint_range_0_1</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>outside_footprint_compliant</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>zero_on_catalogue_leakage</code></td><td><span class='pass-pill'>PASS</span></td></tr>
+<tr><td><code>validator_range_0_1_guaranteed</code></td><td><span class='pass-pill'>PASS</span></td></tr></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+</body>
+</html>

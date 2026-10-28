@@ -88,7 +88,9 @@ def audit_geotiff(
         full_grid_in_01 = in_foot_in_01
         out_foot_ok = bool(np.all(np.isnan(out_foot)))
 
-    emitted_dots = int((in_foot > 0.5).sum())
+    emitted_dots = int((in_foot > 0.0).sum())
+    emitted_gt_05 = int((in_foot > 0.5).sum())
+    emitted_mass = round(float(np.nansum(in_foot)), 4)
     on_catalogue_dots = int(((arr > 0) & labels).sum())
 
     checks = {
@@ -124,6 +126,8 @@ def audit_geotiff(
         "nodata": None if nodata_val is None or (isinstance(nodata_val, float) and np.isnan(nodata_val)) else float(nodata_val),
         "nodata_repr": str(nodata_val),
         "emitted_positive_pixels": emitted_dots,
+        "emitted_gt_05_pixels": emitted_gt_05,
+        "emitted_total_mass": emitted_mass,
         "footprint_fraction": round(emitted_dots / float(EXPECTED_FOOTPRINT_PIXELS), 6),
         "on_catalogue_positive_pixels": on_catalogue_dots,
         "in_footprint_finite_pixels": in_foot_finite,
@@ -144,15 +148,23 @@ def write_submission_pair(
     slug: str,
     timestamp_tag: str,
     candidate_meta: dict,
+    prefix: str = "gemsdoe32",
 ) -> dict:
-    """Write and audit both `-zeros.tif` and `-nan.tif` variants for a candidate mask."""
+    """Write and audit both `-zeros.tif` and `-nan.tif` variants for a candidate binary mask or [0, 1] field."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    clean_mask = (mask & foot & ~labels).astype(np.float32)
-    # Digest of pixel coordinates for deterministic content hash tag
-    digest8 = hashlib.sha256(np.packbits(clean_mask > 0.5)).hexdigest()[:8]
+    arr_in = np.asarray(mask)
+    if arr_in.dtype == np.bool_:
+        clean_mask = (arr_in & foot & ~labels).astype(np.float32)
+        digest_bytes = np.packbits(clean_mask > 0.5).tobytes()
+    else:
+        clean_mask = np.where(foot & ~labels & np.isfinite(arr_in), np.clip(arr_in, 0.0, 1.0), 0.0).astype(np.float32)
+        is_bin = bool(np.all((clean_mask == 0.0) | (clean_mask == 1.0)))
+        digest_bytes = np.packbits(clean_mask > 0.5).tobytes() if is_bin else clean_mask.tobytes()
+    # Digest of pixel coordinates/values for deterministic content hash tag
+    digest8 = hashlib.sha256(digest_bytes).hexdigest()[:8]
 
-    zeros_name = f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-zeros.tif"
-    nan_name = f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-nan.tif"
+    zeros_name = f"{prefix}-{slug}-{timestamp_tag}-{digest8}-zeros.tif"
+    nan_name = f"{prefix}-{slug}-{timestamp_tag}-{digest8}-nan.tif"
     zeros_path = out_dir / zeros_name
     nan_path = out_dir / nan_name
 
@@ -187,36 +199,36 @@ def write_submission_pair(
 
     fmt_kwargs = dict(
         dots=audit_zeros["emitted_positive_pixels"],
-        cat_hid=candidate_meta["catalogue_hidden_mean"],
-        sgmc_cal=candidate_meta["sgmc_prevalence_calibrated_dti"],
-        drift_cal=candidate_meta["drift_corrected_holdout_mean"],
-        slot=candidate_meta["slot_decision"],
+        cat_hid=candidate_meta.get("catalogue_hidden_mean", 0.0),
+        sgmc_cal=candidate_meta.get("sgmc_prevalence_calibrated_dti", 0.0),
+        drift_cal=candidate_meta.get("drift_corrected_holdout_mean", 0.0),
+        slot=candidate_meta.get("slot_decision", "HOLD"),
     )
     bundle = {
-        "candidate_id": candidate_meta["candidate_id"],
+        "candidate_id": candidate_meta.get("candidate_id", slug),
         "slug": slug,
         "content_digest8": digest8,
-        "description": candidate_meta["description"],
-        "submission_note_zeros": candidate_meta["submission_note_zeros"].format(
+        "description": candidate_meta.get("description", slug),
+        "submission_note_zeros": candidate_meta.get("submission_note_zeros", "{filename}").format(
             filename=zeros_name, sha8=audit_zeros["sha256"][:8], **fmt_kwargs
         ),
-        "submission_note_nan": candidate_meta["submission_note_nan"].format(
+        "submission_note_nan": candidate_meta.get("submission_note_nan", "{filename}").format(
             filename=nan_name, sha8=audit_nan["sha256"][:8], **fmt_kwargs
         ),
         "zeros_tif": audit_zeros,
         "nan_tif": audit_nan,
         "holdout_metrics": {
-            "catalogue_hidden_mean": candidate_meta["catalogue_hidden_mean"],
-            "catalogue_hidden_per_quadrant": candidate_meta["catalogue_hidden_per_quadrant"],
-            "sgmc_prevalence_calibrated_dti": candidate_meta["sgmc_prevalence_calibrated_dti"],
-            "drift_corrected_holdout_mean": candidate_meta["drift_corrected_holdout_mean"],
-            "drift_corrected_per_quadrant": candidate_meta["drift_corrected_per_quadrant"],
-            "predicted_leaderboard_dti": candidate_meta["predicted_leaderboard_dti"],
-            "ei_drift_corrected": candidate_meta["ei_drift_corrected"],
-            "slot_decision": candidate_meta["slot_decision"],
+            "catalogue_hidden_mean": candidate_meta.get("catalogue_hidden_mean", 0.0),
+            "catalogue_hidden_per_quadrant": candidate_meta.get("catalogue_hidden_per_quadrant", {}),
+            "sgmc_prevalence_calibrated_dti": candidate_meta.get("sgmc_prevalence_calibrated_dti", 0.0),
+            "drift_corrected_holdout_mean": candidate_meta.get("drift_corrected_holdout_mean", 0.0),
+            "drift_corrected_per_quadrant": candidate_meta.get("drift_corrected_per_quadrant", {}),
+            "predicted_leaderboard_dti": candidate_meta.get("predicted_leaderboard_dti", None),
+            "ei_drift_corrected": candidate_meta.get("ei_drift_corrected", None),
+            "slot_decision": candidate_meta.get("slot_decision", "HOLD"),
         },
     }
 
-    sidecar_path = out_dir / f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-audit.json"
+    sidecar_path = out_dir / f"{prefix}-{slug}-{timestamp_tag}-{digest8}-audit.json"
     sidecar_path.write_text(json.dumps(bundle, indent=2), encoding="utf-8")
     return bundle
