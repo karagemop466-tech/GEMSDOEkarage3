@@ -64,11 +64,10 @@ Comparing all 16 organizer-confirmed leaderboard scores across `GEMSDOE24`–`GE
    - `nan_inside_footprint = 0`, `nan_anywhere_in_raster = 0`, `full_grid_finite_pixels = 12,279,160 / 12,279,160`;
    - `min = 0.0`, `max = 1.0`, `dtype = float32`, `nodata = None`, `CRS = EPSG:32611`, `shape = (3730, 3292)`.
 
-### 3.2 Band 06 (`tc`) Identity Proof
-Across all `5,167,373` valid footprint pixels:
-- $\text{Corr}(\text{Band 06 (tc)},\; 0.41\,\text{Band 07 (K)} + 0.48\,\text{Band 08 (eTh)} + 0.21\,\text{Band 09 (eU)}) = \mathbf{+0.99942}$;
-- $\text{Corr}(\text{Band 06 (tc)},\; \text{Band 12 (det\_elev)}) = -0.029$.
-Thus Band 06 (`tc`) is **Airborne Gamma-Ray Spectrometer Total Count**, not gravity terrain correction.
+### 3.2 Band 06 (`tc`) identity — corrected 2026-10-28 (IR-K3-10)
+The formula previously shown here, attributing Bands 07/08/09 of `training_features.tif` to K/eTh/eU, was false: the raster's own band descriptions are 07 `geod_shearrate`, 08 `geod_dilaterate`, 09 `tmi_vg`. It was carried over from an upstream note that used a different file layout.
+Re-measured on 103,286 footprint pixels (every 50th valid pixel) against the GeoDAWN radiometric mirror `external/geodawn_rad_u8.tif` (bands K, Th, U, TC): Pearson(Band 06 `tc`, GeoDAWN TC) = **+0.997**; vs K +0.881, Th +0.915, U +0.714 (`research/2026-10-28-ccl.md`, §Verification).
+Band 06 (`tc`) is therefore radiometric Total Count. Its description in the raster ("Tilt angle or total curvature") is wrong. The conclusion stands; only the evidence for it has changed.
 
 ---
 

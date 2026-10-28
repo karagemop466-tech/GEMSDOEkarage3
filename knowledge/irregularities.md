@@ -73,3 +73,13 @@ evaluations are uncensored and comparable to the rule control.
 ## IR-K3-08 — `labels.tif` ≡ `existing_faults.tif` byte-identical
 Both SHA-256 `7ba308cc…` in the pinned manifest. Consistent with the competition design
 (catalogue = label support to be masked), noted so no one treats them as independent sources.
+
+## IR-K3-10 — False band attribution in the `tc` identity proof (fixed 2026-10-28)
+`docs/research.md` §3.2 attributed `training_features.tif` bands 07/08/09 to K/eTh/eU and reported r = 0.99942. The raster's own descriptions are 07 `geod_shearrate`, 08 `geod_dilaterate`, 09 `tmi_vg`. The formula came from an upstream note (`evidence/upstream/GEMSDOE32/README.md`, IR-32-BAND-02) that used a different layout.
+Re-measured: band 06 vs GeoDAWN TC r = +0.997 (n = 103,286). Band 06 is radiometric Total Count. Its embedded description ("Tilt angle or total curvature") is wrong.
+
+## IR-K3-11 — 23 registry rasters cannot be measured by the strict audit
+In the 2,210-raster manifest (2026-10-28): 14 have NaN inside the footprint, 5 have the right shape but a different transform/CRS (14GEMSDOE, 60GEMSDOE, two 75 schema demos, karage1 prototype), 3 are tiny test grids, and 1 is unreadable (GEMSDOE63 `smoke.tif`). `scripts/run_ccl_live.py` adds a NaN→0 pixel-grid comparison for the 24 same-shape ones. Any of the NaN-inside files that were actually submitted would have been portal-invalid.
+
+## IR-K3-12 — Hide-and-recover rewards fragment interpolation
+Withheld catalogue components are often 1–5 px fragments of visible traces. Catalogue-distance features score single AUCs of 0.77–0.79 on withheld truth, and the K3-CCL learner reaches HOLDOUT-DTI 0.146. But live new faults are depleted within ~5 px of the catalogue (live-ledger strata), and the live CCL file projects at ~0.10. The holdout is therefore not a valid instrument for catalogue-geometry features until it censors withheld components within 5 px of visible traces.

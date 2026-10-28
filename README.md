@@ -1,5 +1,47 @@
 # GEMSDOEkarage3 — current release decision (2026-10-28)
 
+## Is any file OK to submit? **NO — DO NOT SUBMIT** (updated 2026-10-28, lane K3-CCL)
+
+| Site | File | Score / estimate (labelled) | Uniqueness | Submit? |
+|---|---|---|---|---|
+| **GEMSDOEkarage3, new this session** | [`docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif`](docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif) · SHA-256 `ddf087e0bb8d5ad170e01b48ed88c8083ee21f6310e3f14d990b9d7c4bd738be` | HOLDOUT-DTI 0.1460 [0.1331, 0.1589] (GEMSDOE32-HIDE-RECOVER-v3.0, n=22,232); LIVE-LEDGER PROJECTION 0.096–0.100 (*not a score*) | New hash, but **duplicate stop**: >70% of dots within 3 px of 21 registry rasters (catalogue-halo lane, null-calibrated), and 99.9% for the literal lattice | **DO NOT SUBMIT** |
+| GEMSDOE32 | h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros | OWNER-REPORTED 0.2778 | H19-5 lane (100% within 3 px) | historical, do not resubmit |
+| GEMSDOE36 | anderson-geothermal-pinn-38854-…-9b9ea4e6-zeros | OWNER-REPORTED 0.2750 | H19-5 lane (97.8%) | historical |
+| GEMSDOE28 | h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan | OWNER-REPORTED 0.2710 | H19-5 lane (100%) | historical |
+| GEMSDOE31 | h27-4-solo-d28-20261004-8acb75e1-nan | OWNER-REPORTED 0.2708 | H19-5 lane (100%) | historical |
+| GEMSDOE33 | h33d-analog-tip-stepover-r30-20261004-cb490425926e | OWNER-REPORTED 0.2632 | H19-5 lane (99.7%) | historical |
+| GEMSDOE25 | dotted-h19-5-d2-8-20261002-e56ea318af89-nan | OWNER-REPORTED 0.2600 | H19-5 lane (100%) | historical |
+| GEMSDOE30 | d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca | OWNER-REPORTED 0.2600 | H19-5 lane (100%) | historical |
+| GEMSDOE24 | h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan | OWNER-REPORTED 0.2477 | H19-5 lane (100%) | historical |
+| GEMSDOE27 | topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan | OWNER-REPORTED 0.2449 | H19-5 lane (98.1%) | historical |
+
+- **Executive summary page:** [docs/ccl/index.html](docs/ccl/index.html)
+- **How to submit on DrivenData:** [docs/ccl/how-to-submit.html](docs/ccl/how-to-submit.html)
+- **Run card:** [evidence/ccl_run_card.json](evidence/ccl_run_card.json)
+- **Research note:** [research/2026-10-28-ccl.md](research/2026-10-28-ccl.md)
+
+**Findings this session:**
+
+- **A catalogue-completion learner doubles hide-and-recover DTI.** Mechanism Δ +0.073 [+0.060, +0.086] over physics alone; leakage canary max AUC 0.788.
+- **Under the live catalogue, that learner lands in the catalogue-halo lane.** Live new faults are depleted near the catalogue, and halo rasters already occupy that space. So it hit the duplicate stop and projects at about 0.10.
+- **The hide-and-recover holdout rewards recovering catalogue fragments** (IR-K3-12). It needs a fragment-censored variant before catalogue-geometry features can be trusted.
+- **All nine focus-site bests share one lane (H19-5).** The best unique live file remains GEMSDOE70 at 0.2478 (owner-reported).
+- **Correction:** band 06 `tc` is radiometric Total Count (r = 0.997 vs GeoDAWN TC). The earlier band-7/8/9 = K/eTh/eU proof was false (IR-K3-10).
+
+**Reproduce** (about 25 min on 2 CPUs):
+
+```
+.venv/bin/python scripts/restore_data.py --group all
+.venv/bin/python scripts/build_features.py
+.venv/bin/python scripts/fetch_all_registry.py --jobs 4
+.venv/bin/python scripts/run_ccl.py
+.venv/bin/python scripts/run_ccl_live.py --stage surface
+.venv/bin/python scripts/run_ccl_live.py --stage emit --b-px 5 --crest
+.venv/bin/python scripts/write_ccl_submission.py
+.venv/bin/python scripts/build_ccl_site.py
+```
+
+
 **DO NOT SUBMIT existing files.** The earlier approval claims below are withdrawn.
 All five saved TIFFs fail the literal any-registry overlap gate. No new model
 experiment or competition slot was used in this review. No leaderboard estimate

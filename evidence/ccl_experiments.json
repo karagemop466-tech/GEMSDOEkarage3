@@ -1,0 +1,686 @@
+{
+  "schema_version": 1,
+  "lane": "K3-CCL Catalogue-Completion Learner",
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "score_label": "HOLDOUT-DTI",
+  "b_visible_px": 2.0,
+  "min_sep_px": 2.8,
+  "budget_rule": "per-cell dot budget = control (champion bytes) count after identical B=2 gating",
+  "per_cell_budget": {
+    "draw20_fold0": 8458,
+    "draw20_fold1": 9629,
+    "draw20_fold2": 10184,
+    "draw20_fold3": 7074,
+    "draw21_fold0": 8458,
+    "draw21_fold1": 9629,
+    "draw21_fold2": 10184,
+    "draw21_fold3": 7074
+  },
+  "results": {
+    "CONTROL_CHAMPION_B2": {
+      "candidate_id": "CONTROL",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "score_label": "HOLDOUT-DTI",
+      "b_visible_px": 2.0,
+      "n_withheld_positives": 22232,
+      "n_spatial_clusters": 140,
+      "n_bootstrap_reps": 1000,
+      "pooled_dti": 0.00451537871535044,
+      "ci95_cluster_bootstrap": [
+        0.0038164175817344387,
+        0.005261598301920283
+      ],
+      "fold_mean_dti": 0.004600104084398947,
+      "per_quadrant_dti": {
+        "NW": 0.00512840329036098,
+        "NE": 0.005504306306184852,
+        "SW": 0.0036920786311337214,
+        "SE": 0.004075628109916233
+      },
+      "folds": {
+        "draw20_fold0": {
+          "dti": 0.005385639773569569,
+          "coverage": 0.009078166496374933,
+          "tp": 17.348376174572497,
+          "fp": 8444.793980125369,
+          "fn": 1893.6516238254276,
+          "n_truth": 1911,
+          "emitted": 8458
+        },
+        "draw20_fold1": {
+          "dti": 0.006335943576507519,
+          "coverage": 0.010261877623361285,
+          "tp": 24.125674292522383,
+          "fp": 9610.612598232361,
+          "fn": 2326.8743257074775,
+          "n_truth": 2351,
+          "emitted": 9629
+        },
+        "draw20_fold2": {
+          "dti": 0.003796426179210498,
+          "coverage": 0.005136499475503275,
+          "tp": 18.928000567229567,
+          "fp": 10169.78083470613,
+          "fn": 3666.0719994327706,
+          "n_truth": 3685,
+          "emitted": 10184
+        },
+        "draw20_fold3": {
+          "dti": 0.0048529260906769785,
+          "coverage": 0.006012700417157937,
+          "tp": 19.390958845334346,
+          "fp": 7059.23480529578,
+          "fn": 3205.6090411546656,
+          "n_truth": 3225,
+          "emitted": 7074
+        },
+        "draw21_fold0": {
+          "dti": 0.0048711668071523915,
+          "coverage": 0.007802019059799343,
+          "tp": 16.470062235236412,
+          "fp": 8445.194316834295,
+          "fn": 2094.5299377647634,
+          "n_truth": 2111,
+          "emitted": 8458
+        },
+        "draw21_fold1": {
+          "dti": 0.004672669035862185,
+          "coverage": 0.007712224592569388,
+          "tp": 17.468188702169662,
+          "fp": 9614.406378171032,
+          "fn": 2247.5318112978302,
+          "n_truth": 2265,
+          "emitted": 9629
+        },
+        "draw21_fold2": {
+          "dti": 0.0035877310830569444,
+          "coverage": 0.004910041733066764,
+          "tp": 17.597589571311282,
+          "fp": 10171.07993491746,
+          "fn": 3566.4024104286887,
+          "n_truth": 3584,
+          "emitted": 10184
+        },
+        "draw21_fold3": {
+          "dti": 0.003298330129155487,
+          "coverage": 0.004144469410263709,
+          "tp": 12.847855171817496,
+          "fp": 7063.454802117206,
+          "fn": 3087.1521448281824,
+          "n_truth": 3100,
+          "emitted": 7074
+        }
+      }
+    },
+    "E1_CCL_GEOM": {
+      "candidate_id": "E1_CCL_GEOM",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "score_label": "HOLDOUT-DTI",
+      "b_visible_px": 2.0,
+      "n_withheld_positives": 22232,
+      "n_spatial_clusters": 140,
+      "n_bootstrap_reps": 1000,
+      "pooled_dti": 0.14439755013535419,
+      "ci95_cluster_bootstrap": [
+        0.1312033676134251,
+        0.15818842867604185
+      ],
+      "fold_mean_dti": 0.14708588032550204,
+      "per_quadrant_dti": {
+        "NW": 0.17584987410697414,
+        "NE": 0.14366453231471998,
+        "SW": 0.12100029996986111,
+        "SE": 0.14782881491045288
+      },
+      "folds": {
+        "draw20_fold0": {
+          "dti": 0.17657302369790032,
+          "coverage": 0.30237892344904627,
+          "tp": 577.8461227111275,
+          "fp": 8140.962606774276,
+          "fn": 1333.1538772888725,
+          "n_truth": 1911,
+          "emitted": 8458
+        },
+        "draw20_fold1": {
+          "dti": 0.15364569137391873,
+          "coverage": 0.252294818983279,
+          "tp": 593.1451194296889,
+          "fp": 9305.222364022397,
+          "fn": 1757.8548805703113,
+          "n_truth": 2351,
+          "emitted": 9629
+        },
+        "draw20_fold2": {
+          "dti": 0.13124962097315673,
+          "coverage": 0.1798913042908565,
+          "tp": 662.8994563118063,
+          "fp": 9850.48609241228,
+          "fn": 3022.1005436881937,
+          "n_truth": 3685,
+          "emitted": 10184
+        },
+        "draw20_fold3": {
+          "dti": 0.14402343458451372,
+          "coverage": 0.18113997836101658,
+          "tp": 584.1764302142785,
+          "fp": 6796.426927827448,
+          "fn": 2640.8235697857217,
+          "n_truth": 3225,
+          "emitted": 7074
+        },
+        "draw21_fold0": {
+          "dti": 0.17512672451604797,
+          "coverage": 0.2852123793403532,
+          "tp": 602.0833327874856,
+          "fp": 8143.8496843264365,
+          "fn": 1508.9166672125143,
+          "n_truth": 2111,
+          "emitted": 8458
+        },
+        "draw21_fold1": {
+          "dti": 0.13368337325552124,
+          "coverage": 0.22344602437923605,
+          "tp": 506.1052452189696,
+          "fp": 9363.14649694063,
+          "fn": 1758.8947547810303,
+          "n_truth": 2265,
+          "emitted": 9629
+        },
+        "draw21_fold2": {
+          "dti": 0.11075097896656551,
+          "coverage": 0.15320370736491626,
+          "tp": 549.0820871958599,
+          "fp": 9903.957807504372,
+          "fn": 3034.91791280414,
+          "n_truth": 3584,
+          "emitted": 10184
+        },
+        "draw21_fold3": {
+          "dti": 0.15163419523639204,
+          "coverage": 0.19367936308887324,
+          "tp": 600.406025575507,
+          "fp": 6797.437878944062,
+          "fn": 2499.593974424493,
+          "n_truth": 3100,
+          "emitted": 7074
+        }
+      }
+    },
+    "E2_CCL_CREST": {
+      "candidate_id": "E2_CCL_CREST",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "score_label": "HOLDOUT-DTI",
+      "b_visible_px": 2.0,
+      "n_withheld_positives": 22232,
+      "n_spatial_clusters": 140,
+      "n_bootstrap_reps": 1000,
+      "pooled_dti": 0.14595023432886092,
+      "ci95_cluster_bootstrap": [
+        0.13310693029943899,
+        0.15890805919833403
+      ],
+      "fold_mean_dti": 0.14831014650320173,
+      "per_quadrant_dti": {
+        "NW": 0.17515197964446577,
+        "NE": 0.1417623824311819,
+        "SW": 0.12517200008380852,
+        "SE": 0.15115422385335073
+      },
+      "folds": {
+        "draw20_fold0": {
+          "dti": 0.17745721071675108,
+          "coverage": 0.30477281053987293,
+          "tp": 582.4208409416972,
+          "fp": 8183.755972648878,
+          "fn": 1328.5791590583028,
+          "n_truth": 1911,
+          "emitted": 8458
+        },
+        "draw20_fold1": {
+          "dti": 0.15366292318208558,
+          "coverage": 0.2528126333839144,
+          "tp": 594.3625010855827,
+          "fp": 9341.452490631136,
+          "fn": 1756.6374989144174,
+          "n_truth": 2351,
+          "emitted": 9629
+        },
+        "draw20_fold2": {
+          "dti": 0.13490249558892137,
+          "coverage": 0.1852203835771221,
+          "tp": 682.5371134816949,
+          "fp": 9874.886425721787,
+          "fn": 3002.462886518305,
+          "n_truth": 3685,
+          "emitted": 10184
+        },
+        "draw20_fold3": {
+          "dti": 0.1573373136812487,
+          "coverage": 0.19848360741619234,
+          "tp": 640.1096339172203,
+          "fp": 6801.842918228959,
+          "fn": 2584.8903660827796,
+          "n_truth": 3225,
+          "emitted": 7074
+        },
+        "draw21_fold0": {
+          "dti": 0.17284674857218044,
+          "coverage": 0.2820341956588459,
+          "tp": 595.3741870358238,
+          "fp": 8183.228840038086,
+          "fn": 1515.6258129641762,
+          "n_truth": 2111,
+          "emitted": 8458
+        },
+        "draw21_fold1": {
+          "dti": 0.1298618416802782,
+          "coverage": 0.21724261372096454,
+          "tp": 492.0545200779847,
+          "fp": 9393.253574713639,
+          "fn": 1772.9454799220152,
+          "n_truth": 2265,
+          "emitted": 9629
+        },
+        "draw21_fold2": {
+          "dti": 0.11544150457869566,
+          "coverage": 0.1599258191457323,
+          "tp": 573.1741358183046,
+          "fp": 9916.131888652973,
+          "fn": 3010.8258641816956,
+          "n_truth": 3584,
+          "emitted": 10184
+        },
+        "draw21_fold3": {
+          "dti": 0.14497113402545275,
+          "coverage": 0.18525412351661705,
+          "tp": 574.2877829015129,
+          "fp": 6832.682299869737,
+          "fn": 2525.712217098487,
+          "n_truth": 3100,
+          "emitted": 7074
+        }
+      }
+    },
+    "E3_PHYS_ONLY": {
+      "candidate_id": "E3_PHYS_ONLY",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "score_label": "HOLDOUT-DTI",
+      "b_visible_px": 2.0,
+      "n_withheld_positives": 22232,
+      "n_spatial_clusters": 140,
+      "n_bootstrap_reps": 1000,
+      "pooled_dti": 0.07107719407624692,
+      "ci95_cluster_bootstrap": [
+        0.05883397062199265,
+        0.08323120637729213
+      ],
+      "fold_mean_dti": 0.07243298878465447,
+      "per_quadrant_dti": {
+        "NW": 0.08255664480472133,
+        "NE": 0.0716508761039754,
+        "SW": 0.05633034658229971,
+        "SE": 0.07919408764762145
+      },
+      "folds": {
+        "draw20_fold0": {
+          "dti": 0.07874322708666659,
+          "coverage": 0.1336745268718825,
+          "tp": 255.45202085216744,
+          "fp": 8321.118960510525,
+          "fn": 1655.5479791478326,
+          "n_truth": 1911,
+          "emitted": 8458
+        },
+        "draw20_fold1": {
+          "dti": 0.061168008214675156,
+          "coverage": 0.09966241095310165,
+          "tp": 234.30632815074196,
+          "fp": 9514.379445793436,
+          "fn": 2116.693671849258,
+          "n_truth": 2351,
+          "emitted": 9629
+        },
+        "draw20_fold2": {
+          "dti": 0.05538957841076534,
+          "coverage": 0.07535236736585424,
+          "tp": 277.67347374317285,
+          "fp": 10047.82455947575,
+          "fn": 3407.326526256827,
+          "n_truth": 3685,
+          "emitted": 10184
+        },
+        "draw20_fold3": {
+          "dti": 0.09172817819365552,
+          "coverage": 0.11478869032116792,
+          "tp": 370.19352628576655,
+          "fp": 6908.639934475767,
+          "fn": 2854.8064737142336,
+          "n_truth": 3225,
+          "emitted": 7074
+        },
+        "draw21_fold0": {
+          "dti": 0.08637006252277607,
+          "coverage": 0.1395007818481311,
+          "tp": 294.48615048140476,
+          "fp": 8309.443530231034,
+          "fn": 1816.5138495185952,
+          "n_truth": 2111,
+          "emitted": 8458
+        },
+        "draw21_fold1": {
+          "dti": 0.08213374399327564,
+          "coverage": 0.1367365746602459,
+          "tp": 309.708341605457,
+          "fp": 9484.195458933153,
+          "fn": 1955.291658394543,
+          "n_truth": 2265,
+          "emitted": 9629
+        },
+        "draw21_fold2": {
+          "dti": 0.05727111475383408,
+          "coverage": 0.07884185870916602,
+          "tp": 282.569221613651,
+          "fp": 10050.866918070882,
+          "fn": 3301.430778386349,
+          "n_truth": 3584,
+          "emitted": 10184
+        },
+        "draw21_fold3": {
+          "dti": 0.06665999710158739,
+          "coverage": 0.0843514484781638,
+          "tp": 261.48949028230777,
+          "fp": 6952.184501017701,
+          "fn": 2838.510509717692,
+          "n_truth": 3100,
+          "emitted": 7074
+        }
+      }
+    }
+  },
+  "paired_vs_control": {
+    "E1_CCL_GEOM": {
+      "delta_point": 0.13988217142000375,
+      "delta_ci95": [
+        0.12667488456668816,
+        0.15382622036797497
+      ],
+      "p_delta_le_0": 0.0
+    },
+    "E2_CCL_CREST": {
+      "delta_point": 0.1414348556135105,
+      "delta_ci95": [
+        0.12862252749120034,
+        0.15421276245574617
+      ],
+      "p_delta_le_0": 0.0
+    },
+    "E3_PHYS_ONLY": {
+      "delta_point": 0.06656181536089648,
+      "delta_ci95": [
+        0.054531267644823064,
+        0.07873642338438572
+      ],
+      "p_delta_le_0": 0.0
+    }
+  },
+  "paired_E1_vs_E3_mechanism": {
+    "delta_point": 0.07332035605910726,
+    "delta_ci95": [
+      0.06049318893835281,
+      0.08587204660402892
+    ],
+    "p_delta_le_0": 0.0
+  },
+  "paired_E2_vs_E1": {
+    "delta_point": 0.001552684193506737,
+    "delta_ci95": [
+      -0.003209791701870409,
+      0.006704300811129294
+    ],
+    "p_delta_le_0": 0.301
+  },
+  "leakage_canary": {
+    "rule": "oriented single-feature AUC on withheld truth > 0.90 => leakage; model AUCs reported for context (not single features)",
+    "features": {
+      "band01": {
+        "raw_auc": 0.484021135046256,
+        "oriented_auc": 0.515978864953744,
+        "passed": true
+      },
+      "band02": {
+        "raw_auc": 0.5174862294702112,
+        "oriented_auc": 0.5174862294702112,
+        "passed": true
+      },
+      "band03": {
+        "raw_auc": 0.5037007442756903,
+        "oriented_auc": 0.5037007442756903,
+        "passed": true
+      },
+      "band04": {
+        "raw_auc": 0.5134166326764821,
+        "oriented_auc": 0.5134166326764821,
+        "passed": true
+      },
+      "band05": {
+        "raw_auc": 0.5341691339193747,
+        "oriented_auc": 0.5341691339193747,
+        "passed": true
+      },
+      "band06": {
+        "raw_auc": 0.4487470397709179,
+        "oriented_auc": 0.5512529602290821,
+        "passed": true
+      },
+      "band07": {
+        "raw_auc": 0.5163516731456731,
+        "oriented_auc": 0.5163516731456731,
+        "passed": true
+      },
+      "band08": {
+        "raw_auc": 0.5184874196299672,
+        "oriented_auc": 0.5184874196299672,
+        "passed": true
+      },
+      "band09": {
+        "raw_auc": 0.5004314901164921,
+        "oriented_auc": 0.5004314901164921,
+        "passed": true
+      },
+      "band10": {
+        "raw_auc": 0.5053012132570165,
+        "oriented_auc": 0.5053012132570165,
+        "passed": true
+      },
+      "band11": {
+        "raw_auc": 0.5328953761387993,
+        "oriented_auc": 0.5328953761387993,
+        "passed": true
+      },
+      "band12": {
+        "raw_auc": 0.4978263089098457,
+        "oriented_auc": 0.5021736910901543,
+        "passed": true
+      },
+      "band13": {
+        "raw_auc": 0.4879635338430438,
+        "oriented_auc": 0.5120364661569562,
+        "passed": true
+      },
+      "band14": {
+        "raw_auc": 0.4934155736551073,
+        "oriented_auc": 0.5065844263448926,
+        "passed": true
+      },
+      "band15": {
+        "raw_auc": 0.49935479119482556,
+        "oriented_auc": 0.5006452088051745,
+        "passed": true
+      },
+      "band16": {
+        "raw_auc": 0.5262843902957739,
+        "oriented_auc": 0.5262843902957739,
+        "passed": true
+      },
+      "band17": {
+        "raw_auc": 0.4970544601502847,
+        "oriented_auc": 0.5029455398497154,
+        "passed": true
+      },
+      "band18": {
+        "raw_auc": 0.4956896158223331,
+        "oriented_auc": 0.5043103841776668,
+        "passed": true
+      },
+      "band19": {
+        "raw_auc": 0.5522954526791031,
+        "oriented_auc": 0.5522954526791031,
+        "passed": true
+      },
+      "curv_s1": {
+        "raw_auc": 0.5686491843955289,
+        "oriented_auc": 0.5686491843955289,
+        "passed": true
+      },
+      "curv_s2": {
+        "raw_auc": 0.5847380812883742,
+        "oriented_auc": 0.5847380812883742,
+        "passed": true
+      },
+      "ridge_s1": {
+        "raw_auc": 0.491598904021369,
+        "oriented_auc": 0.5084010959786309,
+        "passed": true
+      },
+      "ridge_s2": {
+        "raw_auc": 0.4878771129821924,
+        "oriented_auc": 0.5121228870178076,
+        "passed": true
+      },
+      "ridge_s3": {
+        "raw_auc": 0.4854384354429813,
+        "oriented_auc": 0.5145615645570187,
+        "passed": true
+      },
+      "relief5": {
+        "raw_auc": 0.5591335592240769,
+        "oriented_auc": 0.5591335592240769,
+        "passed": true
+      },
+      "tophat2": {
+        "raw_auc": 0.4735803246826101,
+        "oriented_auc": 0.52641967531739,
+        "passed": true
+      },
+      "tmi_edge": {
+        "raw_auc": 0.5034923754466014,
+        "oriented_auc": 0.5034923754466014,
+        "passed": true
+      },
+      "rtp_edge": {
+        "raw_auc": 0.5078456405062176,
+        "oriented_auc": 0.5078456405062176,
+        "passed": true
+      },
+      "grav_edge": {
+        "raw_auc": 0.5368289607066979,
+        "oriented_auc": 0.5368289607066979,
+        "passed": true
+      },
+      "cond_edge": {
+        "raw_auc": 0.4957191990358971,
+        "oriented_auc": 0.5042808009641029,
+        "passed": true
+      },
+      "depth_grad": {
+        "raw_auc": 0.5289078847261965,
+        "oriented_auc": 0.5289078847261965,
+        "passed": true
+      },
+      "coherence_s2": {
+        "raw_auc": 0.5615631805503559,
+        "oriented_auc": 0.5615631805503559,
+        "passed": true
+      },
+      "strike_cos": {
+        "raw_auc": 0.5653313408116538,
+        "oriented_auc": 0.5653313408116538,
+        "passed": true
+      },
+      "strike_sin": {
+        "raw_auc": 0.5435275654823425,
+        "oriented_auc": 0.5435275654823425,
+        "passed": true
+      },
+      "lidar_ex_max": {
+        "raw_auc": 0.5407624989176975,
+        "oriented_auc": 0.5407624989176975,
+        "passed": true
+      },
+      "lidar_step_max": {
+        "raw_auc": 0.5400623944461941,
+        "oriented_auc": 0.5400623944461941,
+        "passed": true
+      },
+      "lidar_downface_max": {
+        "raw_auc": 0.5543870802362739,
+        "oriented_auc": 0.5543870802362739,
+        "passed": true
+      },
+      "lidar_coh100": {
+        "raw_auc": 0.48621817359247904,
+        "oriented_auc": 0.5137818264075209,
+        "passed": true
+      },
+      "lidar_lidar_valid": {
+        "raw_auc": 0.50352015184088,
+        "oriented_auc": 0.50352015184088,
+        "passed": true
+      },
+      "vis_logd": {
+        "raw_auc": 0.22793265164840568,
+        "oriented_auc": 0.7720673483515943,
+        "passed": true
+      },
+      "vis_along_strike": {
+        "raw_auc": 0.599255133599458,
+        "oriented_auc": 0.599255133599458,
+        "passed": true
+      },
+      "vis_strike_align": {
+        "raw_auc": 0.5716974513833966,
+        "oriented_auc": 0.5716974513833966,
+        "passed": true
+      },
+      "vis_density_r20": {
+        "raw_auc": 0.7284789630632039,
+        "oriented_auc": 0.7284789630632039,
+        "passed": true
+      },
+      "vis_tip_logd": {
+        "raw_auc": 0.2123394248532004,
+        "oriented_auc": 0.7876605751467995,
+        "passed": true
+      },
+      "vis_dist_band": {
+        "raw_auc": 0.22955084224305633,
+        "oriented_auc": 0.7704491577569437,
+        "passed": true
+      },
+      "MODEL_CCL_GEOM": {
+        "raw_auc": 0.7658673684149426,
+        "oriented_auc": 0.7658673684149426,
+        "passed": true
+      },
+      "MODEL_PHYS_ONLY": {
+        "raw_auc": 0.5951485184447555,
+        "oriented_auc": 0.5951485184447555,
+        "passed": true
+      }
+    },
+    "single_feature_max": 0.7876605751467995,
+    "passed": true
+  },
+  "seconds": 711.5
+}
