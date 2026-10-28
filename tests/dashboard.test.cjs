@@ -2,7 +2,8 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {JSDOM} = require('jsdom');
-const html = fs.readFileSync('docs/index.html', 'utf8');
+// Isolated DOM for the retained read-only dashboard script; the legacy page is superseded.
+const html = '<!doctype html><html><body><button disabled></button><table><tbody id="rows"></tbody></table><div id="site-details"></div><div id="updated"></div></body></html>';
 const script = fs.readFileSync('docs/dashboard.js', 'utf8');
 
 async function render(change, failure = false) {

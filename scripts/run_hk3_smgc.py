@@ -618,6 +618,10 @@ def render_diagnostic_figure(
 
 
 def main() -> int:
+    # Historical runner excludes dense/lattice rasters from release-gate inputs,
+    # writes before the final literal check and deletes existing downloads.
+    # Disable it rather than silently authorizing a protocol-violating candidate.
+    raise SystemExit("STOP: legacy SMGC runner is disabled; literal registry gate and safe output handling require repair. See evidence/review-2026-10-28.md.")
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()
