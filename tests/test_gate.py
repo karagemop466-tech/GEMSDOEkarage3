@@ -33,8 +33,23 @@ class GateTests(unittest.TestCase):
         self.assertEqual(assess(c)['verdict'], 'negative')
 
     def test_duplicate(self):
-        c=self.valid(); c['registry']['final_dots']['max_overlap_3px']=.70001
+        c=self.valid(); c['registry']['final_dots']['comparisons'][0]['overlap_3px']=.70001
         self.assertEqual(assess(c)['verdict'],'negative')
+    def test_five_pixel_calibration_is_not_a_duplicate_measure(self):
+        c = self.valid()
+        c['registry']['final_dots']['literal_5px_calibration_lattice_overlap'] = .99
+        c['registry']['final_dots']['comparisons'][0]['literal_5px_calibration_lattice_overlap'] = .99
+        self.assertEqual(assess(c)['verdict'], 'promote')
+
+    def test_null_calibrated_excess_is_diagnostic_only(self):
+        c = self.valid()
+        c['registry']['duplicate_rule'] = 'null-calibrated excess overlap is diagnostic'
+        for stage in ('surface', 'final_dots'):
+            row = c['registry'][stage]['comparisons'][0]
+            row['literal_overlap_3px'] = .7
+            row['null_calibrated_excess_overlap'] = .99
+        self.assertEqual(assess(c)['verdict'], 'promote')
+
     def test_surface_overlap_and_manifest_required(self):
         c=self.valid(); c['registry']['surface']['comparisons'][0]['overlap_3px']=.70001
         self.assertEqual(assess(c)['verdict'],'negative')

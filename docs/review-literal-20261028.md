@@ -1,5 +1,7 @@
 # Three-pass review — literal duplicate stop
 
+Machine-readable companion: [`evidence/run-card-literal-review-20261028.json`](../evidence/run-card-literal-review-20261028.json).
+
 **Decision: negative / DO NOT SUBMIT.** No new geological experiment, candidate,
 score estimate or competition upload was made. The requested method paragraph
 is not identifiable in the prompt. The ignored feature stack is absent in this
@@ -73,8 +75,10 @@ this network-restricted sandbox; their current content, data rights, and quota
 were not independently checked here. No claim about the present leaderboard or
 external data obtainability follows from these links.
 
-Verification after the three passes: `pytest -q` 165 passed, one optional-cache
-skip, 49 subtests; `unittest discover` 105 passed; dashboard Node suite four
-passed; browser feed suite two passed; root site build check and `git diff
---check` passed. These are engineering checks, not new HOLDOUT-DTI measurements
-or evidence of organizer acceptance.
+Verification after the three passes and final gate refinement: `pytest -q`
+169 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
+passed; dashboard Node suite four passed; browser feed suite two passed; root
+site build check and `git diff --check` passed. The independent one-witness
+script also reran and returned 0.9935199447601848 literal overlap with a
+negative verdict. These are engineering checks and a single-raster duplicate
+witness, not a new HOLDOUT-DTI measurement or evidence of organizer acceptance.

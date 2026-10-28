@@ -97,7 +97,7 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
     if ok:
         aside = (f'<aside style="padding:16px;background:#ecfdf5;color:#064e3b;border-bottom:3px solid #059669"><strong>OK TO SUBMIT? YES — one file is cleared '
                  f'(lane H-K3C, {H(card["generated_utc"][:10])}).</strong> <code>{H(card["submission_name"])}</code> (SHA-256 {sha8}…) passed every automated gate: '
-                 f'format/[0,1]/zero-NaN, leakage canaries, null-calibrated registry uniqueness, and HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) '
+                 f'format/[0,1]/zero-NaN, leakage canaries, literal 3-pixel registry uniqueness, and HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) '
                  f'{hr} vs the 0.2778 champion rule {champ} with paired 95% CI [{pd[0]:+.4f}, {pd[1]:+.4f}] excluding zero. The selector decides whether to spend a weekly slot. '
                  f'<a href="{H(dl)}" download>Download .tif</a> · <a href="{H(zp)}" download>.zip</a> · <a href="docs/k3c/index.html">Executive summary</a> · '
                  f'<a href="docs/k3c/how-to-submit.html">How to submit</a> · <a href="docs/k3c/run-card.json">Run card</a></aside>')
@@ -111,7 +111,7 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
     else:
         reasons = H(reason_summary(gate))
         aside = (f'<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO. As of {H(card["generated_utc"][:10])} no file in this repository is authorized.</strong> '
-                 f'Newest lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) HOLDOUT-DTI {hr} vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); '
+                 f'Newest lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) {hr} vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); '
                  f'gate verdict <strong>{H(gate["verdict"].upper())}</strong>: {reasons}. '
                  f'<a href="docs/k3c/index.html">H-K3C executive summary &amp; research-only TIFF</a> · <a href="docs/k3c/how-to-submit.html">How to submit (when a file is cleared)</a> · '
                  f'<a href="docs/csst-bghf/index.html">Previous lane CSST-BGHF</a> · <a href="docs/release-review.html">Saved-byte audit</a></aside>')

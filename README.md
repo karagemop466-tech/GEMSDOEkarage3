@@ -15,6 +15,7 @@ acceptance or scientific merit.
 [How to submit when cleared](docs/k3c/how-to-submit.html) ·
 [current gate decision](docs/current-gate-decision.json) ·
 [this session's review](docs/review-literal-20261028.md) ·
+[review run card](evidence/run-card-literal-review-20261028.json) ·
 [user request and protocol](docs/PROJECT_BRIEF.md).
 
 **No live score estimate is defensible.** User-reported past results are not
@@ -141,13 +142,13 @@ npm test
 
 ---
 
-## 7. Limitations & Highest-Priority Next Steps (session 3 list; session-4 list is in the PR description and `research/2026-10-28-k3c.md` §5–6)
+## 7. Current limitations & next steps
 
-1. **Bootstrap CI Power (`8` vs `24` Fold×Draw Cells) & Literal Lattice Rule (`IR-K3-02`):** `EXP-3` beats `0.2778` Champion across all 4 quadrants and all 3 benchmarks (`P = 88.9%` HR, `P = 89.1%` Detached, `P = 86.5%` SGMC-cal), while `13GEMSDOE` `r13-lattice-s5` (`206,895` dots) mathematically covers `99.87%` of the footprint within 3 px (`IR-K3-02`). Expanding `HoldoutContext` to 6 stratified draws (`24` cells) will sharpen paired CI resolution, while continuous soft-probability emission or sub-budget high-precision emission (`< 6,649` dots outside lattice or organizer selector waiver on `r13-lattice-s5`) addresses the literal lattice bound.
-2. **Offline Ingest of Relocated Microseismicity & InSAR (`H-K3B-4`):** Sandbox outbound network policy blocks `earthquake.usgs.gov` and `asf.alaska.edu`; mirroring public-domain USGS ComCat / Nevada Seismological Laboratory catalogs and ARIA Sentinel-1 coherence rasters into the data manifest is the single largest untried physical data source toward `> 0.3195–0.44`.
-3. **Execute Rank-2 Hypothesis `H-K3B-2 (LDCG-9B)`:** Combine Saint-Venant geodetic strain-incompatibility curl and shear×dilatation fault-intersection localization with `CSST-BGHF`.
-
----
+1. **Strict duplicate stop:** the archived H-K3C candidate has a pinned witness audit showing 99.351994% literal 3-pixel overlap, above the 70% maximum. This one-raster audit is not a complete current registry scan, but it is enough to stop this candidate. Null-calibrated excess is diagnostic only; do not evade the rule by targeting lattice holes.
+2. **Fresh inputs are unavailable:** the feature cache and current complete registry snapshot are absent in this checkout. Existing run cards and registry manifests are historical evidence, not proof of current inventory completeness. See [`docs/readiness.json`](docs/readiness.json) and the [three-pass review](docs/review-literal-20261028.md).
+3. **Holdout limitation:** hide-and-recover can reward reconstruction of catalogued fault fragments adjacent to visible traces. Do not trust catalogue-geometry features as evidence for off-catalogue discovery without a fragment-censored evaluation and visible-only feature derivation.
+4. **No live score estimate:** historical owner-reported site values are not organizer receipts. No current authenticated leaderboard reading, submission-page receipt, or account-specific weekly quota was verified in this review. Do not present an old holdout as a forecast.
+5. **Next experiment gate:** before another run, identify the assigned method lane, restore and hash-check inputs, freeze a complete registry, use the shared evaluator/writer, and preregister at most three experiments. Run feature-alone leakage canaries, paired spatial HOLDOUT-DTI with evaluator/count/95% CI, both uniqueness checks, and saved-byte validation. Use a separate selector before any submission slot.
 
 ## 8. Standing Reference Prompt (Verbatim User Instructions)
 

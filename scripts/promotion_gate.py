@@ -8,7 +8,19 @@ import json
 import math
 import sys
 
-LITERAL_KEYS = ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap', 'max_literal_overlap_3px')
+# Only 3-pixel literal measures implement the user's stop rule. In particular,
+# a 5-pixel calibration metric must never reject or authorize a candidate.
+LITERAL_KEYS = ('within_3px_fraction', 'literal_overlap_3px', 'max_literal_overlap_3px')
+
+
+def _literal_overlap(row, calibrated_claim: bool):
+    """Return an explicitly literal 3-px overlap, never a calibrated proxy."""
+    for key in ('literal_overlap_3px', 'within_3px_fraction'):
+        if key in row:
+            return row[key]
+    if not calibrated_claim and 'overlap_3px' in row:
+        return row['overlap_3px']
+    return None
 
 
 def finite(x):
@@ -63,7 +75,7 @@ def assess(card):
         literal = False
     require(literal is True, 'literal all-registry final audit failed or missing')
     # A calibrated comparison field cannot establish compliance with the literal rule.
-    calibrated = 'null-calibrated' in str(registry.get('duplicate_rule', '')).lower()
+    calibrated_claim = 'null-calibrated' in str(registry.get('duplicate_rule', '')).lower()
     fd = registry.get('final_dots') if isinstance(registry.get('final_dots'), dict) else {}
     if 'max_literal_overlap_3px' in fd:
         require(finite(fd['max_literal_overlap_3px']) and 0 <= fd['max_literal_overlap_3px'] <= .70,
@@ -85,15 +97,17 @@ def assess(card):
                        and len(ids) == len(inventory) and len(set(ids)) == len(ids)
                        and set(ids) == set(inventory)
                        and all(finite(x.get('abs_spearman')) and 0 <= x['abs_spearman'] <= .90
-                               and finite(x.get('literal_overlap_3px' if calibrated else 'overlap_3px'))
-                               and 0 <= x['literal_overlap_3px' if calibrated else 'overlap_3px'] <= .70
+                               and finite(_literal_overlap(x, calibrated_claim))
+                               and 0 <= _literal_overlap(x, calibrated_claim) <= .70
                                for x in comparisons))
         surface_ok = (rows_ok and finite(r.get('max_abs_spearman'))
                       and 0 <= r['max_abs_spearman'] <= .90
                       and r['max_abs_spearman'] == max(x['abs_spearman'] for x in comparisons))
-        final_ok = (rows_ok and finite(r.get('max_overlap_3px'))
-                    and 0 <= r['max_overlap_3px'] <= .70
-                    and r['max_overlap_3px'] == max(x['literal_overlap_3px' if calibrated else 'overlap_3px'] for x in comparisons))
+        final_literal_max = max((_literal_overlap(x, calibrated_claim) for x in comparisons), default=None) if rows_ok else None
+        recorded_literal_max = r.get('max_literal_overlap_3px')
+        final_ok = (rows_ok and finite(final_literal_max) and 0 <= final_literal_max <= .70
+                    and (recorded_literal_max is None or
+                         (finite(recorded_literal_max) and recorded_literal_max == final_literal_max)))
         require(r.get('complete') is True and surface_ok and final_ok, f'{stage} uniqueness incomplete or duplicate')
     require(not card.get('release_review'), 'superseded release evidence; rerun literal registry checks')
     v = card.get('validator') if isinstance(card.get('validator'), dict) else {}
