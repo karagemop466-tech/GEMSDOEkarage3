@@ -9,23 +9,29 @@ class GateTests(unittest.TestCase):
     def test_negative_never_ok_to_submit(self):
         c=self.valid(); c['holdout']['paired_delta_ci95']=[-.01,.02]
         r=assess(c); self.assertEqual(r['verdict'],'negative'); self.assertFalse(r['ok_to_submit'])
-    def test_null_calibrated_rule_v3(self):
-        # v3: literal failure vs a space-filling lattice is allowed only with the null-calibrated audit declared
-        c=self.valid(); c['registry']['literal_all_rasters_final_passed']=False
-        self.assertEqual(assess(c)['verdict'],'negative')            # legacy card: literal rule binds
-        c['registry']['null_calibrated_all_rasters_final_passed']=True
-        c['registry']['duplicate_rule']='null-calibrated excess overlap (obs-p0)/(1-p0) <= 0.70'
-        self.assertEqual(assess(c)['verdict'],'negative')            # literal failure must be disclosed
-        c['registry']['final_dots']['max_literal_overlap_3px']=.9936
-        self.assertEqual(assess(c)['verdict'],'promote')
-        c['registry']['null_calibrated_all_rasters_final_passed']=False
-        self.assertEqual(assess(c)['verdict'],'negative')
-    def test_literal_over70_node_needs_p0_and_excess(self):
-        c=self.valid(); c['registry']['literal_all_rasters_final_passed']=True
-        c['evidence']={'within_3px_fraction':.9936,'footprint_3px_coverage_p0':.9987,'null_calibrated_excess_overlap':0.0}
-        self.assertEqual(assess(c)['verdict'],'promote')
-        c['evidence']={'within_3px_fraction':.9936,'footprint_3px_coverage_p0':.5,'null_calibrated_excess_overlap':.98}
-        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_null_calibration_never_overrides_literal_failure(self):
+        c = self.valid()
+        c['registry']['literal_all_rasters_final_passed'] = False
+        c['registry']['null_calibrated_all_rasters_final_passed'] = True
+        c['registry']['duplicate_rule'] = 'null-calibrated'
+        c['registry']['final_dots']['max_literal_overlap_3px'] = .9936
+        self.assertEqual(assess(c)['verdict'], 'negative')
+
+    def test_literal_overlap_node_rejected_even_with_calibration(self):
+        c = self.valid()
+        c['evidence'] = {'within_3px_fraction': .9936, 'p0': .9987, 'excess_overlap_3px': 0}
+        self.assertEqual(assess(c)['verdict'], 'negative')
+
+    def test_calibrated_rows_require_literal_values(self):
+        c = self.valid()
+        c['registry']['duplicate_rule'] = 'null-calibrated'
+        self.assertEqual(assess(c)['verdict'], 'negative')
+        for stage in ('surface', 'final_dots'):
+            c['registry'][stage]['comparisons'][0]['literal_overlap_3px'] = .7
+        self.assertEqual(assess(c)['verdict'], 'promote')
+        c['registry']['surface']['comparisons'][0]['literal_overlap_3px'] = .70001
+        self.assertEqual(assess(c)['verdict'], 'negative')
+
     def test_duplicate(self):
         c=self.valid(); c['registry']['final_dots']['max_overlap_3px']=.70001
         self.assertEqual(assess(c)['verdict'],'negative')
