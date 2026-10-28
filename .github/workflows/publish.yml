@@ -32,6 +32,10 @@ jobs:
         run: python scripts/refresh_feed.py
       - name: Rebuild static pages from pinned evidence
         run: python scripts/build_preflight_site.py
+      - name: Rebuild authoritative review pages
+        run: python scripts/build_review_status.py
+      - name: Add release warning and archive superseded body
+        run: python scripts/build_release_review.py
       - name: Build root evidence site
         run: python scripts/build_site.py --check
       - name: Stage public files
