@@ -1,4 +1,8 @@
-"""Fail-closed evidence decision. Does not replace template evaluator or writer."""
+"""Fail-closed evidence screening, not an upload selector or evaluator.
+
+Checks self-reported evidence for consistency; it cannot independently establish
+that an inventory is current and complete or that the measurements are genuine.
+"""
 import json
 import math
 import sys
@@ -50,7 +54,9 @@ def assess(card):
     inventory_ok = (isinstance(inventory, list) and bool(inventory)
                     and all(isinstance(x, str) and len(x) == 64 and all(c in '0123456789abcdef' for c in x) for x in inventory)
                     and len(set(inventory)) == len(inventory))
-    require(inventory_ok, 'missing nonempty unique registry inventory')
+    manifest = registry.get('manifest_sha256')
+    manifest_ok = isinstance(manifest, str) and len(manifest) == 64 and all(c in '0123456789abcdef' for c in manifest)
+    require(inventory_ok and manifest_ok, 'missing nonempty unique registry inventory or manifest digest')
     for stage in ('surface','final_dots'):
         r=registry.get(stage) if isinstance(registry.get(stage), dict) else {}
         comparisons = r.get('comparisons')
@@ -61,15 +67,14 @@ def assess(card):
                        and len(ids) == len(inventory) and len(set(ids)) == len(ids)
                        and set(ids) == set(inventory)
                        and all(finite(x.get('abs_spearman')) and 0 <= x['abs_spearman'] <= .90
-                               and (stage == 'surface' or
-                                    (finite(x.get('overlap_3px')) and 0 <= x['overlap_3px'] <= .70))
+                               and finite(x.get('overlap_3px')) and 0 <= x['overlap_3px'] <= .70
                                for x in comparisons))
         surface_ok = (rows_ok and finite(r.get('max_abs_spearman'))
                       and 0 <= r['max_abs_spearman'] <= .90
                       and r['max_abs_spearman'] == max(x['abs_spearman'] for x in comparisons))
-        final_ok = (stage == 'surface' or (rows_ok and finite(r.get('max_overlap_3px'))
+        final_ok = (rows_ok and finite(r.get('max_overlap_3px'))
                     and 0 <= r['max_overlap_3px'] <= .70
-                    and r['max_overlap_3px'] == max(x['overlap_3px'] for x in comparisons)))
+                    and r['max_overlap_3px'] == max(x['overlap_3px'] for x in comparisons))
         require(r.get('complete') is True and surface_ok and final_ok,
                 f'{stage} uniqueness incomplete or duplicate')
     v=card.get('validator') if isinstance(card.get('validator'), dict) else {}

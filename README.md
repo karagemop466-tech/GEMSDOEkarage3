@@ -116,3 +116,5 @@ Remember to create a pull request and merge the PR into main. Finally, report an
 ```
 
 </details>
+
+The local promotion screen additionally requires a pinned registry manifest digest and per-reference correlation **and** overlap measurements at both pre-placement and final-dot stages. It checks card consistency only: a digest in a card does not prove the inventory complete or current. A separate evidence audit and selector remain mandatory.
