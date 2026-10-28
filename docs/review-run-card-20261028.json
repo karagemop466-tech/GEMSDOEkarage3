@@ -1,0 +1,53 @@
+{
+  "hypothesis": "H-K3-1 (SMGC-CT): Stationary Max-Envelope Geothermal-Conduit & Crustal-Tensor Crest Allocation. Concealed and unmapped Basin-and-Range faults and hydrothermal upflow conduits across the 24.63% 1 m LiDAR gap and mesoscale (0.9-4.0 km) intrabasin transfer zones are jointly resolved by combining the four preregistered GEMSDOEkarage3 physical transforms \u2014 (1) upward-continued (z=500 m, 2,000 m) magnetic-edge dip migration, (2) 4-block-standardized log(K/Th) & log(U/Th) compositional discontinuities, (3) cross-field gravity-RTP parallel signed offset, and (4) drainage-vetoed asymmetric piedmont profile curvature \u2014 with Phillips 2D potential-field/scarp curvature and DOE GDR #1391 2-m thermal/sinter plumes inside a 100% stationary Mesoscale Corridor Max-Envelope floor packed at min_sep_px = 2.8 via submodular CELF.",
+  "mechanism": "87 strictly label-free channels (35 template + 20 SPCP + 8 TRHV + 8 LDGI + 12 FBGR + 4 new SMGC priority channels) -> 4-quadrant 1.5 km-collared OOF Dual-Cover classifiers (M_Full inside 75.37% 1 m LiDAR + quantile-calibrated LiDAR-free M_Sub inside 24.63% LiDAR gap) + stationary Mesoscale Corridor Max-Envelope (tau_corridor=0.555, d_in=11.0 px, d_out=40.0 px) -> shared gems32.emitter.emit(..., min_sep_px=2.8) emitting 37,654 binary {0,1} dots strictly >200 m (B=2) from mapped catalogue (51.2% >1.5 km from catalogue; 29.0% in LiDAR gap; flat deep playa allocation = 2.14%).",
+  "named_non_fault_process": "(1) Shallow volcanic-flow margins and primary felsic ash-flow tuff contacts (rejected by z=500 m -> 2,000 m harmonic upward-continuation survival and block-standardized K/Th & U/Th ratio change-points minus TC steps); (2) Evaporative saline playas and closed-basin sinks (rejected by flat deep basin veto slope < 2 deg & depth > 300 m); (3) US-50/I-80 road-cut prisms, drainage thalwegs, and Lake Lahontan 1,330 m / 1,270 m wave-cut shorelines (rejected by TIGER 2024 road gate, Laplacian drainage veto, and contour-orthogonality filtering).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "value": 0.107297,
+    "ci95": [
+      0.093004,
+      0.120923
+    ],
+    "reproduced_this_review": false
+  },
+  "correlation_overlap_vs_registry": {
+    "saved_max_surface_abs_spearman": 0.201012,
+    "literal_lattice_dot_overlap_3px": 0.996866,
+    "limit": 0.7,
+    "duplicate_stop": true,
+    "new_registry_scan_this_review": false
+  },
+  "raster_sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
+  "validator_output": {
+    "file": "docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif",
+    "sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
+    "single_band": true,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "all_finite": true,
+    "range_0_1": true,
+    "positive_pixels": 37654,
+    "template_match_rechecked": false,
+    "reason": "Core template absent in this checkout. Metadata matches saved receipt, not fresh organizer authentication.",
+    "ok_to_submit": false
+  },
+  "submission_name": "GEMSDOEKARAGE3-HK3-SMGC-C886C782",
+  "note": "RETRACTED: literal registry overlap exceeds 70%; research only, do not submit.",
+  "verdict": "negative",
+  "experiments_this_review": 0,
+  "weekly_slots_used": 0
+}

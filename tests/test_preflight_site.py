@@ -29,8 +29,13 @@ class SiteTests(unittest.TestCase):
         self.assertIn('docs/preflight.html', root)
         self.assertTrue((ROOT / '.nojekyll').is_file())
         self.assertTrue((DOCS / 'index.html').is_file())
-        self.assertIn('preflight.html', (DOCS / 'index.html').read_text())
-        self.assertIn('outside-null wording', (DOCS / 'executive-summary.html').read_text())
+        self.assertIn('Submission blocked: duplicate-stop', (DOCS / 'index.html').read_text())
+        self.assertIn('NOT CLEARED FOR SUBMISSION', (DOCS / 'executive-summary.html').read_text())
+        self.assertIn('Legacy outside-null wording', (DOCS / 'executive-summary.html').read_text())
+        for card_path in ('run-card.json', 'data/latest-run-card.json', 'data/run_card.json'):
+            card = json.loads((DOCS / card_path).read_text())
+            self.assertEqual(card['verdict'], 'negative')
+            self.assertFalse(card['ok_to_submit'])
 
     def test_internal_links_exist(self):
         for page in ('preflight.html', 'preflight-executive.html', 'preflight-research.html'):
@@ -64,7 +69,7 @@ class SiteTests(unittest.TestCase):
 
     def test_deterministic_build(self):
         files = [DOCS / p for p in ('preflight.html', 'preflight-executive.html', 'preflight-research.html',
-                                    'data/historical.json', 'data/geometry_audit.json', 'data/run_card.json', 'data/review.md')]
+                                    'data/latest-run-card.json', 'data/historical.json', 'data/geometry_audit.json', 'data/run_card.json', 'data/review.md')]
         before = {p: p.read_bytes() for p in files}
         subprocess.run([sys.executable, str(ROOT / 'scripts/build_preflight_site.py')], cwd=ROOT, check=True, capture_output=True)
         self.assertEqual(before, {p: p.read_bytes() for p in files})

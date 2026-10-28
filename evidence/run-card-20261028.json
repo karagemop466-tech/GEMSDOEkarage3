@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "run_id": "release-audit-20261028",
+  "hypothesis": "Audit existing SMGC/CRSB/K3 artifacts under the literal any-registry overlap rule; no new hypothesis fitted.",
+  "mechanism": "Exact saved-byte support and Euclidean <=3px overlap against hash-pinned lattice.",
+  "named_non_fault_process": "Calibration lattice geometry is not geological evidence; lithologic contacts can mimic potential-field fault edges.",
+  "lane_assignment": "Absent from the request and initial checkout; no lane was invented.",
+  "experiments_run": 0,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No experiment: literal registry stop and no newly assigned lane/cache."
+  },
+  "registry": {
+    "scope": "One hash-pinned registered lattice witness; not a complete registry. No new surface exists.",
+    "pre_placement_surface_correlation": null,
+    "existing_artifact_overlap_min": 0.9933871567429755,
+    "existing_artifact_overlap_max": 0.9992249174680637
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "report": "evidence/release-audit-20261028.json",
+    "new_candidate": null,
+    "existing_zero_files_finite_range": true,
+    "organizer_acceptance": "unknown"
+  },
+  "validator_reason": "No new raster exists. The diagnostic script tests shape, CRS, transform, range, nonfinite values and outside encoding on saved bytes.",
+  "submission_name": null,
+  "note": "Negative: existing artifacts fail literal any-registry overlap; no new TIFF or slot.",
+  "verdict": "negative",
+  "download_ok": false,
+  "slot_selected": false,
+  "ok_to_submit": false,
+  "organizer_score": null,
+  "organizer_receipt": null,
+  "session_branch": "arena/eb550d38-gemsdoekarage3"
+}

@@ -21,7 +21,7 @@ Promise.all([loadJSON('sites.json'), loadJSON('historical-audit.json')]).then(([
     if (!measured || !Number.isFinite(site.owner_reported_value)) throw Error('Missing site evidence');
     const tr = el('tr');
     const label = el('td');
-    label.append(el('strong', site.site), el('small', `${site.owner_reported_value.toFixed(4)} · OWNER-REPORT`));
+    label.append(el('strong', site.site), el('small', `${site.owner_reported_value.toFixed(4)} · USER-REPORTED / UNVERIFIED`));
     const file = el('td');
     const link = el('a', 'Inspect historical file ↗');
     const url = new URL(measured.source_url);

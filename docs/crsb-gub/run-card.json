@@ -190,5 +190,12 @@
     "whole_array_pixels": 12279160,
     "whole_array_nonfinite": 0,
     "whole_array_out_of_range_finite": 0
+  },
+  "superseded_verdict": "negative",
+  "selector_required": true,
+  "release_review": {
+    "date_utc": "2026-10-28",
+    "evidence": "evidence/release-audit-20261028.json",
+    "reason": "Literal any-registry overlap fails. Earlier selective-registry promotion is withdrawn."
   }
 }
