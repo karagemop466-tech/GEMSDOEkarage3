@@ -618,6 +618,10 @@ def render_diagnostic_figure(
 
 
 def main() -> int:
+    # Historical runner excludes dense/lattice rasters from release-gate inputs,
+    # writes before the final literal check and deletes existing downloads.
+    # Disable it rather than silently authorizing a protocol-violating candidate.
+    raise SystemExit("STOP: legacy SMGC runner is disabled; literal registry gate and safe output handling require repair. See evidence/review-2026-10-28.md.")
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()
@@ -933,7 +937,7 @@ def main() -> int:
         flush=True,
     )
     if not final_scan["literal_all_rasters_final_passed"]:
-        raise SystemExit(f"STOP: Final-dot literal registry uniqueness failed: {final_scan['worst_genuine_overlap']}")
+        raise SystemExit(f"STOP: Final-dot literal registry uniqueness failed: {final_scan['worst_literal_overlap']}")
 
     # Independent strict CLI validator (`scripts/check_submission.py --strict-finite`)
     sub_env = {**os.environ, "PYTHONPATH": str(ROOT / "src"), "GEMS_DATA_DIR": str(ddir)}

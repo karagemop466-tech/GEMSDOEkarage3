@@ -15,23 +15,23 @@
     },
     {
       "id": "core_mirror_data",
-      "passed": true,
+      "passed": false,
       "details": [
         {
           "id": "training_features",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         },
         {
           "id": "labels",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         },
         {
           "id": "existing_faults",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         },
         {
           "id": "sample_submission",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         }
       ],
       "detail": "Owner mirrors only, not organizer-authenticated"
@@ -53,5 +53,5 @@
     }
   ],
   "limitations": "Availability is not scientific validation. No lane, dataset provenance, or complete registry is inferred from filenames.",
-  "snapshot_scope": "Availability was checked in an earlier parallel workspace; ignored data may be absent in a fresh checkout. Re-run scripts/check_readiness.py for current local state."
+  "snapshot_scope": "Availability was measured at script execution; ignored data may be absent in another checkout. Re-run for current local state."
 }

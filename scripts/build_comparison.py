@@ -15,6 +15,16 @@ def enrich(rows, audit):
         if 'other_confirmed_submissions' in row:
             row['other_reported_submissions'] = row.pop('other_confirmed_submissions').replace('ORGANIZER-CONFIRMED', 'USER-REPORTED / UNVERIFIED')
         winner = winners[row['site']]
+        # Legacy rows mixed owner claims, unlabelled holdout numbers and an
+        # estimated hidden score. Do not surface those as authenticated results.
+        if 'other_confirmed_submissions' in row:
+            row['other_user_reported_submissions'] = row.pop('other_confirmed_submissions')
+        for key in ('holdout_dti_static_hide_recover', 'holdout_dti_sgmc_calibrated'):
+            row.pop(key, None)  # insufficient evaluator / positive-count / CI provenance
+        row['evidence_class'] = 'USER-REPORTED / UNVERIFIED'
+        row['estimated_score'] = None
+        row['unique'] = False
+        row['ok_to_submit'] = False
         row['historical_artifact'] = {
             'url': f"{row['repository']}/blob/{winner['repo_ref']}/{winner['file']}",
             'filename': Path(winner['file']).name,
@@ -44,4 +54,5 @@ if __name__ == '__main__':
     document = json.loads(target.read_text())
     audit = json.loads((ROOT / 'evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json').read_text())
     enrich(document['sites'], audit)
+    document['promoted_candidate'] = None
     target.write_text(json.dumps(document, indent=2) + '\n')
