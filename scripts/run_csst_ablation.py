@@ -316,6 +316,10 @@ def scan_complete_registry_csst(
         "release_gate_direct_final": rg_final,
         "top15_discrete_by_overlap": sorted(discrete_le100k, key=lambda r: -r["within_3px_fraction"])[:15],
         "top15_by_abs_surface_spearman": sorted(rows, key=lambda r: -abs(r["surface_spearman"]))[:15],
+        # Full per-raster rows (needed by run_k3c_session.py to build the gate's complete comparison list
+        # with the null-calibrated excess-overlap rule, IR-K3-17).  Underscore-prefixed: callers may drop it.
+        "_all_rows": rows,
+        "_entry_paths": {sha: str(meta["path"]) for sha, meta in entries.items()},
     }
 
 

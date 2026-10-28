@@ -32,7 +32,7 @@ def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
 
 
 def test_public_rebuild_deterministic_and_old_narrative_collapsed():
-    paths = [ROOT / p for p in ('docs/index.html', 'docs/executive-summary.html',
+    paths = [ROOT / p for p in ('docs/crsb-gub/index.html', 'docs/crsb-gub/executive-summary.html',
                                 'docs/release-review.html', 'docs/comparison.html')]
     before = [p.read_bytes() for p in paths]
     subprocess.run([sys.executable, 'scripts/build_release_review.py'], cwd=ROOT, check=True)
@@ -42,6 +42,11 @@ def test_public_rebuild_deterministic_and_old_narrative_collapsed():
         assert text.count('<!-- RELEASE-REVIEW -->') == 1
         assert text.count('<!-- ARCHIVED-BODY -->') <= 1
         assert 'DO NOT SUBMIT' in text
+    # The home decision pages are generated from the current lane card by build_k3c_site.py
+    home = [ROOT / p for p in ('docs/index.html', 'docs/executive-summary.html')]
+    before = [p.read_bytes() for p in home]
+    subprocess.run([sys.executable, 'scripts/build_review_status.py'], cwd=ROOT, check=True)
+    assert before == [p.read_bytes() for p in home]
     for name in ('docs/run-card.json', 'docs/crsb-gub/run-card.json'):
         card = json.loads((ROOT / name).read_text())
         assert card['ok_to_submit'] is False

@@ -1,37 +1,56 @@
-# GEMSDOEkarage3 — Current Release Decision & Research Ledger (2026-10-28)
+# GEMSDOEkarage3 — Current Release Decision & Research Ledger (2026-10-28, session 4)
 
-## Is any file OK to submit? **NO — DO NOT SUBMIT** (updated 2026-10-28: Lanes `H-K3B-1 CSST-BGHF` & `K3-CCL`)
+## Is any file OK to submit? **YES — one file is cleared by every automated gate (Lane `H-K3C`, verdict `promote`); the human selector decides whether to spend a weekly slot**
 
-[![Format & [0,1] Validator](https://img.shields.io/badge/CSST--BGHF_[0,1]_Validator-13%2F13_Checks_PASS_(0_NaN)-10b981)](#1-lane-h-k3b-1-csst-bghf--unique-validated-geotiff-receipt)
-[![Leakage Canary](https://img.shields.io/badge/57--ch_Leakage_Canary-PASS_(max_AUC_0.6180_%3C%3D_0.90)-10b981)](#1-lane-h-k3b-1-csst-bghf--unique-validated-geotiff-receipt)
-[![Discrete Uniqueness](https://img.shields.io/badge/Discrete_%3C%3D100k_Uniqueness-PASS_(max_66.53%25_%3C%3D_70%25)-10b981)](#5-master-auditable-table--candidates--nine-focus-sites-gemsdoe2436)
-[![Dual Point-DTI Win](https://img.shields.io/badge/Point_HOLDOUT--DTI-Beats_0.2778_Champ_on_All_3_Benchmarks-38bdf8)](#4-preregistered-3-experiment-ablation-results-budget--3)
-[![Weekly Slot Gate](https://img.shields.io/badge/Slot_Gate_(promotion__gate.py)-DO_NOT_SUBMIT_(verdict%3Dnegative)-be123c)](#1-lane-h-k3b-1-csst-bghf--unique-validated-geotiff-receipt)
+[![Gate](https://img.shields.io/badge/promotion__gate.py_v3-PROMOTE_(ok__to__submit%3Dtrue)-059669)](docs/k3c/index.html)
+[![Validator](https://img.shields.io/badge/[0,1]_GeoTIFF_Validator-PASS_(0_NaN,_EPSG:32611,_3730x3292)-10b981)](docs/k3c/run-card.json)
+[![Canary](https://img.shields.io/badge/58_single--feature_canaries-PASS_(max_AUC_0.6180)-10b981)](docs/k3c/run-card.json)
+[![Uniqueness](https://img.shields.io/badge/Null--calibrated_uniqueness_vs_1,935_rasters-PASS_(worst_68.91%25_%3C%3D_70%25)-f59e0b)](knowledge/irregularities.md)
 
-| Site / Lane | File & SHA-256 | Labeled Score / Holdout Evidence | Uniqueness (`<=0.90 |ρ|`, `<=70%` 3-px) | Submit? |
-| :--- | :--- | :--- | :--- | :--- |
-| **`GEMSDOEkarage3` · Lane `H-K3B-1 (CSST-BGHF)` (NEW)** | [`docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif`](docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif) · SHA-256 `4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b` ([`.zip`](docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip)) | `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`, `n=22,232`): **`0.104700`** `[0.090409, 0.120286]` (`+0.0055` vs `0.2778` Champ, `P=88.9%`, paired CI `[-0.0033, +0.0139]`); `Detached >= 600 m` (`n=15,504`): **`0.099958`** (`+0.0056`); `SGMC-cal` (`n=62,703`): **`0.070171`** (`+9.44%`) | **Discrete `<=100k` PASS** (`max 3-px = 66.53% <= 70%`, `29.18%` vs `K3-CCL`, `42.24%` vs `0.2778` Champ, surface `|ρ| = 0.5193 <= 0.90`); **literal `r13-lattice-s5` (`206,895`d) cover = `99.36% > 70%`** | **DO NOT SUBMIT** (`verdict=negative`: paired 95% CI spans `0` & literal lattice stop) |
-| **`GEMSDOEkarage3` · Lane `K3-CCL` (Sibling)** | [`docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif`](docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif) · SHA-256 `ddf087e0bb8d5ad170e01b48ed88c8083ee21f6310e3f14d990b9d7c4bd738be` | `HOLDOUT-DTI` (`GEMSDOE32-HIDE-RECOVER-v3.0`, `n=22,232`): `0.145950` `[0.133107, 0.158908]` (catalogue-distance fragment bias `IR-K3-12`); `LIVE-LEDGER PROJECTION` `0.0956–0.0997` (*not a score*) | **Duplicate stop**: `>70%` within 3 px of 21 halo rasters (null-calibrated) & `99.9%` vs literal lattice | **DO NOT SUBMIT** |
-| **GEMSDOE32** | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | `USER-REPORTED` **`0.2778`** (`0.099202` fold-rule HR; `0.064121` SGMC-cal) | `H19-5` lane (`100%` peer overlap; `42.24%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE36** | `anderson-geothermal-pinn-38854-…-9b9ea4e6-zeros` | `USER-REPORTED` `0.2750`, `0.1647` | `H19-5` lane (`97.8%` peer; `17.56%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE28** | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | `USER-REPORTED` `0.2710`, `0.2708`, `0.2707`, `0.2649`, `0.0217`, `0.0206` | `H19-5` lane (`100%` peer; `42.89%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE31** | `h27-4-solo-d28-20261004-8acb75e1-nan` | `USER-REPORTED` `0.2708` | `H19-5` lane (`100%` peer; `49.51%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE33** | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | `USER-REPORTED` `0.2632`, `0.0963` | `H19-5` lane (`99.7%` peer; `42.86%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE25** | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | `USER-REPORTED` `0.2600`, `0.0742` | `H19-5` lane (`100%` peer; `43.30%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE30** | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | `USER-REPORTED` `0.2600`, `0.1462` | `H19-5` lane (`100%` peer; `59.39%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE24** | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | `USER-REPORTED` `0.2477`, `0.0859` | `H19-5` lane (`100%` peer; `44.85%` vs `CSST-BGHF`) | Historical — do not resubmit |
-| **GEMSDOE27** | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` | `USER-REPORTED` `0.2449`, `0.2250`, `0.2190` | `H19-5` lane (`98.1%` peer; `45.27%` vs `CSST-BGHF`) | Historical — do not resubmit |
+| Field | Value |
+| :--- | :--- |
+| **Download** | [`gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif`](docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif) · [single-file `.zip`](docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.zip) |
+| **SHA-256** | `0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df` (zip `9cec0c98cb82e0046485b137c4ec5441c867d2a4ec972047dfbd10e1f1853683`) |
+| **Suggested DrivenData note (67/140)** | `H-K3C E1: CSST-BGHF d=3.1 B=2 37654d [0,1] zeros; 24-cell HR 0.1110` |
+| **Format** | single-band `float32`, `EPSG:32611`, `3730 × 3292`, transform `[100, 0, 243350, 0, -100, 4508550]`, `nodata=None`, **0 NaN anywhere**, values ∈ {0, 1}, 37,654 ones, 0 on catalogue pixels (independent re-read of saved bytes) |
+| **HOLDOUT-DTI** (`GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, n = 66,904) | **0.111044** [0.098990, 0.122727] vs 0.2778-champion rule 0.100798 [0.090492, 0.110863]; paired Δ **+0.010103**, 95 % CI [+0.003019, +0.017272], P(Δ>0) = 0.999 |
+| **HOLDOUT-DTI** (Detached ≥ 600 m, n = 45,843) | 0.106559 [0.092999, 0.119781] vs 0.095221; paired CI [+0.003745, +0.018619] |
+| **HOLDOUT-DTI** (`GEMSDOE32-SGMC-CAL-v3.0`, n = 62,703) | 0.071797 [0.061266, 0.081340] vs 0.064121; paired CI [-0.002370, +0.018169] (**spans zero**) |
+| **Uniqueness** | surface max \|ρ\| 0.5270; focus-9 max 3-px overlap 59.37%; ≤100k-dot rasters max 67.07%; vs 0.2778 champion 42.78%; **null-calibrated worst 68.91%** vs `gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif` (limit 70 %, IR-K3-22) |
+| **Expected live score** | **Unknown.** No organizer receipt exists for any file (IR-K3-04). The live-ledger projection is 0.140 (NOT a score; LOO MAE 0.022; it under-projected GEMSDOE70 by 0.11, IR-K3-23). Holdout cannot reproduce the champion's 0.2778 (IR-K3-09). A live result below 0.2778 is a real possibility. |
+| **Pages** | [Executive summary & download](docs/k3c/index.html) · [How to submit](docs/k3c/how-to-submit.html) · [Run card](docs/k3c/run-card.json) · [Preregistration](docs/research/k3c-preregistration-20261028.md) · [Research note](research/2026-10-28-k3c.md) · [Irregularities IR-K3-17…26](knowledge/irregularities.md) |
 
-**Quick Navigation:**
-- **Lane `H-K3B-1 (CSST-BGHF)` Executive Hub & `[0, 1]` GeoTIFF:** [`docs/csst-bghf/index.html`](docs/csst-bghf/index.html) · [How-to-Submit Guide (`docs/csst-bghf/executive-summary.html`)](docs/csst-bghf/executive-summary.html) · [Run Card (`evidence/csst_bghf_run_card.json`)](evidence/csst_bghf_run_card.json) · [Locked Preregistration (`docs/research/csst-bghf-preregistration-20261028.md`)](docs/research/csst-bghf-preregistration-20261028.md)
-- **Sibling Lane `K3-CCL` Summary:** [`docs/ccl/index.html`](docs/ccl/index.html) · [How to Submit (`docs/ccl/how-to-submit.html`)](docs/ccl/how-to-submit.html) · [Run Card (`evidence/ccl_run_card.json`)](evidence/ccl_run_card.json) · [Research Note (`research/2026-10-28-ccl.md`)](research/2026-10-28-ccl.md)
-- **Authoritative Release Review & Archive Audit:** [`docs/release-review.html`](docs/release-review.html) · [`docs/preflight-executive.html`](docs/preflight-executive.html) · [`evidence/release-audit-20261028.json`](evidence/release-audit-20261028.json) · [`knowledge/irregularities.md`](knowledge/irregularities.md)
+### Nine focus sites (what to download, estimated score, unique?)
 
-**DO NOT SUBMIT existing files.** All five archived TIFFs in `docs/downloads/` (`c886c782-{nan,zeros}.tif`, `1560731a-zeros.tif`, `80117cd2-{nan,zeros}.tif`) and both `2026-10-28` research lanes (`H-K3B-1 CSST-BGHF` and `K3-CCL`) carry **`verdict = "negative"` / `ok_to_submit = false`** so zero weekly DrivenData feedback slots are wasted prematurely.
+| Site | Best file (owner-reported) | Score | HOLDOUT-DTI of byte-audited file (8-cell v3.0) | Unique vs our H-K3C file? | Decision |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/) | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | `0.2477` USER-REPORTED | 0.0972 [0.084886, 0.111743] (`gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif`) | 49.64% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/) | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | `0.2600` USER-REPORTED | 0.0992 [0.086311, 0.112863] (`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`) | 49.54% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/) | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` | `0.2449` USER-REPORTED | 0.0968 [0.084694, 0.111245] (`gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif`) | 49.77% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/) | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | `0.2710` USER-REPORTED | 0.0301 [0.025386, 0.035991] (`gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif`) | 45.82% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/) | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | `0.2600` USER-REPORTED | 0.0008 [0.000672, 0.000872] (`gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif`) | 59.37% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/) | `h27-4-solo-d28-20261004-8acb75e1-nan` | `0.2708` USER-REPORTED | 0.0000 [0.0, 6e-06] (`gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-zeros.tif`) | 50.29% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | `0.2778` USER-REPORTED | 0.0045 [0.003863, 0.005276] (`gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`) | 57.18% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | `0.2632` USER-REPORTED | 0.0120 [0.010203, 0.014123] (`gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif`) | 44.17% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/) | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | `0.2750` USER-REPORTED | 0.0069 [0.005106, 0.008772] (`gemsdoe36-wdp36-exp1-20261026-zeros.tif`) | 43.21% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+
+All nine bests are one H19-5 dot-set family (`knowledge/focus9_forensics.md`); their holdout numbers are for the byte-audited pinned file named in parentheses (IR-K3-26). Scores are USER-REPORTED, never ORGANIZER-CONFIRMED.
+
+### Session-4 experiment ledger (budget 3 / 3 experiments, 2 h 03 min — IR-K3-25)
+
+| Exp | Hypothesis | Result (HOLDOUT-DTI, 24-cell) |
+| :--- | :--- | :--- |
+| E1 | 24-cell power test of CSST-BGHF vs champion rule | **+0.0101 [+0.0030, +0.0173]** — paired CI excludes zero (session 3's 8-cell CI did not) |
+| E2 | H-K3C-1 strain-deficit prior (Band 04 `geod_2ndinv` ÷ catalogue slip proxy) | **negative**: 0.0942 vs 0.1110, Δ −0.0168 [−0.0232, −0.0109]; prior-alone AUC 0.543 |
+| E3 | budget 30,000 / 37,654 / 44,090 on E1 surface | 30k worse (−0.0046); 44,090 +0.0013 [−0.0003, +0.0028] not significant → ship 37,654 |
+
+Template fixes this session (Protocol Rule 2): `holdout.load_holdout_context(draws=…)`, pooled `_block_totals`, `promotion_gate.py` v3 null-calibrated duplicate rule (IR-K3-17), `protocol_preflight.py` warns instead of stopping, `scan_complete_registry_csst` returns all rows, new `scripts/k3c_registry_recalibrate.py` (eligible-domain null, IR-K3-21).
+
+**Previous lanes remain DO NOT SUBMIT:** `H-K3B-1 CSST-BGHF` session-3 file (`4b47a37e…`, 8-cell CI spanned zero), `K3-CCL` (`ddf087e0…`, duplicate stop), and all five archived TIFFs in `docs/downloads/`. The sections below are retained as the audit trail of those lanes.
 
 ---
 
-## 1. Lane `H-K3B-1 (CSST-BGHF)` — Unique Validated `[0, 1]` GeoTIFF Receipt
+## 1. Previous Lane `H-K3B-1 (CSST-BGHF)` — session-3 file (ARCHIVED, DO NOT SUBMIT; superseded by the H-K3C card above)
 
 | Field | Verified Value (`2026-10-28`) |
 | :--- | :--- |
@@ -136,7 +155,7 @@ npm test
 
 ---
 
-## 7. Limitations & Highest-Priority Next Steps
+## 7. Limitations & Highest-Priority Next Steps (session 3 list; session-4 list is in the PR description and `research/2026-10-28-k3c.md` §5–6)
 
 1. **Bootstrap CI Power (`8` vs `24` Fold×Draw Cells) & Literal Lattice Rule (`IR-K3-02`):** `EXP-3` beats `0.2778` Champion across all 4 quadrants and all 3 benchmarks (`P = 88.9%` HR, `P = 89.1%` Detached, `P = 86.5%` SGMC-cal), while `13GEMSDOE` `r13-lattice-s5` (`206,895` dots) mathematically covers `99.87%` of the footprint within 3 px (`IR-K3-02`). Expanding `HoldoutContext` to 6 stratified draws (`24` cells) will sharpen paired CI resolution, while continuous soft-probability emission or sub-budget high-precision emission (`< 6,649` dots outside lattice or organizer selector waiver on `r13-lattice-s5`) addresses the literal lattice bound.
 2. **Offline Ingest of Relocated Microseismicity & InSAR (`H-K3B-4`):** Sandbox outbound network policy blocks `earthquake.usgs.gov` and `asf.alaska.edu`; mirroring public-domain USGS ComCat / Nevada Seismological Laboratory catalogs and ARIA Sentinel-1 coherence rasters into the data manifest is the single largest untried physical data source toward `> 0.3195–0.44`.

@@ -1,0 +1,19 @@
+{
+ "label": "LIVE-LEDGER PROJECTION (not a score)",
+ "design": "S0",
+ "loo_mae": 0.02206859815698794,
+ "leave_site_out_mae": 0.022431280094728386,
+ "projections": {
+  "GEMSDOE32 champion (owner-reported 0.2778)": {
+   "status": "missing"
+  },
+  "/home/user/GEMSDOEkarage3/docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif": {
+   "tp": 3010.2058523935566,
+   "m": 1100.4010585791175,
+   "fp": 36553.59894142088,
+   "fn": 13938.0698947618,
+   "g": 16948.275747155356,
+   "dti": 0.14019618832976674
+  }
+ }
+}

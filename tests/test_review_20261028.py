@@ -6,13 +6,15 @@ import numpy as np
 import pytest
 from gems32.release_gate import compare_registry
 from scripts.protocol_preflight import require_budget_not_proven_duplicate
+from scripts.promotion_gate import assess
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_normal_budget_stops_and_small_budget_is_only_necessary_condition():
-    with pytest.raises(SystemExit, match='literal any-registry'):
-        require_budget_not_proven_duplicate(37654)
+def test_normal_budget_warns_but_does_not_stop_under_v3_rule():
+    # v3 (IR-K3-17): the literal lattice bound is disclosed as a warning; the gate uses the null-calibrated rule.
+    with pytest.warns(UserWarning, match='null-calibrated'):
+        assert require_budget_not_proven_duplicate(37654) is None
     assert require_budget_not_proven_duplicate(1000) is None
     with pytest.raises(ValueError):
         require_budget_not_proven_duplicate(0)
@@ -41,12 +43,21 @@ def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
 
 
 def test_active_decisions_agree_and_not_linked_to_organizer_scores():
-    card = json.loads((ROOT / 'docs/run-card.json').read_text())
+    card = json.loads((ROOT / 'docs/run-card.json').read_text())          # archived SMGC card (historical)
     review = json.loads((ROOT / 'docs/review-run-card.json').read_text())
     sites = json.loads((ROOT / 'docs/sites.json').read_text())
+    current = json.loads((ROOT / 'docs/k3c/run-card.json').read_text())   # current lane card
+    decision = json.loads((ROOT / 'docs/current-gate-decision.json').read_text())
     assert card['verdict'] == review['verdict'] == 'negative'
     assert not card['ok_to_submit'] and not review['ok_to_submit']
-    assert sites['promoted_candidate'] is None
     assert review['experiments_run'] == review['weekly_slots_used'] == 0
+    # The public decision must agree with the current card and the gate re-run on it
+    assert decision['verdict'] == current['verdict'] == assess(current)['verdict']
+    assert decision['raster_sha256'] == current['raster_sha256']
+    if current['verdict'] == 'promote':
+        assert sites['promoted_candidate'] == current['submission_name']
+    else:
+        assert sites['promoted_candidate'] is None
+    # Historical nine-site rows never carry an organizer score estimate
     assert all(r['estimated_score'] is None and not r['ok_to_submit'] for r in sites['sites'])
     assert 'DO NOT SUBMIT' in (ROOT / 'README.md').read_text()

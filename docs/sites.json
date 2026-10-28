@@ -1,6 +1,6 @@
 {
   "checked_utc": "2026-10-27T23:45:27.329159+00:00",
-  "promoted_candidate": null,
+  "promoted_candidate": "gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
   "sites": [
     {
       "site": "GEMSDOE24",
@@ -349,5 +349,7 @@
       },
       "other_reported_submissions": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros: 0.1647"
     }
-  ]
+  ],
+  "promoted_candidate_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "promoted_candidate_card": "docs/k3c/run-card.json"
 }
