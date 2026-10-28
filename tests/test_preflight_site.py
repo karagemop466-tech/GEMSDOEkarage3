@@ -88,6 +88,13 @@ class SiteTests(unittest.TestCase):
         subprocess.run([sys.executable, str(ROOT / 'scripts/build_preflight_site.py')], cwd=ROOT, check=True, capture_output=True)
         self.assertEqual(before, {p: p.read_bytes() for p in files})
 
+    def test_current_card_links_all_point_to_latest_session(self):
+        self.assertIn('href="docs/data/latest-run.json"', (ROOT / 'index.html').read_text())
+        self.assertIn('href="docs/data/latest-run.json">Current run card',
+                      (ROOT / 'executive-summary.html').read_text())
+        self.assertIn('href="data/latest-run.json">Current run card',
+                      (DOCS / 'release-review.html').read_text())
+
     def test_status_not_tied_to_page_metadata(self):
         javascript = (DOCS / 'assets/site.js').read_text()
         self.assertNotRegex(javascript, r'submission_approved\s*=\s*true')
