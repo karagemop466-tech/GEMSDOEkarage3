@@ -5,17 +5,16 @@ const {JSDOM} = require('jsdom');
 // Legacy dynamic renderer is unit-tested with its own DOM contract; the live
 // decision page is intentionally static so a fetch cannot override its stop.
 const html = fs.readFileSync('docs/comparison.html', 'utf8');
-test('live docs page publishes the current literal duplicate stop without dynamic approval', () => {
+test('live docs page publishes the literal duplicate stop without dynamic approval', () => {
   for (const page of ['docs/index.html', 'docs/executive-summary.html']) {
     const content = fs.readFileSync(page, 'utf8');
-    assert.match(content, /OK TO SUBMIT: NO — DO NOT SUBMIT/);
-    assert.match(content, /literal raw overlap exceeds 0\.70/);
-    assert.ok(content.includes('Download research-only .tif (NOT CLEARED)'));
-    assert.match(content, /85\.26%/);
+    assert.match(content, /OK TO SUBMIT\? NO — DO NOT SUBMIT/);
+    assert.match(content, /99\.3520%/);
+    assert.match(content, /previous K3C PROMOTE recommendation is withdrawn/i);
     assert.doesNotMatch(content, /src=["']dashboard\.js/);
+    assert.doesNotMatch(content, /<a[^>]*\bdownload\b[^>]*\.tif/i);
   }
 });
-
 const script = fs.readFileSync('docs/dashboard.js', 'utf8');
 
 async function render(change, failure = false) {

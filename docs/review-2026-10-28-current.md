@@ -61,29 +61,29 @@ The ranking below is a qualitative research priority/cost judgment, not a DTI fo
 - Found conflicting user-facing states: root/Docs pages and README still advertised H-K3C as promotable while its run card itself recorded literal overlap failure.
 
 ### Pass 2 — repair
-- Changed `scripts/promotion_gate.py` to enforce raw literal overlap; null-calibrated overlap no longer bypasses a raw threshold failure. Added per-reference raw-overlap checks and consistency between the recorded maximum and its comparison rows.
-- Changed the current site builder to reject run cards whose registry manifest is stale or incomplete and whose recorded branch is not the active branch. Updated entry pages to say **NOT OK TO SUBMIT** and to identify the TIFF as research-only. The branch check uses `GITHUB_HEAD_REF`/`GITHUB_REF_NAME` when Actions checks out a detached commit, with a regression test for deterministic PR builds.
-- Corrected the generated executive table and narrative to report raw overlap, not only calibrated excess overlap. Kept the historical TIFF bytes intact.
+- Hardened `scripts/promotion_gate.py` to enforce literal 3-pixel raw checks at both surface and final-dot stages, compare exact SHA inventories, reject calibrated primary rules, require the whole-segment/fold-local holdout and feature-canary evidence, and keep selector eligibility separate from `ok_to_submit`.
+- Added a byte-bound audit of every TIFF retained under `docs/`. The builder verifies all eight hashes and one pinned registered witness before publishing the negative archive; this single-witness audit is a stop test, not a complete-registry certificate. All historical bytes remain unchanged.
+- Published a separate zero-experiment current run card and prominent **DO NOT SUBMIT** pages. The original H-K3C experiment card is retained as immutable evidence; its public archival copy carries the negative reassessment.
 - Replaced the README's green promotion block with a current negative summary and retained the long historical prompt/ledger below as audit history.
 - Added regression tests for literal overlap, null-calibration non-exemption, boundary behavior, malformed run cards and fail-closed output.
 
 ### Pass 3 — re-check
-- The current gate reports `negative`, `ok_to_submit: false` with reasons including: raw final-dot overlap violations, historical literal audit failure, stale manifest digest, filtered/incomplete current manifest, and run-card branch mismatch. The old card has 1,935 surface-correlation rows but no literal overlap field on those surface rows; its 1,935 final-dot rows do have raw overlap values, with maximum 1.0.
+- The current gate reports `negative`, `ok_to_submit: false`, and `eligible_for_selector: false`. It identifies 196 missing/invalid/over-limit literal overlap values, no current same-evaluator baseline, no compliant buffered whole-segment/fold-local holdout, missing official-DTI parameter evidence and per-feature canaries, a calibrated primary duplicate claim, incomplete stage audits, and a failed outside-null format diagnostic. Independently, the old card's 1,935 surface rows have no literal overlap values; its 1,935 final-dot rows do, with maximum 1.0. Its registry digest and recorded branch also predate/differ from this checkout.
 - Re-read the final generated `/docs/` entry pages and README: **NOT OK TO SUBMIT** is prominent; the TIFF link is explicitly labeled research-only; format checks are not presented as approval.
-- A fresh saved-byte read independently confirmed the TIFF's single-band float32 format, actual metadata, all-finite `[0,1]` range and SHA-256. The sample-submission template is absent, so current template alignment was not independently rerun.
-- `.venv/bin/python -m pytest -q`: **170 passed, 1 skipped, 49 subtests passed**. The one skip is the optional cached-feature integration requiring an absent large stack.
-- `.venv/bin/python -m unittest discover -s tests -q`: **109 passed**.
+- The fresh all-TIFF byte audit matched the checked-in receipt for all eight retained TIFFs and the hash-pinned owner mirror. H-K3C is single-band float32, matches that mirror's CRS/shape/transform and is finite in `[0,1]`, but fails the conservative outside-null diagnostic. The mirror is not organizer-authenticated; current organizer-template alignment and portal acceptance remain unknown.
+- `.venv/bin/python -m pytest -q`: **133 passed, 1 skipped, 66 subtests passed**. The one skip is the optional cached-feature integration requiring an absent large stack.
+- `.venv/bin/python -m unittest discover -s tests -q`: **66 passed**.
 - `npm test`: **4 passed**; `node tests/test_browser_feed.js`: **2 passed**.
-- `scripts/build_preflight_site.py`, `scripts/build_release_review.py`, `scripts/build_k3c_site.py`, and `scripts/build_site.py --check`: passed; page rebuilds are deterministic after generation.
+- `scripts/audit_saved_tiffs.py --fetch --verify-receipt evidence/saved-tiffs-literal-20261028.json`, `scripts/build_preflight_site.py`, `scripts/build_k3c_site.py`, `scripts/build_review_status.py`, `scripts/build_release_review.py`, and `scripts/build_site.py --check`: passed.
 - `scripts/check_readiness.py`: expected exit 2 / not ready. It reports no lane assignment, absent core mirror files, absent cached feature stack, 0/416 pinned registry rasters locally, and no same-evaluator baseline.
-- `scripts/promotion_gate.py docs/k3c/run-card.json`: expected exit 2 / negative; the current page decision additionally reports stale/incomplete registry and branch mismatch.
+- `scripts/promotion_gate.py docs/k3c/run-card.json`: expected exit 2 / negative. It is an evidence screen only; even a passing card would remain `ok_to_submit: false` pending the independent selector.
 - `git diff --check`: passed.
 
 ## Remaining blockers and next work
 
 1. Assign one explicit method paragraph and confirm the intended literal registry definition with the coordinator; until then do not create another candidate or relax thresholds.
 2. Restore the authorized training features, labels, sample template, cached stack and exact shared evaluator/writer; verify hashes and current template metadata locally. This checkout lacks them.
-3. Correct and upstream any shared writer/evaluator defect; do not maintain a private fork. Reproduce one same-evaluator incumbent on segment-held-out, buffered, fold-visible-only catalogue features before an experiment.
+3. Resolve the shared-template blockers before experiments: [issue #42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42) (surface release gate ignores overlapping preview dots; OPEN when checked 2026-10-28) and [issue #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60) (1.5 km holdout collar does not buffer withheld truth from visible faults; OPEN when checked 2026-10-28). Do not maintain a private fork. Reproduce one same-evaluator incumbent on whole-segment buffered, fold-visible-only catalogue features after upstream repair.
 4. Build a complete, current, hash-pinned registry from all relevant public refs and internal submissions, including the artifacts currently excluded by path/name/size filtering. Compare the unplaced surface and final dots against every raster using raw limits.
 5. Only then preregister at most three experiments; run single-feature leakage canaries and paired spatial bootstrap; stop on negative results; no weekly slot until a distinct selector approves a fully validated artifact.
 6. A future live upload requires the user/account's authorized DrivenData session and available weekly quota. Store the submission-page receipt, file hash, note and organizer score; otherwise live score is unknown.

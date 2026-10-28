@@ -1,5 +1,7 @@
 # Three-pass review — literal duplicate stop
 
+> Archived parallel-session review. Its statements about available inputs, network access and checks describe that session; see the [current review](../research/2026-10-28-literal-review.md) for the broader eight-file audit and subsequent source observations.
+
 Machine-readable companion: [`evidence/run-card-literal-review-20261028.json`](../evidence/run-card-literal-review-20261028.json).
 
 **Decision: negative / DO NOT SUBMIT.** No new geological experiment, candidate,
@@ -46,12 +48,15 @@ explicit release retraction and negative status, so it cannot drive a positive
 gate. Automated tests cover the threshold, calibrated false passes, missing
 literal fields, and published decision agreement.
 
-The upstream shared evaluator/writer issue, silently binarizing probability
-inputs, is [still open](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)
-as verified via GitHub in this session. No private fork was made. No shared
-upstream fix was implemented: this branch is restricted to this repository and
-the shared-template repository is separate. The literal check above is an
-independent forensic audit, not a replacement for the shared evaluator or writer.
+Two shared-template blockers were verified open via GitHub on 2026-10-28:
+[issue #42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42) (surface
+release gate ignores overlapping preview dots; updated 2026-10-26) and [issue
+#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60) (the 1.5 km
+holdout collar does not buffer withheld truth from visible faults; updated
+2026-10-28). No private fork was made and no upstream fix was implemented; this
+branch is restricted to this repository. The literal checks are independent
+forensics, not a replacement for the shared evaluator/writer or buffered
+whole-segment holdout.
 
 ## Pass 3 — outstanding work and sources
 
@@ -78,7 +83,7 @@ were not independently checked here. No claim about the present leaderboard or
 external data obtainability follows from these links.
 
 Verification after the three passes and final gate refinement: `pytest -q`
-170 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
+133 passed, one optional-cache skip, 66 subtests; `unittest discover` 66
 passed; dashboard Node suite four passed; browser feed suite two passed; root
 site build check and `git diff --check` passed. The independent one-witness
 script also reran and returned 0.9935199447601848 literal overlap with a

@@ -23,6 +23,7 @@ jobs:
           python scripts/build_site.py --check
           python scripts/build_review_status.py
           python scripts/build_release_review.py
+          python scripts/verify_numbers.py
           git diff --exit-code -- docs
           python -m pytest -q
           node --check assets/site.js

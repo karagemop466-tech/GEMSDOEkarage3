@@ -1,17 +1,22 @@
 {
   "verdict": "negative",
   "ok_to_submit": false,
+  "eligible_for_selector": false,
   "selector_required": true,
   "reasons": [
-    "literal raw overlap exceeds 0.70 or is invalid at 196 locations: card.registry.final_dots, card.registry.final_dots.comparisons[27], card.registry.final_dots.comparisons[28] (+193 more)",
-    "literal all-registry final audit failed; null-calibration cannot waive the 70% stop",
-    "surface literal overlap / correlation comparison incomplete, inconsistent, or above threshold",
-    "final_dots literal overlap / correlation comparison incomplete, inconsistent, or above threshold",
-    "superseded release evidence; rerun literal registry checks",
-    "candidate registry audit is stale: manifest digest differs from refreshed checkout snapshot",
-    "refreshed registry inventory is explicitly filtered/incomplete",
-    "run card belongs to branch arena/2d8508cc-gemsdoekarage3, not active branch arena/2509a8e3-gemsdoekarage3"
+    "196 literal overlap value(s) missing, invalid or above 0.70; first: card.registry.final_dots.comparisons[27].literal_overlap_3px",
+    "current same-evaluator baseline not established or not beaten",
+    "whole-segment buffered fold-local visible-only holdout not established",
+    "pooled official DTI parameters not established",
+    "missing or leaking per-feature canaries",
+    "calibrated primary duplicate rule cannot establish literal compliance",
+    "literal all-registry final audit absent or failed",
+    "surface literal uniqueness incomplete or duplicate",
+    "final_dots literal uniqueness incomplete or duplicate",
+    "validator: outside_null_or_nan"
   ],
   "card": "docs/k3c/run-card.json",
-  "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df"
+  "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "status": "historical K3C reassessment, not the new-run card",
+  "current_run_card": "docs/data/current-run.json"
 }
