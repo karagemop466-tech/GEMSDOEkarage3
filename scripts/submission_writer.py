@@ -36,7 +36,6 @@ def write_validated_submission(
     ddir: Path | None = None,
     out_dir: Path | None = None,
     timestamp_tag: str | None = None,
-    prefix: str = "gemskarage3",
 ) -> dict:
     ddir = ddir or data_dir()
     out_dir = out_dir or (ROOT / "docs" / "downloads")
@@ -75,7 +74,6 @@ def write_validated_submission(
         slug=slug,
         timestamp_tag=ts,
         candidate_meta=meta_full,
-        prefix=prefix,
     )
     zeros_path = out_dir / bundle["zeros_tif"]["filename"]
     zip_path = zeros_path.with_suffix(".zip")

@@ -102,8 +102,7 @@ def load_holdout_context(ddir: Path, hide_frac: float = 0.20) -> HoldoutContext:
     with rasterio.open(ddir / "sample_submission.tif") as ds:
         foot = np.isfinite(ds.read(1))
     labels = read_binary(ddir / "labels.tif") & foot
-    ext_dir = (ddir / "external") if (ddir / "external").exists() else (ddir.parent / "external")
-    with rasterio.open(ext_dir / "derived_sgmc_faults_100m_u8.tif") as ds:
+    with rasterio.open(ddir / "external" / "derived_sgmc_faults_100m_u8.tif") as ds:
         sgm = ds.read(1) > 0
     near = binary_dilation(labels, iterations=NEAR_LABEL_PX)
     sgmc_off = sgm & ~labels & ~near & foot

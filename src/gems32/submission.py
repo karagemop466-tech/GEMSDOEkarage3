@@ -144,7 +144,6 @@ def write_submission_pair(
     slug: str,
     timestamp_tag: str,
     candidate_meta: dict,
-    prefix: str = "gemsdoe32",
 ) -> dict:
     """Write and audit both `-zeros.tif` and `-nan.tif` variants for a candidate mask."""
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -152,8 +151,8 @@ def write_submission_pair(
     # Digest of pixel coordinates for deterministic content hash tag
     digest8 = hashlib.sha256(np.packbits(clean_mask > 0.5)).hexdigest()[:8]
 
-    zeros_name = f"{prefix}-{slug}-{timestamp_tag}-{digest8}-zeros.tif"
-    nan_name = f"{prefix}-{slug}-{timestamp_tag}-{digest8}-nan.tif"
+    zeros_name = f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-zeros.tif"
+    nan_name = f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-nan.tif"
     zeros_path = out_dir / zeros_name
     nan_path = out_dir / nan_name
 
@@ -218,6 +217,6 @@ def write_submission_pair(
         },
     }
 
-    sidecar_path = out_dir / f"{prefix}-{slug}-{timestamp_tag}-{digest8}-audit.json"
+    sidecar_path = out_dir / f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-audit.json"
     sidecar_path.write_text(json.dumps(bundle, indent=2), encoding="utf-8")
     return bundle

@@ -1,0 +1,21 @@
+{
+  "channels": [
+    "mag_edge_migration_dip",
+    "rad_comp_discontinuity_kth_uth",
+    "cross_field_grav_rtp_offset",
+    "asymm_piedmont_curv_scarp"
+  ],
+  "shape": [
+    3730,
+    3292,
+    4
+  ],
+  "dtype": "float32",
+  "label_free": true,
+  "preregistered_priorities_implemented": [
+    "Priority 1: Magnetic-edge migration under upward continuation (TMI & RTP)",
+    "Priority 2: Radiometric compositional discontinuity (K/Th & U/Th)",
+    "Priority 3: Cross-field edge offset (gravity & RTP)",
+    "Priority 4: Asymmetric piedmont curvature with drainage & Lahontan rejection"
+  ]
+}
