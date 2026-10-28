@@ -13,6 +13,7 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -42,6 +43,9 @@ def assess_current_checkout(card: dict) -> dict:
         if manifest.get("n_failed") != 0:
             reasons.append("refreshed registry fetch has unresolved repository failures")
     branch = run(["git", "branch", "--show-current"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
+    # GitHub Actions checks out pull requests at a detached commit. Use its
+    # authoritative head ref so generated pages remain deterministic in CI.
+    branch = branch or os.environ.get("GITHUB_HEAD_REF") or os.environ.get("GITHUB_REF_NAME") or "detached HEAD"
     recorded_branch = card.get("branch")
     if recorded_branch and recorded_branch != branch:
         reasons.append(f"run card belongs to branch {recorded_branch}, not active branch {branch}")

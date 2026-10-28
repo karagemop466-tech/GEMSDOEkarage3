@@ -7,6 +7,8 @@ import pytest
 from gems32.release_gate import compare_registry
 from scripts.protocol_preflight import require_budget_not_proven_duplicate
 from scripts.promotion_gate import assess
+from scripts import build_k3c_site
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -54,7 +56,20 @@ def test_independent_one_witness_audit_is_literal_and_historical_only():
     assert assess(card)['verdict'] == 'negative'
 
 
+def test_detached_ci_uses_pr_head_ref_for_branch_freshness(monkeypatch):
+    monkeypatch.setattr(build_k3c_site, 'run', lambda *args, **kwargs: SimpleNamespace(stdout=''))
+    monkeypatch.setenv('GITHUB_HEAD_REF', 'arena/ci-head')
+    card = json.loads((ROOT / 'docs/k3c/run-card.json').read_text())
+    card['branch'] = 'arena/ci-head'
+    result = build_k3c_site.assess_current_checkout(card)
+    assert not any('not active branch' in reason for reason in result['reasons'])
+    monkeypatch.setenv('GITHUB_HEAD_REF', 'arena/other-head')
+    result = build_k3c_site.assess_current_checkout(card)
+    assert any('not active branch arena/other-head' in reason for reason in result['reasons'])
+
+
 def test_active_decisions_agree_and_not_linked_to_organizer_scores():
+
     card = json.loads((ROOT / 'docs/run-card.json').read_text())          # archived SMGC card (historical)
     review = json.loads((ROOT / 'docs/review-run-card.json').read_text())
     sites = json.loads((ROOT / 'docs/sites.json').read_text())

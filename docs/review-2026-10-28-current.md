@@ -62,7 +62,7 @@ The ranking below is a qualitative research priority/cost judgment, not a DTI fo
 
 ### Pass 2 — repair
 - Changed `scripts/promotion_gate.py` to enforce raw literal overlap; null-calibrated overlap no longer bypasses a raw threshold failure. Added per-reference raw-overlap checks and consistency between the recorded maximum and its comparison rows.
-- Changed the current site builder to reject run cards whose registry manifest is stale or incomplete and whose recorded branch is not the active branch. Updated entry pages to say **NOT OK TO SUBMIT** and to identify the TIFF as research-only.
+- Changed the current site builder to reject run cards whose registry manifest is stale or incomplete and whose recorded branch is not the active branch. Updated entry pages to say **NOT OK TO SUBMIT** and to identify the TIFF as research-only. The branch check uses `GITHUB_HEAD_REF`/`GITHUB_REF_NAME` when Actions checks out a detached commit, with a regression test for deterministic PR builds.
 - Corrected the generated executive table and narrative to report raw overlap, not only calibrated excess overlap. Kept the historical TIFF bytes intact.
 - Replaced the README's green promotion block with a current negative summary and retained the long historical prompt/ledger below as audit history.
 - Added regression tests for literal overlap, null-calibration non-exemption, boundary behavior, malformed run cards and fail-closed output.
@@ -71,7 +71,7 @@ The ranking below is a qualitative research priority/cost judgment, not a DTI fo
 - The current gate reports `negative`, `ok_to_submit: false` with reasons including: raw final-dot overlap violations, historical literal audit failure, stale manifest digest, filtered/incomplete current manifest, and run-card branch mismatch. The old card has 1,935 surface-correlation rows but no literal overlap field on those surface rows; its 1,935 final-dot rows do have raw overlap values, with maximum 1.0.
 - Re-read the final generated `/docs/` entry pages and README: **NOT OK TO SUBMIT** is prominent; the TIFF link is explicitly labeled research-only; format checks are not presented as approval.
 - A fresh saved-byte read independently confirmed the TIFF's single-band float32 format, actual metadata, all-finite `[0,1]` range and SHA-256. The sample-submission template is absent, so current template alignment was not independently rerun.
-- `.venv/bin/python -m pytest -q`: **169 passed, 1 skipped, 49 subtests passed**. The one skip is the optional cached-feature integration requiring an absent large stack.
+- `.venv/bin/python -m pytest -q`: **170 passed, 1 skipped, 49 subtests passed**. The one skip is the optional cached-feature integration requiring an absent large stack.
 - `.venv/bin/python -m unittest discover -s tests -q`: **109 passed**.
 - `npm test`: **4 passed**; `node tests/test_browser_feed.js`: **2 passed**.
 - `scripts/build_preflight_site.py`, `scripts/build_release_review.py`, `scripts/build_k3c_site.py`, and `scripts/build_site.py --check`: passed; page rebuilds are deterministic after generation.

@@ -78,7 +78,7 @@ were not independently checked here. No claim about the present leaderboard or
 external data obtainability follows from these links.
 
 Verification after the three passes and final gate refinement: `pytest -q`
-169 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
+170 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
 passed; dashboard Node suite four passed; browser feed suite two passed; root
 site build check and `git diff --check` passed. The independent one-witness
 script also reran and returned 0.9935199447601848 literal overlap with a
