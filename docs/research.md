@@ -1,6 +1,6 @@
 # PhD Research Monograph: Forensic Analysis of `GEMSDOE32` (`0.2778`), 5 Novel Geological Hypotheses, and Stationary Max-Envelope Validation (`H-K3-1 SMGC-CT`)
 
-**Session Branch:** `arena/d834dcd0-gemsdoekarage3` · **Date:** `2026-10-27` · **Promoted Artifact:** [`docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif`](downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif) (`SHA256 = f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f`)
+**Session Branch:** `arena/4c2522e1-gemsdoekarage3` · **Date:** `2026-10-27` · **Promoted Artifact:** [`docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif`](downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif) (`SHA256 = f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f`)
 
 ---
 

@@ -49,7 +49,7 @@ import submission_writer  # noqa: E402
 TARGET_BUDGET = 37_654
 B_COLLAR_PX = 2.0
 AXIAL_SEP_PX = 2.8
-SESSION_BRANCH = "arena/d834dcd0-gemsdoekarage3"
+SESSION_BRANCH = "arena/4c2522e1-gemsdoekarage3"
 
 
 def peak_rss_mb() -> float:
