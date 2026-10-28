@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const {JSDOM} = require('jsdom');
 // Legacy dynamic renderer is unit-tested with its own DOM contract; the live
 // decision page is intentionally static so a fetch cannot override its stop.
-const html = '<table><tbody id="rows"></tbody></table><div id="site-details"></div><p id="updated"></p><button disabled></button>';
+const html = fs.readFileSync('docs/comparison.html', 'utf8');
 test('live docs page publishes the literal duplicate stop without dynamic approval', () => {
   for (const page of ['docs/index.html', 'docs/executive-summary.html']) {
     const content = fs.readFileSync(page, 'utf8');

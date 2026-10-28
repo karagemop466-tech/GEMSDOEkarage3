@@ -77,6 +77,7 @@ def assess(card):
                     and r['max_overlap_3px'] == max(x['overlap_3px'] for x in comparisons))
         require(r.get('complete') is True and surface_ok and final_ok,
                 f'{stage} uniqueness incomplete or duplicate')
+    require(not card.get('release_review'), 'superseded release evidence; rerun literal registry checks')
     v=card.get('validator') if isinstance(card.get('validator'), dict) else {}
     for key in ('saved_bytes_checked','single_band','finite_inside','range_0_1','crs_match','shape_match','transform_match'):
         require(v.get(key) is True, f'validator: {key}')

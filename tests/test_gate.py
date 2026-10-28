@@ -65,3 +65,16 @@ class GateTests(unittest.TestCase):
         c=self.valid(); c['feature_auc']=[.05]
         self.assertEqual(assess(c)['verdict'],'negative')
 if __name__=='__main__': unittest.main()
+
+class GateRegressionTests(GateTests):
+    def test_ci_must_contain_point(self):
+        c=self.valid(); c['holdout']['ci95']=[.01,.1]
+        self.assertEqual(assess(c)['verdict'],'negative')
+
+    def test_reverse_discriminator_is_also_a_canary(self):
+        c=self.valid(); c['feature_auc']=[.05]
+        self.assertEqual(assess(c)['verdict'],'negative')
+
+    def test_superseded_card_cannot_promote(self):
+        c=self.valid(); c['release_review']={'reason':'literal registry failure'}
+        self.assertEqual(assess(c)['verdict'],'negative')
