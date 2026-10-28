@@ -1,4 +1,6 @@
-# Current repository review — 2026-10-28
+# Parallel repository review — 2026-10-28
+
+> This independent review records an earlier session and its then-current filtered inventory. For the latest session, restored raw mirrors, exact shared-template pin and decision, see the [three-pass session review](review-2026-10-28-session.md) and [latest run card](data/latest-run.json). Both reviews remain negative and no submission is authorized.
 
 ## Executive decision
 
