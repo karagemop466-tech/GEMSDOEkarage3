@@ -1,6 +1,4 @@
-> **2026-10-28: promotion withdrawn. DO NOT SUBMIT retained TIFFs.**
-> Literal registry overlap fails; this document is historical research, not authorization.
-> See [current review](../research/2026-10-28-review.md).
+> **SUPERSEDED HISTORICAL ANALYSIS — NOT A RELEASE DECISION.** This document contains unsupported score attribution and uniqueness/portal-acceptance claims. Those claims are not verified. See [current review](review-2026-10-28.md) and [current decision](data/current-run.json). Historical experiments were not rerun in this session.
 
 # PhD Research Monograph: Forensic Analysis of `GEMSDOE32` (`0.2778`), 5 Novel Geological Hypotheses, and Stationary Max-Envelope Validation (`H-K3-1 SMGC-CT`)
 

@@ -32,5 +32,6 @@ data/*
 .DS_Store
 Thumbs.db
 
-# JavaScript dependencies
+# Frontend dependencies and local verification logs
 node_modules/
+.cache-unittest.log

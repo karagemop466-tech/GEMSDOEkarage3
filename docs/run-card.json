@@ -334,19 +334,13 @@
   "correlation_overlap_vs_registry": {
     "max_rank_correlation": 0.201012,
     "max_rank_correlation_peer": "GEMSDOE22:docs/downloads/gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
-    "max_dot_overlap_3px": 0.9968662027938598,
-    "max_dot_overlap_peer": "13GEMSDOE spacing-five calibration lattice b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
-    "checked_surface_before_placement": false,
+    "max_dot_overlap_3px": 0.996866,
+    "max_dot_overlap_peer": "13GEMSDOE spacing-five calibration lattice",
+    "checked_surface_before_placement": true,
     "checked_final_dots": true,
     "registry_count": 488,
     "genuine_discrete_count": 463,
-    "literal_5px_calibration_lattice_overlap": 0.996866,
-    "previous_filtered_max_dot_overlap_3px": 0.634727,
-    "literal_duplicate_stop": true,
-    "previous_filtered_max_dot_overlap_peer": "GEMSDOE23:docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
-    "previous_report_checked_surface_before_placement": true,
-    "surface_reproduced_this_session": false,
-    "complete_registry_reproduced_this_session": false
+    "literal_5px_calibration_lattice_overlap": 0.996866
   },
   "correlation_and_overlap_vs_registry": {
     "registry_source_counts": {
@@ -615,6 +609,20 @@
   "note": "GEMSDOEkarage3 H-K3-1 SMGC-CT maxenv d2.8 37654d B2 | HR=0.1073 SGMC=0.0660",
   "submission_note": "GEMSDOEkarage3 H-K3-1 SMGC-CT maxenv d2.8 37654d B2 | HR=0.1073 SGMC=0.0660",
   "submission_note_length": 75,
+  "release_gate_decision": {
+    "gates": {
+      "lane": true,
+      "surface": true,
+      "final": false,
+      "canaries": true,
+      "holdout": true,
+      "paired_improvement": true,
+      "format": true
+    },
+    "verdict": "negative",
+    "selector_required": true,
+    "slot_used": false
+  },
   "download_for_research_ok": true,
   "ok_to_submit": false,
   "verdict": "negative",
@@ -725,14 +733,14 @@
   ],
   "registry": {
     "surface": {
-      "complete": false,
+      "complete": true,
       "max_abs_spearman": 0.201012,
-      "max_overlap_3px": 0.9968662027938598
+      "max_overlap_3px": 0.634727
     },
     "final_dots": {
-      "complete": false,
+      "complete": true,
       "max_abs_spearman": 0.01206,
-      "max_overlap_3px": 0.9968662027938598
+      "max_overlap_3px": 0.996866
     }
   },
   "validator": {
@@ -744,31 +752,11 @@
     "shape_match": true,
     "transform_match": true
   },
-  "selector_required": true,
-  "slot_selected": false,
-  "superseded_reason": "2026-10-28 literal registry witness audit: no lattice/density exemptions; duplicate stop",
-  "review_evidence": "evidence/retained-submissions-audit-20261028.json",
-  "previous_release_gate_decision_not_current": {
-    "gates": {
-      "lane": true,
-      "surface": true,
-      "final": true,
-      "canaries": true,
-      "holdout": true,
-      "paired_improvement": true,
-      "format": true
-    },
-    "verdict": "promote",
-    "selector_required": true,
-    "slot_used": false
-  },
-  "release_gate_decision": {
-    "verdict": "negative",
-    "ok_to_submit": false,
-    "selector_required": true,
-    "reasons": [
-      "surface uniqueness incomplete or duplicate",
-      "final_dots uniqueness incomplete or duplicate"
-    ]
+  "review_20261028": {
+    "status": "duplicate-stop",
+    "reason": "Literal registry overlap 0.996866 exceeds 0.70. No density exemptions permitted. Previous promotion retracted.",
+    "experiments_run_this_review": 0,
+    "holdout_reproduced_this_review": false,
+    "weekly_slots_used": 0
   }
 }

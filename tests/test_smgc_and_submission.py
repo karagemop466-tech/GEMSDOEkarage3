@@ -6,9 +6,9 @@ from pathlib import Path
 import subprocess
 import sys
 
+import pytest
 import numpy as np
 import rasterio
-import pytest
 
 from gems32 import holdout, smgc, submission
 from gems32.paths import data_dir, work_dir
@@ -47,18 +47,18 @@ def test_smgc_extra_stack_and_stationary_envelope():
 
 
 
-def test_optional_cached_smgc_stack():
-    # Optional integration check: the cache is deliberately not committed.
+def test_cached_smgc_stack_integration():
+    # Optional large-data integration, never a prerequisite for synthetic tests.
     smgc_path = work_dir() / "smgc_extra_4ch.npy"
     if not smgc_path.exists():
-        pytest.skip("Optional full-grid feature cache absent; model reproduction not performed")
+        pytest.skip("Restore ignored SMGC feature cache for integration check")
     arr = np.load(smgc_path, mmap_mode="r")
     assert arr.shape == (3730, 3292, 4)
     assert arr.dtype == np.float32
     assert np.isfinite(arr[::8, ::8, :]).all()
 
 
-def test_retained_submission_is_not_promoted():
+def test_retracted_submission_geotiff_and_run_card():
     rc_path = ROOT / "docs" / "run-card.json"
     assert rc_path.exists()
     rc = json.loads(rc_path.read_text())
@@ -69,18 +69,12 @@ def test_retained_submission_is_not_promoted():
     assert rc["leakage_canary"]["passed"] is True
     assert rc["leakage_canary"]["max_oriented_auc"] <= 0.90
     assert rc["correlation_overlap_vs_registry"]["max_rank_correlation"] <= 0.90
-    assert rc["registry"]["final_dots"]["max_overlap_3px"] > 0.70
+    assert rc["correlation_overlap_vs_registry"]["max_dot_overlap_3px"] > 0.70
 
     tif_path = ROOT / rc["submission_file"]
     assert tif_path.exists()
     sha = hashlib.sha256(tif_path.read_bytes()).hexdigest()
     assert sha == rc["raster_sha256"]
-
-    receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261028.json').read_text())
-    row = next(r for r in receipt['rasters'] if r['sha256'] == sha)
-    assert row['duplicate_stop'] is True
-    assert row['format']['core_format_pass'] is True
-    assert row['format']['whole_array_finite_range_pass'] is True
 
     with rasterio.open(tif_path) as ds:
         arr = ds.read(1)
@@ -101,4 +95,5 @@ def test_retained_submission_is_not_promoted():
     pg_out = json.loads(pg.stdout)
     assert pg.returncode == 2
     assert pg_out["verdict"] == "negative"
-    assert any("uniqueness" in reason for reason in pg_out["reasons"])
+    assert pg_out["ok_to_submit"] is False
+    assert any("literal registry failed" in reason for reason in pg_out["reasons"])

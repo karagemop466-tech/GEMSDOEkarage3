@@ -41,5 +41,20 @@
   ],
   "experiments_run": 0,
   "weekly_slots_used": 0,
-  "verdict": "negative"
+  "verdict": "negative",
+  "parallel_main_integration": {
+    "main_commit": "c5c20c2",
+    "preserved": [
+      "Stronger inventory-bound promotion gate and recursive literal failure detection",
+      "Static fail-closed docs decision builder",
+      "Unconditional archived SMGC runner disable",
+      "Concurrent geometry-bound tests and source-status cleanup"
+    ],
+    "verification": [
+      "104 pytest tests passed; 1 optional cache integration test skipped; 49 subtests passed",
+      "6 Node tests passed after integration",
+      "Root deterministic site check passed"
+    ],
+    "note": "Earlier pass counts remain the actual pre-merge observations."
+  }
 }

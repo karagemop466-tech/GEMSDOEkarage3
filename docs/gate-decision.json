@@ -3,7 +3,18 @@
   "ok_to_submit": false,
   "selector_required": true,
   "reasons": [
+    "card.correlation_overlap_vs_registry.literal_5px_calibration_lattice_overlap: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.worst_genuine_surface_peer.within_3px_fraction: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.ultra_dense_or_continuous_over_70pct[0].within_3px_fraction: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.ultra_dense_or_continuous_over_70pct[1].within_3px_fraction: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.ultra_dense_or_continuous_over_70pct[2].within_3px_fraction: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.ultra_dense_or_continuous_over_70pct[3].within_3px_fraction: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.literal_5px_calibration_lattice_probe.within_3px_fraction: duplicate or invalid overlap",
+    "card.correlation_and_overlap_vs_registry.literal_all_rasters_final_passed: literal registry failed",
+    "literal all-registry final audit absent or failed",
+    "missing nonempty unique registry inventory",
     "surface uniqueness incomplete or duplicate",
-    "final_dots uniqueness incomplete or duplicate"
+    "final_dots uniqueness incomplete or duplicate",
+    "validator not bound to candidate bytes"
   ]
 }
