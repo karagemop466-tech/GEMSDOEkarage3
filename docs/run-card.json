@@ -624,8 +624,8 @@
     "slot_used": false
   },
   "download_for_research_ok": true,
-  "ok_to_submit": true,
-  "verdict": "promote",
+  "ok_to_submit": false,
+  "verdict": "negative",
   "assigned_lane": "H-K3-1 (SMGC-CT): Stationary Max-Envelope Geothermal-Conduit & Crustal-Tensor Crest Allocation + Axial d=2.8 CELF",
   "holdout": {
     "evidence_class": "HOLDOUT-DTI",
@@ -751,5 +751,12 @@
     "crs_match": true,
     "shape_match": true,
     "transform_match": true
+  },
+  "superseded_verdict": "promote",
+  "selector_required": true,
+  "release_review": {
+    "date_utc": "2026-10-28",
+    "evidence": "evidence/release-audit-20261028.json",
+    "reason": "Literal any-registry overlap fails. Earlier selective-registry promotion is withdrawn."
   }
 }

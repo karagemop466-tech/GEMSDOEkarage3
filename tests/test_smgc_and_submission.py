@@ -44,6 +44,13 @@ def test_smgc_extra_stack_and_stationary_envelope():
     assert float(surf.min()) >= 0.0 and float(surf.max()) <= 1.0
     assert float(surf[~foot].max()) == 0.0
 
+
+
+def test_optional_cached_smgc_stack():
+    import pytest
+    # Integration prerequisite is not checked into Git.
+    if not (work_dir() / "smgc_extra_4ch.npy").exists():
+        pytest.skip("Restore hash-verified shared SMGC cache for integration test")
     # Verify cached 4-channel SMGC stack on disk
     smgc_path = work_dir() / "smgc_extra_4ch.npy"
     assert smgc_path.exists()
@@ -58,8 +65,8 @@ def test_promoted_submission_geotiff_and_run_card():
     assert rc_path.exists()
     rc = json.loads(rc_path.read_text())
 
-    assert rc["verdict"] == "promote"
-    assert rc["ok_to_submit"] is True
+    assert rc["verdict"] == "negative"
+    assert rc["ok_to_submit"] is False
     assert 0 < len(rc["note"]) <= 140
     assert rc["leakage_canary"]["passed"] is True
     assert rc["leakage_canary"]["max_oriented_auc"] <= 0.90
@@ -71,20 +78,13 @@ def test_promoted_submission_geotiff_and_run_card():
     sha = hashlib.sha256(tif_path.read_bytes()).hexdigest()
     assert sha == rc["raster_sha256"]
 
-    ddir = data_dir()
-    ctx = holdout.load_holdout_context(ddir)
-    audit = submission.audit_geotiff(
-        tif_path,
-        ctx.foot,
-        ctx.labels,
-        mode="zeros",
-        template_tif=ddir / "sample_submission.tif",
-    )
-    assert audit["all_checks_passed"] is True
-    assert all(audit["checks"].values()), f"Failed checks: {audit['checks']}"
-    assert audit["emitted_positive_pixels"] == 37654
-    assert audit["on_catalogue_positive_pixels"] == 0
-    assert audit["full_grid_finite_pixels"] == 12279160
+    # Independent saved-byte audit is hash-bound; do not reconstruct a holdout
+    # from absent ignored data or confuse a format pass with release approval.
+    review = json.loads((ROOT / "evidence/release-audit-20261028.json").read_text())
+    row = next(r for r in review["rows"] if r["sha256"] == sha)
+    assert row["validator"]["whole_array_finite_range_pass"] is True
+    assert row["duplicate_stop"] is True
+    assert row["within_3px_fraction"] > .70
 
     with rasterio.open(tif_path) as ds:
         arr = ds.read(1)
@@ -100,8 +100,9 @@ def test_promoted_submission_geotiff_and_run_card():
         [sys.executable, str(ROOT / "scripts" / "promotion_gate.py"), str(rc_path)],
         capture_output=True,
         text=True,
-        check=True,
+        check=False,
     )
     pg_out = json.loads(pg.stdout)
-    assert pg_out["verdict"] == "promote"
-    assert pg_out["reasons"] == []
+    assert pg.returncode == 2
+    assert pg_out["verdict"] == "negative"
+    assert "superseded release evidence; rerun literal registry checks" in pg_out["reasons"]

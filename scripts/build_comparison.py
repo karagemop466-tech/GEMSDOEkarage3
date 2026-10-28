@@ -9,6 +9,10 @@ def enrich(rows, audit):
     winners = {item['site']: item for item in audit['winners']}
     for row in rows:
         winner = winners[row['site']]
+        row['estimated_score'] = None
+        row['unique'] = False
+        row['ok_to_submit'] = False
+        row['evidence_class'] = 'USER-REPORTED / UNVERIFIED; no hash-linked organizer receipt'
         row['historical_artifact'] = {
             'url': f"{row['repository']}/blob/{winner['repo_ref']}/{winner['file']}",
             'filename': Path(winner['file']).name,
@@ -38,4 +42,11 @@ if __name__ == '__main__':
     document = json.loads(target.read_text())
     audit = json.loads((ROOT / 'evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json').read_text())
     enrich(document['sites'], audit)
+    if 'promoted_candidate' in document:
+        c = document['promoted_candidate']
+        c['verdict'] = 'negative'
+        c['ok_to_submit'] = False
+        c['release_review'] = 'release-review.html'
+        c['max_3px_overlap_vs_registry'] = 0.9968662027938598
+    document['release_status'] = 'DO NOT SUBMIT — 2026-10-28 literal-registry audit'
     target.write_text(json.dumps(document, indent=2) + '\n')

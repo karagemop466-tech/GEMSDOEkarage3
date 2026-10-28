@@ -1,3 +1,40 @@
+# GEMSDOEkarage3 — current release decision (2026-10-28)
+
+**DO NOT SUBMIT existing files.** The earlier approval claims below are withdrawn.
+All five saved TIFFs fail the literal any-registry overlap gate. No new model
+experiment or competition slot was used in this review. No leaderboard estimate
+is available. A different hash alone is not uniqueness.
+
+Start every session with this section, the [retained consolidated user request](docs/PROJECT_BRIEF.md),
+[three-pass review and ranked hypotheses](research/2026-10-28-review.md), and
+[current run card](evidence/run-card-20261028.json). Maximize P(Win): preserve
+slots and reject unsupported claims. Own the Outcome: fix misleading release
+labels rather than bypassing scientific gates.
+
+- [Current executive release review and archive download table](docs/release-review.html)
+- [All nine focus sites and historical best filenames](docs/preflight-executive.html)
+- [Reproduced saved-byte / literal uniqueness audit](evidence/release-audit-20261028.json)
+- Reproduce: `.venv/bin/python -m scripts.audit_release_20261028`
+- Build correction: `.venv/bin/python scripts/build_release_review.py`
+
+Existing zero-filled TIFFs pass local finite/range checks but fail uniqueness;
+NaN companions fail the whole-array finite/range diagnostic. Organizer acceptance
+and external-data provenance remain unconfirmed. Feature caches are absent in
+this fresh checkout. One explicit lane and verified cache/fold restoration are
+required before another scientific experiment. No access to non-allowlisted
+DrivenData/USGS/GDR/Dropbox/NLR hosts is available here. Other sites were audited
+through pinned mirrors, not edited.
+
+## Archived candidate inventory — research only
+
+- `docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-nan.tif` · SHA256 `d425f6f3e17743157ed950cf250c9bfa120c68be0fdff09a0cf8566039fdfaee` · **DO NOT SUBMIT**
+- `docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif` · SHA256 `f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f` · **DO NOT SUBMIT**
+- `docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif` · SHA256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3` · **DO NOT SUBMIT**
+- `docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif` · SHA256 `04cdc5fe41fdc5ef1b148cf8352015d25d37763f1f847838f0f96cd0d342a993` · **DO NOT SUBMIT**
+- `docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif` · SHA256 `9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa` · **DO NOT SUBMIT**
+
+<details><summary>Superseded 2026-10-27 narrative — not current approval or verified organizer evidence</summary>
+
 # GEMSDOEkarage3 — Stationary Max-Envelope Geothermal-Conduit & Crustal-Tensor Crest Allocation (`H-K3-1 SMGC-CT`)
 
 [![Validation Gate](https://img.shields.io/badge/Automated_Validator-20%2F20_Checks_PASS-10b981)](#1-executive-summary--ready-to-submit-unique-geotiff)
@@ -181,5 +218,8 @@ Pass 3 — Final verification: re-check everything against the original request 
 
 Remember to create a pull request and merge the PR into main. Finally, report any remaining limitations and the highest-priority next steps for the next session.
 ```
+
+</details>
+
 
 </details>

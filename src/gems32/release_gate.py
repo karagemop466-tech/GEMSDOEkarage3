@@ -32,7 +32,7 @@ def compare_registry(surface, dots, footprint, registry, *, stage="final"):
         other_dots = other_dots & footprint
         rho = None
         if np.isfinite(other_surface[footprint]).all():
-            x, y = surface[footprint], other_surface[footprint]
+            x, y = (surface[footprint], other_surface[footprint]) if stage == "surface" else (dots[footprint].astype(float), other_dots[footprint].astype(float))
             if np.ptp(x) > 0 and np.ptp(y) > 0:
                 rho = float(spearmanr(x, y).statistic)
         overlap = None
@@ -92,7 +92,7 @@ def promotion_decision(*, lane, surface_check, final_check, canary_aucs,
         lane=isinstance(lane, str) and bool(lane.strip()),
         surface=surface_check.get('stage') == 'surface' and surface_check.get('passed') is True,
         final=final_check.get('stage') == 'final' and final_check.get('passed') is True,
-        canaries=bool(aucs) and all(np.isfinite(a) and 0 <= a <= .90 for a in aucs),
+        canaries=bool(aucs) and all(np.isfinite(a) and .10 <= a <= .90 for a in aucs),
         holdout=bool(same_evaluation is True and holdout_ok
                      and holdout['evaluator_version'] == incumbent['evaluator_version']
                      and holdout['n_withheld_positives'] == incumbent['n_withheld_positives']

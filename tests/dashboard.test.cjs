@@ -2,7 +2,7 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {JSDOM} = require('jsdom');
-const html = fs.readFileSync('docs/index.html', 'utf8');
+const html = fs.readFileSync('docs/comparison.html', 'utf8');
 const script = fs.readFileSync('docs/dashboard.js', 'utf8');
 
 async function render(change, failure = false) {
