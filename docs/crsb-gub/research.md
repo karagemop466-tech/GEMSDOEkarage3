@@ -1,3 +1,5 @@
+> **SUPERSEDED HISTORICAL ANALYSIS — NOT A RELEASE DECISION.** This document contains unsupported score attribution and uniqueness/portal-acceptance claims. Those claims are not verified. See [current review](../review-2026-10-28.md) and [current decision](../data/current-run.json). Historical experiments were not rerun in this session.
+
 # PhD Technical Monograph & Research Record — `GEMSDOEkarage3` (`2026-10-27`)
 
 **Session Branch:** `arena/2df0b70e-gemsdoekarage3` · **Locked Method Lane:** `H-K3-1` (`CRSB-GUB`)  

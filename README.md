@@ -1,25 +1,35 @@
-# GEMSDOEkarage3 — evidence-first geothermal fault mapping
+# GEMSDOEkarage3 — evidence before submission
 
-## Current decision: DO NOT SUBMIT
+**Current decision: NOT OK TO SUBMIT.** No newly generated candidate is approved. Do not upload the historical TIFFs. [Executive summary and nine-site comparison](index.html) · [Submission guide](executive-summary.html) · [Research slate](research/2026-10-27-review.md) · [Latest safety review](docs/review-2026-10-28.md) · [Current run card](docs/data/current-run.json).
 
-No new candidate has been generated or validated in this session. The checkout contains contradictory earlier promotion claims; they are **superseded**, not proof of readiness. A valid raster is not a unique or high-scoring raster. The required registry rule includes calibration rasters: the independent lattice witness rules out the earlier 37,654-dot budget on the audited footprint. The earlier “complete” audit excluded or separately classified dense/lattice rasters from its final overlap pass. See the [current review](docs/review-2026-10-28.md) and [negative run card](evidence/run_card.json).
+## Starting point for every session
 
-[Open the executive dashboard](index.html) · [How to submit, when cleared](executive-summary.html) · [Research slate](research/2026-10-27-review.md) · [Previous README (archived; claims superseded)](docs/archive/previous-readme.md)
+Read the [standing project brief](docs/PROJECT_BRIEF.md), a consolidated (not verbatim) record of the user's repeated prompt; [prior review](research/2026-10-27-review.md); and [current run card](docs/data/current-run.json). The objective is a genuinely unique, high-performing, validated GeoTIFF, not merely a differently named copy. Respect the parallel-run protocol, three-experiment/two-hour budget, literal all-registry stop, fold-local hide-and-recover, leakage canaries, and separate slot selector. **Maximize P(Win)** by measuring tradeoffs and **Own the Outcome** by reporting failures and limitations. Do not invent an assigned method lane, score receipt or organizer acceptance.
 
-## Project brief and standing protocol
+## Executive decision
 
-The owner requests an autonomous, auditable system that studies geothermal-fault evidence, compares GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36, generates a **new**, genuinely distinct submission, and makes a cleared TIFF easy to download. Estimate performance only with a properly labeled holdout, not as a hidden leaderboard prediction. The user reported a range error on an earlier upload; validate the actual saved bytes and never promise organizer acceptance from a local check.
+| Item | Evidence and action |
+| --- | --- |
+| New submission file | **None approved; do not submit.** Prior GeoTIFFs remain available as research artifacts only. |
+| New leaderboard score estimate | **Unavailable.** A local holdout is not an estimate of the hidden organizer score without calibration. |
+| Focus sites | GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36. [Site-by-site table and exact historical filenames](index.html#scorecard). |
+| Historical high claim | GEMSDOE32 H33-B2 **0.2778, USER-REPORTED / UNVERIFIED**; no hash-linked organizer receipt was found. No current leaderboard position can be inferred. |
+| Why might H33-B2 perform well? | On the pinned mirrors, B2 removes pixels near mapped faults from the preceding raster. Under the distance-weighted metric, fewer redundant predictions could improve the precision–recall tradeoff. The hidden truth and receipt are unavailable; this is a hypothesis, not proof or a forecast. [Detailed audit](research/2026-10-27-review.md). |
+| Critical uniqueness failure | The older SMGC candidate's own record reports **99.6866%** directional overlap with a registered lattice and `literal_all_rasters_final_passed: false`; it is not eligible under the literal 70% stop. A filtered subset had been incorrectly presented as a complete pass. [Historical run card](evidence/hk3_smgc_run_card.json) and [review](docs/review-2026-10-28.md). |
+| Previous CRSB-GUB artifact | Research only: `gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`, SHA-256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3`. Its scientific gate is negative; its filtered uniqueness claim is not a literal all-registry pass. No organizer acceptance is established. |
 
-Before work, read this brief, [AGENTS.md](AGENTS.md), [research review](research/2026-10-27-review.md), and the current run card. The complete owner brief, including the parallel-run protocol, is preserved in [knowledge/owner_brief.md](knowledge/owner_brief.md). Follow the assigned method lane, use the shared cached stack, evaluator and writer, hide whole buffered fault segments, recompute catalogue features from visible faults, test each feature for leakage, and stop at the stated duplication threshold or experiment/time budget. Do not choose a weekly slot: promotion and slot selection are separate. All score claims need versioned holdout evidence and confidence intervals or an actual organizer receipt.
+## Known limitations and next steps
 
-Maximize probability of success through evidence and own the outcome: identify blockers, prevent misleading downloads, report negative results, and improve reproducibility. Do not invent data, lane assignments, receipts, causal claims or scores.
+The new request does not identify its promised single method paragraph. Historical preregistrations describe different previous lanes, not a reliable assignment for this session. Competition data in this checkout, the cached feature stack, complete current registry and matched baseline are absent; ignored files may differ across workspaces. Organizer-authenticated data, quota, receipts and leaderboard access are not available in this sandbox. Public GitHub mirrors are not proof of organizer authenticity. The legacy SMGC runner is disabled because it excluded registry classes from promotion, wrote before the final literal check, and deleted existing downloads. Its historical evidence has not been erased.
 
-## Sources and limitations
+Next: coordinate a specific lane and resolve the literal lattice conflict; obtain authorized official data and complete hash-pinned registry/cache; repair the shared upstream evaluator/writer (see [issue #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)); run per-feature leakage canaries and matched, buffered whole-segment holdout with CIs; check both stages against **every** registered raster; verify exact saved bytes against the official template; then use a separate selector. Do not use a weekly slot without these gates. Historical hypotheses, input sources and availability caveats are documented in the [research slate](research/2026-10-27-review.md).
 
-* [Official competition problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); [competition data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/); [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution).
-* [USGS GEODAWN data](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and); [INGENIOUS project](https://gbcge.org/current-projects/ingenious/).
-* This sandbox has restricted outbound hosts; ignored local data/cache may be absent. Re-run `python scripts/check_readiness.py` to inspect this checkout. Mirror integrity is not organizer authentication. The registry snapshot is not necessarily current. No automated local test proves leaderboard performance or official acceptance.
+## Local checks
 
-### Historical artifact identification (research only)
+```sh
+python scripts/check_readiness.py  # exits 2 when prerequisites are missing
+python scripts/build_site.py --check
+python -m pytest -q
+```
 
-`gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif`, SHA-256 `2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3`, is an earlier artifact, not a newly approved submission. Earlier records are retained for audit, not as permission to submit.
+Readiness is measured at execution time, not a live feed. Page metadata refresh does not authenticate scores, validate files, or grant a submission slot. Official references: [competition problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [submission data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), and [DOE INGENIOUS dataset](https://gdr.openei.org/submissions/1391).

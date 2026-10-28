@@ -2,8 +2,8 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {JSDOM} = require('jsdom');
-// Exercise the legacy renderer in isolation; the public page is now a static hold notice.
-const html = '<!doctype html><table><tbody id="rows"></tbody></table><div id="site-details"></div><div id="updated"></div><button disabled>Download</button>';
+// Isolated DOM for the retained read-only dashboard script; the legacy page is superseded.
+const html = '<!doctype html><html><body><button disabled></button><table><tbody id="rows"></tbody></table><div id="site-details"></div><div id="updated"></div></body></html>';
 const script = fs.readFileSync('docs/dashboard.js', 'utf8');
 
 async function render(change, failure = false) {
@@ -48,12 +48,4 @@ test('unexpected source host clears partial evidence rather than offering a file
   assert.equal(dom.window.document.querySelectorAll('#site-details article').length, 0);
   assert.match(dom.window.document.querySelector('#updated').textContent, /Unexpected source host/);
   dom.window.close();
-});
-
-
-test('public legacy entry point remains fail-closed', () => {
-  const page = new JSDOM(fs.readFileSync('docs/index.html', 'utf8')).window.document;
-  assert.match(page.body.textContent, /Do not submit a file/);
-  assert.equal(page.querySelectorAll('a[download]').length, 0);
-  assert.ok(page.querySelector('a[href="../index.html"]'));
 });

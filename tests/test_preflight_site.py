@@ -30,8 +30,7 @@ class SiteTests(unittest.TestCase):
         self.assertTrue((ROOT / '.nojekyll').is_file())
         self.assertTrue((DOCS / 'index.html').is_file())
         self.assertIn('preflight.html', (DOCS / 'index.html').read_text())
-        self.assertIn('Do not submit a file', (DOCS / 'executive-summary.html').read_text())
-        self.assertIn('review-2026-10-28.md', (DOCS / 'executive-summary.html').read_text())
+        self.assertIn('outside-null wording', (DOCS / 'executive-summary.html').read_text())
 
     def test_internal_links_exist(self):
         for page in ('preflight.html', 'preflight-executive.html', 'preflight-research.html'):

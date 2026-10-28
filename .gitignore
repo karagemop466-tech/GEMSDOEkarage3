@@ -32,5 +32,5 @@ data/*
 .DS_Store
 Thumbs.db
 
-# Node dependencies
+# Node test dependencies
 node_modules/
