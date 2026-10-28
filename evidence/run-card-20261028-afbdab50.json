@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "run_id": "gems-karage3-preflight-20261028-afbdab50",
+  "created_utc": "2026-10-28T22:31:13.090271+00:00",
+  "assigned_lane": null,
+  "hypothesis": "Proposed only: multiscale paired potential-field fabric displacement across a buried boundary; no method assigned or tested.",
+  "mechanism": "A persistent cross-boundary displacement of corresponding gravity and magnetic textures may indicate offset basement fabric beneath cover.",
+  "named_non_fault_mimic": "Intrusions or unfaulted lithological contacts can produce similar textures; survey-line artefacts can generate false edges.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci_95": null,
+    "status": "NOT RUN; no new candidate or valid same-protocol comparison."
+  },
+  "leakage_canaries": {
+    "status": "NOT RUN; no assigned lane or new model",
+    "features_tested": 0
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_surface_overlap": null,
+    "candidate_final_spearman": null,
+    "candidate_final_dot_overlap": null,
+    "status": "NOT RUN for a new candidate. Single-witness proof stops the historical budget; full current registry was not checked.",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "witness_budget": 37654,
+    "witness_uncovered": 6649,
+    "unavoidable_overlap_fraction": 0.8234184947150369,
+    "scope": "One registered lattice witness; a duplicate proof, not a complete registry scan."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no new candidate raster",
+    "no_nan_inside": null,
+    "values_in_0_1": null,
+    "crs_matches": null,
+    "shape_matches": null,
+    "transform_matches": null,
+    "outside_null_or_nan": null,
+    "organizer_acceptance": "unknown"
+  },
+  "submission_name": null,
+  "note": "No new candidate or slot selected; do not submit.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "slot_selected": false,
+  "weekly_slots_used": 0,
+  "blockers": [
+    "No unambiguous single assigned method paragraph in the supplied prompt.",
+    "Literal any-registry rule proves a duplicate at 37,654 dots; lower budgets are not automatically unique.",
+    "No current complete surface/final registry snapshot or validated same-protocol current-best comparison.",
+    "Pinned shared evaluator/writer explicitly reject non-binary inputs; holdout, surface-gate and masked-pixel validator defects remain open (#60, #41, #61, #42, #66). Read-only upstream access prevents a central fix.",
+    "Organizer-authenticated inputs, matched derived feature cache, quota and artifact-linked receipts are unavailable. Owner-mirrored core rasters and raw bands were restored but do not authenticate organizer provenance; portal behavior is unverified."
+  ],
+  "geometry_audit_sha256": "75942181a6f618454f565c513722fe39a94a77ad2397ac527d8f7a200c0f30f5",
+  "geometry_audit": "historical-audit.json",
+  "saved_tiffs_audit_sha256": "d2825f6581235660e930cbb1b01ec6d6b196cbce345ba23a5d3ce2be39767759",
+  "saved_tiffs_audit": "saved-tiffs-literal-20261028.json",
+  "official_hidden_score_estimate": null,
+  "slot_selector": "Separate step required; not run."
+}

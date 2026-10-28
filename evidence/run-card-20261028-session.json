@@ -2,7 +2,7 @@
   "schema_version": 1,
   "run_id": "arena-ee123558-review-20261028",
   "created_utc": "2026-10-28T22:44:48.807070+00:00",
-  "hypothesis": "PROPOSED ONLY: multi-scale gravity–magnetic signed edge-offset persistence under weak relief; no lane assigned or test run.",
+  "hypothesis": "PROPOSED ONLY: multi-scale gravity\u2013magnetic signed edge-offset persistence under weak relief; no lane assigned or test run.",
   "mechanism": "Cross-strike gravity/magnetic edge displacement that persists across scales might indicate a buried discontinuity.",
   "named_non_fault_mimic": "Lithologic contacts, dikes, remanent magnetization and acquisition artifacts can mimic edge offsets.",
   "holdout_dti": {
@@ -28,7 +28,8 @@
     "uncovered_footprint_pixels": 6649,
     "largest_budget_not_ruled_out_by_this_bound_alone": 22163,
     "historical_h_k3c_within_3px_fraction": 0.9935199447601848,
-    "scope": "One lattice witness plus nine historical files; not a complete registry, not a surface audit, not a uniqueness pass."
+    "scope": "One lattice witness plus nine historical files; not a complete registry, not a surface audit, not a uniqueness pass.",
+    "candidate_final_spearman": null
   },
   "raster_sha256": null,
   "validator_output": {
@@ -38,7 +39,8 @@
     "crs_matches": null,
     "shape_matches": null,
     "transform_matches": null,
-    "organizer_acceptance": "unknown"
+    "organizer_acceptance": "unknown",
+    "outside_null_or_nan": null
   },
   "submission_name": null,
   "note": "No new candidate or slot selected; do not submit.",
@@ -71,5 +73,6 @@
     "historical_witness_audit": "evidence/k3c-literal-witness-reaudit-20261028-final.json",
     "shared_template_manifest": "registry/shared_template_97597a.json",
     "readiness": "docs/readiness.json"
-  }
+  },
+  "slot_selected": false
 }

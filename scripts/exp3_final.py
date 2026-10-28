@@ -17,6 +17,8 @@ import rasterio
 from scipy.ndimage import binary_dilation, distance_transform_edt
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 from karage3.evalutil import load_context, read_mask  # noqa: E402
 from karage3.holdout import evaluate_sgmc_with_ci, evaluate_visible_only_holdout  # noqa: E402
@@ -49,6 +51,8 @@ def main() -> int:
     # Archived runner: do not reach any filesystem writes or candidate placement.
     raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
                      'shared holdout defects and the literal duplicate-stop remain unresolved.')
+    from scripts.protocol_preflight import require_shared_protocol_ready
+    require_shared_protocol_ready()
     t0 = time.time()
     ddir = data_dir()
     surf_dir = work_dir() / "surfaces"

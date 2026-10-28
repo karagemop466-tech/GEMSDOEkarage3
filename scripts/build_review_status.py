@@ -1,4 +1,4 @@
-"""Publish the current submission decision pages (delegates to build_k3c_site, v3 gate)."""
+"""Publish the current submission decision pages (delegates to build_k3c_site, literal gate)."""
 import sys
 from pathlib import Path
 

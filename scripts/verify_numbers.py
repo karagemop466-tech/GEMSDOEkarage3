@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
-"""Pass-3 consistency audit: every published number must trace to evidence/*.json.
-Exit 1 on any mismatch. Run after build_site.py."""
+"""Check current decision, hash-bound receipts and published numbers.
+
+This lightweight consistency check does not reproduce the geospatial audit,
+prove a complete registry, authenticate organizer inputs, or select a slot.
+For an independent fresh raster calculation run audit_saved_tiffs.py with
+--verify-receipt. Historical K3 scores remain archived, not release decisions.
+"""
 from __future__ import annotations
 
 import hashlib
@@ -8,85 +13,113 @@ import json
 import sys
 from pathlib import Path
 
-import numpy as np
-import rasterio
-
 ROOT = Path(__file__).resolve().parents[1]
-EV = ROOT / "evidence"
-checks = []
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from scripts.promotion_gate import assess
 
 
-def ck(name: str, cond: bool, detail: str = "") -> None:
-    checks.append((name, bool(cond), detail))
-    print(f"{'PASS' if cond else 'FAIL'} {name} {detail}")
-
-
-def sha(p: Path) -> str:
+def sha(path: Path) -> str:
     h = hashlib.sha256()
-    with p.open("rb") as f:
-        for c in iter(lambda: f.read(1 << 20), b""):
-            h.update(c)
+    with path.open('rb') as stream:
+        for block in iter(lambda: stream.read(1 << 20), b''):
+            h.update(block)
     return h.hexdigest()
 
 
+def load(path: str):
+    return json.loads((ROOT / path).read_text())
+
+
 def main() -> int:
-    card = json.loads((EV / "k3_run_card.json").read_text())
-    e1 = json.loads((EV / "exp1_screen.json").read_text())
-    e2 = json.loads((EV / "exp2_emission.json").read_text())
-    ext = json.loads((EV / "extended_uniqueness.json").read_text())["summary"]
-    prep = json.loads((ROOT / "data" / "prepared_manifest.json").read_text())
-    focus = json.loads((ROOT / "registry" / "focus9_registry.json").read_text())
-    sidecar_path = ROOT / "docs" / "downloads" / card["raster"]["zeros_file"].replace("-zeros.tif", "-audit.json")
-    sidecar = [sidecar_path] if sidecar_path.exists() else []
-    site = (ROOT / "docs" / "k3" / "index.html").read_text() + (ROOT / "docs" / "k3" / "executive-summary.html").read_text()
+    checks = []
 
-    z = ROOT / "docs" / "downloads" / card["raster"]["zeros_file"]
-    ck("raster sha matches file", sha(z) == card["raster"]["zeros_sha256"])
-    ck("zip sha matches file", sha(z.with_suffix(".zip")) == card["raster"]["zip_sha256"])
-    with rasterio.open(z) as ds:
-        a = ds.read(1)
-    ck("tif dots == run card", int((a > 0).sum()) == card["raster"]["dots"], f"{int((a>0).sum())} vs {card['raster']['dots']}")
-    ck("zeros tif fully finite in [0,1]", bool(np.isfinite(a).all() and a.min() >= 0 and a.max() <= 1))
-    ck("note <=140 chars", card["submission"]["note_chars"] <= 140, str(card["submission"]["note_chars"]))
-    ck("sidecar exists & sha agrees", len(sidecar) == 1 and
-       json.loads(sidecar[0].read_text())["zeros_tif"]["sha256"] == card["raster"]["zeros_sha256"])
+    def ck(name: str, condition: bool) -> None:
+        checks.append(bool(condition))
+        print(f"{'PASS' if condition else 'FAIL'} {name}")
 
-    sel = e2["selected"]
-    ck("run-card pooled == exp2 selected arm",
-       abs(card["holdout_dti"]["pooled_dti"] - sel["pooled"]) < 1e-12)
-    ck("champion-rule control == exp1 D2.8 pooled",
-       abs(card["holdout_dti"]["champion_rule_control"]["pooled_dti"] -
-           e1["controls"]["GEMSDOE25"]["visible_only"]["pooled"]["pooled_dti"]) < 1e-12)
-    ck("G1 consistent", card["gates"]["G1_pooled_beats_champion_rule"]["pass_"] ==
-       bool(card["holdout_dti"]["pooled_dti"] > card["holdout_dti"]["champion_rule_control"]["pooled_dti"]))
-    ck("verdict consistent with gates",
-       (card["verdict"] == "promote") == all(g["pass_"] for g in card["gates"].values()))
-    ck("ok_to_submit == (verdict==promote)", card["ok_to_submit"] == (card["verdict"] == "promote"))
-    ck("extended audit candidate sha == run card", ext["candidate_sha256"] == card["raster"]["zeros_sha256"])
-    ck("no genuine duplicates in extended audit", ext["genuine_duplicates_over_70pct"] == [])
+    current = load('docs/data/current-run.json')  # independent parallel preflight
+    latest = load('docs/data/latest-run.json')
+    archived = load('docs/k3c/run-card.json')
+    decision = load('docs/current-gate-decision.json')
+    audit = load('evidence/saved-tiffs-literal-20261028.json')
+    witness = load('evidence/k3c-literal-witness-audit-20261028.json')
+    sites = load('docs/sites.json')
+    history = load('docs/data/historical-audit.json')
 
-    ck("prepared footprint", prep["counts"]["footprint_px"] == 5_167_373)
-    ck("prepared labels", prep["counts"]["label_px"] == 60_988)
-    for e in focus["rasters"]:
-        p = ROOT / ".cache" / e["local"]
-        if not p.exists() or sha(p) != e["sha256"]:
-            ck(f"focus registry {e['site']}", False, "sha mismatch - rerun build_focus_registry")
-            break
-    else:
-        ck("focus registry hashes (11 rasters)", True)
-    ck("focus n_failed==0", focus["n_failed"] == 0)
+    ck('latest session card is negative, mirrored and binds its nine-site audit',
+       latest['verdict'] == 'negative' and latest['ok_to_submit'] is False
+       and latest['selector_approval'] is False and latest['slot_selected'] is False
+       and latest['raster_sha256'] is None and latest['holdout_dti']['value'] is None
+       and latest['experiments_run'] == latest['weekly_slots_used'] == 0
+       and sha(ROOT / 'docs/data/latest-run.json') == sha(ROOT / 'evidence/run-card-20261028-session.json')
+       and latest['evidence']['historical_audit_sha256'] == sha(ROOT / 'evidence/historical-reaudit-20261028-session.json'))
+    ck('current card has no new raster, holdout or slot',
+       current['verdict'] == 'negative' and current['ok_to_submit'] is False
+       and current['raster_sha256'] is None and current['holdout_dti']['value'] is None
+       and current['experiments_run'] == current['weekly_slots_used'] == 0
+       and current['slot_selected'] is False)
+    ck('current card mirror matches evidence',
+       sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json'))
+    ck('current card binds both saved audit receipts',
+       current['geometry_audit_sha256'] == sha(ROOT / 'docs/data/historical-audit.json')
+       and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json')
+       and sha(ROOT / 'docs/data/saved-tiffs-literal-20261028.json') == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json'))
+    ck('lattice geometry and budget bound agree',
+       audit['witness']['sha256'] == history['lattice']['source']['sha256']
+       and audit['witness']['uncovered_footprint_pixels'] == history['lattice']['uncovered_beyond_3px']
+       and current['correlation_overlap_vs_registry']['unavoidable_overlap_fraction']
+       == history['lattice']['budget_lower_bound'] > .70)
+    rows = audit['rasters']
+    paths = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    ck('all retained TIFFs inventoried exactly once',
+       bool(rows) and len(rows) == len(paths) and {r['file'] for r in rows} == paths)
+    for row in rows:
+        path = (ROOT / row['file']).resolve()
+        ck(f"{row['file']} hash and duplicate stop",
+           path.is_relative_to(ROOT / 'docs') and path.is_file()
+           and sha(path) == row['sha256'] and row['within_3px_fraction'] > .70
+           and row['duplicate_stop'] is True and row['ok_to_submit'] is False
+           and row['format_diagnostic']['sha256'] == row['sha256'])
+    k3c = next((r for r in rows if r['file'] == witness['candidate']), None)
+    ck('independent K3C witness agrees with saved-byte audit',
+       k3c is not None and k3c['sha256'] == witness['candidate_sha256'] == archived['raster_sha256']
+       and k3c['within_3px_fraction'] == witness['within_3px_fraction'] > .70
+       and witness['duplicate_stop'] is True and witness['ok_to_submit'] is False)
+    for receipt_path in ('evidence/k3c-literal-witness-reaudit-20261028-final.json',
+                         'evidence/csst-bghf-literal-witness-reaudit-20261028-final.json'):
+        independent = load(receipt_path)
+        row = next((r for r in rows if r['file'] == independent['candidate']), None)
+        ck(f'{receipt_path} agrees with parallel saved-byte audit',
+           row is not None and row['sha256'] == independent['candidate_sha256']
+           and row['within_3px_fraction'] == independent['within_3px_fraction'] > .70
+           and independent['duplicate_stop'] is True and independent['ok_to_submit'] is False
+           and independent['validator']['checks']['geotiff'] is True
+           and independent['validator']['checks']['self_contained_tiff'] is True)
+    gate = assess(archived)
+    ck('archived K3C reassessment and publication agree',
+       decision['verdict'] == gate['verdict'] == archived['verdict'] == 'negative'
+       and decision['ok_to_submit'] is False and gate['ok_to_submit'] is False
+       and decision['eligible_for_selector'] is False
+       and decision['raster_sha256'] == archived['raster_sha256'])
+    ck('no promoted site or estimated organizer score',
+       sites['promoted_candidate'] is None and sites['promoted_candidate_sha256'] is None
+       and sites['promoted_candidate_card'] is None and len(sites['sites']) == 9
+       and all(s['estimated_score'] is None and s['ok_to_submit'] is False for s in sites['sites']))
+    pages = ('index.html', 'executive-summary.html', 'docs/index.html', 'docs/executive-summary.html',
+             'docs/k3c/index.html', 'docs/k3c/how-to-submit.html')
+    ck('current pages say DO NOT SUBMIT and never say YES',
+       all('DO NOT SUBMIT' in (ROOT / page).read_text()
+           and 'OK TO SUBMIT? YES' not in (ROOT / page).read_text()
+           and 'OK TO DOWNLOAD AND SUBMIT: YES' not in (ROOT / page).read_text()
+           for page in pages))
+    print(f"\n{sum(checks)}/{len(checks)} consistency checks passed (not a score or slot selection).")
+    return 0 if all(checks) else 1
 
-    ck("site shows DO NOT SUBMIT when negative", card["verdict"] != "negative" or "DO NOT SUBMIT" in site)
-    ck("site contains raster sha256", card["raster"]["zeros_sha256"] in site)
-    ck("site contains submission note", card["submission"]["note"].split(" | id")[0] in site)
-    ck("site labels leaderboard NOT ESTIMABLE", "NOT ESTIMABLE" in site)
-    ck("no ORGANIZER-CONFIRMED score claim", "ORGANIZER-CONFIRMED 0." not in site)
-    ck("downloads linked exist", all((ROOT / "docs" / "downloads" / x).exists()
-                                     for x in (card["raster"]["zeros_file"], card["raster"]["zip_file"], card["raster"]["nan_file"])))
-    failed = [c for c in checks if not c[1]]
-    print(f"\n{len(checks) - len(failed)}/{len(checks)} checks passed")
-    return 1 if failed else 0
 
-
-if __name__ == "__main__":
-    raise SystemExit(main())
+if __name__ == '__main__':
+    try:
+        raise SystemExit(main())
+    except (OSError, KeyError, TypeError, ValueError) as exc:
+        print(f'FAIL closed: {exc}', file=sys.stderr)
+        raise SystemExit(1)

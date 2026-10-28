@@ -351,5 +351,5 @@
     }
   ],
   "promoted_candidate_sha256": null,
-  "promoted_candidate_card": "docs/k3c/run-card.json"
+  "promoted_candidate_card": null
 }

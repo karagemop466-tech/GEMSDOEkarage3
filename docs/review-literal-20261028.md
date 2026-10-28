@@ -1,6 +1,8 @@
 # Three-pass review — literal duplicate stop
 
-> Historical review. For current shared-tool behavior and the latest decision, see [the 28 October session review](review-2026-10-28-session.md).
+> Archived parallel-session review. Its statements about available inputs, network access and checks describe that session; see the [current review](review-2026-10-28-session.md) and [parallel eight-file review](../research/2026-10-28-literal-review.md) for the broader eight-file audit and subsequent source observations.
+
+Machine-readable companion: [`evidence/run-card-literal-review-20261028.json`](../evidence/run-card-literal-review-20261028.json).
 
 **Decision: negative / DO NOT SUBMIT.** No new geological experiment, candidate,
 score estimate or competition upload was made. The requested method paragraph
@@ -21,7 +23,7 @@ not organizer data and this one-witness check is not a complete registry audit.
 The saved raster's whole array was finite and in [0,1]; band count, CRS, shape
 and transform matched that owner mirror. Outside-footprint null checking failed,
 which is distinct from the whole-array check; official acceptance remains unknown.
-Reproduce with `.venv/bin/python -m scripts.audit_k3c_literal_witness --out .cache/k3c-recheck.json` (choose a new path; existing receipts are never overwritten) (GitHub
+Reproduce with `.venv/bin/python -m scripts.audit_k3c_literal_witness --out .cache/k3c-recheck.json` (choose a new path) (GitHub
 access required when the cache is empty).
 
 The earlier numerical **HOLDOUT-DTI** results remain historical and are not
@@ -75,8 +77,10 @@ this network-restricted sandbox; their current content, data rights, and quota
 were not independently checked here. No claim about the present leaderboard or
 external data obtainability follows from these links.
 
-Verification after the three passes: `pytest -q` 165 passed, one optional-cache
-skip, 49 subtests; `unittest discover` 105 passed; dashboard Node suite four
-passed; browser feed suite two passed; root site build check and `git diff
---check` passed. These are engineering checks, not new HOLDOUT-DTI measurements
-or evidence of organizer acceptance.
+Verification after the three passes and final gate refinement: `pytest -q`
+169 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
+passed; dashboard Node suite four passed; browser feed suite two passed; root
+site build check and `git diff --check` passed. The independent one-witness
+script also reran and returned 0.9935199447601848 literal overlap with a
+negative verdict. These are engineering checks and a single-raster duplicate
+witness, not a new HOLDOUT-DTI measurement or evidence of organizer acceptance.

@@ -1,30 +1,46 @@
-"""Fail closed when the literal registry rule makes a budget impossible.
+"""Necessary, fail-closed duplicate-budget preflight against a pinned witness.
 
-The geometric bound is conditional on the pinned mirrored footprint and lattice.
-It is not a geological score or organizer authentication.
+The user's protocol uses *literal* directional overlap, not a calibrated
+statistic. One valid witness can prove a violation but cannot certify novelty.
+The bound assumes candidate dots are distinct pixels inside the same footprint.
 """
 import json
 from pathlib import Path
+
 from scripts.audit_registry import dot_bound
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def literal_lattice_bound(budget: int) -> dict:
-    """Minimum literal overlap any `budget`-dot file has with the pinned lattice (conditional duplicate-stop evidence)."""
-    if budget <= 0:
-        raise ValueError("budget must be positive")
+    """Return a necessary lower bound; only an upper-bound violation is a stop."""
     witness = json.loads((ROOT / 'evidence/geometry_audit.json').read_text())
     bound = dot_bound(budget, witness['lattice']['uncovered_footprint_pixels'])
-    bound['rule'] = 'literal any-registry 3-pixel overlap rule'
+    bound['rule'] = 'literal directional overlap > 0.70 is a duplicate stop'
     return bound
 
 
 def require_budget_not_proven_duplicate(budget: int) -> None:
-    """Refuse budgets that provably exceed the literal overlap threshold."""
+    """Stop before placement if the pinned witness already proves a violation."""
     bound = literal_lattice_bound(budget)
     if bound['duplicate_stop_proven']:
         raise ValueError(
-            'Literal any-registry overlap with the pinned lattice is at least '
-            f"{bound['minimum_overlap_fraction']:.6%} for {budget} dots; duplicate stop."
+            'duplicate stop: literal overlap with the pinned lattice must be at least '
+            f"{bound['minimum_overlap_fraction']:.6%} for {budget} in-footprint dots, "
+            'above the 70% limit. See evidence/geometry_audit.json. '
+            'A null-calibrated diagnostic does not override the requested rule.'
         )
+
+
+def require_shared_protocol_ready() -> None:
+    """Stop experimental runs until the centrally maintained template is fixed.
+
+    Read-only access prevents patching the shared template here. Never replace
+    its missing surface-overlap or buffered whole-segment semantics privately.
+    Revisit this guard only after pinning and testing an upstream fix.
+    """
+    raise RuntimeError(
+        'Shared template protocol blocked: surface overlap gate and buffered '
+        'whole-segment holdout are not verified. See GEMSDOE32 issues #42 and #60. '
+        'A fixed upstream template and regression tests are required before experiments.'
+    )

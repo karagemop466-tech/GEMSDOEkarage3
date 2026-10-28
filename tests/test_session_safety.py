@@ -23,8 +23,10 @@ def test_current_run_card_is_negative_and_bound_to_fresh_evidence():
     assert evidence.read_bytes() == (ROOT / 'docs/data/latest-run.json').read_bytes()
     card = json.loads(evidence.read_text())
     assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
-    assert card['selector_approval'] is False and card['experiments_run'] == card['weekly_slots_used'] == 0
+    assert card['selector_approval'] is False and card['slot_selected'] is False
+    assert card['experiments_run'] == card['weekly_slots_used'] == 0
     assert card['raster_sha256'] is None and card['holdout_dti']['value'] is None
+    assert card['correlation_overlap_vs_registry']['candidate_final_spearman'] is None
     assert card['submission_name'] is None and len(card['note']) <= 140
     audit_path = ROOT / card['evidence']['historical_nine_site_audit']
     assert hashlib.sha256(audit_path.read_bytes()).hexdigest() == card['evidence']['historical_audit_sha256']
@@ -41,16 +43,13 @@ def test_active_shared_template_is_byte_identical_to_pinned_manifest():
         assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected
 
 
-def test_technical_promotion_cannot_display_submission_authorization():
-    card = json.loads((ROOT / 'docs/k3c/run-card.json').read_text())
-    for gate in (
-        {'verdict': 'promote', 'ok_to_submit': False, 'selector_approval': False, 'reasons': []},
-        {'verdict': 'promote', 'ok_to_submit': True, 'selector_approval': False, 'reasons': []},
-    ):
-        banner, release = root_decision_html(card, gate)
-        assert 'OK TO SUBMIT? YES' not in banner
-        assert 'OK TO SUBMIT? NO' in banner
-        assert 'NOT APPROVED' in release
+def test_negative_public_decision_cannot_display_submission_authorization():
+    # The publisher re-verifies every retained TIFF and accepts no caller-supplied
+    # gate or selector state. The separate synthetic promote test lives in test_gate.
+    banner, release = root_decision_html()
+    assert 'OK TO SUBMIT? YES' not in banner
+    assert 'OK TO SUBMIT? NO' in banner
+    assert 'NOT APPROVED' in release
 
 
 @pytest.mark.parametrize('name', [

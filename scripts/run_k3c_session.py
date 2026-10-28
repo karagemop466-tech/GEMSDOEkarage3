@@ -35,6 +35,8 @@ from scipy.ndimage import binary_dilation, binary_erosion, distance_transform_ed
 from sklearn.metrics import roc_auc_score
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 for sub in ("src", "scripts"):
     if str(ROOT / sub) not in sys.path:
         sys.path.insert(0, str(ROOT / sub))
@@ -127,6 +129,9 @@ def main() -> int:
     # Archived runner: do not reach any filesystem writes or candidate placement.
     raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
                      'shared holdout defects and the literal duplicate-stop remain unresolved.')
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
+    require_budget_not_proven_duplicate(37654)
+    require_shared_protocol_ready()
     t0 = time.time()
     ddir, wdir, edir = data_dir(), work_dir(), evidence_dir()
     out_dir = ROOT / "docs" / "k3c" / "downloads"

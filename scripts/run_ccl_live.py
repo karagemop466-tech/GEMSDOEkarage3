@@ -29,6 +29,8 @@ import rasterio
 from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -54,6 +56,9 @@ def main() -> int:
     ap.add_argument("--stage", choices=["surface", "emit"], default="surface")
     ap.add_argument("--out", default=str(ROOT / "evidence" / "ccl_live.json"))
     a = ap.parse_args()
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
+    require_budget_not_proven_duplicate(a.budget)
+    require_shared_protocol_ready()
     t0 = time.time()
     outp = Path(a.out)
     rec = json.loads(outp.read_text()) if outp.exists() and a.stage == "emit" else {}

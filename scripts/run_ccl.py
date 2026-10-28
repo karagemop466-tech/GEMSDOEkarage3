@@ -29,6 +29,8 @@ from scipy import ndimage
 from sklearn.metrics import roc_auc_score
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 
 from gems32 import holdout  # noqa: E402
@@ -65,6 +67,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", default=str(ROOT / "evidence" / "ccl_experiments.json"))
     args = ap.parse_args()
+    from scripts.protocol_preflight import require_shared_protocol_ready
+    require_shared_protocol_ready()
     t0 = time.time()
     stack = np.load(STACK, mmap_mode="r")
     lidar = load_lidar()

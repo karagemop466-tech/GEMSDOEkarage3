@@ -42,6 +42,9 @@ def main() -> int:
     # Archived runner: do not reach any filesystem writes or candidate placement.
     raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
                      'shared holdout defects and the literal duplicate-stop remain unresolved.')
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
+    require_budget_not_proven_duplicate(37654)
+    require_shared_protocol_ready()
     exp = json.loads((ROOT / "evidence/ccl_experiments.json").read_text())
     live = json.loads((ROOT / "evidence/ccl_live.json").read_text())
     lli = json.loads((ROOT / "evidence/ccl_lli_projection.json").read_text())
