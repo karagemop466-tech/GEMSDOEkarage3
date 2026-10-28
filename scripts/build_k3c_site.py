@@ -123,7 +123,10 @@ def build():
     (ROOT / 'docs/current-gate-decision.json').write_text(json.dumps(decision, indent=2, allow_nan=False) + '\n')
     (ROOT / 'docs/data/saved-tiffs-literal-20261028.json').write_bytes((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_bytes())
     sites_path = ROOT / 'docs/sites.json'
-    sites = json.loads(sites_path.read_text()); sites['promoted_candidate'] = None
+    sites = json.loads(sites_path.read_text())
+    sites['promoted_candidate'] = None
+    sites['promoted_candidate_sha256'] = None
+    sites['promoted_candidate_card'] = None
     sites_path.write_text(json.dumps(sites, indent=2, allow_nan=False) + '\n')
 
     file = H(original['submission_name']); sha = H(original['raster_sha256'])

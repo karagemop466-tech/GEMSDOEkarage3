@@ -61,6 +61,15 @@ class GateTests(unittest.TestCase):
                     r['comparisons'][0]['null_calibrated_excess_overlap'] = .01
                     self.assertEqual(assess(c)['verdict'], 'negative')
 
+    def test_unrelated_five_pixel_and_calibrated_diagnostics_do_not_trigger_stop(self):
+        c = self.valid()
+        for stage in ('surface', 'final_dots'):
+            row = c['registry'][stage]['comparisons'][0]
+            row['literal_5px_calibration_lattice_overlap'] = .99
+            row['null_calibrated_excess_overlap'] = .99
+        self.assertEqual(assess(c)['verdict'], 'promote')
+        self.assertFalse(assess(c)['ok_to_submit'])
+
     def test_ambiguous_calibrated_primary_rule_is_not_literal(self):
         c = self.valid(); c['registry']['duplicate_rule'] = 'null-calibrated overlap'
         self.assertEqual(assess(c)['verdict'], 'negative')

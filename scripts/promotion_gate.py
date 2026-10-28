@@ -17,8 +17,9 @@ import json
 import math
 import sys
 
-LITERAL_KEYS = ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap',
-                'literal_overlap_3px', 'max_literal_overlap_3px')
+# Only literal 3-pixel fields implement the user's stop rule. An unrelated
+# 5-pixel calibration metric neither proves compliance nor triggers this stop.
+LITERAL_KEYS = ('within_3px_fraction', 'literal_overlap_3px', 'max_literal_overlap_3px')
 OVERLAP_METRIC = 'literal-directional-fraction-within-3px'
 # A required member of the known frozen registry, not proof of completeness.
 KNOWN_WITNESS_SHA256 = 'b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2'

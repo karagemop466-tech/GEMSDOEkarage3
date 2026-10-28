@@ -78,6 +78,23 @@ def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
         assert row['format']['candidate_sha256'] == row['sha256']
 
 
+def test_current_numbers_verifier_runs_fail_closed():
+    result = subprocess.run([sys.executable, 'scripts/verify_numbers.py'], cwd=ROOT,
+                            capture_output=True, text=True, timeout=20)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert 'not a score or slot selection' in result.stdout
+
+
+def test_parallel_k3c_witness_agrees_with_eight_file_audit():
+    witness = json.loads((ROOT / 'evidence/k3c-literal-witness-audit-20261028.json').read_text())
+    all_saved = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    row = next(r for r in all_saved['rasters'] if r['file'] == witness['candidate'])
+    assert hashlib.sha256((ROOT / witness['candidate']).read_bytes()).hexdigest() == witness['candidate_sha256']
+    assert row['sha256'] == witness['candidate_sha256']
+    assert row['within_3px_fraction'] == witness['within_3px_fraction'] > .70
+    assert witness['duplicate_stop'] and not witness['ok_to_submit']
+
+
 def test_active_decisions_agree_and_not_linked_to_organizer_scores():
     card = json.loads((ROOT / 'docs/run-card.json').read_text())          # archived SMGC card (historical)
     review = json.loads((ROOT / 'docs/review-run-card.json').read_text())
@@ -94,6 +111,8 @@ def test_active_decisions_agree_and_not_linked_to_organizer_scores():
         assert sites['promoted_candidate'] == current['submission_name']
     else:
         assert sites['promoted_candidate'] is None
+        assert sites['promoted_candidate_sha256'] is None
+        assert sites['promoted_candidate_card'] is None
     # Historical nine-site rows never carry an organizer score estimate
     assert all(r['estimated_score'] is None and not r['ok_to_submit'] for r in sites['sites'])
     assert 'DO NOT SUBMIT' in (ROOT / 'README.md').read_text()

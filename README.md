@@ -6,6 +6,8 @@ No new model or TIFF was produced in this review, no slot was selected, and no f
 
 **[Executive overview](index.html)** · **[Nine-site table and conditional submission guide](executive-summary.html)** · **[K3C research archive](docs/k3c/index.html)** · **[Saved-byte audit](evidence/saved-tiffs-literal-20261028.json)** · **[Current JSON run card](docs/data/current-run.json)** · **[Research review and hypotheses](research/2026-10-28-literal-review.md)**
 
+An [independent parallel K3C witness audit](evidence/k3c-literal-witness-audit-20261028.json) reached the same 99.3520% overlap; its [three-pass review](docs/review-literal-20261028.md) is preserved as historical context.
+
 The K3C archived TIFF `gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif` has SHA-256 `0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df`. It is finite in [0,1], single-band float32 and grid-matched to the owner mirror, but lacks the conservative outside-footprint null mask and fails the literal uniqueness rule. **DO NOT SUBMIT.** The older CSST-BGHF archive `gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif`, SHA-256 `4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b`, also fails; **DO NOT SUBMIT**. These are not newly created candidates.
 
 ### Nine historical sites — research references, not submissions
@@ -43,7 +45,9 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python scripts/build_run_card.py
 .venv/bin/python scripts/build_review_status.py
 .venv/bin/python scripts/build_release_review.py
+.venv/bin/python scripts/verify_numbers.py  # consistency, not authorization
 .venv/bin/pytest -q && node --test tests/test_browser_feed.js
+npm ci --no-audit --no-fund && npm test
 ```
 
 Ignored input caches and `.venv` may not persist. The [saved-byte validator](scripts/check_format.py) reports finite inside, [0,1], mask and grid checks independently; it cannot promise that the organizer will accept the file or explain the prior portal error. The local card gate is a fail-closed *evidence screen*, not the separate weekly-slot selector. The [official problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) govern format, scoring, use of AI and the weekly cap.

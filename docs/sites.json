@@ -350,6 +350,6 @@
       "other_reported_submissions": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros: 0.1647"
     }
   ],
-  "promoted_candidate_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
-  "promoted_candidate_card": "docs/k3c/run-card.json"
+  "promoted_candidate_sha256": null,
+  "promoted_candidate_card": null
 }
