@@ -15,8 +15,8 @@ class GateTests(unittest.TestCase):
             feature_auc=[.6],
             registry={
                 'surface': dict(
-                    complete=True, max_abs_spearman=.9, max_overlap_3px=.7,
-                    comparisons=[dict(sha256='b' * 64, abs_spearman=.9, overlap_3px=.7)],
+                    complete=True, max_abs_spearman=.9, max_literal_overlap_3px=.7,
+                    comparisons=[dict(sha256='b' * 64, abs_spearman=.9, literal_overlap_3px=.7)],
                 ),
                 'final_dots': dict(
                     complete=True, max_abs_spearman=.9, max_overlap_3px=.7,
@@ -77,15 +77,16 @@ class GateTests(unittest.TestCase):
 
     def test_duplicate(self):
         card = self.valid()
-        card['registry']['final_dots']['max_overlap_3px'] = .70001
+        card['registry']['final_dots']['max_literal_overlap_3px'] = .70001
+        card['registry']['final_dots']['comparisons'][0]['literal_overlap_3px'] = .70001
         self.assertEqual(assess(card)['verdict'], 'negative')
 
-    def test_surface_overlap_and_manifest_required(self):
+    def test_surface_literal_overlap_and_manifest_required(self):
         card = self.valid()
-        card['registry']['surface']['comparisons'][0]['overlap_3px'] = .70001
+        card['registry']['surface']['comparisons'][0]['literal_overlap_3px'] = .70001
         self.assertEqual(assess(card)['verdict'], 'negative')
         card = self.valid()
-        del card['registry']['surface']['comparisons'][0]['overlap_3px']
+        del card['registry']['surface']['comparisons'][0]['literal_overlap_3px']
         self.assertEqual(assess(card)['verdict'], 'negative')
         card = self.valid()
         del card['registry']['manifest_sha256']

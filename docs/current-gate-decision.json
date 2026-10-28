@@ -5,8 +5,8 @@
   "reasons": [
     "literal raw overlap exceeds 0.70 or is invalid at 196 locations: card.registry.final_dots, card.registry.final_dots.comparisons[27], card.registry.final_dots.comparisons[28] (+193 more)",
     "literal all-registry final audit failed; null-calibration cannot waive the 70% stop",
-    "final-dot raw overlap missing, invalid, or above 70% for a registry raster",
-    "final_dots.max_literal_overlap_3px must equal the literal maximum and be <= 0.70",
+    "surface literal overlap / correlation comparison incomplete, inconsistent, or above threshold",
+    "final_dots literal overlap / correlation comparison incomplete, inconsistent, or above threshold",
     "superseded release evidence; rerun literal registry checks",
     "candidate registry audit is stale: manifest digest differs from refreshed checkout snapshot",
     "refreshed registry inventory is explicitly filtered/incomplete",

@@ -79,19 +79,6 @@ def assess(card):
     if isinstance(legacy, dict) and legacy.get('literal_all_rasters_final_passed') is False:
         literal = False
     require(literal is True, 'literal all-registry final audit failed; null-calibration cannot waive the 70% stop')
-    final = registry.get('final_dots') if isinstance(registry.get('final_dots'), dict) else {}
-    final_rows = final.get('comparisons')
-    raw_rows_ok = (isinstance(final_rows, list) and bool(final_rows)
-                   and all(isinstance(row, dict) and finite(row.get('literal_overlap_3px'))
-                           and 0 <= row['literal_overlap_3px'] <= .70 for row in final_rows))
-    require(raw_rows_ok, 'final-dot raw overlap missing, invalid, or above 70% for a registry raster')
-    raw_values = [row['literal_overlap_3px'] for row in (final_rows if isinstance(final_rows, list) else [])
-                  if isinstance(row, dict) and finite(row.get('literal_overlap_3px'))]
-    require(finite(final.get('max_literal_overlap_3px'))
-            and final.get('max_literal_overlap_3px') <= .70
-            and bool(raw_values)
-            and final.get('max_literal_overlap_3px') == max(raw_values),
-            'final_dots.max_literal_overlap_3px must equal the literal maximum and be <= 0.70')
     inventory = registry.get('inventory_sha256')
     inventory_ok = (isinstance(inventory, list) and bool(inventory)
                     and all(isinstance(x, str) and len(x) == 64 and all(c in '0123456789abcdef' for c in x) for x in inventory)
@@ -102,22 +89,24 @@ def assess(card):
     for stage in ('surface', 'final_dots'):
         r = registry.get(stage) if isinstance(registry.get(stage), dict) else {}
         comparisons = r.get('comparisons')
-        rows_ok = isinstance(comparisons, list) and all(isinstance(x, dict) for x in comparisons)
+        rows_ok = isinstance(comparisons, list) and bool(comparisons) and all(isinstance(x, dict) for x in comparisons)
         if rows_ok:
             ids = [x.get('sha256') for x in comparisons]
             rows_ok = (inventory_ok and all(isinstance(x, str) for x in ids)
                        and len(ids) == len(inventory) and len(set(ids)) == len(ids)
-                       and set(ids) == set(inventory)
-                       and all(finite(x.get('abs_spearman')) and 0 <= x['abs_spearman'] <= .90
-                               and finite(x.get('overlap_3px')) and 0 <= x['overlap_3px'] <= .70
-                               for x in comparisons))
-        surface_ok = (rows_ok and finite(r.get('max_abs_spearman'))
-                      and 0 <= r['max_abs_spearman'] <= .90
-                      and r['max_abs_spearman'] == max(x['abs_spearman'] for x in comparisons))
-        final_ok = (rows_ok and finite(r.get('max_overlap_3px'))
-                    and 0 <= r['max_overlap_3px'] <= .70
-                    and r['max_overlap_3px'] == max(x['overlap_3px'] for x in comparisons))
-        require(r.get('complete') is True and surface_ok and final_ok, f'{stage} uniqueness incomplete or duplicate')
+                       and set(ids) == set(inventory))
+        raw_values = [x.get('literal_overlap_3px') for x in comparisons] if rows_ok else []
+        raw_ok = (bool(raw_values) and all(finite(x) and 0 <= x <= .70 for x in raw_values)
+                  and finite(r.get('max_literal_overlap_3px'))
+                  and r.get('max_literal_overlap_3px') <= .70
+                  and r.get('max_literal_overlap_3px') == max(raw_values))
+        correlations = [x.get('abs_spearman') for x in comparisons] if rows_ok else []
+        correlation_ok = (bool(correlations) and all(finite(x) and 0 <= x <= .90 for x in correlations)
+                          and finite(r.get('max_abs_spearman'))
+                          and r.get('max_abs_spearman') <= .90
+                          and r.get('max_abs_spearman') == max(correlations))
+        require(r.get('complete') is True and rows_ok and raw_ok and correlation_ok,
+                f'{stage} literal overlap / correlation comparison incomplete, inconsistent, or above threshold')
     require(not card.get('release_review'), 'superseded release evidence; rerun literal registry checks')
     v = card.get('validator') if isinstance(card.get('validator'), dict) else {}
     for key in ('saved_bytes_checked', 'single_band', 'finite_inside', 'range_0_1', 'whole_array_finite_range', 'crs_match', 'shape_match', 'transform_match'):

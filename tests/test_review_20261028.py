@@ -42,6 +42,18 @@ def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
         assert row['format']['candidate_sha256'] == row['sha256']
 
 
+def test_independent_one_witness_audit_is_literal_and_historical_only():
+    audit = json.loads((ROOT / 'evidence/k3c-literal-witness-audit-20261028.json').read_text())
+    card = json.loads((ROOT / 'docs/k3c/run-card.json').read_text())
+    assert audit['candidate_sha256'] == card['raster_sha256']
+    assert hashlib.sha256((ROOT / audit['candidate']).read_bytes()).hexdigest() == audit['candidate_sha256']
+    assert audit['within_3px_fraction'] > .70 and audit['duplicate_stop']
+    assert audit['validator']['template_sha256'] == audit['template']['sha256']
+    assert audit['validator']['outside_template_null_pass'] is False
+    assert audit['validator']['organizer_acceptance'] == 'unknown'
+    assert assess(card)['verdict'] == 'negative'
+
+
 def test_active_decisions_agree_and_not_linked_to_organizer_scores():
     card = json.loads((ROOT / 'docs/run-card.json').read_text())          # archived SMGC card (historical)
     review = json.loads((ROOT / 'docs/review-run-card.json').read_text())
