@@ -51,8 +51,9 @@ def main() -> int:
        and current['raster_sha256'] is None and current['holdout_dti']['value'] is None
        and current['experiments_run'] == current['weekly_slots_used'] == 0
        and current['slot_selected'] is False)
-    ck('current card mirror matches evidence',
-       sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json'))
+    ck('current card mirrors match evidence and latest alias',
+       sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json')
+       == sha(ROOT / 'docs/data/latest-run-card.json'))
     ck('current card binds both saved audit receipts',
        current['geometry_audit_sha256'] == sha(ROOT / 'docs/data/historical-audit.json')
        and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json')
