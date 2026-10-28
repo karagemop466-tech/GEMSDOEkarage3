@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "karage3-review-20261028",
+  "hypothesis": "No new assigned hypothesis tested; audit retained SMGC under literal registry rule",
+  "mechanism": "Saved-byte format checks and directional 3px overlap with a hash-pinned registered calibration lattice",
+  "named_non_fault_process": "Calibration-grid coverage, not a geological process, explains the duplicate witness; lithologic contacts can mimic SMGC edges",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "Not run this session; prior estimates are not reproduced"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap": 0.9968662027938598,
+    "scope": "Single sufficient rejection witness, not complete registry",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+  },
+  "raster_sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
+  "raster_status": "Existing retained research artifact; no new raster generated",
+  "validator_output": {
+    "candidate": "/home/user/GEMSDOEkarage3/docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif",
+    "candidate_sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
+    "template": "/home/user/GEMSDOEkarage3/.cache/historical/template.tif",
+    "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "checks": {
+      "single_band": true,
+      "float32": true,
+      "shape_matches": true,
+      "crs_matches": true,
+      "transform_matches": true,
+      "inside_all_finite": true,
+      "inside_range_0_1": true,
+      "inside_not_nodata_or_masked": true
+    },
+    "core_format_pass": true,
+    "inside_nonfinite_count": 0,
+    "inside_masked_count": 0,
+    "inside_min": 0.0,
+    "inside_max": 1.0,
+    "outside_template_null_pass": false,
+    "whole_array_finite_range_pass": true,
+    "outside_policy_note": "Template-footprint null interpretation and all-finite diagnostic are separate; neither proves portal acceptance.",
+    "organizer_acceptance": "unknown",
+    "authorization": "NOT AUTHORIZED"
+  },
+  "submission_name": null,
+  "note": "No new file. Retained SMGC fails literal registry overlap; do not submit.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "selector_required": true
+}

@@ -1,4 +1,5 @@
 # Python & build artifacts
+node_modules/
 __pycache__/
 *.py[cod]
 .venv/
@@ -32,3 +33,7 @@ data/*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Frontend dependencies and local verification logs
+node_modules/
+.cache-unittest.log

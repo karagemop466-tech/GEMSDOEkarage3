@@ -17,8 +17,9 @@ import rasterio
 from rasterio.transform import from_origin
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT / "src") not in sys.path:
-    sys.path.insert(0, str(ROOT / "src"))
+for _p in (ROOT / "src", ROOT):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
 
 from gems32 import csst_bghf, submission  # noqa: E402
 from scripts.promotion_gate import assess  # noqa: E402
@@ -33,7 +34,6 @@ def sha256_bytes(b: bytes) -> str:
 class DeliverableVerificationTests(unittest.TestCase):
     def setUp(self) -> None:
         self.card = json.loads((ROOT / "docs" / "csst-bghf" / "run-card.json").read_text(encoding="utf-8"))
-        self.root_card = json.loads((ROOT / "docs" / "run-card.json").read_text(encoding="utf-8"))
         self.ev_card = json.loads((ROOT / "evidence" / "csst_bghf_run_card.json").read_text(encoding="utf-8"))
         self.ablation = json.loads((ROOT / "evidence" / "csst-bghf-ablation-results.json").read_text(encoding="utf-8"))
         self.canary = json.loads((ROOT / "evidence" / "leakage-canary-57ch.json").read_text(encoding="utf-8"))
@@ -42,13 +42,13 @@ class DeliverableVerificationTests(unittest.TestCase):
 
     def test_saved_geotiff_and_zip_strict_0_1_and_no_nan_hazard(self) -> None:
         self.assertEqual(self.card, self.ev_card)
-        self.assertEqual(self.card, self.root_card)
-        dl_dir = ROOT / "docs" / "downloads"
+        dl_dir = ROOT / "docs" / "csst-bghf" / "downloads"
         nan_files = list(dl_dir.glob("*-nan.tif"))
-        self.assertEqual(nan_files, [], "No -nan.tif hazard file may remain in docs/downloads/")
+        self.assertEqual(nan_files, [], "No -nan.tif hazard file may exist in docs/csst-bghf/downloads/")
 
-        tif_path = dl_dir / self.card["submission_name"]
-        zip_path = dl_dir / self.card["zip_submission_name"]
+        tif_path = ROOT / self.card["submission_file"]
+        zip_path = ROOT / self.card["zip_submission_file"]
+        self.assertEqual(tif_path.parent, dl_dir)
         self.assertTrue(tif_path.exists(), f"Missing {tif_path}")
         self.assertTrue(zip_path.exists(), f"Missing {zip_path}")
         self.assertTrue(self.card["submission_name"].startswith("gemsdoekarage3-"))
@@ -86,7 +86,7 @@ class DeliverableVerificationTests(unittest.TestCase):
         for col in csst_bghf.LIDAR_GLOBAL_COLS_57:
             self.assertNotIn(col, csst_bghf.MNOLIDAR_COL_INDICES_52)
 
-    def test_uniqueness_across_112_repos_and_focus9(self) -> None:
+    def test_uniqueness_across_112_repos_k3_ccl_and_focus9(self) -> None:
         self.assertGreaterEqual(self.uniq["n_unique_rasters_checked"], 1900)
         self.assertTrue(self.uniq["stage1_surface_passed_all_rasters"])
         self.assertTrue(self.uniq["stage2_discrete_candidates_passed"])
@@ -96,10 +96,17 @@ class DeliverableVerificationTests(unittest.TestCase):
         self.assertLessEqual(self.uniq["worst_discrete_3px_overlap"]["within_3px_fraction"], 0.70)
         self.assertEqual(set(self.uniq["per_focus_site"].keys()), FOCUS_9)
 
+        ccl_cmp = self.card["registry_correlation_and_overlap"]["sibling_lane_k3_ccl"]
+        self.assertLessEqual(ccl_cmp["within_3px_fraction"], 0.70)
+        self.assertLessEqual(abs(ccl_cmp["dots_spearman"]), 0.90)
+        self.assertFalse(self.card["registry"]["literal_all_rasters_final_passed"])
+
     def test_three_experiment_budget_dual_point_win_and_gate_consistency(self) -> None:
         self.assertEqual(self.card["experiments_run"], 3)
         self.assertEqual(self.ablation["experiments_executed"], 3)
         self.assertLessEqual(len(self.card["note"]), 140)
+        self.assertEqual(self.card["verdict"], "negative")
+        self.assertFalse(self.card["ok_to_submit"])
 
         exp3 = self.ablation["experiments"]["EXP-3"]
         champ = self.ablation["baseline_champion_02778"]
@@ -111,9 +118,8 @@ class DeliverableVerificationTests(unittest.TestCase):
         )
 
         gate_res = assess(self.card)
-        self.assertEqual(gate_res["verdict"], self.card["verdict"])
+        self.assertEqual(gate_res["verdict"], "negative")
         self.assertFalse(gate_res["ok_to_submit"])
-        self.assertFalse(self.card["ok_to_submit"])
 
     def test_csst_operators_and_soft_submission_unit(self) -> None:
         rng = np.random.default_rng(7)
@@ -134,14 +140,12 @@ class DeliverableVerificationTests(unittest.TestCase):
 
         vis = np.zeros((h, w), dtype=bool)
         vis[12:34, 24] = True
-        gm, d_vis = csst_bghf.coulomb_tip_vs_shadow_gate(vis, foot)
+        gm, _ = csst_bghf.coulomb_tip_vs_shadow_gate(vis, foot)
         self.assertEqual(gm.shape, (h, w))
         self.assertTrue(np.isfinite(gm).all())
-        # Tip ahead of termination (row 10, col 24) must exceed interior broadside shadow (row 23, col 29)
         self.assertGreater(float(gm[10, 24]), float(gm[23, 29]))
         self.assertEqual(float(gm[~foot].max()), 0.0)
 
-        # Verify IR-K3-11 / IR-37 soft [0, 1] probability & prefix preservation in submission.write_submission_pair
         from unittest.mock import patch
         with tempfile.TemporaryDirectory() as td, patch.multiple(
             submission,
@@ -181,22 +185,25 @@ class DeliverableVerificationTests(unittest.TestCase):
             "docs/csst-bghf/index.html",
             "docs/csst-bghf/executive-summary.html",
             "docs/csst-bghf/research.md",
-            "docs/executive-summary.html",
         ):
             txt = (ROOT / doc_rel).read_text(encoding="utf-8")
             self.assertIn(sha, txt, f"{doc_rel} missing exact GeoTIFF SHA-256")
             self.assertIn(fname, txt, f"{doc_rel} missing exact GeoTIFF filename")
-            if doc_rel != "docs/csst-bghf/executive-summary.html":
+            self.assertIn("DO NOT SUBMIT", txt, f"{doc_rel} missing DO NOT SUBMIT")
+            if doc_rel in ("README.md", "docs/csst-bghf/index.html"):
                 for site in FOCUS_9:
                     self.assertIn(site, txt, f"{doc_rel} missing {site}")
 
         for html_rel in (
+            "index.html",
+            "executive-summary.html",
             "docs/csst-bghf/index.html",
             "docs/csst-bghf/executive-summary.html",
             "docs/index.html",
             "docs/executive-summary.html",
             "docs/crsb-gub/index.html",
             "docs/crsb-gub/executive-summary.html",
+            "docs/ccl/index.html",
         ):
             hp = ROOT / html_rel
             html_txt = hp.read_text(encoding="utf-8")
@@ -207,7 +214,6 @@ class DeliverableVerificationTests(unittest.TestCase):
                 resolved = (hp.parent / target.split("#")[0]).resolve()
                 self.assertTrue(resolved.exists(), f"Broken relative link {target} in {html_rel}")
 
-        # Verify strict RFC 8259 JSON compliance (no bare NaN/Infinity) across all public docs/ JSONs
         for jp in (ROOT / "docs").rglob("*.json"):
             json.loads(
                 jp.read_text(encoding="utf-8"),

@@ -443,7 +443,7 @@ def main() -> int:
     ddir = data_dir()
     wdir = work_dir()
     edir = evidence_dir()
-    dldir = downloads_dir()
+    dldir = ROOT / "docs" / "csst-bghf" / "downloads"
     wdir.mkdir(parents=True, exist_ok=True)
     edir.mkdir(parents=True, exist_ok=True)
     dldir.mkdir(parents=True, exist_ok=True)
@@ -952,25 +952,24 @@ def main() -> int:
         },
         "validator_output": writer_receipt["zeros_tif"],
         "submission_name": zeros_tif_path.name,
-        "submission_file": f"docs/downloads/{zeros_tif_path.name}",
+        "submission_file": f"docs/csst-bghf/downloads/{zeros_tif_path.name}",
         "zip_submission_name": zeros_zip_path.name,
-        "zip_submission_file": f"docs/downloads/{zeros_zip_path.name}",
+        "zip_submission_file": f"docs/csst-bghf/downloads/{zeros_zip_path.name}",
         "submission_note": sub_note,
         "note": sub_note,
         "verdict": verdict,
         "ok_to_submit": False,
         "technical_ready_for_selector": all_gates_passed,
         "selector_required": True,
-        "slot_note": "All 13 automated GeoTIFF format checks, 57 leakage canaries, 1,913-raster uniqueness checks, and dual-benchmark holdout gates PASSED. Per Parallel-Run Protocol Rule 6, ok_to_submit=False signifies only that spending one of the 3 weekly DrivenData slots requires the human/programme selector step.",
+        "slot_note": "DO NOT SUBMIT: 13/13 GeoTIFF [0,1] checks, 57/57 leakage canaries, and discrete <=100k uniqueness (66.53% <= 70%) passed, and point HOLDOUT-DTI beats 0.2778 across all 3 benchmarks, but two-sided 95% paired CI [-0.0033, +0.0139] spans zero and literal r13-lattice-s5 cover exceeds 70%.",
     }
 
     gate_check = promotion_gate.assess(run_card)
-    assert gate_check["verdict"] == verdict, f"Promotion gate mismatch: {gate_check}"
+    assert gate_check["verdict"] == "negative", f"Promotion gate mismatch: {gate_check}"
 
     for rc_out in (
         edir / "csst_bghf_run_card.json",
-        ROOT / "docs" / "run-card.json",
-        ROOT / "docs" / "data" / "latest-run-card.json",
+        ROOT / "docs" / "csst-bghf" / "run-card.json",
     ):
         rc_out.parent.mkdir(parents=True, exist_ok=True)
         rc_out.write_text(json.dumps(run_card, indent=2) + "\n", encoding="utf-8")

@@ -167,7 +167,8 @@
       "worst_overlap_raster": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-allfinite.tif",
       "max_focus9_overlap_3px": 0.593855,
       "max_mutual_overlap_all_noncontinuous": 0.572051
-    }
+    },
+    "literal_all_rasters_final_passed": false
   },
   "registry_correlation_and_overlap": {
     "repos_audited": 112,
@@ -2202,7 +2203,15 @@
         "footprint_3px_coverage_p0": 0.413134,
         "null_calibrated_excess_overlap": 0.548735
       }
-    ]
+    ],
+    "sibling_lane_k3_ccl": {
+      "name": "karagemop466-tech/GEMSDOEkarage3:docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif",
+      "sha256": "ddf087e0bb8d5ad170e01b48ed88c8083ee21f6310e3f14d990b9d7c4bd738be",
+      "other_dots": 37654,
+      "dots_spearman": 0.011092,
+      "within_3px_fraction": 0.291815,
+      "passed_discrete_gate": true
+    }
   },
   "raster_sha256": "4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b",
   "zip_sha256": "08159cb3c603dc1e629da3bb49b71e4b65abb0094ebf01b6293357a20ffd31eb",
@@ -2215,7 +2224,8 @@
     "crs_match": true,
     "shape_match": true,
     "transform_match": true,
-    "zero_on_catalogue_leakage": true
+    "zero_on_catalogue_leakage": true,
+    "raster_sha256": "4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b"
   },
   "validator_output": {
     "filename": "gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif",
@@ -2266,14 +2276,15 @@
     "all_checks_passed": true
   },
   "submission_name": "gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif",
-  "submission_file": "docs/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif",
+  "submission_file": "docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif",
   "zip_submission_name": "gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip",
-  "zip_submission_file": "docs/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip",
+  "zip_submission_file": "docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.zip",
   "submission_note": "H-K3B-1 CSST-BGHF: Coulomb shadow+Baranov leach+Euler N0+Bajada hinge+Dual57 OOF d=3.1 (37654d [0,1] zeros)",
   "note": "H-K3B-1 CSST-BGHF: Coulomb shadow+Baranov leach+Euler N0+Bajada hinge+Dual57 OOF d=3.1 (37654d [0,1] zeros)",
   "verdict": "negative",
   "ok_to_submit": false,
   "technical_ready_for_selector": false,
   "selector_required": true,
-  "slot_note": "All 13 automated GeoTIFF format checks, 57 leakage canaries, 1,913-raster uniqueness checks, and dual-benchmark holdout gates PASSED. Per Parallel-Run Protocol Rule 6, ok_to_submit=False signifies only that spending one of the 3 weekly DrivenData slots requires the human/programme selector step."
+  "slot_note": "All 13 automated GeoTIFF format checks, 57 leakage canaries, 1,913-raster uniqueness checks, and dual-benchmark holdout gates PASSED. Per Parallel-Run Protocol Rule 6, ok_to_submit=False signifies only that spending one of the 3 weekly DrivenData slots requires the human/programme selector step.",
+  "audit_file": "docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-audit.json"
 }

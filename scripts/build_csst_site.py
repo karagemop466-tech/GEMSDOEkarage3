@@ -4,9 +4,6 @@
   - `docs/csst-bghf/index.html`
   - `docs/csst-bghf/executive-summary.html`
   - `docs/csst-bghf/research.md`
-  - `docs/index.html` (compatible with `docs/dashboard.js`, `tests/dashboard.test.cjs`, and `tests/test_preflight_site.py`)
-  - `docs/executive-summary.html` (dedicated Executive Summary & Submission Guide, compatible with `tests/test_preflight_site.py`)
-  - Updates `docs/crsb-gub/` historical archive references so zero broken relative links exist.
 """
 from __future__ import annotations
 
@@ -178,9 +175,16 @@ def build_all() -> None:
           <td>
             <span class="pass-pill">13/13 FORMAT &amp; [0,1] PASS</span><br>
             <span class="pass-pill">57/57 CANARY PASS (≤0.6180)</span><br>
-            <span class="hold-pill">SLOT GATE: SELECTOR REVIEW</span><br>
-            <small>12,279,160 finite float32 px · 0 NaN · range [0.0, 1.0] · EPSG:32611 · 95% paired CI [-0.0033, +0.0139] spans 0 (`ok_to_submit: false` until human selector sign-off)</small>
+            <span class="hold-pill">DO NOT SUBMIT · VERDICT: NEGATIVE</span><br>
+            <small>12,279,160 finite float32 px · 0 NaN · range [0.0, 1.0] · EPSG:32611 · 95% paired CI [-0.0033, +0.0139] spans 0 &amp; literal r13-lattice-s5 cover 99.36% &gt; 70% (`ok_to_submit: false`)</small>
           </td>
+        </tr>
+        <tr>
+          <td><strong>GEMSDOEkarage3 (Sibling PR #21 · Lane K3-CCL)</strong><br><small>Catalogue-Completion Learner (B=5, 37,654 dots)</small></td>
+          <td><a href="../ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif" download><code>…-c7f2433c-zeros.tif</code></a><br><small>SHA-256: <code>ddf087e0bb8d5ad1…bd738be</code></small></td>
+          <td><strong>HOLDOUT-DTI (Hide-Recover v3.0):</strong> <code>0.145950</code> <small>[0.1331, 0.1589] (uses catalogue-distance features; IR-K3-12)</small><br><small>LIVE-LEDGER PROJECTION (not a score): <code>0.0956–0.0997</code></small></td>
+          <td><span class="fail-pill">FAIL · &gt;70% vs 21 halo rasters</span><br><small>CSST-BGHF vs K3-CCL: <code>29.18%</code> 3-px · |ρ| = <code>0.0111</code> (distinct)</small></td>
+          <td><span class="fail-pill">DUPLICATE STOP · DO NOT SUBMIT</span><br><small>Failed null-calibrated &amp; literal overlap gates</small></td>
         </tr>""")
 
         # Prior GEMSDOEkarage3 rows (transparency)
@@ -277,21 +281,21 @@ def build_all() -> None:
       <span class="pass-pill">G2 UNIQUENESS: 1,913 RASTERS / 112 REPOS PASS (max discrete 66.53% ≤ 70%)</span>
       <span class="pass-pill">G3 POINT DTI: BEATS 0.2778 CHAMPION ON ALL 3 BENCHMARKS &amp; 4/4 QUADRANTS</span>
       <span class="pass-pill">G4 FORMAT [0,1] &amp; ZERO-NaN: 13/13 PASS</span>
-      <span class="hold-pill">SLOT GATE: HOLD FOR SELECTOR REVIEW (95% Paired CI [-0.0033, +0.0139] spans 0)</span>
+      <span class="hold-pill">DO NOT SUBMIT · VERDICT: NEGATIVE (95% Paired CI [-0.0033, +0.0139] &amp; Literal Lattice Stop)</span>
     </div>
-    <h1>Executive Summary — Lane H-K3B-1 (<code>CSST-BGHF</code>): Unique Validated <code>[0, 1]</code> GeoTIFF Submission</h1>
+    <h1>Executive Summary — Lane H-K3B-1 (<code>CSST-BGHF</code>): Validated <code>[0, 1]</code> GeoTIFF Candidate (<strong>DO NOT SUBMIT</strong>)</h1>
     <p>
       <strong>What we built &amp; verified (2026-10-28):</strong> Within the strict 3-experiment budget, we designed, preregistered, and executed
       <strong>Lane H-K3B-1 (<code>CSST-BGHF</code>: Coulomb Stress-Shadow Transfer, Baranov Pseudogravity Magnetite-Leaching Defect, Reid N=0 Basement-Matched Euler Contacts &amp; Piedmont Toe-Flexure Dual-Cover 57-ch OOF + Axial d=3.1 CELF)</strong>.
       Our generated single-band GeoTIFF (<code>{esc(tif_name)}</code>, <code>37,654</code> binary <code>{{0.0, 1.0}}</code> pixels across <code>12,279,160</code> all-finite <code>float32</code> pixels, <code>0</code> NaN anywhere)
-      eliminates the prior DrivenData <code>"Predicted values must be in range [0, 1]"</code> upload error, passes <strong>100% of uniqueness checks across all 112 competition repositories (2,355 GeoTIFFs / 1,913 unique SHA-256s)</strong>,
+      eliminates the prior DrivenData <code>"Predicted values must be in range [0, 1]"</code> upload error, passes <strong>100% of discrete uniqueness checks across all 112 competition repositories (max discrete ≤100k 3-px overlap <code>66.53% ≤ 70%</code>, <code>29.18%</code> vs Sibling Lane <code>K3-CCL</code>, <code>42.24%</code> vs <code>0.2778</code> Champion)</strong>,
       and <strong>outperforms the <code>0.2778</code> Champion (<code>H33-2-B2</code>) in point HOLDOUT-DTI across all 3 benchmarks and all 4 spatial quadrants simultaneously</strong>.
-      Under our fail-closed statistical promotion gate (<code>scripts/promotion_gate.py</code>), <code>verdict = "negative"</code> (<code>ok_to_submit = false</code>, <code>selector_required = true</code>) is recorded transparently because the two-sided 95% paired cluster-bootstrap CI on Hide-and-Recover (<code>[-0.003328, +0.013882]</code>, <code>P(Δ &gt; 0) = 88.9%</code>) spans zero by <code>0.0033</code>.
+      Under our fail-closed promotion gate (<code>scripts/promotion_gate.py</code>), <strong><code>verdict = "negative"</code> / <code>ok_to_submit = false</code> (DO NOT SUBMIT)</strong> is recorded transparently because (1) the two-sided 95% paired cluster-bootstrap CI on Hide-and-Recover (<code>[-0.003328, +0.013882]</code>, <code>P(Δ &gt; 0) = 88.9%</code>) spans zero by <code>0.0033</code>, and (2) under the literal non-density-filtered rule, <code>13GEMSDOE</code>'s <code>r13-lattice-s5</code> (<code>206,895</code> dots covering <code>99.87%</code> of the footprint within 3 px) covers <code>99.36% &gt; 70%</code> of any <code>37,654</code>-dot raster.
     </p>
     <div class="cta-row">
-      <a class="btn-primary" href="../downloads/{esc(tif_name)}" download>Download Validated .tif ({esc(tif_name[:32])}…) ↓</a>
-      <a class="btn-secondary" href="../downloads/{esc(zip_name)}" download>Download Single-File .zip (DrivenData Ready) ↓</a>
-      <a class="btn-secondary" href="executive-summary.html">Step-by-Step DrivenData Submission Instructions →</a>
+      <a class="btn-primary" href="downloads/{esc(tif_name)}" download>Download Research .tif ({esc(tif_name[:32])}… · DO NOT SUBMIT) ↓</a>
+      <a class="btn-secondary" href="downloads/{esc(zip_name)}" download>Download Single-File .zip (Research Archive) ↓</a>
+      <a class="btn-secondary" href="executive-summary.html">Step-by-Step DrivenData Submission Guide &amp; Gate Audit →</a>
       <a class="btn-secondary" href="run-card.json">View Machine-Readable JSON Run Card ↗</a>
     </div>
     <p><small>
@@ -348,7 +352,7 @@ def build_all() -> None:
           </tr>
         </thead>
         <tbody>
-          {render_master_table_rows("../downloads")}
+          {render_master_table_rows("downloads")}
         </tbody>
       </table>
     </div>
@@ -521,18 +525,18 @@ def build_all() -> None:
       <span class="pass-pill">13/13 GEOTIFF [0, 1] CHECKS PASSED</span>
       <span class="pass-pill">0 NaN PIXELS ANYWHERE (12,279,160 / 12,279,160 FINITE)</span>
       <span class="pass-pill">100% UNIQUE ACROSS 112 REPOS (max discrete 66.53% ≤ 70%)</span>
-      <span class="hold-pill">SLOT DISCIPLINE: SELECTOR SIGN-OFF REQUIRED (ok_to_submit=false)</span>
+      <span class="hold-pill">DO NOT SUBMIT · VERDICT: NEGATIVE (ok_to_submit=false)</span>
     </div>
-    <h1>How to Download &amp; Submit to DrivenData DOE GEMS (#306)</h1>
+    <h1>How to Download &amp; Submit to DrivenData DOE GEMS (#306) — Gate Audit (<strong>DO NOT SUBMIT</strong>)</h1>
     <p>
       This page explains at a glance whether our generated GeoTIFF is technically safe, unique, and validated,
-      why previous uploads failed with <code>"Predicted values must be in range [0, 1]"</code>, and the exact 4-step
-      procedure if the programme selector chooses to spend one of the 3 weekly DrivenData submission slots on
-      <strong>Lane H-K3B-1 (<code>CSST-BGHF</code>)</strong>.
+      why previous uploads failed with <code>"Predicted values must be in range [0, 1]"</code>, why automated slot
+      promotion is currently <strong>DO NOT SUBMIT (<code>verdict="negative"</code>, <code>ok_to_submit=false</code>)</strong>, and the exact 4-step
+      DrivenData upload procedure for future cleared candidates.
     </p>
     <div class="cta-row">
-      <a class="btn-primary" href="../downloads/{esc(tif_name)}" download>1. Click to Download Validated .tif ↓</a>
-      <a class="btn-secondary" href="../downloads/{esc(zip_name)}" download>Alternative: Download Single-File .zip ↓</a>
+      <a class="btn-primary" href="downloads/{esc(tif_name)}" download>1. Click to Download Research .tif (DO NOT SUBMIT) ↓</a>
+      <a class="btn-secondary" href="downloads/{esc(zip_name)}" download>Alternative: Download Single-File .zip ↓</a>
       <a class="btn-secondary" href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Open DrivenData Submissions Page ↗</a>
     </div>
   </div>
@@ -540,12 +544,12 @@ def build_all() -> None:
   <section>
     <h2>Step-by-Step DrivenData Upload Checklist (Zero Human Inspector Needed for Format/Uniqueness)</h2>
     <ol>
-      <li><strong>Verify Slot Policy First:</strong> Automated technical validation (<code>13/13</code> GeoTIFF format checks, <code>57/57</code> leakage canaries ≤ <code>0.6180</code>, and <code>1,913</code>-raster uniqueness ≤ <code>66.53%</code>) is <strong>100% GREEN</strong>, and point HOLDOUT-DTI beats the <code>0.2778</code> Champion across all 3 benchmarks (<code>+0.0055</code> Hide-Recover, <code>+0.0056</code> Detached≥600m, <code>+0.0061</code> SGMC-cal). Because the two-sided 95% paired bootstrap CI (<code>[-0.003328, +0.013882]</code>, <code>P=88.9%</code>) spans zero, <code>promotion_gate.py</code> sets <code>verdict="negative"</code> / <code>ok_to_submit=false</code> so a weekly slot is never burned without selector sign-off.</li>
-      <li><strong>Download the All-Finite <code>-zeros.tif</code> (or <code>-zeros.zip</code>):</strong> Click <a href="../downloads/{esc(tif_name)}" download><code>{esc(tif_name)}</code></a> (SHA-256: <code>{esc(tif_sha)}</code>) or <a href="../downloads/{esc(zip_name)}" download><code>{esc(zip_name)}</code></a> (SHA-256: <code>{esc(zip_sha)}</code>). <em>Why this fixes the prior upload failure:</em> Earlier <code>-nan.tif</code> files stored <code>NaN</code> across the <code>7,111,787</code> outside-footprint pixels, triggering DrivenData's whole-array <code>(arr &gt;= 0) &amp; (arr &lt;= 1)</code> validator error <code>"Predicted values must be in range [0, 1]"</code>. Our <code>-zeros.tif</code> has <strong><code>0</code> NaN pixels anywhere in all <code>12,279,160</code> pixels</strong> (values strictly <code>{{0.0, 1.0}}</code>, <code>nodata=None</code>), and no <code>-nan.tif</code> file is present in <code>docs/downloads/</code>.</li>
+      <li><strong>Verify Slot Policy First (Currently DO NOT SUBMIT):</strong> Automated technical validation (<code>13/13</code> GeoTIFF format checks, <code>57/57</code> leakage canaries ≤ <code>0.6180</code>, and discrete ≤100k uniqueness ≤ <code>66.53%</code>, <code>29.18%</code> vs Sibling Lane <code>K3-CCL</code>) is <strong>100% GREEN</strong>, and point HOLDOUT-DTI beats the <code>0.2778</code> Champion across all 3 benchmarks (<code>+0.0055</code> Hide-Recover, <code>+0.0056</code> Detached≥600m, <code>+0.0061</code> SGMC-cal). However, because (a) the two-sided 95% paired bootstrap CI (<code>[-0.003328, +0.013882]</code>, <code>P=88.9%</code>) spans zero and (b) <code>13GEMSDOE</code>'s literal <code>206,895</code>-dot <code>r13-lattice-s5</code> covers <code>99.87%</code> of the footprint within 3 px (<code>99.36% &gt; 70%</code> literal cover), <code>promotion_gate.py</code> enforces <strong><code>verdict="negative"</code> / <code>ok_to_submit=false</code> (DO NOT SUBMIT)</strong> so no weekly DrivenData slot is spent prematurely.</li>
+      <li><strong>Download the All-Finite <code>-zeros.tif</code> (or <code>-zeros.zip</code>):</strong> Click <a href="downloads/{esc(tif_name)}" download><code>{esc(tif_name)}</code></a> (SHA-256: <code>{esc(tif_sha)}</code>) or <a href="downloads/{esc(zip_name)}" download><code>{esc(zip_name)}</code></a> (SHA-256: <code>{esc(zip_sha)}</code>). <em>Why this fixes the prior upload failure:</em> Earlier <code>-nan.tif</code> files stored <code>NaN</code> across the <code>7,111,787</code> outside-footprint pixels, triggering DrivenData's whole-array <code>(arr &gt;= 0) &amp; (arr &lt;= 1)</code> validator error <code>"Predicted values must be in range [0, 1]"</code>. Our <code>-zeros.tif</code> has <strong><code>0</code> NaN pixels anywhere in all <code>12,279,160</code> pixels</strong> (values strictly <code>{{0.0, 1.0}}</code>, <code>nodata=None</code>), and no <code>-nan.tif</code> file is present in <code>docs/csst-bghf/downloads/</code>.</li>
       <li><strong>Paste the ≤140-Char Submission Note:</strong> Copy verbatim ({len(note)} chars):<br>
         <code>{esc(note)}</code>
       </li>
-      <li><strong>Record Organizer Receipt:</strong> After DrivenData finishes scoring, record the exact score receipt before labeling any number <code>ORGANIZER-CONFIRMED</code>.</li>
+      <li><strong>Record Organizer Receipt:</strong> After DrivenData finishes scoring a cleared candidate, record the exact score receipt before labeling any number <code>ORGANIZER-CONFIRMED</code>.</li>
     </ol>
   </section>
 
@@ -569,10 +573,10 @@ def build_all() -> None:
     # -------------------------------------------------------------------------
     research_md = f"""# Lane H-K3B-1 (`CSST-BGHF`) Research Monograph & 9-Site Forensic Audit (2026-10-28)
 
-## 1. Validated Deliverable Receipt
-- **GeoTIFF Filename:** `docs/downloads/{tif_name}`
+## 1. Validated Deliverable Receipt (`verdict = "negative"` · **DO NOT SUBMIT**)
+- **GeoTIFF Filename:** `docs/csst-bghf/downloads/{tif_name}`
 - **GeoTIFF SHA-256:** `{tif_sha}`
-- **Single-File ZIP:** `docs/downloads/{zip_name}` (`{zip_sha}`)
+- **Single-File ZIP:** `docs/csst-bghf/downloads/{zip_name}` (`{zip_sha}`)
 - **Submission Note ({len(note)}/140 chars):** `{note}`
 - **Grid & Format:** Single-band `float32`, `3730 x 3292` (`12,279,160` finite pixels, `0` NaN anywhere), `EPSG:32611`, `[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]`, `nodata = None`, `37,654` binary `{{0.0, 1.0}}` dots (`B = 2` collar -> `0` on `existing_faults.tif`), `13/13` checks passed.
 
@@ -588,250 +592,19 @@ def build_all() -> None:
   - `Hide-and-Recover v3.0`: `+0.005435` (`95% CI [-0.003328, +0.013882]`, `P(Δ > 0) = 88.9%`, wins `4/4` quadrants `NW, NE, SW, SE`).
   - `Detached >= 600 m`: `+0.005665` (`95% CI [-0.003199, +0.014885]`, `P(Δ > 0) = 89.1%`).
   - `Off-Catalogue SGMC-cal v3.0`: `+0.005618` (`+0.006050` pooled delta, `95% CI [-0.003734, +0.016116]`, `P(Δ > 0) = 86.5%`).
-- **Fail-Closed Slot Verdict (`scripts/promotion_gate.py`):** `verdict = "negative"`, `ok_to_submit = false`, `selector_required = true` (because the two-sided 95% paired CI on Hide-and-Recover narrowly spans zero by `0.0033`).
+- **Fail-Closed Slot Verdict (`scripts/promotion_gate.py`):** `verdict = "negative"`, `ok_to_submit = false`, `selector_required = true` (two-sided 95% paired CI spans zero by `0.0033` and literal `r13-lattice-s5` `206,895`-dot lattice covers `99.36% > 70%`).
 
-## 3. Uniqueness Across All 112 Repositories (`2,355` Rasters / `1,913` Unique SHA-256s) & 9 Focus Sites
+## 3. Uniqueness Across All 112 Repositories (`2,355` Rasters / `1,913` Unique SHA-256s), `K3-CCL`, & 9 Focus Sites
 - **Pre-placement surface max `|Spearman|` across all `1,913` unique rasters:** `{abs(uniq['worst_surface_spearman_all']['surface_spearman']):.6f} <= 0.90` (`PASS`)
 - **Final dots max `|Spearman|` across all `1,913` unique rasters:** `{abs(uniq['worst_dots_spearman_all']['dots_spearman']):.6f} <= 0.90` (`PASS`)
 - **Discrete (`<= 100k` dots, `1,687` unique rasters) max 3-px overlap:** `{uniq['worst_discrete_3px_overlap']['within_3px_fraction']*100:.2f}% <= 70.0%` (`PASS`, `{uniq['worst_discrete_3px_overlap']['name']}`)
+- **Sibling Lane `K3-CCL` (`c7f2433c-zeros.tif`) 3-px overlap:** `29.18% <= 70.0%` (`PASS`, `dots_rho = +0.011092`)
 - **Focus-9 (`GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36`) max 3-px overlap:** `{uniq['worst_focus9_3px_overlap']['within_3px_fraction']*100:.2f}% <= 70.0%` (`9/9 PASS`)
 - **Prior `GEMSDOEkarage3` PR #9 (`CRSB-GUB`) 3-px overlap:** `57.21% <= 70.0%` (`PASS`)
+- **Literal space-filling lattice (`13GEMSDOE` `r13-lattice-s5`, `206,895` dots):** `99.36% > 70.0%` (`literal_all_rasters_final_passed = False`; `IR-K3-02` pigeonhole stop).
 """
     (csst_dir / "research.md").write_text(research_md, encoding="utf-8")
-
-    # -------------------------------------------------------------------------
-    # 4. Update `docs/index.html` (must satisfy BOTH `tests/dashboard.test.cjs` AND `tests/test_preflight_site.py`!)
-    #    - `tests/dashboard.test.cjs`:
-    #        * `#rows tr` (9), `#site-details article` (9), `#rows td:last-child` (/NOT OK TO SUBMIT/)
-    #        * `document.querySelector('button').disabled === true`
-    #        * `document.querySelectorAll('a[download][href$=".tif"]').length === 0` (so on `docs/index.html`,
-    #          use `download` on `.zip` and link to `csst-bghf/index.html` / `executive-summary.html` for `.tif` download!)
-    #        * `#updated` does not match `/failed/`
-    #    - `tests/test_preflight_site.py`:
-    #        * `'preflight.html' in (DOCS / 'index.html').read_text()`
-    # -------------------------------------------------------------------------
-    docs_index_html = f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GEMSDOEkarage3 — Evidence Desk, Nine-Site Audit &amp; Lane H-K3B-1 (CSST-BGHF)</title>
-  <style>{SHARED_CSS}</style>
-  <script src="dashboard.js" defer></script>
-</head>
-<body>
-<div class="container">
-  <header>
-    <a class="brand" href="../index.html">GEMSDOE<span>karage3</span> · Evidence Desk</a>
-    <nav class="nav-links" aria-label="Evidence desk navigation">
-      <a href="csst-bghf/index.html">Lane H-K3B-1 (CSST-BGHF) Hub &amp; .tif</a>
-      <a href="executive-summary.html">Executive Summary &amp; Submission Guide</a>
-      <a href="preflight.html">Historical Preflight Dashboard</a>
-      <a href="../index.html">Root Site</a>
-      <a href="run-card.json">JSON Run Card</a>
-    </nav>
-  </header>
-
-  <div class="hero-box">
-    <div class="pill-row">
-      <span class="pass-pill">NEW LANE H-K3B-1 (CSST-BGHF): 13/13 FORMAT [0,1] PASS</span>
-      <span class="pass-pill">1,913-RASTER UNIQUENESS PASS (max discrete 66.53% ≤ 70%)</span>
-      <span class="pass-pill">BEATS 0.2778 CHAMPION ON ALL 3 POINT BENCHMARKS (+0.0055 HR, +0.0061 SGMC-cal)</span>
-      <span class="hold-pill">WEEKLY SLOT LOCKED PENDING SELECTOR REVIEW (ok_to_submit=false)</span>
-    </div>
-    <h1>Executive Summary — Lane H-K3B-1 (<code>CSST-BGHF</code>) &amp; Nine-Site Historical Forensic Desk</h1>
-    <p>
-      <strong>Latest Research Run (2026-10-28):</strong> Lane <code>H-K3B-1 (CSST-BGHF)</code> produced the unique, all-finite <code>[0, 1]</code> GeoTIFF
-      <code>{esc(tif_name)}</code> (<code>37,654</code> dots, <code>0</code> NaN pixels, SHA-256 <code>{esc(tif_sha[:16])}…</code>),
-      beating <code>GEMSDOE32</code>'s <code>0.2778</code> Champion in point HOLDOUT-DTI across Hide-and-Recover (<code>0.104700</code> vs <code>0.099202</code>, <code>P=88.9%</code>),
-      Detached ≥600 m (<code>0.099958</code> vs <code>0.094324</code>, <code>P=89.1%</code>), and Off-Catalogue SGMC-cal (<code>0.070171</code> vs <code>0.064121</code>, <code>P=86.5%</code>),
-      with max discrete 3-px registry overlap <code>66.53% ≤ 70%</code> across 112 repos. Because the 95% paired CI (<code>[-0.0033, +0.0139]</code>) narrowly includes zero,
-      automatic weekly-slot promotion stays locked (<code>verdict: negative</code>, <code>selector_required: true</code>).
-    </p>
-    <div class="cta-row">
-      <button type="button" disabled style="opacity:0.65;cursor:not-allowed;padding:11px 16px;border-radius:8px;border:1px solid var(--amber);background:#1e293b;color:#fcd34d;font-weight:700;">Auto-Submit Weekly Slot Locked (Selector Review Required)</button>
-      <a class="btn-primary" href="csst-bghf/index.html">Open CSST-BGHF Hub &amp; Validated .tif Download →</a>
-      <a class="btn-secondary" href="downloads/{esc(zip_name)}" download>Download Validated .zip Package ↓</a>
-      <a class="btn-secondary" href="executive-summary.html">How to Submit Executive Guide →</a>
-      <a class="btn-secondary" href="preflight.html">Historical Preflight Audit →</a>
-    </div>
-    <p id="updated" class="muted">Loading nine-site historical verification feed…</p>
-  </div>
-
-  <section>
-    <h2>Nine Focus Sites (GEMSDOE24..36) — Live Historical Verification Feed</h2>
-    <div class="table-wrap" role="region" tabindex="0" aria-label="Nine-site historical audit table">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Site &amp; Owner Claim</th>
-            <th scope="col">Audited Historical File</th>
-            <th scope="col">Leaderboard Forecast</th>
-            <th scope="col">Format Check</th>
-            <th scope="col">Peer Uniqueness</th>
-            <th scope="col">Historical File Decision</th>
-          </tr>
-        </thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2>Site-by-Site Structural Lineage Notes</h2>
-    <div id="site-details" class="grid-2"></div>
-  </section>
-</div>
-</body>
-</html>
-"""
-    (ROOT / "docs" / "index.html").write_text(docs_index_html, encoding="utf-8")
-
-    # -------------------------------------------------------------------------
-    # 5. Update `docs/executive-summary.html` (must contain `'outside-null wording'` for `tests/test_preflight_site.py`!)
-    # -------------------------------------------------------------------------
-    docs_exec_html = f"""<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Executive Summary &amp; Submission Guide — GEMSDOEkarage3 (Lane H-K3B-1 CSST-BGHF)</title>
-  <style>{SHARED_CSS}</style>
-</head>
-<body>
-<div class="container">
-  <header>
-    <a class="brand" href="index.html">GEMSDOE<span>karage3</span> · Executive Summary</a>
-    <nav class="nav-links" aria-label="Executive summary navigation">
-      <a href="csst-bghf/index.html">CSST-BGHF Full Hub</a>
-      <a href="index.html">Nine-Site Evidence Desk</a>
-      <a href="preflight.html">Preflight Archive</a>
-      <a href="../index.html">Root Site</a>
-      <a href="run-card.json">JSON Run Card</a>
-    </nav>
-  </header>
-
-  <div class="hero-box">
-    <div class="pill-row">
-      <span class="pass-pill">UNIQUE VALIDATED .TIF READY: 13/13 FORMAT [0, 1] PASS</span>
-      <span class="pass-pill">57/57 LEAKAGE CANARIES PASS (≤0.6180)</span>
-      <span class="pass-pill">1,913-RASTER UNIQUENESS PASS (≤66.53% discrete 3-px)</span>
-      <span class="hold-pill">SLOT GATE: HOLD FOR SELECTOR SIGN-OFF (verdict=negative)</span>
-    </div>
-    <h1>Executive Summary &amp; DrivenData Submission Guide — Lane H-K3B-1 (<code>CSST-BGHF</code>)</h1>
-    <p>
-      <strong>Immediate Answer — Can I download a unique, format-valid <code>[0, 1]</code> GeoTIFF?</strong>
-      <strong>Yes:</strong> <a href="downloads/{esc(tif_name)}" download><code>{esc(tif_name)}</code></a> (and single-file archive
-      <a href="downloads/{esc(zip_name)}" download><code>{esc(zip_name)}</code></a>) passed all 13 GeoTIFF format &amp; <code>[0, 1]</code> checks
-      (<code>12,279,160 / 12,279,160</code> finite <code>float32</code> pixels, <code>0</code> NaN inside or outside footprint, resolving the competition's
-      outside-null wording vs whole-array <code>[0, 1]</code> validator ambiguity by writing finite <code>0.0</code> outside the footprint with <code>nodata=None</code>),
-      passed all <code>1,913</code> unique registry uniqueness checks across 112 repos (<code>max discrete 3-px = 66.53% ≤ 70%</code>), and outperformed the
-      <code>0.2778</code> Champion in point HOLDOUT-DTI across Hide-and-Recover (<code>0.104700</code> vs <code>0.099202</code>), Detached ≥600 m (<code>0.099958</code> vs <code>0.094324</code>),
-      and SGMC-cal (<code>0.070171</code> vs <code>0.064121</code>). Because the two-sided 95% paired bootstrap CI (<code>[-0.003328, +0.013882]</code>) spans zero,
-      <code>promotion_gate.py</code> keeps <code>ok_to_submit=false</code> until human selector sign-off before spending one of the 3 weekly DrivenData slots.
-    </p>
-    <div class="cta-row">
-      <a class="btn-primary" href="downloads/{esc(tif_name)}" download>Download Validated .tif ↓</a>
-      <a class="btn-secondary" href="downloads/{esc(zip_name)}" download>Download Single-File .zip ↓</a>
-      <a class="btn-secondary" href="csst-bghf/index.html">View 4-Panel Plots &amp; Full Monograph →</a>
-    </div>
-    <p><small>
-      <strong>SHA-256 (.tif):</strong> <code>{esc(tif_sha)}</code> &nbsp;|&nbsp;
-      <strong>Submission Note ({len(note)}/140 chars):</strong> <code>{esc(note)}</code>
-    </small></p>
-  </div>
-
-  <section>
-    <h2>Master Auditable Summary Table — Candidates &amp; Focus Sites (GEMSDOE24..36)</h2>
-    <div class="table-wrap" role="region" tabindex="0" aria-label="Master auditable summary table">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Site / Candidate</th>
-            <th scope="col">File to Download / Inspect &amp; SHA-256</th>
-            <th scope="col">Labeled Scores (HOLDOUT-DTI vs User-Reported)</th>
-            <th scope="col">Uniqueness Status</th>
-            <th scope="col">Validation &amp; Gate Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {render_master_table_rows("downloads")}
-        </tbody>
-      </table>
-    </div>
-  </section>
-</div>
-</body>
-</html>
-"""
-    (ROOT / "docs" / "executive-summary.html").write_text(docs_exec_html, encoding="utf-8")
-
-    # -------------------------------------------------------------------------
-    # 6. Fix any stale download hrefs in archived `docs/crsb-gub/*.html` so zero broken links exist
-    # -------------------------------------------------------------------------
-    audit_name = tif_name.replace("-zeros.tif", "-audit.json")
-    crsb_dir = ROOT / "docs" / "crsb-gub"
-    if crsb_dir.exists():
-        for html_p in crsb_dir.glob("*.html"):
-            txt = html_p.read_text(encoding="utf-8")
-            txt = (
-                txt.replace(
-                    "../downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
-                    f"../downloads/{tif_name}",
-                )
-                .replace(
-                    "../downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.zip",
-                    f"../downloads/{zip_name}",
-                )
-                .replace(
-                    "../downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-audit.json",
-                    f"../downloads/{audit_name}",
-                )
-            )
-            html_p.write_text(txt, encoding="utf-8")
-
-    # -------------------------------------------------------------------------
-    # 7. Reconcile `docs/sites.json` with `scripts/build_comparison.py` & Protocol Rule 3
-    # -------------------------------------------------------------------------
-    from scripts.build_comparison import enrich
-
-    sites_path = ROOT / "docs" / "sites.json"
-    sites_doc = json.loads(sites_path.read_text(encoding="utf-8"))
-    sites_doc.pop("promoted_candidate", None)
-    sites_doc["checked_utc"] = "2026-10-28T06:25:00+00:00"
-    sites_doc["latest_candidate"] = {
-        "site": "GEMSDOEkarage3",
-        "repository": "https://github.com/karagemop466-tech/GEMSDOEkarage3",
-        "candidate_id": "H-K3B-1-CSST-BGHF-COULOMB-D31",
-        "submission_file": f"docs/downloads/{tif_name}",
-        "zip_submission_file": f"docs/downloads/{zip_name}",
-        "submission_name": tif_name,
-        "submission_note": note,
-        "raster_sha256": tif_sha,
-        "zip_sha256": zip_sha,
-        "holdout_dti_hide_recover_v3": exp3["hide_and_recover_v3"]["pooled_dti"],
-        "holdout_dti_hide_recover_ci95": exp3["hide_and_recover_v3"]["ci95"],
-        "holdout_dti_detached_600m": exp3["detached_600m_segments"]["pooled_dti"],
-        "holdout_dti_sgmc_calibrated_v3": exp3["sgmc_off_catalogue_v3"]["prevalence_calibrated_dti"],
-        "max_discrete_3px_overlap_vs_registry": uniq["worst_discrete_3px_overlap"]["within_3px_fraction"],
-        "max_abs_spearman_vs_registry": abs(uniq["worst_surface_spearman_all"]["surface_spearman"]),
-        "verdict": rc["verdict"],
-        "ok_to_submit": False,
-        "selector_required": True,
-    }
-    nine_by_site = {s["site"]: s for s in nine["sites"]}
-    for srow in sites_doc["sites"]:
-        srow["evidence_class"] = "USER-REPORTED / UNVERIFIED"
-        srow["estimated_score"] = None
-        srow["ok_to_submit"] = False
-        srow.pop("within_3px_of_hk3_smgc", None)
-        if srow["site"] in nine_by_site:
-            srow["within_3px_of_csst_bghf"] = round(nine_by_site[srow["site"]]["karage3_vs_site_max_3px_overlap"], 6)
-    upstream_audit = json.loads((ROOT / "evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json").read_text(encoding="utf-8"))
-    enrich(sites_doc["sites"], upstream_audit)
-    sites_path.write_text(json.dumps(sites_doc, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-
-    print("Built docs/csst-bghf/{index.html,executive-summary.html,research.md,run-card.json}, docs/{index.html,executive-summary.html}, and docs/sites.json")
+    print("Built docs/csst-bghf/{index.html,executive-summary.html,research.md,run-card.json}")
 
 
 if __name__ == "__main__":

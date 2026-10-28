@@ -304,9 +304,9 @@ def scan_full_registry(
                 "is_continuous_surface": is_continuous_surface,
                 "is_ultra_dense_gt100k_probe": is_ultra_dense_probe,
                 "is_focus_site_entry": is_focus_repo,
-                "surface_spearman": round(rho_surf, 6),
-                "dots_spearman": round(rho_dots, 6) if rho_dots is not None else None,
-                "within_3px_fraction": round(ov3, 6),
+                "surface_spearman": rho_surf,
+                "dots_spearman": rho_dots,
+                "within_3px_fraction": ov3,
             }
         )
 
@@ -327,12 +327,12 @@ def scan_full_registry(
         if r["is_continuous_surface"] or r["is_ultra_dense_gt100k_probe"]
     ]
 
-    top_surf_candidates = sorted(non_lattice_all, key=lambda r: -abs(r["surface_spearman"]))[:5]
-    top_ov_candidates = sorted(discrete_le100k, key=lambda r: -r["within_3px_fraction"])[:5]
+    top_surf_candidates = sorted(rows, key=lambda r: -abs(r["surface_spearman"]))[:5]
+    top_ov_candidates = sorted(rows, key=lambda r: -r["within_3px_fraction"])[:5]
     worst_ov_all = max(rows, key=lambda r: r["within_3px_fraction"])
 
-    verify_surf_shas = {r["sha256"] for r in (top_surf_candidates + top_ov_candidates)}
-    verify_final_shas = {r["sha256"] for r in top_ov_candidates}
+    verify_surf_shas = {r["sha256"] for r in rows}
+    verify_final_shas = {r["sha256"] for r in rows}
     rg_surf_comparisons = []
     rg_final_comparisons = []
     for sha in sorted(verify_surf_shas | verify_final_shas):
@@ -355,24 +355,24 @@ def scan_full_registry(
     worst_ov_gen = max(discrete_le100k, key=lambda r: r["within_3px_fraction"])
     worst_ov_focus = max(focus_genuine, key=lambda r: r["within_3px_fraction"])
 
-    surf_passed = bool(rg_surf_comparisons) and all(
+    surf_passed = bool(rows) and not skipped and all(r["raw_in_foot_finite"] and abs(r["surface_spearman"]) <= .90 for r in rows) and bool(rg_surf_comparisons) and all(
         c["measurable"] and not c["duplicate"] for c in rg_surf_comparisons
     )
     rg_surface = {
         "stage": "surface",
-        "rule": "literal rho>0.90 OR directional overlap>0.70 across discrete detector rasters",
+        "rule": "literal rho>0.90 OR directional overlap>0.70 across ALL registry rasters; no density or lattice exemptions",
         "passed": surf_passed,
         "stop": not surf_passed,
         "comparisons": rg_surf_comparisons,
     }
     rg_final = None
     if dots is not None:
-        fin_passed = bool(rg_final_comparisons) and all(
+        fin_passed = surf_passed and all(r["within_3px_fraction"] <= .70 and r["dots_spearman"] is not None and abs(r["dots_spearman"]) <= .90 for r in rows) and bool(rg_final_comparisons) and all(
             c["measurable"] and not c["duplicate"] for c in rg_final_comparisons
         )
         rg_final = {
             "stage": "final",
-            "rule": "literal rho>0.90 OR directional overlap>0.70 across discrete detector rasters",
+            "rule": "literal rho>0.90 OR directional overlap>0.70 across ALL registry rasters; no density or lattice exemptions",
             "passed": fin_passed,
             "stop": not fin_passed,
             "comparisons": rg_final_comparisons,
@@ -618,6 +618,13 @@ def render_diagnostic_figure(
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate
+    require_budget_not_proven_duplicate(37654)
+    # Historical runner excludes dense/lattice rasters from release-gate inputs,
+    # writes before the final literal check and deletes existing downloads.
+    # Disable it rather than silently authorizing a protocol-violating candidate.
+    raise SystemExit("STOP: legacy SMGC runner is disabled; literal registry gate and safe output handling require repair. See evidence/review-2026-10-28.md.")
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()
@@ -856,7 +863,7 @@ def main() -> int:
         f"({pre_scan['worst_genuine_surface']['name']})",
         flush=True,
     )
-    if not pre_scan["genuine_surface_passed"]:
+    if not pre_scan["release_gate_direct_surface"]["passed"]:
         raise SystemExit(f"STOP: Pre-placement continuous surface Spearman > 0.90: {pre_scan['worst_genuine_surface']}")
 
     exp3_full_dots, exp3_emit_log = fbgr.emit_fbgr_submodular(
@@ -932,8 +939,8 @@ def main() -> int:
         f"literal lattice={final_scan['worst_literal_overlap']['within_3px_fraction']:.4f} (RSS={peak_rss_mb()} MB)",
         flush=True,
     )
-    if not final_scan["genuine_final_dots_passed"]:
-        raise SystemExit(f"STOP: Final-dot genuine registry uniqueness failed: {final_scan['worst_genuine_overlap']}")
+    if not final_scan["literal_all_rasters_final_passed"]:
+        raise SystemExit(f"STOP: Final-dot literal registry uniqueness failed: {final_scan['worst_literal_overlap']}")
 
     # Independent strict CLI validator (`scripts/check_submission.py --strict-finite`)
     sub_env = {**os.environ, "PYTHONPATH": str(ROOT / "src"), "GEMS_DATA_DIR": str(ddir)}
@@ -1057,8 +1064,11 @@ def main() -> int:
         paired_delta_ci95=paired_hr_vs_champ["ci95"],
     )
 
+    if not final_scan["literal_all_rasters_final_passed"]:
+        gate_decision["gates"]["final"] = False
+        gate_decision["verdict"] = "negative"
     final_verdict = "promote" if gate_decision["verdict"] == "promote" else "negative"
-    ok_submit = final_verdict == "promote"
+    ok_submit = False  # A recommendation never allocates a weekly slot.
 
     def _clean_arm(res: dict) -> dict:
         return {

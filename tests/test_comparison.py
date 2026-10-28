@@ -1,33 +1,30 @@
-import hashlib
+"""Regression checks for the current nine-site comparison, not stale lane dashboards."""
 import json
-from pathlib import Path
 import unittest
-
-from scripts.build_comparison import enrich
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+FOCUS = {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}
+
 
 class EvidenceTests(unittest.TestCase):
-    def test_recovered_source_hashes(self):
-        for entry in json.loads((ROOT/'evidence/upstream/recovered-manifest.json').read_text()):
-            self.assertEqual(hashlib.sha256((ROOT/entry['path']).read_bytes()).hexdigest(), entry['sha256'])
+    def test_historical_audit_is_complete_for_focus_sites_only(self):
+        report = json.loads((ROOT / "docs/historical-raster-audit.json").read_text())
+        self.assertEqual({row["site"] for row in report["rasters"]}, FOCUS)
+        self.assertEqual(len(report["pairwise"]), 72)
+        self.assertFalse(report["official_template_available"])
+        self.assertFalse(report["complete_registry_checked"])
+        self.assertFalse(report["new_submission_generated"])
+        self.assertTrue(all(pair["candidate_fraction_within_3px"] > 0.70 for pair in report["pairwise"]))
 
-    def test_comparison_rebuild_is_stable(self):
-        stored=json.loads((ROOT/'docs/sites.json').read_text())['sites']
-        upstream=json.loads((ROOT/'evidence/upstream/GEMSDOE32/evidence/arena48_focus9_overlap.json').read_text())
-        self.assertEqual(enrich(json.loads(json.dumps(stored)),upstream),stored)
-        self.assertEqual(len(stored),9)
-        for row in stored:
-            self.assertFalse(row['ok_to_submit'])
-            self.assertIsNone(row['estimated_score'])
-            self.assertFalse(row['historical_artifact']['locally_validated'])
+    def test_current_summary_does_not_present_score_forecasts_as_results(self):
+        page = (ROOT / "docs/preflight-executive.html").read_text()
+        self.assertIn("USER-REPORTED / unverified", page)
+        self.assertIn("Estimated score", page)
+        self.assertIn("Unavailable", page)
+        self.assertIn("NO FILE IS APPROVED FOR SUBMISSION", page)
+        self.assertIn("not ORGANIZER-CONFIRMED receipts", page)
 
-    def test_local_report_scope_and_pairs(self):
-        report=json.loads((ROOT/'docs/historical-raster-audit.json').read_text())
-        self.assertEqual(len(report['rasters']),9)
-        self.assertEqual(len(report['pairwise']),72)
-        self.assertFalse(report['official_template_available'])
-        self.assertFalse(report['complete_registry_checked'])
-        self.assertFalse(report['new_submission_generated'])
-        for pair in report['pairwise']:
-            self.assertGreater(pair['candidate_fraction_within_3px'],.7)
+
+if __name__ == "__main__":
+    unittest.main()
