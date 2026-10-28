@@ -32276,8 +32276,8 @@
     "selector_required": true,
     "reasons": []
   },
-  "verdict": "promote",
-  "ok_to_submit": true,
+  "verdict": "negative",
+  "ok_to_submit": false,
   "selector_required": true,
   "post_processing": [
     {
@@ -32289,5 +32289,15 @@
   "tested_hypothesis_E2": "Geodetic strain (Band 04 geod_2ndinv) that is not accounted for by visible catalogued fault length must be accommodated by unmapped faults; re-allocating the CSST-BGHF dot budget toward strain-deficit regions raises recovery of off-catalogue faults.",
   "tested_mechanism_E2": "Kostrov (1974) moment balance: prior = clip((S/(D+0.25) / median)^0.5, 0.5, 2.0) with S = footprint rank of Band 04 and D = 10-km Gaussian density of the fold-visible catalogue; multiplies the CSST-BGHF EXP-3 surface before min_sep 3.1 px CELF emission with a B=2 px visible collar.",
   "shipped_arm": "E1",
-  "e2_result": "negative"
+  "e2_result": "negative",
+  "historical_experiment_verdict_before_review": "promote",
+  "historical_experiment_ok_to_submit_claim_before_review": true,
+  "release_review": {
+    "review_date": "2026-10-28",
+    "active_branch": "arena/2509a8e3-gemsdoekarage3",
+    "superseding_review_card": "evidence/review_run_card_20261028.json",
+    "historical_original_card": "evidence/k3c_run_card.json",
+    "reason": "The previous null-calibrated gate waived a literal raw overlap failure. The active protocol uses raw overlap; candidate max is 1.0 and an identifiable detector overlap is 0.852605, both above 0.70. The saved registry manifest is stale and filtered/incomplete, and the original card records a different branch.",
+    "authorization": "NOT AUTHORIZED; research artifact only"
+  }
 }

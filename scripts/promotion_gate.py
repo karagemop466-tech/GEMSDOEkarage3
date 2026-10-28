@@ -6,23 +6,20 @@ DrivenData slot on the file.  ``ok_to_submit`` mirrors that verdict; ``selector_
 because slot allocation within the weekly cap is a human decision.  The gate cannot establish that the
 registry inventory is current or that measurements are genuine.
 
-Duplicate rule (IR-K3-17).  The protocol's "more than 70 % of your dots within 3 px of one registry
-raster's dots" is applied to the **null-calibrated excess overlap** ``(obs - p0) / (1 - p0)``, where
-``p0`` is that raster's own 3-px footprint coverage, i.e. the overlap a uniformly random dot set would
-have with it.  For ordinary detector rasters ``p0`` is 0.01-0.10 and the rule is numerically the literal
-one; for space-filling lattices (``p0`` = 0.9987) the literal rule is unsatisfiable by pigeonhole for any
-file with >= 22,164 dots (IR-K3-02) and measures geometry, not lane drift.  Any node that reports a
-literal ``within_3px_fraction`` above 0.70 must carry a finite ``p0`` and an excess overlap <= 0.70 in the
-same node, otherwise the card fails.  Legacy cards without the null-calibrated audit fall back to the
-literal rule.
+Duplicate rule (user's active parallel-run protocol): use the literal raw fraction. If more than 70% of
+candidate dots lie within 3 px of any registry raster's dots, the candidate fails, regardless of that
+raster's coverage, identity, density, or null expectation. Null-calibrated excess overlap may be recorded
+as supplementary analysis but never rescues a literal failure. This is intentionally strict: a dense
+lattice can make some dot budgets impossible, which is a pre-placement stop rather than permission to
+relax or game the rule. Check surface rank-correlation and final-dot overlap against every available
+registry reference; an incomplete inventory is not evidence of uniqueness.
 """
 import json
 import math
 import sys
 
-LITERAL_KEYS = ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap')
-EXCESS_KEYS = ('excess_overlap_3px', 'null_calibrated_excess_overlap')
-P0_KEYS = ('p0', 'footprint_3px_coverage_p0')
+LITERAL_KEYS = ('within_3px_fraction', 'literal_5px_calibration_lattice_overlap',
+                'literal_overlap_3px', 'max_literal_overlap_3px')
 
 
 def finite(x):
@@ -30,18 +27,9 @@ def finite(x):
 
 
 def _node_overlap_ok(node):
-    """A node with a literal overlap > 0.70 passes only with a finite p0 and an excess overlap <= 0.70."""
+    """Every reported raw overlap is governed by the literal 70% threshold."""
     lit = [node[k] for k in LITERAL_KEYS if k in node]
-    if not lit:
-        return True
-    if not all(finite(v) and 0 <= v <= 1 for v in lit):
-        return False
-    if max(lit) <= .70:
-        return True
-    exc = [node[k] for k in EXCESS_KEYS if k in node]
-    p0 = [node[k] for k in P0_KEYS if k in node]
-    return (bool(exc) and all(finite(v) and 0 <= v <= .70 for v in exc)
-            and bool(p0) and all(finite(v) and 0 <= v <= 1 for v in p0))
+    return all(finite(v) and 0 <= v <= .70 for v in lit)
 
 
 def assess(card):
@@ -53,16 +41,22 @@ def assess(card):
         if not ok:
             reasons.append(reason)
 
+    overlap_failures = []
+
     def walk(node, path='card'):
         if isinstance(node, dict):
             if not _node_overlap_ok(node):
-                require(False, f'{path}: duplicate or invalid overlap (literal > 0.70 without null-calibrated p0/excess <= 0.70)')
+                overlap_failures.append(path)
             for key, value in node.items():
                 walk(value, f'{path}.{key}')
         elif isinstance(node, list):
             for i, value in enumerate(node):
                 walk(value, f'{path}[{i}]')
     walk(card)
+    if overlap_failures:
+        examples = ', '.join(overlap_failures[:3])
+        suffix = f' (+{len(overlap_failures) - 3} more)' if len(overlap_failures) > 3 else ''
+        reasons.append(f'literal raw overlap exceeds 0.70 or is invalid at {len(overlap_failures)} locations: {examples}{suffix}')
 
     require(bool(card.get('assigned_lane')), 'missing assigned method lane')
     h = card.get('holdout') if isinstance(card.get('holdout'), dict) else {}
@@ -84,18 +78,20 @@ def assess(card):
     legacy = card.get('correlation_and_overlap_vs_registry')
     if isinstance(legacy, dict) and legacy.get('literal_all_rasters_final_passed') is False:
         literal = False
-    null_cal = registry.get('null_calibrated_all_rasters_final_passed')
-    require(isinstance(literal, bool), 'literal all-registry final audit absent')
-    if null_cal is None:
-        # Legacy card: only the literal rule is available.
-        require(literal is True, 'literal all-registry final audit failed (no null-calibrated audit present)')
-    else:
-        require(null_cal is True, 'null-calibrated all-registry final audit failed')
-        require(isinstance(registry.get('duplicate_rule'), str) and 'null-calibrated' in registry['duplicate_rule'],
-                'null-calibrated duplicate rule not declared')
-        if literal is False:
-            fd = registry.get('final_dots') if isinstance(registry.get('final_dots'), dict) else {}
-            require(finite(fd.get('max_literal_overlap_3px')), 'literal failure must be disclosed in final_dots.max_literal_overlap_3px')
+    require(literal is True, 'literal all-registry final audit failed; null-calibration cannot waive the 70% stop')
+    final = registry.get('final_dots') if isinstance(registry.get('final_dots'), dict) else {}
+    final_rows = final.get('comparisons')
+    raw_rows_ok = (isinstance(final_rows, list) and bool(final_rows)
+                   and all(isinstance(row, dict) and finite(row.get('literal_overlap_3px'))
+                           and 0 <= row['literal_overlap_3px'] <= .70 for row in final_rows))
+    require(raw_rows_ok, 'final-dot raw overlap missing, invalid, or above 70% for a registry raster')
+    raw_values = [row['literal_overlap_3px'] for row in (final_rows if isinstance(final_rows, list) else [])
+                  if isinstance(row, dict) and finite(row.get('literal_overlap_3px'))]
+    require(finite(final.get('max_literal_overlap_3px'))
+            and final.get('max_literal_overlap_3px') <= .70
+            and bool(raw_values)
+            and final.get('max_literal_overlap_3px') == max(raw_values),
+            'final_dots.max_literal_overlap_3px must equal the literal maximum and be <= 0.70')
     inventory = registry.get('inventory_sha256')
     inventory_ok = (isinstance(inventory, list) and bool(inventory)
                     and all(isinstance(x, str) and len(x) == 64 and all(c in '0123456789abcdef' for c in x) for x in inventory)

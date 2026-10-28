@@ -1,41 +1,39 @@
-# GEMSDOEkarage3 — Current Release Decision & Research Ledger (2026-10-28, session 4)
+# GEMSDOEkarage3 — Current Repository Review (2026-10-28)
 
-## Is any file OK to submit? **YES — one file is cleared by every automated gate (Lane `H-K3C`, verdict `promote`); the human selector decides whether to spend a weekly slot**
+## Submission status: **NO — do not submit any TIFF in this checkout**
 
-[![Gate](https://img.shields.io/badge/promotion__gate.py_v3-PROMOTE_(ok__to__submit%3Dtrue)-059669)](docs/k3c/index.html)
-[![Validator](https://img.shields.io/badge/[0,1]_GeoTIFF_Validator-PASS_(0_NaN,_EPSG:32611,_3730x3292)-10b981)](docs/k3c/run-card.json)
-[![Canary](https://img.shields.io/badge/58_single--feature_canaries-PASS_(max_AUC_0.6180)-10b981)](docs/k3c/run-card.json)
-[![Uniqueness](https://img.shields.io/badge/Null--calibrated_uniqueness_vs_1,935_rasters-PASS_(worst_68.91%25_%3C%3D_70%25)-f59e0b)](knowledge/irregularities.md)
+The previous H-K3C page and README incorrectly said **OK TO SUBMIT**. That release decision is retracted. The run card applied null-calibrated excess overlap to waive a raw-overlap failure, but the active parallel-run protocol requires the literal test against every registry raster. The saved H-K3C file reports `literal_all_rasters_final_passed: false`, raw max overlap **100.00%** within 3 px (and **85.26%** against an additional detector raster); each exceeds the 70% stop. Null calibration does not change that result.
 
-| Field | Value |
+The registry was refreshed on 2026-10-28 from 112 GitHub repositories: 2,412 filtered TIFF entries, 1,979 unique file hashes, zero fetch failures. The manifest explicitly says `literal_registry_complete: false`; its path/name/size filters exclude items, so it is not a complete registry. The H-K3C card audited an older 1,935-hash inventory and its manifest digest does not match the refreshed snapshot. It also records a different branch from this session. Therefore neither its old surface-correlation scan nor its uniqueness claims establish current uniqueness.
+
+| Field | Current decision |
 | :--- | :--- |
-| **Download** | [`gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif`](docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif) · [single-file `.zip`](docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.zip) |
-| **SHA-256** | `0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df` (zip `9cec0c98cb82e0046485b137c4ec5441c867d2a4ec972047dfbd10e1f1853683`) |
-| **Suggested DrivenData note (67/140)** | `H-K3C E1: CSST-BGHF d=3.1 B=2 37654d [0,1] zeros; 24-cell HR 0.1110` |
-| **Format** | single-band `float32`, `EPSG:32611`, `3730 × 3292`, transform `[100, 0, 243350, 0, -100, 4508550]`, `nodata=None`, **0 NaN anywhere**, values ∈ {0, 1}, 37,654 ones, 0 on catalogue pixels (independent re-read of saved bytes) |
-| **HOLDOUT-DTI** (`GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, n = 66,904) | **0.111044** [0.098990, 0.122727] vs 0.2778-champion rule 0.100798 [0.090492, 0.110863]; paired Δ **+0.010103**, 95 % CI [+0.003019, +0.017272], P(Δ>0) = 0.999 |
-| **HOLDOUT-DTI** (Detached ≥ 600 m, n = 45,843) | 0.106559 [0.092999, 0.119781] vs 0.095221; paired CI [+0.003745, +0.018619] |
-| **HOLDOUT-DTI** (`GEMSDOE32-SGMC-CAL-v3.0`, n = 62,703) | 0.071797 [0.061266, 0.081340] vs 0.064121; paired CI [-0.002370, +0.018169] (**spans zero**) |
-| **Uniqueness** | surface max \|ρ\| 0.5270; focus-9 max 3-px overlap 59.37%; ≤100k-dot rasters max 67.07%; vs 0.2778 champion 42.78%; **null-calibrated worst 68.91%** vs `gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif` (limit 70 %, IR-K3-22) |
-| **Expected live score** | **Unknown.** No organizer receipt exists for any file (IR-K3-04). The live-ledger projection is 0.140 (NOT a score; LOO MAE 0.022; it under-projected GEMSDOE70 by 0.11, IR-K3-23). Holdout cannot reproduce the champion's 0.2778 (IR-K3-09). A live result below 0.2778 is a real possibility. |
-| **Parallel session (PR #24, d790672e)** | Ran without the feature stack/registry and recorded a negative follow-up: [`research/2026-10-28-followup-d790672e.md`](research/2026-10-28-followup-d790672e.md), [`docs/core-data-receipt.json`](docs/core-data-receipt.json). Its gate addition (`validator.whole_array_finite_range`) is merged into v3 and satisfied by the H-K3C card. |
-| **Pages** | [Executive summary & download](docs/k3c/index.html) · [How to submit](docs/k3c/how-to-submit.html) · [Run card](docs/k3c/run-card.json) · [Preregistration](docs/research/k3c-preregistration-20261028.md) · [Research note](research/2026-10-28-k3c.md) · [Irregularities IR-K3-17…26](knowledge/irregularities.md) |
+| **Download / submit** | No cleared submission. Existing H-K3C GeoTIFF is retained as **research-only; DO NOT SUBMIT**. |
+| **Reason** | Literal raw overlap exceeds 70%; old gate's null-calibrated override violated the user's current protocol; refreshed registry is incomplete and differs from the card snapshot. |
+| **New experiments / new TIFF / slots** | 0 / 0 / 0 in this review. No attempt was made to evade the duplicate stop by changing dot count or targeting uncovered areas. |
+| **Historical holdout result** | **HOLDOUT-DTI** (`GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, 66,904 withheld positives): prior run-card result 0.111044 [0.098990, 0.122727], paired delta vs its champion rule +0.010103 [0.003019, 0.017272]. It is not a live leaderboard score and was not rerun in this review. |
+| **Leaderboard score estimate** | Unknown. No organizer receipt in the repository binds a score to this file. The `0.2778` and other listed values below are owner-reported historical figures, not ORGANIZER-CONFIRMED receipts. |
+| **Current machine decision** | [`docs/current-gate-decision.json`](docs/current-gate-decision.json) · [Current review run card](evidence/review_run_card_20261028.json) · [Three-pass review](docs/review-2026-10-28-current.md) |
 
-### Nine focus sites (what to download, estimated score, unique?)
+The TIF passes earlier byte-level format/range checks, but that is **not** permission to submit: the candidate failed the uniqueness rule. The current site entry pages are generated to display **NOT OK TO SUBMIT** and label this downloadable artifact research-only.
 
-| Site | Best file (owner-reported) | Score | HOLDOUT-DTI of byte-audited file (8-cell v3.0) | Unique vs our H-K3C file? | Decision |
+The nine-site table below is retained strictly as a historical comparison. Its user-provided score figures are not verified submission receipts; pairwise overlap against one candidate does not prove global uniqueness. See the original per-site sites for source context: [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/), [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/), [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/), [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/), [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/), [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/), [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html), [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/), and [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/).
+
+### Nine focus sites — historical owner-reported results (not submission recommendations)
+
+| Site | Best file (owner-reported) | Score (unverified) | HOLDOUT-DTI of byte-audited file (historical 8-cell v3.0) | Pairwise overlap against archived H-K3C candidate | Decision |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/) | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | `0.2477` USER-REPORTED | 0.0972 [0.084886, 0.111743] (`gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif`) | 49.64% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/) | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | `0.2600` USER-REPORTED | 0.0992 [0.086311, 0.112863] (`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`) | 49.54% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/) | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` | `0.2449` USER-REPORTED | 0.0968 [0.084694, 0.111245] (`gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif`) | 49.77% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/) | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | `0.2710` USER-REPORTED | 0.0301 [0.025386, 0.035991] (`gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif`) | 45.82% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/) | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | `0.2600` USER-REPORTED | 0.0008 [0.000672, 0.000872] (`gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif`) | 59.37% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/) | `h27-4-solo-d28-20261004-8acb75e1-nan` | `0.2708` USER-REPORTED | 0.0000 [0.0, 6e-06] (`gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-zeros.tif`) | 50.29% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | `0.2778` USER-REPORTED | 0.0045 [0.003863, 0.005276] (`gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`) | 57.18% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | `0.2632` USER-REPORTED | 0.0120 [0.010203, 0.014123] (`gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif`) | 44.17% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/) | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | `0.2750` USER-REPORTED | 0.0069 [0.005106, 0.008772] (`gemsdoe36-wdp36-exp1-20261026-zeros.tif`) | 43.21% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/) | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | `0.2477` USER-REPORTED | 0.0972 [0.084886, 0.111743] (`gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif`) | 49.64% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/) | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | `0.2600` USER-REPORTED | 0.0992 [0.086311, 0.112863] (`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`) | 49.54% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/) | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` | `0.2449` USER-REPORTED | 0.0968 [0.084694, 0.111245] (`gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif`) | 49.77% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/) | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | `0.2710` USER-REPORTED | 0.0301 [0.025386, 0.035991] (`gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif`) | 45.82% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/) | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | `0.2600` USER-REPORTED | 0.0008 [0.000672, 0.000872] (`gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif`) | 59.37% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/) | `h27-4-solo-d28-20261004-8acb75e1-nan` | `0.2708` USER-REPORTED | 0.0000 [0.0, 6e-06] (`gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-zeros.tif`) | 50.29% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | `0.2778` USER-REPORTED | 0.0045 [0.003863, 0.005276] (`gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`) | 57.18% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | `0.2632` USER-REPORTED | 0.0120 [0.010203, 0.014123] (`gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif`) | 44.17% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
+| [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/) | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | `0.2750` USER-REPORTED | 0.0069 [0.005106, 0.008772] (`gemsdoe36-wdp36-exp1-20261026-zeros.tif`) | 43.21% max within 3 px → pairwise only; candidate fails global literal uniqueness | Historical — do not resubmit (H19-5 family) |
 
-All nine bests are one H19-5 dot-set family (`knowledge/focus9_forensics.md`); their holdout numbers are for the byte-audited pinned file named in parentheses (IR-K3-26). Scores are USER-REPORTED, never ORGANIZER-CONFIRMED.
+All nine bests are one H19-5 dot-set family (`knowledge/focus9_forensics.md`); their holdout numbers are for the byte-audited pinned file named in parentheses (IR-K3-26). Scores are USER-REPORTED, never ORGANIZER-CONFIRMED. Pairwise overlaps do not override the archived candidate's global literal duplicate stop.
 
 ### Session-4 experiment ledger (budget 3 / 3 experiments, 2 h 03 min — IR-K3-25)
 
@@ -45,13 +43,13 @@ All nine bests are one H19-5 dot-set family (`knowledge/focus9_forensics.md`); t
 | E2 | H-K3C-1 strain-deficit prior (Band 04 `geod_2ndinv` ÷ catalogue slip proxy) | **negative**: 0.0942 vs 0.1110, Δ −0.0168 [−0.0232, −0.0109]; prior-alone AUC 0.543 |
 | E3 | budget 30,000 / 37,654 / 44,090 on E1 surface | 30k worse (−0.0046); 44,090 +0.0013 [−0.0003, +0.0028] not significant → ship 37,654 |
 
-Template fixes this session (Protocol Rule 2): `holdout.load_holdout_context(draws=…)`, pooled `_block_totals`, `promotion_gate.py` v3 null-calibrated duplicate rule (IR-K3-17), `protocol_preflight.py` warns instead of stopping, `scan_complete_registry_csst` returns all rows, new `scripts/k3c_registry_recalibrate.py` (eligible-domain null, IR-K3-21).
+Historical session-4 engineering notes (not current release authorization): `holdout.load_holdout_context(draws=…)`, pooled `_block_totals`, `protocol_preflight.py`, and registry scanning utilities. The session-4 null-calibrated overlap override is retracted by this review; the current gate enforces the literal raw 70% rule and requires a current, complete registry snapshot.
 
-**Previous lanes remain DO NOT SUBMIT:** `H-K3B-1 CSST-BGHF` session-3 file (`4b47a37e…`, 8-cell CI spanned zero), `K3-CCL` (`ddf087e0…`, duplicate stop), and all five archived TIFFs in `docs/downloads/`. The sections below are retained as the audit trail of those lanes.
+**All prior TIFFs remain research-only / DO NOT SUBMIT:** H-K3B-1, K3-CCL, all five TIFFs in `docs/downloads/`, and the H-K3C file above. Sections below are historical audit records and do not authorize any download for competition use.
 
 ---
 
-## 1. Previous Lane `H-K3B-1 (CSST-BGHF)` — session-3 file (ARCHIVED, DO NOT SUBMIT; superseded by the H-K3C card above)
+## Historical Lane `H-K3B-1 (CSST-BGHF)` — session-3 file (ARCHIVED, DO NOT SUBMIT; no current authorization)
 
 | Field | Verified Value (`2026-10-28`) |
 | :--- | :--- |

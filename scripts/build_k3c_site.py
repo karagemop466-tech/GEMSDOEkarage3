@@ -16,10 +16,41 @@ import json
 import re
 import sys
 from pathlib import Path
+from subprocess import run
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from promotion_gate import assess  # noqa: E402
+
+
+def assess_current_checkout(card: dict) -> dict:
+    """Require the saved evidence to match this checkout's branch and refreshed registry snapshot."""
+    gate = assess(card)
+    reasons = list(gate["reasons"])
+    manifest_path = ROOT / "registry/complete_registry_manifest.json"
+    if not manifest_path.is_file():
+        reasons.append("current registry manifest is absent")
+    else:
+        manifest_bytes = manifest_path.read_bytes()
+        manifest = json.loads(manifest_bytes)
+        expected_digest = hashlib.sha256(manifest_bytes).hexdigest()
+        registry_card = card.get("registry", {})
+        if registry_card.get("manifest_sha256") != expected_digest:
+            reasons.append("candidate registry audit is stale: manifest digest differs from refreshed checkout snapshot")
+        if manifest.get("literal_registry_complete") is not True:
+            reasons.append("refreshed registry inventory is explicitly filtered/incomplete")
+        if manifest.get("n_failed") != 0:
+            reasons.append("refreshed registry fetch has unresolved repository failures")
+    branch = run(["git", "branch", "--show-current"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
+    recorded_branch = card.get("branch")
+    if recorded_branch and recorded_branch != branch:
+        reasons.append(f"run card belongs to branch {recorded_branch}, not active branch {branch}")
+    if reasons:
+        gate["reasons"] = list(dict.fromkeys(reasons))
+        gate["verdict"] = "negative"
+        gate["ok_to_submit"] = False
+    return gate
+
 
 FOCUS_SITES = [
     ("GEMSDOE24", "https://buffedlizard55-lab.github.io/GEMSDOE24/"),
@@ -122,7 +153,7 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
 def apply_root_decision(html: str) -> str:
     """Replace the banner and release card of the root landing page with the current H-K3C decision."""
     card = json.loads((ROOT / "docs/k3c/run-card.json").read_text())
-    gate = assess(card)
+    gate = assess_current_checkout(card)
     aside, card_html = root_decision_html(card, gate)
     html, n1 = re.subn(r'<aside style="padding:16px;background:#(?:fff1f2|ecfdf5)[^"]*">.*?</aside>', lambda m: aside, html, count=1, flags=re.S)
     html, n2 = re.subn(r'<div class="release-card" aria-label="Current submission decision">.*?</div>\n  </section>', lambda m: card_html + "\n  </section>", html, count=1, flags=re.S)
@@ -134,7 +165,7 @@ def apply_root_decision(html: str) -> str:
 def apply_guide_decision(html: str) -> str:
     """Replace the banner of the root submission guide (executive-summary.html) with the current decision."""
     card = json.loads((ROOT / "docs/k3c/run-card.json").read_text())
-    gate = assess(card)
+    gate = assess_current_checkout(card)
     aside, _ = root_decision_html(card, gate)
     html, n1 = re.subn(r'<aside style="padding:16px;background:#(?:fff1f2|ecfdf5)[^"]*">.*?</aside>', lambda m: aside, html, count=1, flags=re.S)
     if gate["verdict"] == "promote":
@@ -159,7 +190,7 @@ def update_root_page(card, gate, ok, hold) -> None:
 
 def build() -> None:
     card = json.loads((ROOT / "docs/k3c/run-card.json").read_text())
-    gate = assess(card)
+    gate = assess_current_checkout(card)
     (ROOT / "docs/current-gate-decision.json").write_text(json.dumps({**gate, "card": "docs/k3c/run-card.json", "raster_sha256": card["raster_sha256"]}, indent=2) + "\n")
     tif_rel = card["submission_file"].removeprefix("docs/k3c/")   # relative to docs/k3c/ pages
     zip_rel = card["zip_submission_file"].removeprefix("docs/k3c/")
@@ -191,11 +222,11 @@ def build() -> None:
 
     verdict_box = f"""<div class="verdict {'ok' if ok else 'no'}"><h2>{'OK TO DOWNLOAD AND SUBMIT: YES' if ok else 'OK TO SUBMIT: NO — DO NOT SUBMIT'}</h2>
 <p>Automated verdict <strong>{H(gate['verdict'].upper())}</strong> from <code>scripts/promotion_gate.py</code> (v3) on the run card generated {H(card['generated_utc'])}.
-{'All preregistered gates passed: format, [0,1] range, leakage canaries, registry uniqueness (null-calibrated), and a paired 24-cell holdout improvement whose 95% CI excludes zero. You, the selector, decide whether to spend one weekly slot on it.' if ok else 'Failed gates: ' + H('; '.join(gate['reasons']))}</p>
+{'All preregistered gates passed: format, [0,1] range, leakage canaries, literal raw registry uniqueness, and a paired 24-cell holdout improvement whose 95% CI excludes zero. The selector still decides whether to spend one weekly slot.' if ok else 'Failed gates: ' + H('; '.join(gate['reasons']))}</p>
 <p><a class="btn {'ok' if ok else 'no'}" href="{H(tif_rel)}" download>{'Download submission .tif' if ok else 'Download research-only .tif (NOT CLEARED)'}</a>
 <a class="btn light" href="{H(zip_rel)}" download>Download single-file .zip</a> <a class="btn light" href="run-card.json">Run card (JSON)</a></p>
 <p class="small">File <code>{H(card['submission_name'])}</code><br>SHA-256 <code>{H(card['raster_sha256'])}</code><br>Suggested DrivenData note ({len(card['note'])}/140 chars): <code>{H(card['note'])}</code></p>
-<p class="small"><strong>What "cleared" does and does not mean.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's live 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. The narrowest uniqueness margin is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} excess overlap vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code> (limit 70%, IR-K3-22). Treat a live score below 0.2778 as a real possibility; the slot decision is the selector's.</p></div>"""
+<p class="small"><strong>What "cleared" does and does not mean.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's live 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. The historical raw overlap scan found {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['within_3px_fraction'])} of emitted dots within 3 px of <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code>, above the literal 70% stop; another registry surface has 100% raw overlap. A reported 68.91% null-calibrated excess is supplementary only and cannot override either raw failure. Treat a live score below 0.2778 as a real possibility; no slot should be spent.</p></div>"""
 
     def row(site, url):
         s = nine_by.get(site, {})
@@ -208,18 +239,18 @@ def build() -> None:
         return (f"<tr><td><a href='{H(url)}'>{site}</a><br><span class='small'>best: <code>{H(own_file)}</code></span></td>"
                 f"<td><strong>{f4(own_score)}</strong> <span class='label warn'>USER-REPORTED</span><br><span class='small'>no organizer receipt in any repo (IR-K3-04)</span></td>"
                 f"<td>{f4(s.get('holdout_hide_recover_v3_dti'))} {H(str(s.get('holdout_hide_recover_v3_ci95','')))}<br><span class='small'>SGMC-cal {f4(s.get('holdout_sgmc_cal_v3_dti'))} · byte-audited file: <code>{H(audited)}</code>{'' if same else ' (latest pinned file, not the best-scoring one)'}</span></td>"
-                f"<td>{pct(ov)} of our dots within 3 px of the audited file; {pct(ov_max)} max vs any {site} raster → {'<strong>unique</strong>' if uniq else '<span class=warning-text>not unique</span>'}</td>"
+                f"<td>{pct(ov)} of our dots within 3 px of this audited file; {pct(ov_max)} max vs this site only. Pairwise comparison; global uniqueness is <strong>not established</strong>.</td>"
                 f"<td>Historical — do not resubmit (best file is in the H19-5 family; see forensics)</td></tr>")
 
     site_rows = "".join(row(s, u) for s, u in FOCUS_SITES)
     ours = (f"<tr style='background:#eef3eb'><td><strong>GEMSDOEkarage3 · Lane H-K3C (this session)</strong><br><a class='file-link' href='{H(tif_rel)}' download>{H(card['submission_name'])}</a></td>"
             f"<td><span class='label'>no live score yet</span><br><span class='small'>{H(lli_txt)}</span></td>"
             f"<td><strong>{f4(hold['dti'])}</strong> {H(str(hold['ci95']))} <span class='label'>HOLDOUT-DTI {H(hold['evaluator_version'])}, n={hold['withheld_positives']:,}</span><br><span class='small'>champion rule same evaluator {f4(hold['champion_02778_same_evaluator_dti'])}; paired Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}; SGMC-cal {f4(sgmc['prevalence_calibrated_dti'])} vs champion {f4(sgmc['champion_02778_calibrated_dti'])}</span></td>"
-            f"<td>max vs 9 sites {pct(reg['focus9_max_3px_overlap'])}; max vs any ≤100k-dot raster {pct(reg['discrete_le100k_max_literal_3px_overlap'])}; vs 0.2778 champion {pct(card['spatial_allocation']['overlap_3px_vs_champion_02778'])} → <strong>unique</strong></td>"
+            f"<td>literal max vs any registry raster {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}); limit 70% → <span class='warning-text'>NOT UNIQUE</span></td>"
             f"<td><strong>{'SUBMIT (selector decides slot)' if ok else 'DO NOT SUBMIT'}</strong></td></tr>")
 
     table = f"""<h2>Per-site executive table — what to download, what it is estimated to score, is it unique</h2>
-<div class="table-wrap"><table><thead><tr><th>Site · file to download</th><th>Estimated / reported score</th><th>HOLDOUT-DTI (hide-and-recover; SGMC-cal)</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>{ours}{site_rows}</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Site · file to download</th><th>Estimated / reported score</th><th>HOLDOUT-DTI (hide-and-recover; SGMC-cal)</th><th>Uniqueness status</th><th>Decision</th></tr></thead><tbody>{ours}{site_rows}</tbody></table></div>
 <p class="table-note">Holdout numbers for the nine sites come from <code>evidence/nine-site-audit-k3c-20261028.json</code> (byte-verified rasters from each site's pinned commit, evaluated on the template 8-cell <code>{H(nine.get('evaluator_versions',{}).get('hide_recover','GEMSDOE32-HIDE-RECOVER-v3.0') if isinstance(nine.get('evaluator_versions'),dict) else 'GEMSDOE32-HIDE-RECOVER-v3.0')}</code>). The nine bests are one dot-set family (exact set algebra in <code>knowledge/focus9_forensics.md</code>): GEMSDOE25 ≡ GEMSDOE30, GEMSDOE31 ≡ the "solo" control, GEMSDOE32 = solo − 2,545 collar dots, GEMSDOE36 = GEMSDOE32 + 1,200 dots.</p>"""
 
     why = """<h2>Why h33-h33-2-b2 scored 0.2778 — and whether it can be beaten</h2>
@@ -256,8 +287,7 @@ def build() -> None:
 <tr><td>Every pixel finite and in [0, 1] over the full grid (prevents "Predicted values must be in range [0, 1]")</td><td>{'PASS' if val['full_grid_zero_nan'] and val['range_0_1'] else 'FAIL'} — min {card['validator_output']['independent_reread']['min']}, max {card['validator_output']['independent_reread']['max']}, positives {card['validator_output']['independent_reread']['n_positive']:,}, on-catalogue positives {card['validator_output']['independent_reread']['positives_on_catalogue']}</td></tr>
 <tr><td>Leakage canary: every feature alone ≤ 0.90 AUC on withheld truth ({card['leakage_canary']['n_features_tested']} features)</td><td>{'PASS' if card['leakage_canary']['passed'] else 'FAIL'} — max {f4(card['leakage_canary']['max_oriented_auc'])}; strain-deficit prior alone {f4(card['leakage_canary']['strain_deficit_prior_alone_auc'])}</td></tr>
 <tr><td>Uniqueness — surface rank-correlation vs {reg['unique_rasters_checked']:,} unique registry rasters (113 repos) ≤ 0.90</td><td>max |ρ| = {f4(reg['surface_max_abs_spearman'])} ({H(reg['surface_worst_raster'])})</td></tr>
-<tr><td>Uniqueness — final dots within 3 px of any ≤100k-dot detector raster ≤ 70%</td><td>max {pct(reg['discrete_le100k_max_literal_3px_overlap'])} ({H(reg['discrete_worst_raster'])}); nine focus sites max {pct(reg['focus9_max_3px_overlap'])}</td></tr>
-<tr><td>Uniqueness — null-calibrated excess overlap vs every raster incl. space-filling lattice/blankets (IR-K3-17)</td><td>{'PASS' if card['registry']['null_calibrated_all_rasters_final_passed'] else 'FAIL'} — literal worst {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}), p0 = {reg['literal_worst_any_raster'].get('p0')}, excess = {reg['literal_worst_any_raster'].get('excess_overlap_3px')}</td></tr>
+<tr><td>Uniqueness — final dots within 3 px of any registry raster ≤ 70% (literal rule)</td><td>{'PASS' if reg['literal_worst_any_raster']['within_3px_fraction'] <= .70 else 'FAIL'} — max {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}); null calibration cannot waive the stop</td></tr>
 <tr><td>Holdout: paired improvement over the 0.2778 champion rule, same evaluator, 95% CI excludes 0</td><td>{'PASS' if hold['paired_delta_ci95'][0] > 0 else 'FAIL'} — Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}</td></tr>
 <tr><td>Overall promotion-gate verdict</td><td><strong>{H(gate['verdict'].upper())}</strong> {('— ' + H('; '.join(gate['reasons']))) if gate['reasons'] else ''}</td></tr>
 </tbody></table></div>
@@ -273,13 +303,13 @@ PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python s
 <p><a href="../research/k3c-preregistration-20261028.md">Locked preregistration</a> · <a href="../../knowledge/irregularities.md">Irregularities register</a> · <a href="../../research/2026-10-28-k3c.md">Research note</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a></p>"""
     (ROOT / "docs/k3c/index.html").write_text(shell("H-K3C executive summary — GEMSDOEkarage3", body), encoding="utf-8")
 
-    howto = f"""<h1>How to submit the cleared file to DrivenData</h1>
+    howto = f"""<h1>How to submit a file after it is cleared to DrivenData</h1>
 {verdict_box}
 <ol class="steps">
 <li><strong>Download</strong> <a href="{H(tif_rel)}" download>{H(card['submission_name'])}</a> (or the <a href="{H(zip_rel)}" download>.zip</a> containing exactly that one GeoTIFF). Verify the SHA-256 shown above (<code>sha256sum &lt;file&gt;</code>).</li>
 <li><strong>Open</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the competition's submissions page</a> and click <em>New submission</em>. The form accepts a single-band GeoTIFF or a .zip containing one; the file must match the sample submission's CRS (EPSG:32611), shape (3730 × 3292) and geotransform — this file was validated against the pinned <code>sample_submission.tif</code> on saved bytes.</li>
 <li><strong>Choose the file</strong>, then paste this note (≤ 140 characters) so you can tell submissions apart later:<br><code>{H(card['note'])}</code></li>
-<li><strong>Submit.</strong> The former error "Predicted values must be in range [0, 1]" cannot occur: every one of the 12,279,160 pixels is finite and in [0, 1] (zeros outside the footprint, no NaN, nodata unset).</li>
+<li><strong>Submit only after the decision page says OK TO SUBMIT: YES.</strong> This research TIFF passed its saved-byte range/format checks, but currently fails uniqueness and current-registry freshness gates; it is <strong>not authorized</strong>. The prior range-error can be prevented by whole-array finite/[0,1] validation, but format validity alone never grants approval.</li>
 <li><strong>Record the receipt.</strong> Copy the returned score next to the file name and SHA-256 into <code>registry/owner_score_ledger.csv</code> — that is the only way a number becomes ORGANIZER-CONFIRMED in this project.</li>
 </ol>
 <p class="small">Weekly slot cap: check the number shown on the submission page before uploading; this project never spends a slot by itself.</p>"""
@@ -290,7 +320,7 @@ PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python s
 {verdict_box.replace('href="' + H(tif_rel), 'href="k3c/' + H(tif_rel)).replace('href="' + H(zip_rel), 'href="k3c/' + H(zip_rel)).replace('href="run-card.json"', 'href="k3c/run-card.json"')}
 <p><a class="btn light" href="k3c/index.html">Full executive summary (per-site table, hypotheses, experiments)</a> <a class="btn light" href="k3c/how-to-submit.html">How to submit</a></p>
 <h2>Previous lanes (research only — DO NOT SUBMIT)</h2><ul>
-<li>H-K3B-1 CSST-BGHF (2026-10-28 session 3): <a href="csst-bghf/index.html">dashboard</a> — gate negative (8-cell paired CI spanned zero; literal lattice rule, since replaced by the null-calibrated rule IR-K3-17).</li>
+<li>H-K3B-1 CSST-BGHF (2026-10-28 session 3): <a href="csst-bghf/index.html">dashboard</a> — gate negative (8-cell paired CI spanned zero; historical null-calibrated override is not an exemption under the active literal-overlap protocol).</li>
 <li>K3-CCL: <a href="ccl/index.html">summary</a> — duplicate stop vs 21 catalogue-halo rasters; holdout instrument bias IR-K3-12.</li>
 <li>Archived SMGC / CRSB-GUB / K3-fuse TIFFs in <code>docs/downloads/</code> — negative; see <a href="release-review.html">release review</a>.</li></ul>"""
     top_html = shell("GEMSDOEkarage3 — submission decision", top, depth=0)
