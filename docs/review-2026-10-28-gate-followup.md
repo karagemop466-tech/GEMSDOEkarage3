@@ -38,3 +38,9 @@ validation. Restore allowed data, resolve the lane and literal registry policy,
 fix the shared template, then rerun feature canaries, matched hide-and-recover,
 complete two-stage registry audits and saved-byte checks. Use a separate selector
 before any weekly slot; no such selector ran here.
+
+A second concurrent integration advanced main while the pull request was open.
+After incorporating it, re-ran the suite: 100 pytest passed, one optional-cache
+skip, 49 subtests passed; 57 unittest cases passed; four dashboard and two feed
+Node tests passed. The review-status generator was rerun to reflect the stronger
+gate; these remain software checks, not a new geological result.
