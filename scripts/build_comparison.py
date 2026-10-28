@@ -8,6 +8,11 @@ SOURCE = 'https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af77
 def enrich(rows, audit):
     winners = {item['site']: item for item in audit['winners']}
     for row in rows:
+        # User/repository reports are not organizer receipts or a score forecast.
+        row['evidence_class'] = 'USER-REPORTED / UNVERIFIED'
+        row['estimated_score'] = None
+        row['unique'] = None
+        row['ok_to_submit'] = False
         winner = winners[row['site']]
         row['historical_artifact'] = {
             'url': f"{row['repository']}/blob/{winner['repo_ref']}/{winner['file']}",
