@@ -1,0 +1,341 @@
+{
+  "evaluated_at": "2026-10-27",
+  "evaluator_versions": {
+    "hide_and_recover": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "sgmc_off_catalogue": "GEMSDOE32-SGMC-CAL-v3.0"
+  },
+  "karage3_candidate": {
+    "submission_name": "gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+    "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
+    "emitted_dots": 37654,
+    "holdout_hide_recover_v3_dti": 0.106042,
+    "holdout_hide_recover_v3_ci95": [
+      0.091475,
+      0.119194
+    ],
+    "holdout_sgmc_cal_v3_dti": 0.05736,
+    "holdout_sgmc_cal_v3_ci95": [
+      0.049532,
+      0.064888
+    ],
+    "verdict": "negative",
+    "ok_to_submit": false
+  },
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "head_commit": "a73f9ffba2",
+      "owner_reported_submission": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "owner_reported_value": 0.2477,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE24:docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "verified_raster_sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+      "emitted_dots": 60069,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "None",
+      "h19_5_nesting_3px_fraction": 1.0,
+      "min_dist_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 8769,
+      "holdout_hide_recover_v3_static_dti": 0.097204,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.084886,
+        0.111743
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.057932,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.051041,
+        0.06535
+      ],
+      "karage3_vs_winner_3px_overlap": 0.482578,
+      "karage3_vs_winner_dots_spearman": 0.03363,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.589021,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.159392,
+      "site_rasters_checked": 54,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE25",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE25",
+      "head_commit": "19b219f629",
+      "owner_reported_submission": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "owner_reported_value": 0.26,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "verified_raster_sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "emitted_dots": 44090,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "None",
+      "h19_5_nesting_3px_fraction": 1.0,
+      "min_dist_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 6436,
+      "holdout_hide_recover_v3_static_dti": 0.099202,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.086311,
+        0.112863
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.060592,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.053521,
+        0.067594
+      ],
+      "karage3_vs_winner_3px_overlap": 0.466378,
+      "karage3_vs_winner_dots_spearman": 0.028987,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.537765,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.099113,
+      "site_rasters_checked": 59,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE27",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE27",
+      "head_commit": "4f34228a9f",
+      "owner_reported_submission": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "owner_reported_value": 0.2449,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE27:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "verified_raster_sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+      "emitted_dots": 61328,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "None",
+      "h19_5_nesting_3px_fraction": 0.980645,
+      "min_dist_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 8875,
+      "holdout_hide_recover_v3_static_dti": 0.096778,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.084694,
+        0.111245
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.058262,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.051366,
+        0.065837
+      ],
+      "karage3_vs_winner_3px_overlap": 0.488421,
+      "karage3_vs_winner_dots_spearman": 0.033368,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.578876,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.111018,
+      "site_rasters_checked": 42,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE28",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "head_commit": "4955e29c7b",
+      "owner_reported_submission": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+      "owner_reported_value": 0.271,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "verified_raster_sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+      "emitted_dots": 37660,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "None",
+      "h19_5_nesting_3px_fraction": 1.0,
+      "min_dist_to_catalogue_px": 1.414,
+      "dots_within_2px_of_catalogue": 2353,
+      "holdout_hide_recover_v3_static_dti": 0.028932,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.02472,
+        0.034266
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.062967,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.055787,
+        0.070394
+      ],
+      "karage3_vs_winner_3px_overlap": 0.451426,
+      "karage3_vs_winner_dots_spearman": 0.029307,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.528576,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.106245,
+      "site_rasters_checked": 51,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE30",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE30",
+      "head_commit": "d21ddd9502",
+      "owner_reported_submission": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "owner_reported_value": 0.26,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE30:docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "verified_raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "emitted_dots": 44090,
+      "all_12279160_finite": false,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "nan",
+      "h19_5_nesting_3px_fraction": 1.0,
+      "min_dist_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 6436,
+      "holdout_hide_recover_v3_static_dti": 0.099202,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.086311,
+        0.112863
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.060592,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.053521,
+        0.067594
+      ],
+      "karage3_vs_winner_3px_overlap": 0.466378,
+      "karage3_vs_winner_dots_spearman": 0.028987,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.645456,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.111864,
+      "site_rasters_checked": 30,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE31",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE31",
+      "head_commit": "88ec212955",
+      "owner_reported_submission": "h27-4-solo-d28-20261004-8acb75e1-nan",
+      "owner_reported_value": 0.2708,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE31:docs/downloads/gemsdoe31-add-arm-d28-20261004-8acb75e1-allfinite.tif",
+      "verified_raster_sha256": "deda0533e4aa041e3877f58a8d6b9d0f8930fec6db1f66934f649a6583c71201",
+      "emitted_dots": 55304,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "nan",
+      "h19_5_nesting_3px_fraction": 0.918306,
+      "min_dist_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 5936,
+      "holdout_hide_recover_v3_static_dti": 0.038714,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.032715,
+        0.045291
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.057724,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.051164,
+        0.065337
+      ],
+      "karage3_vs_winner_3px_overlap": 0.476842,
+      "karage3_vs_winner_dots_spearman": 0.034717,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.573857,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.151087,
+      "site_rasters_checked": 57,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE32",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "head_commit": "73485f27cf",
+      "owner_reported_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "owner_reported_value": 0.2778,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "verified_raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "emitted_dots": 37654,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "None",
+      "h19_5_nesting_3px_fraction": 1.0,
+      "min_dist_to_catalogue_px": 2.236,
+      "dots_within_2px_of_catalogue": 0,
+      "holdout_hide_recover_v3_static_dti": 0.004515,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.003863,
+        0.005276
+      ],
+      "holdout_hide_recover_note": "Full-catalogue B>=2 post-filter censors hidden faults in static re-score; uncollared d2.8 parent scores 0.099202 [0.085951, 0.112668]",
+      "holdout_sgmc_cal_v3_dti": 0.064121,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.056621,
+        0.071058
+      ],
+      "karage3_vs_winner_3px_overlap": 0.441122,
+      "karage3_vs_winner_dots_spearman": 0.032601,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.650502,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.127483,
+      "site_rasters_checked": 73,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE33",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE33",
+      "head_commit": "844f514819",
+      "owner_reported_submission": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "owner_reported_value": 0.2632,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE33:docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "verified_raster_sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+      "emitted_dots": 41865,
+      "all_12279160_finite": false,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "nan",
+      "h19_5_nesting_3px_fraction": 0.99711,
+      "min_dist_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 3894,
+      "holdout_hide_recover_v3_static_dti": 0.05069,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.044662,
+        0.057035
+      ],
+      "holdout_hide_recover_note": "Uncollared raster: static hide-and-recover with visible-only B=2 is leak-free",
+      "holdout_sgmc_cal_v3_dti": 0.062551,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.055307,
+        0.069918
+      ],
+      "karage3_vs_winner_3px_overlap": 0.462527,
+      "karage3_vs_winner_dots_spearman": 0.029391,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.466378,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.089276,
+      "site_rasters_checked": 35,
+      "karage3_unique_vs_site": true
+    },
+    {
+      "site": "GEMSDOE36",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+      "head_commit": "7edcc9b58e",
+      "owner_reported_submission": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "owner_reported_value": 0.275,
+      "owner_reported_label": "OWNER-REPORT (unverified portal claim; raster bytes SHA-256 verified)",
+      "verified_raster_source": "buffedlizard55-lab/GEMSDOE36:docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "verified_raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "emitted_dots": 38854,
+      "all_12279160_finite": true,
+      "in_footprint_range_0_1": true,
+      "nodata": null,
+      "nodata_repr": "None",
+      "h19_5_nesting_3px_fraction": 0.977506,
+      "min_dist_to_catalogue_px": 2.236,
+      "dots_within_2px_of_catalogue": 0,
+      "holdout_hide_recover_v3_static_dti": 0.004577,
+      "holdout_hide_recover_v3_static_ci95": [
+        0.003914,
+        0.005298
+      ],
+      "holdout_hide_recover_note": "Full-catalogue B>=2 post-filter censors hidden faults in static re-score; uncollared d2.8 parent scores 0.099202 [0.085951, 0.112668]",
+      "holdout_sgmc_cal_v3_dti": 0.064444,
+      "holdout_sgmc_cal_v3_ci95": [
+        0.057085,
+        0.071729
+      ],
+      "karage3_vs_winner_3px_overlap": 0.446991,
+      "karage3_vs_winner_dots_spearman": 0.032473,
+      "karage3_vs_all_site_rasters_max_3px_overlap": 0.4659,
+      "karage3_vs_all_site_rasters_max_surface_spearman": 0.112673,
+      "site_rasters_checked": 21,
+      "karage3_unique_vs_site": true
+    }
+  ]
+}

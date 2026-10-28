@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "note": "Official/free sources for manual line-by-line review. Sandbox reachability checked 2026-10-27: github.com/api.github.com/codeload OK; drivendata.org, github.io, gdr.openei.org NOT directly fetchable from sandbox (owner to open in browser).",
+  "sources": [
+    {"id": "competition-home", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/", "use": "guidelines, timeline, rules link"},
+    {"id": "problem-metric", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/", "use": "DTI definition (alpha 0.2, beta 0.8, 300 m triangular kernel) as transcribed in src/karage3/metric.py"},
+    {"id": "about-resources", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/", "use": "background resources"},
+    {"id": "leaderboard", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/", "use": "verify current #1 manually before any slot"},
+    {"id": "data-tab-login-walled", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/", "use": "authoritative competition files (owner account only); karage3 uses hash-pinned mirrors instead"},
+    {"id": "reference-solution", "url": "https://github.com/drivendataorg/gems-prize-reference-solution", "use": "organizer baseline approach"},
+    {"id": "nlr-96647-pdf", "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf", "use": "prize/submission rules PDF cited by owner"},
+    {"id": "usgs-geodawn", "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and", "doi": "10.5066/P93LGLVQ", "use": "airborne magnetic/radiometric grids behind external rad/extensions rasters"},
+    {"id": "ingenious", "url": "https://gbcge.org/current-projects/ingenious/", "use": "catalogue/geothermal context (Great Basin)"},
+    {"id": "gdr-1391", "url": "https://gdr.openei.org/submissions/1391", "doi": "10.15121/1881483", "licence": "CC BY 4.0", "use": "INGENIOUS regional data incl. well/spring temperature+chemistry, 2 m probes, paleo-geothermal features, Qfault traces (K3-H2)"},
+    {"id": "epsg-32611", "url": "https://epsg.io/32611", "use": "submission CRS WGS84 / UTM zone 11N"},
+    {"id": "tversky", "url": "https://en.wikipedia.org/wiki/Tversky_index", "use": "metric family background"},
+    {"id": "usgs-3dep", "url": "https://www.usgs.gov/3d-elevation-program", "use": "1 m DEM source of lidar_scarp_features_u8 (no use restrictions; acknowledgement in sister-repo receipt)"}
+  ]
+}
