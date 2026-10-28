@@ -24,5 +24,6 @@ jobs:
         run: |
           python scripts/build_preflight_site.py
           python scripts/build_review_status.py
+          python scripts/build_release_review.py
           git diff --exit-code -- docs/index.html docs/executive-summary.html docs/current-gate-decision.json
       - run: node --check docs/assets/site.js && node --test tests/test_browser_feed.js
