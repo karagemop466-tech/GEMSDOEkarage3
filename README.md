@@ -1,14 +1,45 @@
-# GEMSDOEkarage3 — evidence-first submission readiness
+# GEMSDOEkarage3 — evidence-first fault mapping
 
-## OK to submit? **NO — DO NOT SUBMIT.**
+## Decision: **DO NOT SUBMIT**
 
-No new model or TIFF was produced in this review, no slot was selected, and no file in this repository is authorized for upload. The previous H-K3C PROMOTE recommendation is **withdrawn**: its final dots overlap a registered calibration lattice by **99.3520%**, exceeding your literal 70% rule. The previous null-calibrated excess did not satisfy that rule. All eight retained TIFFs fail against the same pinned witness; they are research-only. One witness suffices to reject them, but this is not a complete registry audit and does not mean the geological methods are identical.
+There is no cleared new TIFF. The retained H-K3C raster failed the literal
+registry duplicate stop: an independent saved-byte re-audit found **99.35%**
+of its 37,654 dots within 3 pixels of one pinned lattice (limit: 70%). Its
+local range and grid checks passed against an **owner mirror**, not an
+authenticated organizer template; the outside-null interpretation is a separate
+unresolved check. These results do not establish portal acceptance or a score.
 
-**[Executive overview](index.html)** · **[Nine-site table and conditional submission guide](executive-summary.html)** · **[K3C research archive](docs/k3c/index.html)** · **[Saved-byte audit](evidence/saved-tiffs-literal-20261028.json)** · **[Current JSON run card](docs/data/current-run.json)** · **[Research review and hypotheses](research/2026-10-28-literal-review.md)**
+[**Nine-site executive summary**](index.html#scorecard) ·
+[Submission guide](executive-summary.html) ·
+[Current JSON run card](docs/data/latest-run.json) ·
+[Three-pass review](docs/review-2026-10-28-session.md) ·
+[Full retained project brief](docs/PROJECT_BRIEF.md)
 
-An [independent parallel K3C witness audit](evidence/k3c-literal-witness-audit-20261028.json) reached the same 99.3520% overlap; its [three-pass review](docs/review-literal-20261028.md) is preserved as historical context.
+### What is evidenced
 
-The K3C archived TIFF `gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif` has SHA-256 `0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df`. It is finite in [0,1], single-band float32 and grid-matched to the owner mirror, but lacks the conservative outside-footprint null mask and fails the literal uniqueness rule. **DO NOT SUBMIT.** The older CSST-BGHF archive `gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif`, SHA-256 `4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b`, also fails; **DO NOT SUBMIT**. These are not newly created candidates.
+- Historical best values for **GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28,
+  GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36** are user/owner
+  reports without hash-linked organizer receipts. The Pages table identifies
+  the historical files and links to their sources for **research only**.
+- GEMSDOE32's reported 0.2778 is unverified. Its dot support is GEMSDOE31's
+  support minus 2,545 catalogue-near dots. Less redundant/false-positive mass
+  is a plausible metric explanation, not proof of causation or future score.
+- The [independent geometry receipt](evidence/historical-reaudit-20261028-session.json)
+  covers nine pinned files and one witness, not the complete registry. All 72
+  directional focus-site comparisons exceed 70%. A 37,654-dot budget is
+  mathematically forced to overlap this lattice by at least 82.34%. Smaller
+  budgets are **not** automatically unique; never target witness holes to evade
+  the rule. A [parallel saved-byte audit](evidence/saved-tiffs-literal-20261028.json)
+  independently found that all eight TIFFs retained in this repository fail
+  against the witness; these files are research-only, not new candidates.
+- Historical H-K3C reported **HOLDOUT-DTI 0.111044**, 95% CI [0.098990, 0.122727],
+  evaluator `GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, 66,904 withheld-positive
+  occurrences. It was not rerun here and does not establish the required buffered
+  protocol, a win against the current same-protocol best, or a leaderboard score.
+- No new HOLDOUT-DTI, competition-score estimate, candidate, or slot was
+  produced. The [research page](research.html) ranks four hypotheses with
+  geological signatures, non-fault mimics, expected qualitative benefit, cost
+  and source limitations. They are not an assigned lane or proven novel fleet-wide.
 
 ### Nine historical sites — research references, not submissions
 
@@ -26,36 +57,107 @@ The table names the exact pinned files in the historical audit. Claims are **use
 | [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | [`GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif`](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f52533110fe62cd03e77f1228e9e5ecac412c463/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | 0.2632 USER-REPORTED / UNVERIFIED | NO — 99.71% vs GEMSDOE27 | DO NOT SUBMIT |
 | [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/) | [`gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif`](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | 0.2750 USER-REPORTED / UNVERIFIED | NO — 97.58% vs GEMSDOE27 | DO NOT SUBMIT |
 
-GEMSDOE32 has the largest supplied historical claim, **0.2778 USER-REPORTED / UNVERIFIED**, not an organizer-confirmed score. Its support is a 2,545-dot near-catalogue prune of GEMSDOE31. The organizer's confidence-weighted 300 m triangular Tversky metric makes reduced redundant/unsupported prediction mass a plausible explanation, but hidden labels and the score receipt are unavailable; the reason cannot be proved and a higher score cannot be promised. GEMSDOE25 and GEMSDOE30 have identical in-footprint supports; GEMSDOE36 adds 1,200 dots to GEMSDOE32.
 
-The [official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) showed 0.4544 at rank 1 on 2026-10-28 around 22:34 UTC, not a score for any local file and not the private result. Check the official page for the current value.
+### Why the experiment is blocked
 
-### Why we stopped
+The request references a single method paragraph but no lane is unambiguously
+assigned. The shared derived feature stack, a complete current registry, and a
+same-fold best baseline are unavailable. Four large owner-mirrored core rasters
+were restored and 19 raw bands prepared, but these ignored files may be absent
+in another checkout; mirror hashes do not authenticate organizer provenance.
+The active shared files are byte-identical to [GEMSDOE32@97597a](registry/shared_template_97597a.json),
+but the upstream [buffer](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60),
+[FP pooling](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/41),
+[leakage](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/61),
+[surface overlap](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42)
+and [masked-pixel](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66)
+defects remain open. We cannot fix that separate template repository with our
+read-only access and do not claim a private fix. Historical generation entry
+points are disabled; archived holdouts are exploratory, not promotion evidence.
 
-* The pinned 13GEMSDOE lattice leaves only 6,649 footprint pixels outside its 3-pixel neighborhood. Any 37,654-dot raster must have at least 31,005/37,654 = **82.3418%** overlap; all budgets **≥22,164** are mathematically stopped by that witness. Smaller budgets are **not** automatically unique.
-* No unambiguous single method lane was supplied. The upstream template's [surface gate #42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42), [buffered holdout #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60), [soft-input wrappers #37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37) and [registry completeness #63](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/63) have open defects. This account cannot push to the shared template. No private evaluator/writer fix is claimed.
-* The cached feature stack, organizer-authenticated data, complete current registry, matched holdout-best result, submission receipt and current account quota are absent. Owner-mirrored sample, labels and witness were restored only for the local byte audit. They are hash-pinned, not organizer-authenticated.
-* The prior K3C card reports **HOLDOUT-DTI 0.111044**, 95% CI [0.098990, 0.122727], evaluator `GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, 66,904 withheld-positive occurrences; it was not rerun here, is not a leaderboard estimate, and does not establish the required buffered segment protocol or a win against the current same-protocol best.
+## Project brief and protocol
 
-### Reproduce the safety audit (no experimental slot)
+**Maximize P(Win). Own the Outcome.** Seek a genuinely new, competitive fault
+prediction and an easy download **only after** the evidence and a separate
+selector permit it. The complete request and source inventory are retained in
+[docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md). The operating constraints are:
+
+1. Stay in the one specified method lane. Compare against **every registered
+   raster**, at the surface/preview and final-dot stages. Rank correlation above
+   0.90 or more than 70% of dots within 3 pixels of any one raster means log a
+   duplicate and stop. Missing comparisons fail closed; no density exemptions.
+2. Use the shared cached features, evaluator and writer without a private fork.
+   Fix shared defects in the shared template and report them. Hide whole fault
+   segments with a verified buffer, derive catalogue features from visible faults
+   only, mask visible faults pixel-exactly, and pool DTI (α=0.2, β=0.8, 300 m
+   triangular kernel).
+3. Test each feature alone as a leakage canary; AUC above 0.90 is suspect until
+   disproven. Label all scores as HOLDOUT-DTI with evaluator version, withheld
+   positives and 95% CI, or ORGANIZER-CONFIRMED from a submission receipt.
+   User reports and projections are neither organizer scores nor forecasts.
+4. End with one JSON card naming hypothesis, mechanism, non-fault mimic,
+   holdout and CI, registry comparisons, raster hash, validation, submission
+   name, ≤140-character note, and promote/negative verdict. Negative is a result.
+5. Stop after three experiments or two hours. Do not spend a weekly slot on an
+   idea that has not beaten the current best on the same valid holdout. Technical
+   eligibility is not authorization; an independent selector checks the cap.
+6. Validate exact saved TIFF bytes: one float32 band, [0,1] and no NaN/masked
+   pixels inside the footprint, exact reference CRS, shape and transform. Report
+   the outside-null convention separately from whole-array finiteness and do
+   not claim organizer acceptance from either local diagnostic.
+7. Investigate 3–5 plausible, untried hypotheses before implementation, state
+   layers, signatures, off-catalogue rationale, differences, expected qualitative
+   benefit, cost and verified external-data availability. Test the assigned top
+   idea using the valid spatial holdout, then perform three review passes.
+   Do not copy an old submission except for education/research.
+
+[Official problem and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+· [official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+· [official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
+· [source register](docs/data-sources.md). The rules allow up to three weekly
+submissions and one final selection; the account's current quota is unknown.
+DrivenData's [terms](https://www.drivendata.org/termsofuse/) prohibit automated
+access, so the site refreshes GitHub metadata only, not the leaderboard.
+
+## Local checks (do not create a candidate)
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/audit_saved_tiffs.py --fetch  # reads public pinned mirrors; never uploads
-.venv/bin/python scripts/build_run_card.py
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+npm ci --no-audit --no-fund
+.venv/bin/python scripts/check_readiness.py     # exits nonzero while blocked
+.venv/bin/python -m pytest -q
+.venv/bin/python -m unittest discover -s tests -v
+npm test
+node --test tests/test_browser_feed.js
 .venv/bin/python scripts/build_preflight_site.py
 .venv/bin/python scripts/build_review_status.py
 .venv/bin/python scripts/build_release_review.py
-.venv/bin/python scripts/verify_numbers.py  # consistency, not authorization
-.venv/bin/pytest -q && node --test tests/test_browser_feed.js
-npm ci --no-audit --no-fund && npm test
+.venv/bin/python scripts/build_site.py --check
+.venv/bin/python scripts/verify_numbers.py
 ```
 
-Ignored input caches and `.venv` may not persist. The [saved-byte validator](scripts/check_format.py) reports finite inside, [0,1], mask and grid checks independently; it cannot promise that the organizer will accept the file or explain the prior portal error. The local card gate is a fail-closed *evidence screen*, not the separate weekly-slot selector. The [official problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) govern format, scoring, use of AI and the weekly cap.
+Optional forensic reruns download only pinned public owner-mirror bytes; choose
+new paths to avoid overwriting receipts:
 
-### Next steps
+```bash
+.venv/bin/python scripts/audit_historical.py --cache-dir .cache/audit --out .cache/historical-new.json
+.venv/bin/python scripts/audit_k3c_literal_witness.py --out .cache/witness-new.json
+.venv/bin/python scripts/audit_saved_tiffs.py --fetch --verify-receipt evidence/saved-tiffs-literal-20261028.json
+.venv/bin/python scripts/check_submission.py FILE.tif --template TEMPLATE.tif --strict-finite
+```
 
-Supply the single assigned method paragraph; fix and pin the shared template centrally; restore authenticated data, the shared feature cache and a complete registry. Define surface support before placement; run leakage canaries and a genuinely buffered, visible-only, whole-segment matched holdout with 95% CI; check the literal registry rule before and after placement; validate exact saved bytes; then run a separate selector against the live quota. Stop after three experiments or two hours. Do not manufacture novelty by targeting lattice holes.
+A local `[PASSED]` is **only** a format diagnostic. No upload is authorized by
+these commands. Review the official outside-footprint wording independently.
+
+### Historical artifact (research only)
+
+The prior H-K3B-1 file
+`gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif`
+(SHA-256 `4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b`)
+is archived at [docs/csst-bghf](docs/csst-bghf/index.html), **DO NOT SUBMIT**.
+Old cards, pages and evidence remain in the repository as history, not current
+approval. The former README narrative is available in Git history.
 
 ---
 

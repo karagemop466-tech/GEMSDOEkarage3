@@ -41,22 +41,22 @@ def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
     assert k3c['format_diagnostic']['all_cell_finite_range']
 
 
-@pytest.mark.parametrize(('script', 'args', 'expected'), [
-    ('run_k3c_session.py', [], 'duplicate stop'),
-    ('run_csst_ablation.py', [], 'duplicate stop'),
-    ('exp1_screen.py', [], 'duplicate stop'),
-    ('run_ccl_live.py', ['--budget', '1000'], 'Shared template protocol blocked'),
-    ('run_ccl.py', [], 'Shared template protocol blocked'),
+@pytest.mark.parametrize(('script', 'args'), [
+    ('run_k3c_session.py', []),
+    ('run_csst_ablation.py', []),
+    ('exp1_screen.py', []),
+    ('run_ccl_live.py', ['--budget', '1000']),
+    ('run_ccl.py', []),
 ])
-def test_experiment_entrypoints_stop_direct_cli_before_data_or_fitting(script, args, expected):
+def test_experiment_entrypoints_stop_direct_cli_before_data_or_fitting(script, args):
     result = subprocess.run([sys.executable, str(ROOT / 'scripts' / script), *args],
                             cwd=ROOT, capture_output=True, text=True, timeout=20)
     assert result.returncode != 0
-    assert expected in result.stderr
+    assert 'STOP: historical experiment runner is disabled' in result.stderr
     assert 'ModuleNotFoundError' not in result.stderr
 
 
-def test_registry_has_no_lattice_exemption_and_reports_dot_correlation():
+def test_shared_final_gate_has_no_lattice_exemption():
     rng = np.random.default_rng(4)
     foot = np.ones((20, 20), bool)
     surface = rng.random(foot.shape)
@@ -65,7 +65,9 @@ def test_registry_has_no_lattice_exemption_and_reports_dot_correlation():
     result = compare_registry(surface, dots, foot, {'calibration_lattice': (other, dots)}, stage='final')
     assert result['stop'] and not result['passed']
     assert result['comparisons'][0]['within_3px_fraction'] == 1
-    assert result['comparisons'][0]['dots_spearman'] == pytest.approx(1)
+    # The exact pinned upstream implementation does not report dot-rank
+    # correlation. Do not infer that a complete final audit was performed.
+    assert 'dots_spearman' not in result['comparisons'][0]
 
 
 def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():

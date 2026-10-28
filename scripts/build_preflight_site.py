@@ -97,7 +97,7 @@ research = '''
 <li><a href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b"><strong>USGS · Great Basin conductance ↗</strong><span>Five modeled depth ranges and downloadable layers.</span></a></li>
 <li><a href="https://gdr.openei.org/submissions/1391"><strong>DOE GDR · INGENIOUS ↗</strong><span>Regional datasets, attribution and license information.</span></a></li>
 <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution"><strong>DrivenData · reference solution ↗</strong><span>Official starting code and environment.</span></a></li>
-<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37"><strong>Shared-tool defect · issue #37 ↗</strong><span>Probabilistic inputs are silently binarized; upstream repair required.</span></a></li></ul></div></div></section>'''
+<li><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60"><strong>Shared holdout defects · issue #60 ↗</strong><span>Buffered folds and FP pooling need upstream repair. The pinned binary CLI now rejects probabilities.</span></a></li></ul></div></div></section>'''
 
 DOCS.mkdir(exist_ok=True)
 (DOCS / 'data').mkdir(exist_ok=True)
@@ -111,9 +111,9 @@ executive_page = shell('Executive summary', 'executive', executive)
 # replace those authoritative review pages.
 shutil.copyfile(ROOT / 'registry' / 'historical.json', DOCS / 'data' / 'historical.json')
 shutil.copyfile(ROOT / 'evidence' / 'geometry_audit.json', DOCS / 'data' / 'geometry_audit.json')
-# Preserve the previous preflight card separately; the latest alias must point
-# to the current run, not silently revive the older 27 October review.
+# Preserve the old and parallel preflight cards separately. The public latest
+# alias points to this session's negative card, not an older review.
 shutil.copyfile(ROOT / 'evidence' / 'run_card.json', DOCS / 'data' / 'run_card.json')
-shutil.copyfile(DOCS / 'data' / 'current-run.json', DOCS / 'data' / 'latest-run-card.json')
+shutil.copyfile(DOCS / 'data' / 'latest-run.json', DOCS / 'data' / 'latest-run-card.json')
 shutil.copyfile(ROOT / 'research' / '2026-10-28-literal-review.md', DOCS / 'data' / 'review.md')
 print('Built overview, executive summary and research pages from pinned evidence.')

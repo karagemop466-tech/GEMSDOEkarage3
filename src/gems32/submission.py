@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import numpy as np
@@ -31,6 +32,25 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def require_binary_mask(values: np.ndarray, footprint: np.ndarray) -> np.ndarray:
+    """Validate the binary emission contract; never silently threshold probabilities.
+
+    Nonfinite values outside the footprint are ignored, but every inside value
+    must already be exactly zero or one. Probability models need an explicit,
+    evaluated emission step before using this binary writer/evaluator.
+    """
+    a = np.asarray(values)
+    foot = np.asarray(footprint, dtype=bool)
+    if a.ndim != 2 or a.shape != foot.shape or not foot.any():
+        raise ValueError("Expected a 2-D prediction on a nonempty matching footprint")
+    if a.dtype.kind not in "buif":
+        raise ValueError("Binary predictions must be real numeric or boolean")
+    inside = a[foot]
+    if not np.isfinite(inside).all() or not np.isin(inside, [0, 1]).all():
+        raise ValueError("Binary predictions must be finite and exactly 0 or 1 inside the footprint; no implicit thresholding")
+    return (a == 1) & foot
 
 
 def audit_geotiff(
@@ -88,9 +108,7 @@ def audit_geotiff(
         full_grid_in_01 = in_foot_in_01
         out_foot_ok = bool(np.all(np.isnan(out_foot)))
 
-    emitted_dots = int((in_foot > 0.0).sum())
-    emitted_gt_05 = int((in_foot > 0.5).sum())
-    emitted_mass = round(float(np.nansum(in_foot)), 4)
+    emitted_dots = int((in_foot > 0.5).sum())
     on_catalogue_dots = int(((arr > 0) & labels).sum())
 
     checks = {
@@ -126,8 +144,6 @@ def audit_geotiff(
         "nodata": None if nodata_val is None or (isinstance(nodata_val, float) and np.isnan(nodata_val)) else float(nodata_val),
         "nodata_repr": str(nodata_val),
         "emitted_positive_pixels": emitted_dots,
-        "emitted_gt_05_pixels": emitted_gt_05,
-        "emitted_total_mass": emitted_mass,
         "footprint_fraction": round(emitted_dots / float(EXPECTED_FOOTPRINT_PIXELS), 6),
         "on_catalogue_positive_pixels": on_catalogue_dots,
         "in_footprint_finite_pixels": in_foot_finite,
@@ -148,28 +164,40 @@ def write_submission_pair(
     slug: str,
     timestamp_tag: str,
     candidate_meta: dict,
-    prefix: str = "gemsdoe32",
 ) -> dict:
-    """Write and audit both `-zeros.tif` and `-nan.tif` variants for a candidate binary mask or [0, 1] field."""
-    out_dir.mkdir(parents=True, exist_ok=True)
-    arr_in = np.asarray(mask)
-    if arr_in.dtype == np.bool_:
-        clean_mask = (arr_in & foot & ~labels).astype(np.float32)
-        digest_bytes = np.packbits(clean_mask > 0.5).tobytes()
-    else:
-        clean_mask = np.where(foot & ~labels & np.isfinite(arr_in), np.clip(arr_in, 0.0, 1.0), 0.0).astype(np.float32)
-        is_bin = bool(np.all((clean_mask == 0.0) | (clean_mask == 1.0)))
-        digest_bytes = np.packbits(clean_mask > 0.5).tobytes() if is_bin else clean_mask.tobytes()
-    # Digest of pixel coordinates/values for deterministic content hash tag
-    digest8 = hashlib.sha256(digest_bytes).hexdigest()[:8]
+    """Write and audit both `-zeros.tif` and `-nan.tif` variants for a candidate mask."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", slug):
+        raise ValueError("slug must be a safe filename component")
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", timestamp_tag):
+        raise ValueError("timestamp_tag must be a safe filename component")
+    mask = require_binary_mask(mask, foot)
+    if np.asarray(labels).shape != mask.shape or np.asarray(labels).dtype != bool:
+        raise ValueError("labels must be a matching boolean mask")
+    clean_mask = (mask & ~labels).astype(np.float32)
+    # Digest of pixel coordinates for deterministic content hash tag
+    digest8 = hashlib.sha256(np.packbits(clean_mask > 0.5)).hexdigest()[:8]
 
-    zeros_name = f"{prefix}-{slug}-{timestamp_tag}-{digest8}-zeros.tif"
-    nan_name = f"{prefix}-{slug}-{timestamp_tag}-{digest8}-nan.tif"
+    zeros_name = f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-zeros.tif"
+    nan_name = f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-nan.tif"
     zeros_path = out_dir / zeros_name
     nan_path = out_dir / nan_name
 
+    fmt_kwargs = dict(
+        dots=int(clean_mask.sum()),
+        cat_hid=candidate_meta["catalogue_hidden_mean"],
+        sgmc_cal=candidate_meta["sgmc_prevalence_calibrated_dti"],
+        drift_cal=candidate_meta["drift_corrected_holdout_mean"],
+        slot=candidate_meta["slot_decision"],
+    )
+    for key, filename in (("submission_note_zeros", zeros_name), ("submission_note_nan", nan_name)):
+        rendered = candidate_meta[key].format(filename=filename, sha8="0" * 8, **fmt_kwargs)
+        if len(rendered) > 140:
+            raise ValueError(f"{key} exceeds 140 characters after expansion")
     with rasterio.open(template_tif) as tpl:
+        if tpl.shape != mask.shape or tpl.count != 1 or tpl.crs is None:
+            raise ValueError("Invalid or mismatched template grid")
         profile_base = tpl.profile.copy()
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     profile_zeros = profile_base.copy()
     profile_zeros.update(
@@ -199,36 +227,36 @@ def write_submission_pair(
 
     fmt_kwargs = dict(
         dots=audit_zeros["emitted_positive_pixels"],
-        cat_hid=candidate_meta.get("catalogue_hidden_mean", 0.0),
-        sgmc_cal=candidate_meta.get("sgmc_prevalence_calibrated_dti", 0.0),
-        drift_cal=candidate_meta.get("drift_corrected_holdout_mean", 0.0),
-        slot=candidate_meta.get("slot_decision", "HOLD"),
+        cat_hid=candidate_meta["catalogue_hidden_mean"],
+        sgmc_cal=candidate_meta["sgmc_prevalence_calibrated_dti"],
+        drift_cal=candidate_meta["drift_corrected_holdout_mean"],
+        slot=candidate_meta["slot_decision"],
     )
     bundle = {
-        "candidate_id": candidate_meta.get("candidate_id", slug),
+        "candidate_id": candidate_meta["candidate_id"],
         "slug": slug,
         "content_digest8": digest8,
-        "description": candidate_meta.get("description", slug),
-        "submission_note_zeros": candidate_meta.get("submission_note_zeros", "{filename}").format(
+        "description": candidate_meta["description"],
+        "submission_note_zeros": candidate_meta["submission_note_zeros"].format(
             filename=zeros_name, sha8=audit_zeros["sha256"][:8], **fmt_kwargs
         ),
-        "submission_note_nan": candidate_meta.get("submission_note_nan", "{filename}").format(
+        "submission_note_nan": candidate_meta["submission_note_nan"].format(
             filename=nan_name, sha8=audit_nan["sha256"][:8], **fmt_kwargs
         ),
         "zeros_tif": audit_zeros,
         "nan_tif": audit_nan,
         "holdout_metrics": {
-            "catalogue_hidden_mean": candidate_meta.get("catalogue_hidden_mean", 0.0),
-            "catalogue_hidden_per_quadrant": candidate_meta.get("catalogue_hidden_per_quadrant", {}),
-            "sgmc_prevalence_calibrated_dti": candidate_meta.get("sgmc_prevalence_calibrated_dti", 0.0),
-            "drift_corrected_holdout_mean": candidate_meta.get("drift_corrected_holdout_mean", 0.0),
-            "drift_corrected_per_quadrant": candidate_meta.get("drift_corrected_per_quadrant", {}),
-            "predicted_leaderboard_dti": candidate_meta.get("predicted_leaderboard_dti", None),
-            "ei_drift_corrected": candidate_meta.get("ei_drift_corrected", None),
-            "slot_decision": candidate_meta.get("slot_decision", "HOLD"),
+            "catalogue_hidden_mean": candidate_meta["catalogue_hidden_mean"],
+            "catalogue_hidden_per_quadrant": candidate_meta["catalogue_hidden_per_quadrant"],
+            "sgmc_prevalence_calibrated_dti": candidate_meta["sgmc_prevalence_calibrated_dti"],
+            "drift_corrected_holdout_mean": candidate_meta["drift_corrected_holdout_mean"],
+            "drift_corrected_per_quadrant": candidate_meta["drift_corrected_per_quadrant"],
+            "predicted_leaderboard_dti": candidate_meta["predicted_leaderboard_dti"],
+            "ei_drift_corrected": candidate_meta["ei_drift_corrected"],
+            "slot_decision": candidate_meta["slot_decision"],
         },
     }
 
-    sidecar_path = out_dir / f"{prefix}-{slug}-{timestamp_tag}-{digest8}-audit.json"
+    sidecar_path = out_dir / f"gemsdoe32-{slug}-{timestamp_tag}-{digest8}-audit.json"
     sidecar_path.write_text(json.dumps(bundle, indent=2), encoding="utf-8")
     return bundle

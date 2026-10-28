@@ -1,6 +1,6 @@
 # Project starting point and safety rules
 
-Read `README.md`, `docs/PROJECT_BRIEF.md`, the latest dated review in `research/`, and `docs/data/current-run.json` before work. Prior run cards are historical evidence, not authorization. Do not claim organizer confirmation without an artifact-linked receipt, present a historical TIFF as a new submission, or promote on format alone.
+Read `README.md`, `docs/PROJECT_BRIEF.md`, the latest session review `docs/review-2026-10-28-session.md`, and `docs/data/latest-run.json` before work; `research/2026-10-28-literal-review.md` and `docs/data/current-run.json` preserve the independent parallel review. Prior run cards are historical evidence, not authorization. Do not claim organizer confirmation without an artifact-linked receipt, present a historical TIFF as a new submission, or promote on format alone.
 
 ## Literal uniqueness is mandatory
 
@@ -8,7 +8,7 @@ The user's rule is **no exemptions**: stop if rank correlation with any register
 
 ## Shared tools and experiments
 
-Use the centrally maintained template; do not privately fork or silently change its evaluator/writer. The shared surface gate and whole-segment buffered holdout have open upstream issues [#42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42) and [#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60), respectively. The soft wrappers are also under review in [#37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37); related issues #39, #41, #51, #61, #62 and #63 should be resolved/rechecked centrally. This account has read-only access to that upstream repository. Do not run the historical experiment entry points until the template has been corrected, pinned and regression-tested; local entry points fail closed.
+Use the centrally maintained template; do not privately fork or silently change its evaluator/writer. The shared surface gate, whole-segment buffered holdout and masked in-footprint validator have open upstream issues [#42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42), [#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60) and [#66](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66), respectively. The pinned evaluator and writer now explicitly reject non-binary inputs; soft support is still discussed in [#37](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37). Related issues #39, #41, #51, #61, #62 and #63 should be resolved/rechecked centrally. This account has read-only access to that upstream repository. Do not run the historical experiment entry points until the template has been corrected, pinned and regression-tested; local entry points fail closed.
 
 Do not choose a method lane without an unambiguous user assignment. Preserve the three-experiment/two-hour limit and run a separate selector only after the literal uniqueness, matched holdout, leakage and saved-byte format checks pass. No weekly slot without that selector. A local format diagnostic is not a portal receipt.
 

@@ -38,7 +38,8 @@ def main() -> int:
         checks.append(bool(condition))
         print(f"{'PASS' if condition else 'FAIL'} {name}")
 
-    current = load('docs/data/current-run.json')
+    current = load('docs/data/current-run.json')  # independent parallel preflight
+    latest = load('docs/data/latest-run.json')
     archived = load('docs/k3c/run-card.json')
     decision = load('docs/current-gate-decision.json')
     audit = load('evidence/saved-tiffs-literal-20261028.json')
@@ -46,14 +47,21 @@ def main() -> int:
     sites = load('docs/sites.json')
     history = load('docs/data/historical-audit.json')
 
+    ck('latest session card is negative, mirrored and binds its nine-site audit',
+       latest['verdict'] == 'negative' and latest['ok_to_submit'] is False
+       and latest['selector_approval'] is False and latest['slot_selected'] is False
+       and latest['raster_sha256'] is None and latest['holdout_dti']['value'] is None
+       and latest['experiments_run'] == latest['weekly_slots_used'] == 0
+       and sha(ROOT / 'docs/data/latest-run.json') == sha(ROOT / 'evidence/run-card-20261028-session.json')
+       == sha(ROOT / 'docs/data/latest-run-card.json')
+       and latest['evidence']['historical_audit_sha256'] == sha(ROOT / 'evidence/historical-reaudit-20261028-session.json'))
     ck('current card has no new raster, holdout or slot',
        current['verdict'] == 'negative' and current['ok_to_submit'] is False
        and current['raster_sha256'] is None and current['holdout_dti']['value'] is None
        and current['experiments_run'] == current['weekly_slots_used'] == 0
        and current['slot_selected'] is False)
-    ck('current card mirrors match evidence and latest alias',
-       sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json')
-       == sha(ROOT / 'docs/data/latest-run-card.json'))
+    ck('parallel preflight card matches its evidence copy',
+       sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json'))
     ck('current card binds both saved audit receipts',
        current['geometry_audit_sha256'] == sha(ROOT / 'docs/data/historical-audit.json')
        and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json')
@@ -79,6 +87,16 @@ def main() -> int:
        k3c is not None and k3c['sha256'] == witness['candidate_sha256'] == archived['raster_sha256']
        and k3c['within_3px_fraction'] == witness['within_3px_fraction'] > .70
        and witness['duplicate_stop'] is True and witness['ok_to_submit'] is False)
+    for receipt_path in ('evidence/k3c-literal-witness-reaudit-20261028-final.json',
+                         'evidence/csst-bghf-literal-witness-reaudit-20261028-final.json'):
+        independent = load(receipt_path)
+        row = next((r for r in rows if r['file'] == independent['candidate']), None)
+        ck(f'{receipt_path} agrees with parallel saved-byte audit',
+           row is not None and row['sha256'] == independent['candidate_sha256']
+           and row['within_3px_fraction'] == independent['within_3px_fraction'] > .70
+           and independent['duplicate_stop'] is True and independent['ok_to_submit'] is False
+           and independent['validator']['checks']['geotiff'] is True
+           and independent['validator']['checks']['self_contained_tiff'] is True)
     gate = assess(archived)
     ck('archived K3C reassessment and publication agree',
        decision['verdict'] == gate['verdict'] == archived['verdict'] == 'negative'

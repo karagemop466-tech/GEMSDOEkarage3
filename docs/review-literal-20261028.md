@@ -1,6 +1,6 @@
 # Three-pass review — literal duplicate stop
 
-> Archived parallel-session review. Its statements about available inputs, network access and checks describe that session; see the [current review](../research/2026-10-28-literal-review.md) for the broader eight-file audit and subsequent source observations.
+> Archived parallel-session review. Its statements about available inputs, network access and checks describe that session; see the [current review](review-2026-10-28-session.md) and [parallel eight-file review](../research/2026-10-28-literal-review.md) for the broader eight-file audit and subsequent source observations.
 
 Machine-readable companion: [`evidence/run-card-literal-review-20261028.json`](../evidence/run-card-literal-review-20261028.json).
 
@@ -23,7 +23,7 @@ not organizer data and this one-witness check is not a complete registry audit.
 The saved raster's whole array was finite and in [0,1]; band count, CRS, shape
 and transform matched that owner mirror. Outside-footprint null checking failed,
 which is distinct from the whole-array check; official acceptance remains unknown.
-Reproduce with `.venv/bin/python -m scripts.audit_k3c_literal_witness` (GitHub
+Reproduce with `.venv/bin/python -m scripts.audit_k3c_literal_witness --out .cache/k3c-recheck.json` (choose a new path) (GitHub
 access required when the cache is empty).
 
 The earlier numerical **HOLDOUT-DTI** results remain historical and are not

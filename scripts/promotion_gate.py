@@ -23,6 +23,19 @@ LITERAL_KEYS = ('within_3px_fraction', 'literal_overlap_3px', 'max_literal_overl
 OVERLAP_METRIC = 'literal-directional-fraction-within-3px'
 # A required member of the known frozen registry, not proof of completeness.
 KNOWN_WITNESS_SHA256 = 'b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2'
+# This exact shared implementation has open truth/visible buffer and zero-truth
+# FP-pooling defects. A byte-identical copy is provenance, not correctness.
+BLOCKED_HOLDOUT_IMPLEMENTATIONS = {
+    '9ce9cf359f4d7b7fa844dd8f208ec00c3e6c15afef5d724d9014320b944d318d',
+}
+PROTOCOL_AUDITS = (
+    'whole_fault_segments', 'truth_visible_buffer', 'visible_only_catalogue_features',
+    'visible_pixels_masked_exactly', 'zero_truth_false_positives_conserved',
+)
+
+
+def is_commit(value):
+    return isinstance(value, str) and len(value) == 40 and all(c in '0123456789abcdef' for c in value)
 
 
 def finite(x):
@@ -38,7 +51,8 @@ def assess(card):
     reasons = []
     if not isinstance(card, dict):
         return {'verdict': 'negative', 'ok_to_submit': False, 'eligible_for_selector': False,
-                'selector_required': True, 'reasons': ['invalid run card']}
+                'technically_eligible': False, 'selector_required': True, 'selector_approval': False,
+                'slot_used': False, 'reasons': ['invalid run card']}
 
     def require(ok, reason):
         if not ok:
@@ -81,6 +95,29 @@ def assess(card):
     require(h.get('same_evaluator_current_best') is True and finite(h.get('current_best_dti'))
             and finite(h.get('dti')) and 0 <= h['current_best_dti'] < h['dti'],
             'current same-evaluator baseline not established or not beaten')
+    implementation = h.get('holdout_implementation_sha256')
+    require(is_commit(h.get('shared_template_commit')) and is_sha256(h.get('evaluator_sha256'))
+            and is_sha256(implementation) and implementation not in BLOCKED_HOLDOUT_IMPLEMENTATIONS,
+            'shared evaluator provenance missing or implementation has unresolved protocol defects')
+    fold_hash = h.get('fold_assignment_sha256')
+    protocol = h.get('protocol_audit') if isinstance(h.get('protocol_audit'), dict) else {}
+    require(is_sha256(fold_hash) and is_sha256(protocol.get('report_sha256'))
+            and all(protocol.get(key) is True for key in PROTOCOL_AUDITS),
+            'missing complete fold/buffer/leakage/FP protocol audit')
+    baseline = h.get('current_best') if isinstance(h.get('current_best'), dict) else {}
+    baseline_ci, baseline_dti = baseline.get('ci95'), baseline.get('dti')
+    baseline_ok = (baseline.get('evidence_class') == 'HOLDOUT-DTI'
+                   and baseline.get('evaluator_version') == h.get('evaluator_version')
+                   and baseline.get('evaluator_sha256') == h.get('evaluator_sha256')
+                   and baseline.get('holdout_implementation_sha256') == implementation
+                   and baseline.get('fold_assignment_sha256') == fold_hash
+                   and baseline.get('withheld_positives') == h.get('withheld_positives')
+                   and finite(baseline_dti) and baseline_dti == h.get('current_best_dti')
+                   and isinstance(baseline_ci, list) and len(baseline_ci) == 2
+                   and all(finite(x) for x in baseline_ci)
+                   and 0 <= baseline_ci[0] <= baseline_dti <= baseline_ci[1] <= 1
+                   and finite(h.get('dti')) and h['dti'] > baseline_dti)
+    require(baseline_ok, 'current best not evidenced on the same evaluator, implementation, folds and positives')
     require(h.get('withheld_unit') == 'whole-fault-segment' and finite(h.get('buffer_m'))
             and h['buffer_m'] > 0 and h.get('catalogue_features_visible_only') is True
             and h.get('visible_faults_masked_pixel_exactly') is True and h.get('predictions_fold_local') is True,
@@ -136,8 +173,9 @@ def assess(card):
                 f'{stage} literal uniqueness incomplete or duplicate')
     require(not card.get('release_review'), 'superseded release evidence; rerun literal registry checks')
     v = card.get('validator') if isinstance(card.get('validator'), dict) else {}
-    for key in ('saved_bytes_checked', 'single_band', 'dtype_float32', 'finite_inside', 'range_0_1',
-                'whole_array_finite_range', 'outside_null_or_nan', 'crs_match', 'shape_match', 'transform_match'):
+    for key in ('saved_bytes_checked', 'geotiff', 'single_band', 'dtype_float32', 'finite_inside',
+                'inside_unmasked', 'self_contained_tiff', 'range_0_1', 'whole_array_finite_range',
+                'outside_policy_checked', 'outside_null_or_nan', 'crs_match', 'shape_match', 'transform_match'):
         require(v.get(key) is True, f'validator: {key}')
     sha = card.get('raster_sha256')
     require(is_sha256(sha), 'missing raster SHA256')
@@ -151,7 +189,8 @@ def assess(card):
     # This is an evidence screen, not the separately required slot selector.
     # Even a complete-looking card must not itself authorize an upload.
     return {'verdict': verdict, 'ok_to_submit': False, 'eligible_for_selector': verdict == 'promote',
-            'selector_required': True, 'reasons': reasons}
+            'technically_eligible': verdict == 'promote', 'selector_required': True,
+            'selector_approval': False, 'slot_used': False, 'reasons': reasons}
 
 
 if __name__ == '__main__':

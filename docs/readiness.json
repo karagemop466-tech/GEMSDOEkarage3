@@ -1,37 +1,53 @@
 {
   "schema_version": 1,
+  "checked_utc": "2026-10-28T22:54:48.490419+00:00",
   "ready_for_experiment": false,
   "ok_to_submit": false,
   "checks": [
     {
       "id": "canonical_source_snapshot",
       "passed": true,
-      "detail": "Unmodified pinned upstream scripts + dependency modules recovered; not the feature cache"
+      "detail": "Archived pinned upstream scripts + dependency modules recovered; not the feature cache"
+    },
+    {
+      "id": "active_shared_template",
+      "passed": true,
+      "detail": "Active evaluator, writer and dependencies match pinned GEMSDOE32 commit 97597a; equality is not correctness"
+    },
+    {
+      "id": "shared_holdout_protocol",
+      "passed": false,
+      "detail": "Open shared issues #60 (buffer), #41 (FP pooling), #61 (leakage); repair upstream and validate before use"
+    },
+    {
+      "id": "surface_preview_overlap",
+      "passed": false,
+      "detail": "Shared release gate issue #42 ignores preview-dot overlap at surface stage; do not rely on it alone"
     },
     {
       "id": "assigned_method_lane",
       "passed": false,
-      "detail": "registry/lane.json has no assigned method; parallel-run lane must not be invented"
+      "detail": "A single specified parallel-run method lane is required; do not invent one"
     },
     {
       "id": "core_mirror_data",
-      "passed": false,
+      "passed": true,
       "details": [
         {
           "id": "training_features",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         },
         {
           "id": "labels",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         },
         {
           "id": "existing_faults",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         },
         {
           "id": "sample_submission",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         }
       ],
       "detail": "Owner mirrors only, not organizer-authenticated"

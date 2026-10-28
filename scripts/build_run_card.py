@@ -72,8 +72,8 @@ def main() -> int:
             'No unambiguous single assigned method paragraph in the supplied prompt.',
             'Literal any-registry rule proves a duplicate at 37,654 dots; lower budgets are not automatically unique.',
             'No current complete surface/final registry snapshot or validated same-protocol current-best comparison.',
-            'Shared template has open surface-gate and buffered holdout issues #42 and #60; read-only upstream access prevents a central fix.',
-            'Organizer-authenticated inputs, matched feature cache, quota and artifact-linked receipts are unavailable; portal behavior is unverified.'
+            'Pinned shared evaluator/writer explicitly reject non-binary inputs; holdout, surface-gate and masked-pixel validator defects remain open (#60, #41, #61, #42, #66). Read-only upstream access prevents a central fix.',
+            'Organizer-authenticated inputs, matched derived feature cache, quota and artifact-linked receipts are unavailable. Owner-mirrored core rasters and raw bands were restored but do not authenticate organizer provenance; portal behavior is unverified.'
         ],
         'geometry_audit_sha256': digest(path), 'geometry_audit': 'historical-audit.json',
         'saved_tiffs_audit_sha256': digest(evidence), 'saved_tiffs_audit': 'saved-tiffs-literal-20261028.json',

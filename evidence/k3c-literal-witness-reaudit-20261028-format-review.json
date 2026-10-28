@@ -1,0 +1,52 @@
+{
+  "scope": "One pinned owner-mirror template and one registered lattice. Not an organizer-authenticated template, complete registry, surface audit, or new experiment.",
+  "template": {
+    "repo": "buffedlizard55-lab/GEMSDOE24",
+    "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+    "path": "data/bridge/sample_submission.tif",
+    "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "provenance": "Owner-supplied competition mirror; not organizer-authenticated."
+  },
+  "witness": {
+    "repo": "buffedlizard55-lab/13GEMSDOE",
+    "ref": "92ee6f074323f161eed837b80ec3ee5b662e26f5",
+    "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "provenance": "Registered calibration raster, not a geologic detector; retained literally under any-registry rule."
+  },
+  "candidate": "docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
+  "candidate_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "dots_inside_footprint": 37654,
+  "within_3px_fraction": 0.9935199447601848,
+  "duplicate_stop": true,
+  "validator": {
+    "candidate": "/home/user/GEMSDOEkarage3/docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
+    "candidate_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+    "template": "/home/user/GEMSDOEkarage3/.cache/literal-k3c/2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc.tif",
+    "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "candidate_sidecars": [],
+    "checks": {
+      "single_band": true,
+      "float32": true,
+      "shape_matches": true,
+      "crs_matches": true,
+      "transform_matches": true,
+      "self_contained_tiff": true,
+      "inside_all_finite": true,
+      "inside_range_0_1": true,
+      "inside_not_nodata_or_masked": true
+    },
+    "core_format_pass": true,
+    "inside_nonfinite_count": 0,
+    "inside_masked_count": 0,
+    "inside_min": 0.0,
+    "inside_max": 1.0,
+    "outside_template_null_pass": false,
+    "whole_array_finite_range_pass": true,
+    "outside_policy_note": "Template-footprint null interpretation and all-finite diagnostic are separate; neither proves portal acceptance.",
+    "organizer_acceptance": "unknown",
+    "authorization": "NOT AUTHORIZED"
+  },
+  "verdict": "negative",
+  "ok_to_submit": false
+}

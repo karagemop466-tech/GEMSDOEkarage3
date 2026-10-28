@@ -72,7 +72,7 @@ class SiteTests(unittest.TestCase):
 
     def test_no_stale_feed_can_approve_a_slot(self):
         feed = json.loads((DOCS / 'data/feed.json').read_text())
-        card = json.loads((DOCS / 'data/current-run.json').read_text())
+        card = json.loads((DOCS / 'data/latest-run.json').read_text())
         self.assertEqual(card, json.loads((DOCS / 'data/latest-run-card.json').read_text()))
         self.assertFalse(feed['submission_approved'])
         self.assertFalse(card['ok_to_submit'])

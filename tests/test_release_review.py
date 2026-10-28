@@ -53,13 +53,17 @@ def test_public_rebuild_deterministic_and_old_narrative_collapsed():
         assert assess(card)['verdict'] == 'negative'
 
 
-def test_final_rank_check_uses_actual_dots_not_surface():
+def test_pinned_shared_gate_surface_overlap_defect_is_not_treated_as_a_pass():
+    # Upstream #42: preview-dot overlap is measured but ignored at the surface
+    # stage. The separate promotion screen must enforce it at BOTH stages.
+    rng = np.random.default_rng(27)
     foot = np.ones((20, 20), dtype=bool)
     dots = np.zeros_like(foot)
     dots[::4, ::4] = True
-    surface = np.arange(400, dtype=float).reshape(20, 20)
-    result = compare_registry(surface, dots, foot,
-                              {'registered-lattice': (surface[::-1], dots)}, stage='final')
-    assert result['stop'] is True
-    assert result['comparisons'][0]['dots_spearman'] == 1.0
+    result = compare_registry(rng.random(foot.shape), dots, foot,
+                              {'registered-lattice': (rng.random(foot.shape), dots)}, stage='surface')
     assert result['comparisons'][0]['within_3px_fraction'] == 1.0
+    assert result['passed'] is True  # Known upstream defect; never a protocol pass.
+    final = compare_registry(rng.random(foot.shape), dots, foot,
+                             {'registered-lattice': (rng.random(foot.shape), dots)}, stage='final')
+    assert final['stop'] is True

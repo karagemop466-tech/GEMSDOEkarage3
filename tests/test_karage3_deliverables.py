@@ -121,7 +121,7 @@ class DeliverableVerificationTests(unittest.TestCase):
         self.assertEqual(gate_res["verdict"], "negative")
         self.assertFalse(gate_res["ok_to_submit"])
 
-    def test_csst_operators_and_soft_submission_unit(self) -> None:
+    def test_csst_operators_and_binary_shared_writer_unit(self) -> None:
         rng = np.random.default_rng(7)
         h, w = 48, 48
         foot = np.ones((h, w), dtype=bool)
@@ -164,15 +164,29 @@ class DeliverableVerificationTests(unittest.TestCase):
             f16 = np.ones((16, 16), dtype=bool)
             l16 = np.zeros((16, 16), dtype=bool)
             probs = np.full((16, 16), 0.37, dtype=np.float32)
+            with self.assertRaisesRegex(ValueError, "exactly 0 or 1"):
+                submission.write_submission_pair(
+                    probs, f16, l16, tmpl, td_p, slug="soft-test", timestamp_tag="20261028T000000Z",
+                    candidate_meta={},
+                )
+            self.assertEqual(list(td_p.glob("*zeros.tif")), [])
+            mask = np.zeros((16, 16), dtype=bool)
+            mask[5, 5] = True
+            meta = {"candidate_id": "UNIT", "description": "synthetic test only",
+                    "submission_note_zeros": "test", "submission_note_nan": "test",
+                    "catalogue_hidden_mean": None, "catalogue_hidden_per_quadrant": {},
+                    "sgmc_prevalence_calibrated_dti": None, "drift_corrected_holdout_mean": None,
+                    "drift_corrected_per_quadrant": {}, "predicted_leaderboard_dti": None,
+                    "ei_drift_corrected": None, "slot_decision": "HOLD-DO-NOT-SUBMIT"}
             rec = submission.write_submission_pair(
-                probs, f16, l16, tmpl, td_p, slug="soft-test", timestamp_tag="20261028T000000Z",
-                candidate_meta={"candidate_id": "SOFT"}, prefix="gemsdoekarage3",
+                mask, f16, l16, tmpl, td_p, slug="binary-test", timestamp_tag="20261028T000000Z",
+                candidate_meta=meta,
             )
-            self.assertTrue(rec["zeros_tif"]["filename"].startswith("gemsdoekarage3-soft-test-"))
+            self.assertTrue(rec["zeros_tif"]["filename"].startswith("gemsdoe32-binary-test-"))
             self.assertTrue(rec["zeros_tif"]["all_checks_passed"])
             with rasterio.open(td_p / rec["zeros_tif"]["filename"]) as ds:
                 read_back = ds.read(1)
-            self.assertAlmostEqual(float(read_back[5, 5]), 0.37, places=5)
+            self.assertEqual(float(read_back[5, 5]), 1.0)
 
     def test_nine_sites_html_links_and_rfc8259_json(self) -> None:
         audited_sites = {s["site"] for s in self.nine["sites"]}

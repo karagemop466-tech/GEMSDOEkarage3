@@ -31,6 +31,9 @@ BUDGETS = (20_000, 37_654)
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
     for budget in BUDGETS:
         require_budget_not_proven_duplicate(budget)

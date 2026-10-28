@@ -48,6 +48,9 @@ def lattice_audit(final_mask: np.ndarray, foot: np.ndarray) -> dict:
 
 
 def main() -> int:
+    # Archived runner: do not reach any filesystem writes or candidate placement.
+    raise SystemExit('STOP: historical experiment runner is disabled; no assigned lane, '
+                     'shared holdout defects and the literal duplicate-stop remain unresolved.')
     from scripts.protocol_preflight import require_shared_protocol_ready
     require_shared_protocol_ready()
     t0 = time.time()

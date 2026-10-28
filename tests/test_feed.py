@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 from urllib.error import URLError
 from urllib.request import Request
-from scripts.refresh_feed import SameOriginRedirect, parse_leader, refresh
+from scripts.refresh_feed import SameOriginRedirect, get_url, parse_leader, refresh
 
 GOOD = '''<html><table><tr><th>Other</th></tr><tr><td>1</td></tr></table>
 <table><thead><tr><th>Rank</th><th>Participant</th><th>Best<br>public<br>DW-Tversky<br>(in descending order)</th></tr></thead>
@@ -31,17 +31,21 @@ class FeedTests(unittest.TestCase):
         self.assertEqual(len(report['sources']), 9)
         self.assertTrue(all(not x['available'] for x in report['sources']))
 
-    def test_refresh_treats_leaderboard_and_sites_independently(self):
+    def test_refresh_only_calls_github_and_never_monitors_leaderboard(self):
         def get(url, *, github=False):
-            if not github:
-                return GOOD.encode()
+            self.assertTrue(github)
+            self.assertTrue(url.startswith('https://api.github.com/'))
             return json.dumps({'sha': 'a'*40, 'commit': {'committer': {'date': '2026-10-27T01:00:00Z'}}}).encode()
-        with patch('scripts.refresh_feed.get_url', side_effect=get):
+        with patch('scripts.refresh_feed.get_url', side_effect=get) as mocked:
             report = refresh()
-        self.assertTrue(report['leaderboard']['available'])
+        self.assertEqual(mocked.call_count, 9)
+        self.assertFalse(report['leaderboard']['available'])
+        self.assertIsNone(report['leaderboard']['checked_utc'])
+        self.assertIn('terms prohibit automated access', report['leaderboard']['error'])
         self.assertTrue(all(x['available'] for x in report['sources']))
         self.assertFalse(report['submission_approved'])
-        self.assertIn('not an artifact-linked receipt', report['leaderboard']['last_observation']['evidence_class'])
+        with self.assertRaises(ValueError):
+            get_url('https://www.drivendata.org/competitions/306/', github=False)
 
     def test_cross_origin_redirect_rejected_before_authorization_forward(self):
         handler = SameOriginRedirect()

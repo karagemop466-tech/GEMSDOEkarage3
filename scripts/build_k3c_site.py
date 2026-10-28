@@ -32,7 +32,7 @@ def shell(title, body, depth=0):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{H(title)}</title><link rel="stylesheet" href="{pre}assets/site.css">{feed_script}</head>
 <body><main id="main" class="wrap" style="padding:28px 0 60px">
-<p><a href="{pre}index.html">Decision home</a> · <a href="{pre}k3c/index.html">K3C archive</a> · <a href="{pre}k3c/how-to-submit.html">Submission guide</a> · <a href="{pre}data/current-run.json">Current JSON card</a></p>
+<p><a href="{pre}index.html">Decision home</a> · <a href="{pre}k3c/index.html">K3C archive</a> · <a href="{pre}k3c/how-to-submit.html">Submission guide</a> · <a href="{pre}data/latest-run.json">Latest JSON card</a> · <a href="{pre}data/current-run.json">Parallel preflight card</a></p>
 {body}<p><small>USER-REPORTED values have no artifact-linked organizer receipt here. Historical HOLDOUT-DTI values are cited, not reproduced, and are not leaderboard scores. Nothing on this page selects a weekly slot.</small></p>
 </main></body></html>\n'''
 
@@ -62,13 +62,13 @@ def root_decision_html():
              'No new file was generated. All eight retained TIFFs fail the literal registry-overlap rule; '
              'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
-             '<a href="docs/data/current-run.json">Current run card</a></aside>')
+             '<a href="docs/data/latest-run.json">Latest run card</a></aside>')
     card = ('<div class="release-card" aria-label="Current submission decision">\n'
             '      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>\n'
             '      <h2>No file cleared<br>for submission.</h2>\n'
             '      <p>Literal overlap stops the historical files. No new candidate, validated holdout or weekly-slot selection exists.</p>\n'
             '      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>\n'
-            '      <div class="card-foot"><span id="download-explanation">Download locked · do not submit</span><a href="docs/data/current-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
+            '      <div class="card-foot"><span id="download-explanation">Download locked · do not submit</span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
             '    </div>')
     return aside, card
 
@@ -119,7 +119,8 @@ def build():
     (ROOT / 'docs/k3c/run-card.json').write_text(json.dumps(card, indent=2, allow_nan=False) + '\n')
     decision = {**gate, 'card': 'docs/k3c/run-card.json', 'raster_sha256': card['raster_sha256'],
                 'status': 'historical K3C reassessment, not the new-run card',
-                'current_run_card': 'docs/data/current-run.json'}
+                'current_run_card': 'docs/data/latest-run.json',
+                'parallel_preflight_card': 'docs/data/current-run.json'}
     (ROOT / 'docs/current-gate-decision.json').write_text(json.dumps(decision, indent=2, allow_nan=False) + '\n')
     (ROOT / 'docs/data/saved-tiffs-literal-20261028.json').write_bytes((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_bytes())
     sites_path = ROOT / 'docs/sites.json'
@@ -152,14 +153,14 @@ def build():
 <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official format and metric</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules</a> · <a href="../../executive-summary.html">Full nine-site guide</a></p>'''
     (ROOT / 'docs/k3c/how-to-submit.html').write_text(shell('Submission guide · do not submit', guide, 1))
     decision_text = f'''<h1>Current submission decision</h1>{common}
-<p><strong>Current negative card:</strong> <a href="data/current-run.json">JSON</a> · <a href="../research/2026-10-28-literal-review.md">Research review</a>. Historical K3C SHA-256 <code>{sha}</code>.</p>
+<p><strong>Latest negative card:</strong> <a href="data/latest-run.json">JSON</a> · <a href="review-2026-10-28-session.md">Session review</a> · <a href="../research/2026-10-28-literal-review.md">Parallel review</a>. Historical K3C SHA-256 <code>{sha}</code>.</p>
 <p><a href="../executive-summary.html#site-details">Compare the nine historical files</a> · <a href="release-review.html">Eight-file exact-byte audit</a> · <a href="k3c/how-to-submit.html">How to submit when eligible</a></p>
 <h2>Source watch</h2><p id="public-score">Unavailable</p><p id="public-score-detail">Public leaderboard snapshot; check the official page for current data.</p><p id="watch-detail">Source metadata not checked yet.</p><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official live leaderboard</a>; a public board value is not a score for this file.</p>
 <p>Release screen: <code>scripts/promotion_gate.py</code>. It cannot allocate a slot or establish the truth of unverified evidence.</p>'''
     (ROOT / 'docs/index.html').write_text(shell('Current decision · GEMS', decision_text))
     summary = f'''<h1>Executive submission decision</h1>{common}<p><strong>DO NOT SUBMIT</strong> historical K3C <code>{file}</code>; SHA-256 <code>{sha}</code>.</p>
 <p>The pinned nine-file comparison contains no approved new submission or defensible leaderboard estimate. The historical best in the focus list is 0.2778 USER-REPORTED / UNVERIFIED for GEMSDOE32.</p>
-<p><a href="../executive-summary.html">Full nine-site table and conditional step-by-step guide</a> · <a href="k3c/index.html">K3C research archive</a> · <a href="data/current-run.json">Current run card</a></p>'''
+<p><a href="../executive-summary.html">Full nine-site table and conditional step-by-step guide</a> · <a href="k3c/index.html">K3C research archive</a> · <a href="data/latest-run.json">Latest run card</a></p>'''
     (ROOT / 'docs/executive-summary.html').write_text(shell('Executive summary · GEMS', summary))
     # Build root pages from their templates after the negative public card exists.
     import build_site
