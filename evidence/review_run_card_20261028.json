@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "run_id": "karage3-repository-review-20261028",
+  "review_date": "2026-10-28",
+  "active_branch": "arena/2509a8e3-gemsdoekarage3",
+  "hypothesis": "No new geological hypothesis was tested in this review; the active prompt does not provide an unambiguous method paragraph for this checkout, and the cached feature stack is absent.",
+  "mechanism": "No new feature or placement mechanism was implemented. The archived H-K3C artifact used a prior CSST-BGHF/dual-cover construction described in its historical run card; that artifact is not authorized for submission.",
+  "named_non_fault_process_that_could_mimic_it": "Unfaulted lithologic boundaries can mimic geophysical discontinuities; for strain-based ideas, post-seismic viscoelastic relaxation and distributed block rotation can mimic fault loading.",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.1-24cell",
+    "withheld_positives": 66904,
+    "value": 0.111044,
+    "ci95": [0.09899, 0.122727],
+    "paired_delta_vs_historical_champion_rule": 0.010103,
+    "paired_delta_ci95": [0.003019, 0.017272],
+    "status": "Historical value copied from docs/k3c/run-card.json; not rerun in this review and not a live leaderboard score."
+  },
+  "score_status": {
+    "organizer_confirmed": false,
+    "leaderboard_estimate": null,
+    "note": "No submission-page receipt in this checkout binds a score to the inspected TIFF hash. Owner-reported values in the prompt are not receipts."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_abs_spearman_max": 0.526987,
+    "surface_audit_status": "Historical audit only; audited inventory was stale and is not revalidated against the refreshed manifest.",
+    "final_dot_raw_overlap_max": 1.0,
+    "raw_overlap_stop": true,
+    "literal_threshold": 0.7,
+    "additional_identifiable_dot_raster": {
+      "raster": "buffedlizard55-lab/GEMSDOE67:docs/downloads/gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+      "within_3px_fraction": 0.852605,
+      "registry_positive_pixels": 167597,
+      "overlap_test_identifiable": true
+    },
+    "other_literal_witness": {
+      "raster": "buffedlizard55-lab/57GEMSDOE:docs/downloads/gems57-h57g-width-normalized-b1329dc0f248-RESEARCH-DO-NOT-SUBMIT.tif",
+      "within_3px_fraction": 1.0,
+      "registry_positive_pixels": 5106385,
+      "overlap_test_identifiable": false
+    },
+    "registry_refresh": {
+      "generated_utc": "2026-10-28T22:28:59Z",
+      "repositories_queried": 112,
+      "raster_entries": 2412,
+      "unique_sha256": 1979,
+      "fetch_failures": 0,
+      "literal_registry_complete": false,
+      "note": "Filtered path/name/size inventory; not a complete literal registry."
+    },
+    "candidate_card_inventory_unique_sha256_count": 1935,
+    "candidate_card_manifest_digest_matches_refreshed_manifest": false
+  },
+  "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "inspected_artifact": "docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
+  "validator_output": {
+    "status": "Local saved-byte check only; candidate is not authorized.",
+    "single_band_float32": true,
+    "shape": [3730, 3292],
+    "crs": "EPSG:32611",
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "nodata": null,
+    "no_nan_inside_footprint": true,
+    "whole_array_finite": true,
+    "values_in_0_1": true,
+    "min": 0.0,
+    "max": 1.0,
+    "positive_pixels": 37654,
+    "crs_shape_transform_match_to_current_template": null,
+    "template_status": "sample_submission.tif is absent from this checkout; metadata values above were independently read from saved TIFF bytes but not compared to a current organizer template.",
+    "authorization": "NOT AUTHORIZED"
+  },
+  "submission_name": "gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros",
+  "note": "Research only; raw registry overlap exceeds 70%; do not submit.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "slot_selected": false
+}

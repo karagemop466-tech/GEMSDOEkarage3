@@ -42,16 +42,21 @@ The local promotion screen now requires literal overlap <= 70% at both stages
 and cannot treat calibrated overlap as literal. The preflight stops budgets
 that the pinned geometry proves cannot pass. The current landing page and guide
 now say DO NOT SUBMIT; the research file remains explicitly labeled as such.
-The old run card stays unchanged as historical evidence, but no longer drives
-a positive gate. Automated tests cover the threshold, calibrated false passes,
-missing literal fields, and published decision agreement.
+The original experiment card is preserved unchanged at
+`evidence/k3c_run_card.json`; the public `docs/k3c/run-card.json` now carries an
+explicit release retraction and negative status, so it cannot drive a positive
+gate. Automated tests cover the threshold, calibrated false passes, missing
+literal fields, and published decision agreement.
 
-The upstream shared evaluator/writer issue, silently binarizing probability
-inputs, is [still open](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)
-as verified via GitHub in this session. No private fork was made. No shared
-upstream fix was implemented: this branch is restricted to this repository and
-the shared-template repository is separate. The literal check above is an
-independent forensic audit, not a replacement for the shared evaluator or writer.
+Two shared-template blockers were verified open via GitHub on 2026-10-28:
+[issue #42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42) (surface
+release gate ignores overlapping preview dots; updated 2026-10-26) and [issue
+#60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60) (the 1.5 km
+holdout collar does not buffer withheld truth from visible faults; updated
+2026-10-28). No private fork was made and no upstream fix was implemented; this
+branch is restricted to this repository. The literal checks are independent
+forensics, not a replacement for the shared evaluator/writer or buffered
+whole-segment holdout.
 
 ## Pass 3 — outstanding work and sources
 
@@ -78,7 +83,7 @@ were not independently checked here. No claim about the present leaderboard or
 external data obtainability follows from these links.
 
 Verification after the three passes and final gate refinement: `pytest -q`
-169 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
+134 passed, one optional-cache skip, 67 subtests; `unittest discover` 67
 passed; dashboard Node suite four passed; browser feed suite two passed; root
 site build check and `git diff --check` passed. The independent one-witness
 script also reran and returned 0.9935199447601848 literal overlap with a
