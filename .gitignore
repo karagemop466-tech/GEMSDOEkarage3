@@ -9,6 +9,7 @@ venv/
 .mypy_cache/
 *.egg-info/
 .cache/
+node_modules/
 
 # Large competition rasters and regenerable numpy caches are restored into .cache/
 data/*

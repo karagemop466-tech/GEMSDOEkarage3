@@ -83,3 +83,45 @@ In the 2,210-raster manifest (2026-10-28): 14 have NaN inside the footprint, 5 h
 
 ## IR-K3-12 — Hide-and-recover rewards fragment interpolation
 Withheld catalogue components are often 1–5 px fragments of visible traces. Catalogue-distance features score single AUCs of 0.77–0.79 on withheld truth, and the K3-CCL learner reaches HOLDOUT-DTI 0.146. But live new faults are depleted within ~5 px of the catalogue (live-ledger strata), and the live CCL file projects at ~0.10. The holdout is therefore not a valid instrument for catalogue-geometry features until it censors withheld components within 5 px of visible traces.
+
+## IR-K3-13 — Band-index misstatements in earlier `README.md` Sec 2.3 and `smgc-preregistration-20261027.md`
+Verified 2026-10-28 against `data/prepared_manifest.json` (`training_features.tif` SHA-256
+`f82f73f5b55755ef…`, 19 bands): Band 01 = `mag_anom` (nT), 02 = `rtp` (nT), 03 = `tmi_hg`,
+04 = `geod_2ndinv`, 05 = `iso_grav_anom_slope`, 06 = `tc`, 07 = `geod_shearrate`,
+08 = `geod_dilaterate`, 09 = `tmi_vg`, 10 = `deq_n100a15`, 11 = `iso_grav_anom_vg`,
+12 = `det_elev` (m), 13 = `iso_grav_anom` (mGal), 14 = `tmi` (nT), 15 = `depth_to_base_surf` (m),
+16 = `ieq_n100a15`, 17 = `cond_surf`, 18 = `iso_grav_anom_hg`, 19 = `det_elev_slope` (deg).
+Earlier prose in `README.md` Sec 2.3 and `docs/research/smgc-preregistration-20261027.md` cited
+wrong band indices (e.g., calling Band 14 `det_elev` or Band 18 `cond_surf`), though code read
+zero-based `base_stack` indices correctly. Disposition: corrected in `docs/research/csst-bghf-preregistration-20261028.md`
+and `README.md`.
+
+## IR-K3-14 — In-place template repairs to `h33.py`, `submission.py`, `submission_writer.py`, and `evaluate_holdout.py`
+Verified 2026-10-28 per Protocol Rule 2 (“If a shared tool is wrong, fix it once in the template
+and report — never keep a private fork”):
+1. `src/gems32/h33.py:lidar_scarp_composite` repaired in-place to read bands `1, 3, 6` (`ex_max`,
+   `step_max`, `downface_max`) gated by band `12` (`valid > 0`), fixing `IR-K3-01` in the shared module.
+2. `src/gems32/submission.py`, `scripts/submission_writer.py`, and `scripts/evaluate_holdout.py`
+   repaired in-place to accept `prefix` (eliminating hardcoded `gemsdoe32-` filename collisions) and
+   to preserve continuous/soft `[0, 1]` probabilities without silent `> 0.5` binarization (`IR-37`).
+
+## IR-K3-15 — `crsb[13]` (`mapping_observability_prior`) leaked `li_valid` into PR #9's `M_NoLiDAR`
+Verified 2026-10-28 in `src/gems32/crsb_gub.py` lines 409–413: `mapping_observability_prior`
+(global channel `48`) contains `0.42 * li_valid`, allowing a tree model to split on the 1 m LiDAR
+survey boundary inside the `24.63%` LiDAR gap. Disposition: excluded in `src/gems32/csst_bghf.py`
+via `LIDAR_GLOBAL_COLS_57 = {45, 46, 47, 48, 54}` (`52`-ch strictly LiDAR-free `M_NoLiDAR`), achieving
+`26.13%` emitted dot coverage (`9,840 / 37,654` dots) inside the `24.63%` LiDAR gap.
+
+## IR-K3-16 — PR #10 (`SMGC-CT`) scarp-apron duplicate overlap (`84.64%`) & post-NMS crest-width bias
+Verified 2026-10-28 across the expanded `112`-repo (`2,355`-file / `1,913`-unique-SHA256) registry:
+1. Prior PR #10 (`gemsdoe32-h-k3-1-smgc-ct-maxenv-d28-20261027T173500Z-46e7535d-zeros.tif`) overlapped
+   `GEMSDOE67` (`tau3p0`) at `84.64%` and `GEMSDOE77` (`collar35`) at `83.91%` because `66%` of its
+   dots sat inside `2–8 px` of mapped Quaternary scarps (`p0_pied25 = 62.8%–76.2%`).
+2. Applying 4-azimuth NMS *after* Max-Envelope fusion suppresses 3–4 px wide geophysical anomalies
+   by `~0.64x` relative to 1-px tree crests. Pre-sharpening both branches onto commensurate 1-px
+   crests before Max-Envelope fusion in `H-K3B-1 (CSST-BGHF)` reduced `2–8 px` apron share to
+   `18.29%`, lifted `SGMC-cal` to `0.070171` (`+9.44%` over the `0.2778` Champion), and reduced
+   worst discrete (`<= 100k` dots) 3-px overlap across all `112` repos + prior `GEMSDOEkarage3`
+   runs (including `29.18%` vs Sibling Lane `K3-CCL`) to `66.53% <= 70.0%` (`PASS`), while transparent
+   literal-registry evaluation against `13GEMSDOE` `r13-lattice-s5` (`206,895` dots, `99.87%` footprint cover)
+   records `99.36% > 70%` (`verdict = "negative"`, `ok_to_submit = False`).

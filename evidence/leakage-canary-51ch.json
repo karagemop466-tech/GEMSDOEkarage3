@@ -416,8 +416,8 @@
       "passed": true
     }
   ],
-  "build_seconds": 0.0,
-  "peak_rss_mb": 2298.03,
+  "build_seconds": 75.94,
+  "peak_rss_mb": 3681.23,
   "extra_stack_meta": {
     "n_extra_channels": 16,
     "channels": [
@@ -444,7 +444,6 @@
       16
     ],
     "nonfinite_in_footprint": 0,
-    "path": "/home/user/GEMSDOEkarage3/.cache/gems_work/crsb_gub_extra_16ch.npy",
-    "reused_cached": true
+    "path": "/home/user/GEMSDOEkarage3/.cache/gems_work/crsb_gub_extra_16ch.npy"
   }
 }

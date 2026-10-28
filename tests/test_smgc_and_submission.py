@@ -5,15 +5,18 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import unittest
 
-import pytest
 import numpy as np
+import pytest
 import rasterio
 
-from gems32 import holdout, smgc, submission
-from gems32.paths import data_dir, work_dir
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "src") not in sys.path:
+    sys.path.insert(0, str(ROOT / "src"))
+
+from gems32 import smgc  # noqa: E402
+from gems32.paths import work_dir  # noqa: E402
 
 
 def test_smgc_extra_stack_and_stationary_envelope():
@@ -45,10 +48,15 @@ def test_smgc_extra_stack_and_stationary_envelope():
     assert float(surf.min()) >= 0.0 and float(surf.max()) <= 1.0
     assert float(surf[~foot].max()) == 0.0
 
+    csst_path = work_dir() / "csst_bghf_extra_6ch.npy"
+    if csst_path.exists():
+        arr = np.load(csst_path, mmap_mode="r")
+        assert arr.shape == (3730, 3292, 6)
+        assert arr.dtype == np.float32
+        assert np.isfinite(arr[::8, ::8, :]).all()
 
 
 def test_cached_smgc_stack_integration():
-    # Optional large-data integration, never a prerequisite for synthetic tests.
     smgc_path = work_dir() / "smgc_extra_4ch.npy"
     if not smgc_path.exists():
         pytest.skip("Restore ignored SMGC feature cache for integration check")
@@ -61,7 +69,7 @@ def test_cached_smgc_stack_integration():
 def test_retracted_submission_geotiff_and_run_card():
     rc_path = ROOT / "docs" / "run-card.json"
     assert rc_path.exists()
-    rc = json.loads(rc_path.read_text())
+    rc = json.loads(rc_path.read_text(encoding="utf-8"))
 
     assert rc["verdict"] == "negative"
     assert rc["ok_to_submit"] is False
@@ -85,7 +93,6 @@ def test_retracted_submission_geotiff_and_run_card():
         assert np.isfinite(arr).all()
         assert float(arr.min()) >= 0.0 and float(arr.max()) <= 1.0
 
-    # Verify CLI promotion_gate.py
     pg = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "promotion_gate.py"), str(rc_path)],
         capture_output=True,
@@ -97,3 +104,11 @@ def test_retracted_submission_geotiff_and_run_card():
     assert pg_out["verdict"] == "negative"
     assert pg_out["ok_to_submit"] is False
     assert any("literal registry failed" in reason for reason in pg_out["reasons"])
+
+
+class SMGCAndSubmissionTests(unittest.TestCase):
+    def test_envelope(self):
+        test_smgc_extra_stack_and_stationary_envelope()
+
+    def test_retracted_card(self):
+        test_retracted_submission_geotiff_and_run_card()
