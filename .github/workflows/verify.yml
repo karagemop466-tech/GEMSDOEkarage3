@@ -22,6 +22,7 @@ jobs:
         run: |
           python scripts/build_site.py --check
           python scripts/build_review_status.py
-          git diff --exit-code -- docs/index.html docs/executive-summary.html docs/current-gate-decision.json
+          python scripts/build_release_review.py
+          git diff --exit-code -- docs
           python -m pytest -q
           node --check assets/site.js

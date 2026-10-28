@@ -304,9 +304,9 @@ def scan_full_registry(
                 "is_continuous_surface": is_continuous_surface,
                 "is_ultra_dense_gt100k_probe": is_ultra_dense_probe,
                 "is_focus_site_entry": is_focus_repo,
-                "surface_spearman": round(rho_surf, 6),
-                "dots_spearman": round(rho_dots, 6) if rho_dots is not None else None,
-                "within_3px_fraction": round(ov3, 6),
+                "surface_spearman": rho_surf,
+                "dots_spearman": rho_dots,
+                "within_3px_fraction": ov3,
             }
         )
 
@@ -355,24 +355,24 @@ def scan_full_registry(
     worst_ov_gen = max(discrete_le100k, key=lambda r: r["within_3px_fraction"])
     worst_ov_focus = max(focus_genuine, key=lambda r: r["within_3px_fraction"])
 
-    surf_passed = bool(rg_surf_comparisons) and all(
+    surf_passed = bool(rows) and not skipped and all(r["raw_in_foot_finite"] and abs(r["surface_spearman"]) <= .90 for r in rows) and bool(rg_surf_comparisons) and all(
         c["measurable"] and not c["duplicate"] for c in rg_surf_comparisons
     )
     rg_surface = {
         "stage": "surface",
-        "rule": "literal rho>0.90 OR directional overlap>0.70 across discrete detector rasters",
+        "rule": "literal rho>0.90 OR directional overlap>0.70 across ALL registry rasters; no density or lattice exemptions",
         "passed": surf_passed,
         "stop": not surf_passed,
         "comparisons": rg_surf_comparisons,
     }
     rg_final = None
     if dots is not None:
-        fin_passed = bool(rg_final_comparisons) and all(
+        fin_passed = surf_passed and all(r["within_3px_fraction"] <= .70 and r["dots_spearman"] is not None and abs(r["dots_spearman"]) <= .90 for r in rows) and bool(rg_final_comparisons) and all(
             c["measurable"] and not c["duplicate"] for c in rg_final_comparisons
         )
         rg_final = {
             "stage": "final",
-            "rule": "literal rho>0.90 OR directional overlap>0.70 across discrete detector rasters",
+            "rule": "literal rho>0.90 OR directional overlap>0.70 across ALL registry rasters; no density or lattice exemptions",
             "passed": fin_passed,
             "stop": not fin_passed,
             "comparisons": rg_final_comparisons,
@@ -618,6 +618,9 @@ def render_diagnostic_figure(
 
 
 def main() -> int:
+    sys.path.insert(0, str(ROOT))
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate
+    require_budget_not_proven_duplicate(37654)
     # Historical runner excludes dense/lattice rasters from release-gate inputs,
     # writes before the final literal check and deletes existing downloads.
     # Disable it rather than silently authorizing a protocol-violating candidate.
