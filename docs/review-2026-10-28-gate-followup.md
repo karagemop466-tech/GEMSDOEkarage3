@@ -44,3 +44,7 @@ After incorporating it, re-ran the suite: 100 pytest passed, one optional-cache
 skip, 49 subtests passed; 57 unittest cases passed; four dashboard and two feed
 Node tests passed. The review-status generator was rerun to reflect the stronger
 gate; these remain software checks, not a new geological result.
+
+After a further concurrent main update, the integrated local suite reported 106
+pytest passes, one optional-cache skip, 49 subtests, 59 unittest cases, four
+dashboard tests and two feed tests. These counts supersede earlier local counts.
