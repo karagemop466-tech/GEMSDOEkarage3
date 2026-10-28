@@ -15,6 +15,8 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 from karage3 import surfaces_k3 as S  # noqa: E402
 from karage3.emission_k3 import greedy_coverage, poisson_disk_thin_priority  # noqa: E402
@@ -35,6 +37,10 @@ def spearman_via_ranks(ra: np.ndarray, rb: np.ndarray, foot: np.ndarray) -> floa
 
 
 def main() -> int:
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
+    for budget in BUDGETS:
+        require_budget_not_proven_duplicate(budget)
+    require_shared_protocol_ready()
     t0 = time.time()
     ddir = data_dir()
     surf_dir = work_dir() / "surfaces"

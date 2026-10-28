@@ -30,7 +30,7 @@ class SiteTests(unittest.TestCase):
         self.assertTrue((ROOT / '.nojekyll').is_file())
         self.assertTrue((DOCS / 'index.html').is_file())
         home = (DOCS / 'index.html').read_text()
-        self.assertIn('current submission decision', home)
+        self.assertIn('current submission decision', home.lower())
         self.assertIn('promotion_gate.py', home)
         decision = json.loads((DOCS / 'current-gate-decision.json').read_text())
         summary = (DOCS / 'executive-summary.html').read_text()

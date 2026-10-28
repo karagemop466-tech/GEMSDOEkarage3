@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Publish this zero-experiment negative card, bound to a forensic audit.
+"""Publish the deterministic zero-experiment negative card for this audit.
 
-This is not a general-purpose release selector and cannot authorize a TIFF.
+This command cannot authorize a TIFF or overwrite a non-preflight scientific
+run. It uses the independently saved byte-audit timestamp; rebuilding does not
+pretend that the audit was performed again.
 """
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -13,64 +14,79 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 def main() -> int:
-    path = ROOT / "docs/data/historical-audit.json"
-    audit = json.loads(path.read_text())
-    if audit.get("kind") != "GEOMETRY-AUDIT, NOT A SCORE" or not audit.get("no_new_experiment"):
-        raise ValueError("Expected the historical-only forensic audit")
-    manifest = ROOT / "data/focus_registry.json"
-    if audit.get("manifest_sha256") != hashlib.sha256(manifest.read_bytes()).hexdigest():
-        raise ValueError("Forensic audit does not match the registry manifest")
-    output = ROOT / "docs/data/current-run.json"
+    output = ROOT / 'docs/data/current-run.json'
     if output.exists():
         prior = json.loads(output.read_text())
-        if not (str(prior.get("run_id", "")).startswith("gems-karage3-preflight-") and
-                prior.get("verdict") == "negative" and prior.get("experiments_run") == 0 and
-                prior.get("weekly_slots_used") == 0 and prior.get("raster_sha256") is None and
-                prior.get("holdout_dti", {}).get("value") is None):
-            raise ValueError("Refusing to overwrite a non-preflight or nonempty run card")
-    now = datetime.now(timezone.utc)
-    lattice = audit["lattice"]
-    if not lattice["budget_lower_bound"] > .7:
-        raise ValueError("The required duplicate-stop evidence is absent")
+        if not (str(prior.get('run_id', '')).startswith('gems-karage3-preflight-')
+                and prior.get('verdict') == 'negative' and prior.get('experiments_run') == 0
+                and prior.get('weekly_slots_used') == 0 and prior.get('raster_sha256') is None
+                and prior.get('holdout_dti', {}).get('value') is None):
+            raise ValueError('Refusing to overwrite a non-preflight or nonempty run card')
+    path = ROOT / 'docs/data/historical-audit.json'
+    history = json.loads(path.read_text())
+    if (history.get('kind') != 'GEOMETRY-AUDIT, NOT A SCORE' or not history.get('no_new_experiment')
+            or history.get('manifest_sha256') != digest(ROOT / 'data/focus_registry.json')):
+        raise ValueError('Historical audit missing, invalid or mismatched to pinned focus manifest')
+    evidence = ROOT / 'evidence/saved-tiffs-literal-20261028.json'
+    audit = json.loads(evidence.read_text())
+    rasters = audit['rasters']
+    expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    if ({r['file'] for r in rasters} != expected or not rasters
+            or any(digest(ROOT / r['file']) != r['sha256'] or not r['duplicate_stop'] for r in rasters)):
+        raise ValueError('Saved TIFF audit is stale, incomplete or no longer proves the duplicate stops')
+    lat = history['lattice']
+    if not lat['budget_lower_bound'] > .7:
+        raise ValueError('Required lattice duplicate-stop evidence is absent')
     card = {
-        "schema_version": 1,
-        "run_id": "gems-karage3-preflight-" + now.strftime("%Y%m%dT%H%M%SZ"),
-        "created_utc": now.isoformat(),
-        "hypothesis": "PROPOSED ONLY: multi-scale gravity–magnetic signed edge-offset persistence beneath weak relief; not an assigned lane and not tested.",
-        "mechanism": "Relative cross-strike edge displacement persisting across spatial scales may indicate a buried structural discontinuity.",
-        "named_non_fault_mimic": "Unfaulted lithologic contacts, intrusions and airborne survey/processing artifacts may generate comparable offsets.",
-        "holdout_dti": {"evidence_class": "HOLDOUT-DTI", "evaluator_version": None, "withheld_positives": None,
-                        "value": None, "ci_95": None, "status": "NOT RUN; no comparable new holdout or calibrated organizer estimate."},
-        "leakage_canaries": {"status": "NOT RUN; no lane or model constructed", "features_tested": 0},
-        "correlation_overlap_vs_registry": {
-            "candidate_surface_spearman": None, "candidate_final_dot_overlap": None,
-            "status": "NOT RUN for a new candidate; pre-placement necessary-condition stop.",
-            "witness_sha256": lattice["source"]["sha256"], "witness_budget": lattice["budget_example"],
-            "witness_uncovered": lattice["uncovered_beyond_3px"], "unavoidable_overlap_fraction": lattice["budget_lower_bound"],
-            "scope": "Single registered lattice witness, not full registry."},
-        "raster_sha256": None,
-        "validator_output": {"status": "NOT RUN: no new candidate raster", "no_nan_inside": None, "values_in_0_1": None,
-                             "crs_matches": None, "shape_matches": None, "transform_matches": None,
-                             "organizer_acceptance": "unknown"},
-        "submission_name": None, "note": "No new candidate or slot selected; do not submit.", "verdict": "negative",
-        "experiments_run": 0, "weekly_slots_used": 0,
-        "blockers": [
-            "No single assigned method paragraph in this prompt.",
-            "Literal all-registry overlap rule is necessarily violated for the illustrated champion-sized budget.",
-            "No current complete surface/final-dot registry snapshot, same-protocol best, or fold-local holdout in this checkout.",
-            "Shared GEMSDOE32 CLI wrappers silently binarize continuous predictions; upstream issue 37 is open.",
-            "Organizer-authenticated data and current account quota/receipts are unavailable; core owner mirrors were restored, but the shared cached derived feature stack is absent."
+        'schema_version': 1,
+        'run_id': 'gems-karage3-preflight-20261028-afbdab50',
+        'created_utc': audit['checked_utc'],
+        'assigned_lane': None,
+        'hypothesis': 'Proposed only: multiscale paired potential-field fabric displacement across a buried boundary; no method assigned or tested.',
+        'mechanism': 'A persistent cross-boundary displacement of corresponding gravity and magnetic textures may indicate offset basement fabric beneath cover.',
+        'named_non_fault_mimic': 'Intrusions or unfaulted lithological contacts can produce similar textures; survey-line artefacts can generate false edges.',
+        'holdout_dti': {'evidence_class': 'HOLDOUT-DTI', 'evaluator_version': None,
+                        'withheld_positives': None, 'value': None, 'ci_95': None,
+                        'status': 'NOT RUN; no new candidate or valid same-protocol comparison.'},
+        'leakage_canaries': {'status': 'NOT RUN; no assigned lane or new model', 'features_tested': 0},
+        'correlation_overlap_vs_registry': {
+            'candidate_surface_spearman': None, 'candidate_surface_overlap': None,
+            'candidate_final_spearman': None, 'candidate_final_dot_overlap': None,
+            'status': 'NOT RUN for a new candidate. Single-witness proof stops the historical budget; full current registry was not checked.',
+            'witness_sha256': lat['source']['sha256'], 'witness_budget': lat['budget_example'],
+            'witness_uncovered': lat['uncovered_beyond_3px'], 'unavoidable_overlap_fraction': lat['budget_lower_bound'],
+            'scope': 'One registered lattice witness; a duplicate proof, not a complete registry scan.'},
+        'raster_sha256': None,
+        'validator_output': {'status': 'NOT RUN: no new candidate raster', 'no_nan_inside': None,
+                             'values_in_0_1': None, 'crs_matches': None, 'shape_matches': None,
+                             'transform_matches': None, 'outside_null_or_nan': None, 'organizer_acceptance': 'unknown'},
+        'submission_name': None, 'note': 'No new candidate or slot selected; do not submit.',
+        'verdict': 'negative', 'ok_to_submit': False, 'experiments_run': 0,
+        'slot_selected': False, 'weekly_slots_used': 0,
+        'blockers': [
+            'No unambiguous single assigned method paragraph in the supplied prompt.',
+            'Literal any-registry rule proves a duplicate at 37,654 dots; lower budgets are not automatically unique.',
+            'No current complete surface/final registry snapshot or validated same-protocol current-best comparison.',
+            'Shared template has open surface-gate and buffered holdout issues #42 and #60; read-only upstream access prevents a central fix.',
+            'Organizer-authenticated inputs, matched feature cache, quota and artifact-linked receipts are unavailable; portal behavior is unverified.'
         ],
-        "geometry_audit_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "geometry_audit": "historical-audit.json",
-        "official_hidden_score_estimate": None, "slot_selector": "Separate step required; not run."
+        'geometry_audit_sha256': digest(path), 'geometry_audit': 'historical-audit.json',
+        'saved_tiffs_audit_sha256': digest(evidence), 'saved_tiffs_audit': 'saved-tiffs-literal-20261028.json',
+        'official_hidden_score_estimate': None, 'slot_selector': 'Separate step required; not run.'
     }
-    if len(card["note"]) > 140:
-        raise ValueError("Note exceeds 140 characters")
-    output.write_text(json.dumps(card, indent=2, allow_nan=False) + "\n")
-    print(f"Wrote {output}: negative; no new raster, holdout or slot.")
+    if len(card['note']) > 140:
+        raise ValueError('Note exceeds 140 characters')
+    text = json.dumps(card, indent=2, allow_nan=False) + '\n'
+    output.write_text(text)
+    (ROOT / 'evidence/run-card-20261028-afbdab50.json').write_text(text)
+    print('Wrote current negative card; no new raster, experiment or slot.')
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

@@ -1,38 +1,46 @@
-"""Shared budget preflight for experiment runners (v3, 2026-10-28, IR-K3-17).
+"""Necessary, fail-closed duplicate-budget preflight against a pinned witness.
 
-The literal "<= 70 % of dots within 3 px of any registry raster" rule is unsatisfiable by pigeonhole for every
-file with >= 22,164 dots because the pinned calibration lattice (13GEMSDOE r13-lattice-s5) covers 99.87 % of the
-footprint within 3 px (IR-K3-02).  A gate no valid submission can pass measures geometry, not lane drift, so the
-duplicate rule is applied to the null-calibrated excess overlap (obs - p0)/(1 - p0) in `promotion_gate.py`.
-
-This preflight therefore no longer stops a run on the literal lattice bound.  It still computes and returns the
-bound so every run card can disclose it, and it still refuses nonsensical budgets.
+The user's protocol uses *literal* directional overlap, not a calibrated
+statistic. One valid witness can prove a violation but cannot certify novelty.
+The bound assumes candidate dots are distinct pixels inside the same footprint.
 """
 import json
-import warnings
 from pathlib import Path
+
 from scripts.audit_registry import dot_bound
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def literal_lattice_bound(budget: int) -> dict:
-    """Minimum literal overlap any `budget`-dot file has with the pinned lattice (disclosure, not a stop)."""
-    if budget <= 0:
-        raise ValueError("budget must be positive")
+    """Return a necessary lower bound; only an upper-bound violation is a stop."""
     witness = json.loads((ROOT / 'evidence/geometry_audit.json').read_text())
     bound = dot_bound(budget, witness['lattice']['uncovered_footprint_pixels'])
-    bound['rule'] = 'literal bound disclosed; duplicate decision uses null-calibrated excess overlap (IR-K3-17)'
+    bound['rule'] = 'literal directional overlap > 0.70 is a duplicate stop'
     return bound
 
 
 def require_budget_not_proven_duplicate(budget: int) -> None:
-    """Backward-compatible name.  Raises only for invalid budgets; warns (does not stop) on the literal bound."""
+    """Stop before placement if the pinned witness already proves a violation."""
     bound = literal_lattice_bound(budget)
     if bound['duplicate_stop_proven']:
-        warnings.warn(
-            'Literal any-registry overlap with the pinned lattice is at least '
-            f"{bound['minimum_overlap_fraction']:.6%} for {budget} dots (pigeonhole, IR-K3-02); "
-            'the gate applies the null-calibrated rule instead (IR-K3-17).',
-            stacklevel=2,
+        raise ValueError(
+            'duplicate stop: literal overlap with the pinned lattice must be at least '
+            f"{bound['minimum_overlap_fraction']:.6%} for {budget} in-footprint dots, "
+            'above the 70% limit. See evidence/geometry_audit.json. '
+            'A null-calibrated diagnostic does not override the requested rule.'
         )
+
+
+def require_shared_protocol_ready() -> None:
+    """Stop experimental runs until the centrally maintained template is fixed.
+
+    Read-only access prevents patching the shared template here. Never replace
+    its missing surface-overlap or buffered whole-segment semantics privately.
+    Revisit this guard only after pinning and testing an upstream fix.
+    """
+    raise RuntimeError(
+        'Shared template protocol blocked: surface overlap gate and buffered '
+        'whole-segment holdout are not verified. See GEMSDOE32 issues #42 and #60. '
+        'A fixed upstream template and regression tests are required before experiments.'
+    )

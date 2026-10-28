@@ -103,8 +103,8 @@ def test_retracted_submission_geotiff_and_run_card():
     assert pg.returncode == 2
     assert pg_out["verdict"] == "negative"
     assert pg_out["ok_to_submit"] is False
-    # v3 gate (IR-K3-17): legacy cards without a null-calibrated audit keep failing on the literal rule
-    assert any("all-registry final audit failed" in reason for reason in pg_out["reasons"])
+    # Historical cards do not meet the literal all-registry rule.
+    assert any("literal" in reason for reason in pg_out["reasons"])
 
 
 class SMGCAndSubmissionTests(unittest.TestCase):
