@@ -29,9 +29,14 @@ class SiteTests(unittest.TestCase):
         self.assertIn('docs/preflight.html', root)
         self.assertTrue((ROOT / '.nojekyll').is_file())
         self.assertTrue((DOCS / 'index.html').is_file())
-        self.assertIn('Submission blocked: duplicate-stop', (DOCS / 'index.html').read_text())
-        self.assertIn('NOT CLEARED FOR SUBMISSION', (DOCS / 'executive-summary.html').read_text())
-        self.assertIn('Legacy outside-null wording', (DOCS / 'executive-summary.html').read_text())
+        home = (DOCS / 'index.html').read_text()
+        self.assertIn('current submission decision', home)
+        self.assertIn('promotion_gate.py', home)
+        decision = json.loads((DOCS / 'current-gate-decision.json').read_text())
+        summary = (DOCS / 'executive-summary.html').read_text()
+        expected = 'OK TO DOWNLOAD AND SUBMIT: YES' if decision['ok_to_submit'] else 'DO NOT SUBMIT'
+        self.assertIn(expected, summary)
+        self.assertIn(decision['raster_sha256'], summary)
         for card_path in ('run-card.json', 'data/latest-run-card.json', 'data/run_card.json'):
             card = json.loads((DOCS / card_path).read_text())
             self.assertEqual(card['verdict'], 'negative')

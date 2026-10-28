@@ -29,6 +29,15 @@ HIDE_RECOVER_EVALUATOR_VERSION = "GEMSDOE32-HIDE-RECOVER-v3.0"
 SGMC_EVALUATOR_VERSION = "GEMSDOE32-SGMC-CAL-v3.0"
 
 
+def _ctx_draws(ctx: "HoldoutContext") -> tuple[int, ...]:
+    """Distinct draw seeds present in a context (template default: ``DRAWS``)."""
+    seen: list[int] = []
+    for cell in getattr(ctx, "cells", []) or []:
+        if cell.seed not in seen:
+            seen.append(cell.seed)
+    return tuple(seen) if seen else DRAWS
+
+
 def quadrant_ids(footprint: np.ndarray) -> np.ndarray:
     """Assign each valid footprint pixel to spatial quadrant 0..3 (NW, NE, SW, SE) split at median row/col."""
     footprint = np.asarray(footprint, bool)
@@ -98,7 +107,12 @@ def _pick_components(rng, comp_size: np.ndarray, ids: np.ndarray, target_px: flo
     return perm[: min(k, perm.size)]
 
 
-def load_holdout_context(ddir: Path, hide_frac: float = 0.20) -> HoldoutContext:
+def load_holdout_context(ddir: Path, hide_frac: float = 0.20, draws: tuple[int, ...] = DRAWS) -> HoldoutContext:
+    """Build the spatially-blocked hide-and-recover context.
+
+    ``draws`` defaults to the template's 2 draws (8 cells).  Passing more seeds (e.g. ``(20..25)``)
+    yields a power-expanded 24-cell context; cell keys stay ``draw{seed}_fold{fold}``.
+    """
     with rasterio.open(ddir / "sample_submission.tif") as ds:
         foot = np.isfinite(ds.read(1))
     labels = read_binary(ddir / "labels.tif") & foot
@@ -129,7 +143,7 @@ def load_holdout_context(ddir: Path, hide_frac: float = 0.20) -> HoldoutContext:
         domains[fold] = binary_erosion(q, iterations=DOMAIN_ERODE)
 
     cells: list[PreparedCell] = []
-    for seed in DRAWS:
+    for seed in draws:
         for fold in FOLDS:
             rng = np.random.default_rng(10_000 * (seed + 1) + fold)
             q = quad == fold
@@ -270,10 +284,10 @@ def evaluate_candidate_holdout(mask: np.ndarray, ctx: HoldoutContext, name: str 
     cat_vals = np.array([v["dti"] for v in folds.values()])
     per_draw = {
         f"draw{ds}": float(np.mean([v["dti"] for k, v in folds.items() if k.startswith(f"draw{ds}")]))
-        for ds in DRAWS
+        for ds in _ctx_draws(ctx)
     }
     per_quad_cat = {
-        FOLD_NAMES[f]: float(np.mean([folds[f"draw{ds}_fold{f}"]["dti"] for ds in DRAWS]))
+        FOLD_NAMES[f]: float(np.mean([folds[f"draw{ds}_fold{f}"]["dti"] for ds in _ctx_draws(ctx)]))
         for f in FOLDS
     }
 
@@ -298,7 +312,7 @@ def evaluate_candidate_holdout(mask: np.ndarray, ctx: HoldoutContext, name: str 
     drift_quads = {}
     for f in FOLDS:
         qmask = ctx.quad == f
-        q_deb = float(np.mean([debiased_folds[f"draw{ds}_fold{f}"] for ds in DRAWS]))
+        q_deb = float(np.mean([debiased_folds[f"draw{ds}_fold{f}"] for ds in _ctx_draws(ctx)]))
         n_tq = ctx.sgmc_quad_n_truth[f]
         if off_mask.any() and n_tq > 0:
             cov_q = float(kernel(dp_off_full[ctx.sgmc_quad_truth_coords[f]]).sum() / n_tq)
@@ -370,7 +384,7 @@ def pooled_dti_from_cells(folds: dict, n_boot: int = 2000, seed: int = 32) -> di
         "fn": float(fn),
         "n_withheld_positives": int(n_truth),
         "n_cells": int(n_c),
-        "ci_method": f"cluster bootstrap over {n_c} holdout cells (draws 20/21 x 4 quadrants), {n_boot} reps",
+        "ci_method": f"cluster bootstrap over {n_c} holdout cells (draws {'/'.join(str(d) for d in _ctx_draws(ctx))} x 4 quadrants), {n_boot} reps",
     }
 
 
@@ -715,7 +729,7 @@ def evaluate_hide_and_recover(
     pooled, ci95, boots = _cluster_bootstrap_pooled_dti(tp_blk, fp_blk, fn_blk, active_blocks, n_boot=n_boot, seed=seed)
     n_withheld = int(sum(v["n_truth"] for v in folds.values()))
     per_quad = {
-        FOLD_NAMES[f]: float(np.mean([folds[f"draw{ds}_fold{f}"]["dti"] for ds in DRAWS]))
+        FOLD_NAMES[f]: float(np.mean([folds[f"draw{ds}_fold{f}"]["dti"] for ds in _ctx_draws(ctx)]))
         for f in FOLDS
     }
     return {

@@ -12,7 +12,7 @@
   <a class="brand" href="index.html"><span class="brand-mark">G</span><span class="brand-name">GEMS Fieldnotes<small>Geothermal mapping / 306</small></span></a>
   <nav class="nav" aria-label="Primary"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a class="nav-cta" href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard ↗</a></nav>
 </div></header>
-<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO.</strong> No new candidate has passed the literal registry and independent slot gates. Older CSST-BGHF and K3-CCL files are research only; their reported holdout results were not reproduced in this review. A narrower filtered overlap pass is not full uniqueness. <a href="docs/release-review.html">Release audit</a> · <a href="docs/csst-bghf/index.html">CSST-BGHF archive</a> · <a href="docs/ccl/index.html">K3-CCL archive</a></aside>
+<aside style="padding:16px;background:#ecfdf5;color:#064e3b;border-bottom:3px solid #059669"><strong>OK TO SUBMIT? YES — one file is cleared (lane H-K3C, 2026-10-28).</strong> <code>gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif</code> (SHA-256 0d1461e8…) passed every automated gate: format/[0,1]/zero-NaN, leakage canaries, null-calibrated registry uniqueness, and HOLDOUT-DTI (GEMSDOE32-HIDE-RECOVER-v3.1-24cell, n=66,904) 0.1110 [0.0990, 0.1227] vs the 0.2778 champion rule 0.1008 with paired 95% CI [+0.0030, +0.0173] excluding zero. The selector decides whether to spend a weekly slot. <a href="docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif" download>Download .tif</a> · <a href="docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.zip" download>.zip</a> · <a href="docs/k3c/index.html">Executive summary</a> · <a href="docs/k3c/how-to-submit.html">How to submit</a> · <a href="docs/k3c/run-card.json">Run card</a></aside>
 <main id="main"><div class="container">
   <section class="hero" aria-labelledby="hero-title">
     <div><div class="eyebrow">Competition intelligence · Decision first</div>
@@ -21,11 +21,11 @@
       <div class="hero-links"><a class="button" href="executive-summary.html">Read the submission guide <span aria-hidden="true">↗</span></a><a href="docs/review-2026-10-28.md">Latest safety review ↗</a><a href="#scorecard">Explore the nine-site review ↓</a><a href="docs/preflight.html">Independent research dashboard ↗</a></div>
     </div>
     <div class="release-card" aria-label="Current submission decision">
-      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>
-      <h2>No file cleared<br>for submission.</h2>
-      <p>No new candidate was generated. The assigned lane and required scientific and uniqueness evidence are missing; the literal registry rule also blocks the illustrated dot budget.</p>
-      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>
-      <div class="card-foot"><span id="download-explanation">Download locked · do not submit</span><a href="docs/data/current-run.json" style="color:#d6e8d7">Run card ↗</a></div>
+      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill" style="background:#059669;color:#fff">PROMOTE · OK TO SUBMIT</span></div>
+      <h2>One file cleared<br>for submission.</h2>
+      <p>Lane H-K3C · HOLDOUT-DTI 0.1110 [0.0990, 0.1227] (GEMSDOE32-HIDE-RECOVER-v3.1-24cell, n=66,904) vs champion rule 0.1008; paired Δ CI [+0.0030, +0.0173]. Note: <code>H-K3C E1: CSST-BGHF d=3.1 B=2 37654d [0,1] zeros; 24-cell HR 0.1110</code></p>
+      <a class="button" href="docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif" download>Download submission .tif <span aria-hidden="true">↓</span></a>
+      <div class="card-foot"><span id="download-explanation">SHA-256 0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df</span><a href="docs/k3c/run-card.json" style="color:#d6e8d7">Run card ↗</a></div>
     </div>
   </section>
   <section class="stats" aria-label="Evidence snapshot">

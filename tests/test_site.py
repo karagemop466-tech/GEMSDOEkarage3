@@ -85,7 +85,12 @@ def test_generated_pages_match_evidence(tmp_path, monkeypatch):
     result = build_site.render()
     assert result[root / "index.html"] == (ROOT / "index.html").read_text()
     assert result[root / "executive-summary.html"] == (ROOT / "executive-summary.html").read_text()
-    assert 'class="disabled-button" disabled' in result[root / "index.html"]
+    decision = json.loads((ROOT / "docs/current-gate-decision.json").read_text())
+    if decision["ok_to_submit"]:
+        assert "OK TO SUBMIT? YES" in result[root / "index.html"]
+        assert decision["raster_sha256"] in result[root / "index.html"]
+    else:
+        assert 'class="disabled-button" disabled' in result[root / "index.html"]
 
 
 def test_site_builder_rejects_stale_and_tampered_evidence(tmp_path, monkeypatch):

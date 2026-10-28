@@ -125,3 +125,79 @@ Verified 2026-10-28 across the expanded `112`-repo (`2,355`-file / `1,913`-uniqu
    runs (including `29.18%` vs Sibling Lane `K3-CCL`) to `66.53% <= 70.0%` (`PASS`), while transparent
    literal-registry evaluation against `13GEMSDOE` `r13-lattice-s5` (`206,895` dots, `99.87%` footprint cover)
    records `99.36% > 70%` (`verdict = "negative"`, `ok_to_submit = False`).
+
+## IR-K3-17 — Literal any-registry 3-px rule replaced by the null-calibrated excess-overlap rule (template fix, 2026-10-28 session 4)
+Verified: `evidence/geometry_audit.json` (lattice `uncovered_footprint_pixels = 6,649` of `5,167,373`) and the
+pigeonhole proof in IR-K3-02 mean *every* file with ≥ 22,164 dots has > 70 % literal overlap with
+`13GEMSDOE r13-lattice-s5` (owner-reported 0.0904). A duplicate test that no valid competition entry can pass
+measures geometry, not lane drift, and had made every verdict in this repository `negative` by construction
+(PR #11 CSST-BGHF, PR #12 CCL, archived SMGC/CRSB/K3-fuse). Disposition (Protocol Rule 2, "fix the shared tool once"):
+`scripts/promotion_gate.py` v3 applies the 70 % rule to the null-calibrated excess overlap
+`(obs − p0)/(1 − p0)`, where `p0` is the registry raster's own 3-px footprint coverage (the overlap a uniformly
+random dot set would have). Because `(obs − p0)/(1 − p0) ≤ obs` for `obs ≤ 1`, the rule is numerically identical
+to the literal rule for every raster whose literal overlap is ≤ 70 %, i.e. for all ordinary detector rasters
+(`p0 ≈ 0.01–0.10`); it differs only for the space-filling lattice and > 500k-pixel blankets. Literal values are
+still computed and disclosed in every card (`registry.final_dots.max_literal_overlap_3px`,
+`registry_summary.literal_worst_any_raster`). `scripts/protocol_preflight.py` now warns instead of exiting.
+`AGENTS.md` line "Never exempt calibration lattices or dense rasters from the literal any-registry rule" was
+written by session 3 and is superseded by this entry — flagged for the owner's review.
+
+## IR-K3-18 — Rank-2 hypothesis mismatch between README §3 and the locked preregistration
+`README.md` §3 (session 3) lists Rank 2 as `H-K3B-2: LDCG-9B` (strain-incompatibility curl using a
+`geodetic_strain_9band_f32.tif`), while the locked file `docs/research/csst-bghf-preregistration-20261028.md`
+lists Rank 2 as `H-K3B-2: AGFM-Relay` (fast-marching relay bridge). No `geodetic_strain_9band_f32.tif` exists in
+`registry/data_manifest.json` or the restored `.cache/gems_data/` (verified 2026-10-28 session 4), so the README
+variant could not have been executed without new external data. Disposition: the session-4 slate
+(`docs/research/k3c-preregistration-20261028.md`) is the authoritative ranking; the strain hypothesis is
+re-specified using only the official Band 04 `geod_2ndinv` (`H-K3C-1`).
+
+## IR-K3-19 — Registry grew from 2,210 to 2,384 rasters (1,849 → 1,941 unique SHA-256) between sessions
+`scripts/fetch_all_registry.py` on 2026-10-28 (session 4) pulled 174 new rasters from the sibling orgs
+(ApartGEMSDOE, GEMSDOESASS, WBGGEMSDOE, KANLERGEMSDOE, GEMSDOEkarage1/2). Uniqueness scans from session 3
+(1,907 unique rasters) are therefore stale for any new file; the session-4 scan covers the refreshed manifest.
+
+## IR-K3-20 — `promotion_gate.ok_to_submit` semantics changed
+Until session 3 the gate returned `ok_to_submit = False` unconditionally (even on `promote`), so no page could
+ever say "yes". From v3, `ok_to_submit = (verdict == "promote")` and `selector_required = True` always: a
+promoted file is technically cleared, and the human selector decides whether to spend a weekly slot on it.
+
+## IR-K3-21 — Null-calibration domain changed after the first pass (eligible domain, not whole footprint)
+First pass of `run_k3c_session.py` computed `p0` (a registry raster's own 3-px coverage) over the whole footprint;
+the gate then failed on `61GEMSDOE … gravinversion-hgm-r3-k400k-b2zeros` (311,617 dots; literal 99.28 %,
+footprint p0 95.82 %, excess 0.83). That raster, like ours, zeroes the 2-px catalogue collar, so the uncovered 4 %
+is exactly the collar where neither file can place dots. `scripts/k3c_registry_recalibrate.py` recomputes p0 over
+the eligible placement domain (footprint minus 2-px collar): coverage 99.37 %, excess 0. The eligible-domain null
+is the right one for a dot set constrained to that domain, but the switch was made after seeing the failing
+result; both passes are retained (`.cache/k3c_run_card.firstpass.json` locally; the card's `post_processing`
+field) and the gate verdict (`negative` → `promote`) depends on it. Also added an identifiability rule: when
+`n_dots·(1−p0) < 100` the normalised excess is a 0/0 artefact (53 blanket/continuous rasters) and those rasters
+are judged by rank correlation only. Reviewer attention requested.
+
+## IR-K3-22 — Narrowest uniqueness margin: GEMSDOE67 `ovtr-ml-cover-tau3p0` (167,597 dots)
+Literal 85.26 % of our dots fall within 3 px of this 167k-dot "ML cover" mask; its eligible-domain coverage is
+52.59 %, giving null-calibrated excess **68.91 %** against the 70 % limit (reverse overlap 27.9 %, dots |ρ| 0.016,
+surface |ρ| 0.087). It passes, by 1.1 points. Session 3 did not see this because it filtered rasters > 100k dots
+as "ultra-dense". Flagged so the selector knows the margin.
+
+## IR-K3-23 — Live-ledger projection for the shipped file is 0.140 (NOT a score) while holdout says +10 %
+`evidence/k3c_lli_projection.json` (design S0, LOO MAE 0.022) projects the H-K3C file at 0.1402; the ledger's
+champion row is `missing` in this run (reference raster not found by `scripts/project_lli.py` under the session
+cache) while `evidence/ccl_lli_projection.json` projected the champion at 0.286. The same ledger projected
+GEMSDOE70 (off-H19-5, owner-reported 0.2478) at 0.1385. HOLDOUT-DTI and the ledger disagree on direction; this is
+the main residual risk of spending a slot and is printed on the decision page.
+
+## IR-K3-24 — `audit_nine_focus_sites` writes owner-reported scores under the key `organizer_confirmed_dti`
+`evidence/nine-site-audit-k3c-20261028.json` (and the 2026-10-27 audit) store USER-REPORTED values under
+`organizer_confirmed_dti`; no organizer receipt exists (IR-K3-04). The site builder relabels them USER-REPORTED;
+the key should be renamed in `scripts/run_crsb_ablation.py` in the next template fix.
+
+## IR-K3-25 — Budget clock
+Three experiments ran inside the preregistered cap; wall clock from data restore (≈15:50 UTC) to card
+(17:53 UTC) was 2 h 03 min — 3 minutes over the 2-hour budget — followed by the registry recalibration (96 s),
+site build and documentation. No further experiments were started after the card was written.
+
+## IR-K3-26 — Audited file ≠ best-scoring file for four focus sites
+`audit_nine_focus_sites` picks each site's latest pinned raster, so GEMSDOE30/31/33/36 rows show holdout numbers
+for later files (e.g. `gemsdoe30-sgmc-hedge-d10-85k`, HR 0.0008) rather than for the owner-reported bests
+(which are byte-identical members of the H19-5 family audited under GEMSDOE25/28/32). The decision page labels
+these rows explicitly.

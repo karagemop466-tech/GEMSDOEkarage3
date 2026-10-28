@@ -8,8 +8,11 @@ from html import escape
 import json
 from pathlib import Path
 import re
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
 EXPECTED = {f"GEMSDOE{x}" for x in (24, 25, 27, 28, 30, 31, 32, 33, 36)}
 
 
@@ -101,6 +104,9 @@ def render() -> dict[Path, str]:
              .replace("{{HEAD_TIME}}", esc(time)))
     if "{{" in main or "{{" in guide:
         raise ValueError("Unexpanded site template token")
+    from build_k3c_site import apply_root_decision, apply_guide_decision  # current lane decision (docs/k3c/run-card.json)
+    main = apply_root_decision(main)
+    guide = apply_guide_decision(guide)
     return {ROOT / "index.html": main, ROOT / "executive-summary.html": guide}
 
 

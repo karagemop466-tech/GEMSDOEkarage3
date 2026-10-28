@@ -221,6 +221,7 @@ def evaluate_detached_and_censored(
             "ci95": det_ci,
             "n_withheld_positives": n_det_pos,
             "_boots": det_boots,
+            "_block_totals": (tp_det, fp_det, fn_det, active_blocks),
         },
     }
 

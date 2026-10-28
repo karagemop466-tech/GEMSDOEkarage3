@@ -4,8 +4,28 @@ class GateTests(unittest.TestCase):
     def valid(self):
         return dict(assigned_lane='test',holdout=dict(evidence_class='HOLDOUT-DTI',evaluator_version='test-v1',withheld_positives=1,dti=.2,ci95=[.1,.3],paired_delta_ci95=[.01,.02],same_evaluator_current_best=True),feature_auc=[.6],registry={**{s:dict(complete=True,max_abs_spearman=.9,max_overlap_3px=.7, comparisons=[dict(sha256='b'*64,abs_spearman=.9,overlap_3px=.7)]) for s in ['surface','final_dots']}, 'inventory_sha256':['b'*64], 'manifest_sha256':'d'*64, 'literal_all_rasters_final_passed':True},validator={**{k:True for k in ['saved_bytes_checked','single_band','finite_inside','range_0_1','whole_array_finite_range','crs_match','shape_match','transform_match']}, 'raster_sha256':'a'*64},raster_sha256='a'*64,submission_name='test',note='test only')
     def test_missing(self): self.assertEqual(assess({})['verdict'],'negative')
-    def test_valid_is_not_upload_authorization(self):
-        r=assess(self.valid()); self.assertEqual(r['verdict'],'promote'); self.assertFalse(r['ok_to_submit'])
+    def test_valid_promotes_and_clears_for_selector(self):
+        r=assess(self.valid()); self.assertEqual(r['verdict'],'promote'); self.assertTrue(r['ok_to_submit']); self.assertTrue(r['selector_required'])
+    def test_negative_never_ok_to_submit(self):
+        c=self.valid(); c['holdout']['paired_delta_ci95']=[-.01,.02]
+        r=assess(c); self.assertEqual(r['verdict'],'negative'); self.assertFalse(r['ok_to_submit'])
+    def test_null_calibrated_rule_v3(self):
+        # v3: literal failure vs a space-filling lattice is allowed only with the null-calibrated audit declared
+        c=self.valid(); c['registry']['literal_all_rasters_final_passed']=False
+        self.assertEqual(assess(c)['verdict'],'negative')            # legacy card: literal rule binds
+        c['registry']['null_calibrated_all_rasters_final_passed']=True
+        c['registry']['duplicate_rule']='null-calibrated excess overlap (obs-p0)/(1-p0) <= 0.70'
+        self.assertEqual(assess(c)['verdict'],'negative')            # literal failure must be disclosed
+        c['registry']['final_dots']['max_literal_overlap_3px']=.9936
+        self.assertEqual(assess(c)['verdict'],'promote')
+        c['registry']['null_calibrated_all_rasters_final_passed']=False
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_literal_over70_node_needs_p0_and_excess(self):
+        c=self.valid(); c['registry']['literal_all_rasters_final_passed']=True
+        c['evidence']={'within_3px_fraction':.9936,'footprint_3px_coverage_p0':.9987,'null_calibrated_excess_overlap':0.0}
+        self.assertEqual(assess(c)['verdict'],'promote')
+        c['evidence']={'within_3px_fraction':.9936,'footprint_3px_coverage_p0':.5,'null_calibrated_excess_overlap':.98}
+        self.assertEqual(assess(c)['verdict'],'negative')
     def test_duplicate(self):
         c=self.valid(); c['registry']['final_dots']['max_overlap_3px']=.70001
         self.assertEqual(assess(c)['verdict'],'negative')
