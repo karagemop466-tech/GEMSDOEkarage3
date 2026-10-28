@@ -748,8 +748,9 @@ def _pack_arm_summary(res: dict) -> dict:
 
 def main() -> int:
     sys.path.insert(0, str(ROOT))
-    from scripts.protocol_preflight import require_budget_not_proven_duplicate
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
     require_budget_not_proven_duplicate(37654)
+    require_shared_protocol_ready()
     t0 = time.time()
     ddir = data_dir()
     wdir = work_dir()

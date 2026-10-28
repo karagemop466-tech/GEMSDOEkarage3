@@ -619,8 +619,9 @@ def render_diagnostic_figure(
 
 def main() -> int:
     sys.path.insert(0, str(ROOT))
-    from scripts.protocol_preflight import require_budget_not_proven_duplicate
+    from scripts.protocol_preflight import require_budget_not_proven_duplicate, require_shared_protocol_ready
     require_budget_not_proven_duplicate(37654)
+    require_shared_protocol_ready()
     # Historical runner excludes dense/lattice rasters from release-gate inputs,
     # writes before the final literal check and deletes existing downloads.
     # Disable it rather than silently authorizing a protocol-violating candidate.

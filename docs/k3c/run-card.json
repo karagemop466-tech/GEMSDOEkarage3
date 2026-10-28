@@ -32186,7 +32186,9 @@
     "transform_match": true,
     "zero_on_catalogue_leakage": true,
     "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
-    "whole_array_finite_range": true
+    "whole_array_finite_range": true,
+    "dtype_float32": true,
+    "outside_null_or_nan": false
   },
   "validator_output": {
     "writer": {
@@ -32271,13 +32273,25 @@
   "elapsed_seconds": 3900.4,
   "peak_rss_mb": 3678.4,
   "promotion_gate": {
-    "verdict": "promote",
-    "ok_to_submit": true,
+    "verdict": "negative",
+    "ok_to_submit": false,
+    "eligible_for_selector": false,
     "selector_required": true,
-    "reasons": []
+    "reasons": [
+      "196 literal overlap value(s) missing, invalid or above 0.70; first: card.registry.final_dots.comparisons[27].literal_overlap_3px",
+      "current same-evaluator baseline not established or not beaten",
+      "whole-segment buffered fold-local visible-only holdout not established",
+      "pooled official DTI parameters not established",
+      "missing or leaking per-feature canaries",
+      "calibrated primary duplicate rule cannot establish literal compliance",
+      "literal all-registry final audit absent or failed",
+      "surface literal uniqueness incomplete or duplicate",
+      "final_dots literal uniqueness incomplete or duplicate",
+      "validator: outside_null_or_nan"
+    ]
   },
-  "verdict": "promote",
-  "ok_to_submit": true,
+  "verdict": "negative",
+  "ok_to_submit": false,
   "selector_required": true,
   "post_processing": [
     {
@@ -32289,5 +32303,22 @@
   "tested_hypothesis_E2": "Geodetic strain (Band 04 geod_2ndinv) that is not accounted for by visible catalogued fault length must be accommodated by unmapped faults; re-allocating the CSST-BGHF dot budget toward strain-deficit regions raises recovery of off-catalogue faults.",
   "tested_mechanism_E2": "Kostrov (1974) moment balance: prior = clip((S/(D+0.25) / median)^0.5, 0.5, 2.0) with S = footprint rank of Band 04 and D = 10-km Gaussian density of the fold-visible catalogue; multiplies the CSST-BGHF EXP-3 surface before min_sep 3.1 px CELF emission with a B=2 px visible collar.",
   "shipped_arm": "E1",
-  "e2_result": "negative"
+  "e2_result": "negative",
+  "historical_verdict": "promote",
+  "historical_promotion_gate": {
+    "verdict": "promote",
+    "ok_to_submit": true,
+    "selector_required": true,
+    "reasons": []
+  },
+  "reassessment": {
+    "checked_utc": "2026-10-28T22:31:13.090271+00:00",
+    "status": "SUPERSEDED: historical promote withdrawn; literal duplicate stop and conservative outside-null failure.",
+    "evidence": "docs/data/saved-tiffs-literal-20261028.json",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "measured_witness_overlap_fraction": 0.9935199447601848,
+    "full_registry_checked_in_this_reassessment": false,
+    "scientific_holdout_reproduced_in_this_reassessment": false,
+    "organizer_acceptance": "unknown"
+  }
 }

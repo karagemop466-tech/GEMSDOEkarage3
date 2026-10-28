@@ -1,5 +1,7 @@
 # Three-pass review — literal duplicate stop
 
+> Archived parallel-session review. Its statements about available inputs, network access and checks describe that session; see the [current review](../research/2026-10-28-literal-review.md) for the broader eight-file audit and subsequent source observations.
+
 Machine-readable companion: [`evidence/run-card-literal-review-20261028.json`](../evidence/run-card-literal-review-20261028.json).
 
 **Decision: negative / DO NOT SUBMIT.** No new geological experiment, candidate,
