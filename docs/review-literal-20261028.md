@@ -1,5 +1,7 @@
 # Three-pass review — literal duplicate stop
 
+Machine-readable companion: [`evidence/run-card-literal-review-20261028.json`](../evidence/run-card-literal-review-20261028.json).
+
 **Decision: negative / DO NOT SUBMIT.** No new geological experiment, candidate,
 score estimate or competition upload was made. The requested method paragraph
 is not identifiable in the prompt. The ignored feature stack is absent in this
@@ -38,9 +40,11 @@ The local promotion screen now requires literal overlap <= 70% at both stages
 and cannot treat calibrated overlap as literal. The preflight stops budgets
 that the pinned geometry proves cannot pass. The current landing page and guide
 now say DO NOT SUBMIT; the research file remains explicitly labeled as such.
-The old run card stays unchanged as historical evidence, but no longer drives
-a positive gate. Automated tests cover the threshold, calibrated false passes,
-missing literal fields, and published decision agreement.
+The original experiment card is preserved unchanged at
+`evidence/k3c_run_card.json`; the public `docs/k3c/run-card.json` now carries an
+explicit release retraction and negative status, so it cannot drive a positive
+gate. Automated tests cover the threshold, calibrated false passes, missing
+literal fields, and published decision agreement.
 
 The upstream shared evaluator/writer issue, silently binarizing probability
 inputs, is [still open](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/37)
@@ -73,8 +77,10 @@ this network-restricted sandbox; their current content, data rights, and quota
 were not independently checked here. No claim about the present leaderboard or
 external data obtainability follows from these links.
 
-Verification after the three passes: `pytest -q` 165 passed, one optional-cache
-skip, 49 subtests; `unittest discover` 105 passed; dashboard Node suite four
-passed; browser feed suite two passed; root site build check and `git diff
---check` passed. These are engineering checks, not new HOLDOUT-DTI measurements
-or evidence of organizer acceptance.
+Verification after the three passes and final gate refinement: `pytest -q`
+169 passed, one optional-cache skip, 49 subtests; `unittest discover` 109
+passed; dashboard Node suite four passed; browser feed suite two passed; root
+site build check and `git diff --check` passed. The independent one-witness
+script also reran and returned 0.9935199447601848 literal overlap with a
+negative verdict. These are engineering checks and a single-raster duplicate
+witness, not a new HOLDOUT-DTI measurement or evidence of organizer acceptance.
