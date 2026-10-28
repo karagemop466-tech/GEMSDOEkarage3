@@ -15,23 +15,23 @@
     },
     {
       "id": "core_mirror_data",
-      "passed": false,
+      "passed": true,
       "details": [
         {
           "id": "training_features",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         },
         {
           "id": "labels",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         },
         {
           "id": "existing_faults",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         },
         {
           "id": "sample_submission",
-          "present_and_hash_verified": false
+          "present_and_hash_verified": true
         }
       ],
       "detail": "Owner mirrors only, not organizer-authenticated"

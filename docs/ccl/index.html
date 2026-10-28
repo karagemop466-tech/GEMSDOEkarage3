@@ -3,7 +3,7 @@
 <body>
 <main class="wrap" id="main">
 <h1>Executive summary — lane K3-CCL (2026-10-28)</h1>
-<aside role="note" style="background:#fff1f2;color:#881337;padding:20px;border:3px solid #be123c"><p style="font-size:1.4em;margin:0"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong></p><p>The new K3-CCL raster passed the automated format check and the holdout gate. It then hit the duplicate stop: its final dots fall more than 70% within 3 px of 21 registry rasters (the catalogue-halo lane), and it also fails the literal lattice rule. Its live-ledger projection, 0.096–0.100, is a projection rather than a score, and it is far below 0.2778. No competition slot was used, and none of the nine historical files below is a new submission.</p></aside>
+<aside role="note" style="background:#fff1f2;color:#881337;padding:20px;border:3px solid #be123c"><p style="font-size:1.4em;margin:0"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong></p><p>The new K3-CCL raster has an archived format report but no matched current-best holdout gate. It hit the duplicate stop: its final dots fall more than 70% within 3 px of 21 registry rasters (the catalogue-halo lane), and it also fails the literal lattice rule. Its live-ledger projection, 0.096–0.100, is a projection rather than a score, and it is far below 0.2778. No competition slot was used, and none of the nine historical files below is a new submission.</p></aside>
 <p><a href="how-to-submit.html">How to submit on DrivenData, step by step</a> · <a href="run-card.json">JSON run card</a> ·
 <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/research/2026-10-28-ccl.md">Full research note</a> ·
 <a href="../index.html">Main site</a></p>
@@ -16,7 +16,7 @@
 <p>The catalogue geometry roughly doubled holdout DTI: mechanism Δ +0.0733 [+0.0605, +0.0859]. The leakage canary passed (max single-feature AUC 0.788).</p>
 <p><strong>Why it still fails.</strong> The holdout withholds catalogue fragments that sit next to visible traces, so they are easy to recover. Live new faults are depleted near the catalogue. Under the live catalogue the learner concentrates its dots in the catalogue halo, which is already occupied by registered rasters. This is the duplicate stop. Fixing the holdout comes first (see the research note, §4 and §8).</p>
 <h2>Why GEMSDOE32 scored 0.2778 (OWNER-REPORTED)</h2>
-<p>It uses H19-5 network dots at 2.8 px spacing, which keeps the kernel's TP coverage while cutting false-positive mass by 64%. It then prunes the dots within 2 px of catalogued faults. Each pruned dot gained the pure-false-positive value, about 2.8e-6 DTI. All 12 measured files at or above 0.2560 lie at least 97.7% within 3 px of H19-5. The best unique file is GEMSDOE70 at 0.2478.</p>
+<p>The historical support is a subset of GEMSDOE31 after removing dots near the mirrored fault catalogue. Reduced redundancy and false-positive mass could explain part of the reported result, but the hidden labels are unavailable; the contribution of individual removed dots and the cause of the reported result are not established.</p>
 
 </main>
 </body></html>

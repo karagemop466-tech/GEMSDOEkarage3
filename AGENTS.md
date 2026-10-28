@@ -10,3 +10,7 @@ Also read `research/2026-10-28-ccl.md` and `evidence/ccl_run_card.json`. Three r
 - Hide-and-recover rewards recovering catalogue fragments next to visible traces (IR-K3-12). Do not promote catalogue-geometry features on that holdout alone. Fix `gems32.holdout` once with a fragment-censored variant first.
 - Before placing dots, check the surface against catalogue-halo registry rasters: 57GEMSDOE strand surfaces, GEMSDOE77 collar35, GEMSDOE3 coverage, GEMSDOE86 fault-halo.
 - Refresh `registry/complete_registry_manifest.json` with `scripts/fetch_all_registry.py` at the start of a session. Siblings change daily.
+
+## Follow-up readiness
+
+Read `research/2026-10-28-followup-d790672e.md` and `evidence/run-card-20261028-followup.json`. The historical registry fetcher applies exclusions; its output alone cannot establish literal registry completeness. Recheck data availability locally; ignored data/caches are not guaranteed to persist.

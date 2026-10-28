@@ -53,6 +53,16 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
+def require_aligned_grid(dataset, template_crs, template_shape, template_transform, name: str) -> None:
+    """Reject silent spatial misalignment before deriving any training arrays."""
+    if dataset.crs != template_crs:
+        raise ValueError(f"{name} CRS mismatch")
+    if (dataset.height, dataset.width) != template_shape:
+        raise ValueError(f"{name} shape mismatch")
+    if dataset.transform != template_transform:
+        raise ValueError(f"{name} transform mismatch")
+
+
 def prepare() -> dict:
     ddir = data_dir()
     wdir = work_dir()
@@ -70,19 +80,31 @@ def prepare() -> dict:
             )
 
     with rasterio.open(tmpl_path) as tmpl:
+        if tmpl.crs is None:
+            raise ValueError("sample_submission.tif has no CRS")
         epsg = tmpl.crs.to_epsg()
         if epsg != 32611:
             raise ValueError(f"Expected EPSG:32611, got {tmpl.crs}")
         shape_hw = (tmpl.height, tmpl.width)
         if shape_hw != (3730, 3292):
             raise ValueError(f"Expected shape (3730, 3292), got {shape_hw}")
-        transform_tuple = tuple(float(v) for v in tmpl.transform)[:6]
+        template_crs = tmpl.crs
+        template_transform = tmpl.transform
+        transform_tuple = tuple(float(v) for v in template_transform)[:6]
         foot_arr = tmpl.read(1)
         foot = np.isfinite(foot_arr)
 
+    # Check *both* inputs before writing any arrays, not merely their dimensions.
+    with rasterio.open(lab_path) as lab_src, rasterio.open(feat_path) as feat_src:
+        require_aligned_grid(lab_src, template_crs, shape_hw, template_transform, "labels.tif")
+        require_aligned_grid(feat_src, template_crs, shape_hw, template_transform, "training_features.tif")
+        if lab_src.count != 1:
+            raise ValueError("labels.tif must have one band")
+        names = [feat_src.tags(i).get("band_name", f"band_{i}") for i in range(1, feat_src.count + 1)]
+        if names != BASE_NAMES:
+            raise ValueError(f"Unexpected band order: {names}")
+
     with rasterio.open(lab_path) as lab_src:
-        if (lab_src.height, lab_src.width) != shape_hw:
-            raise ValueError("labels.tif shape mismatch")
         lab_raw = lab_src.read(1)
         lab = (lab_raw == 1) & foot
 
@@ -94,11 +116,6 @@ def prepare() -> dict:
     any_sentinel_in_foot = np.zeros(shape_hw, dtype=bool)
 
     with rasterio.open(feat_path) as feat_src:
-        if (feat_src.height, feat_src.width) != shape_hw:
-            raise ValueError("training_features.tif shape mismatch")
-        names = [feat_src.tags(i).get("band_name", f"band_{i}") for i in range(1, feat_src.count + 1)]
-        if names != BASE_NAMES:
-            raise ValueError(f"Unexpected band order: {names}")
         nd = feat_src.nodata
         for idx, bname in enumerate(names, 1):
             arr = feat_src.read(idx).astype(np.float32)

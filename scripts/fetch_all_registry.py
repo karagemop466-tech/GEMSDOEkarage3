@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Fetch and SHA-256 pin every submission-like GeoTIFF across all focus, extra-scored, and sibling repos.
+"""Fetch a filtered inventory of submission-like GeoTIFFs across listed repositories.
 
-Streams repository tarballs directly from `codeload.github.com` (permitted outbound host, zero REST
-content rate-limit consumption) and writes `registry/complete_registry_manifest.json` while storing
-raster bytes under git-ignored `.cache/registry/`.
+The prefix, basename, and size filters exclude files: this is NOT proof of a
+complete registry. Incomplete downloads are written separately and exit nonzero.
 """
 from __future__ import annotations
 
@@ -195,15 +194,16 @@ def resolve_head(owner: str, repo: str) -> str | None:
         return None
 
 
-def fetch_repo_rasters(owner: str, repo: str, group: str, cache_dir: Path) -> tuple[str, str | None, list[dict]]:
+def fetch_repo_rasters(owner: str, repo: str, group: str, cache_dir: Path) -> tuple[str, str | None, list[dict], str | None]:
     full = f"{owner}/{repo}"
     ref = resolve_head(owner, repo)
     if not ref:
-        return full, None, []
+        return full, None, [], "could not resolve repository HEAD"
 
     url = f"https://codeload.github.com/{owner}/{repo}/tar.gz/{ref}"
-    extracted: list[dict] = []
     for attempt in range(3):
+        # An interrupted tar stream must never leave its partial rows in a retry.
+        extracted: list[dict] = []
         try:
             with urllib.request.urlopen(url, timeout=180) as resp, tarfile.open(fileobj=resp, mode="r|gz") as tf:
                 for member in tf:
@@ -220,15 +220,21 @@ def fetch_repo_rasters(owner: str, repo: str, group: str, cache_dir: Path) -> tu
                     if member.size <= 0 or member.size > MAX_BYTES:
                         continue
                     dest = cache_dir / owner / repo / rel
-                    if not (dest.exists() and dest.stat().st_size == member.size):
-                        dest.parent.mkdir(parents=True, exist_ok=True)
-                        src = tf.extractfile(member)
-                        if src is None:
-                            continue
-                        tmp = dest.with_suffix(dest.suffix + ".part")
+                    # A same-size cached file is not evidence that its bytes belong
+                    # to this commit. Always replace it from the pinned tar stream.
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    src = tf.extractfile(member)
+                    if src is None:
+                        raise ValueError(f"cannot read tar member {rel}")
+                    tmp = dest.with_suffix(dest.suffix + ".part")
+                    try:
                         with tmp.open("wb") as out:
                             shutil.copyfileobj(src, out, 1 << 20)
+                        if tmp.stat().st_size != member.size:
+                            raise ValueError(f"truncated tar member {rel}")
                         tmp.replace(dest)
+                    finally:
+                        tmp.unlink(missing_ok=True)
                     extracted.append(
                         {
                             "owner": owner,
@@ -243,13 +249,14 @@ def fetch_repo_rasters(owner: str, repo: str, group: str, cache_dir: Path) -> tu
                             "status": "ok",
                         }
                     )
-            break
+            return full, ref, extracted, None
         except Exception as exc:
             if attempt == 2:
-                print(f"[WARN] Failed {full}@{ref[:10]}: {exc}", file=sys.stderr)
-            else:
-                time.sleep(2 * (attempt + 1))
-    return full, ref, extracted
+                message = f"{type(exc).__name__}: {exc}"
+                print(f"[WARN] Failed {full}@{ref[:10]}: {message}", file=sys.stderr)
+                return full, ref, [], message
+            time.sleep(2 * (attempt + 1))
+    raise AssertionError("unreachable")
 
 
 def main() -> int:
@@ -262,12 +269,15 @@ def main() -> int:
     t0 = time.time()
     refs: dict[str, str | None] = {}
     all_rows: list[dict] = []
+    failures: dict[str, str] = {}
     with cf.ThreadPoolExecutor(max_workers=args.jobs) as ex:
         futs = [ex.submit(fetch_repo_rasters, o, r, g, args.cache) for (o, r, g) in REPOS]
         for fut in cf.as_completed(futs):
-            full, ref, rows = fut.result()
+            full, ref, rows, error = fut.result()
             refs[full] = ref
             all_rows.extend(rows)
+            if error:
+                failures[full] = error
             print(f"  {full:38s}  ref={(ref or 'NONE')[:10]}  rasters={len(rows)}", flush=True)
 
     # Also include restored scored calibration rasters from .cache/gems_data/scored
@@ -318,16 +328,20 @@ def main() -> int:
         "refs": dict(sorted(refs.items())),
         "n_rasters": len(all_rows),
         "n_unique_sha256": len(unique_shas),
-        "n_failed": 0,
+        "n_failed": len(failures),
+        "failures": dict(sorted(failures.items())),
+        "literal_registry_complete": False,
         "rasters": all_rows,
-        "note": "Complete multi-org GeoTIFF registry fetched from pinned GitHub commits via codeload.github.com.",
+        "note": "Filtered inventory only: path, basename and size exclusions apply; not proof of a complete literal registry.",
     }
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(manifest, indent=2) + "\n")
+    # Never replace the prior inventory with a partially fetched one.
+    output = args.out.with_name(args.out.stem + ".partial" + args.out.suffix) if failures else args.out
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(manifest, indent=2) + "\n")
     print(
-        f"Wrote {args.out}: {manifest['n_rasters']} rasters ({manifest['n_unique_sha256']} unique SHA-256) in {manifest['elapsed_seconds']}s"
+        f"Wrote {output}: {manifest['n_rasters']} rasters ({manifest['n_unique_sha256']} unique SHA-256) in {manifest['elapsed_seconds']}s; failures={len(failures)}; filtered inventory only"
     )
-    return 0
+    return 2 if failures else 0
 
 
 if __name__ == "__main__":
