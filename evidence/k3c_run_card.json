@@ -32185,7 +32185,8 @@
     "shape_match": true,
     "transform_match": true,
     "zero_on_catalogue_leakage": true,
-    "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df"
+    "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+    "whole_array_finite_range": true
   },
   "validator_output": {
     "writer": {

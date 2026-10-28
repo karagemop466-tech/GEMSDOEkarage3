@@ -533,6 +533,7 @@ def main() -> int:
             "finite_inside": bool(receipt["zeros_tif"]["checks"]["in_footprint_all_finite"]),
             "full_grid_zero_nan": bool(saved["all_finite_full_grid"]),
             "range_0_1": bool(saved["min"] >= 0.0 and saved["max"] <= 1.0),
+            "whole_array_finite_range": bool(saved["all_finite_full_grid"] and saved["min"] >= 0.0 and saved["max"] <= 1.0),
             "crs_match": bool(saved["crs"] == "EPSG:32611"),
             "shape_match": bool(saved["shape"] == [3730, 3292]),
             "transform_match": bool(np.allclose(saved["transform"], [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0])),

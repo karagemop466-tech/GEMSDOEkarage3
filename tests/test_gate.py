@@ -2,7 +2,7 @@ import unittest
 from scripts.promotion_gate import assess
 class GateTests(unittest.TestCase):
     def valid(self):
-        return dict(assigned_lane='test',holdout=dict(evidence_class='HOLDOUT-DTI',evaluator_version='test-v1',withheld_positives=1,dti=.2,ci95=[.1,.3],paired_delta_ci95=[.01,.02],same_evaluator_current_best=True),feature_auc=[.6],registry={**{s:dict(complete=True,max_abs_spearman=.9,max_overlap_3px=.7, comparisons=[dict(sha256='b'*64,abs_spearman=.9,overlap_3px=.7)]) for s in ['surface','final_dots']}, 'inventory_sha256':['b'*64], 'manifest_sha256':'d'*64, 'literal_all_rasters_final_passed':True},validator={**{k:True for k in ['saved_bytes_checked','single_band','finite_inside','range_0_1','crs_match','shape_match','transform_match']}, 'raster_sha256':'a'*64},raster_sha256='a'*64,submission_name='test',note='test only')
+        return dict(assigned_lane='test',holdout=dict(evidence_class='HOLDOUT-DTI',evaluator_version='test-v1',withheld_positives=1,dti=.2,ci95=[.1,.3],paired_delta_ci95=[.01,.02],same_evaluator_current_best=True),feature_auc=[.6],registry={**{s:dict(complete=True,max_abs_spearman=.9,max_overlap_3px=.7, comparisons=[dict(sha256='b'*64,abs_spearman=.9,overlap_3px=.7)]) for s in ['surface','final_dots']}, 'inventory_sha256':['b'*64], 'manifest_sha256':'d'*64, 'literal_all_rasters_final_passed':True},validator={**{k:True for k in ['saved_bytes_checked','single_band','finite_inside','range_0_1','whole_array_finite_range','crs_match','shape_match','transform_match']}, 'raster_sha256':'a'*64},raster_sha256='a'*64,submission_name='test',note='test only')
     def test_missing(self): self.assertEqual(assess({})['verdict'],'negative')
     def test_valid_promotes_and_clears_for_selector(self):
         r=assess(self.valid()); self.assertEqual(r['verdict'],'promote'); self.assertTrue(r['ok_to_submit']); self.assertTrue(r['selector_required'])
@@ -71,6 +71,12 @@ class GateTests(unittest.TestCase):
         self.assertEqual(assess(c)['verdict'],'negative')
     def test_nan(self):
         c=self.valid(); c['feature_auc']=[float('nan')]
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_whole_array_finite_range_is_required(self):
+        for value in (None, False):
+            c=self.valid(); c['validator']['whole_array_finite_range']=value
+            self.assertEqual(assess(c)['verdict'],'negative')
+        c=self.valid(); del c['validator']['whole_array_finite_range']
         self.assertEqual(assess(c)['verdict'],'negative')
     def test_wrong_grid(self):
         c=self.valid(); c['validator']['transform_match']=False

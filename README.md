@@ -18,6 +18,7 @@
 | **HOLDOUT-DTI** (`GEMSDOE32-SGMC-CAL-v3.0`, n = 62,703) | 0.071797 [0.061266, 0.081340] vs 0.064121; paired CI [-0.002370, +0.018169] (**spans zero**) |
 | **Uniqueness** | surface max \|ρ\| 0.5270; focus-9 max 3-px overlap 59.37%; ≤100k-dot rasters max 67.07%; vs 0.2778 champion 42.78%; **null-calibrated worst 68.91%** vs `gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif` (limit 70 %, IR-K3-22) |
 | **Expected live score** | **Unknown.** No organizer receipt exists for any file (IR-K3-04). The live-ledger projection is 0.140 (NOT a score; LOO MAE 0.022; it under-projected GEMSDOE70 by 0.11, IR-K3-23). Holdout cannot reproduce the champion's 0.2778 (IR-K3-09). A live result below 0.2778 is a real possibility. |
+| **Parallel session (PR #24, d790672e)** | Ran without the feature stack/registry and recorded a negative follow-up: [`research/2026-10-28-followup-d790672e.md`](research/2026-10-28-followup-d790672e.md), [`docs/core-data-receipt.json`](docs/core-data-receipt.json). Its gate addition (`validator.whole_array_finite_range`) is merged into v3 and satisfied by the H-K3C card. |
 | **Pages** | [Executive summary & download](docs/k3c/index.html) · [How to submit](docs/k3c/how-to-submit.html) · [Run card](docs/k3c/run-card.json) · [Preregistration](docs/research/k3c-preregistration-20261028.md) · [Research note](research/2026-10-28-k3c.md) · [Irregularities IR-K3-17…26](knowledge/irregularities.md) |
 
 ### Nine focus sites (what to download, estimated score, unique?)
