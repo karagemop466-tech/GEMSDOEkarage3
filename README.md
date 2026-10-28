@@ -1,51 +1,43 @@
-# GEMSDOEkarage3 — Evidence-led DOE GEMS research
+# GEMSDOEkarage3 — decision and research ledger
 
-## Current release decision: **NO — DO NOT DOWNLOAD OR SUBMIT A TIFF**
+## DO NOT SUBMIT — no cleared candidate
 
-The H-K3C raster is retained for audit and education only. It passed local format and holdout checks, but it fails the user's literal uniqueness rule: a registry raster has more than 70% 3-pixel overlap (the audited card records a 100% overlap witness). The previous `PROMOTE` decision applied a null-calibrated exception that is not allowed by the protocol in this request. That authorization is withdrawn; the TIFF and old run card remain archived, but neither is an approved submission. No competition slot was used and no organizer score is confirmed.
+The earlier H-K3C **PROMOTE** decision is withdrawn. The user requires the
+literal 70% / 3-pixel overlap limit for *any* registry raster; its null-calibrated
+substitution changed that instruction without authorization. A fresh independent
+[one-witness audit](evidence/k3c-literal-witness-audit-20261028.json) found
+99.35% overlap with a pinned lattice, so the retained H-K3C TIFF is a duplicate
+stop. It is available for research only. Its full array passed local range and
+finite checks and matched the owner-mirrored grid, but neither proves portal
+acceptance or scientific merit.
 
-| Current evidence | Status |
-| :--- | :--- |
-| **Download / submit** | **Not approved.** No new TIFF is released as a competition submission. |
-| **H-K3C research artifact** | [`run card`](docs/k3c/run-card.json) · [historical TIFF (DO NOT SUBMIT)](docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif) · SHA-256 `0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df` |
-| **HOLDOUT-DTI** | Archived experiment: `GEMSDOE32-HIDE-RECOVER-v3.1-24cell`, n=66,904, 0.111044 [0.098990, 0.122727]. Local holdout metric only—not a leaderboard estimate or release authorization. |
-| **Literal uniqueness** | **FAIL.** Null-calibrated overlap cannot override the strict 70% rule. Surface and final-dot checks must cover the complete registry. |
-| **Current decision artifact** | [Fail-closed gate result](docs/current-gate-decision.json) · [Three-pass review](docs/review-2026-10-28-strict-literal-gate.md) · [Executive summary](index.html) |
-| **Submission guide** | [How to submit after all gates and the separate slot selector pass](executive-summary.html) |
+[Executive summary and nine-site table](docs/k3c/index.html) ·
+[How to submit when cleared](docs/k3c/how-to-submit.html) ·
+[current gate decision](docs/current-gate-decision.json) ·
+[this session's review](docs/review-literal-20261028.md) ·
+[review run card](evidence/run-card-literal-review-20261028.json) ·
+[user request and protocol](docs/PROJECT_BRIEF.md).
 
-The H-K3C card and experiment ledger below document historical research. Their former gate verdicts are superseded by the strict literal policy and must not be interpreted as authorization.
+**No live score estimate is defensible.** User-reported past results are not
+organizer receipts. The prior H-K3C holdout was not reproduced this session,
+and is not a forecast. The method paragraph is not identified in the prompt;
+the feature cache is absent and the shared evaluator issue is open. We ran no
+new experiments and used no weekly submission slots. Do not target the lattice
+holes to circumvent the rule. The historic 3-experiment H-K3C run card and
+artifact are retained as evidence, not as approval.
 
-### Nine focus sites (what to download, estimated score, unique?)
-
-| Site | Best file (owner-reported) | Score | HOLDOUT-DTI of byte-audited file (8-cell v3.0) | Unique vs our H-K3C file? | Decision |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| [GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/) | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | `0.2477` USER-REPORTED | 0.0972 [0.084886, 0.111743] (`gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif`) | 49.64% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/) | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | `0.2600` USER-REPORTED | 0.0992 [0.086311, 0.112863] (`gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif`) | 49.54% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/) | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` | `0.2449` USER-REPORTED | 0.0968 [0.084694, 0.111245] (`gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif`) | 49.77% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/) | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | `0.2710` USER-REPORTED | 0.0301 [0.025386, 0.035991] (`gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif`) | 45.82% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/) | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | `0.2600` USER-REPORTED | 0.0008 [0.000672, 0.000872] (`gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif`) | 59.37% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/) | `h27-4-solo-d28-20261004-8acb75e1-nan` | `0.2708` USER-REPORTED | 0.0000 [0.0, 6e-06] (`gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-zeros.tif`) | 50.29% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | `0.2778` USER-REPORTED | 0.0045 [0.003863, 0.005276] (`gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`) | 57.18% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/) | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | `0.2632` USER-REPORTED | 0.0120 [0.010203, 0.014123] (`gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif`) | 44.17% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-| [GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/) | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | `0.2750` USER-REPORTED | 0.0069 [0.005106, 0.008772] (`gemsdoe36-wdp36-exp1-20261026-zeros.tif`) | 43.21% max within 3 px → unique | Historical — do not resubmit (H19-5 family) |
-
-All nine bests are one H19-5 dot-set family (`knowledge/focus9_forensics.md`); their holdout numbers are for the byte-audited pinned file named in parentheses (IR-K3-26). Scores are USER-REPORTED, never ORGANIZER-CONFIRMED.
-
-### Session-4 experiment ledger (budget 3 / 3 experiments, 2 h 03 min — IR-K3-25)
-
-| Exp | Hypothesis | Result (HOLDOUT-DTI, 24-cell) |
-| :--- | :--- | :--- |
-| E1 | 24-cell power test of CSST-BGHF vs champion rule | **+0.0101 [+0.0030, +0.0173]** — paired CI excludes zero (session 3's 8-cell CI did not) |
-| E2 | H-K3C-1 strain-deficit prior (Band 04 `geod_2ndinv` ÷ catalogue slip proxy) | **negative**: 0.0942 vs 0.1110, Δ −0.0168 [−0.0232, −0.0109]; prior-alone AUC 0.543 |
-| E3 | budget 30,000 / 37,654 / 44,090 on E1 surface | 30k worse (−0.0046); 44,090 +0.0013 [−0.0003, +0.0028] not significant → ship 37,654 |
-
-Historical H-K3C engineering: `holdout.load_holdout_context(draws=…)`, pooled `_block_totals`, complete-registry scan and null-calibration diagnostics. The old gate treated null-calibration as an exception; current `promotion_gate.py` rejects any literal overlap above 70%, with no lattice or blanket exemption.
-
-**Previous lanes remain DO NOT SUBMIT:** `H-K3B-1 CSST-BGHF` session-3 file (`4b47a37e…`, 8-cell CI spanned zero), `K3-CCL` (`ddf087e0…`, duplicate stop), and all five archived TIFFs in `docs/downloads/`. The sections below are retained as the audit trail of those lanes.
+Nine focus sites: GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30,
+GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36. Their previous files are not new
+submissions. The best historical owner-reported value is not a verified current
+leaderboard result.
 
 ---
+## Historical research archive — previous decisions are superseded
 
-## 1. Previous Lane `H-K3B-1 (CSST-BGHF)` — session-3 file (ARCHIVED, DO NOT SUBMIT; historical only)
+The following records predate the current literal gate and may contain
+hypotheses and numerical claims that were not independently reproduced here.
+
+## 1. Previous Lane `H-K3B-1 (CSST-BGHF)` — session-3 file (ARCHIVED, DO NOT SUBMIT; superseded by the H-K3C card above)
 
 | Field | Verified Value (`2026-10-28`) |
 | :--- | :--- |
@@ -152,11 +144,11 @@ npm test
 
 ## 7. Current limitations & next steps
 
-1. **Strict duplicate stop:** the archived H-K3C raster has a recorded 100% literal 3-pixel overlap witness in the pinned registry audit, above the user's 70% maximum. Its null-calibrated excess is diagnostic only. Do not submit it or try to evade the rule by filling lattice holes.
-2. **Fresh evidence is unavailable in this checkout:** `.cache/gems_work` feature arrays and a current complete registry snapshot are absent. The existing run card documents an older scan; it cannot establish current completeness. See [`docs/readiness.json`](docs/readiness.json) and the [strict-gate review](docs/review-2026-10-28-strict-literal-gate.md).
-3. **Holdout limitation:** the existing hide-and-recover design may reward recovering fragments adjacent to visible catalogued faults. The documented IR-K3-12 requires a fragment-censored evaluation before trusting catalogue-geometry features as evidence for off-catalogue discovery.
-4. **No live leaderboard estimate:** no submission-page receipt, current authenticated leaderboard reading, or account-specific weekly quota was verified in this review. User-reported site scores and past projections are not organizer-confirmed scores or reliable forecasts for a new file.
-5. **Next experiment plan:** restore hash-verified inputs/cache and freeze the current registry; use the shared evaluator and writer; preregister no more than three candidate experiments; test every feature alone for leakage; compare against a same-evaluator incumbent with paired spatial HOLDOUT-DTI and 95% CI; run literal uniqueness checks on the surface and final dots; use a separate selector before any weekly slot.
+1. **Strict duplicate stop:** the archived H-K3C candidate has a pinned witness audit showing 99.351994% literal 3-pixel overlap, above the 70% maximum. This one-raster audit is not a complete current registry scan, but it is enough to stop this candidate. Null-calibrated excess is diagnostic only; do not evade the rule by targeting lattice holes.
+2. **Fresh inputs are unavailable:** the feature cache and current complete registry snapshot are absent in this checkout. Existing run cards and registry manifests are historical evidence, not proof of current inventory completeness. See [`docs/readiness.json`](docs/readiness.json) and the [three-pass review](docs/review-literal-20261028.md).
+3. **Holdout limitation:** hide-and-recover can reward reconstruction of catalogued fault fragments adjacent to visible traces. Do not trust catalogue-geometry features as evidence for off-catalogue discovery without a fragment-censored evaluation and visible-only feature derivation.
+4. **No live score estimate:** historical owner-reported site values are not organizer receipts. No current authenticated leaderboard reading, submission-page receipt, or account-specific weekly quota was verified in this review. Do not present an old holdout as a forecast.
+5. **Next experiment gate:** before another run, identify the assigned method lane, restore and hash-check inputs, freeze a complete registry, use the shared evaluator/writer, and preregister at most three experiments. Run feature-alone leakage canaries, paired spatial HOLDOUT-DTI with evaluator/count/95% CI, both uniqueness checks, and saved-byte validation. Use a separate selector before any submission slot.
 
 ## 8. Standing Reference Prompt (Verbatim User Instructions)
 

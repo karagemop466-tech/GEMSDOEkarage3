@@ -74,8 +74,14 @@ table{{min-width:0}}td,th{{font-size:12px}}code{{overflow-wrap:anywhere}}.small{
 .label.warn{{background:#fff0ea;color:#ad4932}}</style></head><body><main class="wrap" style="padding:28px 0 60px">
 <p class="small"><a href="{pre}index.html">Home</a> · <a href="{pre}k3c/index.html">H-K3C executive summary</a> · <a href="{pre}k3c/how-to-submit.html">How to submit</a> · <a href="{pre}k3c/run-card.json">Run card (JSON)</a> · <a href="{pre}csst-bghf/index.html">Previous lane H-K3B-1</a> · <a href="{pre}ccl/index.html">Lane K3-CCL</a></p>
 {body}
-<p class="small" style="margin-top:40px">Score labels: <strong>USER-REPORTED</strong> = copied from the owner's prompt / sister site (no DrivenData receipt exists in any repo, IR-K3-04). <strong>HOLDOUT-DTI</strong> = our own hide-and-recover evaluator (version, withheld positives and 95% CI always stated). <strong>LLI PROJECTION</strong> = a regression fitted to owner-reported live scores — a go/no-go signal, never a score. Nothing on this site is ORGANIZER-CONFIRMED.</p>
+<p class="small" style="margin-top:40px">Score labels: <strong>USER-REPORTED</strong> = copied from the owner's prompt / sister site (no DrivenData receipt is verified in this checkout, IR-K3-04). <strong>HOLDOUT-DTI</strong> = our own hide-and-recover evaluator (version, withheld positives and 95% CI always stated). <strong>LLI PROJECTION</strong> = a regression fitted to owner-reported live scores — a go/no-go signal, never a score. Nothing on this site is ORGANIZER-CONFIRMED.</p>
 </main></body></html>"""
+
+
+def reason_summary(gate: dict) -> str:
+    """Keep the public banner readable; the JSON decision retains every reason."""
+    reasons = gate.get('reasons', [])
+    return '; '.join(reasons[:3]) + (f'; and {len(reasons)-3} more (see decision JSON)' if len(reasons) > 3 else '')
 
 
 def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
@@ -91,8 +97,8 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
     if ok:
         aside = (f'<aside style="padding:16px;background:#ecfdf5;color:#064e3b;border-bottom:3px solid #059669"><strong>OK TO SUBMIT? YES — one file is cleared '
                  f'(lane H-K3C, {H(card["generated_utc"][:10])}).</strong> <code>{H(card["submission_name"])}</code> (SHA-256 {sha8}…) passed every automated gate: '
-                 f'format/[0,1]/zero-NaN, leakage canaries, strict literal registry uniqueness, and HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) '
-                 f'{hr} vs the champion rule {champ} with paired 95% CI [{pd[0]:+.4f}, {pd[1]:+.4f}] excluding zero. The selector decides whether to spend a weekly slot. '
+                 f'format/[0,1]/zero-NaN, leakage canaries, literal 3-pixel registry uniqueness, and HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) '
+                 f'{hr} vs the 0.2778 champion rule {champ} with paired 95% CI [{pd[0]:+.4f}, {pd[1]:+.4f}] excluding zero. The selector decides whether to spend a weekly slot. '
                  f'<a href="{H(dl)}" download>Download .tif</a> · <a href="{H(zp)}" download>.zip</a> · <a href="docs/k3c/index.html">Executive summary</a> · '
                  f'<a href="docs/k3c/how-to-submit.html">How to submit</a> · <a href="docs/k3c/run-card.json">Run card</a></aside>')
         card_html = (f'<div class="release-card" aria-label="Current submission decision">\n'
@@ -103,7 +109,7 @@ def root_decision_html(card: dict, gate: dict) -> tuple[str, str]:
                      f'      <div class="card-foot"><span id="download-explanation">SHA-256 {H(card["raster_sha256"])}</span><a href="docs/k3c/run-card.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
                      f'    </div>')
     else:
-        reasons = H("; ".join(gate["reasons"]))
+        reasons = H(reason_summary(gate))
         aside = (f'<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO. As of {H(card["generated_utc"][:10])} no file in this repository is authorized.</strong> '
                  f'Newest lane <strong>H-K3C</strong> (<code>{H(card["submission_name"])}</code>, SHA-256 {sha8}…) HOLDOUT-DTI ({H(hold["evaluator_version"])}, n={hold["withheld_positives"]:,}) {hr} vs champion rule {champ} (paired CI [{pd[0]:+.4f}, {pd[1]:+.4f}]); '
                  f'gate verdict <strong>{H(gate["verdict"].upper())}</strong>: {reasons}. '
@@ -143,7 +149,7 @@ def apply_guide_decision(html: str) -> str:
                   'The nine historical files below remain research-only. No organizer score estimate is defensible; see the expected-live-score caveat on the decision page.</p></div></div>')
     else:
         banner = ('<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved</strong>'
-                  f'<p>Lane H-K3C verdict {H(gate["verdict"])}: {H("; ".join(gate["reasons"]))}. Research links below lead to historical files, not a new submission.</p></div></div>')
+                  f'<p>Lane H-K3C verdict {H(gate["verdict"])}: {H(reason_summary(gate))}. Research links below lead to historical files, not a new submission.</p></div></div>')
     html, n2 = re.subn(r'<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved or available</strong>.*?</div></div>', lambda m: banner, html, count=1, flags=re.S)
     if n1 != 1 or n2 != 1:
         raise SystemExit(f"root executive-summary.html markers not found (aside={n1}, banner={n2})")
@@ -185,26 +191,21 @@ def build() -> None:
         for k, v in (r.get("projections") or {}).items():
             if isinstance(v, dict) and v.get("dti") is not None and card["submission_name"] in k:
                 lli_proj = v["dti"]
-    lli_txt = (f"LLI ledger projection {lli_proj:.3f} (NOT a score; LOO MAE {lli_mae:.3f}; this ledger under-projected the off-H19-5 file GEMSDOE70 by 0.11, see IR-K3-23)"
-               if lli_proj is not None else "LLI projection unavailable (see run card)")
+    # A fitted projection is not an organizer score and is not a reliable estimate.
+    lli_txt = "No defensible estimate of the organizer score"
     sgmc = hold["sgmc_off_catalogue_v3"]
+    witness = json.loads((ROOT / 'evidence/k3c-literal-witness-audit-20261028.json').read_text())
+    if witness['candidate_sha256'] != card['raster_sha256']:
+        raise ValueError('independent witness audit does not match candidate')
 
-    if ok:
-        artifact_actions = (f'<p><a class="btn ok" href="{H(tif_rel)}" download>Download submission .tif</a> '
-                            f'<a class="btn light" href="{H(zip_rel)}" download>Download single-file .zip</a> '
-                            '<a class="btn light" href="run-card.json">Run card (JSON)</a></p>')
-        gate_summary = 'All preregistered gates passed; a separate selector must still approve spending a weekly slot.'
-    else:
-        artifact_actions = ('<p><strong>Research artifact only — not cleared for download or submission.</strong> '
-                            f'Archived filename: <code>{H(card["submission_name"])}</code>. '
-                            f'<a class="btn light" href="run-card.json">Review the archived run card (JSON)</a></p>')
-        gate_summary = 'Failed gates: ' + H('; '.join(gate['reasons']))
     verdict_box = f"""<div class="verdict {'ok' if ok else 'no'}"><h2>{'OK TO DOWNLOAD AND SUBMIT: YES' if ok else 'OK TO SUBMIT: NO — DO NOT SUBMIT'}</h2>
-<p>Automated verdict <strong>{H(gate['verdict'].upper())}</strong> from <code>scripts/promotion_gate.py</code> (strict literal gate) on the run card generated {H(card['generated_utc'])}.
-{gate_summary}</p>
-{artifact_actions}
-<p class="small">File <code>{H(card['submission_name'])}</code><br>SHA-256 <code>{H(card['raster_sha256'])}</code><br>Suggested DrivenData note ({len(card['note'])}/140 chars): <code>{H(card['note'])}</code></p>
-<p class="small"><strong>What "cleared" does and does not mean.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's live 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. The null-calibrated diagnostic is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code>, but it cannot override the literal 100% overlap stop reported in the validation table below. Treat any live score as unknown; no live estimate is defensible, and the slot decision is a separate selector's responsibility.</p></div>"""
+<p>{'Submission blocked: duplicate-stop. Independent pinned-lattice overlap: '+pct(witness['within_3px_fraction'])+'. NOT CLEARED FOR SUBMISSION.' if not ok else ''}</p>
+<p>Automated verdict <strong>{H(gate['verdict'].upper())}</strong> from <code>scripts/promotion_gate.py</code> (literal protocol) on the historical run card generated {H(card['generated_utc'])}.
+{'All preregistered gates passed: format, [0,1] range, leakage canaries, registry uniqueness (null-calibrated), and a paired 24-cell holdout improvement whose 95% CI excludes zero. You, the selector, decide whether to spend one weekly slot on it.' if ok else 'Failed gates: ' + H(reason_summary(gate))}</p>
+<p><a class="btn {'ok' if ok else 'no'}" href="{H(tif_rel)}" download>{'Download submission .tif' if ok else 'Download research-only .tif (NOT CLEARED)'}</a>
+<a class="btn light" href="{H(zip_rel)}" download>{'Download single-file .zip' if ok else 'Download research-only .zip (NOT CLEARED)'}</a> <a class="btn light" href="run-card.json">Run card (JSON)</a></p>
+<p class="small">File <code>{H(card['submission_name'])}</code><br>SHA-256 <code>{H(card['raster_sha256'])}</code><br>{'Suggested DrivenData note' if ok else 'Historical note — do not submit'} ({len(card['note'])}/140 chars): <code>{H(card['note'])}</code></p>
+<p class="small"><strong>Historical evidence, not clearance.</strong> HOLDOUT-DTI says the CSST-BGHF construction rule recovers withheld faults better than the champion's construction rule when both are re-derived blind ({f4(hold['dti'])} vs {f4(hold['champion_02778_same_evaluator_dti'])}, paired Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI [{hold['paired_delta_ci95'][0]:+.4f}, {hold['paired_delta_ci95'][1]:+.4f}]). No holdout number reproduces the champion file's owner-reported 0.2778 (construction-censored, IR-K3-09), and the {H(lli_txt)}. The SGMC-cal paired CI [{sgmc['paired_delta_ci95'][0]:+.4f}, {sgmc['paired_delta_ci95'][1]:+.4f}] still spans zero. For context only, the historical null-calibrated diagnostic is {pct(reg['worst_null_calibrated_excess_overlap_identifiable']['excess_overlap_3px'])} excess overlap vs <code>{H(reg['worst_null_calibrated_excess_overlap_identifiable']['name'].split(':')[-1].split('/')[-1])}</code> (limit 70%, IR-K3-22). The historical holdout has not been reproduced in this review; no hidden score can be inferred.</p></div>"""
 
     def row(site, url):
         s = nine_by.get(site, {})
@@ -215,38 +216,34 @@ def build() -> None:
         uniq = (ov_max is not None and ov_max <= 0.70)
         same = audited and own_file.split("-zeros")[0].split("-nan")[0].split("-allfinite")[0] in audited
         return (f"<tr><td><a href='{H(url)}'>{site}</a><br><span class='small'>best: <code>{H(own_file)}</code></span></td>"
-                f"<td><strong>{f4(own_score)}</strong> <span class='label warn'>USER-REPORTED</span><br><span class='small'>no organizer receipt in any repo (IR-K3-04)</span></td>"
-                f"<td>{f4(s.get('holdout_hide_recover_v3_dti'))} {H(str(s.get('holdout_hide_recover_v3_ci95','')))}<br><span class='small'>SGMC-cal {f4(s.get('holdout_sgmc_cal_v3_dti'))} · byte-audited file: <code>{H(audited)}</code>{'' if same else ' (latest pinned file, not the best-scoring one)'}</span></td>"
-                f"<td>{pct(ov)} of our dots within 3 px of the audited file; {pct(ov_max)} max vs any {site} raster → {'<strong>unique</strong>' if uniq else '<span class=warning-text>not unique</span>'}</td>"
+                f"<td><strong>{f4(own_score)}</strong> <span class='label warn'>USER-REPORTED</span><br><span class='small'>no verified organizer receipt in this checkout (IR-K3-04)</span></td>"
+                f"<td>{f4(s.get('holdout_hide_recover_v3_dti'))} {H(str(s.get('holdout_hide_recover_v3_ci95','')))}<br><span class='small'>byte-audited file: <code>{H(audited)}</code>{'' if same else ' (latest pinned file, not the best-scoring one)'}</span></td>"
+                f"<td>{pct(ov)} of our dots within 3 px of the audited file; {pct(ov_max)} max vs any {site} raster → {'below threshold in this limited comparison only' if uniq else 'above threshold in this comparison'}</td>"
                 f"<td>Historical — do not resubmit (best file is in the H19-5 family; see forensics)</td></tr>")
 
     site_rows = "".join(row(s, u) for s, u in FOCUS_SITES)
-    current_artifact = (f"<a class='file-link' href='{H(tif_rel)}' download>{H(card['submission_name'])}</a>"
-                        if ok else f"<span class='warning-text'>Archived research only · DO NOT SUBMIT</span><br><code>{H(card['submission_name'])}</code>")
-    current_uniqueness = (f"Literal registry checks passed; max final overlap {pct(reg['literal_worst_any_raster']['within_3px_fraction'])}"
-                          if ok else f"<span class='warning-text'>NOT UNIQUE under literal rule</span><br>max overlap {pct(reg['literal_worst_any_raster']['within_3px_fraction'])}")
-    ours = (f"<tr style='background:#eef3eb'><td><strong>GEMSDOEkarage3 · Lane H-K3C (this session)</strong><br>{current_artifact}</td>"
-            f"<td><span class='label'>no organizer-confirmed score</span><br><span class='small'>{H(lli_txt)}</span></td>"
+    ours = (f"<tr style='background:#eef3eb'><td><strong>GEMSDOEkarage3 · Lane H-K3C (this session)</strong><br><a class='file-link' href='{H(tif_rel)}' download>{H(card['submission_name'])}</a></td>"
+            f"<td><span class='label'>no live score yet</span><br><span class='small'>{H(lli_txt)}</span></td>"
             f"<td><strong>{f4(hold['dti'])}</strong> {H(str(hold['ci95']))} <span class='label'>HOLDOUT-DTI {H(hold['evaluator_version'])}, n={hold['withheld_positives']:,}</span><br><span class='small'>champion rule same evaluator {f4(hold['champion_02778_same_evaluator_dti'])}; paired Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}; SGMC-cal {f4(sgmc['prevalence_calibrated_dti'])} vs champion {f4(sgmc['champion_02778_calibrated_dti'])}</span></td>"
-            f"<td>{current_uniqueness}</td>"
+            f"<td>max vs 9 sites {pct(reg['focus9_max_3px_overlap'])}; max vs any ≤100k-dot raster {pct(reg['discrete_le100k_max_literal_3px_overlap'])}; vs 0.2778 champion {pct(card['spatial_allocation']['overlap_3px_vs_champion_02778'])} → <strong>{'limited focus-site comparison only' if ok else 'NOT UNIQUE under literal all-registry rule'}</strong></td>"
             f"<td><strong>{'SUBMIT (selector decides slot)' if ok else 'DO NOT SUBMIT'}</strong></td></tr>")
 
     table = f"""<h2>Per-site executive table — what to download, what it is estimated to score, is it unique</h2>
 <div class="table-wrap"><table><thead><tr><th>Site · file to download</th><th>Estimated / reported score</th><th>HOLDOUT-DTI (hide-and-recover; SGMC-cal)</th><th>Unique?</th><th>Decision</th></tr></thead><tbody>{ours}{site_rows}</tbody></table></div>
-<p class="table-note">Holdout numbers for the nine sites come from <code>evidence/nine-site-audit-k3c-20261028.json</code> (byte-verified rasters from each site's pinned commit, evaluated on the template 8-cell <code>{H(nine.get('evaluator_versions',{}).get('hide_recover','GEMSDOE32-HIDE-RECOVER-v3.0') if isinstance(nine.get('evaluator_versions'),dict) else 'GEMSDOE32-HIDE-RECOVER-v3.0')}</code>). The nine bests are one dot-set family (exact set algebra in <code>knowledge/focus9_forensics.md</code>): GEMSDOE25 ≡ GEMSDOE30, GEMSDOE31 ≡ the "solo" control, GEMSDOE32 = solo − 2,545 collar dots, GEMSDOE36 = GEMSDOE32 + 1,200 dots.</p>"""
+<p class="table-note">Holdout numbers for the nine sites come from <code>evidence/nine-site-audit-k3c-20261028.json</code> (byte-verified rasters from each site's pinned commit, evaluated on the template 8-cell HOLDOUT-DTI (n=22,232 withheld positives, 95% CI shown) <code>{H(nine.get('evaluator_versions',{}).get('hide_recover','GEMSDOE32-HIDE-RECOVER-v3.0') if isinstance(nine.get('evaluator_versions'),dict) else 'GEMSDOE32-HIDE-RECOVER-v3.0')}</code>). Pinned historical files include a related dot-set family (exact set algebra in <code>knowledge/focus9_forensics.md</code>): GEMSDOE25 ≡ GEMSDOE30, GEMSDOE31 ≡ the "solo" control, GEMSDOE32 = solo − 2,545 collar dots, GEMSDOE36 = GEMSDOE32 + 1,200 dots.</p>"""
 
-    why = """<h2>Why h33-h33-2-b2 scored 0.2778 — and whether it can be beaten</h2>
-<ol>
-<li><strong>Metric economics.</strong> The organizer's Distance-Weighted Tversky Index (α = 0.2 on false positives, β = 0.8 on false negatives, 300 m triangular kernel; <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647</a>) credits a truth pixel in full when any predicted pixel lies within 3 px. A single dot therefore saturates a 300 m disk; contiguous ridge ribbons pay FP tax for redundant pixels. Thinning the H19-5 ridge to ≥ 2.8 px spacing kept ~91% of live credit at 36% of the mass (0.1922 → 0.2600).</li>
-<li><strong>Collar pruning.</strong> Catalogued faults are masked at evaluation, and detectors fire on the 100–200 m flank of mapped scarps. Deleting dots within 1 px then 2 px of the catalogue removed almost pure FP (0.2600 → 0.2708 → 0.2778). GEMSDOE36 (= champion + 1,200 dots, 0.2750) and GEMSDOE27 (gap-closure additions, 0.2449 &lt; 0.2477) show the family sits at a local optimum: marginal additions on that surface are net-negative.</li>
-<li><strong>What is left.</strong> The gap from 0.28 to the public board (≈ 0.44) is <em>recall of truly blind faults</em>, not emission tricks. That is why this repository builds new surfaces (CSST-BGHF blind-conduit operators) rather than re-thinning H19-5, and why this session tests a regional strain-deficit prior that moves budget toward places where the catalogue under-accounts for geodetic strain.</li>
-</ol>"""
+    why = """<h2>Why did the GEMSDOE32 file reportedly perform well?</h2>
+<p>The owner's reported result is unverified: no organizer receipt linked to the file has been supplied. The
+pinned geometry audit shows a sparse-dot lineage and catalogue-collar pruning. A plausible explanation is that
+less redundant prediction mass reduces false-positive cost while keeping spatial coverage, but the hidden labels
+are unavailable and do not establish causation. We cannot determine whether any new submission would beat it.
+Fault prediction is not direct validation of a geothermal vent. <a href="../../knowledge/focus9_forensics.md">Read the lineage audit</a>.</p>"""
 
-    hyp = """<h2>Candidate hypotheses generated this session (ranked; full text in <code>docs/research/k3c-preregistration-20261028.md</code>)</h2>
+    hyp = """<h2>Historical hypotheses from the previous session (ranked; full text in <code>docs/research/k3c-preregistration-20261028.md</code>)</h2>
 <div class="table-wrap"><table><thead><tr><th>Rank</th><th>Hypothesis</th><th>Layers</th><th>Signature</th><th>Why it targets uncatalogued faults</th><th>Named mimic</th><th>Lift · cost</th></tr></thead><tbody>
-<tr><td>1 (tested)</td><td>H-K3C-1 Kostrov strain-deficit prior</td><td>Band 04 geod_2ndinv (+07, 08); fold-visible catalogue</td><td>S/(D+c): strain-rate rank ÷ 10 km visible fault density, prior = clip((ratio/median)^0.5, 0.5, 2)</td><td>Strain not accounted for by mapped faults must be taken up by unmapped ones (moment balance)</td><td>1915/1954 post-seismic relaxation; distributed block rotation</td><td>small–moderate · low</td></tr>
+<tr><td>1 (tested)</td><td>H-K3C-1 Kostrov strain-deficit prior</td><td>Band 04 geod_2ndinv (+07, 08); fold-visible catalogue</td><td>S/(D+c): strain-rate rank ÷ 10 km visible fault density, prior = clip((ratio/median)^0.5, 0.5, 2)</td><td>Unaccounted strain could indicate unmapped faults but may also reflect distributed deformation</td><td>1915/1954 post-seismic relaxation; distributed block rotation</td><td>small–moderate · low</td></tr>
 <tr><td>2</td><td>H-K3C-2 strike-conditioned structural-grain ridge</td><td>Bands 03, 05, 18; visible strike histogram</td><td>Directional Hessian ridge limited to the two dominant local strike modes ±20°</td><td>Blind faults inherit regional grain; suppresses flight-line and drainage artefacts</td><td>Dikes, bedding</td><td>small · moderate</td></tr>
-<tr><td>3</td><td>H-K3C-3 multi-altitude tilt-depth wedge</td><td>Bands 02, 14 + GeoDAWN extensions</td><td>Tilt-depth half-width vs upward-continuation level</td><td>Dipping contacts migrate down-dip with altitude; flows do not</td><td>Thin basalt flow margins</td><td>small · moderate</td></tr>
+<tr><td>3</td><td>H-K3C-3 multi-altitude tilt-depth wedge</td><td>Bands 02, 14 + GeoDAWN extensions</td><td>Tilt-depth half-width vs upward-continuation level</td><td>Some dipping contacts may migrate with altitude; flow margins can mimic the signal</td><td>Thin basalt flow margins</td><td>small · moderate</td></tr>
 <tr><td>4</td><td>H-K3C-4 half-graben polarity wedge</td><td>Bands 15, 13, 12</td><td>Up-gradient 2nd derivative of basement depth</td><td>Intrabasin blind faults under fill</td><td>Pinch-outs; interpolation artefacts (61GEMSDOE: 0.0009)</td><td>negative prior · low</td></tr>
 <tr><td>5 (blocked)</td><td>H-K3C-5 relocated microseismicity planes</td><td>USGS ComCat (external, public domain)</td><td>3-D RANSAC hypocentral planes</td><td>Swarms illuminate active blind transfer zones</td><td>Induced seismicity</td><td>unknown · host not reachable from sandbox</td></tr>
 </tbody></table></div>"""
@@ -258,7 +255,7 @@ def build() -> None:
 <div class="table-wrap"><table><thead><tr><th>Arm</th><th>Hide-and-recover (pooled, 95% CI)</th><th>Detached ≥ 600 m</th><th>Paired Δ</th></tr></thead><tbody>
 <tr><td>Control: 0.2778 champion rule (D2.8 + visible B=2)</td><td>{hr_cell(e1['CTRL_champion_rule'])}<br><span class="small">n withheld = {e1['CTRL_champion_rule']['n_withheld_positives']:,}</span></td><td>{hr_cell(e1['detached_600m']['CTRL'])}</td><td>—</td></tr>
 <tr><td>E1: CSST-BGHF (previous lane) re-measured on 24 cells</td><td>{hr_cell(e1['E1_csst_bghf'])}</td><td>{hr_cell(e1['detached_600m']['E1'])}</td><td>E1 − CTRL {e1['paired_E1_minus_CTRL']['mean_boot_delta']:+.4f} CI {H(str(e1['paired_E1_minus_CTRL']['ci95']))}, P(&gt;0) = {e1['paired_E1_minus_CTRL']['prob_positive']}</td></tr>
-<tr><td>E2: E1 × Kostrov strain-deficit prior (H-K3C-1)</td><td>{hr_cell(e2['E2'])}</td><td>{hr_cell(e2['detached_600m_E2'])}</td><td>E2 − E1 {e2['paired_E2_minus_E1']['mean_boot_delta']:+.4f} CI {H(str(e2['paired_E2_minus_E1']['ci95']))}, P(&gt;0) = {e2['paired_E2_minus_E1']['prob_positive']}; SGMC-cal live E1 {f4(e2['sgmc_cal_live']['E1'])} vs E2 {f4(e2['sgmc_cal_live']['E2'])} (champion {f4(e2['sgmc_cal_live']['champion_02778'])}); prior-alone AUC {f4(e2['prior_alone_oriented_auc'])}; preregistered rule passed: <strong>{e2['e2_passes_preregistered_rule']}</strong></td></tr>
+<tr><td>E2: E1 × Kostrov strain-deficit prior (H-K3C-1)</td><td>{hr_cell(e2['E2'])}</td><td>{hr_cell(e2['detached_600m_E2'])}</td><td>E2 − E1 {e2['paired_E2_minus_E1']['mean_boot_delta']:+.4f} CI {H(str(e2['paired_E2_minus_E1']['ci95']))}, P(&gt;0) = {e2['paired_E2_minus_E1']['prob_positive']}; historical SGMC-cal E1 {f4(e2['sgmc_cal_live']['E1'])} vs E2 {f4(e2['sgmc_cal_live']['E2'])} (champion {f4(e2['sgmc_cal_live']['champion_02778'])}); prior-alone AUC {f4(e2['prior_alone_oriented_auc'])}; preregistered rule passed: <strong>{e2['e2_passes_preregistered_rule']}</strong></td></tr>
 {''.join(f"<tr><td>E3: {e3['surface']} surface at budget {b}</td><td>{hr_cell(r['hr'])}</td><td>{hr_cell(r['detached_600m'])}</td><td>vs 37,654: {r['paired_vs_37654']['mean_boot_delta']:+.4f} CI {H(str(r['paired_vs_37654']['ci95']))}</td></tr>" for b, r in e3['rows'].items())}
 </tbody></table></div>
 <p class="table-note">Shipped: surface <strong>{H(e3['surface'])}</strong>, budget <strong>{e3['shipped_budget']:,}</strong> dots, min spacing 3.1 px (310 m), B = 2 px collar. Shipped-arm vs champion rule: Δ {hold['paired_delta_vs_champion_02778']:+.4f}, 95% CI {H(str(hold['paired_delta_ci95']))}, P(Δ&gt;0) = {hold['paired_prob_positive']}. Detached ≥ 600 m: {f4(hold['detached_600m']['dti'])} vs champion {f4(hold['detached_600m']['champion_02778_dti'])}. SGMC-cal (62,703 off-catalogue USGS SGMC pixels): {f4(sgmc['prevalence_calibrated_dti'])} {H(str(sgmc['calibrated_ci95']))} vs champion {f4(sgmc['champion_02778_calibrated_dti'])}.</p>"""
@@ -266,47 +263,37 @@ def build() -> None:
     checks = f"""<h2>Validation gates (automated, no human inspection)</h2>
 <div class="table-wrap"><table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody>
 <tr><td>GeoTIFF saved bytes: single band, float32, EPSG:32611, 3730 × 3292, transform [100, 0, 243350, 0, −100, 4508550]</td><td>{'PASS' if all(val[k] for k in ('single_band','crs_match','shape_match','transform_match')) else 'FAIL'}</td></tr>
-<tr><td>Every pixel finite and in [0, 1] over the full grid (prevents "Predicted values must be in range [0, 1]")</td><td>{'PASS' if val['full_grid_zero_nan'] and val['range_0_1'] else 'FAIL'} — min {card['validator_output']['independent_reread']['min']}, max {card['validator_output']['independent_reread']['max']}, positives {card['validator_output']['independent_reread']['n_positive']:,}, on-catalogue positives {card['validator_output']['independent_reread']['positives_on_catalogue']}</td></tr>
-<tr><td>Leakage canary: every feature alone ≤ 0.90 AUC on withheld truth ({card['leakage_canary']['n_features_tested']} features)</td><td>{'PASS' if card['leakage_canary']['passed'] else 'FAIL'} — max {f4(card['leakage_canary']['max_oriented_auc'])}; strain-deficit prior alone {f4(card['leakage_canary']['strain_deficit_prior_alone_auc'])}</td></tr>
-<tr><td>Uniqueness — surface rank-correlation vs {reg['unique_rasters_checked']:,} unique registry rasters (113 repos) ≤ 0.90</td><td>max |ρ| = {f4(reg['surface_max_abs_spearman'])} ({H(reg['surface_worst_raster'])})</td></tr>
-<tr><td>Uniqueness — final dots within 3 px of any ≤100k-dot detector raster ≤ 70%</td><td>max {pct(reg['discrete_le100k_max_literal_3px_overlap'])} ({H(reg['discrete_worst_raster'])}); nine focus sites max {pct(reg['focus9_max_3px_overlap'])}</td></tr>
-<tr><td>Uniqueness — literal final-dot overlap against every registry raster must be ≤ 70% (no calibration or lattice exception)</td><td>{'PASS' if card['registry']['literal_all_rasters_final_passed'] else 'FAIL — DO NOT SUBMIT'} — maximum literal overlap {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}); null-calibrated excess is diagnostic only</td></tr>
-<tr><td>Holdout: paired improvement over the 0.2778 champion rule, same evaluator, 95% CI excludes 0</td><td>{'PASS' if hold['paired_delta_ci95'][0] > 0 else 'FAIL'} — Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}</td></tr>
-<tr><td>Overall promotion-gate verdict</td><td><strong>{H(gate['verdict'].upper())}</strong> {('— ' + H('; '.join(gate['reasons']))) if gate['reasons'] else ''}</td></tr>
+<tr><td>Every pixel finite and in [0, 1] over the full grid (local full-array range check; portal acceptance is unknown)</td><td>{'PASS' if val['full_grid_zero_nan'] and val['range_0_1'] else 'FAIL'} — min {card['validator_output']['independent_reread']['min']}, max {card['validator_output']['independent_reread']['max']}, positives {card['validator_output']['independent_reread']['n_positive']:,}, on-catalogue positives {card['validator_output']['independent_reread']['positives_on_catalogue']}</td></tr>
+<tr><td>Historical leakage canary (not reproduced): every feature alone ≤ 0.90 AUC on withheld truth ({card['leakage_canary']['n_features_tested']} features)</td><td>{'PASS' if card['leakage_canary']['passed'] else 'FAIL'} — max {f4(card['leakage_canary']['max_oriented_auc'])}; strain-deficit prior alone {f4(card['leakage_canary']['strain_deficit_prior_alone_auc'])}</td></tr>
+<tr><td>Historical, not reproduced: surface rank-correlation vs {reg['unique_rasters_checked']:,} unique registry rasters (113 repos) ≤ 0.90</td><td>max |ρ| = {f4(reg['surface_max_abs_spearman'])} ({H(reg['surface_worst_raster'])})</td></tr>
+<tr><td>Historical subset only — final dots within 3 px of any ≤100k-dot detector raster ≤ 70%</td><td>max {pct(reg['discrete_le100k_max_literal_3px_overlap'])} ({H(reg['discrete_worst_raster'])}); nine focus sites max {pct(reg['focus9_max_3px_overlap'])}</td></tr>
+<tr><td>Uniqueness — literal overlap with every registry raster (required; null calibration is diagnostic only)</td><td>{'PASS' if card['registry']['literal_all_rasters_final_passed'] else 'FAIL'} — literal worst {pct(reg['literal_worst_any_raster']['within_3px_fraction'])} ({H(reg['literal_worst_any_raster']['name'])}), p0 = {reg['literal_worst_any_raster'].get('p0')}, excess = {reg['literal_worst_any_raster'].get('excess_overlap_3px')}</td></tr>
+<tr><td>Historical holdout (not reproduced): paired improvement over the 0.2778 champion rule, same evaluator, 95% CI excludes 0</td><td>{'PASS' if hold['paired_delta_ci95'][0] > 0 else 'FAIL'} — Δ {hold['paired_delta_vs_champion_02778']:+.4f} CI {H(str(hold['paired_delta_ci95']))}</td></tr>
+<tr><td>Overall promotion-gate verdict</td><td><strong>{H(gate['verdict'].upper())}</strong> {('— ' + H(reason_summary(gate))) if gate['reasons'] else ''}</td></tr>
 </tbody></table></div>
 <p class="small">Spatial allocation of the shipped dots: {pct(card['spatial_allocation']['near_apron_2_8px_frac'])} within 8 px of the catalogue, {pct(card['spatial_allocation']['stepover_8_35px_frac'])} at 8–35 px, {pct(card['spatial_allocation']['far_field_gt1500m_frac'])} beyond 1.5 km; {pct(card['spatial_allocation']['lidar_gap_dot_frac'])} inside the 1 m LiDAR gap; median strain-deficit prior at dots {card['spatial_allocation']['prior_live_median_at_dots']}.</p>"""
 
     body = f"""<h1>GEMSDOEkarage3 — Lane H-K3C executive summary</h1>
-<p class="lede">One page, one answer: which file to download, whether it is cleared, what it is estimated to score, and whether it is unique. Generated from <code>docs/k3c/run-card.json</code> on {H(card['generated_utc'])}; elapsed {card['elapsed_seconds']} s, peak RSS {card['peak_rss_mb']} MB.</p>
+<p class="lede">Historical evidence and the current decision. No new file is cleared; no defensible organizer-score estimate exists. Generated from <code>docs/k3c/run-card.json</code> on {H(card['generated_utc'])}; elapsed {card['elapsed_seconds']} s, peak RSS {card['peak_rss_mb']} MB.</p>
 {verdict_box}{table}{why}{hyp}{exp}{checks}
-<h2>Reproduce</h2><pre class="code">.venv/bin/python scripts/restore_data.py && .venv/bin/python scripts/prepare_data.py && .venv/bin/python scripts/restore_pinned_registry.py
+<p>See the <a href="../review-literal-20261028.md">current review</a> and <a href="../current-gate-decision.json">gate decision</a>. These old experiments are not reproduced in this session.</p>
+<h2>Historical reproduction commands (not run in this review)</h2><pre class="code">.venv/bin/python scripts/restore_data.py && .venv/bin/python scripts/prepare_data.py && .venv/bin/python scripts/restore_pinned_registry.py
 .venv/bin/python scripts/fetch_all_registry.py
 PYTHONPATH=src .venv/bin/python scripts/build_features.py && PYTHONPATH=src .venv/bin/python scripts/build_crsb_features.py && PYTHONPATH=src .venv/bin/python scripts/build_csst_features.py
 PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python scripts/build_k3c_site.py && .venv/bin/pytest -q</pre>
 <p><a href="../research/k3c-preregistration-20261028.md">Locked preregistration</a> · <a href="../../knowledge/irregularities.md">Irregularities register</a> · <a href="../../research/2026-10-28-k3c.md">Research note</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a></p>"""
     (ROOT / "docs/k3c/index.html").write_text(shell("H-K3C executive summary — GEMSDOEkarage3", body), encoding="utf-8")
 
-    if ok:
-        submission_steps = f"""<ol class="steps">
-<li><strong>Download</strong> <a href="{H(tif_rel)}" download>{H(card['submission_name'])}</a> (or the <a href="{H(zip_rel)}" download>.zip</a> containing exactly one GeoTIFF). Verify the published SHA-256.</li>
-<li><strong>Open</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the competition's submissions page</a> and click <em>New submission</em>. Upload one single-band GeoTIFF or a ZIP containing one, matching the official sample's CRS, shape and geotransform.</li>
-<li><strong>Enter the note</strong> (≤ 140 characters): <code>{H(card['note'])}</code>.</li>
-<li><strong>Submit only after selector approval.</strong> Check the current weekly cap before using a slot.</li>
-<li><strong>Record the organizer receipt</strong> against this exact filename and SHA-256; only the receipt can make a score ORGANIZER-CONFIRMED.</li>
-</ol>"""
-    else:
-        submission_steps = """<div class="verdict no"><strong>STOP — the archived H-K3C raster is not approved.</strong> Do not download it for submission and do not upload it. It fails the literal registry-overlap gate. The form below is included as generic guidance for a future candidate only; there is currently no approved file, name, or note.</div>
-<ol class="steps">
-<li>Wait until a future candidate passes the strict literal registry audit, saved-byte validator, leakage canaries and same-evaluator paired holdout gate.</li>
-<li>Use the separate selector to confirm eligibility and the current weekly slot limit.</li>
-<li>For an approved candidate only, open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the competition submissions page</a>, click <em>New submission</em>, and upload the approved single-band GeoTIFF or a ZIP containing exactly one GeoTIFF.</li>
-<li>Enter the approved candidate's unique name and note (maximum 140 characters), then submit only that exact-byte file.</li>
-<li>Save the organizer's receipt and bind any reported score to its filename and SHA-256. Do not treat a holdout metric or projection as an organizer score.</li>
-</ol>"""
-    howto = f"""<h1>How to submit to DrivenData — current decision first</h1>
+    howto = f"""<h1>How to submit — only after a file is cleared</h1>
 {verdict_box}
-{submission_steps}
-<p class="small">Weekly slot cap: check the number shown on the submission page before uploading; this project never spends a slot by itself.</p>"""
+<p><strong>No candidate is cleared now. Do not upload a research-only TIFF.</strong></p>
+<ol class="steps">
+<li>After an independent selector approves a future candidate, download its uniquely named TIFF and verify its published SHA-256.</li>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submissions page</a>, check the current weekly cap, and choose New submission.</li>
+<li>Choose the validated single-band TIFF (or ZIP containing one TIFF), enter the candidate's short note, and submit.</li>
+<li>Record the organizer receipt, candidate hash and returned score together. A format check alone is not organizer acceptance.</li>
+</ol><p>As described in the supplied form, predictions must be in [0,1] and match the sample CRS, shape and transform.
+Current rules, authentication and acceptance could not be independently verified in this environment.</p>"""
     (ROOT / "docs/k3c/how-to-submit.html").write_text(shell("How to submit — H-K3C", howto), encoding="utf-8")
 
     # top-level decision pages
@@ -314,7 +301,7 @@ PYTHONPATH=src .venv/bin/python scripts/run_k3c_session.py && .venv/bin/python s
 {verdict_box.replace('href="' + H(tif_rel), 'href="k3c/' + H(tif_rel)).replace('href="' + H(zip_rel), 'href="k3c/' + H(zip_rel)).replace('href="run-card.json"', 'href="k3c/run-card.json"')}
 <p><a class="btn light" href="k3c/index.html">Full executive summary (per-site table, hypotheses, experiments)</a> <a class="btn light" href="k3c/how-to-submit.html">How to submit</a></p>
 <h2>Previous lanes (research only — DO NOT SUBMIT)</h2><ul>
-<li>H-K3B-1 CSST-BGHF (2026-10-28 session 3): <a href="csst-bghf/index.html">dashboard</a> — gate negative (8-cell paired CI spanned zero; its archived null-calibrated exception is not valid under the current strict literal rule).</li>
+<li>H-K3B-1 CSST-BGHF (2026-10-28 session 3): <a href="csst-bghf/index.html">dashboard</a> — gate negative (8-cell paired CI spanned zero; literal lattice rule remains binding).</li>
 <li>K3-CCL: <a href="ccl/index.html">summary</a> — duplicate stop vs 21 catalogue-halo rasters; holdout instrument bias IR-K3-12.</li>
 <li>Archived SMGC / CRSB-GUB / K3-fuse TIFFs in <code>docs/downloads/</code> — negative; see <a href="release-review.html">release review</a>.</li></ul>"""
     top_html = shell("GEMSDOEkarage3 — submission decision", top, depth=0)

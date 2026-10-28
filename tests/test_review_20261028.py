@@ -11,11 +11,11 @@ from scripts.promotion_gate import assess
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_literal_budget_bound_stops_before_placement():
-    with pytest.raises(ValueError, match='above 70%'):
+def test_proven_duplicate_budget_stops():
+    with pytest.raises(ValueError, match='duplicate stop'):
         require_budget_not_proven_duplicate(37654)
     assert require_budget_not_proven_duplicate(1000) is None
-    with pytest.raises(ValueError, match='budget must be positive'):
+    with pytest.raises(ValueError):
         require_budget_not_proven_duplicate(0)
 
 
@@ -50,13 +50,29 @@ def test_active_decisions_agree_and_not_linked_to_organizer_scores():
     assert card['verdict'] == review['verdict'] == 'negative'
     assert not card['ok_to_submit'] and not review['ok_to_submit']
     assert review['experiments_run'] == review['weekly_slots_used'] == 0
-    # The lane card preserves its historical result; the current gate deliberately re-evaluates it
-    # under the strict literal protocol and the public selector field must remain empty.
-    assert current['verdict'] == 'promote'  # immutable experiment record, not current authorization
+    # The public decision must agree with the current card and the gate re-run on it
     assert decision['verdict'] == assess(current)['verdict'] == 'negative'
-    assert decision['ok_to_submit'] is False
+    # The old card is an immutable historical claim, not the current decision.
     assert decision['raster_sha256'] == current['raster_sha256']
-    assert sites['promoted_candidate'] is None
+    if decision['verdict'] == 'promote':
+        assert sites['promoted_candidate'] == current['submission_name']
+    else:
+        assert sites['promoted_candidate'] is None
     # Historical nine-site rows never carry an organizer score estimate
     assert all(r['estimated_score'] is None and not r['ok_to_submit'] for r in sites['sites'])
     assert 'DO NOT SUBMIT' in (ROOT / 'README.md').read_text()
+
+
+def test_k3c_witness_and_public_decision_are_fail_closed():
+    audit = json.loads((ROOT / 'evidence/k3c-literal-witness-audit-20261028.json').read_text())
+    card = json.loads((ROOT / 'docs/k3c/run-card.json').read_text())
+    assert audit['candidate_sha256'] == card['raster_sha256']
+    assert hashlib.sha256((ROOT / audit['candidate']).read_bytes()).hexdigest() == audit['candidate_sha256']
+    assert audit['within_3px_fraction'] > .70 and audit['duplicate_stop']
+    assert not audit['ok_to_submit'] and assess(card)['verdict'] == 'negative'
+    for page in ('index.html', 'executive-summary.html', 'docs/index.html',
+                 'docs/executive-summary.html', 'docs/k3c/index.html', 'docs/k3c/how-to-submit.html'):
+        text = (ROOT / page).read_text()
+        assert 'OK TO DOWNLOAD AND SUBMIT: YES' not in text
+        assert 'OK TO SUBMIT? YES' not in text
+        assert 'DO NOT SUBMIT' in text

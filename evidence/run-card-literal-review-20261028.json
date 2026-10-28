@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "run_id": "literal-duplicate-review-20261028",
+  "hypothesis": "No new geological hypothesis was tested. This review asks whether the archived H-K3C candidate satisfies the user's literal registry-uniqueness stop.",
+  "mechanism": "No new detector or physical mechanism evaluated. Screening compares surface rank-correlation and final-dot literal overlap against registry rasters; the archived candidate fails the literal rule.",
+  "named_non_fault_process_that_could_mimic_it": "A dense calibration lattice or broad catalogue-halo blanket can create high geometric dot overlap without indicating shared fault structure; the user's protocol nevertheless treats any registry overlap above threshold as a stop.",
+  "experiments_run": 0,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "No new holdout run. Historical H-K3C only: HOLDOUT-DTI, evaluator GEMSDOE32-HIDE-RECOVER-v3.1-24cell, n=66904, 0.111044 [0.098990, 0.122727]. Not reproduced, not an organizer score, and not a forecast."
+  },
+  "correlation_overlap_vs_registry": {
+    "protocol": "surface abs Spearman > 0.90 or final dots > 0.70 within 3 pixels of any registry raster => negative",
+    "literal_overlap_limit": 0.7,
+    "archived_surface_max_abs_spearman": 0.526987,
+    "archived_surface_scope": "Historical H-K3C run-card self-report; not independently recomputed in this review.",
+    "archived_final_dots_max_literal_overlap_3px": 1.0,
+    "archived_final_dots_scope": "Historical H-K3C run-card registry audit; complete current-registry status not authenticated.",
+    "independent_pinned_witness_literal_overlap_3px": 0.9935199447601848,
+    "independent_witness_scope": "37,654 in-footprint dots against one SHA-pinned owner-mirrored lattice raster; not a complete registry audit.",
+    "archived_null_calibrated_excess_overlap": 0.689103,
+    "null_calibrated_metric_authorizes_submission": false,
+    "literal_all_rasters_passed": false,
+    "status": "NEGATIVE: archived complete-audit field is false and its recorded maximum literal overlap is 100%; the independent one-witness audit is 99.351994%. No new surface or dot set was created."
+  },
+  "raster_sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+  "raster_scope": "Existing H-K3C historical research TIFF, not a new submission.",
+  "validator_output": {
+    "saved_bytes_rechecked_in_this_review": false,
+    "historical_no_nan_inside_footprint": true,
+    "historical_values_within_0_1": true,
+    "historical_whole_array_finite": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "outside_footprint_null_check": false,
+    "reference_scope": "Historical checks against a SHA-pinned owner mirror, not an authenticated organizer sample.",
+    "organizer_acceptance": "unknown"
+  },
+  "submission_name": null,
+  "note": "No new TIFF. Archived H-K3C fails literal registry uniqueness; do not submit.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "slot_selected": false,
+  "organizer_confirmed_score": null,
+  "limitations": [
+    "Feature cache absent from this checkout",
+    "No fresh complete registry snapshot was available",
+    "No new holdout experiment or same-session baseline",
+    "No organizer receipt, current authenticated leaderboard reading, or account quota verification",
+    "Historical format results were not re-read from the raster bytes in this review"
+  ]
+}

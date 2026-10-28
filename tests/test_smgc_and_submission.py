@@ -103,8 +103,8 @@ def test_retracted_submission_geotiff_and_run_card():
     assert pg.returncode == 2
     assert pg_out["verdict"] == "negative"
     assert pg_out["ok_to_submit"] is False
-    # Strict literal gate: this retained artifact's duplicate evidence cannot be waived by calibration.
-    assert any("literal" in reason for reason in pg_out["reasons"])
+    # Literal any-registry rule binds all cards, even with null-calibration diagnostics.
+    assert any("all-registry final audit failed" in reason for reason in pg_out["reasons"])
 
 
 class SMGCAndSubmissionTests(unittest.TestCase):
