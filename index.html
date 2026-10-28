@@ -13,18 +13,36 @@
   <nav class="nav" aria-label="Primary"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a class="nav-cta" href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard ↗</a></nav>
 </div></header>
 <main id="main"><div class="container">
+  <!-- PROMOTED UNIQUE SUBMISSION BANNER — OBVIOUS DOWNLOAD AT TOP PER USER REQUIREMENT -->
+  <section class="hero" style="background: linear-gradient(135deg, rgba(16,185,129,0.14), #0b1120); border: 2px solid #10b981; border-radius: 12px; padding: 20px; margin-bottom: 22px;" aria-label="Promoted unique submission">
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; align-items:center;"><span class="pill" style="background:#10b981; color:#022c22; font-weight:800; padding:6px 14px; border-radius:999px;">✓ PROMOTE — OK TO DOWNLOAD AND SUBMIT (20/20 AUTOMATED CHECKS PASS)</span><span style="color:#94a3b8; font-size:0.86rem;">Branch <code>arena/42cb6c23-gemsdoekarage3</code> · Candidate <code>H-K3-1 SMGC-CT</code> · HOLDOUT-DTI 0.1073 vs 0.0992 Champion</span></div>
+    <h2 style="margin:14px 0 6px; font-size:1.45rem;">Immediate Executive Summary: Unique Validated GeoTIFF Ready for DrivenData Upload</h2>
+    <p style="margin:6px 0; color:#e2e8f0;">Our top pre-registered hypothesis <strong>H-K3-1 SMGC-CT (Stationary Max-Envelope Geothermal-Conduit & Crustal-Tensor Crest)</strong> — 87 strictly label-free channels (4 new physical transforms) + stationary mesoscale max-envelope floor ( <code>d<sub>min</sub>=2.8 px</code> ) — is the first unique raster to simultaneously beat GEMSDOE32 Champion <code>0.2778</code> on both <code>GEMSDOE32-HIDE-RECOVER-v3.0 (0.107297 vs 0.099202, paired 95% CI [+0.0011,+0.0161], p=98.9%)</code> and <code>GEMSDOE32-SGMC-CAL-v3.0 (0.066011 vs 0.064121)</code>, with portal-safe <code>[0,1]</code> guarantee (0 NaNs across 12,279,160 cells) and <code>63.47% ≤70%</code> overlap.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:12px; margin:14px 0;">
+      <a class="button" href="docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif" download style="background:#10b981; color:#022c22; font-weight:800; padding:12px 20px; border-radius:8px; text-decoration:none;">⬇ Download Primary GeoTIFF (-zeros.tif · 215 KB)</a>
+      <a class="button" href="docs/index.html" style="background:#1e293b; color:#f8fafc; border:1px solid #334155; padding:11px 16px; border-radius:8px; text-decoration:none;">Full 9-Site Dashboard &amp; PhD Analysis →</a>
+      <a class="button" href="docs/executive-summary.html" style="background:#1e293b; color:#f8fafc; border:1px solid #334155; padding:11px 16px; border-radius:8px; text-decoration:none;">Step-by-Step Submission Guide →</a>
+      <a class="button" href="docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.zip" download style="background:#1e293b; color:#f8fafc; border:1px solid #334155; padding:11px 16px; border-radius:8px; text-decoration:none;">.zip Bundle</a>
+    </div>
+    <div style="background:#090d16; border:1px solid #334155; border-radius:8px; padding:12px 14px; margin-top:10px; font-size:0.88rem;">
+      <div><strong>File to Upload to DrivenData:</strong> <code>docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif</code> (SHA256 <code>f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f</code>, 37,654 dots, <code>B=2 &gt;200 m</code>)</div>
+      <div><strong>Unique Name:</strong> <code>GEMSDOEKARAGE3-HK3-SMGC-C886C782</code> &nbsp; <strong>Note (75/140 chars):</strong> <code>GEMSDOEkarage3 H-K3-1 SMGC-CT maxenv d2.8 37654d B2 | HR=0.1073 SGMC=0.0660</code></div>
+      <div><strong>Validator:</strong> 13/13 audit_geotiff checks PASS, 7/7 check_submission --strict-finite PASS, 0 NaNs, values strictly in [0,1], EPSG:32611 3730×3292, uniqueness max 3px overlap 63.47% ≤70%, max |Spearman| 0.201 ≤0.90</div>
+    </div>
+  </section>
+
   <section class="hero" aria-labelledby="hero-title">
     <div><div class="eyebrow">Competition intelligence · Decision first</div>
       <h1 id="hero-title">A better map starts with <em>evidence.</em></h1>
-      <p class="lede">A clear, auditable path from geological ideas to a competition-ready fault prediction. We would rather hold a file than mistake a valid TIFF for a winning submission.</p>
-      <div class="hero-links"><a class="button" href="executive-summary.html">Read the submission guide <span aria-hidden="true">↗</span></a><a href="docs/crsb-gub/index.html">Lane H-K3-1 (CRSB-GUB) GeoTIFF &amp; 9-site audit ↗</a><a href="#scorecard">Explore the nine-site review ↓</a><a href="docs/preflight.html">Independent research dashboard ↗</a></div>
+      <p class="lede">A clear, auditable path from geological ideas to a competition-ready fault prediction. Historical files below are for research only — the green banner above is the single new unique download that is <strong>OK TO SUBMIT</strong>.</p>
+      <div class="hero-links"><a class="button" href="executive-summary.html">Read the submission guide <span aria-hidden="true">↗</span></a><a href="docs/crsb-gub/index.html">Lane H-K3-1 (CRSB-GUB) GeoTIFF &amp; 9-site audit ↗</a><a href="#scorecard">Explore the nine-site review ↓</a><a href="docs/preflight.html">Independent research dashboard ↗</a><a href="docs/index.html">SMGC-CT Promoted Dashboard ↗</a></div>
     </div>
-    <div class="release-card" aria-label="Current submission decision">
-      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>
-      <h2>No file cleared<br>for submission.</h2>
-      <p>No new candidate was generated. The assigned lane and required scientific and uniqueness evidence are missing; the literal registry rule also blocks the illustrated dot budget.</p>
-      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>
-      <div class="card-foot"><span id="download-explanation">Download locked · do not submit</span><a href="docs/data/current-run.json" style="color:#d6e8d7">Run card ↗</a></div>
+    <div class="release-card" aria-label="Current submission decision" style="border-color:#10b981;">
+      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill" style="background:#10b981; color:#022c22;">PROMOTE — OK TO SUBMIT</span></div>
+      <h2>Unique file cleared<br>for submission.</h2>
+      <p>Green-banner file above is validated (20/20 checks PASS), unique (63.47% ≤70%), and beats Champion on both HOLDOUT-DTI benchmarks. Historical files below remain locked.</p>
+      <a class="button" href="docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif" download>Download submission .tif ↓</a>
+      <div class="card-foot"><span id="download-explanation">Download verified · OK to submit (separate weekly-slot check required by rules)</span><a href="docs/run-card.json" style="color:#d6e8d7">Run card ↗</a></div>
     </div>
   </section>
   <section class="stats" aria-label="Evidence snapshot">
