@@ -31,3 +31,7 @@ data/*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Frontend dependencies and local verification logs
+node_modules/
+.cache-unittest.log

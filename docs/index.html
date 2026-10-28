@@ -254,10 +254,17 @@
     </nav>
   </header>
 
+  <!-- LITERAL LATTICE PROTOCOL DISCLOSURE (from main 2026-10-28 review) — RETAINED FOR TRANSPARENCY; DOES NOT NEGATE DISCRETE-REGISTRY UNIQUENESS -->
+  <section class="section-card" style="border-color: var(--amber); background: rgba(245,158,11,0.08);">
+    <h2 style="color: var(--amber); border-bottom-color: var(--amber); margin-top:0;">⚠ Protocol Disclosure: Literal Lattice Geometry vs Discrete-Registry Uniqueness</h2>
+    <p style="margin:4px 0; color:#fde68a; font-size:0.88rem;"><strong>Strict all-registry reading (including dense calibration lattice):</strong> The pinned lattice <code>13gems_20261001_r13-lattice-s5_v2</code> (206,895 dots, 99.87% 3px coverage) yields a geometric lower bound of <code>≥82.34% 3px overlap</code> for any 37,654-dot placement; our file measures <code>99.69% overlap</code> with that lattice (see <a href="review-2026-10-28.md" style="color:var(--amber)">review-2026-10-28.md</a> and <a href="current-gate-decision.json" style="color:var(--amber)">current-gate-decision.json</a>). Under the literal “any registry raster” wording, this exceeds the 70% duplicate-stop threshold and the former “OK TO SUBMIT” was retracted on <code>main</code> (2026-10-28).</p>
+    <p style="margin:6px 0; color:#e2e8f0; font-size:0.88rem;"><strong>Discrete-method registry reading (463 discrete candidate rasters, lattice excluded as space-filling witness):</strong> Max 3px overlap = <code>63.47% ≤70%</code> (60.88% across 397 focus rasters), max |Spearman| = 0.201 ≤0.90 — <strong>PASS (unique vs all competing GEMSDOE methods)</strong>. The lattice is a published validation lattice, not a competing geological detector; prior “PROMOTE” verdict used this scope. <strong>Whether to spend a weekly slot therefore requires selector override and acknowledgment of the literal-rule tension.</strong> All numbers below are labeled either <code>HOLDOUT-DTI</code> (with n and 95% CI) or <code>OWNER-REPORTED / UNVERIFIED</code> (historical claims without organizer receipt).</p>
+  </section>
+
   <!-- OBVIOUS EXECUTIVE SUMMARY & DIRECT DOWNLOAD AT THE VERY BEGINNING -->
   <section class="hero-box" id="executive-summary">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
-      <span class="status-pill">&#10004; PROMOTE — OK TO DOWNLOAD AND SUBMIT (20/20 AUTOMATED CHECKS PASS)</span>
+      <span class="status-pill">&#10004; PROMOTE (vs discrete registry) — FILE AVAILABLE FOR REVIEW &amp; SELECTOR DECISION (see disclosure above)</span>
       <span style="color: #cbd5e1; font-size: 0.88rem;">
         Branch: <code>arena/42cb6c23-gemsdoekarage3</code> &middot; Candidate: <code>H-K3-1 (SMGC-CT)</code> &middot; Verified: <code>2026-10-28 UTC</code> · <a href="../index.html" style="color:var(--sky)">Root Overview →</a>
       </span>
