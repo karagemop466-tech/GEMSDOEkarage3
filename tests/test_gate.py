@@ -26,6 +26,17 @@ class GateTests(unittest.TestCase):
     def test_unhashable_registry_id_fails_closed(self):
         c=self.valid(); c['registry']['surface']['comparisons'][0]['sha256']=[]
         self.assertEqual(assess(c)['verdict'],'negative')
+    def test_literal_failure_overrides_filtered_pass(self):
+        c=self.valid()
+        c['correlation_and_overlap_vs_registry']={'literal_all_rasters_final_passed':False}
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_dense_lattice_is_not_exempt(self):
+        c=self.valid()
+        c['evidence']={'is_calibration_lattice':True,'within_3px_fraction':.996866}
+        self.assertEqual(assess(c)['verdict'],'negative')
+    def test_ci_must_contain_estimate(self):
+        c=self.valid(); c['holdout']['ci95']=[.3,.4]
+        self.assertEqual(assess(c)['verdict'],'negative')
     def test_nan(self):
         c=self.valid(); c['feature_auc']=[float('nan')]
         self.assertEqual(assess(c)['verdict'],'negative')

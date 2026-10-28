@@ -8,6 +8,12 @@ SOURCE = 'https://github.com/buffedlizard55-lab/GEMSDOE32/blob/73485f27cf230af77
 def enrich(rows, audit):
     winners = {item['site']: item for item in audit['winners']}
     for row in rows:
+        row['ok_to_submit'] = False
+        row['estimated_score'] = None  # Proxy DTI is not a hidden-score estimate.
+        row['unique'] = False  # No complete literal registry clearance.
+        row['evidence_class'] = 'USER-REPORTED / UNVERIFIED; no artifact-linked organizer receipt'
+        if 'other_confirmed_submissions' in row:
+            row['other_reported_submissions'] = row.pop('other_confirmed_submissions').replace('ORGANIZER-CONFIRMED', 'USER-REPORTED / UNVERIFIED')
         winner = winners[row['site']]
         # Legacy rows mixed owner claims, unlabelled holdout numbers and an
         # estimated hidden score. Do not surface those as authenticated results.

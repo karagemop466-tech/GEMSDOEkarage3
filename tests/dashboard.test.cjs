@@ -2,8 +2,18 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const {JSDOM} = require('jsdom');
-// Isolated DOM for the retained read-only dashboard script; the legacy page is superseded.
-const html = '<!doctype html><html><body><button disabled></button><table><tbody id="rows"></tbody></table><div id="site-details"></div><div id="updated"></div></body></html>';
+// Legacy dynamic renderer is unit-tested with its own DOM contract; the live
+// decision page is intentionally static so a fetch cannot override its stop.
+const html = '<table><tbody id="rows"></tbody></table><div id="site-details"></div><p id="updated"></p><button disabled></button>';
+test('live docs page publishes the literal duplicate stop without dynamic approval', () => {
+  for (const page of ['docs/index.html', 'docs/executive-summary.html']) {
+    const content = fs.readFileSync(page, 'utf8');
+    assert.match(content, /Submission blocked: duplicate-stop/);
+    assert.match(content, /99\.6866%/);
+    assert.match(content, /NOT CLEARED FOR SUBMISSION/);
+    assert.doesNotMatch(content, /src=["']dashboard\.js/);
+  }
+});
 const script = fs.readFileSync('docs/dashboard.js', 'utf8');
 
 async function render(change, failure = false) {
