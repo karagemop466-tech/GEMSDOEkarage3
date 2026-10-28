@@ -79,7 +79,7 @@ def assess(card):
                 f'{stage} uniqueness incomplete or duplicate')
     require(not card.get('release_review'), 'superseded release evidence; rerun literal registry checks')
     v=card.get('validator') if isinstance(card.get('validator'), dict) else {}
-    for key in ('saved_bytes_checked','single_band','finite_inside','range_0_1','crs_match','shape_match','transform_match'):
+    for key in ('saved_bytes_checked','single_band','finite_inside','range_0_1','whole_array_finite_range','crs_match','shape_match','transform_match'):
         require(v.get(key) is True, f'validator: {key}')
     sha=card.get('raster_sha256')
     require(isinstance(sha,str) and len(sha)==64 and all(c in '0123456789abcdef' for c in sha), 'missing raster SHA256')

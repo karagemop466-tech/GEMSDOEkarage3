@@ -15,6 +15,7 @@
     "missing nonempty unique registry inventory or manifest digest",
     "surface uniqueness incomplete or duplicate",
     "final_dots uniqueness incomplete or duplicate",
+    "validator: whole_array_finite_range",
     "validator not bound to candidate bytes"
   ]
 }

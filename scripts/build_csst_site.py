@@ -167,7 +167,7 @@ def build_all() -> None:
             <small>Live DrivenData receipt: <em>Not yet submitted (0 weekly slots spent)</em></small>
           </td>
           <td>
-            <span class="pass-pill">UNIQUE · PASS (1,913 rasters / 112 repos)</span><br>
+            <span class="pass-pill">FILTERED SUBSET ONLY · LITERAL DUPLICATE STOP</span><br>
             <small>Surface max |ρ| = <code>{abs(uniq['worst_surface_spearman_all']['surface_spearman']):.4f}</code> ≤ 0.90<br>
             Discrete (≤100k) max 3-px = <code>{uniq['worst_discrete_3px_overlap']['within_3px_fraction']*100:.2f}%</code> ≤ 70.0%<br>
             Focus-9 max 3-px = <code>{uniq['worst_focus9_3px_overlap']['within_3px_fraction']*100:.2f}%</code> · vs 0.2778 Champ = <code>{salloc['overlap_3px_vs_champion_02778']*100:.2f}%</code></small>
@@ -257,7 +257,7 @@ def build_all() -> None:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GEMSDOEkarage3 — Lane H-K3B-1 (CSST-BGHF) Unique Validated GeoTIFF &amp; 9-Site Forensic Audit</title>
+  <title>GEMSDOEkarage3 — Lane H-K3B-1 (CSST-BGHF) Archived GeoTIFF &amp; 9-Site Forensic Audit</title>
   <style>{SHARED_CSS}</style>
 </head>
 <body>
@@ -433,7 +433,7 @@ def build_all() -> None:
             <td><code>{exp1['hide_and_recover_v3']['pooled_dti']:.6f}</code> <small>[{exp1['hide_and_recover_v3']['ci95'][0]:.4f}, {exp1['hide_and_recover_v3']['ci95'][1]:.4f}]</small></td>
             <td><code>{exp1['detached_600m_segments']['pooled_dti']:.6f}</code> <small>[{exp1['detached_600m_segments']['ci95'][0]:.4f}, {exp1['detached_600m_segments']['ci95'][1]:.4f}]</small></td>
             <td><strong><code>{exp1['sgmc_off_catalogue_v3']['prevalence_calibrated_dti']:.6f}</code></strong> <small>[{exp1['sgmc_off_catalogue_v3']['calibrated_ci95'][0]:.4f}, {exp1['sgmc_off_catalogue_v3']['calibrated_ci95'][1]:.4f}]</small></td>
-            <td>Zero label access already beats 0.2778 Champion on off-catalogue SGMC bedrock/geothermal faults (+0.0033).</td>
+            <td>Archived point holdout is higher than the historical control on SGMC-cal; not a leaderboard result.</td>
           </tr>
           <tr>
             <td><strong>EXP-2: Dual-Cover 57/52-ch SAR-PU OOF Isotropic (d=3.1)</strong></td>
@@ -447,7 +447,7 @@ def build_all() -> None:
             <td><strong><code>{exp3['hide_and_recover_v3']['pooled_dti']:.6f}</code></strong> <small>[{exp3['hide_and_recover_v3']['ci95'][0]:.4f}, {exp3['hide_and_recover_v3']['ci95'][1]:.4f}]</small></td>
             <td><strong><code>{exp3['detached_600m_segments']['pooled_dti']:.6f}</code></strong> <small>[{exp3['detached_600m_segments']['ci95'][0]:.4f}, {exp3['detached_600m_segments']['ci95'][1]:.4f}]</small></td>
             <td><strong><code>{exp3['sgmc_off_catalogue_v3']['prevalence_calibrated_dti']:.6f}</code></strong> <small>[{exp3['sgmc_off_catalogue_v3']['calibrated_ci95'][0]:.4f}, {exp3['sgmc_off_catalogue_v3']['calibrated_ci95'][1]:.4f}]</small></td>
-            <td><strong>Dual-benchmark winner:</strong> beats 0.2778 Champion on ALL 3 benchmarks (+0.0055 HR, +0.0056 Detached, +0.0061 SGMC-cal) &amp; passes 1,913-raster uniqueness (66.53%).</td>
+            <td><strong>Archived point holdouts:</strong> above the historical control on three benchmarks; paired intervals include zero and literal registry uniqueness fails.</td>
           </tr>
         </tbody>
       </table>
@@ -524,7 +524,7 @@ def build_all() -> None:
     <div class="pill-row">
       <span class="pass-pill">13/13 GEOTIFF [0, 1] CHECKS PASSED</span>
       <span class="pass-pill">0 NaN PIXELS ANYWHERE (12,279,160 / 12,279,160 FINITE)</span>
-      <span class="pass-pill">100% UNIQUE ACROSS 112 REPOS (max discrete 66.53% ≤ 70%)</span>
+      <span class="pass-pill">FILTERED DISCRETE SUBSET ONLY · LITERAL DUPLICATE STOP</span>
       <span class="hold-pill">DO NOT SUBMIT · VERDICT: NEGATIVE (ok_to_submit=false)</span>
     </div>
     <h1>How to Download &amp; Submit to DrivenData DOE GEMS (#306) — Gate Audit (<strong>DO NOT SUBMIT</strong>)</h1>

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "run_id": "karage3-followup-20261028-d790672e",
+  "hypothesis": "No lane assigned for this session; the ranked historical proposals remain untested here.",
+  "mechanism": "No candidate mechanism was evaluated. This session restored pinned research data and hardened preflight checks.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts can mimic magnetic or gravity discontinuities; no new feature was tested.",
+  "experiments_run": 0,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "Not run: no assigned lane, shared feature stack, complete current registry or matched incumbent."
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_spearman": null,
+    "preplacement_overlap_3px": null,
+    "final_dot_spearman": null,
+    "final_dot_overlap_3px": null,
+    "status": "No new candidate. Prior artifacts have literal-registry duplicate stops; see evidence/release-audit-20261028.json."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "Not run: no new raster; promotion screen now requires whole-array finite/range evidence."
+  },
+  "submission_name": null,
+  "note": "No new TIFF; do not use a competition slot.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "slot_selected": false
+}

@@ -37,7 +37,7 @@ def build() -> dict[Path, str]:
     ndup = len(fd.get("duplicates_null_calibrated") or [])
     status = (f'<aside role="note" style="background:#fff1f2;color:#881337;padding:20px;border:3px solid #be123c">'
               f'<p style="font-size:1.4em;margin:0"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong></p>'
-              f'<p>The new K3-CCL raster passed the automated format check and the holdout gate. It then hit the '
+              f'<p>The new K3-CCL raster has an archived format report but no matched current-best holdout gate. It hit the '
               f'duplicate stop: its final dots fall more than 70% within 3 px of {ndup} registry rasters (the '
               f'catalogue-halo lane), and it also fails the literal lattice rule. Its live-ledger projection, '
               f'{lo:.3f}–{hi:.3f}, is a projection rather than a score, and it is far below 0.2778. No competition '
@@ -81,14 +81,14 @@ def build() -> dict[Path, str]:
 <p>The catalogue geometry roughly doubled holdout DTI: mechanism Δ {exp['paired_E1_vs_E3_mechanism']['delta_point']:+.4f} [{exp['paired_E1_vs_E3_mechanism']['delta_ci95'][0]:+.4f}, {exp['paired_E1_vs_E3_mechanism']['delta_ci95'][1]:+.4f}]. The leakage canary passed (max single-feature AUC {card['leakage_canary_max_single_feature_oriented_auc']:.3f}).</p>
 <p><strong>Why it still fails.</strong> The holdout withholds catalogue fragments that sit next to visible traces, so they are easy to recover. Live new faults are depleted near the catalogue. Under the live catalogue the learner concentrates its dots in the catalogue halo, which is already occupied by registered rasters. This is the duplicate stop. Fixing the holdout comes first (see the research note, §4 and §8).</p>
 <h2>Why GEMSDOE32 scored 0.2778 (OWNER-REPORTED)</h2>
-<p>It uses H19-5 network dots at 2.8 px spacing, which keeps the kernel's TP coverage while cutting false-positive mass by 64%. It then prunes the dots within 2 px of catalogued faults. Each pruned dot gained the pure-false-positive value, about 2.8e-6 DTI. All 12 measured files at or above 0.2560 lie at least 97.7% within 3 px of H19-5. The best unique file is GEMSDOE70 at 0.2478.</p>
+<p>The historical support is a subset of GEMSDOE31 after removing dots near the mirrored fault catalogue. Reduced redundancy and false-positive mass could explain part of the reported result, but the hidden labels are unavailable; the contribution of individual removed dots and the cause of the reported result are not established.</p>
 """
     how = f"""<h1>How to submit on DrivenData — step by step</h1>
 <aside role="note" style="background:#fff1f2;color:#881337;padding:16px;border:3px solid #be123c"><strong>There is currently NO file in this repository that is OK to submit.</strong> These steps are for a future file whose run card says <code>verdict: promote</code> and which an independent selector has approved, since weekly slots are limited.</aside>
 <ol>
 <li>Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org — DOE GEMS competition</a> with the account registered for the competition.</li>
 <li>Open the <strong>Submissions</strong> tab of the competition.</li>
-<li>Check the file before uploading. It must be a single-band GeoTIFF in EPSG:32611, 3730×3292 pixels, transform (100, 0, 243350, 0, −100, 4508550), float32, with every value in [0, 1] and <em>zeros</em> outside the footprint. NaN outside the footprint triggered the portal error "Predicted values must be in range [0, 1]". Run locally: <code>.venv/bin/python scripts/check_submission.py FILE.tif --strict-finite</code>; it must print <code>[PASSED]</code>.</li>
+<li>Check the file before uploading. It must be a single-band GeoTIFF in EPSG:32611, 3730×3292 pixels, transform (100, 0, 243350, 0, −100, 4508550), float32, with valid values in [0, 1]. Check whole-array finiteness and the official outside-footprint convention separately. The cause of the reported portal range error has not been established. Run locally: <code>.venv/bin/python scripts/check_submission.py FILE.tif --strict-finite</code>; it must print <code>[PASSED]</code>.</li>
 <li>Upload either the <code>.tif</code> or the <code>.zip</code> that contains only that single <code>.tif</code>. Both forms are produced by <code>scripts/submission_writer.py</code>.</li>
 <li>Optional: paste the run card's <code>note</code> (at most 140 characters) into the submission note field, so the score can later be tied to the file hash.</li>
 <li>Submit. Save a screenshot or copy of the submission row (time, score, file name) to <code>registry/owner_score_ledger.csv</code> with the file's SHA-256. Without that, a score stays <strong>OWNER-REPORTED</strong>, not organizer-confirmed.</li>

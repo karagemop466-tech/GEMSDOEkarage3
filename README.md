@@ -1,3 +1,32 @@
+# GEMSDOEkarage3 — evidence and submission status
+
+## Current decision: **DO NOT SUBMIT**
+
+No new TIFF has passed the literal all-registry uniqueness checks, a matched
+holdout comparison, byte validation and a separate slot selector. The files in
+this repository are research artifacts, not approved competition downloads. An
+unknown leaderboard score must not be inferred from holdout performance.
+
+- [Executive summary and nine-site comparison](executive-summary.html) · [Project brief and standing protocol](docs/PROJECT_BRIEF.md) · [Latest follow-up](research/2026-10-28-followup-d790672e.md) · [Prior review and hypotheses](research/2026-10-28-review.md) · [Release evidence](docs/release-review.html)
+- Core inputs were restored from SHA-pinned owner mirrors and prepared in this
+  session. These are **not organizer-authenticated**; ignored input and cache
+  files may not persist in another checkout. Their receipt is
+  [here](docs/core-data-receipt.json). An assigned parallel lane, shared feature
+  stack, complete current registry, and same-evaluator incumbent are still missing.
+- A filtered historical candidate comparison is not the literal all-registry
+  gate. Existing archives fail the literal lattice rule. A file hash or format
+  check alone does not make an artifact unique or authorize an upload.
+- Browser GitHub head checks are change alerts, not scientific re-audits. The
+  DrivenData leaderboard and logged-in submission form were not accessible in
+  this runtime; any old leaderboard value is stale, not a current observation.
+
+**Read this README, [the project brief](docs/PROJECT_BRIEF.md), and the latest
+reviews at the start of each session.** Maximize P(Win) and Own the Outcome by
+preserving uncertainty, enforcing automated stops, and recording negative results.
+
+<details>
+<summary>Historical research narrative — superseded; claims and commands below are NOT current approval</summary>
+
 # GEMSDOEkarage3 — Current Release Decision & Research Ledger (2026-10-28)
 
 ## Is any file OK to submit? **NO — DO NOT SUBMIT** (updated 2026-10-28: Lanes `H-K3B-1 CSST-BGHF` & `K3-CCL`)
@@ -144,9 +173,12 @@ npm test
 
 ---
 
-## 8. Standing Reference Prompt (Verbatim User Instructions)
 
-Full competition URLs, public Dropbox/GDR/GeoDAWN links, and the complete `GEMSDOE..92` + sibling-org inventory are also archived in [`knowledge/owner_brief.md`](knowledge/owner_brief.md) and [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md).
+</details>
+
+## Standing reference prompt (prior-session excerpt)
+
+The following is a prior-session excerpt, not the full verbatim latest request. Full competition URLs, public Dropbox/GDR/GeoDAWN links, and the complete `GEMSDOE..92` + sibling-org inventory are also archived in [`knowledge/owner_brief.md`](knowledge/owner_brief.md) and [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md).
 
 <details>
 <summary><strong>Click to expand the standing reference prompt supplied by the user</strong></summary>
