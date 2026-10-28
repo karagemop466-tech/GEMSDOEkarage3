@@ -32,17 +32,20 @@ def compare_registry(surface, dots, footprint, registry, *, stage="final"):
         other_dots = other_dots & footprint
         rho = None
         if np.isfinite(other_surface[footprint]).all():
-            x, y = (surface[footprint], other_surface[footprint]) if stage == "surface" else (dots[footprint].astype(float), other_dots[footprint].astype(float))
-            if np.ptp(x) > 0 and np.ptp(y) > 0:
+            x, y = surface[footprint], other_surface[footprint]
+            if x.min() < x.max() and y.min() < y.max():
                 rho = float(spearmanr(x, y).statistic)
         overlap = None
         if dots.any() and other_dots.any():
             overlap = float((distance_transform_edt(~other_dots)[dots] <= 3).mean())
-        duplicate = (rho is not None and rho > .90) or (stage == 'final' and overlap is not None and overlap > .70)
-        rows.append(dict(registry=name, spearman=rho, within_3px_fraction=overlap,
-                         duplicate=duplicate, measurable=rho is not None and (stage == 'surface' or overlap is not None)))
+        dot_rho = None
+        if stage == 'final' and dots[footprint].any() and not dots[footprint].all() and other_dots[footprint].any() and not other_dots[footprint].all():
+            dot_rho = float(spearmanr(dots[footprint], other_dots[footprint]).statistic)
+        duplicate = (rho is not None and abs(rho) > .90) or (dot_rho is not None and abs(dot_rho) > .90) or (stage == 'final' and overlap is not None and overlap > .70)
+        rows.append(dict(registry=name, spearman=rho, within_3px_fraction=overlap, dots_spearman=dot_rho,
+                         duplicate=duplicate, measurable=rho is not None and (stage == 'surface' or (overlap is not None and dot_rho is not None))))
     passed = bool(rows) and (stage == 'surface' or bool(dots.any())) and all(r['measurable'] and not r['duplicate'] for r in rows)
-    return dict(stage=stage, rule="literal rho>0.90 OR directional overlap>0.70; no density exemptions",
+    return dict(stage=stage, rule="literal |rho|>0.90 OR directional overlap>0.70; no density exemptions",
                 comparisons=rows, passed=passed, stop=not passed)
 
 
@@ -92,7 +95,7 @@ def promotion_decision(*, lane, surface_check, final_check, canary_aucs,
         lane=isinstance(lane, str) and bool(lane.strip()),
         surface=surface_check.get('stage') == 'surface' and surface_check.get('passed') is True,
         final=final_check.get('stage') == 'final' and final_check.get('passed') is True,
-        canaries=bool(aucs) and all(np.isfinite(a) and .10 <= a <= .90 for a in aucs),
+        canaries=bool(aucs) and all(np.isfinite(a) and 0 <= a <= 1 and max(a, 1-a) <= .90 for a in aucs),
         holdout=bool(same_evaluation is True and holdout_ok
                      and holdout['evaluator_version'] == incumbent['evaluator_version']
                      and holdout['n_withheld_positives'] == incumbent['n_withheld_positives']

@@ -56,5 +56,5 @@ def test_final_rank_check_uses_actual_dots_not_surface():
     result = compare_registry(surface, dots, foot,
                               {'registered-lattice': (surface[::-1], dots)}, stage='final')
     assert result['stop'] is True
-    assert result['comparisons'][0]['spearman'] == 1.0
+    assert result['comparisons'][0]['dots_spearman'] == 1.0
     assert result['comparisons'][0]['within_3px_fraction'] == 1.0
