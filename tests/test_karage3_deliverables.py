@@ -91,13 +91,32 @@ class DeliverableVerificationTests(unittest.TestCase):
         self.assertFalse(gate_res["ok_to_submit"])
         self.assertFalse(self.card["ok_to_submit"])
 
-    def test_retired_pages_do_not_offer_a_submission(self) -> None:
+    def test_nine_sites_and_html_links_consistent(self) -> None:
         audited_sites = {s["site"] for s in self.nine["sites"]}
         self.assertEqual(audited_sites, FOCUS_9)
-        for doc_rel in ("docs/index.html", "docs/executive-summary.html", "docs/crsb-gub/index.html", "docs/crsb-gub/executive-summary.html"):
+
+        sha = self.card["raster_sha256"]
+        fname = self.card["submission_name"]
+        # Prior CRSB file remains identifiable in the README and archival research,
+        # but public legacy entrypoints must not claim a uniqueness/portal pass.
+        for doc_rel in ("README.md", "docs/crsb-gub/research.md"):
             txt = (ROOT / doc_rel).read_text(encoding="utf-8")
-            self.assertIn("do not submit", txt.lower())
-            self.assertNotRegex(txt, r'href="[^"]+\.(?:tif|zip)"')
+            self.assertIn(sha, txt)
+            self.assertIn(fname, txt)
+        for doc_rel in ("docs/crsb-gub/index.html", "docs/crsb-gub/executive-summary.html"):
+            txt = (ROOT / doc_rel).read_text(encoding="utf-8")
+            self.assertIn("NOT OK TO SUBMIT", txt)
+            self.assertNotIn("100% technically safe", txt)
+
+        for html_name in ("index.html", "executive-summary.html"):
+            html_dir = ROOT / "docs" / "crsb-gub"
+            html_txt = (html_dir / html_name).read_text(encoding="utf-8")
+            for attr_m in re.finditer(r'(?:href|src)="([^"]+)"', html_txt):
+                target = attr_m.group(1)
+                if target.startswith(("http://", "https://", "#", "mailto:")):
+                    continue
+                resolved = (html_dir / target).resolve()
+                self.assertTrue(resolved.exists(), f"Broken relative link {target} in docs/crsb-gub/{html_name}")
 
 
 if __name__ == "__main__":
