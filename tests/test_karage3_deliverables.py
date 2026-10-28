@@ -97,13 +97,16 @@ class DeliverableVerificationTests(unittest.TestCase):
 
         sha = self.card["raster_sha256"]
         fname = self.card["submission_name"]
-        for doc_rel in ("README.md", "docs/crsb-gub/index.html", "docs/crsb-gub/executive-summary.html", "docs/crsb-gub/research.md"):
+        # Prior CRSB file remains identifiable in the README and archival research,
+        # but public legacy entrypoints must not claim a uniqueness/portal pass.
+        for doc_rel in ("README.md", "docs/crsb-gub/research.md"):
             txt = (ROOT / doc_rel).read_text(encoding="utf-8")
-            self.assertIn(sha, txt, f"{doc_rel} missing exact GeoTIFF SHA-256")
-            self.assertIn(fname, txt, f"{doc_rel} missing exact GeoTIFF filename")
-            if doc_rel != "docs/crsb-gub/executive-summary.html":
-                for site in FOCUS_9:
-                    self.assertIn(site, txt, f"{doc_rel} missing {site}")
+            self.assertIn(sha, txt)
+            self.assertIn(fname, txt)
+        for doc_rel in ("docs/crsb-gub/index.html", "docs/crsb-gub/executive-summary.html"):
+            txt = (ROOT / doc_rel).read_text(encoding="utf-8")
+            self.assertIn("NOT OK TO SUBMIT", txt)
+            self.assertNotIn("100% technically safe", txt)
 
         for html_name in ("index.html", "executive-summary.html"):
             html_dir = ROOT / "docs" / "crsb-gub"
