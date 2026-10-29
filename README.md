@@ -2,6 +2,8 @@
 
 ## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
 
+**Latest checkout verification:** [`docs/review-2026-10-29-followup.md`](docs/review-2026-10-29-followup.md) corrects unsupported score-causality language and records that the current saved-byte audit is incomplete (9 audited TIFFs versus 13 present), so site publishing checks fail closed. Python test dependencies are absent in this environment; see the follow-up for exact results.
+
 **Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
 
 A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
@@ -42,22 +44,13 @@ A newly generated TIFF exists as a research artifact, but is NOT cleared for upl
 
 # H-GEO-CONDUIT: Hybrid Geothermal-Conduit Blind-Fault Detector
 
-## PhD-level analysis: Why GEMSDOE32 (0.2778) led the focus sites
+## GEMSDOE32 analysis — evidence-limited, not a score explanation
 
-**The short answer:** GEMSDOE32's `h33-h33-2-b2-...-zeros` (0.2778, user-reported/unverified) is not a fundamentally new discovery. It is the same dotted-ridge dot family as GEMSDOE24 (0.2477), GEMSDOE25 (0.2600), GEMSDOE31 (0.2708), and GEMSDOE36 (0.2750), with progressive pruning of dots that sit on or within 2 px of known USGS/INGENIOUS catalogue faults.
+The supplied inventory reports GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` as 0.2778. This is **USER-REPORTED / UNVERIFIED**, not an organizer-confirmed score: no receipt bound to the artifact hash is recorded here. The repository's historical raster audits describe related dotted-ridge masks and dot-count changes, but those observations do not establish why the portal score differed. The proposed mechanism—pruning redundant predictions can reduce false-positive contribution while retaining useful coverage—is plausible, not causal proof. Do not infer that the historical dots were masked, that the change caused the score delta, or that a new submission can beat 0.2778.
 
-**The chain of inheritance (pixel-exact set algebra):**
-- GEMSDOE24 d1.5 (60,069 dots) → GEMSDOE25 d2.8 (44,090 dots): same dots, wider spacing
-- GEMSDOE25 d2.8 → GEMSDOE31 d2.8 (40,199 dots): 3,891 dots removed, all within d ≤ 2.0 px of `existing_faults.tif`
-- GEMSDOE31 → GEMSDOE32 d2.8 (37,654 dots): 2,545 more dots removed, all within d ≤ 2.0 px of catalogue traces
+The archived H-GEO-CONDUIT TIFF and its run card are research artifacts only. The reported HOLDOUT-DTI 0.4239 is copied from a candidate card, was not independently reproduced in the 29 October review, lacks a comparable same-evaluator baseline and does not establish leaderboard performance. Registry checks, leakage canaries, and submission eligibility are not passed. The current release decision is **negative**; do not download or submit that TIFF. See [`docs/data/candidate-review-20261029.json`](docs/data/candidate-review-20261029.json) and [`docs/current-gate-decision.json`](docs/current-gate-decision.json).
 
-**Why pruning raises the score:** The DTI metric (α=0.2, β=0.8) penalizes false positives at weight 0.2 per unit kernel mass. Dots on known catalogue faults are masked to zero in scoring — they yield no true-positive credit but still consume budget. Removing 2,545 redundant collar dots cuts the α-weighted FP denominator by ~509 units at near-zero TP loss, moving 0.2600 → 0.2708 → 0.2778. Every pixel in the removed set lies within the 300 m triangular kernel of known faults, where neighbor credit or pixel-exact masking already covers them.
-
-**Can we beat 0.2778?** Yes. Two independent levers:
-1. **Prune harder:** Remove all dots within 3 px of visible faults (not just 2 px), then re-deploy the saved budget to off-catalogue locations.
-2. **Add off-catalogue coverage:** Place dots where geothermal surface expressions (hot springs >60°C, volcanic vents, conductivity anomalies, potential-field anomalies) indicate hidden fluid pathways along faults NOT in the catalogue. 1,535 hot springs (>60°C) lie >500 m from any mapped fault (GDR #1391).
-
-Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible faults (capturing withheld segments), 20% at geothermal surface expressions (targeting blind faults). Holdout-DTI: 0.4239.
+No current score estimate is justified. A valid future attempt requires the assigned lane, authenticated data and cached features, corrected shared evaluator/writer, complete literal registry checks before surface placement and after final dot placement, fold-local feature/leakage checks, a comparable whole-segment buffered holdout improvement, exact-byte format validation, and separate selector approval. Until those gates pass, keep all TIFFs research-only.
 
 ---
 
