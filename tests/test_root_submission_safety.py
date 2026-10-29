@@ -6,24 +6,28 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PublicRootSubmissionSafety(unittest.TestCase):
-    def test_public_entry_pages_agree_with_negative_gate(self):
-        gate = json.loads((ROOT / "docs/current-gate-decision.json").read_text())
-        self.assertFalse(gate["ok_to_submit"])
+    def test_entry_pages_never_promote_pending_candidate(self):
         for name in ("index.html", "executive-summary.html"):
             page = (ROOT / name).read_text()
             with self.subTest(page=name):
                 self.assertIn("DO NOT SUBMIT", page)
-                self.assertIn("No score estimate", page) if name == "index.html" else self.assertIn("No defensible score estimate", page)
-                self.assertNotIn("READY TO DOWNLOAD", page)
-                self.assertNotIn("submission-ready", page.lower())
-                self.assertNotIn("Target &gt; 0.2778", page)
-        home = (ROOT / "index.html").read_text()
-        summary = (ROOT / "executive-summary.html").read_text()
-        self.assertIn("Archived TIFF for research only — do not submit", home)
-        self.assertIn("Archived TIFF (do not submit)", summary)
-        self.assertIn("NOT ESTABLISHED", summary)
-        self.assertIn("no protocol-conforming holdout win", home)
-        self.assertIn("complete literal registry uniqueness audit", home)
+                self.assertNotIn("OK TO DOWNLOAD AND SUBMIT: YES", page)
+                self.assertNotIn("OK TO SUBMIT: YES", page)
+                self.assertNotIn("ready to submit", page.lower())
+                self.assertIn("NOT ESTABLISHED", page)
+                self.assertIn("0.4239", page)
+                self.assertIn("HOLDOUT-DTI", page)
+                self.assertIn("not an organizer", page.lower())
+        card = json.loads((ROOT / "docs/data/candidate-review-20261029.json").read_text())
+        self.assertEqual(card["verdict"], "negative")
+        self.assertIsNone(card["registry_checks"]["final_dots_overlap_max_3px"])
+        self.assertEqual(card["holdout_dti"]["evidence_class"], "HOLDOUT-DTI")
+        self.assertIn("not independently reproduced", card["holdout_dti"]["provenance"])
+        self.assertLessEqual(len(card["note"]), 140)
+        readme = (ROOT / "README.md").read_text()
+        self.assertIn("PENDING-REVIEW", readme)
+        self.assertIn("No submission note is authorized", readme)
+        self.assertIn("literal registry", readme.lower())
 
 
 if __name__ == "__main__":
