@@ -1,0 +1,126 @@
+{
+  "candidate_id": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros",
+  "path": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "emitted_pixels": 35615,
+  "mode": "static_binary_diagnostic",
+  "promotion_eligible": false,
+  "provenance_warning": "Static predictions cannot establish fold-local catalogue features or leakage-free training.",
+  "hide_and_recover": {
+    "candidate_id": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "b_visible_px": 0.0,
+    "n_withheld_positives": 22232,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "pooled_dti": 0.30473355287974024,
+    "ci95_cluster_bootstrap": [
+      0.2881210935821653,
+      0.3188882103680109
+    ],
+    "fold_mean_dti": 0.30352389265783647,
+    "per_quadrant_dti": {
+      "NW": 0.30833253623302054,
+      "NE": 0.2871730951775773,
+      "SW": 0.32119173408973367,
+      "SE": 0.29739820513101434
+    },
+    "folds": {
+      "draw20_fold0": {
+        "dti": 0.2992207560156134,
+        "coverage": 0.43055914719650007,
+        "tp": 822.7985302925116,
+        "fp": 5282.223115946119,
+        "fn": 1088.2014697074883,
+        "n_truth": 1911,
+        "emitted": 5940
+      },
+      "draw20_fold1": {
+        "dti": 0.29110101924801435,
+        "coverage": 0.41751959300937935,
+        "tp": 981.5885631650508,
+        "fp": 6474.341465605299,
+        "fn": 1369.4114368349492,
+        "n_truth": 2351,
+        "emitted": 7285
+      },
+      "draw20_fold2": {
+        "dti": 0.32579414097823556,
+        "coverage": 0.4362800047944398,
+        "tp": 1607.6918176675106,
+        "fp": 8325.738662700016,
+        "fn": 2077.308182332489,
+        "n_truth": 3685,
+        "emitted": 9620
+      },
+      "draw20_fold3": {
+        "dti": 0.2958753820678552,
+        "coverage": 0.419596140156352,
+        "tp": 1353.1975520042351,
+        "fp": 8614.496653353759,
+        "fn": 1871.8024479957649,
+        "n_truth": 3225,
+        "emitted": 9626
+      },
+      "draw21_fold0": {
+        "dti": 0.3174443164504277,
+        "coverage": 0.43860679235526806,
+        "tp": 925.8989386619709,
+        "fp": 5213.7444072815,
+        "fn": 1185.101061338029,
+        "n_truth": 2111,
+        "emitted": 5940
+      },
+      "draw21_fold1": {
+        "dti": 0.28324517110714015,
+        "coverage": 0.4130821850928176,
+        "tp": 935.6311492352318,
+        "fp": 6520.645996427389,
+        "fn": 1329.3688507647682,
+        "n_truth": 2265,
+        "emitted": 7285
+      },
+      "draw21_fold2": {
+        "dti": 0.31658932720123184,
+        "coverage": 0.4291280382311949,
+        "tp": 1537.9948890206024,
+        "fp": 8416.067296856798,
+        "fn": 2046.0051109793976,
+        "n_truth": 3584,
+        "emitted": 9620
+      },
+      "draw21_fold3": {
+        "dti": 0.2989210281941735,
+        "coverage": 0.43089421611455125,
+        "tp": 1335.772069955109,
+        "fp": 8607.454802117205,
+        "fn": 1764.227930044891,
+        "n_truth": 3100,
+        "emitted": 9626
+      }
+    }
+  },
+  "sgmc_off_catalogue": {
+    "candidate_id": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "n_withheld_positives": 62703,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "sgmc_raw_pooled_dti": 0.0039365679340948034,
+    "sgmc_raw_ci95": [
+      0.002912001523216735,
+      0.005232484569988557
+    ],
+    "sgmc_prevalence_calibrated_dti": 0.0026422076780525977,
+    "sgmc_calibrated_ci95": [
+      0.0019751397201702744,
+      0.003470598731856947
+    ]
+  },
+  "legacy_summary": {
+    "catalogue_hidden_mean": 0.30352389265783647,
+    "sgmc_prevalence_calibrated_dti": 0.0026422076780525977,
+    "drift_corrected_holdout_mean": 0.32500554629521783
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-10-29T18:24:56.895035+00:00",
+  "classification": "DIAGNOSTIC, NOT A SCORE",
+  "candidate": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "same_grid_as_template": true,
+  "total_dots": 35615,
+  "dots_inside_template_footprint": 35615,
+  "dots_outside_template_footprint": 0,
+  "inside_within3px_of_lattice_share": 0.9982872385230942,
+  "all_dots_within3px_of_lattice_share": 0.9982872385230942,
+  "literal_70pct_rule_on_inside_dots_triggered": true,
+  "ok_to_submit": false
+}

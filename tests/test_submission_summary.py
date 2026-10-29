@@ -144,6 +144,24 @@ class SavedByteAndFootprintReceipts(unittest.TestCase):
         self.assertFalse(rec["ok_to_submit"])
 
 
+class GeoconduitClaimIsNotCleared(unittest.TestCase):
+    def test_lattice_overlap_fails_literal_rule(self):
+        rec = _load("geoconduit-uniqueness.json")
+        self.assertEqual(rec["candidate_dots"], 35615)
+        self.assertTrue(rec["literal_70pct_rule_triggered"])
+        self.assertGreater(rec["worst_directional_overlap"]["candidate_within3px_of_registry"], 0.70)
+
+    def test_shared_evaluator_off_catalogue_value_is_recorded(self):
+        ev = _load("evaluator/eval_geoconduit.json")["sgmc_off_catalogue"]
+        self.assertEqual(ev["evaluator_version"], "GEMSDOE32-SGMC-CAL-v3.0")
+        self.assertLess(ev["sgmc_prevalence_calibrated_dti"], 0.058)  # below the lowest nine-site value
+
+    def test_inside_footprint_receipt_has_no_outside_dots(self):
+        rec = _load("geoconduit-inside-footprint-check.json")
+        self.assertEqual(rec["dots_outside_template_footprint"], 0)
+        self.assertFalse(rec["ok_to_submit"])
+
+
 class LeaderboardSnapshot(unittest.TestCase):
     def test_top_50_monotone_with_expected_anchors(self):
         snap = _load("leaderboard-snapshot-20261029.json")
@@ -180,7 +198,7 @@ class FrontPageBanner(unittest.TestCase):
 class IrregularityRegister(unittest.TestCase):
     def test_session6_entries_present(self):
         text = (ROOT / "knowledge" / "irregularities.md").read_text()
-        for i in range(1, 13):
+        for i in range(1, 14):
             self.assertIn(f"IR-S6-{i:02d}", text)
 
 
