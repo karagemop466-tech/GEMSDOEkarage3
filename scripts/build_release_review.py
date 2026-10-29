@@ -23,7 +23,7 @@ def build():
         name = Path(r['file']).name
         rows.append(f'<tr><td><a download href="{escape(r["file"].removeprefix("docs/"))}">{escape(name)}</a><br><small>Archive only · SHA256 {r["sha256"]}</small></td>'
                     f'<td>Not estimable</td><td>{100*r["within_3px_fraction"]:.4f}% footprint-restricted; {100*r["within_3px_fraction_all_positive_pixels"]:.4f}% all-dots ({r["positive_pixels_outside_template_footprint"]:,} dots outside footprint) · {"FAIL" if r["duplicate_stop"] else "PASS"}</td>'
-                    f'<td>{"PASS" if r["format_diagnostic"]["all_cell_finite_range"] else "FAIL"}</td><td>DO NOT SUBMIT</td></tr>')
+                    f'<td>{"PASS" if r["format_diagnostic"]["all_cell_finite_range_diagnostic"] else "FAIL"}</td><td>DO NOT SUBMIT</td></tr>')
     n_tiffs = len(rasters)
     n_fail = sum(1 for r in rasters if r['duplicate_stop'])
     n_boundary = sum(1 for r in rasters if r['boundary_gaming_refusal'])

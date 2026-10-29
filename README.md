@@ -178,6 +178,83 @@ Do not submit the archived candidate above. For a future approved release, first
 
 ---
 
+# VERIFICATION ADDENDUM (2026-10-29) — read first
+
+Core values for every session: **Maximize P(Win). Own the outcome.** The standing prompt above is read at the start of every session.
+
+## Verdict
+
+- **NEGATIVE — DO NOT SUBMIT.** No new TIFF was generated, no experiment was run, no slot was selected or used. `ok_to_submit` is `false` everywhere.
+- Submission note: none authorized (no candidate has passed the literal registry rule).
+- Negative CSST-BGHF card (NOT A SUBMISSION, DO NOT SUBMIT): raster SHA-256 `4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b`, file `gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif`, card [docs/csst-bghf/run-card.json](docs/csst-bghf/run-card.json).
+- Nine-site comparison table, executive summary and step-by-step guide are on the site: [executive-summary.html](executive-summary.html), [docs/how-to-submit.html](docs/how-to-submit.html).
+- Machine-readable negative card for this session: [evidence/run-card-20261029-verification.json](evidence/run-card-20261029-verification.json).
+
+## Numbers: labels and provenance
+
+- **ORGANIZER-CONFIRMED:** none exist for any file in this repository.
+- **HOLDOUT-DTI:** the only holdout claim is the owner-reported H-GEO-CONDUIT value 0.4239 (95% CI 0.4053–0.4427, 22,232 withheld positives, evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`). Status: **NOT ESTABLISHED.** It was not reproduced, is not an organizer receipt, and fails the literal uniqueness rule.
+- **USER-REPORTED / UNVERIFIED:** historical focus-site scores (GEMSDOE32 0.2778, 36 0.2750, 28 0.2710, 31 0.2708, 33 0.2632, 25 0.2600, 30 0.2600, 24 0.2477, 27 0.2449).
+- **LIVE-FETCH (leaderboard, 2026-10-29, not a receipt):** #1 xiaofanhu 0.4544; #2 cfld__ 0.3916; #3 Batik Shirt Brothers 0.3911. [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/).
+- **Flagged discrepancy:** the target "0.4413" and the "0.3195" value cited in the request match neither the fetched leaderboard nor any receipt in this repository. They are not used anywhere as scores.
+
+## Submission format convention (official)
+
+Source: [DrivenData GEMS problem page, submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format). Requirements: single-layer `float32` GeoTIFF; EPSG:32611; 100 m; same bounds as the training data; values between 0 and 1; **"data outside the bounds is null or nan."**
+
+- The validator `scripts/check_format.py` now gates on exactly these rules (`format_gate_pass`). Earlier revisions required every cell to be finite *and* NaN outside, which no file can satisfy; that contradiction is removed. The all-cell finite check is kept only as `all_cell_finite_range_diagnostic`, not as a gate.
+- The competition-style template (`.cache/historical/template.tif`) **passes** the gate; the `-zeros` files **fail** it because they put 0 outside the footprint.
+- **Unexplained portal error:** the user-reported "Predicted values must be in range [0, 1]" message is not linked to any file in this repository. Its cause is unverified. To diagnose it, obtain the exact file SHA-256 and the full portal message.
+
+## Irregularities (flagged, not repaired)
+
+1. `karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif` is **misnamed**. It contains no NaN outside the footprint and has 7,483 positive dots (62%) outside the footprint. It fails the format gate. Do not use it.
+2. All `-zeros` files place 0 outside the footprint, which the official rule does not allow. They fail the format gate.
+3. The `-nan` files for H-GEO-CONDUIT, HK3-SMGC and K3-fuse-greedy pass the format gate but fail the literal uniqueness rule (see below).
+4. Identical bytes appear at several inventory paths: GEMSDOE25 focus `91eae1ca…` at 10 paths; GEMSDOE32 `c55bafc4…` at 8; GEMSDOE27 `33003374…` at 5; GEMSDOE30 `8cf893ea…` at 3.
+5. A codeload restore of the registry (1,997 rasters) was SHA-256 verified; the GitHub REST path was rate-limited and is not used.
+6. Registry raster `apartanish22-droid/ApartGEMSDOE2/…/depth-cond-conductive-under-thin-cover-top37654-…-nan.tif` is binary and 98.8% positive. It appears to be the complement (inverted) of the fault labels and is the driver of the literal screen. Its provenance is unverified; a user decision is needed before any exclusion.
+
+## Literal uniqueness (measured this session)
+
+- **Coverage (not complete):** 1,979 of 1,997 restored registry rasters compared. Skipped: 1 unreadable (`GEMSDOE63/docs/downloads/smoke.tif`, hash-verified but not parseable by GDAL), 10 on a different grid, 7 with no positive dots. `complete_registry_checked: false`.
+- **Result:** all 22 candidate rows are **DUPLICATE-STOP**. Every row has at least one registry raster with more than 70% of its dots within 3 px (maximum 100%).
+- **Driver:** one registry raster sets the maximum for every row: `apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif` (SHA-256 `1ccfcd3d40ad96d0e6b032210bd3f46ffa28d28009bc1db067fc80e33561bf9c`). It is binary with 5,106,385 of 5,167,373 footprint cells equal to 1. Checked on the same grid and footprint: it is the **exact complement of the template's label positives** (its 60,988 zeros are the template's 60,988 positive cells). It is an **inverted label map**, which makes the literal screen nearly degenerate. The rule has no exemptions, so this file is reported and not excluded.
+- **The verdict does not depend on that raster.** The lattice witness (206,895 positives, non-degenerate) independently gives 99.34–99.92% within-3 px overlap for every retained docs TIFF (`evidence/saved-tiffs-literal-20261028.json`).
+- **Scope of this receipt:** the 22 candidate rows that existed when the sweep ran (before the merge with main). Files added to `main` later (H-THERM-CONDUIT, K4 offcat ridge, faulthalo scarp, and the quarantined H1 file) are covered only by the saved-byte lattice audit, `evidence/saved-tiffs-literal-20261028.json`.
+- **Quarantined H1 seismic-gravity-basin file (`docs/quarantine/h1-seismic-gravity-basin/…-nan.tif`, 1,924 dots):** 0.0% within 3 px of the lattice witness and of the template, which is why the lattice audit does not stop it. But **100% of its dots are within 3 px of the inverted-label registry raster**, so it is a literal DUPLICATE-STOP under the rule as written. Not cleared. Its format gate passes (`-nan` variant), so only the uniqueness rule blocks it.
+- Receipt: `evidence/literal-uniqueness-measure-20261029.json` (`ok_to_submit: false`, `experiments_run: 0`).
+
+Method: `scripts/measure_literal_uniqueness.py` writes `evidence/literal-uniqueness-measure-20261029.json`. For each candidate and each registry raster it computes the fraction of candidate dots within 3 px (exact KD-tree nearest-neighbour, inclusive) and the phi/Spearman rank correlation. A candidate is stopped if either rule fires (>0.70 within 3 px, or |rho| > 0.90). Candidates are compared with every restored registry raster, including identical copies at other paths, and no exemptions are applied.
+
+## Candidate hypotheses (untested; no score or DTI estimate is claimed)
+
+Ranked by implementation cost only. None has been run. Each would need the shared evaluator, a feature-only leakage canary (AUC ≤ 0.90), and the literal uniqueness rule before any file is written.
+
+1. **Magnetic-depth lineaments within conductive-base steps.** Layers: top-of-crustal magnetic source depth + depth to conductive base. Signature: laterally coincident depth discontinuities. Non-fault mimic: intrusion or dike contacts. Differs from catalogue-trained models by using depth-step geometry, not learned labels.
+2. **Strain-rate invariant ridges co-located with isostatic gravity-slope reversals.** Layers: second strain-rate invariant + slope of the isostatic gravity anomaly. Mimic: topographic or landslide scarps.
+3. **Earthquake-density bands with radiometric K/Th contrast.** Layers: density of earthquakes + radiometric counts. Mimic: mine tailings and urban noise.
+
+## Run card (JSON, this session)
+
+```json
+{
+  "hypothesis": "none tested this session (verification and tooling only)",
+  "mechanism": "n/a",
+  "named_non_fault_mimic": "n/a",
+  "holdout_dti": {"value": null, "ci95": null, "evidence_class": "NOT RUN", "note": "H-GEO-CONDUIT 0.4239 is owner-reported and NOT ESTABLISHED"},
+  "registry_correlation_and_overlap": "see evidence/literal-uniqueness-measure-20261029.json",
+  "raster_sha256": null,
+  "validator": "scripts/check_format.py (official rules); see evidence/saved-tiffs-literal-20261028.json",
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "ok_to_submit": false
+}
+```
+
 # REMAINING WORK & LIMITATIONS
 
 1. Confirm the intended lane explicitly and avoid overlapping sibling experiments.
@@ -186,3 +263,7 @@ Do not submit the archived candidate above. For a future approved release, first
 4. Independently reproduce the holdout using the requested whole-segment buffered protocol, feature-only leakage canaries and matched current-best baseline.
 5. Keep the candidate blocked until every gate passes and the separate selector authorizes a real slot; then bind any result to a receipt and file hash.
 6. Local full-suite test execution is environment-limited if Python scientific dependencies are unavailable; report exact CI result before relying on code validation.
+7. The portal error "Predicted values must be in range [0, 1]" is unexplained: obtain the exact file SHA-256 and portal message.
+8. Holdout DTI is not reproduced. The shared evaluator/writer has open upstream issues (#60, #41, #61, #42, #66); no private fork is used.
+9. The complete registry surface/final-dot check was not completed for every candidate; see the measurement receipt for its exact coverage.
+10. The DrivenData data page requires login, so organizer-provided inputs cannot be re-downloaded here.

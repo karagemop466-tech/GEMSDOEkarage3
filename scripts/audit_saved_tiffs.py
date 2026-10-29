@@ -109,7 +109,7 @@ def main() -> int:
             args.out.parent.mkdir(parents=True, exist_ok=True)
             args.out.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
         for r in result['rasters']:
-            print(f"{r['file']}: overlap={r['within_3px_fraction']}, duplicate_stop={r['duplicate_stop']}, strict_format={r['format_diagnostic']['strict_format_gate_pass']}")
+            print(f"{r['file']}: overlap={r['within_3px_fraction']}, duplicate_stop={r['duplicate_stop']}, format_gate_pass={r['format_diagnostic']['format_gate_pass']}")
     except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
         print(f'Audit failed closed: {exc}', file=sys.stderr)
         return 2

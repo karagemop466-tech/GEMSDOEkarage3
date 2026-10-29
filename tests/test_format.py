@@ -37,8 +37,8 @@ class FormatTests(unittest.TestCase):
         mask[0, 0] = 0
         self.write(candidate, values, mask=mask)
         result = inspect(candidate, self.sample)
-        self.assertTrue(result['strict_format_gate_pass'])
-        self.assertTrue(result['all_cell_finite_range'])
+        self.assertTrue(result['format_gate_pass'])
+        self.assertTrue(result['all_cell_finite_range_diagnostic'])
         self.assertTrue(result['outside_null_or_nan'])
         self.assertFalse(result['slot_approved'])
 
@@ -46,18 +46,20 @@ class FormatTests(unittest.TestCase):
         p = self.root / 'zero-outside.tif'
         self.write(p, np.zeros((4, 4), np.float32))
         result = inspect(p, self.sample)
-        self.assertTrue(result['all_cell_finite_range'])
+        self.assertTrue(result['all_cell_finite_range_diagnostic'])
         self.assertFalse(result['outside_null_or_nan'])
-        self.assertFalse(result['strict_format_gate_pass'])
+        self.assertFalse(result['format_gate_pass'])
 
-    def test_nan_outside_may_fail_full_array_range_check(self):
+    def test_nan_outside_passes_official_rule_and_full_array_check_is_diagnostic_only(self):
+        # Official rule: "data outside the bounds is null or nan". NaN outside must PASS the gate.
         p = self.root / 'nan-outside.tif'
         self.write(p, self.data, nodata=np.nan)
         result = inspect(p, self.sample)
         self.assertTrue(result['outside_null_or_nan'])
-        self.assertFalse(result['all_cell_finite_range'])
+        self.assertFalse(result['all_cell_finite_range_diagnostic'])
         self.assertEqual(result['inside_nonfinite'], 0)
-        self.assertFalse(result['strict_format_gate_pass'])
+        self.assertTrue(result['format_gate_pass'])
+        self.assertFalse(result['slot_approved'])
 
     def test_bad_inside_values_are_not_repaired(self):
         for bad in (np.nan, np.inf, -1., 1.1, -3.4e38):
@@ -68,7 +70,7 @@ class FormatTests(unittest.TestCase):
                 self.write(p, values)
                 result = inspect(p, self.sample)
                 self.assertFalse(result['checks']['inside_finite_and_in_range'])
-                self.assertFalse(result['strict_format_gate_pass'])
+                self.assertFalse(result['format_gate_pass'])
                 with rasterio.open(p) as ds:
                     actual = ds.read(1)[1, 1]
                 self.assertTrue(np.isnan(actual) if np.isnan(bad) else actual == np.float32(bad))
@@ -78,7 +80,7 @@ class FormatTests(unittest.TestCase):
         self.write(p, np.zeros((4, 4), np.float32), transform=from_origin(200, 400, 100, 100))
         result = inspect(p, self.sample)
         self.assertFalse(result['checks']['crs_shape_transform_match_template'])
-        self.assertFalse(result['strict_format_gate_pass'])
+        self.assertFalse(result['format_gate_pass'])
         self.assertIsNone(result['inside_nonfinite'])
 
     def test_external_mask_sidecar_is_not_a_portable_single_tiff(self):
@@ -88,7 +90,7 @@ class FormatTests(unittest.TestCase):
         self.write(p, np.zeros((4, 4), np.float32), mask=mask, internal=False)
         result = inspect(p, self.sample)
         self.assertFalse(result['checks']['self_contained_no_sidecars'])
-        self.assertFalse(result['strict_format_gate_pass'])
+        self.assertFalse(result['format_gate_pass'])
 
     def test_masked_inside_cannot_be_hidden_as_valid(self):
         p = self.root / 'masked-inside.tif'

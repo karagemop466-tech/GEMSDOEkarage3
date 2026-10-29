@@ -38,7 +38,7 @@ def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
     k3c = next(r for r in audit['rasters'] if '/k3c/' in r['file'])
     assert k3c['within_3px_fraction'] == pytest.approx(0.9935199447601848)
     assert not k3c['format_diagnostic']['outside_null_or_nan']
-    assert k3c['format_diagnostic']['all_cell_finite_range']
+    assert k3c['format_diagnostic']['all_cell_finite_range_diagnostic']
 
 
 @pytest.mark.parametrize(('script', 'args'), [

@@ -2,9 +2,16 @@
 """Inspect exact saved bytes for grid/range/footprint problems. Never repairs data.
 
 This is an independent diagnostic, NOT the shared submission writer, not a
-holdout/novelty evaluator, and not authorization to spend a weekly slot. It
-reports both the organizer's outside-null requirement and the stricter all-cell
-finite [0,1] check associated with a previously reported portal error.
+holdout/novelty evaluator, and not authorization to spend a weekly slot.
+
+Gate = the organizer's published submission-format rules (DrivenData GEMS problem
+page, https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format):
+single-layer float32 GeoTIFF, EPSG:32611, 100 m, same bounds as the training data,
+values in [0,1] inside the bounds, and "data outside the bounds is null or nan".
+
+Diagnostic only (NOT a gate): all_cell_finite_range. A previously reported portal
+error "Predicted values must be in range [0, 1]" is UNEXPLAINED; no organizer
+receipt links it to any file. Its cause is recorded as unverified.
 """
 from __future__ import annotations
 
@@ -54,10 +61,10 @@ def inspect(candidate: Path, template: Path) -> dict:
         }
         report = {"file": candidate.name, "sha256": digest(candidate),
                   "template_sha256": digest(template), "checks": checks,
-                  "all_cell_finite_range": None, "outside_null_or_nan": None,
+                  "all_cell_finite_range_diagnostic": None, "outside_null_or_nan": None,
                   "inside_nonfinite": None, "inside_out_of_range": None,
                   "min_all_finite": None, "max_all_finite": None,
-                  "strict_format_gate_pass": False, "slot_approved": False,
+                  "format_gate_pass": False, "strict_format_gate_pass": False, "slot_approved": False,
                   "note": "Local format checks only; not an organizer receipt, novelty check, holdout, or slot approval."}
         if not grid_ok or ds.count != 1:
             return report
@@ -81,12 +88,13 @@ def inspect(candidate: Path, template: Path) -> dict:
             inside_finite.all() and np.all((inside >= 0) & (inside <= 1)))
         checks["inside_not_masked"] = bool(valid_mask[foot].all())
         checks["no_positive_outside_footprint"] = bool(np.all(~(np.isfinite(out) & (out > 0))))
-        report["all_cell_finite_range"] = bool(finite.all() and np.all((values >= 0) & (values <= 1)))
-        # A null encoded by a dataset mask still has raw stored bytes; count it separately.
+        # Diagnostic only: not an official requirement (official rule allows null/NaN outside bounds).
+        report["all_cell_finite_range_diagnostic"] = bool(finite.all() and np.all((values >= 0) & (values <= 1)))
+        # Official rule: outside the bounds the value must be null or NaN. A dataset-mask null still has raw bytes.
         report["outside_null_or_nan"] = bool(np.all((~valid_mask[~foot]) | np.isnan(out)))
-        checks["all_cell_finite_range"] = report["all_cell_finite_range"]
         checks["outside_null_or_nan"] = report["outside_null_or_nan"]
-        report["strict_format_gate_pass"] = all(checks.values())
+        report["format_gate_pass"] = all(checks.values())
+        report["strict_format_gate_pass"] = report["format_gate_pass"]  # kept for back-compat with old receipts
         return report
 
 
@@ -103,7 +111,7 @@ def main() -> int:
             a.out.parent.mkdir(parents=True, exist_ok=True)
             a.out.write_text(text)
         print(text, end="")
-        return 0 if report["strict_format_gate_pass"] else 1
+        return 0 if report["format_gate_pass"] else 1
     except (OSError, ValueError, rasterio.errors.RasterioError) as e:
         print(f"FORMAT CHECK FAILED CLOSED: {e}", file=sys.stderr)
         return 2

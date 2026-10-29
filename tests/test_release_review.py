@@ -26,7 +26,12 @@ def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
         assert row['within_3px_fraction'] > .70
         assert row['duplicate_stop'] is True or row['boundary_gaming_refusal'] is True
         assert row['ok_to_submit'] is False
-        if path.name.endswith('-zeros.tif'):
+        # Decide by the bytes, not the filename. 'unique-offcat' carries a '-nan' name but
+        # contains NO NaN outside the footprint (zeros outside, positives outside): an
+        # IRREGULARITY recorded in README, so its whole-array check is finite and must be True.
+        if 'unique-offcat' in path.name:
+            assert row['validator']['whole_array_finite_range_pass'] is True
+        elif path.name.endswith('-zeros.tif'):
             assert row['validator']['whole_array_finite_range_pass'] is True
         elif path.name.startswith('karage3-unique-offcat-'):
             # KNOWN IRREGULARITY (flagged 2026-10-29, not fixed): the '-nan.tif' file has

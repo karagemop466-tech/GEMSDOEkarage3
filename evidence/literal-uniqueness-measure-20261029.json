@@ -1,0 +1,3388 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-29T19:17:08.336981+00:00",
+  "rule": {
+    "fraction_within_3px_stop_gt": 0.7,
+    "abs_spearman_stop_gt": 0.9,
+    "distance": "Euclidean, inclusive 3 px",
+    "support": "candidate dots inside template footprint"
+  },
+  "template_footprint_pixels": 5167373,
+  "lattice_witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "registry_source": "registry/complete_registry_manifest.json (FILTERED inventory; not proof of completeness)",
+  "registry_unique_sha256": 1997,
+  "registry_unique_sha256_compared": 1979,
+  "skipped_counts": {
+    "different_grid": 10,
+    "no_dots_or_unreadable": 7,
+    "unreadable": 1
+  },
+  "skipped_examples": {
+    "different_grid": [
+      "buffedlizard55-lab/14GEMSDOE/docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif: different grid (shape/CRS/transform)",
+      "buffedlizard55-lab/5GEMSDOE/data/evidence/proxy/proxy_window.tif: different grid (shape/CRS/transform)",
+      "buffedlizard55-lab/5GEMSDOE/data/evidence/xcat/proxy_window.tif: different grid (shape/CRS/transform)",
+      "buffedlizard55-lab/60GEMSDOE/docs/downloads/gems60-h63-strike-corridor-42000px-20261011T020352Z-zeros.tif: different grid (shape/CRS/transform)",
+      "buffedlizard55-lab/GEMSDOE36/docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif: different grid (shape/CRS/transform)",
+      "buffedlizard55-lab/GEMSDOE75/docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif: different grid (shape/CRS/transform)",
+      "buffedlizard55-lab/GEMSDOE75/docs/downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.tif: different grid (shape/CRS/transform)",
+      "karagemop466-tech/GEMSDOEkarage1/archive/prototype/docs/downloads/gemsdoe-unique-hunq1-20261027T210333Z-d880eae3246b-dots.tif: different grid (shape/CRS/transform)",
+      "wingbangboozle1-lang/WBGGEMSDOE3/archive/concurrent-8488b95/submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif: different grid (shape/CRS/transform)",
+      "wingbangboozle1-lang/WBGGEMSDOE3/archive/site-legacy-2026-10-26/site/assets/downloads/gems-hnew01-stepper-dblind-unique.tif: different grid (shape/CRS/transform)"
+    ],
+    "no_dots_or_unreadable": [
+      "buffedlizard55-lab/58GEMSDOE/docs/downloads/gems61-deepedge-sigribbon-0-20261011T192504Z.tif: empty positive support",
+      "buffedlizard55-lab/GEMSDOE21/docs/data/template-mask.tif: empty positive support",
+      "buffedlizard55-lab/GEMSDOE50/docs/downloads/gemsdoe50-h53-probe-tmi-pointlineation-20261007-44afc05b.tif: empty positive support",
+      "buffedlizard55-lab/GEMSDOE66/docs/downloads/gems66-k66c-kbalance-31999-20261012T020000Z-allfinite.tif: empty positive support",
+      "buffedlizard55-lab/GEMSDOE75/docs/downloads/gems75-blind-upflow-radial-20261021T040220Z-43cdadda2c43.tif: empty positive support",
+      "kanlerxz87-cyber/KANLERGEMSDOE2/docs/data/unique_submission_template.tif: empty positive support",
+      "wingbangboozle1-lang/WBGGEMSDOE3/docs/downloads/wbggems3-blind-basin-interior-15000d-20261028T202455Z-zeros.tif: empty positive support"
+    ],
+    "unreadable": [
+      "buffedlizard55-lab/GEMSDOE63/docs/downloads/smoke.tif: unreadable: smoke.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+    ]
+  },
+  "surface_before_placement_check": "NOT RUN - candidates are already binary dots; no continuous surface retained",
+  "complete_registry_checked": false,
+  "candidates": [
+    {
+      "file": "FOCUS:GEMSDOE24:docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "dot_set_sha256": "3565bd6430c46cdb13cfd9340d70a7e0f87e36be8c301db62c8d23b90ca1a990",
+      "n_dots": 60069,
+      "identical_bytes_elsewhere": [
+        "buffedlizard55-lab/GEMSDOE24/scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "buffedlizard55-lab/GEMSDOE26/docs/downloads/gems26-reference-h25-1-989f59505db1-nan.tif",
+        "buffedlizard55-lab/GEMSDOE63/inputs/calibration/d15_scored_nan.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE1/data/scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE24/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif | kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "duplicate_hits_count": 342,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011852,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011852,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011847,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011847,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.884766,
+          "spearman": 0.532368,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.743895,
+          "spearman": 0.058156,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.743895,
+          "spearman": 0.058156,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.904227,
+          "spearman": -0.004414,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.904227,
+          "spearman": -0.004414,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999218,
+          "spearman": 0.000368,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999218,
+          "spearman": 0.000368,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.771246,
+          "spearman": 0.007063,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.771246,
+          "spearman": 0.007063,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.856515,
+          "spearman": -0.005222,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.856515,
+          "spearman": -0.005222,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.872979,
+          "spearman": -0.007119,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.872979,
+          "spearman": -0.007119,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.849939,
+          "spearman": -0.002728,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.849939,
+          "spearman": -0.002728,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.904227,
+          "spearman": -0.004414,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.934792,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.940785,
+        "GEMSDOE32": 0.884766,
+        "GEMSDOE33": 0.962393,
+        "GEMSDOE36": 0.885615
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE25:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "dot_set_sha256": "426073b6b4abda02101b49f5f9fd601d60e6ab001d28d19489787a44666745c3",
+      "n_dots": 44090,
+      "identical_bytes_elsewhere": [
+        "buffedlizard55-lab/60GEMSDOE/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "buffedlizard55-lab/GEMSDOE24/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "buffedlizard55-lab/GEMSDOE24/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "buffedlizard55-lab/GEMSDOE24/scored/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "buffedlizard55-lab/GEMSDOE29/docs/downloads/gemsdoe29-historical-d28-20261002-e56ea318af89-nan.tif",
+        "buffedlizard55-lab/GEMSDOE30/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "buffedlizard55-lab/GEMSDOE32/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE1/data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/60GEMSDOE/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif | buffedlizard55-lab/GEMSDOE24/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif | buffedlizard55-lab/GEMSDOE24/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "duplicate_hits_count": 333,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.010138,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.010138,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.01008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.01008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.881719,
+          "spearman": 0.923555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.732774,
+          "spearman": 0.051688,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.732774,
+          "spearman": 0.051688,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.905058,
+          "spearman": -0.003171,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.905058,
+          "spearman": -0.003171,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999161,
+          "spearman": 0.000115,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999161,
+          "spearman": 0.000115,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.770311,
+          "spearman": 0.005701,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.770311,
+          "spearman": 0.005701,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.857768,
+          "spearman": -0.003778,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.857768,
+          "spearman": -0.003778,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.87394,
+          "spearman": -0.005764,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.87394,
+          "spearman": -0.005764,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.851554,
+          "spearman": -0.002259,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.851554,
+          "spearman": -0.002259,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.905058,
+          "spearman": -0.003171,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.931821,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.937151,
+        "GEMSDOE32": 0.881719,
+        "GEMSDOE33": 0.960581,
+        "GEMSDOE36": 0.882649
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE27:docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "dot_set_sha256": "fd6397c1ea10ca12fab2e136ed92691eaa52c8e82b3b9c7e9c6d98d61fe2b9fb",
+      "n_dots": 61328,
+      "identical_bytes_elsewhere": [
+        "buffedlizard55-lab/GEMSDOE24/scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "buffedlizard55-lab/GEMSDOE28/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE1/data/scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE24/scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif | buffedlizard55-lab/GEMSDOE27/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif | buffedlizard55-lab/GEMSDOE28/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-2",
+      "duplicate_hits_count": 339,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011977,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011977,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011961,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.011961,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.86719,
+          "spearman": 0.526747,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.740967,
+          "spearman": 0.057867,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.740967,
+          "spearman": 0.057867,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.901106,
+          "spearman": -0.004429,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.901106,
+          "spearman": -0.004429,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999234,
+          "spearman": 0.000278,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999234,
+          "spearman": 0.000278,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.774426,
+          "spearman": 0.009183,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.774426,
+          "spearman": 0.009183,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.857928,
+          "spearman": -0.004552,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.857928,
+          "spearman": -0.004552,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.875114,
+          "spearman": -0.006348,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.875114,
+          "spearman": -0.006348,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.852759,
+          "spearman": -0.001419,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.852759,
+          "spearman": -0.001419,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.901106,
+          "spearman": -0.004429,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.980188,
+        "GEMSDOE25": 0.980156,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.916156,
+        "GEMSDOE30": 0.980156,
+        "GEMSDOE31": 0.922091,
+        "GEMSDOE32": 0.86719,
+        "GEMSDOE33": 0.943289,
+        "GEMSDOE36": 0.868037
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE28:docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "dot_set_sha256": "3cd18e66517deaace77989424d4380cda87419396dffa04b38c6d493f97206ba",
+      "n_dots": 37660,
+      "identical_bytes_elsewhere": [
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE28/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif | kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "duplicate_hits_count": 341,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009364,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009364,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009263,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009263,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.954727,
+          "spearman": 0.694804,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.708364,
+          "spearman": 0.043193,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.708364,
+          "spearman": 0.043193,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.896017,
+          "spearman": -0.003597,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.896017,
+          "spearman": -0.003597,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999097,
+          "spearman": 0.000118,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999097,
+          "spearman": 0.000118,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.773553,
+          "spearman": 0.002032,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.773553,
+          "spearman": 0.002032,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.84461,
+          "spearman": -0.005294,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.84461,
+          "spearman": -0.005294,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.862082,
+          "spearman": -0.006999,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.862082,
+          "spearman": -0.006999,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.837175,
+          "spearman": -0.00495,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.837175,
+          "spearman": -0.00495,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.896017,
+          "spearman": -0.003597,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 1.0,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.997557,
+        "GEMSDOE32": 0.954727,
+        "GEMSDOE33": 0.998407,
+        "GEMSDOE36": 0.955204
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE30:docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "dot_set_sha256": "426073b6b4abda02101b49f5f9fd601d60e6ab001d28d19489787a44666745c3",
+      "n_dots": 44090,
+      "identical_bytes_elsewhere": [
+        "buffedlizard55-lab/GEMSDOE29/docs/downloads/gems29-refd28-repro-20261003-1cc7dc534d51-zeros.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/60GEMSDOE/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif | buffedlizard55-lab/GEMSDOE24/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif | buffedlizard55-lab/GEMSDOE24/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "duplicate_hits_count": 333,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.010138,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.010138,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.01008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.01008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.881719,
+          "spearman": 0.923555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.732774,
+          "spearman": 0.051688,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.732774,
+          "spearman": 0.051688,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.905058,
+          "spearman": -0.003171,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.905058,
+          "spearman": -0.003171,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999161,
+          "spearman": 0.000115,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999161,
+          "spearman": 0.000115,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.770311,
+          "spearman": 0.005701,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.770311,
+          "spearman": 0.005701,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.857768,
+          "spearman": -0.003778,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.857768,
+          "spearman": -0.003778,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.87394,
+          "spearman": -0.005764,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.87394,
+          "spearman": -0.005764,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.851554,
+          "spearman": -0.002259,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.851554,
+          "spearman": -0.002259,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.905058,
+          "spearman": -0.003171,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.931821,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 0.937151,
+        "GEMSDOE32": 0.881719,
+        "GEMSDOE33": 0.960581,
+        "GEMSDOE36": 0.882649
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE31:docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "dot_set_sha256": "dbb809101d86489da1c71d8c0e5d90a76939f7ca4cc87fa80e48db21b0e20a2f",
+      "n_dots": 40199,
+      "identical_bytes_elsewhere": [
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE24/scored/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif | buffedlizard55-lab/GEMSDOE28/docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+      "duplicate_hits_count": 341,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009677,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009677,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009594,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009594,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.953904,
+          "spearman": 0.967587,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.710764,
+          "spearman": 0.044589,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.710764,
+          "spearman": 0.044589,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.895868,
+          "spearman": -0.003503,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.895868,
+          "spearman": -0.003503,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999179,
+          "spearman": 2.8e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999179,
+          "spearman": 2.8e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.772532,
+          "spearman": 0.002416,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.772532,
+          "spearman": 0.002416,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.844001,
+          "spearman": -0.005236,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.844001,
+          "spearman": -0.005236,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.861738,
+          "spearman": -0.007164,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.861738,
+          "spearman": -0.007164,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.837185,
+          "spearman": -0.005289,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.837185,
+          "spearman": -0.005289,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.895868,
+          "spearman": -0.003503,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.995622,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 1.0,
+        "GEMSDOE32": 0.953904,
+        "GEMSDOE33": 0.999055,
+        "GEMSDOE36": 0.954402
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "dot_set_sha256": "e5eb6e7e40d5ed944797d479b8327531cbe6d69fe75dc19aaa2db0cc42875d1d",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE1/data/registry_rasters/champion_h33_b2_02778.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE1/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "wingbangboozle1-lang/WBGGEMSDOE1/docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "wingbangboozle1-lang/WBGGEMSDOE1/docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+      "duplicate_hits_count": 348,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009262,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009262,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 1.0,
+          "spearman": 1.0,
+          "identical_bytes": true
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.88883,
+          "spearman": -0.003452,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.88883,
+          "spearman": -0.003452,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.99915,
+          "spearman": 6.2e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.99915,
+          "spearman": 6.2e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.771897,
+          "spearman": 2.7e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.771897,
+          "spearman": 2.7e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.833457,
+          "spearman": -0.00541,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.833457,
+          "spearman": -0.00541,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.852393,
+          "spearman": -0.007293,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.852393,
+          "spearman": -0.007293,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.82618,
+          "spearman": -0.006123,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.82618,
+          "spearman": -0.006123,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.88883,
+          "spearman": -0.003452,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.88883,
+          "spearman": -0.003452,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.792798,
+          "spearman": -0.002282,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 1.0,
+        "GEMSDOE25": 1.0,
+        "GEMSDOE27": 1.0,
+        "GEMSDOE28": 0.998752,
+        "GEMSDOE30": 1.0,
+        "GEMSDOE31": 1.0,
+        "GEMSDOE32": 1.0,
+        "GEMSDOE33": 0.999841,
+        "GEMSDOE36": 1.0
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE33:docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "dot_set_sha256": "cb490425926e5d81ba5db382a8b5dc1bfecc4f46a65ba9327a078229a55252fb",
+      "n_dots": 41865,
+      "identical_bytes_elsewhere": [
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE33/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "duplicate_hits_count": 341,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009877,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009877,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009824,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009824,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.92643,
+          "spearman": 0.794679,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.716876,
+          "spearman": 0.046949,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.716876,
+          "spearman": 0.046949,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.89791,
+          "spearman": -0.003017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.89791,
+          "spearman": -0.003017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.99914,
+          "spearman": -0.000223,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.99914,
+          "spearman": -0.000223,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.77984,
+          "spearman": 0.005607,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.77984,
+          "spearman": 0.005607,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.847056,
+          "spearman": -0.003921,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.847056,
+          "spearman": -0.003921,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.864947,
+          "spearman": -0.006033,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.864947,
+          "spearman": -0.006033,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.84161,
+          "spearman": -0.003048,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.84161,
+          "spearman": -0.003048,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.89791,
+          "spearman": -0.003017,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.997062,
+        "GEMSDOE25": 0.997038,
+        "GEMSDOE27": 0.997086,
+        "GEMSDOE28": 0.9705,
+        "GEMSDOE30": 0.997038,
+        "GEMSDOE31": 0.9748,
+        "GEMSDOE32": 0.92643,
+        "GEMSDOE33": 1.0,
+        "GEMSDOE36": 0.927123
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "FOCUS:GEMSDOE36:docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "dot_set_sha256": "9b9ea4e6ace85c83ad4b80954b4f11cbb177b0d18f0b5a80b486851cbe690ecd",
+      "n_dots": 38854,
+      "identical_bytes_elsewhere": [
+        "kanlerxz87-cyber/KANLERGEMSDOE2/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE36/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-nan.tif",
+      "duplicate_hits_count": 345,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009512,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009512,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.00942,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.00942,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/60GEMSDOE/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif | buffedlizard55-lab/GEMSDOE32/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5",
+          "fraction_within_3px": 0.974031,
+          "spearman": 0.984321,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.88866,
+          "spearman": -0.003322,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.88866,
+          "spearman": -0.003322,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999176,
+          "spearman": -3e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999176,
+          "spearman": -3e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.771735,
+          "spearman": -1.7e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.771735,
+          "spearman": -1.7e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.834123,
+          "spearman": -0.005187,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.834123,
+          "spearman": -0.005187,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.853915,
+          "spearman": -0.006555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.853915,
+          "spearman": -0.006555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.828152,
+          "spearman": -0.005962,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.828152,
+          "spearman": -0.005962,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.88866,
+          "spearman": -0.003322,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.88866,
+          "spearman": -0.003322,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.795568,
+          "spearman": -0.00176,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.975678,
+        "GEMSDOE25": 0.974983,
+        "GEMSDOE27": 0.975781,
+        "GEMSDOE28": 0.97313,
+        "GEMSDOE30": 0.974983,
+        "GEMSDOE31": 0.974571,
+        "GEMSDOE32": 0.974031,
+        "GEMSDOE33": 0.975035,
+        "GEMSDOE36": 1.0
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif",
+      "sha256": "ddf087e0bb8d5ad170e01b48ed88c8083ee21f6310e3f14d990b9d7c4bd738be",
+      "dot_set_sha256": "c7f2433c41c92532c4dcb1dd7a8fd8af66aafa512e932e531761aa0a155b5747",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/ccl/downloads/gemsdoe32-karage3-k3-ccl-crest-b5-37654-20261028T0700Z-c7f2433c-zeros.tif",
+      "duplicate_hits_count": 101,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009365,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009365,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.799888,
+          "spearman": -0.002017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.799888,
+          "spearman": -0.002017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999097,
+          "spearman": -3e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999097,
+          "spearman": -3e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.783157,
+          "spearman": 0.001878,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.783157,
+          "spearman": 0.001878,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.792452,
+          "spearman": -0.000298,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.792452,
+          "spearman": -0.000298,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.875896,
+          "spearman": 0.000702,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.875896,
+          "spearman": 0.000702,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.879296,
+          "spearman": 0.00395,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.879296,
+          "spearman": 0.00395,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.799888,
+          "spearman": -0.002017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.799888,
+          "spearman": -0.002017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.784937,
+          "spearman": 0.00492,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "fraction_within_3px": 0.784937,
+          "spearman": 0.00492,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.324587,
+        "GEMSDOE25": 0.311866,
+        "GEMSDOE27": 0.339911,
+        "GEMSDOE28": 0.307484,
+        "GEMSDOE30": 0.311866,
+        "GEMSDOE31": 0.311866,
+        "GEMSDOE32": 0.311866,
+        "GEMSDOE33": 0.314469,
+        "GEMSDOE36": 0.318532
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif",
+      "sha256": "4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b",
+      "dot_set_sha256": "78c252015fe61a52c0f8597d87fa1bb879381d5c26c450cd260c91f09ca7ffdb",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/csst-bghf/downloads/gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif",
+      "duplicate_hits_count": 103,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 0.999947,
+          "spearman": 0.007739,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 0.999947,
+          "spearman": 0.007739,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.887635,
+          "spearman": -0.000816,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.887635,
+          "spearman": -0.000816,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.993626,
+          "spearman": 0.000689,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.993626,
+          "spearman": 0.000689,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.764753,
+          "spearman": -0.000322,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.764753,
+          "spearman": -0.000322,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.858793,
+          "spearman": -0.000767,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.858793,
+          "spearman": -0.000767,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.897169,
+          "spearman": 0.000787,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.897169,
+          "spearman": 0.000787,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.874914,
+          "spearman": -0.002341,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.874914,
+          "spearman": -0.002341,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.887635,
+          "spearman": -0.000816,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.887635,
+          "spearman": -0.000816,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.803846,
+          "spearman": 0.00011,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "fraction_within_3px": 0.803846,
+          "spearman": 0.00011,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.448452,
+        "GEMSDOE25": 0.433022,
+        "GEMSDOE27": 0.452674,
+        "GEMSDOE28": 0.424258,
+        "GEMSDOE30": 0.433022,
+        "GEMSDOE31": 0.428905,
+        "GEMSDOE32": 0.422425,
+        "GEMSDOE33": 0.433526,
+        "GEMSDOE36": 0.426621
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-nan.tif",
+      "sha256": "d425f6f3e17743157ed950cf250c9bfa120c68be0fdff09a0cf8566039fdfaee",
+      "dot_set_sha256": "c886c78212e81188c37d0bc4922a05bff08fefb73973dd80872deb709451a6ab",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-nan.tif",
+      "duplicate_hits_count": 122,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.008788,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.008788,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h-apart3-2-cthg-dhc-37654-20261028T084500Z-5d4d0085-nan.tif",
+          "fraction_within_3px": 0.739125,
+          "spearman": 0.103576,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h-apart3-2-cthg-dhc-37654-20261028T084500Z-5d4d0085-zeros.tif",
+          "fraction_within_3px": 0.739125,
+          "spearman": 0.103576,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h1-bhgc3-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif | apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif",
+          "fraction_within_3px": 0.777713,
+          "spearman": 0.151008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h2-cshd-dual97-axial362-37654-20261028T063000Z-37b32d5b-zeros.tif | apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-cshd-dual97-axial362-37654-20261028T063000Z-37b32d5b-zeros.tif",
+          "fraction_within_3px": 0.74749,
+          "spearman": 0.105555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-nan.tif",
+          "fraction_within_3px": 0.777713,
+          "spearman": 0.151008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-cshd-dual97-axial362-37654-20261028T063000Z-37b32d5b-nan.tif",
+          "fraction_within_3px": 0.74749,
+          "spearman": 0.105555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.712487,
+          "spearman": 0.021663,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.712487,
+          "spearman": 0.021663,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.908934,
+          "spearman": 0.001615,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.908934,
+          "spearman": 0.001615,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.996866,
+          "spearman": -0.00017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.996866,
+          "spearman": -0.00017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.776836,
+          "spearman": 0.00141,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.776836,
+          "spearman": 0.00141,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.874781,
+          "spearman": 0.002414,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.874781,
+          "spearman": 0.002414,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.519121,
+        "GEMSDOE25": 0.503904,
+        "GEMSDOE27": 0.523264,
+        "GEMSDOE28": 0.482499,
+        "GEMSDOE30": 0.503904,
+        "GEMSDOE31": 0.487757,
+        "GEMSDOE32": 0.467733,
+        "GEMSDOE33": 0.495007,
+        "GEMSDOE36": 0.473894
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif",
+      "sha256": "f21a0e831e6307d1d8230119c4d2f9812646fa8b092b2326b180a54feccea33f",
+      "dot_set_sha256": "c886c78212e81188c37d0bc4922a05bff08fefb73973dd80872deb709451a6ab",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-nan.tif",
+      "duplicate_hits_count": 122,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.008788,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.008788,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h-apart3-2-cthg-dhc-37654-20261028T084500Z-5d4d0085-nan.tif",
+          "fraction_within_3px": 0.739125,
+          "spearman": 0.103576,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h-apart3-2-cthg-dhc-37654-20261028T084500Z-5d4d0085-zeros.tif",
+          "fraction_within_3px": 0.739125,
+          "spearman": 0.103576,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h1-bhgc3-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif | apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif",
+          "fraction_within_3px": 0.777713,
+          "spearman": 0.151008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/apartgemsdoe3-h2-cshd-dual97-axial362-37654-20261028T063000Z-37b32d5b-zeros.tif | apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-cshd-dual97-axial362-37654-20261028T063000Z-37b32d5b-zeros.tif",
+          "fraction_within_3px": 0.74749,
+          "spearman": 0.105555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-nan.tif",
+          "fraction_within_3px": 0.777713,
+          "spearman": 0.151008,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE3/docs/downloads/gemsdoe32-apart3-cshd-dual97-axial362-37654-20261028T063000Z-37b32d5b-nan.tif",
+          "fraction_within_3px": 0.74749,
+          "spearman": 0.105555,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.712487,
+          "spearman": 0.021663,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.712487,
+          "spearman": 0.021663,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.908934,
+          "spearman": 0.001615,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.908934,
+          "spearman": 0.001615,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.996866,
+          "spearman": -0.00017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.996866,
+          "spearman": -0.00017,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.776836,
+          "spearman": 0.00141,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.776836,
+          "spearman": 0.00141,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.874781,
+          "spearman": 0.002414,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.874781,
+          "spearman": 0.002414,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.519121,
+        "GEMSDOE25": 0.503904,
+        "GEMSDOE27": 0.523264,
+        "GEMSDOE28": 0.482499,
+        "GEMSDOE30": 0.503904,
+        "GEMSDOE31": 0.487757,
+        "GEMSDOE32": 0.467733,
+        "GEMSDOE33": 0.495007,
+        "GEMSDOE36": 0.473894
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif",
+      "sha256": "dafa1e375a57735f6f64091f8b36050b5dda9c72b325ad97327d9d49a76ce1f3",
+      "dot_set_sha256": "0a6974d8a858caf956cf4f6c35fe6b3e31dfcea223ea27afb321492dcea7b92e",
+      "n_dots": 35615,
+      "identical_bytes_elsewhere": [],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 0.449548,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE63/docs/downloads/gems63-cvar-offset-band.tif",
+      "duplicate_hits_count": 140,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009104,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009104,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.00867,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.00867,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/11GEMSDOE/docs/downloads/gems-structural-area06-v1.tif",
+          "fraction_within_3px": 0.846273,
+          "spearman": 0.090161,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif",
+          "fraction_within_3px": 0.845936,
+          "spearman": 0.071683,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.998287,
+          "spearman": 0.000179,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.998287,
+          "spearman": 0.000179,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.767963,
+          "spearman": 0.030727,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.767963,
+          "spearman": 0.030727,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.933511,
+          "spearman": 0.011702,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.933511,
+          "spearman": 0.011702,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.972427,
+          "spearman": 0.011325,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.972427,
+          "spearman": 0.011325,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.965183,
+          "spearman": 0.024861,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.965183,
+          "spearman": 0.024861,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.350555,
+        "GEMSDOE25": 0.336066,
+        "GEMSDOE27": 0.358108,
+        "GEMSDOE28": 0.181749,
+        "GEMSDOE30": 0.336066,
+        "GEMSDOE31": 0.191857,
+        "GEMSDOE32": 0.089372,
+        "GEMSDOE33": 0.242229,
+        "GEMSDOE36": 0.092882
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+      "sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+      "dot_set_sha256": "0a6974d8a858caf956cf4f6c35fe6b3e31dfcea223ea27afb321492dcea7b92e",
+      "n_dots": 35615,
+      "identical_bytes_elsewhere": [],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 0.449548,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE63/docs/downloads/gems63-cvar-offset-band.tif",
+      "duplicate_hits_count": 140,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009104,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009104,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.00867,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.00867,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/11GEMSDOE/docs/downloads/gems-structural-area06-v1.tif",
+          "fraction_within_3px": 0.846273,
+          "spearman": 0.090161,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_multiphysics_submission_06ca61e5.tif",
+          "fraction_within_3px": 0.845936,
+          "spearman": 0.071683,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.998287,
+          "spearman": 0.000179,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.998287,
+          "spearman": 0.000179,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.767963,
+          "spearman": 0.030727,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.767963,
+          "spearman": 0.030727,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.933511,
+          "spearman": 0.011702,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.933511,
+          "spearman": 0.011702,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.972427,
+          "spearman": 0.011325,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.972427,
+          "spearman": 0.011325,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.965183,
+          "spearman": 0.024861,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.965183,
+          "spearman": 0.024861,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.936796,
+          "spearman": 0.001521,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.350555,
+        "GEMSDOE25": 0.336066,
+        "GEMSDOE27": 0.358108,
+        "GEMSDOE28": 0.181749,
+        "GEMSDOE30": 0.336066,
+        "GEMSDOE31": 0.191857,
+        "GEMSDOE32": 0.089372,
+        "GEMSDOE33": 0.242229,
+        "GEMSDOE36": 0.092882
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+      "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
+      "dot_set_sha256": "1560731a51df20876d1396c848b51a8da676ce6698c5accba5567255728e354b",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+      "duplicate_hits_count": 108,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.00815,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.00815,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+          "fraction_within_3px": 0.728794,
+          "spearman": 0.02311,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/12GEMSDOE/docs/downloads/12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite.tif",
+          "fraction_within_3px": 0.728794,
+          "spearman": 0.02311,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.86198,
+          "spearman": -0.000888,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.86198,
+          "spearman": -0.000888,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.993387,
+          "spearman": 0.000422,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.993387,
+          "spearman": 0.000422,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.77272,
+          "spearman": 0.001746,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.77272,
+          "spearman": 0.001746,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.824826,
+          "spearman": -0.001016,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.824826,
+          "spearman": -0.001016,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.867398,
+          "spearman": 0.001383,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.867398,
+          "spearman": 0.001383,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.852791,
+          "spearman": -0.000171,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.852791,
+          "spearman": -0.000171,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.86198,
+          "spearman": -0.000888,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.86198,
+          "spearman": -0.000888,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.482578,
+        "GEMSDOE25": 0.466378,
+        "GEMSDOE27": 0.488421,
+        "GEMSDOE28": 0.451426,
+        "GEMSDOE30": 0.466378,
+        "GEMSDOE31": 0.455596,
+        "GEMSDOE32": 0.441122,
+        "GEMSDOE33": 0.462527,
+        "GEMSDOE36": 0.446991
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "sha256": "04cdc5fe41fdc5ef1b148cf8352015d25d37763f1f847838f0f96cd0d342a993",
+      "dot_set_sha256": "80117cd2f99200ab639ef5dd871e4ec2575e8f1f5e1c604ddec6a122173aee0e",
+      "n_dots": 34835,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "duplicate_hits_count": 109,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009003,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009003,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009201,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009201,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999225,
+          "spearman": -0.000552,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999225,
+          "spearman": -0.000552,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.760528,
+          "spearman": -0.00271,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.760528,
+          "spearman": -0.00271,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.896139,
+          "spearman": 0.007437,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.896139,
+          "spearman": 0.007437,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.904636,
+          "spearman": 0.002454,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.904636,
+          "spearman": 0.002454,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.87814,
+          "spearman": 0.000587,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.87814,
+          "spearman": 0.000587,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.889938,
+          "spearman": 0.012833,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "fraction_within_3px": 0.889938,
+          "spearman": 0.012833,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.263385,
+        "GEMSDOE25": 0.250323,
+        "GEMSDOE27": 0.26548,
+        "GEMSDOE28": 0.244007,
+        "GEMSDOE30": 0.250323,
+        "GEMSDOE31": 0.247424,
+        "GEMSDOE32": 0.242974,
+        "GEMSDOE33": 0.250409,
+        "GEMSDOE36": 0.253021
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+      "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+      "dot_set_sha256": "80117cd2f99200ab639ef5dd871e4ec2575e8f1f5e1c604ddec6a122173aee0e",
+      "n_dots": 34835,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "duplicate_hits_count": 109,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009003,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009003,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009201,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009201,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.999225,
+          "spearman": -0.000552,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.999225,
+          "spearman": -0.000552,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.760528,
+          "spearman": -0.00271,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.760528,
+          "spearman": -0.00271,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.896139,
+          "spearman": 0.007437,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.896139,
+          "spearman": 0.007437,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.904636,
+          "spearman": 0.002454,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.904636,
+          "spearman": 0.002454,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.87814,
+          "spearman": 0.000587,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.87814,
+          "spearman": 0.000587,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.940175,
+          "spearman": 0.006203,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.889938,
+          "spearman": 0.012833,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "fraction_within_3px": 0.889938,
+          "spearman": 0.012833,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.263385,
+        "GEMSDOE25": 0.250323,
+        "GEMSDOE27": 0.26548,
+        "GEMSDOE28": 0.244007,
+        "GEMSDOE30": 0.250323,
+        "GEMSDOE31": 0.247424,
+        "GEMSDOE32": 0.242974,
+        "GEMSDOE33": 0.250409,
+        "GEMSDOE36": 0.253021
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif",
+      "sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
+      "dot_set_sha256": "cf58c75540681792c82860a32d6f0118aaaeb73c514424ae823469917f9bc661",
+      "n_dots": 4517,
+      "identical_bytes_elsewhere": [],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 0.00372,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE48/docs/downloads/diagnostics/GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-diag-conflict-k.tif",
+      "duplicate_hits_count": 82,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -0.000163,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -0.000163,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -6.5e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -6.5e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.998893,
+          "spearman": -2.9e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.998893,
+          "spearman": -2.9e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.764224,
+          "spearman": 0.000172,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.764224,
+          "spearman": 0.000172,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.700908,
+          "spearman": 0.00042,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.700908,
+          "spearman": 0.00042,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.858756,
+          "spearman": 0.000685,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.858756,
+          "spearman": 0.000685,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.830861,
+          "spearman": 0.000665,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.830861,
+          "spearman": 0.000665,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z.tif",
+          "fraction_within_3px": 0.746735,
+          "spearman": -0.000341,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z_allfinite.tif",
+          "fraction_within_3px": 0.746735,
+          "spearman": -0.000341,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.129511,
+        "GEMSDOE25": 0.12464,
+        "GEMSDOE27": 0.133938,
+        "GEMSDOE28": 0.112021,
+        "GEMSDOE30": 0.12464,
+        "GEMSDOE31": 0.115785,
+        "GEMSDOE32": 0.107594,
+        "GEMSDOE33": 0.119106,
+        "GEMSDOE36": 0.11025
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+      "sha256": "34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e",
+      "dot_set_sha256": "cf58c75540681792c82860a32d6f0118aaaeb73c514424ae823469917f9bc661",
+      "n_dots": 4517,
+      "identical_bytes_elsewhere": [],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 0.00372,
+      "argmax_spearman_registry": "buffedlizard55-lab/GEMSDOE48/docs/downloads/diagnostics/GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-diag-conflict-k.tif",
+      "duplicate_hits_count": 82,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -0.000163,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -0.000163,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -6.5e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": -6.5e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.998893,
+          "spearman": -2.9e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.998893,
+          "spearman": -2.9e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.764224,
+          "spearman": 0.000172,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.764224,
+          "spearman": 0.000172,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.700908,
+          "spearman": 0.00042,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.700908,
+          "spearman": 0.00042,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.858756,
+          "spearman": 0.000685,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.858756,
+          "spearman": 0.000685,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.830861,
+          "spearman": 0.000665,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.830861,
+          "spearman": 0.000665,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.71242,
+          "spearman": 0.000424,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z.tif",
+          "fraction_within_3px": 0.746735,
+          "spearman": -0.000341,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z_allfinite.tif",
+          "fraction_within_3px": 0.746735,
+          "spearman": -0.000341,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.129511,
+        "GEMSDOE25": 0.12464,
+        "GEMSDOE27": 0.133938,
+        "GEMSDOE28": 0.112021,
+        "GEMSDOE30": 0.12464,
+        "GEMSDOE31": 0.115785,
+        "GEMSDOE32": 0.107594,
+        "GEMSDOE33": 0.119106,
+        "GEMSDOE36": 0.11025
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/hk3d/downloads/gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif",
+      "sha256": "c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e",
+      "dot_set_sha256": "598143861ca779337e00d856dea0ad2dada04a13d39981a0f7d03db2eda13793",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 0.077144,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
+      "duplicate_hits_count": 96,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 0.999894,
+          "spearman": 0.008253,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 0.999894,
+          "spearman": 0.008253,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.852605,
+          "spearman": 0.000293,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.852605,
+          "spearman": 0.000293,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.993547,
+          "spearman": -0.000912,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.993547,
+          "spearman": -0.000912,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.757635,
+          "spearman": -0.000682,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.757635,
+          "spearman": -0.000682,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.822197,
+          "spearman": 0.000593,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.822197,
+          "spearman": 0.000593,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.872869,
+          "spearman": 0.001329,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.872869,
+          "spearman": 0.001329,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.849896,
+          "spearman": -0.001923,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.849896,
+          "spearman": -0.001923,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.852605,
+          "spearman": 0.000293,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.852605,
+          "spearman": 0.000293,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.770436,
+          "spearman": 9.1e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "fraction_within_3px": 0.770436,
+          "spearman": 9.1e-05,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.340123,
+        "GEMSDOE25": 0.328199,
+        "GEMSDOE27": 0.344452,
+        "GEMSDOE28": 0.324481,
+        "GEMSDOE30": 0.328199,
+        "GEMSDOE31": 0.327535,
+        "GEMSDOE32": 0.326048,
+        "GEMSDOE33": 0.330695,
+        "GEMSDOE36": 0.333192
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    },
+    {
+      "file": "docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
+      "sha256": "0d1461e8786d99da06182b196af0fc40cf03220dc76126e83623e218516429df",
+      "dot_set_sha256": "3586582f1922cd4fc8d6169e8df9f3ac50ea3eb3356f44a8849cd00b2cd4314a",
+      "n_dots": 37654,
+      "identical_bytes_elsewhere": [
+        "karagemop466-tech/GEMSDOEkarage3/docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif"
+      ],
+      "self_registry_entry": null,
+      "compared_registry_rasters": 1979,
+      "max_fraction_within_3px": 1.0,
+      "argmax_fraction_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "max_abs_spearman": 1.0,
+      "argmax_spearman_registry": "karagemop466-tech/GEMSDOEkarage3/docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif",
+      "duplicate_hits_count": 103,
+      "duplicate_hits_first_20": [
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "fraction_within_3px": 1.0,
+          "spearman": 0.009363,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.007718,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "fraction_within_3px": 0.999973,
+          "spearman": 0.007718,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_B_nan-outside.tif",
+          "fraction_within_3px": 0.89276,
+          "spearman": -0.00101,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r11-greedy-mp_A_zerofill.tif",
+          "fraction_within_3px": 0.89276,
+          "spearman": -0.00101,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_B_nan-outside.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest.tif | buffedlizard55-lab/GEMSD",
+          "fraction_within_3px": 0.99352,
+          "spearman": 6.2e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/session7-superseded-13gems_20261001_r13-lattice-s5_A_zerofill.tif | buffedlizard55-lab/13GEMSDOE/docs/downloads/latest_zerofill.tif",
+          "fraction_within_3px": 0.99352,
+          "spearman": 6.2e-05,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "fraction_within_3px": 0.767223,
+          "spearman": -0.000406,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "fraction_within_3px": 0.767223,
+          "spearman": -0.000406,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "fraction_within_3px": 0.864875,
+          "spearman": -0.001006,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "fraction_within_3px": 0.864875,
+          "spearman": -0.001006,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "fraction_within_3px": 0.900489,
+          "spearman": 0.000886,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "fraction_within_3px": 0.900489,
+          "spearman": 0.000886,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "fraction_within_3px": 0.877118,
+          "spearman": -0.002263,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "fraction_within_3px": 0.877118,
+          "spearman": -0.002263,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "fraction_within_3px": 0.89276,
+          "spearman": -0.00101,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "fraction_within_3px": 0.89276,
+          "spearman": -0.00101,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "fraction_within_3px": 0.811335,
+          "spearman": 0.00053,
+          "identical_bytes": false
+        },
+        {
+          "registry_raster": "buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "fraction_within_3px": 0.811335,
+          "spearman": 0.00053,
+          "identical_bytes": false
+        }
+      ],
+      "max_fraction_vs_each_focus_site": {
+        "GEMSDOE24": 0.453949,
+        "GEMSDOE25": 0.438758,
+        "GEMSDOE27": 0.458225,
+        "GEMSDOE28": 0.430791,
+        "GEMSDOE30": 0.438758,
+        "GEMSDOE31": 0.434615,
+        "GEMSDOE32": 0.427816,
+        "GEMSDOE33": 0.439794,
+        "GEMSDOE36": 0.432119
+      },
+      "duplicate_stop": true,
+      "literal_screen_result": "DUPLICATE-STOP"
+    }
+  ],
+  "verdict": "negative-only screen; a DUPLICATE-STOP is decisive, a PASS is not a uniqueness or organizer certificate",
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0
+}
