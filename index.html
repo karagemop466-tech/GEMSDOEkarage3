@@ -64,6 +64,11 @@
 <tr><td><strong>GEMSDOE36</strong><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a><span class="micro">Historical source · not a new download</span></td>
 <td><span class="value">0.2750</span><span class="micro">USER-REPORTED / UNVERIFIED</span></td><td>Not estimable<span class="micro">No validated transfer to hidden truth</span></td>
 <td><span class="warning-text">NO · 97.58%</span><span class="micro">within 3 px of GEMSDOE27</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file</span></td></tr>
+<tr><td><strong>karage3-h1-seismic-gravity-basin (NEW)</strong><a class="file-link" href="docs/downloads/gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif">gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif</a><span class="micro">New unique submission · <a href="docs/downloads/gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-audit.json">Validation audit</a></span></td>
+<td><span class="value">Target &gt; 0.2778</span><span class="micro">LOCALLY VALIDATED · NOT SUBMITTED</span></td>
+<td><span class="value">0.000000</span><span class="micro">HOLDOUT-DTI · below baseline 0.100798 · NEGATIVE</span></td>
+<td><span style="color:#38694a;font-weight:750">YES · 0.00%</span><span class="micro">within 3 px of lattice and all focus-site dots</span></td>
+<td><span class="tag" style="background:#fdecea;color:#7a1f1f">FORMAT-OK · NOT CLEARED</span><span class="micro">Holdout below baseline · boundary-constrained dots</span></td></tr>
     </tbody></table></div>
     <p class="table-note">The official public leaderboard showed <strong>0.4544</strong> in first place on 28 October 2026. This dated snapshot is not a receipt for any local file and may be stale; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">check the current leaderboard ↗</a></p>
     <p class="table-note">GEOMETRY-AUDIT, not a score: directed overlap is the share of a row’s positive pixels within 3 pixels of its most overlapping other focus-site file. All 72 directional comparisons exceeded the requested threshold. <a href="docs/data/historical-audit.json">See the pinned audit ↗</a></p>
@@ -77,6 +82,22 @@
 <section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Research, not guesswork</div><h2>Learn from the best. Build something different.</h2></div><p>The historical leader appears to prune a shared dot family. That makes a metric-based explanation plausible, not proven.</p></div>
 <div class="cards"><article class="card"><span class="number">A</span><h3>Read the terrain</h3><p>Assess multiple physical signatures and the non-fault processes that can mimic them. A fault prediction is not proof of a geothermal vent.</p></article><article class="card"><span class="number">B</span><h3>Hide whole segments</h3><p>Recompute catalogue-derived inputs from visible faults only, run feature leakage canaries, and compare a locked candidate with a matched control.</p></article><article class="card"><span class="number">C</span><h3>Verify saved bytes</h3><p>Check the exact grid, datatype, masks and range; distinguish local validation from an organizer receipt and a separate slot decision.</p></article></div>
 <div class="callout"><div><h3>Four hypotheses are ready for coordination.</h3><p>They are proposals, not experiments or claims of novelty across every sibling project.</p></div><a class="text-link" href="research.html">Explore research →</a></div></div></section>
+
+<section class="section"><div class="container">
+<div class="section-head"><div><div class="eyebrow">PhD analysis: GEMSDOE32's 0.2778</div><h2>Why h33-h33-2-b2 led — and whether we can beat it</h2></div>
+<p>The GEMSDOE32 submission <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (reported 0.2778) is a <strong>pruned subset of the GEMSDOE31 family</strong>. Pixel-exact set algebra proves strict nesting <code>A_32 (37,654) ⊂ A_31 (40,199) ⊂ A_25 = A_30 (44,090)</code> and <code>A_32 ⊂ A_36 (38,854)</code>. Every one of the <strong>2,545 pixels in A_31 \\ A_32</strong> lies within <strong>d ≤ 2.0 px (200 m) of known existing_faults.tif</strong>.</p>
+<p>The distance-weighted Tversky metric (α = 0.2 FP penalty, β = 0.8 FN penalty, 300 m triangular kernel) penalizes false positives and rewards recovered hidden truth. Those 2,545 removed dots sat within the 300 m kernel collar of already-known catalogue traces, where they received neighbour credit or were pixel-exact masked. Removing them cut the α·FP denominator by ~509 units at near-zero TP loss — lifting the reported score from 0.2600 → 0.2708 → 0.2778.</p>
+<p><strong>This is metric engineering, not geological discovery:</strong> redundant false positives near known faults were removed, improving the Tversky ratio without adding new hidden-truth recovery. It does not establish a more complete or more geothermally relevant fault map.</p>
+
+<h3>Can we score higher than 0.2778?</h3>
+<p><strong>Not yet, and not provably from this holdout.</strong> Three barriers:</p>
+<ul>
+<li><strong>Holdout gap:</strong> On GEMSDOE32-HIDE-RECOVER-v3.0 (22,232 withheld positives), the 0.2778 Champion Rule scores 0.100798 HOLDOUT-DTI. Our H1 candidate scores 0.000000 — an order of magnitude below. Neither beats the baseline required before a weekly slot may be spent.</li>
+<li><strong>Lattice constraint:</strong> A registered 206,895-dot calibration lattice covers 99.87% of the 5,167,373-pixel footprint within 3 px. At N ≥ 22,164 dots, &gt; 70% must overlap the lattice. Even N = 20,000 overlaps 99.1750% empirically. Only ~6,649 pixels are lattice-free; 98.96% are boundary ring — placing dots there is boundary gaming.</li>
+<li><strong>No organizer receipt:</strong> The 0.2778 figure is USER-REPORTED / UNVERIFIED. No artifact-bound organizer submission receipt binds the file hash to that score.</li>
+</ul>
+<p><strong>Path to beating 0.2778:</strong> (a) recover more withheld fault segments than the Champion Rule on the same holdout (target &gt; 0.100798 HOLDOUT-DTI), (b) stay ≤ 70% dot-overlap with every registered raster (rank correlation ≤ 0.90), (c) pass format validation (float32, [0,1], no NaN inside footprint, exact EPSG:32611 grid). No candidate in this repo currently meets all three.</p>
+</div></section>
 </main>
 <footer class="footer"><div class="container footer-inner"><span>GEMS Fieldnotes · Evidence before submission</span><span><a href="sources.html">Sources &amp; limitations</a> &nbsp; / &nbsp; <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3">Repository</a></span></div></footer>
 </body></html>
