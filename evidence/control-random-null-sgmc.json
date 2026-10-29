@@ -1,0 +1,52 @@
+{
+  "control": "random placement, same budget, same SGMC evaluator",
+  "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+  "n_dots": 37654,
+  "draws": [
+    {
+      "seed": 1,
+      "sgmc_raw_dti": 0.070548,
+      "ci95": [
+        0.06696,
+        0.07385
+      ]
+    },
+    {
+      "seed": 2,
+      "sgmc_raw_dti": 0.073187,
+      "ci95": [
+        0.070287,
+        0.075874
+      ]
+    },
+    {
+      "seed": 3,
+      "sgmc_raw_dti": 0.069313,
+      "ci95": [
+        0.066637,
+        0.071999
+      ]
+    },
+    {
+      "seed": 4,
+      "sgmc_raw_dti": 0.070049,
+      "ci95": [
+        0.067381,
+        0.072445
+      ]
+    },
+    {
+      "seed": 5,
+      "sgmc_raw_dti": 0.071726,
+      "ci95": [
+        0.068289,
+        0.074941
+      ]
+    }
+  ],
+  "mean": 0.070965,
+  "min": 0.069313,
+  "max": 0.073187,
+  "evidence_class": "HOLDOUT-DTI",
+  "not_a_candidate": true
+}

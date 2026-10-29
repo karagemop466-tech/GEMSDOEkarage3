@@ -7,12 +7,45 @@ There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `
 [**Session 5 H-K3D Executive Summary**](docs/hk3d/index.html) ·
 [**H-K3D Step-by-Step Submission Guide**](docs/hk3d/how-to-submit.html) ·
 [**H-K3D Run Card JSON**](docs/hk3d/run-card.json) ·
+[**Submission Desk (Session 6)**](submission-desk.html) ·
 [**Nine-site executive summary**](index.html#scorecard) ·
 [Submission guide](executive-summary.html) ·
 [Current JSON run card](docs/data/latest-run.json) ·
 [Session 5 Three-Pass Report](docs/research/session5-hk3d-report-20261028.md) ·
 [Three-pass review](docs/review-2026-10-28-session.md) ·
 [Full retained project brief](docs/PROJECT_BRIEF.md)
+
+### Session 6 (`2026-10-29`) — Submission Desk, nine-site audit, two new candidates (both blocked)
+
+**Top-of-site desk:** [**Submission Desk (executive summary)**](submission-desk.html) — verdict, download table for the nine focus files plus the new candidates, the uniqueness proof, irregularities, and the decisions needed from you. Generated from evidence JSON by `scripts/build_submission_desk.py`.
+
+**Verdict: no file is cleared for upload.** Every candidate fails the calibration-lattice rule (you specified it as literal, with no exemptions), and no organizer receipt exists for any score.
+
+1. **Why GEMSDOE32 (user-reported `0.2778`) led the nine (verified mechanism, score not verified).** Exact pixel tests: `32 ⊂ 31 ⊂ 25`, `32 ⊂ 36`, and `25 = 30` as dot masks. The `2,545` dots removed from 31 to make 32 all lie within `2.0 px` of a visible catalogue fault. GEMSDOE32 also has the fewest dots of the nine (`37,654`). Evidence: `evidence/focus-site-audit-20261029.json`.
+2. **Uniqueness proof.** The calibration lattice `r13-lattice-s5` (`206,895` dots) leaves only `6,649` footprint pixels beyond `3 px`. Any `N`-dot file overlaps it by at least `1 − 6,649/N`, which exceeds `70%` once `N ≥ 22,164`. This matches IR-K3-02.
+3. **New candidates, both DUPLICATE_STOP under the lattice rule.**
+   - **S6-E1** (`evidence/experiments/s6-e1/…tif`, `ok_to_submit=false`): off-consensus `tmi_hg` ridge. Off-catalogue SGMC proxy `0.0452` [`0.0328`, `0.0584`], **below** the random-placement null. Canary AUC `0.490`.
+   - **S6-E2** (`evidence/experiments/s6-e2/…tif`, `ok_to_submit=false`): LiDAR `step_max × coh100`. Proxy `0.0990` [`0.0750`, `0.1213`], inside the focus band but not validated. Canary AUC `0.709`. The step and coherence inputs are **not new** (used in `ccl.py`, `hk3d_tgsf.py`, `surfaces_k3.py`). I scored it before running the duplicate check (IR-S6-12), which is disclosed.
+4. **Controls.** Random placement, same budget, same evaluator: `0.0693`–`0.0732` (`evidence/control-random-null-sgmc.json`). Nine focus files: `0.0943`–`0.1024`. Every proxy claim must beat the null.
+5. **Scores are not forecasts.** Reported values (`0.2449`–`0.2778`) are `USER-REPORTED / UNVERIFIED`. The catalogue hide-and-recover holdout is misaligned with official masking (IR-S6-02), and `0.0045` for GEMSDOE32 shows it is not a ranking tool. The calibrated SGMC constant is not reported (IR-S6-09).
+6. **Hypotheses.** Ranked in `docs/research/session6-hypotheses-20261029.md`. Every input layer was already used in an earlier lane, so none is "untried" in the strict sense. Next to test: **H4** (off-catalogue Qfault traces), after a precondition check that the traces are not already in `labels.tif`.
+7. **Duplicate check** (`scripts/dup_check_s6.py`, `evidence/dup-check-s6.json`): both candidates trip the `70%` lattice stop. Non-lattice references peak at `39%` (S6-E1) and `23%` (S6-E2).
+8. **Validation.** `scripts/build_site.py --check` passes. Tests: pytest `223 passed, 1 skipped` (baseline `188 passed, 1 skipped`), npm `4/4` (`jsdom` installed from `package-lock.json`, which was missing from the sandbox).
+
+**Review passes (three, as requested).**
+- *Pass 1, implement:* audit, desk, S6-E1, S6-E2, controls, registry entries, hypotheses note, tests.
+- *Pass 2, review:* fixed a self-overlap bug (diagonal in the pairwise max); removed an exemption suggestion that contradicted your literal-rule instruction; removed unverified claims (the "pixel-exact" masking claim and the precision formula); kept the 0.4437 figure but tied it to its source, IR-K3-03; corrected a false "new lane" claim after grep showed prior use; added the missing random null; logged the duplicate-stop and the proxy-before-check deviation.
+- *Pass 3, re-check:* see the final section of the PR description.
+
+**Limitations and remaining work.**
+- No organizer receipt; no candidate can be validated locally; the SGMC proxy is not the hidden labels.
+- Only 14 scored rasters are restored locally, while the registry spans 113 repositories; `literal_registry_complete=false` (IR-S6-06).
+- The `[0,1]` submission error cause is not verified: all nine files pass the local range check, and NaN outside the footprint is allowed by the official spec (IR-S6-01).
+- Leaderboard figures conflict (`0.4413`, `0.3195`, `0.4544`, `0.4437`); confirm the public board by hand (IR-S6-07).
+- NLR PDF chunks 2–6, the GitHub reference-solution repo, and `gems.drivendata.org` are still unread.
+- Decision needed: whether to change the literal lattice rule in writing. Until then, nothing is uploaded.
+
+Official links: [DrivenData problem page (metric and format)](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [NLR Official Rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [DrivenData forum: known faults masked (thread 11516)](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516) · [Competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/) · [Reference solution](https://github.com/drivendataorg/gems-prize-reference-solution).
 
 ### Session 5 (`2026-10-28`) — Lane `H-K3D (TGSF-BVCD)` Scientific & Gate Summary
 

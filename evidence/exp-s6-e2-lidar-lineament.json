@@ -1,0 +1,98 @@
+{
+  "experiment": "S6-E2",
+  "lane": "LiDAR scarp step x lineament coherence (step_max * coh100), no magnetic/gravity/temperature input",
+  "novelty": "NOT NOVEL as an input: step_max and coh100 are used in src/karage3/ccl.py, hk3d_tgsf.py and surfaces_k3.py. Tests one product surface only.",
+  "hypothesis": "LiDAR scarp steps that are also laterally coherent mark fault scarps that the nine focus submissions do not sample.",
+  "mechanism": "Coherent step-edges in the 1 m DEM-derived composite are the surface expression of normal-fault scarps.",
+  "named_non_fault_mimic": "Road cut banks, levees, canal and fence lineaments and agricultural terraces produce coherent steps; road-distance control is reported.",
+  "features_by_band_name": [
+    "step_max",
+    "coh100",
+    "valid"
+  ],
+  "n_dots": 37654,
+  "available_after_exclusions": 3069063,
+  "budget_limited_by_availability": false,
+  "raster": {
+    "file": "evidence/experiments/s6-e2/gemsdoekarage3-s6-lidar-step-coh-37654-20261029.tif",
+    "sha256": "0b11eae9fe6f1c4c0078485c30b654ff5994a8aae2ed0d92e6a6fd9d15084a69",
+    "bytes": 400064,
+    "nodata": "NaN outside footprint; 0 inside; 1 = dot"
+  },
+  "validator": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "float32": true,
+    "nan_inside_footprint": 0,
+    "values_in_0_1_inside": true,
+    "nonzero_outside_footprint": 0,
+    "dots": 37654,
+    "validator_pass": true
+  },
+  "uniqueness_vs_focus_nine_literal_3px_max": 0.0,
+  "uniqueness_vs_focus_nine_by_site": {
+    "GEMSDOE24": 0.0,
+    "GEMSDOE25": 0.0,
+    "GEMSDOE27": 0.0,
+    "GEMSDOE28": 0.0,
+    "GEMSDOE30": 0.0,
+    "GEMSDOE31": 0.0,
+    "GEMSDOE32": 0.0,
+    "GEMSDOE33": 0.0,
+    "GEMSDOE36": 0.0
+  },
+  "uniqueness_vs_r13_lattice_literal_3px": 0.998778,
+  "lattice_rule_pass_70pct": false,
+  "cultural_mimic_control": {
+    "share_dots_within_100m_of_road": 0.082488,
+    "share_footprint_within_100m_of_road": 0.161975
+  },
+  "holdout_sgmc_offcatalogue_raw": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "withheld_positives": 62703,
+    "dti": 0.098968,
+    "ci95": [
+      0.074992,
+      0.12127
+    ],
+    "same_evaluator_best_of_nine": {
+      "site": "GEMSDOE27",
+      "dti": 0.102422
+    },
+    "note": "Off-catalogue proxy. Not the hidden leaderboard."
+  },
+  "holdout_hide_and_recover_catalogue": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "dti": 0.018424,
+    "ci95": [
+      0.013534,
+      0.023256
+    ],
+    "note": "Catalogue proxy misaligned with official masking (IR-S6-02). Reported for transparency only."
+  },
+  "feature_auc_canary": {
+    "step_x_coh_alone_auc_sgmc": 0.709144,
+    "max_oriented_auc": 0.709144,
+    "threshold": 0.9,
+    "pass": true,
+    "n_pos": 40267,
+    "n_neg": 161068
+  },
+  "leaderboard_estimate": "NOT ESTIMABLE - no ORGANIZER-CONFIRMED receipt and no validated proxy that reproduces the reported focus-site ranking",
+  "in_focus_band_proxy": true,
+  "duplicate_check": {
+    "file": "evidence/dup-check-s6.json",
+    "verdict": "DUPLICATE_STOP",
+    "trigger": "literal 3-px overlap with registered calibration lattice r13-lattice-s5 > 70%"
+  },
+  "verdict": "DUPLICATE_STOP (lattice overlap > 70%). Proxy number logged for the record only; not used to advance this candidate.",
+  "ok_to_submit": false,
+  "submission_name": "gemsdoekarage3-s6-lidar-step-coh-37654-20261029.tif",
+  "official_metric_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+  "official_masking_source": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+}
