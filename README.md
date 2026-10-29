@@ -8,7 +8,7 @@
 - **Decision needed from the owner:** whether the literal any-registry 70% rule should apply to dense calibration lattices. Until then, no candidate can pass. See *Remaining Work* below.
 - **Irregularity for review:** `scripts/restore_data.py` writes the core rasters to `.cache/gems_data/`, but `scripts/check_readiness.py` checks `data/`. The committed `core_mirror_data: passed` snapshot therefore does not reproduce in this checkout. The readiness file was left unchanged.
 - Rebuild the summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Tests: `tests/test_focus9.py`.
-**Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
+**Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). A follow-up review removed the unsupported `karage3-unique-offcat` download and replaced stale root-page approval claims; see [follow-up report](docs/review-2026-10-29-followup.md). Release decision remains **DO NOT SUBMIT**. Read these reviews before relying on historical run cards. Root templates now generate the safe no-submit pages, and `python scripts/build_site.py --check` verifies they do not link to the withdrawn candidate.
 
 ## SUBMISSION STATUS (read first, updated 2026-10-29)
 

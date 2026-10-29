@@ -90,7 +90,12 @@ def test_generated_pages_match_evidence(tmp_path, monkeypatch):
         assert "OK TO SUBMIT? YES" in result[root / "index.html"]
         assert decision["raster_sha256"] in result[root / "index.html"]
     else:
-        assert 'class="disabled-button" disabled' in result[root / "index.html"]
+        public_page = result[root / "index.html"]
+        assert "DO NOT SUBMIT" in public_page
+        parser = Inspect()
+        parser.feed(public_page)
+        assert not any("karage3-unique-offcat" in link.lower() or ".tif" in link.lower() or ".zip" in link.lower()
+                       for link in parser.links)
 
 
 def test_site_builder_rejects_stale_and_tampered_evidence(tmp_path, monkeypatch):
