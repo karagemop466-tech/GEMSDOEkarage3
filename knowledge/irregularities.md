@@ -201,3 +201,26 @@ site build and documentation. No further experiments were started after the card
 for later files (e.g. `gemsdoe30-sgmc-hedge-d10-85k`, HR 0.0008) rather than for the owner-reported bests
 (which are byte-identical members of the H19-5 family audited under GEMSDOE25/28/32). The decision page labels
 these rows explicitly.
+
+## IR-K3-27 — `Deposit_ty` column mismatch in `src/gems32/crsb_gub.py` silently skipped Quaternary tufa carbonate veto (FIXED in Session 5)
+Inspection of `.cache/gems_data/external/gdr_1391_sinter/Sinter_Travertine_GreatBasin.dbf` on 2026-10-28
+revealed that the deposit classification column is named `Deposit_ty` (`22` `Tufa`, `19` `Sinter`, `26`
+`Travertine`, `7` `Siliceous sinter`, etc.), whereas `src/gems32/crsb_gub.py` checked only `("Dep_Type", "Type")`
+— causing all `22` cold pluvial Lake Lahontan shoreline tufa mounds to bypass the non-fault carbonate mimic veto
+in prior sessions. Repaired in `src/gems32/crsb_gub.py` (`("Deposit_ty", "Dep_Type", "Type")`) before rebuilding
+`crsb_gub_extra_16ch.npy` and training Lane `H-K3D`; regression-tested in `tests/test_hk3d_session.py`.
+
+## IR-K3-28 — Empirical resolution of open `N <= 22,163` lattice-overlap hypothesis (`EXP-3` = `20,000` dots)
+While the algebraic pigeonhole necessity bound `max(0, N - 6,649) / N > 0.70` only mathematically forces overlap
+for `N >= 22,164` (`docs/review-2026-10-28-session.md`), Session 5 `EXP-3` tested `N = 20,000 <= 22,163` binary
+crests without gaming lattice holes. Measured literal 3-px overlap against `13GEMSDOE` `r13-lattice-s5` (`206,895`
+dots covering `99.87%` of the footprint within `3 px`) was **`99.1750%`**, while 24-cell `HOLDOUT-DTI` dropped to
+`0.079146` under `beta = 0.8` recall weighting. Thus reducing `N <= 22,163` cannot honestly pass the literal
+lattice witness.
+
+## IR-K3-29 — Registry expanded to 113 repos (`2,444` rasters, `1,997` unique SHA-256s) including self-audit of `GEMSDOEkarage3`
+Session 5 added `karagemop466-tech/GEMSDOEkarage3` to `scripts/fetch_all_registry.py` (`SIBLING_REPOS`) so every
+new candidate is automatically checked against our own archived `CRSB-GUB`, `K3-CCL`, `CSST-BGHF`, and `H-K3C`
+TIFFs (`0` fetch failures across 113 repos; `H-K3D` `EXP-2` overlaps `H-K3C` by `57.18% <= 70%` and max discrete
+`<= 100k`-dot peer detector by `62.37% <= 70%`).
+

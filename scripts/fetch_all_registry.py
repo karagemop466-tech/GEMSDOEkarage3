@@ -130,6 +130,7 @@ REPOS = [
     ("ginnymcfiner23-ux", "GINNYGEMSDOE3", "sibling"),
     ("karagemop466-tech", "GEMSDOEkarage1", "sibling"),
     ("karagemop466-tech", "GEMSDOEkarage2", "sibling"),
+    ("karagemop466-tech", "GEMSDOEkarage3", "sibling"),
     ("apartanish22-droid", "ApartGEMSDOE1", "sibling"),
     ("apartanish22-droid", "ApartGEMSDOE2", "sibling"),
     ("apartanish22-droid", "ApartGEMSDOE3", "sibling"),

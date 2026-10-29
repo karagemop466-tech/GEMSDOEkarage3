@@ -518,9 +518,18 @@ def build_crsb_extra_stack(
         rr_i, cc_i = int(sr_a[idx_s]), int(sc_a[idx_s])
         if not foot[rr_i, cc_i]:
             continue
-        dtype_str = str(s_attr[idx_s].get("Type", s_attr[idx_s].get("TYPE", ""))).lower()
-        w_dep = 0.35 if "tufa" in dtype_str else (1.0 if ("sinter" in dtype_str or "silic" in dtype_str) else 0.80)
-        vent_seed[rr_i, cc_i] = max(vent_seed[rr_i, cc_i], float(1.6 * w_dep))
+        dtype_str = str(
+            s_attr[idx_s].get(
+                "Deposit_ty",
+                s_attr[idx_s].get("Deposit_type", s_attr[idx_s].get("Type", s_attr[idx_s].get("TYPE", ""))),
+            )
+        ).strip().lower()
+        # IR-K3-27: Paleo_geothermal_final.dbf stores deposit type under 10-char DBF field 'Deposit_ty'.
+        # Cold-water pluvial Lake Lahontan shoreline 'Tufa' mounds are vetoed (0.0); >=175 C siliceous sinter
+        # and silica-cemented conduits receive 1.0; CO2-rich hydrothermal travertine receives 0.65.
+        w_dep = 0.0 if "tufa" in dtype_str else (1.0 if ("sinter" in dtype_str or "silic" in dtype_str) else 0.65)
+        if w_dep > 0.0:
+            vent_seed[rr_i, cc_i] = max(vent_seed[rr_i, cc_i], float(1.6 * w_dep))
 
     # Volcanic vents in footprint
     vr = np.clip(pd.to_numeric(vv_df["row"], errors="coerce").fillna(-1).to_numpy(np.int32), 0, h - 1)
