@@ -76,7 +76,8 @@
       "p": 0.0177,
       "rho_offcatalogue_vs_user_reported": 0.0817,
       "p_offcatalogue": 0.7473
-    }
+    },
+    "leaderboard_public_top": 0.4544
   },
   "raster_sha256": null,
   "validator_output": {
@@ -103,9 +104,9 @@
       "status": "NOT OPENED"
     },
     {
-      "claim": "leaderboard 0.4413 / 0.3195",
-      "url": null,
-      "status": "UNVERIFIED (user-reported; not reachable)"
+      "claim": "public leaderboard: #1 xiaofanhu 0.4544, #2 cfld__ 0.3916, #3 Batik Shirt Brothers 0.3911; prompt values 0.4413 and 0.3195 do not appear",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "status": "READ 2026-10-29 (fetch tool); public-split scores, not final"
     }
   ],
   "remaining_work": [

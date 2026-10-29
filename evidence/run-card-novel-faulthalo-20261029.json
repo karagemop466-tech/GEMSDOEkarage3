@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-29T00:00:00Z",
+  "hypothesis": "Conductive-basement thermal-structural co-location within the fault zone: geothermal upflow localises where subsurface conductive/basement boundaries (cond_surf & depth_to_base_surf gradient), active dilation (geod_dilaterate), 1 m LiDAR scarp expression and radiometric alteration (total count) coincide immediately adjacent to catalogue fault traces.",
+  "mechanism": "Place prediction dots on the top-N pixels of a multi-physics co-location surface (conductivity-gradient x basement-depth-gradient x gradient straightness x dilation x radiometric-TC x LiDAR-scarp), restricted to the 0-1 px halo off catalogue fault traces, with no on-fault dots. Distinct from dotted-h19-5 (topography/multiline corroboration of catalogue strands) in both physical basis and off-trace placement.",
+  "named_non_fault_mimic": "Lithologic/alteration contacts and erosion scarps can produce coincident conductivity-dilation-scarp anomalies without a through-going fault, mimicking the target signal.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "n_cells": 8,
+    "dti": 0.193006,
+    "ci95": [0.179047, 0.205431],
+    "ci_method": "16-block spatial cluster bootstrap, 1000 reps",
+    "note": "Local static hide-and-recover diagnostic on the pinned holdout; not an organizer score and does not reproduce DrivenData portal ordering."
+  },
+  "registry_comparison": {
+    "vs_GEMSDOE32_h33_zeros": {
+      "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "reported_score": 0.2778,
+      "my_dots_within_3px": 0.0909,
+      "their_dots_within_3px_of_mine": 0.0384,
+      "exact_intersection": 0.0,
+      "abs_spearman": 0.0073,
+      "unique": true
+    },
+    "vs_GEMSDOE25_dotted_d2_8": {
+      "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "reported_score": 0.2600,
+      "my_dots_within_3px": 0.3945,
+      "abs_spearman": 0.0237,
+      "unique": true
+    },
+    "vs_calibration_lattice_13GEMSDOE_r13_lattice_s5": {
+      "file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "my_dots_within_3px": 0.9995,
+      "abs_spearman": 0.0,
+      "lattice_rule_limit": 0.70,
+      "unique": false,
+      "note": "Lattice covers 99.87% of the footprint within 3 px, so every fault-focused dot submission exceeds the 70% stop. This is a repo protocol gate, not a competition format rule."
+    },
+    "all_nine_focus_sites_unique": true,
+    "basis": "All nine historical GEMSDOE focus files are near-duplicates of the dotted-h19-5 family (97-100% within-3px overlap vs each other); this submission is 9.09% vs GEMSDOE32 and 39.45% vs GEMSDOE25, well under the 70% stop, with rank correlation ~0."
+  },
+  "raster_sha256": "35e3f4819a454a98ab5446c8bf8146fb669f5197d1690647698222cf91e70acf",
+  "validator_output": {
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_match": true,
+    "in_footprint_finite": true,
+    "in_footprint_zero_nan": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_on_catalogue_dots": true,
+    "all_checks_passed": true,
+    "independent_validator": "scripts/check_submission.py --strict-finite -> core_format_pass=true",
+    "organizer_acceptance": "unknown (no DrivenData upload performed; automated portal access prohibited by DrivenData terms)",
+    "outside_policy_note": "0.0 written outside footprint where the template uses NaN; reported separately from whole-array finiteness."
+  },
+  "submission_name": "gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif",
+  "submission_note": "Unique fault-halo geothermal targeting: cond x dilation x basement x scarp x TC hotspots 0-1px off catalogue traces, 37654 dots",
+  "emitted_dots": 37654,
+  "download_url": "docs/downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif",
+  "zip_url": "docs/downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.zip",
+  "audit_sidecar": "docs/downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-audit.json",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_download": true,
+  "verdict_reason": "Format-valid and unique vs all GEMSDOE focus sites, but fails the repo's strict calibration-lattice uniqueness gate (99.95% of dots within 3 px of the 206,895-dot r13-lattice-s5 witness; limit 70%). No organizer-confirmed score exists; the file has not been uploaded to DrivenData. Downloadable for review, not cleared for submission under the current protocol gate.",
+  "leaderboard_score": null,
+  "leaderboard_score_note": "Cannot be estimated: no DrivenData authentication is available in this sandbox, automated portal access is prohibited by DrivenData terms, and the local HOLDOUT-DTI diagnostic does not reproduce portal ordering. Reported 0.2778 for GEMSDOE32 is USER-REPORTED / UNVERIFIED with no organizer receipt."
+}
