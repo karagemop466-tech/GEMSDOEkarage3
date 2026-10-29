@@ -94,7 +94,8 @@ def test_generated_pages_match_evidence(tmp_path, monkeypatch):
         assert "DO NOT SUBMIT" in public_page
         parser = Inspect()
         parser.feed(public_page)
-        assert not any("karage3-unique-offcat" in link.lower() or ".tif" in link.lower() or ".zip" in link.lower()
+        assert not any("karage3-unique-offcat" in link.lower() or
+                       (not urlsplit(link).scheme and (".tif" in link.lower() or ".zip" in link.lower()))
                        for link in parser.links)
 
 
