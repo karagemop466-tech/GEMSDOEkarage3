@@ -1,8 +1,14 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## Start here (2026-10-29): nine-site summary and submission status
+## Start here (2026-10-29): download and submit status
 
-- **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
+> **No file is cleared. OK TO DOWNLOAD: NO. OK TO SUBMIT: NO.**
+> - The newest candidate, `karage3-lgap-scarpstep-19k-20261029-4fc40bd1`, **is not published.** It passes format (one float32 band, EPSG:32611, 3730 × 3292, finite [0,1] inside the footprint, NaN outside as in the template) and the literal 70% rule against the nine focus files and the r13 calibration lattice (max 65.00%, r13 only).
+> - It **fails the literal full-inventory rule**: 106 of 1,977 compared registry rasters are overlapped above 70%. 59 of those are dense surfaces (≥1,000,000 positive cells), so the literal dot rule cannot be satisfied for them without an owner decision. 19 are sparse dot sets, which this file overlaps at up to 94.7%.
+> - Promotion gate: **NEGATIVE**. No leaderboard score is estimated, and no organizer score exists.
+> - Blocking reasons, the nine-site table, the steps to follow once a file is cleared, and the irregularities: [docs/submit-now/index.html](docs/submit-now/index.html) · JSON run card: [docs/downloads/karage3-lgap-scarpstep-19k-20261029-4fc40bd1-card.json](docs/downloads/karage3-lgap-scarpstep-19k-20261029-4fc40bd1-card.json).
+- **Why the older files were not downloadable:** the uniqueness gate fails for the nine focus files (each overlaps another focus file or the r13 lattice). The earlier `karage3-unique-offcat-…` file has 4,517 dots inside the footprint (not 12,000) and overlaps the r13 lattice by 99.89%, so it is **DO NOT SUBMIT**.
+- **Build and gates:** `scripts/build_lattice_gap_candidate.py` (writer) · `scripts/check_submission.py` (format) · `scripts/measure_overlap.py` (nine focus files + r13) · `scripts/measure_registry_overlap.py` (full filtered inventory) · `scripts/evaluate_holdout.py` (HOLDOUT-DTI) · `scripts/leakage_canary.py` · `scripts/make_submission_card.py` (card; publishes only when every gate passes) · `scripts/build_submit_now.py` (page).
 - **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
 - **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
 - **Decision needed from the owner:** whether the literal any-registry 70% rule should apply to dense calibration lattices. Until then, no candidate can pass. See *Remaining Work* below.

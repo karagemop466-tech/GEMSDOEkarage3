@@ -1,0 +1,200 @@
+{
+  "schema": "karage3-submission-card-v1",
+  "created_utc": "2026-10-29T19:04:04Z",
+  "submission_name": "karage3-lgap-scarpstep-19k-20261029-4fc40bd1",
+  "submission_note": "Lattice-gap dots: all 6,649 r13-uncovered cells + 12,348 covered, ranked by LiDAR step_max; 0/1 in footprint, NaN outside.",
+  "submission_note_chars": 122,
+  "file_published": false,
+  "file_to_download": null,
+  "file_status": "NOT PUBLISHED: fails the literal full-inventory uniqueness gate; research only, DO NOT SUBMIT",
+  "blocking_reasons": [
+    "106 of 1977 compared registry rasters exceed the 70% literal overlap rule",
+    "Dense registry surfaces (>=1,000,000 positive cells) make the literal dot rule unsatisfiable; owner decision required",
+    "Sparse registry dot sets are overlapped by this file (see evidence registry rows)"
+  ],
+  "raster_sha256": "4fc40bd1e278215958cb7c4fb36c795a5d06138a8aebacf2626d5497ca55218f",
+  "hypothesis": "H-LG1: LiDAR step_max ordering of off-catalogue covered cells, combined with all lattice-uncovered cells, gives positive HOLDOUT-DTI on USGS SGMC off-catalogue faults.",
+  "mechanism": "A fault scarp is a vertical step in the 1 m DEM; cells with larger step_max are more likely to sit on a scarp.",
+  "named_non_fault_mimic": "Road cut-banks, berms, terrace or fan edges, and DEM/lidar processing artifacts raise step_max without faulting.",
+  "build": {
+    "prior": "lidar_step_max",
+    "footprint_cells": 5167373,
+    "catalogue_cells_in_footprint": 60988,
+    "lattice_dots_in_footprint": 206895,
+    "uncovered_cells_all_placed": 6649,
+    "covered_offcatalogue_candidates": 4716560,
+    "overlap_cap": 0.65,
+    "covered_dots_added": 12348,
+    "covered_dots_max_allowed": 12348,
+    "candidate_dots": 18997,
+    "dots_within_3px_of_lattice": 12348,
+    "expected_lattice_overlap_fraction": 0.6499973680054746,
+    "raster_sha256": "4fc40bd1e278215958cb7c4fb36c795a5d06138a8aebacf2626d5497ca55218f",
+    "created_utc": "2026-10-29T18:24:15Z"
+  },
+  "holdout": {
+    "hide_and_recover": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "pooled_dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "n_withheld_positives": 22232,
+      "interpretation": "Zero by construction: every dot is >3 px from the catalogue; this evaluator scores withheld catalogue segments."
+    },
+    "sgmc_off_catalogue": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "raw_pooled_dti": 0.040301564490538545,
+      "raw_ci95": [
+        0.026165915477742024,
+        0.05540880304408103
+      ],
+      "prevalence_calibrated_dti": 0.03163897247142457,
+      "calibrated_ci95": [
+        0.020889213169360158,
+        0.04321069930474486
+      ],
+      "n_withheld_positives": 62703
+    },
+    "best_focus9_same_evaluator": {
+      "site": "GEMSDOE36",
+      "prevalence_calibrated_dti": 0.06444361006575842,
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0"
+    },
+    "leakage_canary": {
+      "feature": "step_max",
+      "auc_vs_sgmc_offcatalogue": 0.568,
+      "threshold": 0.9,
+      "status": "pass (below threshold)",
+      "caveat": "Feature chosen after viewing single-band AUCs against the same SGMC truth; the SGMC number is therefore optimistic."
+    },
+    "evaluator_static_caveat": "Static predictions cannot establish fold-local catalogue features or leakage-free training."
+  },
+  "uniqueness": {
+    "surface_stage": "rank correlation (footprint) is reported per reference; see overlap block",
+    "final_dots_vs_measured_references": {
+      "references": [
+        {
+          "name": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+          "overlap_fraction": 0.11849239353582144,
+          "spearman_footprint": -0.0033853944469962875
+        },
+        {
+          "name": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+          "overlap_fraction": 0.1301784492288256,
+          "spearman_footprint": -0.004260908528753937
+        },
+        {
+          "name": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+          "overlap_fraction": 0.12191398641890824,
+          "spearman_footprint": -0.003583959178492426
+        },
+        {
+          "name": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+          "overlap_fraction": 0.13117860714849713,
+          "spearman_footprint": -0.004324604787415244
+        },
+        {
+          "name": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+          "overlap_fraction": 0.11338632415644576,
+          "spearman_footprint": -0.0030243771319821743
+        },
+        {
+          "name": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+          "overlap_fraction": 0.12191398641890824,
+          "spearman_footprint": -0.003583959178492426
+        },
+        {
+          "name": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan",
+          "overlap_fraction": 0.11501816076222561,
+          "spearman_footprint": -0.0033769408816095472
+        },
+        {
+          "name": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+          "overlap_fraction": 0.1089119334631784,
+          "spearman_footprint": -0.0031741703955244587
+        },
+        {
+          "name": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+          "overlap_fraction": 0.10943833236826868,
+          "spearman_footprint": -0.00328843034071431
+        },
+        {
+          "name": "13gems_20261001_r13-lattice-s5_v2_nan-outside",
+          "overlap_fraction": 0.6499973680054746,
+          "spearman_footprint": -0.00425065398869226
+        }
+      ],
+      "max_overlap": 0.6499973680054746,
+      "literal_threshold": 0.7
+    },
+    "full_inventory": {
+      "source": "registry/complete_registry_manifest.json (filtered; not proven complete)",
+      "unique_sha256": 1997,
+      "rasters_compared": 1977,
+      "rasters_not_comparable_or_error": 13,
+      "count_literal_fails": 106,
+      "max_overlap": 1.0,
+      "worst_raster": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "spearman_method": "subsample n=1000000 seed=0",
+      "manifest_literal_registry_complete": false,
+      "evidence": "evidence/karage3-lgap-scarpstep-19k-20261029-4fc40bd1-registry.json"
+    }
+  },
+  "validator_output": {
+    "format_checks": {
+      "single_band_float32": true,
+      "crs_shape_transform_match_template": true,
+      "inside_footprint_no_nan_or_masked": true,
+      "inside_footprint_values_in_0_1": true,
+      "outside_footprint_null_matches_template": true,
+      "core_format_pass": true
+    },
+    "raw_audit": {
+      "candidate": ".cache/staging/lgap-lidar.tif",
+      "candidate_sha256": "4fc40bd1e278215958cb7c4fb36c795a5d06138a8aebacf2626d5497ca55218f",
+      "template": ".cache/gems_data/sample_submission.tif",
+      "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "candidate_sidecars": [],
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "self_contained_tiff": true,
+        "inside_all_finite": true,
+        "inside_range_0_1": true,
+        "inside_not_nodata_or_masked": true
+      },
+      "core_format_pass": true,
+      "inside_nonfinite_count": 0,
+      "inside_masked_count": 0,
+      "inside_min": 0.0,
+      "inside_max": 1.0,
+      "outside_template_null_pass": true,
+      "whole_array_finite_range_pass": false,
+      "outside_policy_note": "Template-footprint null interpretation and all-finite diagnostic are separate; neither proves portal acceptance.",
+      "organizer_acceptance": "unknown",
+      "authorization": "NOT AUTHORIZED"
+    },
+    "note": "Local diagnostic only. Organizer acceptance is unknown."
+  },
+  "gates": {
+    "format_pass": true,
+    "literal_uniqueness_measured_pass": true,
+    "full_inventory_pass": false,
+    "download_ok": false
+  },
+  "estimated_leaderboard_score": null,
+  "estimated_leaderboard_score_reason": "Not estimable: no local proxy reproduces the portal ordering (see evidence/focus9-holdout-baseline-20261029.json).",
+  "verdict": "negative",
+  "promotion_note": "Negative: does not beat the best same-evaluator focus-9 HOLDOUT-DTI (protocol rule 6), and the full-inventory uniqueness gate fails. Not downloadable; no weekly slot is used.",
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null
+}
