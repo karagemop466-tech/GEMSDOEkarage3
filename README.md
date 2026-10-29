@@ -1,8 +1,10 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
+## Current review decision (2026-10-29): **DO NOT SUBMIT** — all retained TIFFs fail current gates
 
-**Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
+**Latest checkout audit:** every one of the 13 checked-in TIFFs exceeds the literal 70% 3-pixel overlap stop against the pinned lattice witness (range 99.3387%–99.9225%); all also fail this repo's strict local format gate. This is a one-witness negative audit, not proof against a complete current registry and not an organizer receipt. See the [live-checkout audit report](docs/review-2026-10-29-live-audit.md) and [machine-readable evidence](evidence/saved-tiffs-literal-20261029.json).
+
+The H-GEO-CONDUIT and `unique-offcat` artifacts already present in the repo are research-only, not approved downloads. Do not upload any retained TIFF. The separate protocol blockers remain: no complete current registry/surface audit, no validated same-protocol holdout comparison, no organizer-authenticated cache/data, and no separate selector approval. No submission slot is authorized.
 
 A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
 
