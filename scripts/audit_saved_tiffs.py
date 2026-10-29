@@ -21,6 +21,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from scripts.audit_registry import binary_spearman, checked_raster, dilate_disk, ensure_file, sha256
 from scripts.check_format import inspect
+from scripts.tiff_inventory import inventory as checked_tiff_inventory
 
 
 def audit(cache: Path, fetch: bool = False) -> dict:
@@ -37,9 +38,13 @@ def audit(cache: Path, fetch: bool = False) -> dict:
     witness, info = checked_raster(paths['lattice'], geometry, foot, binary=True)
     near = dilate_disk(witness, 3)
     rows = []
-    # Audit every TIFF retained anywhere under the public docs tree, not just
-    # a hand-picked subset; a future added TIFF cannot silently escape this scan.
-    for path in sorted((ROOT / 'docs').rglob('*.tif')):
+    # Reproduce the pinned historical audit cohort. The strict inventory helper
+    # verifies that every TIFF under docs is either in this audited cohort or
+    # separately hash-bound as UNASSESSED; do not silently treat those extras
+    # as a passing raster audit.
+    cohort = checked_tiff_inventory(ROOT)['audited_paths']
+    for relative in cohort:
+        path = ROOT / relative
         fmt = inspect(path, paths['template'])
         with rasterio.open(path) as ds:
             if ds.count != 1 or (ds.shape, ds.crs, ds.transform) != geometry:
