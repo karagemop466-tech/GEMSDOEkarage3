@@ -183,7 +183,12 @@ def home(reg: dict, aud: dict, base: dict, run_card: dict) -> str:
 <p>Run card: <a href="run-card.json">run-card.json</a> · Leaderboard: <a href="{LEADERBOARD}">official page</a>. Public leaderboard values in the prompt disagree (0.3195, 0.4413, 0.4544). These must be checked manually. Automated access to DrivenData is prohibited by its terms.</p>
 <p><small>Verdict: <strong>{esc(run_card['verdict'])}</strong>. No candidate generated.</small></p>
 """
-    return page("Focus-9 summary", body)
+    banner = ('<div role="status" style="background:#fff3cd;color:#222;padding:10px 14px;text-align:center;'
+              'font-family:system-ui,sans-serif;font-size:15px;border-bottom:2px solid #d39e00">'
+              '<a href="../nine-site-summary.html" style="color:#222"><strong>EXECUTIVE SUMMARY (2026-10-29) — '
+              'OK TO DOWNLOAD AND SUBMIT? NO. Read the nine-site table →</strong></a> · '
+              '<a href="../nine-site-run-card.json">run card</a> · <a href="../../README.md">README standing prompt</a></div>')
+    return page("Focus-9 summary", body).replace("<body>", "<body>" + banner, 1)
 
 
 def run_card(reg: dict, base: dict) -> dict:

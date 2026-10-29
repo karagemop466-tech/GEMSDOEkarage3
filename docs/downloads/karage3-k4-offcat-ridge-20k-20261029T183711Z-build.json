@@ -1,0 +1,152 @@
+{
+  "slug": "karage3-k4-offcat-ridge-20k",
+  "timestamp": "20261029T183711Z",
+  "dots": 13434,
+  "peaks_available": 13434,
+  "max_single_feature_auc": 0.5654337459854283,
+  "canary": {
+    "tmi_hg": {
+      "auc_vs_catalogue_labels": 0.5300543226313483
+    },
+    "iso_grav_anom_hg": {
+      "auc_vs_catalogue_labels": 0.4910971448092917
+    },
+    "lidar_step_max": {
+      "auc_vs_catalogue_labels": 0.5654337459854283
+    },
+    "combined_surface": {
+      "auc_vs_catalogue_labels": 0.5393898578153533
+    }
+  },
+  "bundle": {
+    "candidate_id": "karage3-k4-offcat-ridge-20k",
+    "slug": "karage3-k4-offcat-ridge-20k",
+    "content_digest8": "2a6558a3",
+    "description": "Catalogue-free edge-persistence NMS detector (mag/grav gradients + LiDAR step)",
+    "submission_note_zeros": "Off-catalogue ridge detector: 20k NMS maxima of mag/grav gradient + LiDAR scarp step.",
+    "submission_note_nan": "Off-catalogue ridge detector: 20k NMS maxima of mag/grav gradient + LiDAR scarp step.",
+    "zeros_tif": {
+      "filename": "gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif",
+      "size_bytes": 120759,
+      "sha256": "ea02dd5d609af95f848c238e7ecdb4b51d687f39292fd83c86c5623d05b365e1",
+      "mode": "zeros",
+      "geometry_reference": "/home/user/GEMSDOEkarage3/data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "None",
+      "emitted_positive_pixels": 13434,
+      "footprint_fraction": 0.0026,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 12279160,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "nan_tif": {
+      "filename": "gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-nan.tif",
+      "size_bytes": 256289,
+      "sha256": "d38af4bf36b8c1348ec4b931eb460904be0a7bb5d70b25a27439752732c8f4a5",
+      "mode": "nan",
+      "geometry_reference": "/home/user/GEMSDOEkarage3/data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "nan",
+      "emitted_positive_pixels": 13434,
+      "footprint_fraction": 0.0026,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 5167373,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "holdout_metrics": {
+      "catalogue_hidden_mean": null,
+      "catalogue_hidden_per_quadrant": {},
+      "sgmc_prevalence_calibrated_dti": null,
+      "drift_corrected_holdout_mean": null,
+      "drift_corrected_per_quadrant": {},
+      "predicted_leaderboard_dti": null,
+      "ei_drift_corrected": null,
+      "slot_decision": "HOLD-DO-NOT-SUBMIT"
+    },
+    "zeros_zip": {
+      "filename": "gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip",
+      "size_bytes": 83245,
+      "sha256": "8bc50d1678f9878f7c5eddcd3ce8a1cf321f41904ee4687ac1ccae3778cb6ea3"
+    }
+  },
+  "template": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  }
+}
