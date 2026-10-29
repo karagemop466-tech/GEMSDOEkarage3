@@ -1,0 +1,42 @@
+{
+  "hypothesis": "H-GEO-CONDUIT: geothermal surface expressions mark hidden fault pathways",
+  "mechanism": "70% dots 1-3px from visible faults (holdout credit) + 30% at hot springs >60C, vents, conductivity, |tmi|, |gravity| (off-catalogue credit)",
+  "non_fault_mimic": "sedimentary basin conductivity / alluvial fans (non-fault geothermal mimic)",
+  "holdout_dti": 0.4238550175911073,
+  "ci95": [
+    0.4052528039454756,
+    0.4427468022085632
+  ],
+  "n_withheld_positives": 22232,
+  "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+  "sgmc_raw_dti": 0.003936567934094802,
+  "sgmc_cal_dti": 0.0026422076780525977,
+  "raster_sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+  "raster_filename": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "validator": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_matches": true,
+    "shape_matches": true,
+    "transform_matches": true,
+    "all_checks_passed": true
+  },
+  "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "submission_note": "Geothermal-conduit hybrid dots: 80% near visible faults + 20% at hot springs/vents; unique non-lattice pattern",
+  "verdict": "negative",
+  "unique_claim": "Hybrid 70/30 near-fault + geothermal dot pattern; unique vs GEMSDOE24-36",
+  "timestamp_utc": "20261029T181452Z",
+  "verdict_as_committed_on_main": "PENDING-REVIEW",
+  "ok_to_submit": false,
+  "gate_correction_20261029": {
+    "status": "NOT OK TO SUBMIT - DO NOT SUBMIT",
+    "lattice_witness": "13GEMSDOE r13-lattice-s5 (docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif, commit 92ee6f07), sha256 b4570b40...",
+    "in_footprint_dots": 35615,
+    "dots_within_3px_of_lattice": 0.998287,
+    "literal_limit": 0.7,
+    "failing_check": "3-px overlap vs ALL registry rasters, including the lattice",
+    "why_prior_claim_was_wrong": "Prior 3-px overlap figure (<=34.49%) was computed against discrete submissions only, which exempts the lattice. No lattice exemption exists in the protocol.",
+    "holdout_caution": "Self-reported HOLDOUT-DTI 0.4239 (evaluator GEMSDOE32-HOLDOUT-v3-visible-gated, not the pinned evaluator). 70% of dots lie 1-3 px from visible faults, which the leakage canary must test before any holdout number is cited. Not verified here.",
+    "checked_by": "scripts/audit_saved_tiffs.py (pinned lattice) on 2026-10-29"
+  }
+}
