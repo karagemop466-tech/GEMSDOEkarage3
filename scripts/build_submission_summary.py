@@ -148,6 +148,7 @@ YES_HTML = '<span class="yes">YES</span>'
 
 
 def render(s: dict) -> str:
+    offcat = load(DATA / 'unique-offcat-inside-footprint-check.json')
     best = s["best_reported_site"]
     trs = []
     for r in sorted(s["rows"], key=lambda r: -r["reported_score"]):
@@ -244,6 +245,7 @@ ol li, ul li{{margin:3px 0}}
 <div class="card">
 <p><strong>Method (pre-registered, fixed before evaluation):</strong> {esc(h['candidate'])}. Layers: <code>tmi_hg</code> (magnetic horizontal gradient) and <code>iso_grav_anom_hg</code> (gravity horizontal gradient), both from <code>training_features.tif</code>. A dot is kept only where both edge maps are high (score = min of the two robust z-scores), at local maxima of a 7×7 window, with dots within 3 px of a catalogue fault removed, and a 20,000-dot budget (upper bound).</p>
 <p><strong>Result:</strong> {h['n_dots']:,} dots (below the 20,000 budget; the budget is an upper bound). Leakage canary: every feature alone scored AUC 0.45–0.56 against the catalogue, so no leakage was detected. Largest overlap vs the nine site files: {pct(h['max_overlap_vs_nine_sites'])}. <strong>Overlap vs 13GEMSDOE lattice: {pct(h['overlap_vs_13gems_lattice'])} (limit 70%) → BLOCKED.</strong></p>
+<p><strong>Also on main (not ours):</strong> <code>karage3-unique-offcat</code> (12,000 dots, zeros and nan variants) claims "0% within 3px". Measured with <code>scripts/check_inside_footprint_overlap.py</code>: {offcat['dots_outside_template_footprint']:,} of {offcat['total_dots']:,} dots lie outside the scored footprint, and {pct(offcat['inside_within3px_of_lattice_share'])} of the {offcat['dots_inside_template_footprint']:,} in-footprint dots sit within 3 px of the lattice. The repo validator marks its outside-footprint policy as failed. <strong>Not cleared</strong> (IR-S6-11).</p>
 <p><strong>Status:</strong> {esc(h['status'])}. Holdout: {esc(h['holdout_evaluated'])}. It is <strong>not published</strong>: the repo's saved-byte audit covers every TIFF under <code>docs/</code>, and a blocked file should not be downloadable. It regenerates byte-for-byte with <code>python scripts/build_h1_candidate.py</code> (SHA-256 <span class="code">{esc(h['sha256'])}</span>).</p>
 </div>
 
@@ -270,7 +272,7 @@ ol li, ul li{{margin:3px 0}}
 <ul>
 <li><strong>A pruned copy might score higher under this mechanism, but it cannot be submitted.</strong> Dropping GEMSDOE32's 2,171 near-catalogue dots would remove the 1–3 px penalty band. The result would be a near-duplicate of a previous submission (a pruned copy would keep {pct(prune_keep)} of GEMSDOE32's dots unchanged), which your rule forbids. Not produced here.
 <li><strong>The local proxies cannot separate these files.</strong> Table below: the SGMC calibrated proxy ranges only from {sg_lo:.4f} to {sg_hi:.4f} across the nine files, and the catalogue hide-and-recover holdout ranks them in the <em>opposite</em> order to the leaderboard (Spearman {c['reported_vs_hide_recover_holdout_dti']['spearman']:.3f}).</li>
-<li><strong>A literal-unique file has a low ceiling.</strong> Only {g['gap_cells_not_within_3px']:,} footprint cells lie outside the lattice's 3 px coverage. Those cells cover at most {pct(g['recall_ceiling_gap_only_share'])} of off-catalogue SGMC truth (the lattice covers {pct(g['share_offcatalogue_truth_within_3px_of_any_lattice_dot'])}). Any file that stays under 70% of the lattice must put at least 30% of its dots in those cells, so its recall is capped far below the top files. Building a file that way would game the rule, not find faults, so it is not done.</li>
+<li><strong>A literal-unique file has a low ceiling.</strong> Only {g['gap_cells_not_within_3px']:,} footprint cells lie outside the lattice's 3 px coverage. Of those, 6,580 lie in a ring within 3 cells of the footprint boundary, and 69 are interior (<code>evidence/lattice-feasibility-20261029.json</code>, from main). Those cells cover at most {pct(g['recall_ceiling_gap_only_share'])} of off-catalogue SGMC truth (the lattice covers {pct(g['share_offcatalogue_truth_within_3px_of_any_lattice_dot'])}). Any file that stays under 70% of the lattice must put at least 30% of its dots in those cells, so its recall is capped far below the top files. Building a file that way would game the rule, not find faults, so it is not done.</li>
 </ul>
 <table><thead><tr><th>Site</th><th>Reported</th><th>SGMC-CAL holdout DTI (HOLDOUT-DTI, 62,703 withheld, 95% CI)</th><th>HIDE-RECOVER holdout DTI (HOLDOUT-DTI, 22,232 withheld, 95% CI)</th></tr></thead>
 <tbody>{''.join(ev)}</tbody></table>
@@ -285,6 +287,8 @@ ol li, ul li{{margin:3px 0}}
 <li><strong>IR-S6-05</strong> Leaderboard top: your prompt gives 0.4413; an earlier repo note gives 0.4437 and 0.4544; the public board read today has rank 1 at <strong>0.4544</strong>. Your "0.3195 is the highest right now" is rank 47 on the same board. Snapshots differ; the snapshot file records today's read. See also IR-K3-03.</li>
 <li><strong>IR-S6-06</strong> H1 deviated from its pre-registered budget: 14,186 dots, not 20,000 (fewer candidates survived suppression). Recorded in the receipt.</li>
 <li><strong>IR-S6-07</strong> Official rules: section 1.1 says "a single entry" and section 3.2 says "multiple submissions… three submissions per week." These are not consistent. The weekly cap shown on the submission page must be checked manually.</li>
+<li><strong>IR-S6-11</strong> Main's <code>karage3-unique-offcat</code> looks unique only because 7,483 of 12,000 dots lie outside the scored footprint, where the lattice has no dots. Its in-footprint lattice overlap is 99.89%. Its own metadata claim ("0% within 3px") is wrong. The repo validator fails its outside-footprint policy. Not cleared.</li>
+<li><strong>IR-S6-12</strong> The saved-byte audit receipt <code>evidence/saved-tiffs-literal-20261028.json</code> listed 9 TIFFs, but <code>docs/</code> held 11. On main, <code>build_site.py --check</code> therefore failed, and CI's verify step would fail too. Fixed by regenerating the audit as <code>evidence/saved-tiffs-literal-20261029.json</code> (11 TIFFs, all duplicate-stop) and pointing the live guards at it. Historical run cards still cite the 20261028 file, unchanged.</li>
 <li><strong>IR-S6-08</strong> The 70% / 3 px uniqueness rule is this project's internal protocol. It is not stated in the official rules, and it is measured against a registry we cannot fully enumerate (only nine site files and 14 scored rasters are available locally). See IR-K3-02.</li>
 </ul>
 

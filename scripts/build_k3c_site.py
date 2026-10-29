@@ -39,7 +39,7 @@ def shell(title, body, depth=0):
 
 def _archive():
     original = json.loads((ROOT / 'evidence/k3c_run_card.json').read_text())
-    report = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    report = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_text())
     rasters = report['rasters']
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     if (len(rasters) != len(expected) or len(rasters) < 8 or {r['file'] for r in rasters} != expected
@@ -106,7 +106,7 @@ def build():
     card['reassessment'] = {
         'checked_utc': report['checked_utc'],
         'status': 'SUPERSEDED: historical promote withdrawn; literal duplicate stop and conservative outside-null failure.',
-        'evidence': 'docs/data/saved-tiffs-literal-20261028.json',
+        'evidence': 'docs/data/saved-tiffs-literal-20261029.json',
         'witness_sha256': report['witness']['sha256'],
         'measured_witness_overlap_fraction': row['within_3px_fraction'],
         'full_registry_checked_in_this_reassessment': False,
@@ -125,7 +125,7 @@ def build():
                 'current_run_card': 'docs/data/latest-run.json',
                 'parallel_preflight_card': 'docs/data/current-run.json'}
     (ROOT / 'docs/current-gate-decision.json').write_text(json.dumps(decision, indent=2, allow_nan=False) + '\n')
-    (ROOT / 'docs/data/saved-tiffs-literal-20261028.json').write_bytes((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_bytes())
+    (ROOT / 'docs/data/saved-tiffs-literal-20261029.json').write_bytes((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_bytes())
     sites_path = ROOT / 'docs/sites.json'
     sites = json.loads(sites_path.read_text())
     sites['promoted_candidate'] = None
@@ -145,7 +145,7 @@ def build():
 <p>Historical file: <code>{file}</code><br>SHA-256 <code>{sha}</code><br><a href="{tif_rel}" download>Download historical TIFF for research only — DO NOT SUBMIT</a></p>
 <h2>Scientific record, not re-run here</h2><p>The prior card reports <strong>HOLDOUT-DTI {hold['dti']:.6f}</strong> (95% CI [{ci[0]:.6f}, {ci[1]:.6f}], evaluator <code>{H(hold['evaluator_version'])}</code>, {hold['withheld_positives']:,} withheld-positive occurrences). The same-card champion-rule comparator is {hold['champion_02778_same_evaluator_dti']:.6f}; paired delta CI [{delta[0]:+.6f}, {delta[1]:+.6f}]. This was not reproduced here and does not establish a compliant buffered whole-segment split, a win against the current same-protocol best, an organizer score or an estimate.</p>
 <p>The user-reported 0.2778 for GEMSDOE32 has no artifact-linked organizer receipt in this checkout. Its dot set is a near-catalogue-pruned subset of GEMSDOE31; reduced redundant prediction mass is plausible, but hidden labels and causality are unknown.</p>
-<p><a href="run-card.json">Corrected historical card</a> · <a href="../data/saved-tiffs-literal-20261028.json">Independent saved-byte audit</a> · <a href="../../executive-summary.html#site-details">Nine-site file table</a> · <a href="../../research.html">Hypotheses</a></p>'''
+<p><a href="run-card.json">Corrected historical card</a> · <a href="../data/saved-tiffs-literal-20261029.json">Independent saved-byte audit</a> · <a href="../../executive-summary.html#site-details">Nine-site file table</a> · <a href="../../research.html">Hypotheses</a></p>'''
     (ROOT / 'docs/k3c/index.html').write_text(shell('K3C archive · do not submit', archive, 1))
     guide = common + f'''<h1>Submission guide · not yet actionable</h1><p><strong>Do not upload <code>{file}</code></strong> (SHA-256 <code>{sha}</code>) or any other retained TIFF.</p>
 <ol><li>Obtain an explicit single-method assignment. Resolve and pin the shared-template issues; restore authenticated inputs and a complete registry.</li>

@@ -126,6 +126,24 @@ class SummaryMatchesSources(unittest.TestCase):
             self.assertEqual(row["hide_recover_holdout_dti"]["withheld_positives"], hr["n_withheld_positives"], row["site"])
 
 
+class SavedByteAndFootprintReceipts(unittest.TestCase):
+    def test_saved_byte_receipt_covers_every_docs_tif(self):
+        rec = json.loads((ROOT / "evidence" / "saved-tiffs-literal-20261029.json").read_text())
+        on_disk = sorted(str(p.relative_to(ROOT)) for p in (ROOT / "docs").rglob("*.tif"))
+        self.assertEqual(sorted(r["file"] for r in rec["rasters"]), on_disk)
+        self.assertTrue(all(r["duplicate_stop"] for r in rec["rasters"]))
+        self.assertTrue(all(r["ok_to_submit"] is False for r in rec["rasters"]))
+
+    def test_unique_offcat_main_file_is_not_cleared_by_footprint_check(self):
+        rec = _load("unique-offcat-inside-footprint-check.json")
+        self.assertEqual(rec["total_dots"], 12000)
+        self.assertEqual(rec["dots_inside_template_footprint"] + rec["dots_outside_template_footprint"], rec["total_dots"])
+        self.assertEqual(rec["dots_outside_template_footprint"], 7483)
+        self.assertTrue(rec["literal_70pct_rule_on_inside_dots_triggered"])
+        self.assertGreater(rec["inside_within3px_of_lattice_share"], 0.70)
+        self.assertFalse(rec["ok_to_submit"])
+
+
 class LeaderboardSnapshot(unittest.TestCase):
     def test_top_50_monotone_with_expected_anchors(self):
         snap = _load("leaderboard-snapshot-20261029.json")
@@ -162,7 +180,7 @@ class FrontPageBanner(unittest.TestCase):
 class IrregularityRegister(unittest.TestCase):
     def test_session6_entries_present(self):
         text = (ROOT / "knowledge" / "irregularities.md").read_text()
-        for i in range(1, 11):
+        for i in range(1, 13):
             self.assertIn(f"IR-S6-{i:02d}", text)
 
 
