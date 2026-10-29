@@ -1,6 +1,6 @@
 {
   "hypothesis": "H-GEO-CONDUIT: geothermal surface expressions mark hidden fault pathways",
-  "mechanism": "70% dots 1-3px from visible faults (holdout credit) + 30% at hot springs >60C, vents, conductivity, |tmi|, |gravity| (off-catalogue credit)",
+  "mechanism": "80% of candidate placements near visible faults and 20% at geothermal surface expressions, as specified by the generating script.",
   "non_fault_mimic": "sedimentary basin conductivity / alluvial fans (non-fault geothermal mimic)",
   "holdout_dti": 0.4238550175911073,
   "ci95": [
@@ -22,8 +22,12 @@
     "all_checks_passed": true
   },
   "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
-  "submission_note": "Geothermal-conduit hybrid dots: 80% near visible faults + 20% at hot springs/vents; unique non-lattice pattern",
-  "verdict": "PENDING-REVIEW",
-  "unique_claim": "Hybrid 70/30 near-fault + geothermal dot pattern; unique vs GEMSDOE24-36",
-  "timestamp_utc": "20261029T181452Z"
+  "submission_note": "H-GEO-CONDUIT candidate archived for protocol review; not approved for submission.",
+  "verdict": "negative",
+  "unique_claim": "NOT ESTABLISHED: complete literal registry surface/final-dot checks and selector approval are absent.",
+  "timestamp_utc": "20261029T181452Z",
+  "status": "DO NOT SUBMIT; HOLDOUT-DTI is a copied candidate-run-card result, not organizer-confirmed and not independently reproduced in this review.",
+  "registry_comparison": "NOT ESTABLISHED against the complete registry; no dense-lattice overlap exemption is authorized.",
+  "same_protocol_baseline": "NOT ESTABLISHED",
+  "leakage_canaries": "NOT ESTABLISHED in this review"
 }

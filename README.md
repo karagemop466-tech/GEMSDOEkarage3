@@ -1,12 +1,14 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## Decision: **OK TO SUBMIT** (`ok_to_submit = True`, `verdict = "promote"`)
+## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
 
-A cleared TIFF is available for live DrivenData upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
+**Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
 
-**HOLDOUT-DTI: 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, 22,232 withheld positives, 8 spatial blocks (draws 20/21 × 4 quadrants). Off-catalogue SGMC calibrated DTI: 0.0026. Rank correlation vs all historical focus-site rasters: ≤ 0.02 (≪ 0.90). 3-px dot overlap vs discrete submissions: ≤ 34.49% (≤ 70%). Lattice-witness rank correlation ≈ 0.000 (dense calibration lattice excluded from dot-overlap rule per protocol distinction). Format: single-band float32 GeoTIFF, EPSG:32611, 3730×3292, exact geotransform match, all footprint values in [0,1], zero NaN inside footprint, no dots on catalogue faults.
+A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
 
-[**H-GEO-CONDUIT Executive Summary**](#executive-summary) · [**Step-by-Step Submission Guide**](#how-to-submit) · [**Run Card JSON**](docs/downloads/karage3-h-geoconduit-hybrid-20261029T181452Z-run-card.json) · [**Nine-Site Scorecard**](#nine-site-scorecard) · [**Download Submission**](#download-submission)
+**HOLDOUT-DTI (candidate run-card claim, not independently reproduced or promoted): 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, 22,232 withheld positives (as recorded in that card). Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
+
+[**Executive summary**](executive-summary.html) · [**Submission process (blocked pending approval)**](#submission-process-only-after-future-clearance) · [**Negative review card JSON**](docs/data/candidate-review-20261029.json) · [**Nine-Site Scorecard**](executive-summary.html#nine-site-scorecard) · [**Candidate artifact (research only)**](#candidate-artifact-not-cleared-do-not-submit)
 
 ---
 
@@ -77,58 +79,22 @@ Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible
 
 ---
 
-# DOWNLOAD SUBMISSION (easy, one-click)
+# Candidate artifact — NOT CLEARED, do not submit
 
-**File:** [`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`](docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif)
+A generated candidate is retained for scientific/research review only:
 
-**SHA-256:** `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`
+- File: [`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`](docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif)
+- SHA-256: `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`
+- Candidate name: `gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8`
+- **Submission eligibility: NO.** The run card itself says `PENDING-REVIEW`; full literal registry comparisons before surface placement and on final dots, compliant matched holdout controls/leakage checks, and separate selector approval are not established. The literal protocol does not authorize excluding a dense lattice from overlap checks.
+- **HOLDOUT-DTI (candidate run-card claim; not independently reproduced or organizer-confirmed): 0.4239**, 95% CI `[0.4053, 0.4427]`, evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, `22,232` withheld positives. This is neither an organizer-confirmed score nor a leaderboard estimate; it is not directly comparable with the user-reported GEMSDOE32 `0.2778`.
+- Basic TIFF audit metadata reports single-band float32, EPSG:32611, 3730×3292, range `[0,1]`, and zero NaN inside footprint. Format checks do not establish scientific performance, uniqueness, or organizer acceptance.
 
-**OK TO DOWNLOAD AND SUBMIT: YES.** This file passes all local validation checks:
-- Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, exact geotransform match ✓
-- All footprint values in [0,1], zero NaN inside footprint ✓
-- Zero dots on catalogue faults ✓
-- Rank correlation vs all focus-site rasters ≤ 0.02 ✓
-- 3-px dot overlap vs discrete submissions ≤ 34.49% ✓
-- Holdout-DTI 0.4239 [95% CI: 0.4053, 0.4427] ✓
+No submission note is authorized while eligibility is NO. There has been no slot selection or upload by this review.
 
-**Submission name:** `gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8`
+# Submission process (only after future clearance)
 
-**Submission note (≤140 chars):** Hybrid geothermal-conduit dots: 80% near faults + 20% at hot springs/vents; unique non-lattice pattern
-
----
-
-# HOW TO SUBMIT (step by step)
-
-1. **Download** the TIF file linked above (or the `.zip` variant).
-2. **Log in** to DrivenData at https://www.drivendata.org/competitions/306/competition-doe-gems/
-3. **Go to** the "Submit" page for the GEMS competition.
-4. **Upload** the `.tif` or `.zip` file.
-5. **Enter** the submission note: `Hybrid geothermal-conduit dots: 80% near faults + 20% at hot springs/vents; unique non-lattice pattern`
-6. **Submit.** You will receive an organizer receipt confirming the score.
-
-**Format requirements (from the competition page):**
-- Single-band GeoTIFF (.tif) or .zip containing a single GeoTIFF
-- Must match CRS (EPSG:32611), shape (3730×3292), and geotransform of the sample submission
-- Predicted values must be in range [0, 1] (our `-zeros.tif` guarantees this with 0.0 outside the footprint)
-
----
-
-# HYPOTHESES TESTED
-
-**H-GEO-CONDUIT (implemented, promoted):** Hybrid geothermal-conduit blind-fault detector.
-- Layers: GDR #1391 2m temperature probes, volcanic vents, bands 13/14/17 (gravity, magnetic, conductivity)
-- Signature: composite geothermal prospectivity surface + distance-to-visible-fault placement
-- Off-catalogue rationale: hot springs and vents >500 m from mapped faults indicate blind fault pathways
-- Difference: not a dotted ridge along mapped traces; dots at independent geothermal evidence
-- Holdout-DTI: 0.4239 [0.4053, 0.4427], n=22,232 withheld positives
-
-**Four additional preregistered hypotheses** (documented in `docs/research/`, not implemented in this session due to budget):
-- H-GEO-1: 2m temperature probe spatial clustering (F2mDAB thermal anomaly gradient)
-- H-GEO-2: Quaternary volcanic vent alignment with magnetic lineaments
-- H-GEO-3: Surface conductivity anomaly at basin-margin step-overs
-- H-GEO-4: Gravity-magnetic cross-gradient boundary pinch points
-
----
+Do not submit the archived candidate above. For a future approved release, first confirm a positive current gate and separate selector authorization; then use the official DrivenData submission page, upload the approved single-band GeoTIFF (or ZIP containing one), add its run-card note (≤140 characters), and retain the exact-file organizer receipt. These general steps do not approve this artifact.
 
 # DATA SOURCES (official, verified)
 
@@ -144,21 +110,22 @@ Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible
 
 ---
 
-# PROTOCOL COMPLIANCE
+# Protocol status — NOT CLEARED
 
-1. **Lane:** H-GEO-CONDUIT hybrid geothermal-conduit detector — rank correlation ≤ 0.02 vs all registry rasters; 3-px dot overlap ≤ 34.49% vs discrete submissions.
-2. **Reuse:** Uses shared `gems32.holdout`, `gems32.submission`, `gems32.metric` — no private fork.
-3. **Labels:** Holdout-DTI labeled with evaluator version, 22,232 withheld positives, 95% CI. No projection written as score.
-4. **Leakage canary:** Each feature component tested on holdout; all AUC ≤ 0.90.
-5. **Run card:** JSON card saved with hypothesis, mechanism, mimic, DTI+CI, registry stats, SHA256, validation, submission name, ≤140-char note, verdict=promote.
-6. **Budget:** 1 experiment completed within 2-hour limit.
+- Assigned method lane: the prompt refers to a single paragraph but does not unambiguously assign a lane to this session.
+- Surface-before-placement and final-dot literal uniqueness against the complete current registry: not established.
+- Holdout: candidate card reports a result, but independently reproducible whole-segment buffering, fold-local feature derivation, pooled DTI settings, paired same-protocol baseline, and leakage canaries are not evidenced here.
+- TIFF checks: archived audit metadata reports format/grid/range properties; no current reviewer re-opened the saved bytes against an authenticated organizer template in this pass.
+- Selector/slot: no separate selector approval or organizer receipt. Do not infer quota status from a downloadable file.
+- Current gate: negative / pending review; no candidate is authorized for upload.
 
 ---
 
 # REMAINING WORK & LIMITATIONS
 
-1. **Leaderboard score unknown:** Holdout-DTI is a proxy, not the organizer score. Actual leaderboard performance can only be confirmed by submission.
-2. **Data provenance:** Competition rasters restored from owner-supplied GitHub mirrors (SHA-256 pinned), not direct DrivenData login downloads. Mirrors are integrity-verified but not organizer-authenticated.
-3. **Weekly slot:** One submission slot used for H-GEO-CONDUIT. Remaining slots available for follow-up experiments.
-4. **Lattice witness:** The 3-px dot-overlap rule is applied to discrete (≤100k-dot) registry rasters only; dense calibration lattices (>100k dots) use rank correlation per the documented protocol distinction.
-5. **Three-pass review:** Pass 1 (implement) complete; Pass 2 (review) in progress; Pass 3 (final check) pending.
+1. Confirm the intended lane explicitly and avoid overlapping sibling experiments.
+2. Resolve organizer-authenticated data/template provenance and complete shared evaluator/writer audits.
+3. Run surface and final-dot uniqueness checks against every registered raster, with no undocumented exemptions.
+4. Independently reproduce the holdout using the requested whole-segment buffered protocol, feature-only leakage canaries and matched current-best baseline.
+5. Keep the candidate blocked until every gate passes and the separate selector authorizes a real slot; then bind any result to a receipt and file hash.
+6. Local full-suite test execution is environment-limited if Python scientific dependencies are unavailable; report exact CI result before relying on code validation.
