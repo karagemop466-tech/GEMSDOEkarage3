@@ -8,6 +8,7 @@ There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `
 [**H-K3D Step-by-Step Submission Guide**](docs/hk3d/how-to-submit.html) ·
 [**H-K3D Run Card JSON**](docs/hk3d/run-card.json) ·
 [**Nine-site executive summary**](index.html#scorecard) ·
+[**Current repo review (2026-10-29)**](docs/review-2026-10-29.md) ·
 [Submission guide](executive-summary.html) ·
 [Current JSON run card](docs/data/latest-run.json) ·
 [Session 5 Three-Pass Report](docs/research/session5-hk3d-report-20261028.md) ·
