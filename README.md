@@ -1,5 +1,7 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+**Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
+
 ## SUBMISSION STATUS (read first, updated 2026-10-29)
 
 **Answer: NO file in this repository is currently OK to download and submit.** Every candidate fails the literal uniqueness rule, and a rule-compliant file cannot be built from real predictions.
