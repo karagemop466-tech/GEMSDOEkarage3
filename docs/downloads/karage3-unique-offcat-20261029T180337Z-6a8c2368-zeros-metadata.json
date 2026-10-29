@@ -1,0 +1,18 @@
+{
+  "submission_name": "karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+  "slug": "karage3-unique-offcat-20261029T180337Z-6a8c2368",
+  "content_digest8": "6a8c2368",
+  "timestamp": "20261029T180337Z",
+  "emitted_dots": 12000,
+  "footprint_pixels": 12279160,
+  "grid": {
+    "height": 3730,
+    "width": 3292,
+    "epsg": 32611
+  },
+  "zeros_sha256": "34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e",
+  "nan_sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
+  "unique_vs_existing_submissions": "0% within 3px of existing focus-site dots",
+  "estimated_lattice_overlap_bound": "44.6% theoretical minimum (12000 dots, 6649 lattice-free cells)",
+  "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/..."
+}
