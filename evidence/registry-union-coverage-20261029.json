@@ -1,0 +1,207 @@
+{
+  "schema": "GEMSDOEkarage3-REGISTRY-UNION-COVERAGE-v1",
+  "generated_utc": "2026-10-29T19:06:09Z",
+  "purpose": "Feasibility of the literal <=70% within-3px rule; not a candidate and not a score.",
+  "manifest_sha256_note": "registry/complete_registry_manifest.json (filtered inventory, literal_registry_complete=false)",
+  "footprint_cells": 5167373,
+  "unique_binary_registry_masks_used": 1403,
+  "rasters_skipped_missing_malformed": 38,
+  "footprint_share_within_3px_of_any_registry_dot_incl_lattice": 1.0,
+  "footprint_share_within_3px_of_any_registry_dot_excl_lattice": 1.0,
+  "footprint_cells_uncovered_incl_lattice": 0,
+  "footprint_cells_uncovered_excl_lattice": 0,
+  "lattice_dots": 206895,
+  "skipped_rows": [
+    {
+      "repo": "buffedlizard55-lab/14GEMSDOE",
+      "path": "docs/downloads/GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/57GEMSDOE",
+      "path": "docs/downloads/archive/gems57-h57-lean-offset-20261009T181740Z-468b837801cb-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/57GEMSDOE",
+      "path": "docs/downloads/archive/gems57-h57-no_side-all-flank0-20261009T180245Z-90e532947353-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/57GEMSDOE",
+      "path": "docs/downloads/archive/gems57-h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "path": "data/evidence/proxy/proxy_window.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "path": "data/evidence/runs/35042805806-experiment/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "path": "data/evidence/runs/35042805806/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "path": "data/evidence/runs/local-sandbox-smoke/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/5GEMSDOE",
+      "path": "data/evidence/xcat/proxy_window.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "path": "docs/downloads/gems60-h63-strike-corridor-42000px-20261011T020352Z-zeros.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "path": "data/evidence/proxy/proxy_window.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "path": "data/evidence/runs/35042805806-experiment/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "path": "data/evidence/runs/35042805806/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "path": "data/evidence/runs/local-sandbox-smoke/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "path": "data/evidence/xcat/proxy_window.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE2",
+      "path": "data/evidence/proxy/proxy_window.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE2",
+      "path": "data/evidence/runs/35042805806-experiment/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE2",
+      "path": "data/evidence/runs/35042805806/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE2",
+      "path": "data/evidence/runs/local-sandbox-smoke/submission.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE2",
+      "path": "data/evidence/xcat/proxy_window.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "path": "docs/downloads/gemsdoe31-csdu-stepover-8cf9dc27-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "path": "docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE52",
+      "path": "docs/downloads/gems52-h83-offcatalogue-cotrain-37654px-e3-20261010T202956Z-template-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE52",
+      "path": "docs/downloads/gems52-h83-structural-concordance-37654px-20261010T200049Z.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE52",
+      "path": "docs/downloads/h83-candidate-template-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE63",
+      "path": "docs/downloads/smoke.tif",
+      "status": "read_error"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE68",
+      "path": "docs/downloads/GEMSDOE68-AC-stack2-20261012T042050Z-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE68",
+      "path": "docs/downloads/GEMSDOE68-AC-stack3-r3-N32000-20261020T182552Z-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE68",
+      "path": "docs/downloads/GEMSDOE68-AC-stack3-r3-N32000-20261020T182552Z-zeros.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE68",
+      "path": "docs/downloads/gemsdoe68-autocontext-s2-20261012T014136Z-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE75",
+      "path": "docs/downloads/gems75-fault-tip-halo-20261021-SCHEMA-DEMO-DO-NOT-SUBMIT.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE75",
+      "path": "docs/downloads/gemsdoe75-zeros-SCHEMA-DEMO-DO-NOT-SUBMIT.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE77",
+      "path": "docs/downloads/gems77-ago-hybrid35-geophys-37654dots-dc66e42e-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE77",
+      "path": "docs/downloads/gems77-ago-hybrid50-geophys-37654dots-11b45670-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE77",
+      "path": "docs/downloads/gems77-ago-select-geophys-37654dots-909053c9-nan.tif",
+      "status": "nonfinite_inside_footprint"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "path": "archive/prototype/docs/downloads/gemsdoe-unique-hunq1-20261027T210333Z-d880eae3246b-dots.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "path": "archive/concurrent-8488b95/submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif",
+      "status": "grid_mismatch"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "path": "archive/site-legacy-2026-10-26/site/assets/downloads/gems-hnew01-stepper-dblind-unique.tif",
+      "status": "grid_mismatch"
+    }
+  ],
+  "reading": "A candidate must put >=30% of its dots in cells NOT within 3 px of the lattice to pass the literal rule against it alone; the lattice's uncovered cells bound the dot count (see scripts/protocol_preflight.py)."
+}

@@ -8,7 +8,10 @@
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "value": 0.4238550175911073,
-    "ci_95": [0.4052528039454756, 0.4427468022085632],
+    "ci_95": [
+      0.4052528039454756,
+      0.4427468022085632
+    ],
     "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
     "withheld_positives": 22232,
     "provenance": "Copied from the candidate run card; not independently reproduced in this review, not organizer-confirmed, and not a leaderboard estimate.",
@@ -24,7 +27,7 @@
     "final_dots_spearman_max": null,
     "final_dots_overlap_max_3px": null,
     "registry_completeness": "NOT ESTABLISHED",
-    "status": "NOT PASSED — all-registry checks required; no undocumented lattice exemption"
+    "status": "NOT PASSED \u2014 all-registry checks required; no undocumented lattice exemption"
   },
   "raster_sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
   "validator_output": {
@@ -32,11 +35,40 @@
     "no_nan_inside_footprint_reported": true,
     "values_in_0_1_reported": true,
     "crs_reported": "EPSG:32611",
-    "shape_reported": [3730, 3292],
-    "transform_reported": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "shape_reported": [
+      3730,
+      3292
+    ],
+    "transform_reported": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
     "organizer_acceptance": "UNKNOWN"
   },
   "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8",
   "note": "H-GEO-CONDUIT candidate archived for protocol review; not approved for submission.",
-  "verdict": "negative"
+  "verdict": "negative",
+  "correction_20261029_session": {
+    "what_changed": "Shared evaluator re-run on the same file did NOT reproduce the card value.",
+    "shared_evaluator": "scripts/evaluate_holdout.py (GEMSDOE32-HIDE-RECOVER-v3.0)",
+    "holdout_dti_reproduced": {
+      "evidence_class": "HOLDOUT-DTI",
+      "value": 0.30473355287974024,
+      "ci_95_cluster_bootstrap": [
+        0.2881210935821653,
+        0.3188882103680109
+      ],
+      "withheld_positives": 22232,
+      "n_spatial_clusters": 140
+    },
+    "card_value_not_reproduced": {
+      "value": 0.4238550175911073,
+      "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated"
+    },
+    "gate_status": "DO NOT SUBMIT. Literal 70% within-3px rule fails against the registered 13GEMSDOE lattice (see evidence/site-uniqueness-20261029.json)."
+  }
 }
