@@ -1245,7 +1245,7 @@ def main() -> int:
             "pooled_dti": exp3_clean["hide_and_recover_v3"]["pooled_dti"],
             "ci95": exp3_clean["hide_and_recover_v3"]["ci95"],
             "incumbent_same_evaluator": champ_clean["hide_and_recover_v3"]["pooled_dti"],
-            "incumbent_name": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (0.2778 ORGANIZER-CONFIRMED)",
+            "incumbent_name": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (0.2778 USER-REPORTED / UNVERIFIED)",
             "primary_hide_and_recover": exp3_clean["hide_and_recover_v3"],
             "exp1_unsup_smgc_crest_hide_and_recover": exp1_clean["hide_and_recover_v3"],
             "exp2_multiplicative_dual87_hide_and_recover": exp2_clean["hide_and_recover_v3"],

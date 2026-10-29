@@ -8,6 +8,41 @@
 - **Decision needed from the owner:** whether the literal any-registry 70% rule should apply to dense calibration lattices. Until then, no candidate can pass. See *Remaining Work* below.
 - **Irregularity for review:** `scripts/restore_data.py` writes the core rasters to `.cache/gems_data/`, but `scripts/check_readiness.py` checks `data/`. The committed `core_mirror_data: passed` snapshot therefore does not reproduce in this checkout. The readiness file was left unchanged.
 - Rebuild the summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Tests: `tests/test_focus9.py`.
+**Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
+
+## SUBMISSION STATUS (read first, updated 2026-10-29)
+
+**Answer: NO file in this repository is currently OK to download and submit.** Every candidate fails the literal uniqueness rule, and a rule-compliant file cannot be built from real predictions.
+
+| File to download | Estimated score | Unique vs. registry? (literal rule: ≤70% of dots within 3 px of any raster) | OK to download and submit? |
+|---|---|---|---|
+| `docs/hk3d/downloads/gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif` (SHA-256 `c12a12b3…afde83e`, 37,654 dots) — best current candidate | **No leaderboard estimate.** Holdout only: `HOLDOUT-DTI 0.094220` `[0.083462, 0.103783]` (24-cell, n=66,904 withheld positives, evaluator GEMSDOE32-HIDE-RECOVER-v3.1-24cell). Same-holdout champion rule scores `0.100798`, so this candidate **does not beat the baseline**. | **NO** — 99.3547% of dots within 3 px of the calibration lattice `r13-lattice-s5` (`evidence/lattice-feasibility-20261029.json`) | **NO** |
+| `docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif` (archive) | Historical holdout `0.111044` `[0.098990, 0.122727]` (superseded, not a leaderboard estimate) | **NO** — 99.3520% vs. the same lattice | **NO** |
+| Nine historical GEMSDOE site files (`docs/**/*.tif`, research only) | User-reported scores only (see the nine-site table in `index.html`) | **NO** — all nine fail vs. the lattice (`evidence/saved-tiffs-literal-20261028.json`) | **NO** |
+
+**Why no file can pass as the rule is literally written** (measured 2026-10-29 from the pinned bytes, `scripts/lattice_feasibility.py`):
+- The lattice (`13GEMSDOE` `r13-lattice-s5`, `206,895` dots, SHA-256 `b4570b40…`) lies within 3 px of **99.87%** of the `5,167,373`-cell footprint.
+- The only cells where a dot can avoid the 3-px overlap are `6,649` footprint cells. **`6,580` of them (98.96%) are a ring within 3 cells of the footprint boundary.**
+- So a rule-compliant file must put at least **30% of its dots in those 6,649 uncovered cells**, and 98.96% of those cells are on the boundary ring. That is boundary gaming with no geological signal, which this project will not submit.
+- Scores and estimates are labelled: `HOLDOUT-DTI` (our evaluator, not the competition metric), `ORGANIZER-CONFIRMED` (none exist yet), or `USER-REPORTED` (unverified). No leaderboard estimate is produced for any file.
+
+**Public leaderboard (fetched 2026-10-29 from [drivendata leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)):** #1 `xiaofanhu` **0.4544** (Best public DW-Tversky). The `0.4413` and `0.3195` figures in the prompt are not confirmed by this page.
+
+**Decision needed from the owner (blocking):** Choose one:
+1. **Keep the literal rule** → no submission is possible; this repo stays in research mode.
+2. **Exempt only dense calibration lattices (>100k dots) from the 3-px rule** (keep rank correlation ≤0.90 for all rasters). Even then, the best candidate fails the same-holdout baseline (`0.094220 < 0.100798`) and must not be submitted.
+3. **Re-scope the rule to the registered discrete detectors only**, with the lattice excluded by a written decision.
+
+Until one of these is chosen in writing, the gate result is `negative` and `ok_to_submit = false`.
+
+### Submission readiness checks (all run locally, none authorises a slot)
+
+- `scripts/check_readiness.py` — core files now read from `.cache/gems_data` (`paths.data_dir()`); previously it looked only in `data/`, so restored files were reported missing. Fixed 2026-10-29.
+- `scripts/check_submission.py` on the H-K3D file: format `[PASSED]` (float32, `EPSG:32611`, `3730×3292`, values in `[0.0, 1.0]`, 0 NaN), but **`outside_template_null_pass: false`** — the file writes `0.0` outside the footprint where the template uses NaN. Whether the portal accepts `0.0` outside is **unknown** (organizer acceptance is not verified). Flagged for review.
+- Hold-out re-run: **not reproduced in this session** — the cached feature stack `.cache/gems_work/feature_stack.npy` is absent. Holdout numbers above are copied from the repo's run cards, not recomputed.
+
+[**Submission status evidence (lattice feasibility)**](evidence/lattice-feasibility-20261029.json) ·
+[Feasibility script](scripts/lattice_feasibility.py)
 
 ## Decision: **DO NOT SUBMIT** (`ok_to_submit = False`, `verdict = "negative"`)
 
