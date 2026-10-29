@@ -16,6 +16,10 @@ Correction made:
 
 The candidate was not independently proven to be unique, format-valid, or performant in this follow-up. Its removal is a conservative safety action, not a claim about the exact raster's scientific properties.
 
+## Concurrent main-branch release claim blocked during PR merge
+
+While preparing the requested PR merge, `main` advanced with a separate H-GEO-CONDUIT candidate claiming HOLDOUT-DTI 0.4239 and “OK TO SUBMIT.” Its own card labels the evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, not the required shared hide-and-recover evaluator; its uniqueness statement excludes the dense lattice witness from overlap checks despite the binding literal any-registry rule; the cited comparisons do not establish complete current registry checks at both surface and final-dot stages; and its score/recipe were not independently reproduced during this review. It also does not exceed the prompt's claimed 0.4413 leaderboard score (which itself is not confirmed here). Therefore this review did not accept that release claim: the candidate TIFF/ZIP/run-card/audit artifacts and its unreviewed generator were removed while resolving the merge conflict. The main-branch `docs/readiness.json` update was retained because it explicitly marks organizer-authenticated core data unavailable. This is a conservative gate decision; it is not a scientific evaluation of the proposed geothermal hypothesis.
+
 ## Validation and limitations
 
 - `python -m unittest tests.test_submission_safety -v`: expected to run independently with the standard library (record final execution result in the session summary).

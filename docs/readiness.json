@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_utc": "2026-10-29T18:04:53.765522+00:00",
+  "checked_utc": "2026-10-29T18:03:19.597687+00:00",
   "ready_for_experiment": false,
   "ok_to_submit": false,
   "checks": [
@@ -31,23 +31,23 @@
     },
     {
       "id": "core_mirror_data",
-      "passed": true,
+      "passed": false,
       "details": [
         {
           "id": "training_features",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         },
         {
           "id": "labels",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         },
         {
           "id": "existing_faults",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         },
         {
           "id": "sample_submission",
-          "present_and_hash_verified": true
+          "present_and_hash_verified": false
         }
       ],
       "detail": "Owner mirrors only, not organizer-authenticated"
