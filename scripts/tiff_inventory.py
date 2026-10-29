@@ -1,8 +1,9 @@
-"""Validate the boundary between an audited TIFF cohort and unassessed files.
+"""Fail-closed inventory of the TIFFs covered by the pinned negative audit.
 
-This module validates hashes and inventory classification only. It does not
-measure raster uniqueness, run holdouts, validate GeoTIFF format, or authorize
-submission.
+Every TIFF under docs must appear exactly once in the saved-byte audit with a
+matching hash and a literal duplicate stop. This does not prove a complete
+registry comparison, geological quality, organizer acceptance, or submission
+readiness; it only prevents added/unclassified files from escaping review.
 """
 from __future__ import annotations
 
@@ -22,36 +23,24 @@ def sha256(path: Path) -> str:
 def inventory(root: Path) -> dict:
     root = Path(root)
     audit_path = root / 'evidence/saved-tiffs-literal-20261028.json'
-    unassessed_path = root / 'evidence/unassessed-tiffs-inventory-20261029.json'
     audit = json.loads(audit_path.read_text(encoding='utf-8'))
-    unassessed = json.loads(unassessed_path.read_text(encoding='utf-8'))
-    audited_rows = audit.get('rasters')
-    extra_rows = unassessed.get('files')
-    if not isinstance(audited_rows, list) or not isinstance(extra_rows, list):
-        raise ValueError('TIFF inventory records must contain lists')
+    rows = audit.get('rasters')
+    if not isinstance(rows, list) or not rows:
+        raise ValueError('Saved-byte audit must contain raster rows')
 
-    audited = [row.get('file') for row in audited_rows]
-    extras = [row.get('path') for row in extra_rows]
-    if (not audited or len(audited) != len(set(audited)) or not extras
-            or len(extras) != len(set(extras)) or set(audited) & set(extras)):
-        raise ValueError('TIFF inventory has empty, repeated, or overlapping paths')
-
+    audited = [row.get('file') for row in rows]
     current = {str(path.relative_to(root)) for path in (root / 'docs').rglob('*.tif')}
-    if set(audited) | set(extras) != current:
-        raise ValueError('Current TIFFs do not match the audited cohort plus explicit unassessed inventory')
+    if len(audited) != len(set(audited)) or set(audited) != current:
+        raise ValueError('Current TIFFs do not match the complete saved-byte audit')
 
-    for row in audited_rows:
+    for row in rows:
         path = (root / row['file']).resolve()
         if (not path.is_relative_to(root / 'docs') or not path.is_file()
                 or sha256(path) != row.get('sha256') or row.get('duplicate_stop') is not True
-                or row.get('ok_to_submit') is not False):
-            raise ValueError(f"Invalid or changed audited TIFF record: {row.get('file')}")
-    for row in extra_rows:
-        path = (root / row['path']).resolve()
-        if (not path.is_relative_to(root / 'docs') or not path.is_file()
-                or sha256(path) != row.get('sha256') or row.get('status') != 'UNASSESSED'
-                or row.get('do_not_submit') is not True):
-            raise ValueError(f"Invalid or changed unassessed TIFF record: {row.get('path')}")
+                or row.get('ok_to_submit') is not False
+                or row.get('within_3px_fraction') is None
+                or row['within_3px_fraction'] <= .70):
+            raise ValueError(f"Invalid or changed saved-byte audit record: {row.get('file')}")
 
     return {'audit': audit, 'audited_paths': sorted(audited),
-            'unassessed': unassessed, 'unassessed_paths': sorted(extras)}
+            'unassessed_paths': []}

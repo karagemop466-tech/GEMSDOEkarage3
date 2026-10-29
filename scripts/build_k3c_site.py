@@ -18,7 +18,6 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from promotion_gate import assess  # noqa: E402
-from tiff_inventory import inventory as checked_tiff_inventory  # noqa: E402
 
 H = html.escape
 
@@ -42,10 +41,10 @@ def _archive():
     original = json.loads((ROOT / 'evidence/k3c_run_card.json').read_text())
     report = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
     rasters = report['rasters']
-    if len(rasters) < 8:
-        raise ValueError('Saved-byte audit is incomplete')
-    checked = checked_tiff_inventory(ROOT)
-    report['unassessed_tiffs'] = checked['unassessed_paths']
+    expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    if (len(rasters) != len(expected) or len(rasters) < 8 or {r['file'] for r in rasters} != expected
+            or any(sha256(ROOT / r['file']) != r['sha256'] or not r['duplicate_stop'] for r in rasters)):
+        raise ValueError('Saved-byte audit is stale or does not reject every retained TIFF')
     matched = [r for r in rasters if r['file'] == original['submission_file']]
     if len(matched) != 1:
         raise ValueError('K3C is absent from the independent saved-byte audit')
@@ -60,12 +59,12 @@ def _archive():
 def root_decision_html():
     _, _, report = _archive()  # Never render the retained-TIFF claim from stale saved-byte evidence.
     n_tiffs = len(report['rasters'])
-    unassessed = report.get('unassessed_tiffs', [])
-    extra_notice = (f' {len(unassessed)} additional local TIFF(s) are absent from that audit and are unverified; DO NOT SUBMIT them.'
-                    if unassessed else '')
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
-             f'Session 5 Lane H-K3D and all {n_tiffs} TIFFs in the pinned historical audit fail the literal registry-overlap rule against the registered 206,895-dot lattice witness;'
-             f'{extra_notice} The former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; '
+             'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             'H-GEO-CONDUIT hybrid candidate (quarantined at <code>docs/quarantine/geoconduit-hybrid/</code>, PENDING-REVIEW) has 99.83% of its 35,615 dots within 3 px of the lattice, so it is not a compliant file. '
+             'Its HOLDOUT-DTI 0.4239 [0.4053, 0.4427] (GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives) is copied from its candidate card. It is NOT ESTABLISHED as a same-protocol baseline and is not an organizer-confirmed score. '
+             'No submission note is authorized. '
              '<a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · '
              '<a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
@@ -73,7 +72,7 @@ def root_decision_html():
     card = ('<div class="release-card" aria-label="Current submission decision">\n'
             '      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>\n'
             '      <h2>No file cleared<br>for live submission.</h2>\n'
-            '      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>\n'
+            '      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641), the H-GEO-CONDUIT candidate (99.83% vs lattice; HOLDOUT-DTI 0.4239, NOT ESTABLISHED as a same-protocol baseline) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>\n'
             '      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>\n'
             '      <div class="card-foot"><span id="download-explanation">Live slot locked · do not submit · see <a href="docs/hk3d/index.html" style="color:#d6e8d7">H-K3D audit</a></span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
             '    </div>')
@@ -92,11 +91,8 @@ def apply_root_decision(text):
 def apply_guide_decision(text):
     aside, _ = root_decision_html()
     text, n1 = re.subn(r'<aside style="padding:16px;background:#(?:fff1f2|ecfdf5)[^"]*">.*?</aside>', lambda _: aside, text, count=1, flags=re.S)
-    unassessed = len(_archive()[2].get('unassessed_tiffs', []))
-    extra = (f' {unassessed} additional local TIFF(s) were not included in the audit and are unverified; do not submit them.'
-             if unassessed else '')
     banner = ('<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved</strong>'
-              f'<p>The audited historical TIFFs fail the literal duplicate rule.{extra} Research links below are not new submissions; no leaderboard estimate or slot decision exists.</p></div></div>')
+              '<p>The K3C archive and the other retained TIFFs fail the literal duplicate rule. Research links below are not new submissions; no leaderboard estimate or slot decision exists.</p></div></div>')
     text, n2 = re.subn(r'<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved or available</strong>.*?</div></div>', lambda _: banner, text, count=1, flags=re.S)
     if (n1, n2) != (1, 1):
         raise ValueError('Root submission-guide decision markers missing')
@@ -144,11 +140,8 @@ def build():
     overlap = f"{100 * row['within_3px_fraction']:.4f}%"
     tif_rel = H(original['submission_file'].removeprefix('docs/k3c/'))
     hold = original['holdout']; ci = hold['ci95']; delta = hold['paired_delta_ci95']
-    unassessed = report.get('unassessed_tiffs', [])
-    extras_notice = (f" {len(unassessed)} additional local TIFF(s) are not present in this audit ({', '.join(H(path) for path in unassessed)}); treat them as unverified and DO NOT SUBMIT."
-                     if unassessed else '')
     common = f'''<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong>
-<p>The previous K3C PROMOTE recommendation is withdrawn. No new TIFF or slot was generated in this audit.{extras_notice}</p></div></div>
+<p>The previous K3C PROMOTE recommendation is withdrawn. No new TIFF or slot was generated in this audit.</p></div></div>
 <p>K3C's saved dots overlap the registered lattice by <strong>{overlap}</strong> (limit 70%; 3-pixel radius). The historical card also reports a worst literal overlap of 100% against its broader set. One witness is enough to stop; neither statistic proves geological identity.</p>
 <p><strong>Format:</strong> independently read bytes have one float32 band, EPSG:32611, 3730 × 3292, the mirrored transform and finite values in [0,1]. They have no null mask outside the mirrored footprint; our conservative outside-null check fails. These are local checks, not a DrivenData receipt or proof the old portal error cannot occur.</p>'''
     archive = common + f'''<h1>K3C · superseded research archive</h1>
@@ -176,16 +169,6 @@ def build():
 <p>The pinned nine-file comparison contains no approved new submission or defensible leaderboard estimate. The historical best in the focus list is 0.2778 USER-REPORTED / UNVERIFIED for GEMSDOE32.</p>
 <p><a href="hk3d/index.html">Session 5 H-K3D executive summary</a> · <a href="hk3d/how-to-submit.html">H-K3D step-by-step guide</a> · <a href="../executive-summary.html">Full nine-site table and conditional step-by-step guide</a> · <a href="k3c/index.html">K3C research archive</a> · <a href="data/latest-run.json">Latest run card</a></p>'''
     (ROOT / 'docs/executive-summary.html').write_text(shell('Executive summary · GEMS', summary))
-    safe_guide = f'''<h1>How to submit — only after a file is approved</h1>
-{common}
-<p><strong>No TIFF or ZIP is currently approved.</strong> Do not download or upload the historical or unassessed research artifacts in this repository. The site's release decision and separate selector must both explicitly approve a specific file before these steps apply.</p>
-<ol><li>Read the approved run card and confirm its submission name, SHA-256, note (140 characters or fewer), format report, literal all-registry uniqueness checks, and positive promotion decision. Verify the downloaded bytes match the card hash.</li>
-<li>Sign in to the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS competition</a> and open its new-submission form. Confirm the current weekly allowance in the account; this repository cannot read a personal quota.</li>
-<li>Upload only the selected single-band GeoTIFF or a ZIP containing exactly one GeoTIFF. Enter the approved unique name and the short note in the form. Confirm the upload result and retain the organizer's submission-page receipt with the exact file hash.</li>
-<li>Do not substitute another archived TIFF if the selected upload fails validation. Return to the automated validator and correct the candidate before any future slot selection.</li></ol>
-<p>The official format description and [0,1] prediction range are documented on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a>; see also the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules PDF</a>. Local format validation does not guarantee organizer acceptance.</p>
-<p><a href="preflight-executive.html">Current nine-site executive summary</a> · <a href="release-review.html">Saved-byte audit and current release decision</a> · <a href="data/latest-run.json">Latest negative run card</a></p>'''
-    (ROOT / 'docs/how-to-submit.html').write_text(shell('How to submit · gated', safe_guide))
     # Build root pages from their templates after the negative public card exists.
     import build_site
     for path, text in build_site.render().items():

@@ -15,7 +15,7 @@ def build():
     checked = checked_tiff_inventory(ROOT)
     audit = checked['audit']
     rasters = audit['rasters']
-    unassessed = checked['unassessed_paths']
+    unassessed = checked['unassessed_paths']  # must be empty while all docs TIFFs are in the negative audit
     for src, dest in [('evidence/saved-tiffs-literal-20261028.json', 'saved-tiffs-literal-20261028.json'), ('evidence/run-card-20261028.json', 'run-card-20261028.json'), ('research/2026-10-28-review.md', 'review-20261028.md')]:
         (ROOT / 'docs/data' / dest).write_bytes((ROOT / src).read_bytes())
     rows = []
@@ -30,9 +30,10 @@ def build():
     body = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Submission decision · GEMS</title><link rel="stylesheet" href="assets/site.css"></head><body>
 <main class="wrap"><p><a href="../index.html">Home</a> · <a href="hk3d/index.html">Session 5 Lane H-K3D</a> · <a href="preflight-executive.html">Nine-site executive summary</a></p>
-<h1>No submission is authorized</h1><p><strong>2026-10-28 · NEGATIVE · Automated saved-byte review ({n_tiffs} audited historical TIFFs)</strong></p>
-<p>Earlier PROMOTE / OK TO SUBMIT claims on archived pages are withdrawn, and Session 5 Lane <code>H-K3D (TGSF-BVCD)</code> (<a href="hk3d/index.html">executive summary</a> · <a href="hk3d/run-card.json">run card</a>) also terminates in an automated <strong>DO NOT SUBMIT</strong> stop. All {n_tiffs} TIFFs in the pinned historical audit fail the literal any-registry overlap rule against the registered 206,895-dot calibration lattice witness. {len(unassessed)} additional local TIFF(s) are outside that audit and unverified; do not submit them. No weekly slot or organizer submission was used.</p>
-<h2>Audited historical downloads — research only</h2><p>Different file hashes do not prove geological uniqueness under the literal lattice witness. The overlap below is measured against the hash-pinned registered lattice, sufficient to reject. The range column is a raw whole-array diagnostic against the mirrored template, not organizer acceptance. None of the {n_tiffs} audited TIFFs passes both conservative outside-null and whole-array-finite checks simultaneously.</p>
+<h1>No submission is authorized</h1><p><strong>2026-10-29 · NEGATIVE · Automated saved-byte review ({n_tiffs} TIFFs)</strong></p>
+<p>Earlier PROMOTE / OK TO SUBMIT claims on archived pages are withdrawn, and Session 5 Lane <code>H-K3D (TGSF-BVCD)</code> (<a href="hk3d/index.html">executive summary</a> · <a href="hk3d/run-card.json">run card</a>) also terminates in an automated <strong>DO NOT SUBMIT</strong> stop. All {n_tiffs} TIFFs currently under <code>docs/</code> fail the literal overlap stop against the registered 206,895-dot calibration lattice witness. The two files previously inventoried as unassessed and the H-GEO-CONDUIT candidates are now present in the fresh 13-file negative audit, not cleared. No weekly slot or organizer submission was used.</p>
+<p>The H-GEO candidate card reports HOLDOUT-DTI 0.4239 (95% CI [0.4053, 0.4427], evaluator GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives); that claim was not independently reproduced and is NOT ESTABLISHED as a same-protocol comparison or organizer score.</p>
+<h2>Audited retained files — research only</h2><p>Different file hashes do not prove geological uniqueness under the literal lattice witness. The overlap below is measured against the hash-pinned registered lattice, sufficient to reject. The range column is a raw whole-array diagnostic against the mirrored template, not organizer acceptance. None of the {n_tiffs} audited TIFFs passes both conservative outside-null and whole-array-finite checks simultaneously.</p>
 <div style="overflow-x:auto"><table><thead><tr><th>Archive file (not a live portal submission)</th><th>Leaderboard estimate</th><th>Dots within 3 px of witness</th><th>Whole-array finite/range</th><th>Decision</th></tr></thead><tbody>''' + '\n'.join(rows) + '''</tbody></table></div>
 ''' + extra_note + '''
 <h2>Best historical result is not a new candidate</h2><p>The largest owner-reported value in the focus list is GEMSDOE32's 0.2778. It is USER-REPORTED / UNVERIFIED without a hash-linked organizer receipt. Its geometry is a pruned subset of GEMSDOE31; that supports an emission-efficiency hypothesis, not causal proof or a forecast of improvement.</p>

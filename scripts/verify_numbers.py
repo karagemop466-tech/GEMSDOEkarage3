@@ -76,16 +76,10 @@ def main() -> int:
     try:
         tiff_inventory = checked_tiff_inventory(ROOT)
         inventory_ok = ({r['file'] for r in rows} == set(tiff_inventory['audited_paths'])
-                        and set(tiff_inventory['audited_paths']) | set(tiff_inventory['unassessed_paths'])
                         == {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')})
     except (OSError, KeyError, TypeError, ValueError):
-        tiff_inventory = {'unassessed': {'files': []}}
         inventory_ok = False
-    ck('audited cohort and unassessed TIFFs inventoried exactly once', inventory_ok)
-    for extra in tiff_inventory['unassessed'].get('files', []):
-        ck(f"{extra['path']} hash-bound as unassessed / DO NOT SUBMIT",
-           extra.get('status') == 'UNASSESSED' and extra.get('do_not_submit') is True
-           and (ROOT / extra['path']).is_file() and sha(ROOT / extra['path']) == extra['sha256'])
+    ck('every current docs TIFF is hash-bound in the negative saved-byte audit', inventory_ok)
     for row in rows:
         path = (ROOT / row['file']).resolve()
         ck(f"{row['file']} hash and duplicate stop",

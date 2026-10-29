@@ -100,27 +100,22 @@ class SiteTests(unittest.TestCase):
         summary = (ROOT / 'executive-summary.html').read_text()
         release = (DOCS / 'release-review.html').read_text()
         guide = (DOCS / 'how-to-submit.html').read_text()
-        inventory = json.loads((ROOT / 'evidence/unassessed-tiffs-inventory-20261029.json').read_text())
-        unassessed_paths = {row['path'] for row in inventory['files']}
         audited_paths = {row['file'] for row in json.loads(
             (ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())['rasters']}
         current_paths = {str(path.relative_to(ROOT)) for path in DOCS.rglob('*.tif')}
-        self.assertEqual(audited_paths | unassessed_paths, current_paths)
-        self.assertTrue(all(row['status'] == 'UNASSESSED' and row['do_not_submit']
-                            for row in inventory['files']))
-        self.assertNotIn('karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download', home)
+        self.assertEqual(audited_paths, current_paths)
+        self.assertIn('DO NOT SUBMIT', home)
         self.assertNotIn('READY TO DOWNLOAD', home.upper())
-        self.assertIn('additional local TIFF(s)', home)
-        self.assertIn('unverified; DO NOT SUBMIT', home)
-        self.assertIn('additional local TIFF(s)', summary)
+        self.assertIn('H-GEO-CONDUIT', home)
+        self.assertIn('NOT ESTABLISHED', home)
         self.assertIn('No file cleared', home)
-        for path in unassessed_paths:
-            self.assertIn(path, release)
-        self.assertIn('Unassessed local TIFFs', release)
-        self.assertIn('No TIFF or ZIP is currently approved', guide)
+        for path in audited_paths:
+            if '/quarantine/' in path:
+                self.assertIn(path.removeprefix('docs/'), release)
+        self.assertIn('No file is cleared', guide)
         self.assertIn('official problem page', guide)
         self.assertNotIn('READY TO DOWNLOAD', guide.upper())
-        self.assertNotIn('karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif"', guide)
+        self.assertNotIn('Download submission', guide)
 
     def test_status_not_tied_to_page_metadata(self):
         javascript = (DOCS / 'assets/site.js').read_text()

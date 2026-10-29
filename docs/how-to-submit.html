@@ -1,17 +1,34 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>How to submit · gated</title><link rel="stylesheet" href="assets/site.css"><script defer src="assets/site.js"></script></head>
-<body><main id="main" class="wrap" style="padding:28px 0 60px">
-<p><a href="index.html">Decision home</a> · <a href="hk3d/index.html">Session 5 H-K3D</a> · <a href="hk3d/how-to-submit.html">H-K3D submission guide</a> · <a href="k3c/index.html">K3C archive</a> · <a href="k3c/how-to-submit.html">Submission guide</a> · <a href="data/latest-run.json">Latest JSON card</a> · <a href="data/current-run.json">Parallel preflight card</a></p>
-<h1>How to submit — only after a file is approved</h1>
-<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong>
-<p>The previous K3C PROMOTE recommendation is withdrawn. No new TIFF or slot was generated in this audit. 2 additional local TIFF(s) are not present in this audit (docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif, docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif); treat them as unverified and DO NOT SUBMIT.</p></div></div>
-<p>K3C's saved dots overlap the registered lattice by <strong>99.3520%</strong> (limit 70%; 3-pixel radius). The historical card also reports a worst literal overlap of 100% against its broader set. One witness is enough to stop; neither statistic proves geological identity.</p>
-<p><strong>Format:</strong> independently read bytes have one float32 band, EPSG:32611, 3730 × 3292, the mirrored transform and finite values in [0,1]. They have no null mask outside the mirrored footprint; our conservative outside-null check fails. These are local checks, not a DrivenData receipt or proof the old portal error cannot occur.</p>
-<p><strong>No TIFF or ZIP is currently approved.</strong> Do not download or upload the historical or unassessed research artifacts in this repository. The site's release decision and separate selector must both explicitly approve a specific file before these steps apply.</p>
-<ol><li>Read the approved run card and confirm its submission name, SHA-256, note (140 characters or fewer), format report, literal all-registry uniqueness checks, and positive promotion decision. Verify the downloaded bytes match the card hash.</li>
-<li>Sign in to the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS competition</a> and open its new-submission form. Confirm the current weekly allowance in the account; this repository cannot read a personal quota.</li>
-<li>Upload only the selected single-band GeoTIFF or a ZIP containing exactly one GeoTIFF. Enter the approved unique name and the short note in the form. Confirm the upload result and retain the organizer's submission-page receipt with the exact file hash.</li>
-<li>Do not substitute another archived TIFF if the selected upload fails validation. Return to the automated validator and correct the candidate before any future slot selection.</li></ol>
-<p>The official format description and [0,1] prediction range are documented on the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a>; see also the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules PDF</a>. Local format validation does not guarantee organizer acceptance.</p>
-<p><a href="preflight-executive.html">Current nine-site executive summary</a> · <a href="release-review.html">Saved-byte audit and current release decision</a> · <a href="data/latest-run.json">Latest negative run card</a></p><p><small>USER-REPORTED values have no artifact-linked organizer receipt here. Historical HOLDOUT-DTI values are cited, not reproduced, and are not leaderboard scores. Nothing on this page selects a weekly slot.</small></p>
-</main></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="How the DOE GEMS submission works and why no file is cleared to upload yet."><title>How to submit · GEMSDOEkarage3</title><link rel="stylesheet" href="../assets/site.css"></head>
+<body>
+<main id="main" class="container">
+<div class="breadcrumb"><a href="../index.html">Overview</a> / How to submit</div>
+<h1 class="page-title">How to submit to the DOE GEMS competition</h1>
+
+<aside role="alert" style="padding:16px;background:#f6e3e0;color:#8a2d20;border:1px solid #e3b9b1;border-radius:12px;margin:0 0 24px">
+<strong>NOT CLEARED — do not upload any file from this repository.</strong>
+<p style="margin:4px 0 0">No file is cleared. The karage3 file previously listed here is quarantined: <a href="quarantine/karage3-unique-offcat/NOT-CLEARED.md">reasons</a>. The current decision is in the <a href="../README.md">README</a> and on the <a href="../index.html">overview</a>.</p>
+</aside>
+
+<h2>1. Format rules (official)</h2>
+<ul>
+<li>Single-band GeoTIFF (<code>.tif</code>), or a <code>.zip</code> containing one GeoTIFF. Source: the DrivenData submission-form text quoted by the owner, and the official problem page <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">page 967</a>.</li>
+<li>Must match the submission format's CRS, shape and geotransform. The reference grid is EPSG:32611, 3,730 × 3,292, 100 m pixels (<a href="https://epsg.io/32611">epsg.io/32611</a>).</li>
+<li>Values must be in [0, 1]. The owner reported the error "Predicted values must be in range [0, 1]" on a previous attempt.</li>
+<li>Official rules and submission limits: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647 (PDF)</a>.</li>
+</ul>
+
+<h2>2. Uniqueness gate (project rule)</h2>
+<p>A candidate must have at most 70% of its dots within 3 px of any registered raster, and rank correlation at most 0.90. Measured on 2026-10-29: every retained in-footprint file exceeds 99% against the pinned calibration lattice (<a href="../evidence/saved-tiffs-literal-20261028.json">saved-byte audit</a>, <a href="../evidence/lattice-feasibility-20261029.json">feasibility receipt</a>).</p>
+
+<h2>3. Steps for a future, cleared file (not available now)</h2>
+<ol>
+<li>Generate the file with a reproducible script committed to this repository.</li>
+<li>Run the format validator and the uniqueness gate on the exact bytes to be uploaded. Both must pass.</li>
+<li>Read the current run card. It must say <code>ok_to_submit: true</code> and must be signed off by the selector step.</li>
+<li>Only then: DrivenData, New submission, choose the file, add a unique name and a note of 140 characters or fewer, and submit. Keep to the weekly cap shown on the submission page.</li>
+</ol>
+
+<p><a href="hk3d/how-to-submit.html">H-K3D step-by-step (research, not authorised)</a> · <a href="../executive-summary.html">Nine-site executive summary</a></p>
+</main>
+</body></html>

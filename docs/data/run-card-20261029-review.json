@@ -45,7 +45,7 @@
   "slot_selected": false,
   "limitations": [
     "Historical TIFFs in this repository are not new candidates or score estimates.",
-    "Two local off-catalogue TIFFs are absent from the pinned saved-byte audit and remain unverified / DO NOT SUBMIT.",
+    "The off-catalogue TIFF pair and H-GEO-CONDUIT candidates are quarantined and included in the refreshed 13-file negative saved-byte audit; each exceeds the literal 70% overlap stop against one pinned lattice witness. They remain DO NOT SUBMIT.",
     "No holdout DTI, confidence interval, or leaderboard-score projection is available for this proposal.",
     "The root site advertises no downloadable submission file; only the disabled button is displayed."
   ]
