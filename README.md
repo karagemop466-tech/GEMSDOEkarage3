@@ -1,5 +1,46 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Session 6 (2026-10-29): verified state
+
+**Decision: NO file is OK to download and submit.** Measured, not inferred:
+
+| File | Unique? (bytes / pixels) | Estimated score | OK to download and submit? | Why |
+|---|---|---|---|---|
+| `docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif` (SHA-256 `34cef583…`) | Not re-measured against the nine focus files this session (the sidecar claims 0% within 3 px). Its `-nan.tif` sibling has identical pixels. | **None.** No holdout score; no organizer receipt. | **NO** | 7,483 of 12,000 dots (62.4%) lie outside the study footprint, where the organizer template is null. Footprint-restricted lattice overlap is 99.89% (fails the 70% rule). The all-dots overlap is 37.65%, which passes only because of those outside dots. |
+| `docs/hk3d/downloads/…-h-k3d-tgsf-bvcd-…-zeros.tif` (H-K3D, Session 5) | Fails the lattice rule (99.35%). | None | **NO** | Duplicate stop. |
+| The nine historical focus files (`docs/**/*.tif`) | Each fails the lattice rule (≥99.3% footprint-restricted). | User-reported only: 0.2778 max (GEMSDOE32) | **NO** | Research only. |
+
+Evidence: [`evidence/lattice-feasibility-20261029.json`](evidence/lattice-feasibility-20261029.json) (both overlap readings, outside-footprint counts, null-convention flag), [`evidence/saved-tiffs-literal-20261028.json`](evidence/saved-tiffs-literal-20261028.json) (re-run 2026-10-29 with all 11 TIFFs, per-row all-dots fields), and the [how-to-submit guide](docs/how-to-submit.html).
+
+### What changed this session (and why it mattered)
+
+1. **Front page corrected.** `index.html` had been hand-edited to say `karage3-unique-offcat` was "READY TO DOWNLOAD" and "safely below the 70% stop". The generator could not overwrite it because the saved-byte audit did not cover the new TIFFs. The audit was re-run, the generator now renders the NOT-APPROVED decision, and the hand-written page is gone.
+2. **`docs/how-to-submit.html` rewritten.** It was hand-written and described the unique-offcat file as passing all uniqueness and format checks. It now states the decision and the reasons.
+3. **Two artifact claims were wrong and are corrected.** (a) The sidecar `docs/downloads/…-metadata.json` gives a "44.6% theoretical minimum" lattice overlap. That is a floor, not a measurement. (b) The `-nan.tif` file has no NaN pixels. Both are flagged, not hidden; the sidecar bytes were not edited.
+4. **Test suite restored to green.** Failures came from stale generated pages and receipts. `node_modules` was missing for the JS suite, which `npm ci` fixed. Totals: pytest 198 passed, 1 skipped; unittest OK; `npm test` 4/4; `node --test tests/test_browser_feed.js` 2/2.
+5. **Bug fixed in `scripts/restore_data.py`.** A partial `--group` run overwrote the tracked 30-file `data/restore_receipt.json` with a 4-file receipt. Partial runs now write beside the data, with a regression test in `tests/test_restore_receipt.py`.
+
+### Verified official facts (fetched 2026-10-29)
+
+- Metric and submission format: [problem & metric page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/). Submissions are per-pixel float32 probabilities in [0, 1] with DTI(α=0.2, β=0.8) and a 300 m triangular kernel. The sample is the "total fault absence" template. Data outside the bounds is null or NaN.
+- Leaderboard: [official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) shows **#1 xiaofanhu 0.4544**, **#2 cfld__ 0.3916**. The prompt's **0.4413** and **0.3195** do **not** appear on this page today. They are not used as targets.
+- The DrivenData data tab requires login (per the repo's records). Shell egress from this sandbox is limited to GitHub and package registries, so DrivenData, Dropbox and OpenEI downloads were not possible from bash. The core rasters were restored from owner mirrors on GitHub and matched their pinned SHA-256 values (`data/restore_receipt.json`, which is not organizer-authenticated).
+
+### Irregularities for review
+
+- **Sample vs. README.** The organizer's sample has 60,988 positive pixels, all inside the footprint. The page says it predicts "total fault absence"; the bytes do not.
+- **Local holdout does not match the leaderboard.** GEMSDOE32 (user-reported 0.2778) scores HR 0.0045 locally. The local holdout is not a leaderboard proxy.
+- **Owner decision still blocks any upload.** Choose one in writing: (1) keep the literal rule, so no dot-based file can pass; (2) scope the 70% rule to discrete detectors and exempt the 206,895-dot lattice; (3) decide whether the all-dots reading (which lets out-of-footprint dots count) or the footprint-restricted reading governs. Even under (2) or (3), the out-of-footprint dots fail the null convention, and the complete registry and rank-correlation checks still have to run.
+
+### Hypotheses and next work (not validated)
+
+The ranked, unvalidated geological hypotheses are in [`docs/review-2026-10-29.md`](docs/review-2026-10-29.md) (gravity–magnetic edge persistence, drainage cross-channel deflection, thermal residuals, alteration residual). None has been tested here. Per the protocol, none may use a weekly slot until it beats the frozen same-holdout baseline. Recommended next steps:
+
+1. Owner decision on the rule scope (above).
+2. Restore the feature stack (only the core rasters are restored here) and reproduce the holdout baseline before any new experiment.
+3. Complete, hash-bound registry fetch (2,444 inventory rows, 1,997 unique bytes, ~1.6 GB) for a full rank-correlation and overlap scan.
+4. Organizer clarification on out-of-footprint values and the sample's positive pixels, through the DrivenData forum, before any file with dots outside the footprint is considered.
+
 ## Start here (2026-10-29): nine-site summary and submission status
 
 - **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).

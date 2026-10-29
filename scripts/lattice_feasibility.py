@@ -108,6 +108,12 @@ def main() -> int:
             cmin, cmax = float(np.nanmin(c)), float(np.nanmax(c))
         n_dots = int(dots.sum())
         overlap = float(covered[dots].mean()) if n_dots else float("nan")
+        # Literal all-dots reading: every positive cell counts as one of "your dots",
+        # including cells outside the template footprint (measured against the full-grid distance map).
+        all_pos = np.isfinite(c) & (c > 0)
+        n_all = int(all_pos.sum())
+        overlap_all = float((dist[all_pos] <= RADIUS_PX).mean()) if n_all else float("nan")
+        n_outside = int((all_pos & ~foot).sum())
         cands.append({
             "path": rel(cpath),
             "sha256": sha256_file(cpath),
@@ -118,6 +124,12 @@ def main() -> int:
             "dots_inside_footprint": n_dots,
             "dots_within_3px_of_lattice_share": round(overlap, 6),
             "literal_rule_pass": bool(overlap <= RULE_OVERLAP_MAX),
+            "dots_all_positive": n_all,
+            "dots_outside_template_footprint": n_outside,
+            "dots_outside_template_footprint_share": round(n_outside / n_all, 6) if n_all else None,
+            "dots_within_3px_of_lattice_share_all_positive": round(overlap_all, 6),
+            "literal_all_dots_rule_pass": bool(overlap_all <= RULE_OVERLAP_MAX),
+            "null_outside_footprint_convention_pass": n_outside == 0,
         })
 
     result = {
@@ -136,9 +148,11 @@ def main() -> int:
         "uncovered_in_interior": int((uncovered & interior).sum()),
         "min_share_of_dots_required_in_uncovered_cells_for_rule": min_uncovered_share,
         "uncovered_cell_capacity_is_upper_bound_only": max_compliant_dots_if_all_uncovered_used,
-        "verdict": ("no non-degenerate footprint submission can satisfy the literal rule: "
-                    "the only compliant dots are in uncovered cells, and the uncovered cells are "
-                    "almost entirely the footprint boundary ring"),
+        "verdict": ("Footprint-restricted reading: no non-degenerate in-footprint submission can satisfy "
+                    "the literal rule, because the only compliant dots lie in uncovered cells and those are almost "
+                    "entirely the footprint boundary ring. All-dots reading: a file can pass only by placing "
+                    "dots outside the template footprint, where the organizer template is null; "
+                    "see candidates[].null_outside_footprint_convention_pass."),
         "candidates": cands,
         "authorization": "NOT AUTHORIZED - analysis only, no slot used",
     }

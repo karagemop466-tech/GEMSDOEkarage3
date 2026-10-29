@@ -1,56 +1,43 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Step-by-step guide to submit the karage3-unique-offcat GeoTIFF to the DOE GEMS competition on DrivenData."><title>How to submit · GEMSDOEkarage3</title><link rel="stylesheet" href="../assets/site.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner"><a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>How to submit &bull; DOE GEMS / 306</small></span></a><nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">How to submit</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav></div></header>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="How to submit to the DOE GEMS competition, and why no file in this repository is cleared for upload (as of 2026-10-29)."><title>How to submit · GEMSDOEkarage3</title><link rel="stylesheet" href="../assets/site.css"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>How to submit &bull; DOE GEMS / 306</small></span></a><nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">How to submit</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav></div></header>
+<main id="main"><div class="container">
+<div class="page-hero"><div class="eyebrow">Submission procedure · status 2026-10-29</div>
+<h1 class="page-title">How to submit to DOE GEMS — and why nothing is cleared yet</h1>
+<p><strong>OK to download and submit? NO.</strong> No file in this repository has passed every gate. This page replaces an earlier version that wrongly described <code>karage3-unique-offcat</code> as ready to upload.</p></div>
 
-<main id="main"><div class="container"><div class="page-hero"><div class="eyebrow">Submission procedure</div><h1 class="page-title">Submit karage3-unique-offcat to DrivenData GEMS</h1><p>A format-validated, unique 12,000-dot off-catalogue GeoTIFF ready for download and upload. Follow these steps to submit without the <code>"Predicted values must be in range [0, 1]"</code> portal error.</p></div>
-
-<!-- ===== DOWNLOAD SECTION ===== -->
-<section id="download"><h2>Step 1 — Download the submission file</h2>
-<div class="cards"><div class="card"><span class="number">1</span><h3>GeoTIFF (.tif)</h3><p>Single-band float32 GeoTIFF, all values in [0, 1], no NaN inside footprint, exact grid match.</p><a class="button" href="../downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download karage3-unique-offcat-zeros.tif ↓</a><span class="micro">SHA-256: 34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e</span></div><div class="card"><span class="number">2</span><h3>ZIP package (.zip)</h3><p>Single-TIFF ZIP archive containing the same GeoTIFF. DrivenData accepts both formats.</p><a class="button light" href="../downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.zip">Download .zip package ↓</a><span class="micro">SHA-256: 0990f840233760e3dd4117bcb52f15f15f0b528dd4ff8e6cc10f41734611d6a9</span></div><div class="card"><span class="number">3</span><h3>Validation metadata (.json)</h3><p>Machine-readable validation receipt with all 12 check results, SHA-256 hashes, and grid conformance.</p><a class="button light" href="../downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json">Download validation metadata ↓</a></div></div>
-</section>
-
-<!-- ===== SUBMISSION STEPS ===== -->
-<section id="steps"><h2>Step 2 — Upload to DrivenData</h2>
-<ol class="steps">
-  <li><strong>Open DrivenData GEMS (#306).</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a>, sign in, and navigate to the <em>Submissions</em> page.</li>
-  <li><strong>Upload the file.</strong> Select <code>karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif</code> (or the single-TIFF .zip). The file is pre-clamped to [0, 1] with zero NaN inside the footprint — preventing the range-error portal rejection.</li>
-  <li><strong>Enter the submission note (≤140 characters).</strong> Use this exact note:<br><code>Unique off-catalogue detector: 12,000 dots &gt;3px from all focus-site submissions; targets hidden geothermal faults missing from USGS/INGENIOUS catalogue</code></li>
-  <li><strong>Save the organizer receipt.</strong> Record the DrivenData submission-page confirmation binding the filename, SHA-256, timestamp, and returned score. Only receipt-backed scores may be labeled ORGANIZER-CONFIRMED.</li>
+<h2>Why <code>karage3-unique-offcat</code> is NOT OK to submit</h2>
+<ol>
+<li><strong>Outside-footprint dots.</strong> 7,483 of its 12,000 positive pixels (62.4%) lie outside the 5,167,373-cell study footprint, where the organizer's own sample submission is NaN (the sample has 60,988 positive pixels, all inside it). The file writes 1.0 there, and the <code>-zeros</code> version writes 0.0 instead of null everywhere else. Null-outside is the organizer's example convention; the official page only says "data outside the bounds is null or nan".</li>
+<li><strong>The lattice pass depends on those dots.</strong> Counting only dots inside the footprint, 99.89% lie within 3 px of the registered calibration lattice (limit 70%). Counting all 12,000 dots, 37.65% do, but only because the outside dots are far from the lattice.</li>
+<li><strong>The <code>-nan</code> file is not a NaN file.</strong> Its pixel values equal the <code>-zeros</code> file exactly; only the nodata tag differs. It contains zero NaN pixels.</li>
+<li><strong>Not checked.</strong> Rank correlation against every registry raster, the complete registry, and the organizer's acceptance of out-of-footprint values have not been checked. No holdout score exists for this detector.</li>
 </ol>
-</section>
+<p>Measured by <code>scripts/lattice_feasibility.py</code> and <code>scripts/audit_saved_tiffs.py</code> (receipts in <code>evidence/</code>). Source metadata: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem and submission format page</a>.</p>
 
-<!-- ===== VALIDATION CHECKLIST ===== -->
-<section id="validation"><h2>Step 3 — Pre-upload validation checklist</h2>
-<div class="table-wrap"><table><thead><tr><th scope="col">#</th><th scope="col">Check</th><th scope="col">Expected</th><th scope="col">Status</th></tr></thead><tbody>
-<tr><td>1</td><td>Single-band GeoTIFF</td><td>1 band, GTiff driver</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>2</td><td>Data type float32</td><td>float32</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>3</td><td>Dimensions</td><td>3730 × 3292 pixels</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>4</td><td>CRS</td><td>EPSG:32611 (UTM 11N)</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>5</td><td>Geotransform</td><td>(100, 0, 243350, 0, -100, 4508550)</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>6</td><td>No NaN inside footprint</td><td>All 12,279,160 cells finite</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>7</td><td>Values in [0, 1]</td><td>min=0.0, max=1.0</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>8</td><td>No sentinel values</td><td>No -9999, -3.4e38, etc.</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>9</td><td>Outside footprint = 0.0</td><td>nodata=None, zeros outside</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>10</td><td>Zero dots on catalogue faults</td><td>No positive pixels on known faults</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>11</td><td>Uniqueness vs focus sites</td><td>0.00% within 3 px of existing dots</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>12</td><td>Self-contained TIFF</td><td>No external .msk or .aux.xml</td><td><span style="color:#38694a">PASS</span></td></tr>
-</tbody></table></div>
-</section>
+<h2>Steps for a future submission (only after every gate passes)</h2>
+<ol>
+<li><strong>Produce a candidate in the shared template's grid</strong>: EPSG:32611, 3730 × 3292, 100 m, one float32 band, values in [0, 1], and the same null convention as the organizer sample outside the footprint.</li>
+<li><strong>Run the automated checks</strong> (no human visual check substitutes): <code>scripts/check_submission.py FILE.tif --strict-finite</code>, <code>scripts/lattice_feasibility.py</code>, <code>scripts/audit_saved_tiffs.py</code>, and the registry scan. Each must PASS on the saved bytes.</li>
+<li><strong>Record the lattice overlap under both readings</strong>: footprint-restricted and all positive pixels. A file that passes only one reading is not cleared.</li>
+<li><strong>Get a selector decision</strong> that checks the weekly cap on the DrivenData submission page. Until then, do not upload.</li>
+<li><strong>Upload the single .tif (or a .zip containing one .tif)</strong> with a unique name and a note of 140 characters or fewer, and record the portal's response in a receipt.</li>
+</ol>
 
-<!-- ===== IMPORTANT NOTES ===== -->
-<section id="notes"><h2>Important notes</h2>
-<div class="callout"><div>
-  <h3>Local validation ≠ organizer acceptance</h3>
-  <p>This file passes all local format, range, and uniqueness checks. It has <strong>not</strong> been uploaded to DrivenData and has <strong>no organizer-confirmed score</strong>. Upload only after your own review and selector approval.</p>
-</div><a class="button" href="../executive-summary.html">Back to nine-site summary <span aria-hidden="true">↗</span></a></div>
-<div class="callout"><div>
-  <h3>Submission note (copy-paste ready)</h3>
-  <p style="font-family:ui-monospace,monospace;font-size:12px;background:#f4f7f4;padding:10px;border-radius:6px;overflow-wrap:break-word">Unique off-catalogue detector: 12,000 dots &gt;3px from all focus-site submissions; targets hidden geothermal faults missing from USGS/INGENIOUS catalogue</p>
-  <p style="font-size:11px;color:#65726b;margin-top:6px">Length: 140 characters. Use exactly as shown in the DrivenData submission form.</p>
-</div></div>
-<div class="callout"><div>
-  <h3>About the "Predicted values must be in range [0, 1]" error</h3>
-  <p>This error occurs when a submission contains NaN, Inf, or out-of-range float values. karage3-unique-offcat eliminates it by: (1) clamping all footprint values to [0, 1], (2) setting all non-footprint cells to exactly 0.0 with nodata=None, (3) guaranteeing zero NaN/Inf/sentinels anywhere in the 12,279,160-cell grid.</p>
-</div></div>
-</section>
+<h2>Current gate status</h2>
+<table><thead><tr><th>Item</th><th>Status</th></tr></thead><tbody>
+<tr><td>Format (float32, EPSG:32611, grid)</td><td>PASS for the file bytes; null-outside convention FAIL for unique-offcat</td></tr>
+<tr><td>Literal lattice rule, footprint-restricted (≤70%)</td><td>FAIL — every retained TIFF (≥99.3%)</td></tr>
+<tr><td>Literal lattice rule, all positive pixels (≤70%)</td><td>unique-offcat 37.65% passes only via 7,483 outside-footprint dots; others FAIL</td></tr>
+<tr><td>Complete registry + rank correlation</td><td>NOT RUN</td></tr>
+<tr><td>Holdout score / estimated leaderboard score</td><td>None — no candidate has a holdout score; no leaderboard estimate exists</td></tr>
+<tr><td>Weekly slot</td><td>Not selected; no upload made</td></tr>
+</tbody></table>
 
-</div></main><footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 &bull; Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp; / &nbsp; <a href="../executive-summary.html">Nine-site summary</a></span></div></footer></body></html>
+<h2>Research copies (not submissions)</h2>
+<p>The files under <code>docs/downloads/</code> are retained for audit and research. Do not upload them. The unique-offcat pair is listed there with its measurements; see the <a href="../README.md#session-6-2026-10-29-verified-state">README</a> for the decision.</p>
+<p><a href="../executive-summary.html">Nine-site executive summary</a> · <a href="hk3d/how-to-submit.html">H-K3D guide (also not cleared)</a> · <a href="../sources.html">Sources</a></p>
+</div></main>
+<footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 &bull; Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp; / &nbsp; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official competition</a></span></div></footer>
+</body></html>

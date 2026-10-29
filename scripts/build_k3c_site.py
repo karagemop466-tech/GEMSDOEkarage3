@@ -59,9 +59,19 @@ def _archive():
 def root_decision_html():
     _, _, report = _archive()  # Never render the retained-TIFF claim from stale saved-byte evidence.
     n_tiffs = len(report['rasters'])
+    n_fail = sum(1 for r in report['rasters'] if r['duplicate_stop'])
+    outside = [r for r in report['rasters'] if r.get('positive_pixels_outside_template_footprint', 0) > 0]
+    families = {}  # one caveat per file family: the -zeros and -nan containers carry identical pixels
+    for r in outside:
+        families.setdefault(Path(r["file"]).name.rsplit("-", 1)[0], r)
+    caveat = ''.join(
+        f' {key} (zeros/nan containers) passes the all-dots lattice count ({100 * r["within_3px_fraction_all_positive_pixels"]:.2f}%) only because '
+        f'{r["positive_pixels_outside_template_footprint"]:,} of its {r["positive_pixels_all"]:,} positive pixels lie outside the study footprint, '
+        'where the organizer template is null; it is NOT OK to submit.' for key, r in families.items())
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
-             f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; '
-             'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             f'Session 5 Lane H-K3D (TGSF-BVCD) and {n_fail} of {n_tiffs} retained research TIFFs fail the literal registry-overlap rule '
+             '(footprint-restricted count against the registered 206,895-dot lattice witness).' + caveat + ' '
+             'The former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
              '<a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · '
              '<a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
