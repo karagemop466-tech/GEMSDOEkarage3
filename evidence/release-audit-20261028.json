@@ -99,6 +99,45 @@
       "ok_to_submit": false
     },
     {
+      "file": "docs/downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif",
+      "sha256": "35e3f4819a454a98ab5446c8bf8146fb669f5197d1690647698222cf91e70acf",
+      "dots": 37654,
+      "within_3px_fraction": 0.9994688479311626,
+      "duplicate_stop": true,
+      "boundary_ring_share": 0.0020449354650236362,
+      "boundary_gaming_refusal": false,
+      "validator": {
+        "candidate": "/home/user/GEMSDOEkarage3/docs/downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif",
+        "candidate_sha256": "35e3f4819a454a98ab5446c8bf8146fb669f5197d1690647698222cf91e70acf",
+        "template": "/home/user/GEMSDOEkarage3/.cache/release-audit/2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc.tif",
+        "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "candidate_sidecars": [],
+        "checks": {
+          "geotiff": true,
+          "single_band": true,
+          "float32": true,
+          "shape_matches": true,
+          "crs_matches": true,
+          "transform_matches": true,
+          "self_contained_tiff": true,
+          "inside_all_finite": true,
+          "inside_range_0_1": true,
+          "inside_not_nodata_or_masked": true
+        },
+        "core_format_pass": true,
+        "inside_nonfinite_count": 0,
+        "inside_masked_count": 0,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "outside_template_null_pass": false,
+        "whole_array_finite_range_pass": true,
+        "outside_policy_note": "Template-footprint null interpretation and all-finite diagnostic are separate; neither proves portal acceptance.",
+        "organizer_acceptance": "unknown",
+        "authorization": "NOT AUTHORIZED"
+      },
+      "ok_to_submit": false
+    },
+    {
       "file": "docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
       "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3",
       "dots": 37654,
