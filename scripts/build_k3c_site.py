@@ -59,19 +59,12 @@ def _archive():
 def root_decision_html():
     _, _, report = _archive()  # Never render the retained-TIFF claim from stale saved-byte evidence.
     n_tiffs = len(report['rasters'])
-    n_fail = sum(1 for r in report['rasters'] if r['duplicate_stop'])
-    outside = [r for r in report['rasters'] if r.get('positive_pixels_outside_template_footprint', 0) > 0]
-    families = {}  # one caveat per file family: the -zeros and -nan containers carry identical pixels
-    for r in outside:
-        families.setdefault(Path(r["file"]).name.rsplit("-", 1)[0], r)
-    caveat = ''.join(
-        f' {key} (zeros/nan containers) passes the all-dots lattice count ({100 * r["within_3px_fraction_all_positive_pixels"]:.2f}%) only because '
-        f'{r["positive_pixels_outside_template_footprint"]:,} of its {r["positive_pixels_all"]:,} positive pixels lie outside the study footprint, '
-        'where the organizer template is null; it is NOT OK to submit.' for key, r in families.items())
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
-             f'Session 5 Lane H-K3D (TGSF-BVCD) and {n_fail} of {n_tiffs} retained research TIFFs fail the literal registry-overlap rule '
-             '(footprint-restricted count against the registered 206,895-dot lattice witness).' + caveat + ' '
-             'The former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; '
+             'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             'H-GEO-CONDUIT hybrid candidate (quarantined at <code>docs/quarantine/geoconduit-hybrid/</code>, PENDING-REVIEW) has 99.83% of its 35,615 dots within 3 px of the lattice, so it is not a compliant file. '
+             'Its HOLDOUT-DTI 0.4239 [0.4053, 0.4427] (GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives) is copied from its candidate card. It is NOT ESTABLISHED as a same-protocol baseline and is not an organizer-confirmed score. '
+             'No submission note is authorized. '
              '<a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · '
              '<a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
@@ -79,7 +72,7 @@ def root_decision_html():
     card = ('<div class="release-card" aria-label="Current submission decision">\n'
             '      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>\n'
             '      <h2>No file cleared<br>for live submission.</h2>\n'
-            '      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>\n'
+            '      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641), the H-GEO-CONDUIT candidate (99.83% vs lattice; HOLDOUT-DTI 0.4239, NOT ESTABLISHED as a same-protocol baseline) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>\n'
             '      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>\n'
             '      <div class="card-foot"><span id="download-explanation">Live slot locked · do not submit · see <a href="docs/hk3d/index.html" style="color:#d6e8d7">H-K3D audit</a></span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
             '    </div>')

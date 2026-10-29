@@ -1,6 +1,6 @@
 {
   "schema": "GEMSDOEkarage3-LATTICE-FEASIBILITY-v1",
-  "generated_utc": "2026-10-29T18:28:25+00:00",
+  "generated_utc": "2026-10-29T18:32:26+00:00",
   "question": "Can any footprint-internal submission satisfy the literal <=70% 3-px overlap rule against r13-lattice-s5?",
   "lattice": {
     "path": ".cache/witness/lattice.tif",
@@ -75,7 +75,7 @@
       "null_outside_footprint_convention_pass": true
     },
     {
-      "path": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+      "path": "docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
       "sha256": "34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e",
       "meta": {
         "crs": "EPSG:32611",
@@ -108,7 +108,7 @@
       "null_outside_footprint_convention_pass": false
     },
     {
-      "path": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif",
+      "path": "docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif",
       "sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
       "meta": {
         "crs": "EPSG:32611",
@@ -170,6 +170,39 @@
       "dots_outside_template_footprint": 0,
       "dots_outside_template_footprint_share": 0.0,
       "dots_within_3px_of_lattice_share_all_positive": 0.999225,
+      "literal_all_dots_rule_pass": false,
+      "null_outside_footprint_convention_pass": true
+    },
+    {
+      "path": "docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+      "sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ]
+      },
+      "finite_whole_array": true,
+      "min": 0.0,
+      "max": 1.0,
+      "dots_inside_footprint": 35615,
+      "dots_within_3px_of_lattice_share": 0.998287,
+      "literal_rule_pass": false,
+      "dots_all_positive": 35615,
+      "dots_outside_template_footprint": 0,
+      "dots_outside_template_footprint_share": 0.0,
+      "dots_within_3px_of_lattice_share_all_positive": 0.998287,
       "literal_all_dots_rule_pass": false,
       "null_outside_footprint_convention_pass": true
     }
