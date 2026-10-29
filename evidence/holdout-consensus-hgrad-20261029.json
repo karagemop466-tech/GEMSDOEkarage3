@@ -1,0 +1,126 @@
+{
+  "candidate_id": "consensus-hgrad-k37654",
+  "path": "docs/downloads/gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-zeros.tif",
+  "emitted_pixels": 37165,
+  "mode": "static_binary_diagnostic",
+  "promotion_eligible": false,
+  "provenance_warning": "Static predictions cannot establish fold-local catalogue features or leakage-free training.",
+  "hide_and_recover": {
+    "candidate_id": "consensus-hgrad-k37654",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "b_visible_px": 0.0,
+    "n_withheld_positives": 22232,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "pooled_dti": 0.007283690744130093,
+    "ci95_cluster_bootstrap": [
+      0.004284540054163524,
+      0.01088162230928425
+    ],
+    "fold_mean_dti": 0.0063709988875970975,
+    "per_quadrant_dti": {
+      "NW": 0.006474622692859625,
+      "NE": 0.003055284191045784,
+      "SW": 0.010165040964548303,
+      "SE": 0.005789047701934678
+    },
+    "folds": {
+      "draw20_fold0": {
+        "dti": 0.004274335436954111,
+        "coverage": 0.008493435236461667,
+        "tp": 16.230954736878246,
+        "fp": 11326.293355629847,
+        "fn": 1894.7690452631218,
+        "n_truth": 1911,
+        "emitted": 11364
+      },
+      "draw20_fold1": {
+        "dti": 0.0034441468109538556,
+        "coverage": 0.003618501536279728,
+        "tp": 8.507097111793641,
+        "fp": 2937.5720062781083,
+        "fn": 2342.4929028882066,
+        "n_truth": 2351,
+        "emitted": 2954
+      },
+      "draw20_fold2": {
+        "dti": 0.011307640910483073,
+        "coverage": 0.01963524480479724,
+        "tp": 72.35587710567782,
+        "fp": 17181.884866159442,
+        "fn": 3612.644122894322,
+        "n_truth": 3685,
+        "emitted": 17334
+      },
+      "draw20_fold3": {
+        "dti": 0.001099485958405429,
+        "coverage": 0.001130284743953904,
+        "tp": 3.64516829925134,
+        "fp": 3673.0481099754525,
+        "fn": 3221.3548317007485,
+        "n_truth": 3225,
+        "emitted": 3681
+      },
+      "draw21_fold0": {
+        "dti": 0.008674909948765139,
+        "coverage": 0.016258131666927404,
+        "tp": 34.32091594888375,
+        "fp": 11303.392180548028,
+        "fn": 2076.679084051116,
+        "n_truth": 2111,
+        "emitted": 11364
+      },
+      "draw21_fold1": {
+        "dti": 0.002666421571137712,
+        "coverage": 0.00282865757993159,
+        "tp": 6.406909418545052,
+        "fp": 2947.652472443079,
+        "fn": 2258.593090581455,
+        "n_truth": 2265,
+        "emitted": 2954
+      },
+      "draw21_fold2": {
+        "dti": 0.00902244101861353,
+        "coverage": 0.01591051205539984,
+        "tp": 57.02327520655302,
+        "fp": 17207.7791511615,
+        "fn": 3526.976724793447,
+        "n_truth": 3584,
+        "emitted": 17334
+      },
+      "draw21_fold3": {
+        "dti": 0.010478609445463928,
+        "coverage": 0.01086173091716755,
+        "tp": 33.671365843219405,
+        "fp": 3633.0434107988995,
+        "fn": 3066.3286341567805,
+        "n_truth": 3100,
+        "emitted": 3681
+      }
+    }
+  },
+  "sgmc_off_catalogue": {
+    "candidate_id": "consensus-hgrad-k37654",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "n_withheld_positives": 62703,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "sgmc_raw_pooled_dti": 0.013748226390160434,
+    "sgmc_raw_ci95": [
+      0.007159795582831037,
+      0.021560853657695625
+    ],
+    "sgmc_prevalence_calibrated_dti": 0.009082024514252515,
+    "sgmc_calibrated_ci95": [
+      0.0049819017741010874,
+      0.013461611404523642
+    ]
+  },
+  "legacy_summary": {
+    "catalogue_hidden_mean": 0.0063709988875970975,
+    "sgmc_prevalence_calibrated_dti": 0.009082024514252511,
+    "drift_corrected_holdout_mean": 0.01090069771211864
+  }
+}

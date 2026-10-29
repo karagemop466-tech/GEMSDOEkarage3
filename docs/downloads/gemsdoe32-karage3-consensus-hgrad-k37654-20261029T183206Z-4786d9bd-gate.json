@@ -1,0 +1,209 @@
+{
+  "schema": "GEMSDOEkarage3-SUBMISSION-GATE-v1",
+  "generated_utc": "2026-10-29T18:53:17Z",
+  "candidate": "gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-zeros.zip",
+  "candidate_sha256": "edd5f7e2c2032e986001c17c9cfe89b0b69daa788dd2921390d5035780b641e6",
+  "inner_tif_sha256": "9c076efc0556e44a60f005de76767aeaa47f7bb8240bfdbf2a77235be3421cc1",
+  "submission_name": "karage3-consensus-hgrad-k37654",
+  "note": "karage3 consensus-hgrad: top-37654 px where magnetic TMI and isostatic gravity horizontal gradients both rank high; no model fit",
+  "verdict": "DO NOT SUBMIT",
+  "failed_gates": [
+    "G4_surface",
+    "G5_final_dots",
+    "G6_registry_complete"
+  ],
+  "gates": [
+    {
+      "gate": "G2_package",
+      "passed": true,
+      "zip": "gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-zeros.zip",
+      "inner_tif": "gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-zeros.tif"
+    },
+    {
+      "gate": "G1_format",
+      "passed": true,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "emitted_positive_pixels": 37165
+    },
+    {
+      "gate": "G3_metadata",
+      "passed": true,
+      "name": "karage3-consensus-hgrad-k37654",
+      "name_ok": true,
+      "note_chars": 128,
+      "note_limit": 140
+    },
+    {
+      "gate": "G4_surface",
+      "passed": false,
+      "worst_abs_spearman": 0.49916435287622474,
+      "worst_raster": "buffedlizard55-lab/GEMSDOE76:docs/downloads/gems76-geophys-cataloguefree-rank-gate1-20261021.tif",
+      "duplicates": [],
+      "registry_rasters": 2444,
+      "malformed_or_missing": 38
+    },
+    {
+      "gate": "G5_final_dots",
+      "passed": false,
+      "worst_within_3px_fraction": 1.0,
+      "worst_overlap_raster": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "worst_abs_spearman": 0.18225642202098227,
+      "duplicates": [
+        {
+          "repo": "apartanish22-droid/ApartGEMSDOE2",
+          "path": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+          "within_3px": 1.0
+        },
+        {
+          "repo": "apartanish22-droid/ApartGEMSDOE2",
+          "path": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+          "within_3px": 1.0
+        },
+        {
+          "repo": "apartanish22-droid/ApartGEMSDOE2",
+          "path": "docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+          "within_3px": 1.0
+        },
+        {
+          "repo": "apartanish22-droid/ApartGEMSDOE2",
+          "path": "docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+          "within_3px": 1.0
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif",
+          "within_3px": 0.8368357325440603
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif",
+          "within_3px": 0.8368357325440603
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+          "within_3px": 0.9988968115162115
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+          "within_3px": 0.9988968115162115
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+          "within_3px": 0.7650208529530472
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+          "within_3px": 0.7650208529530472
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+          "within_3px": 0.8130230055159424
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+          "within_3px": 0.8130230055159424
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+          "within_3px": 0.8655993542311314
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+          "within_3px": 0.8655993542311314
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+          "within_3px": 0.843750840844881
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+          "within_3px": 0.843750840844881
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-r11-greedy-mp.tif",
+          "within_3px": 0.8368357325440603
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+          "within_3px": 0.8368357325440603
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+          "within_3px": 0.7855240145297996
+        },
+        {
+          "repo": "buffedlizard55-lab/13GEMSDOE",
+          "path": "docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+          "within_3px": 0.7855240145297996
+        }
+      ],
+      "registry_rasters": 2444,
+      "malformed_or_missing": 38,
+      "candidate_dots": 37165
+    },
+    {
+      "gate": "G6_registry_complete",
+      "passed": false,
+      "literal_registry_complete": false,
+      "manifest_note": "Filtered inventory only: path, basename and size exclusions apply; not proof of a complete literal registry.",
+      "registry_rasters": 2444
+    }
+  ],
+  "holdout_dti_diagnostic": "see evidence/focus9-holdout-baseline-20261029.json (not a gate, not a leaderboard estimate)",
+  "registry_manifest_sha256": "3116d46dda723d5dd0e22b02e631f3748552df14c6ed77b069d9a78991a3ddfb",
+  "dots_by_registry_raster_top5": [
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "path": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "within_3px": 1.0
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "path": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "within_3px": 1.0
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "path": "docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "within_3px": 1.0
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "path": "docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "within_3px": 1.0
+    },
+    {
+      "repo": "buffedlizard55-lab/57GEMSDOE",
+      "path": "docs/downloads/gems57-h57g-width-normalized-b1329dc0f248-RESEARCH-DO-NOT-SUBMIT.tif",
+      "within_3px": 1.0
+    }
+  ],
+  "organizer_acceptance": "UNKNOWN - no portal receipt; this gate is a local, automated pre-check only"
+}

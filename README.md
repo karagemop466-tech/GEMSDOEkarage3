@@ -1,12 +1,35 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Current status (2026-10-29, session 6): NO FILE IS CLEARED TO SUBMIT
+
+- **Verdict: DO NOT SUBMIT for every file measured.** A format-valid file fixes the portal error "Predicted values must be in range [0, 1]" (the `-zeros` variant has no NaN), but the uniqueness gate still fails.
+- **Format-valid candidate, NOT cleared:** `docs/downloads/gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-zeros.zip`. Automated gate verdict: `…-gate.json` = DO NOT SUBMIT (G5 and G6 fail).
+- **Automated, no-human gate:** `python scripts/validate_submission.py <file.zip|tif> --name <name> --note "<≤140 chars>" --surface <surface.npy>` writes one verdict JSON.
+- **Measurements:** `evidence/site-uniqueness-20261029.json` (nine focus files plus two candidates, literal 3-px rule against 2,399 restored registry rasters); `evidence/registry-union-coverage-20261029.json`; `evidence/focus9-holdout-baseline-20261029.json`.
+- **Executive summary:** [executive-summary.html](executive-summary.html). Its banner and nine-site table are generated from the evidence by `scripts/build_executive_gate.py`.
+
+### Blocking findings for owner review (flagged, not exempted)
+
+1. **Literal 70% rule vs the 13GEMSDOE lattice.** The registered `13gems_20261001_r13-lattice-s5` raster (206,895 dots) covers 99.87% of the footprint within 3 px. Under the literal rule, interior candidates with more than about 22,163 dots are duplicates by arithmetic (`scripts/protocol_preflight.py`).
+2. **A dense registry raster makes every candidate fail.** `apartanish22-droid/ApartGEMSDOE2` `gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif` has 5,106,385 positive cells (98.8% of the footprint). Every candidate's within-3 px overlap with it is 1.0.
+3. **The registry is incomplete.** `registry/complete_registry_manifest.json` is a filtered inventory (`literal_registry_complete: false`); of its 2,444 rasters, 38 could not be read and 7 are empty; 2,399 binary rasters were measured.
+4. **The local holdout does not track the leaderboard.** Shared-evaluator HOLDOUT-DTI for the nine files is about 0.005–0.097, yet their user-reported leaderboard values are 0.2449–0.2778 (GEMSDOE32: proxy 0.0045, reported 0.2778). No estimate is given.
+5. **Score correction.** The H-GEO-CONDUIT run card's HOLDOUT-DTI of 0.4239 did not reproduce. The shared evaluator gives **0.3047** [95% CI 0.2881, 0.3189], n=22,232 withheld positives. The card's evaluator (`GEMSDOE32-HOLDOUT-v3-visible-gated`) is not the shared one.
+6. **Restored data is owner-mirrored**, verified by SHA-256 against pinned upstream refs, not organizer-authenticated.
+
+### Decision needed from the project owner
+
+The literal rule as written can't be satisfied by any candidate, because of findings 1 and 2. Options: (a) keep the literal rule and stop submitting; or (b) approve an explicit, written exemption for degenerate or calibration rasters, then re-run the gates. No exemption has been applied. Nothing has been uploaded, and no weekly slot has been used.
+
+---
+
 ## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
 
 **Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
 
 A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
 
-**HOLDOUT-DTI (candidate run-card claim, not independently reproduced or promoted): 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, 22,232 withheld positives (as recorded in that card). Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
+**HOLDOUT-DTI (shared-evaluator re-run, 2026-10-29): 0.3047** [95% CI: 0.2881, 0.3189], evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives. The run card's 0.4239 (evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`) did not reproduce. Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
 
 [**Executive summary**](executive-summary.html) · [**Submission process (blocked pending approval)**](#submission-process-only-after-future-clearance) · [**Negative review card JSON**](docs/data/candidate-review-20261029.json) · [**Nine-Site Scorecard**](executive-summary.html#nine-site-scorecard) · [**Candidate artifact (research only)**](#candidate-artifact-not-cleared-do-not-submit)
 
@@ -57,7 +80,7 @@ A newly generated TIFF exists as a research artifact, but is NOT cleared for upl
 1. **Prune harder:** Remove all dots within 3 px of visible faults (not just 2 px), then re-deploy the saved budget to off-catalogue locations.
 2. **Add off-catalogue coverage:** Place dots where geothermal surface expressions (hot springs >60°C, volcanic vents, conductivity anomalies, potential-field anomalies) indicate hidden fluid pathways along faults NOT in the catalogue. 1,535 hot springs (>60°C) lie >500 m from any mapped fault (GDR #1391).
 
-Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible faults (capturing withheld segments), 20% at geothermal surface expressions (targeting blind faults). Holdout-DTI: 0.4239.
+Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible faults (capturing withheld segments), 20% at geothermal surface expressions (targeting blind faults). HOLDOUT-DTI (shared-evaluator re-run): 0.3047; the card's 0.4239 did not reproduce.
 
 ---
 
@@ -87,7 +110,9 @@ A generated candidate is retained for scientific/research review only:
 - SHA-256: `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`
 - Candidate name: `gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8`
 - **Submission eligibility: NO.** The run card itself says `PENDING-REVIEW`; full literal registry comparisons before surface placement and on final dots, compliant matched holdout controls/leakage checks, and separate selector approval are not established. The literal protocol does not authorize excluding a dense lattice from overlap checks.
-- **HOLDOUT-DTI (candidate run-card claim; not independently reproduced or organizer-confirmed): 0.4239**, 95% CI `[0.4053, 0.4427]`, evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, `22,232` withheld positives. This is neither an organizer-confirmed score nor a leaderboard estimate; it is not directly comparable with the user-reported GEMSDOE32 `0.2778`.
+- **HOLDOUT-DTI, consensus-hgrad-k37654 (shared evaluator, 2026-10-29): 0.0073** [95% CI `0.0043, 0.0109`], evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, `22,232` withheld positives, `promotion_eligible: false` (static diagnostic). Off-catalogue SGMC calibrated: 0.0091 [0.0050, 0.0135] (`GEMSDOE32-SGMC-CAL-v3.0`, 62,703 withheld positives). Source: `evidence/holdout-consensus-hgrad-20261029.json`. This is far below the H-GEO-CONDUIT candidate and is a negative result; the file is not cleared for submission.
+- **ORGANIZER-CONFIRMED leaderboard check (official DrivenData public leaderboard, fetched 2026-10-29)**: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ lists rank #1 = **0.4544** (xiaofanhu), #2 = 0.3916, rank #47 (kpomazi) = **0.3195**, and rank #50 = 0.3167. The prompt's **0.4413 does not appear** in the top 50. So **0.3195 is not the highest public score**; it sits at rank 47. The GEMSDOE32 value 0.2778 (user-reported) is below rank 50 and is not visible here. Scores are the public split only ('Best public DW-Tversky'); private-split results are not shown.
+- **HOLDOUT-DTI (shared-evaluator re-run, 2026-10-29): 0.3047**, 95% CI `[0.2881, 0.3189]`, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, `22,232` withheld positives. The run card's 0.4239 did not reproduce; neither value is organizer-confirmed. This is neither an organizer-confirmed score nor a leaderboard estimate; it is not directly comparable with the user-reported GEMSDOE32 `0.2778`.
 - Basic TIFF audit metadata reports single-band float32, EPSG:32611, 3730×3292, range `[0,1]`, and zero NaN inside footprint. Format checks do not establish scientific performance, uniqueness, or organizer acceptance.
 
 No submission note is authorized while eligibility is NO. There has been no slot selection or upload by this review.
