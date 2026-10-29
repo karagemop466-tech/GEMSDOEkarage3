@@ -1,5 +1,14 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## START HERE — executive summary (2026-10-29)
+
+**OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
+
+- **Executive summary (table of all nine sites + the new file):** [docs/nine-site-summary.html](docs/nine-site-summary.html) · run card [docs/nine-site-run-card.json](docs/nine-site-run-card.json)
+- **New TIF generated this session (NOT unique):** `karage3-k4-offcat-ridge-20k` — [zeros TIF](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif) · [zip](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip). Format-valid, but it FAILS the full-registry literal uniqueness scan (108 of 2,051 same-grid registry rasters exceed the 3-px or rho gate; evidence in `evidence/k4-literal-uniqueness-scan.json`) and the holdout gate (HOLDOUT-DTI 0.0178 vs the nine-site best 0.0967). Do not submit it.
+- **Portal error "Predicted values must be in range [0, 1]":** the `-nan.tif` files contain 7,111,787 NaN pixels outside the footprint. Use only the `-zeros.tif` / `-allfinite.tif` version of a file (same dots, no NaN).
+- **Reported best (0.2778, GEMSDOE32) is not unique:** every focus file has a peer with ≥0.976 of its dots within 3 px. GEMSDOE30 is the same dot array as GEMSDOE25.
+- **Labels:** HOLDOUT-DTI = local shared evaluator (withheld-positive count and 95% CI shown); USER-REPORTED = copied from the request; ORGANIZER-CONFIRMED = none exists yet.
 
 ## Session 6 (2026-10-29) — correction and verification (read first)
 
