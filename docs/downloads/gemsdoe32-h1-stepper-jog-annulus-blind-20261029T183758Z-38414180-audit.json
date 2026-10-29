@@ -1,0 +1,63 @@
+{
+  "experiment": "H1 stepover-jog damage-zone annulus blind-fault detector",
+  "hypothesis": "H1",
+  "mechanism": "damage-zone annulus 5-15 px off catalogue traces at high local fault density (stepover/jog proxy)",
+  "created_utc": "20261029T183758Z",
+  "candidate_id": "karage3-h1-stepper-jog-annulus-blind",
+  "slug": "h1-stepper-jog-annulus-blind",
+  "content_digest8": "38414180",
+  "zeros_tif": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.tif",
+  "nan_tif": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-nan.tif",
+  "sha256_zeros": "c2d48094b9e20c1379b1a7d6d261e7f53ba66a1de8e8281d851d4a326978abd6",
+  "sha256_nan": "8c7b9abcd8805c5589ccceefd98599c8f85ad003848d77be0d9d10f8c97d737b",
+  "size_bytes_zeros": 120269,
+  "emitted_dots": 32000,
+  "footprint_fraction": 0.006193,
+  "dots_on_catalogue_pixels": 0,
+  "density_threshold_p75": 0.066667,
+  "submission_note": "H1 stepover-jog damage-zone annulus dots 5-15px off catalogue traces; unique non-lattice",
+  "note_length_chars": 88,
+  "geometry": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null
+  },
+  "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_template": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_on_catalogue_leakage": true
+  },
+  "all_format_checks_passed": true,
+  "uniqueness_vs_local_registrations": {
+    "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif": {
+      "dots_within_3px_fraction": 0.0,
+      "rank_correlation_spearman": -0.0028
+    }
+  },
+  "holdout_dti": null,
+  "holdout_status": "NOT RUN: external/derived_sgmc_faults_100m_u8.tif and organizer-authenticated inputs required; no organizer-confirmed score.",
+  "verdict": "FORMAT-VALID / UNIQUE-CANDIDATE / NOT CLEARED FOR SUBMISSION pending holdout + selector authorization.",
+  "lane_rule": "stop if rank correlation with any registry raster > 0.90 or > 70% of dots within 3 px of a registry raster.",
+  "zeros_zip": {
+    "filename": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.zip",
+    "sha256": "ffd9a01f112dec5e4e45a32057306ac37c906f9219321dab951f4f3fd2cfaf51",
+    "size_bytes": 71777
+  }
+}

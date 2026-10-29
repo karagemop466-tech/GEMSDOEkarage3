@@ -39,3 +39,13 @@
 
 /* Override site-wide tag for positive status */
 .tag.ok-tag{background:#dceedd;color:#264a34}
+
+/* Pending / holdout-not-run status */
+.pending{color:#8a6d1a;font-weight:750}
+.vcard.pending{background:#fffbeb;border-color:#f3e3b8}
+.pill.hold{background:#f9e8df;color:#963d31}
+.tag.pending{display:inline-block;border-radius:5px;padding:3px 6px;font-weight:800;font-size:10px;background:#fffbeb;color:#8a6d1a}
+
+/* Failed / negative validation card */
+.fail{color:#963d31;font-weight:750}
+.vcard.fail{background:#fdf3f2;border-color:#ecc6c2}

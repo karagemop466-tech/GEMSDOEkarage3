@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "experiment": "H1 stepover-jog damage-zone annulus blind-fault detector",
+  "created_utc": "2026-10-29T18:37:58+00:00",
+  "assigned_lane": "H1 (steopor-jog damage-zone annulus) — self-assigned; no conflicting lane",
+  "hypothesis": "Blind geothermal-conduit faults missing from the USGS/INGENIOUS catalogue express as dilational stepover/jog damage zones in the 500 m–1.5 km annulus around complex catalogue fault traces. Dots placed in that annulus at high local fault density recover withheld/hidden credit without emitting on catalogue pixels.",
+  "mechanism": "Distance-weighted Tversky credit (TP) accumulates where dots fall within 300 m of withheld truth pixels; false positives (FP) are mass away from truth. H1 avoids the 0–4 px near-collar where GEMSDOE24–36 / H-GEO-CONDUIT cluster (spending budget on already-credited or masked catalogue segments) and instead occupies the 5–15 px damage-zone annulus, cutting redundant FP mass while targeting blind upflow beside mapped traces.",
+  "named_non_fault_mimic": "Unfaulted lithological contacts, erosion gullies, and volcanic flow margins can produce centreline-like fault branches and high local fault density without being geothermal-conduit faults.",
+  "holdout_dti": {
+    "evidence_class": "HOLDEOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "value": 0.0,
+    "ci_95": [0.0, 0.0],
+    "status": "RUN — catalogue-hidden pooled DTI = 0.0. EXPECTED & INTERPRETABLE: H1 dots sit 5–15 px off catalogue traces while the 3 px (300 m) triangular kernel only credits mass within 300 m of withheld catalogue segments (which lie on traces). The holdout measures withheld CATALOGUE-segment recovery, not blind-fault discovery, so a blind-fault detector is invisible to it. This is a negative result on this metric (did not beat holdout best), not evidence that H1 finds no blind faults.",
+    "sgmc_off_catalogue_raw_dti": 0.0,
+    "sgmc_off_catalogue_note": "external/derived_sgmc_faults_100m_u8.tif was unavailable; an empty (all-zero) layer was used so the SGMC off-catalogue component is degenerate (n_withheld=0, dti=0.0). Organizer-authenticated SGMC required for a complete off-catalogue evaluation."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN per feature",
+    "features_tested": 0,
+    "note": "H1 uses only catalogue distance + local density; no feature alone was AUC-tested because the catalogue-hidden holdout returned 0.0 (H1 is structurally outside the kernel's credit range of withheld catalogue segments)."
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman_vs_H_GEO_CONDUIT": -0.0028,
+    "candidate_final_dot_overlap_within_3px_vs_H_GEO_CONDUIT": 0.0,
+    "lane_rule_status": "PASS vs local registration tested (rank corr <= 0.90; overlap <= 70%). Complete registry surface/final-dot scan vs all 9 focus-site rasters not yet performed (focus rasters not accessible locally).",
+    "scope": "Only the local H-GEO-CONDUIT artifact (docs/downloads) was compared."
+  },
+  "raster": {
+    "zeros_tif": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.tif",
+    "nan_tif": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-nan.tif",
+    "zeros_zip": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.zip",
+    "sha256_zeros": "c2d48094b9e20c1379b1a7d6d261e7f53ba66a1de8e8281d851d4a326978abd6",
+    "sha256_nan": "8c7b9abcd8805c5589ccceefd98599c8f85ad003848d77be0d9d10f8c97d737b",
+    "sha256_zip": "ffd9a01f112dec5e4e45a32057306ac37c906f9219321dab951f4f3fd2cfaf51",
+    "size_bytes_zeros": 120269,
+    "emitted_dots": 32000,
+    "footprint_fraction": 0.006193,
+    "dots_on_catalogue_pixels": 0
+  },
+  "validator_output": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_matches": true,
+    "shape_matches": true,
+    "transform_matches": true,
+    "single_band_float32": true,
+    "whole_array_finite_range_pass": true,
+    "zero_on_catalogue_leakage": true,
+    "self_contained_tiff": true,
+    "outside_footprint_convention": "-zeros.tif uses nodata=None and 0.0 outside footprint (whole-array [0,1], fixes the [0,1] portal error); -nan.tif uses nodata=NaN outside footprint.",
+    "organizer_acceptance": "unknown — local validation only, not a DrivenData receipt"
+  },
+  "submission_name": "gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180",
+  "note": "H1 stepover-jog damage-zone blind-fault dots 5-15px off catalogue traces; unique non-lattice pattern",
+  "note_length_chars": 88,
+  "verdict": "negative — NOT CLEARED FOR SUBMISSION. Format-valid (13/13 checks) and locally unique (0% dots within 3 px vs H-GEO-CONDUIT; rank corr -0.003), but catalogue-hidden holdout-DTI = 0.0 [0.0,0.0] (n=22,232) — did not beat holdout best. Per protocol, do not spend a submission slot. Blind-fault targeting is not measurable by this catalogue-segment holdout; a blind-fault-specific truth set would be needed to score H1 fairly.",
+  "ok_to_submit": false,
+  "experiments_run": 1,
+  "experiment_budget": "1 of 3 used",
+  "slot_selected": false,
+  "weekly_slots_used": 0,
+  "blockers": [
+    "Catalogue-hidden holdout-DTI = 0.0 for H1: the holdout's 3 px kernel cannot credit dots 5–15 px off traces, so H1's blind-fault strategy is invisible to this metric. Not a submission candidate on current evidence.",
+    "Organizer training/holdout inputs require DrivenData login; labels.tif and sample_submission.tif recovered from owner GitHub mirrors, external/derived_sgmc_faults_100m_u8.tif substituted with an empty (all-zero) layer (off-catalogue component degenerate).",
+    "Complete literal registry scan (surface before placement AND final dots vs every registered raster incl. all 9 focus-site rasters) not yet performed.",
+    "No separate selector authorization or weekly quota visibility.",
+    "Lane rule tension: near-trace dots score on the holdout but duplicate GEMSDOE24–36 / lattice; off-trace dots (H1) are unique but score 0 on catalogue-hidden holdout."
+  ],
+  "next_steps": [
+    "Obtain organizer-authenticated data (DrivenData login) for a complete holdout + full registry scan before any submission.",
+    "If pursuing blind-fault discovery, source a blind-fault/potential-geothermal truth set (e.g., GDR #1391 hot springs >60 C >500 m from faults) to validate H1 outside the catalogue-segment holdout.",
+    "Otherwise record this negative run card as a deliverable and do not spend a submission slot on H1.",
+    "To beat the leaderboard (0.4413) within lane rules, a submission must recover withheld catalogue segments (near-trace dots) while staying <=70% within 3 px of every registry raster — a narrow constraint requiring organizer data."
+  ]
+}

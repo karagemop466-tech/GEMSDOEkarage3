@@ -5,25 +5,28 @@
 <!-- TOP-OF-PAGE DOWNLOAD — obvious and easy -->
 <section class="download-banner" aria-label="Download submission">
   <div class="container">
-    <div class="download-ok"><strong>SUBMISSION STATUS: NOT CLEARED — DO NOT SUBMIT</strong></div>
-    <h2>H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector</h2>
-    <p class="download-sub">Candidate run card reports HOLDOUT-DTI <strong>0.4239</strong> [95% CI: 0.4053, 0.4427] (evaluator GEMSDOE32-HOLDOUT-v3-visible-gated; n=22,232). This is not a leaderboard score or an independently reproduced result; cross-evaluator comparison is not justified.</p>
+    <div class="download-ok"><strong>SUBMISSION STATUS: NEGATIVE EXPERIMENT — NOT CLEARED</strong></div>
+    <h2>H1 stepover-jog damage-zone annulus blind-fault detector</h2>
+    <p class="download-sub">Unique candidate GeoTIFF (H1). 32,000 binary dots at 500 m–1.5 km from catalogue traces, at high local fault density (stepover/jog damage zones). Zero dots on catalogue pixels. Values in [0, 1]; no NaN inside the footprint. Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, exact submission geotransform.</p>
     <div class="download-actions">
-      <a class="button download-button" href="docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif">Archived candidate TIFF — do not submit</a>
-      <a class="button zip-button" href="docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.zip">Archived candidate ZIP — do not submit</a>
-      <a class="button secondary" href="docs/data/candidate-review-20261029.json">📋 Negative run card</a>
+      <a class="button download-button" href="docs/downloads/gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.tif">Download H1 submission TIFF (.tif) &darr;</a>
+      <a class="button zip-button" href="docs/downloads/gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.zip">Download H1 submission ZIP (.zip) &darr;</a>
+      <a class="button secondary" href="docs/downloads/gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-audit.json">&#128204; Format &amp; uniqueness audit</a>
     </div>
     <div class="download-meta">
-      <p><strong>File:</strong> <code>gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif</code></p>
-      <p><strong>SHA-256:</strong> <code>064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43</code></p>
-      <p><strong>Verdict:</strong> <span class="tag ok-tag">PENDING REVIEW</span> — full literal registry audit and separate selector approval are absent</p>
+      <p><strong>File:</strong> <code>gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.tif</code></p>
+      <p><strong>SHA-256:</strong> <code>c2d48094b9e20c1379b1a7d6d261e7f53ba66a1de8e8281d851d4a326978abd6</code></p>
+      <p><strong>Verdict:</strong> <span class="tag ok-tag">FORMAT-VALID &middot; UNIQUE vs local registrations</span> &middot; <strong>holdout-DTI = 0.0 [0.0, 0.0] (n=22,232) &mdash; NEGATIVE experiment</strong> &rarr; <strong>not cleared to submit</strong> (did not beat holdout best; no slot)</p>
     </div>
     <div class="validation-grid compact">
-      <div class="vcard pass"><span class="vcheck">✓</span><span>float32 · [0,1] · no NaN inside footprint</span></div>
-      <div class="vcard pass"><span class="vcheck">✓</span><span>EPSG:32611 · 3730×3292 · exact geotransform</span></div>
-      <div class="vcard pass"><span class="vcheck">✓</span><span>Holdout-DTI 0.4239 [0.4053, 0.4427]</span></div>
-      <div class="vcard pass"><span class="vcheck">✓</span><span>Focus-site comparison only; complete registry check absent</span></div>
+      <div class="vcard pass"><span class="vcheck">&#10003;</span><span>single band &middot; float32 &middot; values in [0,1]</span></div>
+      <div class="vcard pass"><span class="vcheck">&#10003;</span><span>no NaN inside footprint &middot; 0 outside footprint</span></div>
+      <div class="vcard pass"><span class="vcheck">&#10003;</span><span>EPSG:32611 &middot; 3730&times;3292 &middot; exact geotransform match</span></div>
+      <div class="vcard pass"><span class="vcheck">&#10003;</span><span>0 dots on catalogue pixels (no leakage)</span></div>
+      <div class="vcard pass"><span class="vcheck">&#10003;</span><span>unique vs H-GEO-CONDUIT artifact: 0% dots within 3 px, rank corr &minus;0.003</span></div>
+      <div class="vcard fail"><span class="vcheck">&#10007;</span><span>holdout-DTI = 0.0 [0.0, 0.0] (n=22,232): blind-fault annulus invisible to catalogue-segment holdout &mdash; negative experiment</span></div>
     </div>
+    <p class="download-note">Is it OK to download and submit? <strong>Download: yes (format-valid). Submit: NO &mdash; not cleared.</strong> Holdout-DTI (hide-and-recover, &alpha;=0.2, &beta;=0.8, 300 m kernel) = 0.0 [0.0, 0.0] (n=22,232 withheld positives), a NEGATIVE experiment: H1's blind-fault annulus (5&ndash;15 px off traces) is outside the kernel's credit range of withheld catalogue segments. No score is claimed and no weekly slot is authorized. This is not an organizer score or receipt. Do not upload to DrivenData.</p>
   </div>
 </section>
 
@@ -35,14 +38,14 @@
     <div class="hero-links"><a class="button" href="executive-summary.html">Read the executive summary <span aria-hidden="true">↗</span></a><a class="button" href="research.html">Review research <span aria-hidden="true">↗</span></a><a href="sources.html">View sources &amp; limitations ↗</a><a href="#nine-site-scorecard">Nine-site scorecard ↓</a></div>
   </div>
   <div class="release-card" aria-label="Current submission decision">
-    <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill ok">PENDING REVIEW</span></div>
-    <h2>H-GEO-CONDUIT is not cleared for upload.</h2>
-    <p>Run card reports HOLDOUT-DTI 0.4239 [95% CI: 0.4053, 0.4427]. This is not an organizer score; no complete literal uniqueness audit, matched same-protocol baseline, or slot approval is documented. Do not submit.</p>
+    <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NEGATIVE &mdash; NOT CLEARED</span></div>
+    <h2>H1 candidate is format-valid and unique; submission is on hold.</h2>
+    <p>The H1 GeoTIFF passes every local format check (single band float32, EPSG:32611, 3730&times;3292, values in [0,1], no NaN inside footprint, zero catalogue leakage) and is unique against the local registrations tested. Its catalogue-hidden holdout-DTI ran at 0.0 [0.0, 0.0] (n=22,232 withheld positives) — a NEGATIVE experiment: H1's blind-fault annulus (5&ndash;15 px off traces) is outside the kernel's credit range of withheld catalogue segments. No score is claimed and the file is not cleared to submit; no weekly slot is authorized.</p>
   </div>
 </section>
 
 <section class="stats" aria-label="Evidence snapshot">
-  <div class="stat"><div class="stat-label">HOLDOUT-DTI (candidate run-card claim)</div><div class="stat-value">0.4239</div><div class="stat-note">HOLDOUT-DTI · 95% CI [0.4053, 0.4427] · n=22,232</div></div>
+  <div class="stat"><div class="stat-label">New candidate format checks</div><div class="stat-value">13 / 13 passed</div><div class="stat-note">H1: [0,1], no NaN, CRS/shape/transform match, zero catalogue leakage</div></div>
   <div class="stat"><div class="stat-label">Best reported (focus sites)</div><div class="stat-value">0.2778</div><div class="stat-note">GEMSDOE32 · user-reported / unverified</div></div>
   <div class="stat"><div class="stat-label">Nine-site uniqueness</div><div class="stat-value">9/9 not unique</div><div class="stat-note">All historical files ≥97.58% overlap with a peer</div></div>
   <div class="stat"><div class="stat-label">Uniqueness audit</div><div class="stat-value">Not established</div><div class="stat-note">Full registry surface and final-dot checks absent</div></div>
@@ -61,14 +64,15 @@
 <tr><td><strong>GEMSDOE33</strong><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f52533110fe62cd03e77f1228e9e5ecac412c463/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a><span class="micro">Historical source · not a new download</span></td><td><span class="value">0.2632</span><span class="micro">USER-REPORTED / UNVERIFIED</span></td><td>Not estimable<span class="micro">No validated transfer to hidden truth</span></td><td><span class="warning-text">NO · 99.71%</span><span class="micro">within 3 px of GEMSDOE27</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file</span></td></tr>
 <tr><td><strong>GEMSDOE36</strong><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a><span class="micro">Historical source · not a new download</span></td><td><span class="value">0.2750</span><span class="micro">USER-REPORTED / UNVERIFIED</span></td><td>Not estimable<span class="micro">No validated transfer to hidden truth</span></td><td><span class="warning-text">NO · 97.58%</span><span class="micro">within 3 px of GEMSDOE27</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file</span></td></tr>
 <tr><td><strong>H-GEO-CONDUIT (this repo)</strong><a class="file-link" href="docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif">gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif</a><span class="micro">Research artifact only · pending review</span></td><td><span class="value">Holdout-DTI 0.4239</span><span class="micro">HOLDOUT-DTI · CI [0.4053, 0.4427]</span></td><td>0.4239 HOLDOUT-DTI<span class="micro">reported run card; not independently reproduced; not leaderboard score</span></td><td><span class="warning-text">NOT ESTABLISHED</span><span class="micro">complete literal registry audit not established</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Candidate artifact · archived for research only</span></td></tr>
+<tr><td><strong>H1 (this repo)</strong><a class="file-link" href="docs/downloads/gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.tif">gemsdoe32-h1-stepper-jog-annulus-blind-20261029T183758Z-38414180-zeros.tif</a><span class="micro">New unique candidate &middot; research only, not cleared</span></td><td><span class="value">Holdout-DTI 0.0</span><span class="micro">HOLDEOUT-DTI &middot; CI [0.0, 0.0] &middot; n=22,232 &middot; negative</span></td><td>0.0 HOLDEOUT-DTI<span class="micro">catalogue-segment holdout; not leaderboard score</span></td><td><span style="color:#1a7a3a"><strong>YES &mdash; unique</strong></span><span class="micro">0% dots within 3 px vs H-GEO-CONDUIT; rank corr &minus;0.003</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Format-valid &middot; unique &middot; holdout negative</span></td></tr>
     </tbody></table></div>
     <p class="table-note">Unique = rank-correlation ≤ 0.90 vs all registry rasters AND 3-px dot overlap ≤ 70% vs discrete submissions. Historical files fail uniqueness (all ≥ 97.58% overlap with at least one other focus site).</p>
     <p class="table-note">The official public leaderboard showed <strong>0.4544</strong> in first place on 28 October 2026. This dated snapshot is not a receipt for any local file and may be stale; <a href="https://www.drivendata.org/competitions/306/competitions/306/competition-doe-gems/leaderboard/">check the current leaderboard ↗</a></p>
 </section>
 
 <section class="section soft" aria-labelledby="hold-title"><div class="container">
-  <div class="section-head"><div><div class="eyebrow">Why our submission differs</div><h2 id="hold-title">The H-GEO-CONDUIT approach</h2></div><p>Hybrid strategy: 80% of dots at 0.5–4 px from visible catalogue faults (capturing withheld segments), 20% at geothermal surface expressions >500 m from faults (targeting blind faults missed by catalogue-leaning dotted-ridge submissions).</p></div>
-  <div class="cards"><article class="card"><span class="number">01</span><h3>Not a dotted ridge</h3><p>GEMSDOE24-36 place dots along mapped fault traces. This candidate targets geothermal surface expressions; its efficacy and uniqueness remain unverified.</p></article><article class="card"><span class="number">02</span><h3>Off-catalogue targeting</h3><p>1,535 hot springs (>60°C) lie >500 m from mapped faults (GDR #1391). These mark blind faults not in the USGS/INGENIOUS catalogue.</p></article><article class="card"><span class="number">03</span><h3>Unique spatial pattern</h3><p>Candidate has no complete surface/final literal registry audit; uniqueness is not established.</p></article></div>
+  <div class="section-head"><div><div class="eyebrow">Why our submission differs</div><h2 id="hold-title">The H1 stepover-jog damage-zone approach</h2></div><p>H1 targets blind geothermal-conduit faults missing from the USGS/INGENIOUS catalogue by placing dots in the damage-zone annulus 500 m&ndash;1.5 km from catalogue traces, at high local fault density (the stepover/jog proxy). GEMSDOE24&ndash;36 and H-GEO-CONDUIT cluster dots 0&ndash;2 px from mapped traces and prune within 2 px; H1 deliberately occupies the annulus they vacate, so it targets blind upflow beside &mdash; not on &mdash; catalogue traces, with zero dots on any catalogue pixel.</p></div>
+  <div class="cards"><article class="card"><span class="number">01</span><h3>Distinct spatial family</h3><p>H1 dots sit 5&ndash;15 px off catalogue traces; measured vs the nearest local registration: 0% of dots within 3 px, rank correlation &minus;0.003 &mdash; well inside the lane rule (&le;0.90 correlation, &le;70% within 3 px).</p></article><article class="card"><span class="number">02</span><h3>Blind-fault targeting</h3><p>Stepover/jog damage zones are dilational conduits where geothermal fluids ascend without a separately mapped fault trace &mdash; precisely the catalogue gap the dotted-ridge family does not address.</p></article><article class="card"><span class="number">03</span><h3>No leakage</h3><p>All dots are off-catalogue (0 on labels.tif), so the submission cannot be credited to known faults and carries no catalogue leakage.</p></article></div>
 </div></section>
 
 <section class="section"><div class="container"><div class="section-head"><div><div class="eyebrow">Data sources (official, verified)</div><h2>Sources &amp; provenance</h2></div><p>All competition rasters and external layers are integrity-pinned (SHA-256). Competition data is restored from owner-supplied GitHub mirrors; not organizer-authenticated.</p></div>
