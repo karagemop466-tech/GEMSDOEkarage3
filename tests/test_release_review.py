@@ -12,6 +12,10 @@ from src.gems32.release_gate import compare_registry
 ROOT = Path(__file__).resolve().parents[1]
 
 
+# Known irregularity (knowledge/irregularities.md IR-S6-11): this -nan.tif has zero NaN cells.
+KNOWN_NAN_MISLABELLED = {'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif'}
+
+
 def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
     report = json.loads((ROOT / 'evidence/release-audit-20261028.json').read_text())
     assert report['experiments_run'] == report['weekly_slots_used'] == 0
@@ -26,6 +30,9 @@ def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
         assert row['duplicate_stop'] is True
         assert row['ok_to_submit'] is False
         if path.name.endswith('-zeros.tif'):
+            assert row['validator']['whole_array_finite_range_pass'] is True
+        elif row['file'] in KNOWN_NAN_MISLABELLED:
+            # IR-S6-11: this '-nan.tif' contains no NaN cells (same encoding as its zeros sibling).
             assert row['validator']['whole_array_finite_range_pass'] is True
         else:
             assert row['validator']['whole_array_finite_range_pass'] is False
