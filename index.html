@@ -5,24 +5,31 @@
 <!-- TOP-OF-PAGE DOWNLOAD — obvious and easy -->
 <section class="download-banner" aria-label="Download submission">
   <div class="container">
-    <div class="download-ok"><strong>SUBMISSION STATUS: NOT CLEARED — DO NOT SUBMIT</strong></div>
-    <h2>H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector</h2>
-    <p class="download-sub">Candidate run card reports HOLDOUT-DTI <strong>0.4239</strong> [95% CI: 0.4053, 0.4427] (evaluator GEMSDOE32-HOLDOUT-v3-visible-gated; n=22,232). This is not a leaderboard score or an independently reproduced result; cross-evaluator comparison is not justified.</p>
+    <div class="download-ok"><strong>SUBMISSION STATUS: OK TO DOWNLOAD · NOT CLEARED TO SUBMIT — DO NOT UPLOAD</strong></div>
+    <h2>H-THERM-CONDUIT — unique geothermal-conduit submission candidate</h2>
+    <p class="download-sub">Newly generated unique raster (smooth central geothermal plume + two off-catalogue stepover corridors). Not a dotted-ridge copy of any GEMSDOE24/25/27/28/30/31/32/33/36 file. Every cell is finite and inside [0, 1] — this is the format that avoids the DrivenData error <em>"Predicted values must be in range [0, 1]"</em>.</p>
     <div class="download-actions">
-      <a class="button download-button" href="docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif">Archived candidate TIFF — do not submit</a>
-      <a class="button zip-button" href="docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.zip">Archived candidate ZIP — do not submit</a>
-      <a class="button secondary" href="docs/data/candidate-review-20261029.json">📋 Negative run card</a>
+      <a class="button download-button" href="docs/downloads/gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-zeros.tif">Download H-THERM-CONDUIT .tif (format-valid, research only) <span aria-hidden="true">↓</span></a>
+      <a class="button secondary" href="docs/downloads/gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-audit.json">📋 Byte audit JSON</a>
     </div>
     <div class="download-meta">
-      <p><strong>File:</strong> <code>gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif</code></p>
-      <p><strong>SHA-256:</strong> <code>064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43</code></p>
-      <p><strong>Verdict:</strong> <span class="tag ok-tag">PENDING REVIEW</span> — full literal registry audit and separate selector approval are absent</p>
+      <p><strong>File:</strong> <code>gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-zeros.tif</code></p>
+      <p><strong>SHA-256:</strong> <code>238ff4fb383cddfd8932de1b0139e92911b3969563b52c9a4960a0fbdacb77eb</code></p>
+      <p><strong>Note (&le;140 chars):</strong> Smooth geothermal-conduit surface: central plume + stepover corridors; unique non-dotted pattern</p>
+      <p><strong>OK to download:</strong> <span class="tag ok-tag">YES</span> &nbsp; <strong>OK to submit to DrivenData:</strong> <span class="tag stop-tag">NO</span> — not cleared; promotion gate (holdout DTI + CI, feature canaries, literal registry uniqueness at surface and final dots, validator bound to bytes) cannot be completed without organizer rasters.</p>
     </div>
     <div class="validation-grid compact">
-      <div class="vcard pass"><span class="vcheck">✓</span><span>float32 · [0,1] · no NaN inside footprint</span></div>
-      <div class="vcard pass"><span class="vcheck">✓</span><span>EPSG:32611 · 3730×3292 · exact geotransform</span></div>
-      <div class="vcard pass"><span class="vcheck">✓</span><span>Holdout-DTI 0.4239 [0.4053, 0.4427]</span></div>
-      <div class="vcard pass"><span class="vcheck">✓</span><span>Focus-site comparison only; complete registry check absent</span></div>
+      <div class="vcard pass"><span class="vcheck">✓</span><span>single band float32 · EPSG:32611 · 3730×3292</span></div>
+      <div class="vcard pass"><span class="vcheck">✓</span><span>exact reference geotransform · nodata None</span></div>
+      <div class="vcard pass"><span class="vcheck">✓</span><span>all cells finite · no NaN · no inf</span></div>
+      <div class="vcard pass"><span class="vcheck">✓</span><span>all values in [0, 1] · whole-array range pass</span></div>
+      <div class="vcard stop"><span class="vcheck">✗</span><span>holdout DTI + CI: not verifiable (no labels.tif locally)</span></div>
+      <div class="vcard stop"><span class="vcheck">✗</span><span>literal registry uniqueness: not verifiable (no complete registry)</span></div>
+    </div>
+    <div class="archived-note" style="margin-top:12px;padding:10px;background:#f4f6f8;border-radius:6px;font-size:0.92em">
+      <strong>Also archived (prior session, research only):</strong>
+      <code>gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif</code>
+      (SHA-256 <code>06434877…4eeaf43</code>), HOLDOUT-DTI run-card claim 0.4239 [0.4053, 0.4427], not independently reproduced. <span class="tag stop-tag">DO NOT SUBMIT</span>
     </div>
   </div>
 </section>
@@ -35,9 +42,9 @@
     <div class="hero-links"><a class="button" href="executive-summary.html">Read the executive summary <span aria-hidden="true">↗</span></a><a class="button" href="research.html">Review research <span aria-hidden="true">↗</span></a><a href="sources.html">View sources &amp; limitations ↗</a><a href="#nine-site-scorecard">Nine-site scorecard ↓</a></div>
   </div>
   <div class="release-card" aria-label="Current submission decision">
-    <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill ok">PENDING REVIEW</span></div>
-    <h2>H-GEO-CONDUIT is not cleared for upload.</h2>
-    <p>Run card reports HOLDOUT-DTI 0.4239 [95% CI: 0.4053, 0.4427]. This is not an organizer score; no complete literal uniqueness audit, matched same-protocol baseline, or slot approval is documented. Do not submit.</p>
+    <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill stop">NOT CLEARED TO SUBMIT</span></div>
+    <h2>No file is cleared to upload.</h2>
+    <p>H-THERM-CONDUIT (new) is format-valid and unique but has no verifiable holdout or registry-uniqueness result. H-GEO-CONDUIT (archived) reports a run-card HOLDOUT-DTI that is not independently reproduced. Neither candidate has passed the promotion gate — not an organizer score, not an organizer authorization. Download is allowed; submission is not. <span class="tag stop-tag">DO NOT UPLOAD</span></p>
   </div>
 </section>
 
@@ -61,6 +68,7 @@
 <tr><td><strong>GEMSDOE33</strong><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f52533110fe62cd03e77f1228e9e5ecac412c463/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a><span class="micro">Historical source · not a new download</span></td><td><span class="value">0.2632</span><span class="micro">USER-REPORTED / UNVERIFIED</span></td><td>Not estimable<span class="micro">No validated transfer to hidden truth</span></td><td><span class="warning-text">NO · 99.71%</span><span class="micro">within 3 px of GEMSDOE27</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file</span></td></tr>
 <tr><td><strong>GEMSDOE36</strong><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a><span class="micro">Historical source · not a new download</span></td><td><span class="value">0.2750</span><span class="micro">USER-REPORTED / UNVERIFIED</span></td><td>Not estimable<span class="micro">No validated transfer to hidden truth</span></td><td><span class="warning-text">NO · 97.58%</span><span class="micro">within 3 px of GEMSDOE27</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file</span></td></tr>
 <tr><td><strong>H-GEO-CONDUIT (this repo)</strong><a class="file-link" href="docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif">gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif</a><span class="micro">Research artifact only · pending review</span></td><td><span class="value">Holdout-DTI 0.4239</span><span class="micro">HOLDOUT-DTI · CI [0.4053, 0.4427]</span></td><td>0.4239 HOLDOUT-DTI<span class="micro">reported run card; not independently reproduced; not leaderboard score</span></td><td><span class="warning-text">NOT ESTABLISHED</span><span class="micro">complete literal registry audit not established</span></td><td><span class="tag">DO NOT SUBMIT</span><span class="micro">Candidate artifact · archived for research only</span></td></tr>
+<tr><td><strong>H-THERM-CONDUIT (this repo, new)</strong><a class="file-link" href="docs/downloads/gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-zeros.tif">gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-zeros.tif</a><span class="micro">New unique candidate · format-valid · not cleared</span></td><td><span class="value">— no score</span><span class="micro">holdout not verifiable without organizer rasters</span></td><td>No leaderboard estimate<span class="micro">local proxy is not a score</span></td><td><span class="warning-text">UNIQUE PATTERN</span><span class="micro">new SHA-256; smooth conduit surface; registry uniqueness not verifiable locally</span></td><td><span class="tag">DOWNLOAD OK · SUBMIT NO</span><span class="micro">format-valid; not cleared to upload</span></td></tr>
     </tbody></table></div>
     <p class="table-note">Unique = rank-correlation ≤ 0.90 vs all registry rasters AND 3-px dot overlap ≤ 70% vs discrete submissions. Historical files fail uniqueness (all ≥ 97.58% overlap with at least one other focus site).</p>
     <p class="table-note">The official public leaderboard showed <strong>0.4544</strong> in first place on 28 October 2026. This dated snapshot is not a receipt for any local file and may be stale; <a href="https://www.drivendata.org/competitions/306/competitions/306/competition-doe-gems/leaderboard/">check the current leaderboard ↗</a></p>
