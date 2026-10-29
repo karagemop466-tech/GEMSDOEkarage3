@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "candidate": ".cache/candidates/h1/gemsdoe32-gemsdoekarage3-h1-ridge-offcat-nms-14k-20261029T180906Z-09cd91aa-zeros.tif",
+  "candidate_sha256": "bbb5a47b254de5cf354f1225e4c153fda356713a8ff67c8010c4b352b804fbda",
+  "candidate_dots": 14186,
+  "registry_items_checked": 19,
+  "registry_complete": false,
+  "registry_scope": "Nine GEMSDOE top-site files at pinned commits + 14 SHA-verified scored rasters from the owner-mirror manifest. Not the complete DrivenData leaderboard registry.",
+  "worst_directional_overlap": {
+    "registry_item": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+    "source": "scored-manifest",
+    "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "registry_dots": 206895,
+    "candidate_within3px_of_registry": 0.994502,
+    "registry_within3px_of_candidate": 0.07861,
+    "pearson_binary_dots": 0.00624
+  },
+  "literal_70pct_rule_triggered": true,
+  "pearson_gt_0_90_triggered": false,
+  "rows": [
+    {
+      "registry_item": "GEMSDOE24",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE24/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "registry_dots": 60069,
+      "candidate_within3px_of_registry": 0.177499,
+      "registry_within3px_of_candidate": 0.078743,
+      "pearson_binary_dots": 0.002289
+    },
+    {
+      "registry_item": "GEMSDOE25",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE25/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "registry_dots": 44090,
+      "candidate_within3px_of_registry": 0.170379,
+      "registry_within3px_of_candidate": 0.078317,
+      "pearson_binary_dots": 0.002327
+    },
+    {
+      "registry_item": "GEMSDOE27",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE27/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "registry_dots": 61328,
+      "candidate_within3px_of_registry": 0.184266,
+      "registry_within3px_of_candidate": 0.079425,
+      "pearson_binary_dots": 0.00242
+    },
+    {
+      "registry_item": "GEMSDOE28",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE28/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "registry_dots": 37660,
+      "candidate_within3px_of_registry": 0.157056,
+      "registry_within3px_of_candidate": 0.079899,
+      "pearson_binary_dots": 0.001886
+    },
+    {
+      "registry_item": "GEMSDOE30",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE30/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "registry_dots": 44090,
+      "candidate_within3px_of_registry": 0.170379,
+      "registry_within3px_of_candidate": 0.078317,
+      "pearson_binary_dots": 0.002327
+    },
+    {
+      "registry_item": "GEMSDOE31",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE31/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "registry_dots": 40199,
+      "candidate_within3px_of_registry": 0.159876,
+      "registry_within3px_of_candidate": 0.079927,
+      "pearson_binary_dots": 0.002625
+    },
+    {
+      "registry_item": "GEMSDOE32",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE32/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "registry_dots": 37654,
+      "candidate_within3px_of_registry": 0.148879,
+      "registry_within3px_of_candidate": 0.077415,
+      "pearson_binary_dots": 0.00284
+    },
+    {
+      "registry_item": "GEMSDOE33",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE33/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "registry_dots": 41865,
+      "candidate_within3px_of_registry": 0.166502,
+      "registry_within3px_of_candidate": 0.079565,
+      "pearson_binary_dots": 0.002494
+    },
+    {
+      "registry_item": "GEMSDOE36",
+      "source": "site-top9",
+      "file": "/home/user/GEMSDOEkarage3/.cache/site_submissions/GEMSDOE36/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "registry_dots": 38854,
+      "candidate_within3px_of_registry": 0.151064,
+      "registry_within3px_of_candidate": 0.076491,
+      "pearson_binary_dots": 0.002779
+    },
+    {
+      "registry_item": "scored_h19_5",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "registry_dots": 121131,
+      "candidate_within3px_of_registry": 0.191879,
+      "registry_within3px_of_candidate": 0.07936,
+      "pearson_binary_dots": 0.004101
+    },
+    {
+      "registry_item": "scored_h19_4",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "registry_dots": 123779,
+      "candidate_within3px_of_registry": 0.200268,
+      "registry_within3px_of_candidate": 0.07927,
+      "pearson_binary_dots": 0.00408
+    },
+    {
+      "registry_item": "scored_h16_1",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "registry_dots": 123939,
+      "candidate_within3px_of_registry": 0.206542,
+      "registry_within3px_of_candidate": 0.080435,
+      "pearson_binary_dots": 0.004145
+    },
+    {
+      "registry_item": "calib_13gems_20261001_r13-lattice-s5_v2_nan-ou",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "registry_dots": 206895,
+      "candidate_within3px_of_registry": 0.994502,
+      "registry_within3px_of_candidate": 0.07861,
+      "pearson_binary_dots": 0.00624
+    },
+    {
+      "registry_item": "calib_8GEMSDOE_Hedge-v2_submission",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/8GEMSDOE_Hedge-v2_submission.tif",
+      "sha256": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792",
+      "registry_dots": 227507,
+      "candidate_within3px_of_registry": 0.228183,
+      "registry_within3px_of_candidate": 0.05457,
+      "pearson_binary_dots": 0.003434
+    },
+    {
+      "registry_item": "calib_gems10-h25-ctx-ridge-20260927T2329477041",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
+      "registry_dots": 174232,
+      "candidate_within3px_of_registry": 0.293811,
+      "registry_within3px_of_candidate": 0.085214,
+      "pearson_binary_dots": 0.005933
+    },
+    {
+      "registry_item": "calib_gems10-h28-dotted-ridge-20260928T0202562",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
+      "registry_dots": 69281,
+      "candidate_within3px_of_registry": 0.287255,
+      "registry_within3px_of_candidate": 0.08262,
+      "pearson_binary_dots": 0.003423
+    },
+    {
+      "registry_item": "calib_gemsdoe-ens12-adopted-7f00890a",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gemsdoe-ens12-adopted-7f00890a.tif",
+      "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15",
+      "registry_dots": 172974,
+      "candidate_within3px_of_registry": 0.228183,
+      "registry_within3px_of_candidate": 0.071774,
+      "pearson_binary_dots": 0.005211
+    },
+    {
+      "registry_item": "calib_gemsdoe9-PLACEHOLDER-2314b599",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gemsdoe9-PLACEHOLDER-2314b599.tif",
+      "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22",
+      "registry_dots": 343816,
+      "candidate_within3px_of_registry": 0.067461,
+      "registry_within3px_of_candidate": 0.036709,
+      "pearson_binary_dots": 0.000695
+    },
+    {
+      "registry_item": "scored_gems28_h27_4_r1_solo",
+      "source": "scored-manifest",
+      "file": "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "registry_dots": 40199,
+      "candidate_within3px_of_registry": 0.159876,
+      "registry_within3px_of_candidate": 0.079927,
+      "pearson_binary_dots": 0.002625
+    }
+  ]
+}

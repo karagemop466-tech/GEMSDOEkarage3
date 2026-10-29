@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "checked_utc": "2026-10-29T18:21:36.940066+00:00",
+  "classification": "DIAGNOSTIC, NOT A SCORE",
+  "candidate": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+  "same_grid_as_template": true,
+  "total_dots": 12000,
+  "dots_inside_template_footprint": 4517,
+  "dots_outside_template_footprint": 7483,
+  "inside_within3px_of_lattice_share": 0.9988930706220943,
+  "all_dots_within3px_of_lattice_share": 0.3765,
+  "literal_70pct_rule_on_inside_dots_triggered": true,
+  "ok_to_submit": false
+}
