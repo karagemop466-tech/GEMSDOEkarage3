@@ -1,6 +1,16 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-**Latest repository review (2026-10-29):** [current decision, artifact re-audit, three-pass verification and JSON card](docs/review-2026-10-29-session.md). The earlier [pre-merge review](docs/review-2026-10-29.md) is retained as history and is superseded where its candidate-ready wording conflicts. Release decision: **DO NOT SUBMIT**.
+**Latest repository review (2026-10-29):** [current decision, inherited-artifact re-audit, three-pass verification and JSON card](docs/review-2026-10-29-session.md). The older [pre-merge review](docs/review-2026-10-29.md) is retained as history and superseded where its stale wording conflicts. Release decision: **DO NOT SUBMIT**.
+
+## Start here: nine-site summary and submission status
+
+- **Download a file to submit? NO.** No candidate is cleared. Every historical focus-site artifact is research-only, and the inherited lattice-hole artifact is rejected. The pinned lattice feasibility result is a bounded arithmetic constraint, not proof that every possible candidate must fail; do not exploit holes or exempt the lattice.
+- **Executive summaries:** [one comparison page and per-site summaries](docs/focus9/index.html) · [nine-site run card](docs/focus9/run-card.json). These are local repository pages; they do not update the nine sibling sites.
+- **Static baseline:** [HOLDOUT-DTI comparison card](evidence/focus9-holdout-baseline-20261029.json), evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives, with per-file 95% intervals. This is a static binary diagnostic, not a candidate score, organizer result, or leaderboard estimate; its provenance caveat is recorded in the card.
+- **Protocol:** the literal any-registry 70% rule applies to the lattice too. No exception is requested. No method lane was assigned and the experiment budget is exhausted; do not start another run.
+- **Readiness:** `docs/readiness.json` is the refreshed current-checkout snapshot. The current readiness code uses the shared `.cache/gems_data/` path, but required inputs and a complete local registry remain absent. Recheck rather than treating the snapshot as a permanent fact.
+- Rebuild the summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Tests: `tests/test_focus9.py`.
+
 
 ## SUBMISSION STATUS (read first, updated 2026-10-29)
 
@@ -207,11 +217,11 @@ approval. The former README narrative is available in Git history.
 
 ## Remaining Work & Open Limitations (Session 5 Handoff)
 
-1. **Literal Calibration-Lattice Witness Conflict (`13GEMSDOE` `r13-lattice-s5`)**:
-   - Algebraic pigeonhole bound proves every budget `N >= 22,164` overlaps `r13-lattice-s5` (`206,895` dots, `99.87%` footprint coverage within `3 px`) by `> 70%`, and Session 5 `EXP-3` (`N = 20,000 <= 22,163`) proves empirically that even `20,000`-dot geological detectors without hole-gaming overlap `r13-lattice-s5` by **`99.1750%`** (`EXP-2` at `37,654` dots: **`99.3547%`**) while `EXP-2` overlaps all discrete (`<= 100k`-dot) peer detectors across all 113 repos by at most **`62.37% <= 70%`**.
-   - **Action needed from repo owner / protocol coordinator**: Decide whether dense calibration lattices (`> 100k` dots) and continuous probability surfaces in `registry/complete_registry_manifest.json` should be governed by rank correlation (`|Spearman| <= 0.90`, where `H-K3D` scores `0.5789`) while restricting the `<= 70%` 3-px dot-overlap stop to discrete (`<= 100k`-dot) submissions. Until explicitly authorized by the user, `promotion_gate.py` enforces the literal any-registry rule strictly (`ok_to_submit = False`).
-2. **Closing the Gap Between `H-K3D` (`HR24 = 0.0942`) and `H-K3C` (`0.1110`) / `0.2778` Champion (`0.1008`) on Standard `HR`, While Preserving `H-K3D` `SGMC-cal` Gain (`0.0682 > 0.0641`)**:
-   - `H-K3D` `EXP-2` (`B = 3 px`) beat the `0.2778` Champion rule on off-catalogue USGS SGMC faults (`0.068224` vs `0.064121`) and beat `B = 2 px` on `> 500 m` fragment-censored holdout (`0.082560` vs `0.080991`), because `64.75%` of its budget went to far-field basins (`> 1.5 km`). However, standard `Hide-and-Recover` (`HR24`) rewards `[200 m, 1500 m]` near-apron step-overs more heavily (`H-K3D` placed only `13.99%` within `<= 800 m` vs `~34%` in `H-K3C`). Next iteration (`H-K3E`) should test a two-tier submodular budget split (`30%` Coulomb step-over bridge + `70%` `B = 3 px` `TGSF-BVCD` off-catalogue detector).
+1. **Literal Calibration-Lattice Witness (`13GEMSDOE` `r13-lattice-s5`)**:
+   - Archived dense detector files exceed the literal 70% overlap limit against this registered witness. The bounded lattice audit shows that this is a severe feasibility constraint, but not proof that every raster or smaller dot budget must fail. Full current-registry and pre-placement surface checks are absent for any new candidate.
+   - **No exemption is requested or permitted.** The literal overlap rule applies to every registry raster, including dense calibration lattices, and lattice holes/boundary cells must not be targeted to manufacture uniqueness. The rejected 12,000-dot inherited artifact is not evidence of a viable lower-budget method.
+2. **Historical H-K3D / H-K3C comparisons (research context only):**
+   - The prior run cards report differences across holdout variants, including off-catalogue USGS SGMC and fragment-censored diagnostics. These historical values are not current candidate validation or organizer scores. No H-K3E or other follow-up experiment is authorized: the lane is unassigned, the inherited budget is exhausted, and required shared evaluator/data/registry gates remain unresolved. Reopen only after a new explicit assignment, corrected shared tools, and a fresh authorized budget.
 3. **Upstream Shared-Template Issues (`GEMSDOE32@97597a066d1c`)**:
    - The 7 pinned shared files are kept byte-identical (`registry/shared_template_97597a.json`), while `src/karage3/holdout_v32_ref.py` provides non-forking diagnostic evaluation for `#41` (zero-truth FP conservation), `IR-K3-12` (`> 500 m` fragment censoring), and `#60` (`> 1.5 km` buffered holdout). Upstream issues `#41`, `#42`, `#60`, `#61`, and `#66` (plus binary-only writer restriction vs continuous `[0, 1]` portal spec) remain open on `buffedlizard55-lab/GEMSDOE32`.
 4. **Data & Score Provenance**:

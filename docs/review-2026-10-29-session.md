@@ -7,6 +7,7 @@
 - [Current run card (JSON)](data/review-run-20261029.json)
 - [Current readiness snapshot](readiness.json)
 - [Nine-site executive summary and historical file table](../index.html#scorecard)
+- [Per-site focus-9 pages and static HOLDOUT-DTI comparison](focus9/index.html) · [baseline evidence with file hashes, evaluator details and intervals](../evidence/focus9-holdout-baseline-20261029.json)
 - [Submission instructions](../executive-summary.html)
 - [Previous four-hypothesis slate and evidence review](review-2026-10-28-session.md#ranked-research-slate--planning-only)
 - [Official problem, metric and submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
@@ -26,7 +27,7 @@ The site scores supplied in the prompt do not define a calibrated conversion fro
 `python scripts/check_readiness.py` refreshed [`readiness.json`](readiness.json) and reported `ready_for_experiment=false`, `ok_to_submit=false` (expected exit 2). Specifically, it measured:
 
 1. **No data/cache in this checkout:** required core rasters are not present at their expected paths and `.cache/gems_work/feature_stack.npy` is absent. The checked-in prepared manifest is a record of an earlier preparation; it is not proof those bytes remain available now.
-2. **No complete current registry:** 0 of 416 pinned raster paths are present locally; continuous surfaces and registry freshness are not verified by that local measurement.
+2. **No complete current registry:** 0 of 416 pinned raster paths are present locally; continuous surfaces and registry freshness are not verified by that local measurement. The current readiness check separately found the pinned shared source snapshot/template identities match, which establishes provenance only—not correctness.
 3. **No assigned lane:** no lane is inferred from the earlier candidate slate.
 4. **Shared-template defects remain open:** upstream issues cover holdout truth/visible buffering (#60), pooled false-positive handling (#41), leakage diagnostics (#61), surface-stage overlap enforcement (#42), and masked in-footprint pixels (#66). The pinned shared code is provenance, not proof of correctness. This checkout cannot patch the central shared template and must not substitute a private fork.
 5. **No comparable incumbent rerun:** there is no current same-evaluator, same-fold baseline to beat. The user-supplied historical results are not that baseline.
@@ -56,19 +57,19 @@ The official [reference solution](https://github.com/drivendataorg/gems-prize-re
 
 ### Pass 1 — repo and source inspection
 - Read `AGENTS.md`, README, the retained project brief, prior current-session review, current run cards, focus-site evidence, readiness logic, and official problem/metric/format/source pages.
-- Confirmed the repository already has a nine-site executive summary and historical file/score/uniqueness table. It is a comparison of supplied historical artifacts, not edits to the nine sibling sites.
+- Confirmed the repository has a nine-site comparison plus newly merged per-site focus-9 summaries. These compare pinned historical artifacts locally; they do not edit the nine sibling sites or clear any file for submission. The merged HOLDOUT-DTI evidence is a static-binary diagnostic, not a new model run or candidate score. I updated its renderer so both table series carry 95% intervals and evaluator/count details, and removed an unsupported random-placement claim.
 - The pre-merge checkout had no local current template or candidate. During main synchronization an inherited candidate appeared; this review reclassified it as lattice-hole gaming, moved it to forensic evidence, independently checked only its saved TIFF header/range, and did not treat that limited check as approval. Do not mistake `data/prepared_manifest.json` for the missing cached stack.
 
 ### Pass 2 — regression and gate review
 - Installed dependencies only in ignored local environments (`.venv/`, `node_modules/`); no source or tracked binary dependencies were added.
-- `.venv/bin/python -m pytest -q`: **193 passed, 1 skipped, 78 subtests passed** (56 rasterio pending-deprecation warnings). The skipped test is the existing optional integration requiring a missing cached stack.
-- `.venv/bin/python -m unittest discover -s tests -q`: **99 passed**.
+- `.venv/bin/python -m pytest -q`: **200 passed, 1 skipped, 78 subtests passed** (56 rasterio pending-deprecation warnings). The skipped test is the existing optional integration requiring a missing cached stack.
+- `.venv/bin/python -m unittest discover -s tests -q`: **104 passed**.
 - `npm test`: **4 passed**; `node --test tests/test_browser_feed.js`: **2 passed**.
 - `scripts/verify_numbers.py`: **22/22 consistency checks passed**. These checks establish repository consistency, not organizer score or slot eligibility.
-- `scripts/build_site.py --check`: passed. `scripts/check_readiness.py`: expected **not-ready / exit 2**; see detailed blockers above.
+- `scripts/build_site.py --check` and `scripts/build_focus9.py --check`: passed. `scripts/check_readiness.py`: expected **not-ready / exit 2**; see detailed blockers above.
 
 ### Pass 3 — user-request and safety recheck
-- The nine-site table remains visible, lists historical filenames and reported values, marks uniqueness against peer files, and explicitly says DO NOT SUBMIT. No numerical live score estimate is claimed.
+- The nine-site table and the added per-site focus-9 pages show historical filenames/claims, pairwise uniqueness audits and static HOLDOUT-DTI diagnostics with evaluator, withheld count and 95% intervals. Every historical file remains DO NOT SUBMIT; no live score estimate is claimed. The focus-9 pages are local and do not modify sibling sites.
 - No duplicate historical TIFF was copied, renamed, or presented as a new submission. No candidate TIFF or score was fabricated. The submission instructions and exact format requirements remain linked from the README/site.
 - Updated the README/site entry points to expose this review and the live evidence state. No selector was run, and no submission slot was selected.
 

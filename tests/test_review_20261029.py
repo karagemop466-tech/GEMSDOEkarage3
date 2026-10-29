@@ -35,10 +35,13 @@ def test_review_is_current_starting_point_and_dashboard_links_resolve():
     agents = (ROOT / "AGENTS.md").read_text()
     readme = (ROOT / "README.md").read_text()
     html = (ROOT / "docs/index.html").read_text()
+    home = (ROOT / "index.html").read_text()
     assert "docs/review-2026-10-29-session.md" in agents
     assert "docs/data/review-run-20261029.json" in agents
     assert "Latest repository review (2026-10-29)" in readme
     assert "review-2026-10-29-session.md" in html
+    assert "docs/focus9/index.html" in home
+    assert (ROOT / "docs/focus9/index.html").is_file()
     assert (ROOT / "docs/review-2026-10-29-session.md").is_file()
     assert (ROOT / "docs/data/review-run-20261029.json").is_file()
 

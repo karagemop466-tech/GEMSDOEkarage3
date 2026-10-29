@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "repository-review-20261029",
-  "created_utc": "2026-10-29T18:17:52Z",
+  "created_utc": "2026-10-29T18:24:27Z",
   "review_only": true,
   "hypothesis": "No candidate hypothesis selected: the request did not specify an unambiguous single method lane; the four ranked ideas remain planning-only.",
   "mechanism": "No model was fit and no candidate surface or raster was generated in this review.",
@@ -65,12 +65,13 @@
     "current_value": null
   },
   "verification": {
-    "pytest": "193 passed, 1 skipped, 78 subtests; 56 warnings",
-    "unittest": "99 passed",
+    "pytest": "200 passed, 1 skipped, 78 subtests; 56 warnings",
+    "unittest": "104 passed",
     "npm_test": "4 passed",
     "browser_feed_test": "2 passed",
     "verify_numbers": "22/22 consistency checks passed",
     "site_build_check": "passed",
+    "focus9_build_check": "passed",
     "readiness": "not ready; expected exit 2"
   },
   "blockers": [
@@ -84,6 +85,8 @@
   "evidence": {
     "readiness": "docs/readiness.json",
     "prior_nine_site_review": "docs/review-2026-10-28-session.md",
+    "focus9_pages": "docs/focus9/index.html",
+    "static_focus9_baseline": "evidence/focus9-holdout-baseline-20261029.json",
     "official_problem_metric": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
     "official_usgs_geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
     "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution"
