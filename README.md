@@ -1,8 +1,21 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
+
+**Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
+
+A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
+
+**HOLDOUT-DTI (candidate run-card claim, not independently reproduced or promoted): 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, 22,232 withheld positives (as recorded in that card). Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
+
+[**Executive summary**](executive-summary.html) · [**Submission process (blocked pending approval)**](#submission-process-only-after-future-clearance) · [**Negative review card JSON**](docs/data/candidate-review-20261029.json) · [**Nine-Site Scorecard**](executive-summary.html#nine-site-scorecard) · [**Candidate artifact (research only)**](#candidate-artifact-not-cleared-do-not-submit)
+
+
+
 ## Start here (2026-10-29): nine-site summary and submission status
 
 - **Correction (2026-10-29, later):** the `karage3-unique-offcat` TIFF previously described as "unique and ready" is **DO NOT SUBMIT**. Measured against the pinned lattice witness it has 99.89% in-footprint overlap (limit 70%). Details: [docs/review-2026-10-29.md](docs/review-2026-10-29.md#later-correction-same-day-the-unique-ready-tiff-was-wrong). Leaderboard #1 is 0.4544 (fetched 2026-10-29).
+- **Candidate status (H-GEO-CONDUIT):** the artifact run card originally said `PENDING-REVIEW`. It is now `negative`. The literal registry checks are NOT ESTABLISHED for the complete registry, and the lattice check fails. No submission note is authorized, and the 0.4239 holdout figure is a run-card claim, not an organizer score.
 - **Conflicting claim on `main` (PR #44, merge `9690dc1`) is overridden.** It promoted `gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif` as "OK TO SUBMIT: YES", citing "3-px overlap ≤ 34.49%" **vs discrete submissions**. That figure excludes the registered 13GEMSDOE `r13-lattice-s5` lattice. Measured 2026-10-29 against the lattice: **99.83%** of its 35,615 in-footprint dots lie within 3 px (limit 70%). Its 70% near-visible-fault placement, with a self-reported holdout DTI of 0.4239, also needs a leakage canary before any holdout number is cited. **Verdict: NOT OK TO SUBMIT.** The rule has no lattice exemption. See [docs/review-2026-10-29.md](docs/review-2026-10-29.md#later-correction-same-day-the-unique-ready-tiff-was-wrong).
 - **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
 - **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).

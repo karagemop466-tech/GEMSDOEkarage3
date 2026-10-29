@@ -62,6 +62,7 @@ def root_decision_html():
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
              f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; '
              'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             'Latest candidate H-GEO-CONDUIT (geoconduit-hybrid zeros.tif): 99.83% of its dots lie within 3 px of the registered lattice (limit 70%); literal registry checks are NOT ESTABLISHED. Its HOLDOUT-DTI 0.4239 is a run-card claim, not independently reproduced and not an organizer score. '
              '<a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · '
              '<a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
