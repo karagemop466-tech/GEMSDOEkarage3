@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Submission desk: which file to download, what it is estimated to score, and whether it is unique. Generated from evidence JSON.">
+<title>GEMS Submission Desk · 2026-10-29</title>
+<link rel="stylesheet" href="assets/site.css"></head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
+<a class="brand" href="index.html"><span class="brand-mark">G</span><span class="brand-name">GEMS Fieldnotes<small>Submission desk</small></span></a>
+<nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="submission-desk.html" aria-current="page">Submission desk</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav>
+</div></header>
+<main id="main"><div class="container">
+<section class="hero" aria-labelledby="desk-title">
+<div><div class="eyebrow">Executive summary · generated 2026-10-29 from evidence JSON</div>
+<h1 id="desk-title">Which file to download, <em>and is it safe to upload?</em></h1>
+<p class="lede">Short answer: <strong>no file on this page is cleared for upload.</strong> Nine historical files that were reported as submitted are not unique (off-diagonal overlaps between them run from 86.72% to 100.00%). We generated two new files that overlap none of them. S6-E1 falls below chance on our off-catalogue proxy. S6-E2 sits inside the focus band on that proxy, but both fail the calibration-lattice rule. Under the parallel-run protocol both are logged DUPLICATE_STOP, so neither advances.</p>
+<div class="hero-links"><a class="button" href="evidence/experiments/s6-e2/gemsdoekarage3-s6-lidar-step-coh-37654-20261029.tif">Download S6-E2 TIFF (research only — do NOT upload) ↓</a><a class="button" href="evidence/experiments/s6-e1/gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif">Download S6-E1 TIFF (research only — do NOT upload) ↓</a><a class="button" href="executive-summary.html">How to submit (once cleared) ↗</a><a href="evidence/focus-site-audit-20261029.json">Audit JSON ↗</a><a href="evidence/exp-s6-e1-offconsensus.json">S6-E1 run card ↗</a><a href="evidence/exp-s6-e2-lidar-lineament.json">S6-E2 run card ↗</a><a href="evidence/control-random-null-sgmc.json">Random-null control ↗</a></div>
+</div>
+<div class="release-card" aria-label="Upload verdict">
+<div class="card-top"><span class="card-kicker">UPLOAD VERDICT</span><span class="pill hold">NOT CLEARED</span></div>
+<h2>Do not upload<br>any file today.</h2>
+<p>Gate 1 (literal uniqueness, 3 px): only 6,649 footprint pixels lie beyond 3 px of the calibration lattice. A dot set of N dots therefore overlaps it by at least 1 − 6,649/N, which exceeds 70% once N ≥ 22,164. Even if every uncovered pixel were filled, the overlap would still exceed 70%, so the literal rule cannot be met at that size.</p>
+<p>Gate 2 (score evidence): there is no organizer receipt, and the off-catalogue proxy in the repo does not reproduce the reported ranking.</p>
+<p>Gate 3 (registry): the registry inventory is not literal-complete (IR-S6-06).</p>
+</div>
+</section>
+
+<section class="section" aria-labelledby="table-title"><div class="section-head"><div><div class="eyebrow">What to download · score · uniqueness</div><h2 id="table-title">Nine focus sites plus our new file</h2></div>
+<p>Each row is verified by <code>scripts/focus_site_audit.py</code>: bytes fetched at the pinned commit, SHA-256 checked against the registry, format checked against the official rules, overlaps computed at 3 px. Scores are labelled by evidence class; none is an organizer receipt.</p></div>
+<p class="table-scroll-hint">Scroll across the table to see every column →</p>
+<div class="table-wrap" role="region" tabindex="0" aria-label="Download, score and uniqueness table; scroll horizontally"><table><thead><tr>
+<th scope="col">File to download (verified link)</th><th scope="col">Dots &amp; format</th><th scope="col">Reported score</th><th scope="col">Estimated score (local, labelled)</th><th scope="col">Unique vs the other focus files?</th><th scope="col">Upload verdict</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>GEMSDOE24</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a>
+<span class="micro">pinned 07345ea060 · SHA-256 <span class="code">68d0e2e4fcc594f9…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>60,069 dots<span class="micro">NaN outside footprint, 0/1 inside</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2477</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.1011</strong> [0.0905, 0.1125] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0932 [0.0813, 0.1060] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 100.00%</span><span class="micro">literal 3-px overlap with GEMSDOE25, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE25</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/04333cc3fbf7486c56e0324fd07aee684be614dc/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a>
+<span class="micro">pinned 04333cc3fb · SHA-256 <span class="code">91eae1ca42ec845e…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>44,090 dots<span class="micro">NaN outside footprint, 0/1 inside</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2600</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0953</strong> [0.0850, 0.1061] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0967 [0.0842, 0.1095] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 100.00%</span><span class="micro">literal 3-px overlap with GEMSDOE24, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE27</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/b8dd298e10884afffa05436673ac73aeaf850b8c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a>
+<span class="micro">pinned b8dd298e10 · SHA-256 <span class="code">33003374335d84bf…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>61,328 dots<span class="micro">NaN outside footprint, 0/1 inside</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2449</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.1024</strong> [0.0915, 0.1135] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0927 [0.0809, 0.1054] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 98.02%</span><span class="micro">literal 3-px overlap with GEMSDOE24, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE28</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/ec1d501fd12c8dee9dc062726003639dec9382ff/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a>
+<span class="micro">pinned ec1d501fd1 · SHA-256 <span class="code">5556aa1438fd6737…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>37,660 dots<span class="micro">NaN outside footprint, 0/1 inside</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2710</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0943</strong> [0.0843, 0.1049] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0294 [0.0250, 0.0344] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 100.00%</span><span class="micro">literal 3-px overlap with GEMSDOE24, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE30</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3d5bec2af5f29291617f97c9e2dfe443be6f55c3/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a>
+<span class="micro">pinned 3d5bec2af5 · SHA-256 <span class="code">8cf893ead5667df2…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>44,090 dots<span class="micro">0/1 everywhere (no NaN outside)</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2600</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0953</strong> [0.0850, 0.1061] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0967 [0.0842, 0.1095] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 100.00%</span><span class="micro">literal 3-px overlap with GEMSDOE24, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE31</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/cf13282fcd86290f1539f0a86446c8ba7205a79b/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a>
+<span class="micro">pinned cf13282fcd · SHA-256 <span class="code">07b6db440535404b…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>40,199 dots<span class="micro">NaN outside footprint, 0/1 inside</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2708</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0963</strong> [0.0859, 0.1070] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0305 [0.0257, 0.0361] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 100.00%</span><span class="micro">literal 3-px overlap with GEMSDOE24, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE32</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a>
+<span class="micro">pinned 012e17b2a1 · SHA-256 <span class="code">c55bafc470054e82…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>37,654 dots<span class="micro">0/1 everywhere (no NaN outside)</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2778</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0961</strong> [0.0857, 0.1071] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0045 [0.0038, 0.0053] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 100.00%</span><span class="micro">literal 3-px overlap with GEMSDOE24, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE33</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f52533110fe62cd03e77f1228e9e5ecac412c463/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a>
+<span class="micro">pinned f52533110f · SHA-256 <span class="code">87f857d505e23247…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>41,865 dots<span class="micro">0/1 everywhere (no NaN outside)</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2632</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0968</strong> [0.0862, 0.1078] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0520 [0.0458, 0.0583] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 99.71%</span><span class="micro">literal 3-px overlap with GEMSDOE27, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr>
+<td><strong>GEMSDOE36</strong><br><a class="file-link" href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a>
+<span class="micro">pinned c9ad59ec6f · SHA-256 <span class="code">e15891020b9c5705…</span> · registry bytes match: yes · registry ref = README commit: NO</span></td>
+<td>38,854 dots<span class="micro">0/1 everywhere (no NaN outside)</span><span class="micro">format checks: all pass · values in [0,1]: yes</span></td>
+<td><span class="value">0.2750</span><span class="micro">USER-REPORTED / UNVERIFIED · no organizer receipt</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0974</strong> [0.0868, 0.1085] · n=62,703 withheld positives · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0046 [0.0039, 0.0053] · misaligned with the official masking rule (see IR-S6-02)</span></td>
+<td><span class="warning-text">NO · max 97.58%</span><span class="micro">literal 3-px overlap with GEMSDOE27, the most-overlapping other focus file</span></td>
+<td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file. Not a new submission.</span></td>
+</tr><tr class="row-new">
+<td><strong>S6-E1 (new, generated here)</strong><br><a class="file-link" href="evidence/experiments/s6-e1/gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif">gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif</a>
+<span class="micro">SHA-256 <span class="code">7bdf7a1afeeaef65…</span> · 412,630 bytes · local validator: PASS</span></td>
+<td>37,654 dots<span class="micro">NaN outside footprint (the official spec allows NaN/null outside bounds), 0/1 inside</span></td>
+<td>None reported<span class="micro">no leaderboard history</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0452</strong> [0.0328, 0.0584] · n=62,703 · best of the nine on this proxy is 0.1024 (GEMSDOE27)</span>
+<span class="micro">Catalogue hide-and-recover HOLDOUT-DTI: 0.0216 [0.0152, 0.0283]</span></td>
+<td><span class="ok-text">YES · max 0.00%</span><span class="micro">vs all nine focus files</span>
+<span class="warning-text">BUT 99.74% vs calibration lattice r13-lattice-s5 (rule: ≤70%)</span></td>
+<td><span class="tag">NEGATIVE · DO NOT SUBMIT</span><span class="micro">Research only. Below the random-placement null on the proxy (see controls). Blocked by the lattice rule.</span></td>
+</tr><tr class="row-new">
+<td><strong>S6-E2 (new, LiDAR step × coherence)</strong><br><a class="file-link" href="evidence/experiments/s6-e2/gemsdoekarage3-s6-lidar-step-coh-37654-20261029.tif">gemsdoekarage3-s6-lidar-step-coh-37654-20261029.tif</a>
+<span class="micro">SHA-256 <span class="code">0b11eae9fe6f1c4c…</span> · 400,064 bytes · local validator: PASS</span></td>
+<td>37,654 dots<span class="micro">NaN outside footprint, 0/1 inside</span></td>
+<td>None reported<span class="micro">no leaderboard history</span></td>
+<td>Not estimable for the leaderboard.<span class="micro">Local HOLDOUT-DTI (off-catalogue SGMC, raw): <strong>0.0990</strong> [0.0750, 0.1213] · n=62,703 · GEMSDOE32-SGMC-CAL-v3.0</span>
+<span class="micro">In focus band on the point estimate, but the CI is wide. Catalogue hide-and-recover: 0.0184 [0.0135, 0.0233] (misaligned, IR-S6-02). Canary AUC 0.709 (threshold 0.90).</span></td>
+<td><span class="ok-text">YES · max 0.00%</span><span class="micro">vs all nine focus files</span>
+<span class="warning-text">BUT 99.88% vs calibration lattice (rule: ≤70%)</span></td>
+<td><span class="tag">DUPLICATE_STOP · DO NOT SUBMIT</span><span class="micro">Lattice overlap above 70% stops it under the protocol. Its proxy number is logged for the record and is not used to advance it. Its inputs are not new (see the hypotheses doc).</span></td>
+</tr>
+</tbody></table></div>
+<p class="table-note"><strong>Estimated score</strong> means a local HOLDOUT-DTI with a 95% spatial cluster-bootstrap CI. The DTI uses the official α=0.2, β=0.8 and the 300 m triangular kernel. The off-catalogue reference is USGS SGMC, not the organizer's hidden labels. Local proxies rank the nine sites inside a narrow band (0.0943–0.1024 on the off-catalogue proxy) that does not match the reported spread (0.2449–0.2778). <strong>An estimate is therefore not a leaderboard forecast.</strong></p>
+</section>
+
+<section class="section" aria-labelledby="controls-title"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Controls for the proxy</div><h2 id="controls-title">What chance looks like on the same proxy</h2></div>
+<p>Before any candidate is compared with the focus band, its score must beat a random-placement null. The null places the same 37,654 binary dots uniformly in the footprint (known-fault pixels excluded) and is scored by the same evaluator.</p></div>
+<div class="cards">
+<article class="card"><span class="number">0</span><h3>Random null</h3><p>Five random draws score 0.0693–0.0732 (mean 0.0710) on the off-catalogue SGMC proxy, with per-draw 95% CIs in <code>evidence/control-random-null-sgmc.json</code>. S6-E1 (0.0452) is below that. S6-E2 (0.0990) is about 0.03 above it, but its CI lower bound (0.0750) sits just above the top of the null range (0.0732).</p></article>
+<article class="card"><span class="number">1</span><h3>Focus band</h3><p>The nine focus files span 0.0943–0.1024 on the same proxy, so the focus band sits about 0.023–0.031 above the null mean.</p></article>
+<article class="card"><span class="number">2</span><h3>Leakage and mimic checks</h3><p>S6-E2 uses one LiDAR-derived feature. Its canary AUC is 0.709 against the SGMC truth (threshold 0.90). That passes, but it is high enough that the proxy may reward LiDAR-visible structure in general. Road control: 8.25% of S6-E2 dots lie within 100 m of a mapped road, against 16.20% of the footprint.</p></article>
+</div></div></section>
+
+<section class="section soft" aria-labelledby="why-title"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Why GEMSDOE32 led the nine</div><h2 id="why-title">Mechanism, checked pixel by pixel</h2></div></div>
+<div class="cards">
+<article class="card"><span class="number">1</span><h3>Nested, not independent</h3><p>Exact pixel tests: GEMSDOE32 ⊂ GEMSDOE31 = True; GEMSDOE31 ⊂ GEMSDOE25 = True; GEMSDOE32 ⊂ GEMSDOE36 = True; GEMSDOE25 and GEMSDOE30 have identical dot masks = True. GEMSDOE32 is GEMSDOE31 with 2,545 dots removed.</p></article>
+<article class="card"><span class="number">2</span><h3>The removed dots sit on known faults</h3><p>All 2,545 dots removed from GEMSDOE31 to make GEMSDOE32 lie within 2.0 px of a visible catalogue fault (<code>labels.tif</code>). Official scoring masks known faults (DrivenData staff, 16 Sep). Removing a dot lowers FP_w by that dot's own non-negative term. It can also raise FN_w if the dot was the nearest hit for an unmasked truth point within 300 m, and hidden labels cannot be checked locally. The reported step 0.2708 → 0.2778 is consistent with a net gain; it is not verified.</p></article>
+<article class="card"><span class="number">3</span><h3>Fewest dots of the nine</h3><p>GEMSDOE32 has 37,654 dots, the lowest of the nine (next lowest: GEMSDOE28 at 37,660). Removing dots can only reduce FP_w if the removed dots carried no TP_w, and the reported ordering is consistent with that. Recall at the official metric is not computable locally.</p></article>
+</div></div></section>
+
+<section class="section" aria-labelledby="lattice-title"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Why the uniqueness rule blocks every dot file</div><h2 id="lattice-title">The calibration lattice covers the footprint</h2></div></div>
+<div class="cards">
+<article class="card"><span class="number">A</span><h3>206,895 lattice dots</h3><p>Registry raster <code>r13-lattice-s5</code> (<code>scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif</code>, SHA-256 <code>b4570b406efe…</code>). It lies within 3 px of 99.87% of the footprint. Only <strong>6,649</strong> footprint pixels lie outside its reach.</p></article>
+<article class="card"><span class="number">B</span><h3>Pigeonhole bound</h3><p>Each hole pixel can hold at most one dot, so at most 6,649 dots of any N-dot file can fall outside the lattice's reach. Overlap is therefore at least 1 − 6,649/N, which exceeds 70% once N ≥ <strong>22,164</strong>. Every focus file overlaps the lattice by 99.9% or more.</p></article>
+<article class="card"><span class="number">C</span><h3>Consequence</h3><p>Under the literal rule you set (no exemptions, including dense or synthetic lattices) no dot file of this size can pass. We have not waived the rule, and this page does not propose a way around it.</p></article>
+</div></div></section>
+
+<section class="section soft" aria-labelledby="decide-title"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Decisions for you</div><h2 id="decide-title">What we need from you</h2></div></div>
+<ol>
+<li><strong>Uniqueness rule.</strong> Your standing instruction is literal, with no exemptions for dense or synthetic lattices. Under that instruction no dot file of this size passes, so the honest answer today is: upload nothing. If you want an upload path, you must first change that instruction in writing. We will not change the rule ourselves.</li>
+<li><strong>Score evidence.</strong> A real score needs an ORGANIZER-CONFIRMED receipt. Each upload uses a one-way weekly slot, and local estimates cannot separate the nine files.</li>
+<li><strong>Leaderboard number.</strong> Confirm the current public #1 by hand (IR-S6-07). The prompt gives 0.4413 and 0.3195, the README gives 0.4544, and IR-K3-03 records 0.4437 from a 26 Oct fetch.</li>
+</ol>
+<p><strong>Main's H1 file (seismic-gravity basin, 1,924 dots):</strong> 0.0% of its dots lie within 3 px of the lattice; the nearest is 3.16 px and the median 3.61 px. It passes the literal lattice test only because every dot sits just outside the 3-px radius, which we flag as a possible design around the rule. Its holdout metrics are null (HOLDOUT-DTI not computed), the registry check covers 14 of 113 repositories, and its card says HOLD-DO-NOT-SUBMIT. It is <strong>not cleared</strong>. Evidence: <code>evidence/h1-lattice-check-20261029.json</code>.</p>
+<p><strong>Recommendation:</strong> upload nothing from this page. Both new candidates are DUPLICATE_STOP under the lattice rule. The next hypothesis to test is H4 in <code>docs/research/session6-hypotheses-20261029.md</code>, after a precondition check. That work does not change decision 1.</p>
+</div></section>
+
+<section class="section" aria-labelledby="irr-title"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Irregularities flagged for review</div><h2 id="irr-title">Register entries (registry/irregularities.json)</h2></div></div>
+<ul>
+<li><strong>IR-S6-01</strong> Reported focus-file scores are USER-REPORTED with no organizer receipt. All nine files pass the local [0,1] check (<code>values_in_0_1_where_finite</code>), so the "Predicted values must be in range [0, 1]" error is not caused by out-of-range values. Its real cause is unverified; NaN outside the footprint is allowed by the official spec, so it is not a confirmed cause either. See IR-K3-NODATA-RANGE01-01.</li>
+<li><strong>IR-S6-02</strong> The catalogue hide-and-recover holdout is misaligned with the official target. Official scoring masks known faults, but this proxy rewards recovering them. It ranks GEMSDOE32 at 0.0045 against 0.2778 reported, so it is not used to rank files.</li>
+<li><strong>IR-S6-03</strong> GEMSDOE25 and GEMSDOE30 have identical dot masks, though their files differ in bytes. Under the literal rule they are duplicates. GEMSDOE32 ⊂ GEMSDOE31 ⊂ GEMSDOE25 and GEMSDOE32 ⊂ GEMSDOE36 are also exact.</li>
+<li><strong>IR-S6-04</strong> For all nine files the registry ref differs from the commit in the README link (9 of 9 mismatched), although the bytes match. Check each link by hand.</li>
+<li><strong>IR-S6-05</strong> <code>labels.tif</code> and <code>existing_faults.tif</code> are byte-identical (SHA-256 <code>7ba308cc…</code>). The restored data therefore has no second, independent label layer.</li>
+<li><strong>IR-S6-06</strong> The registry inventory is not literal-complete (<code>literal_registry_complete: false</code>). Only 14 scored rasters are restored locally, so uniqueness is checked against the restored subset only.</li>
+<li><strong>IR-S6-07</strong> Conflicting leaderboard numbers: 0.4413 and 0.3195 (prompt), 0.4544 (README, 28 Oct), 0.4437 (IR-K3-03, a GEMSDOE28 fetch on 26 Oct). None is verified here.</li>
+<li><strong>IR-S6-08</strong> On sampled pixels GEMSDOE32 has Spearman ρ = 0.001058 against the lattice. Binary dot maps give near-zero rank correlation, so the 0.90 rank gate says little about them. The literal 3-px overlap gate is the one that bites.</li>
+<li><strong>IR-S6-09</strong> <code>src/gems32/holdout.py</code> sets <code>ESTIMATED_LB_HIDDEN_TRUTH_PX = 12691</code>, calibrated from a blind lattice score (0.0904) and another file, not from an organizer receipt. The calibrated SGMC number is not reported here; only the raw SGMC DTI is.</li>
+<li><strong>IR-S6-10</strong> The site build check was failing because the saved-byte audit covers only the retained TIFFs under <code>docs/</code>. S6-E1 is therefore kept under <code>evidence/experiments/</code>.</li>
+<li><strong>IR-S6-11</strong> Random placement with the same budget scores 0.0693–0.0732 on the SGMC proxy. Any proxy comparison that omits a random null overstates signal. S6-E1 scores below this null.</li>
+<li><strong>IR-S6-12</strong> Procedure deviation: S6-E2 was scored on the off-catalogue proxy before the duplicate check ran. The check (<code>scripts/dup_check_s6.py</code>) then logged DUPLICATE_STOP. The proxy number is disclosed and not used to advance the candidate.</li>
+</ul>
+<h3>Blockers recorded for S6-E1 (from its run card)</h3><ul><li>literal 3px overlap with registered calibration lattice r13-lattice-s5 = 99.7424% &gt; 70% (no non-hole-gaming dot set of N &gt;= ~22,164 can pass; see README)</li><li>registry inventory not literal-complete (registry/complete_registry_manifest.json literal_registry_complete=false)</li><li>no ORGANIZER-CONFIRMED receipt; leaderboard score not estimable</li><li>shared holdout template has open upstream defects (GEMSDOE32 issues #42, #60, #66)</li></ul>
+</div></section>
+
+<section class="section" aria-labelledby="src-title"><div class="container">
+<div class="section-head"><div><div class="eyebrow">Official sources (verified 2026-10-29)</div><h2 id="src-title">Links for manual review</h2></div></div>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page — metric (DTI, α=0.2, β=0.8, 300 m triangular kernel) and submission format (float32, [0,1], EPSG:32611, NaN/null outside bounds)</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS Prize Official Rules (NLR 96647, September 2026)</a></li>
+<li><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">DrivenData forum: known USGS/INGENIOUS faults are masked from scoring (staff reply 16 Sep)</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition page (leaderboard checked by hand, not scraped)</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Organizer reference solution</a></li>
+</ul>
+<p class="table-note">The owner prompt gives 0.4413 in one place and 0.3195 in another; the README records 0.4544 observed 2026-10-28. None is verified here; check the public board manually (see IR-S6-07).</p>
+</div></section>
+</div></main>
+<footer class="footer"><div class="container footer-inner"><span>GEMS Fieldnotes · Submission desk · generated from evidence JSON</span><span><a href="index.html">Overview</a></span></div></footer>
+</body></html>

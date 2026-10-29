@@ -1,0 +1,204 @@
+{
+  "protocol": {
+    "overlap_stop": 0.7,
+    "rank_stop": 0.9,
+    "rule": "literal 3-px overlap, dots of candidate within 3 px of any dot of the reference raster"
+  },
+  "n_reference_rasters": 14,
+  "candidates": {
+    "S6-E1": {
+      "file": "evidence/experiments/s6-e1/gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif",
+      "dots": 37654,
+      "worst_reference": {
+        "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "reference_dots": 206895,
+        "literal_overlap_3px": 0.997424,
+        "spearman_sampled": 0.001156
+      },
+      "verdict": "DUPLICATE_STOP",
+      "references": [
+        {
+          "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+          "reference_dots": 206895,
+          "literal_overlap_3px": 0.997424,
+          "spearman_sampled": 0.001156
+        },
+        {
+          "reference": "8GEMSDOE_Hedge-v2_submission.tif",
+          "reference_dots": 227507,
+          "literal_overlap_3px": 0.394035,
+          "spearman_sampled": 0.000233
+        },
+        {
+          "reference": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+          "reference_dots": 174232,
+          "literal_overlap_3px": 0.264514,
+          "spearman_sampled": -0.001993
+        },
+        {
+          "reference": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+          "reference_dots": 69281,
+          "literal_overlap_3px": 0.285361,
+          "spearman_sampled": -0.00114
+        },
+        {
+          "reference": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+          "reference_dots": 123939,
+          "literal_overlap_3px": 0.079859,
+          "spearman_sampled": -0.01256
+        },
+        {
+          "reference": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+          "reference_dots": 123779,
+          "literal_overlap_3px": 0.04783,
+          "spearman_sampled": -0.013329
+        },
+        {
+          "reference": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+          "reference_dots": 121131,
+          "literal_overlap_3px": 0.017661,
+          "spearman_sampled": -0.013496
+        },
+        {
+          "reference": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+          "reference_dots": 60069,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.009456
+        },
+        {
+          "reference": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+          "reference_dots": 44090,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.007981
+        },
+        {
+          "reference": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+          "reference_dots": 44090,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.007981
+        },
+        {
+          "reference": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+          "reference_dots": 61328,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.009558
+        },
+        {
+          "reference": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+          "reference_dots": 40199,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.007574
+        },
+        {
+          "reference": "gemsdoe-ens12-adopted-7f00890a.tif",
+          "reference_dots": 172974,
+          "literal_overlap_3px": 0.367132,
+          "spearman_sampled": 0.005346
+        },
+        {
+          "reference": "gemsdoe9-PLACEHOLDER-2314b599.tif",
+          "reference_dots": 343816,
+          "literal_overlap_3px": 0.067377,
+          "spearman_sampled": 0.003387
+        }
+      ]
+    },
+    "S6-E2": {
+      "file": "evidence/experiments/s6-e2/gemsdoekarage3-s6-lidar-step-coh-37654-20261029.tif",
+      "dots": 37654,
+      "worst_reference": {
+        "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "reference_dots": 206895,
+        "literal_overlap_3px": 0.998778,
+        "spearman_sampled": -0.001138
+      },
+      "verdict": "DUPLICATE_STOP",
+      "references": [
+        {
+          "reference": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+          "reference_dots": 206895,
+          "literal_overlap_3px": 0.998778,
+          "spearman_sampled": -0.001138
+        },
+        {
+          "reference": "8GEMSDOE_Hedge-v2_submission.tif",
+          "reference_dots": 227507,
+          "literal_overlap_3px": 0.228661,
+          "spearman_sampled": -0.008486
+        },
+        {
+          "reference": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+          "reference_dots": 174232,
+          "literal_overlap_3px": 0.173899,
+          "spearman_sampled": -0.005511
+        },
+        {
+          "reference": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+          "reference_dots": 69281,
+          "literal_overlap_3px": 0.170712,
+          "spearman_sampled": -0.004638
+        },
+        {
+          "reference": "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+          "reference_dots": 123939,
+          "literal_overlap_3px": 0.092792,
+          "spearman_sampled": -0.012545
+        },
+        {
+          "reference": "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+          "reference_dots": 123779,
+          "literal_overlap_3px": 0.049344,
+          "spearman_sampled": -0.012937
+        },
+        {
+          "reference": "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+          "reference_dots": 121131,
+          "literal_overlap_3px": 0.015138,
+          "spearman_sampled": -0.013483
+        },
+        {
+          "reference": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+          "reference_dots": 60069,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.009446
+        },
+        {
+          "reference": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+          "reference_dots": 44090,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.007973
+        },
+        {
+          "reference": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+          "reference_dots": 44090,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.007973
+        },
+        {
+          "reference": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+          "reference_dots": 61328,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.009548
+        },
+        {
+          "reference": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+          "reference_dots": 40199,
+          "literal_overlap_3px": 0.0,
+          "spearman_sampled": -0.007567
+        },
+        {
+          "reference": "gemsdoe-ens12-adopted-7f00890a.tif",
+          "reference_dots": 172974,
+          "literal_overlap_3px": 0.191454,
+          "spearman_sampled": -0.004598
+        },
+        {
+          "reference": "gemsdoe9-PLACEHOLDER-2314b599.tif",
+          "reference_dots": 343816,
+          "literal_overlap_3px": 0.057657,
+          "spearman_sampled": 0.001686
+        }
+      ]
+    }
+  }
+}

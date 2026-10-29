@@ -9,7 +9,7 @@ import pytest
 from scripts import build_run_card, build_site
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ["index.html", "executive-summary.html", "research.html", "sources.html"]
+PAGES = ["index.html", "executive-summary.html", "submission-desk.html", "research.html", "sources.html"]
 
 
 class Inspect(HTMLParser):

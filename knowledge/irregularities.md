@@ -224,3 +224,63 @@ new candidate is automatically checked against our own archived `CRSB-GUB`, `K3-
 TIFFs (`0` fetch failures across 113 repos; `H-K3D` `EXP-2` overlaps `H-K3C` by `57.18% <= 70%` and max discrete
 `<= 100k`-dot peer detector by `62.37% <= 70%`).
 
+## IR-S6-01 — reported score unverified (severity high)
+Location: `scripts/focus_site_audit.py; evidence/focus-site-audit-20261029.json`. Session 6, verified 2026-10-29.
+Focus-file scores 0.2449-0.2778 are user-reported with no organizer receipt. All nine files pass the local [0,1] check, so the 'Predicted values must be in range [0, 1]' error is not caused by out-of-range values. NaN outside the footprint is allowed by the official spec, so it is not a confirmed cause. Real cause unverified.
+Disposition: Reported as USER-REPORTED. Error cause left open; see IR-K3-NODATA-RANGE01-01.
+
+## IR-S6-02 — proxy misaligned (severity high)
+Location: `src/karage3/holdout.py; evidence/focus-site-audit-20261029.json`. Session 6, verified 2026-10-29.
+Catalogue hide-and-recover holdout rewards recovering known faults, which official scoring masks. It ranks GEMSDOE32 at 0.0045 against 0.2778 reported.
+Disposition: Not used to rank files. Reported for transparency only.
+
+## IR-S6-03 — duplicate files (severity medium)
+Location: `evidence/focus-site-audit-20261029.json (exact_set_relations)`. Session 6, verified 2026-10-29.
+GEMSDOE25 and GEMSDOE30 have identical dot masks with different file bytes. Exact nesting: GEMSDOE32 subset of GEMSDOE31 subset of GEMSDOE25; GEMSDOE32 subset of GEMSDOE36.
+Disposition: Treated as duplicates under the literal uniqueness rule.
+
+## IR-S6-04 — registry ref mismatch (severity medium)
+Location: `registry/focus9_registry.json; README`. Session 6, verified 2026-10-29.
+For all nine focus files the registry ref differs from the commit pinned in the README link. Bytes match the registry SHA-256.
+Disposition: Links checked by hand against the registry SHA-256; each README link must be re-checked.
+
+## IR-S6-05 — identical label layers (severity low)
+Location: `labels.tif; existing_faults.tif`. Session 6, verified 2026-10-29.
+labels.tif and existing_faults.tif are byte-identical (SHA-256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093). The restored data has no independent second label layer.
+Disposition: Flagged. No assumption that the two differ.
+
+## IR-S6-06 — registry incomplete (severity high)
+Location: `registry/complete_registry_manifest.json`. Session 6, verified 2026-10-29.
+Registry inventory is not literal-complete (literal_registry_complete=false). Only 14 scored rasters are restored locally.
+Disposition: Uniqueness claimed only against the restored subset and the nine focus files.
+
+## IR-S6-07 — leaderboard conflict (severity high)
+Location: `owner prompt; README; knowledge/irregularities.md IR-K3-03`. Session 6, verified 2026-10-29.
+Conflicting leaderboard figures: 0.4413 and 0.3195 (prompt), 0.4544 (README, 28 Oct), 0.4437 (IR-K3-03, GEMSDOE28 fetch 26 Oct). None verified here.
+Disposition: Confirm by hand on the public board before any slot decision.
+
+## IR-S6-08 — rank gate uninformative (severity low)
+Location: `evidence/focus-site-audit-20261029.json (spearman_vs_lattice_sampled)`. Session 6, verified 2026-10-29.
+On sampled pixels GEMSDOE32 has Spearman rho 0.001058 against the lattice. Binary dot maps give near-zero rank correlation, so the 0.90 rank gate is not informative for them. The literal 3-px overlap gate is the one that binds.
+Disposition: Rank gate reported but not relied on.
+
+## IR-S6-09 — calibration constant provenance (severity medium)
+Location: `src/gems32/holdout.py:26`. Session 6, verified 2026-10-29.
+ESTIMATED_LB_HIDDEN_TRUTH_PX = 12691 is calibrated from a blind lattice score (0.0904) and another file, not from an organizer receipt. Calibrated SGMC numbers depend on it.
+Disposition: Calibrated SGMC numbers not reported. Raw SGMC DTI only.
+
+## IR-S6-10 — saved byte audit collision (severity medium)
+Location: `scripts/build_site.py; evidence/saved-tiffs-literal-20261028.json`. Session 6, verified 2026-10-29.
+A new TIFF placed under docs/downloads made the saved-byte audit stale (build_site --check failed). The S6 candidate was moved out of docs/.
+Disposition: Candidates live under evidence/experiments/; build_site --check passes.
+
+## IR-S6-11 — missing random null (severity high)
+Location: `evidence/control-random-null-sgmc.json`. Session 6, verified 2026-10-29.
+Random placement with the same budget scores 0.0693-0.0732 on the SGMC proxy. S6-E1 (0.0452) is below this null. Proxy comparisons without a random null overstate signal.
+Disposition: Random null added as a required control for every proxy comparison.
+
+## IR-S6-12 — protocol deviation: proxy scored before duplicate check (severity high)
+Location: `scripts/exp_s6_lidar_lineament.py`; `scripts/dup_check_s6.py`; `evidence/dup-check-s6.json`. Session 6, verified 2026-10-29.
+S6-E2 was scored on the off-catalogue proxy before the duplicate check ran. The check then logged DUPLICATE_STOP (literal 3-px overlap with the calibration lattice 99.88% > 70%). step_max and coh100 are also not new inputs (ccl.py, hk3d_tgsf.py, surfaces_k3.py).
+Disposition: Disclosed. Proxy number recorded for the record only. Candidate does not advance. Future experiments run the duplicate check first.
+

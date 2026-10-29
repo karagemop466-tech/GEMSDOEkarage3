@@ -1,0 +1,102 @@
+{
+  "experiment": "S6-E1",
+  "lane": "off-consensus label-free magnetic ridge (tmi_hg NMS), exclusion of nine focus-file 3-px neighbourhoods",
+  "hypothesis": "Off-consensus ridge crests of tmi_hg carry off-catalogue fault signal not sampled by the nine near-duplicate focus submissions.",
+  "mechanism": "Non-maximum suppression of tmi_hg along its gradient picks magnetic-gradient crests; crests remote from the focus cluster add recall where the focus cluster has none.",
+  "named_non_fault_mimic": "Magnetic contrasts from intrusions, basin-margin volcanics, and cultural metal (not faults) produce the same tmi_hg crests.",
+  "ranking_rule": "top-N by tmi_hg among ridge pixels outside focus 3-px neighbourhoods and off known-fault pixels",
+  "n_dots": 37654,
+  "ridge_pixels_total": 289463,
+  "ridge_pixels_available_after_exclusions": 224489,
+  "budget_limited_by_availability": false,
+  "raster": {
+    "file": "evidence/experiments/s6-e1/gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif",
+    "sha256": "7bdf7a1afeeaef6567509bdb328adf895ad6c1846192b6b3fd067666b45dfdff",
+    "bytes": 412630,
+    "nodata": "NaN outside footprint; 0 inside; 1 = dot"
+  },
+  "validator": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "float32": true,
+    "nan_inside_footprint": 0,
+    "values_in_0_1_inside": true,
+    "nonzero_outside_footprint": 0,
+    "dots": 37654,
+    "validator_pass": true
+  },
+  "uniqueness_vs_focus_nine_literal_3px_max": 0.0,
+  "uniqueness_vs_focus_nine_by_site": {
+    "GEMSDOE24": 0.0,
+    "GEMSDOE25": 0.0,
+    "GEMSDOE27": 0.0,
+    "GEMSDOE28": 0.0,
+    "GEMSDOE30": 0.0,
+    "GEMSDOE31": 0.0,
+    "GEMSDOE32": 0.0,
+    "GEMSDOE33": 0.0,
+    "GEMSDOE36": 0.0
+  },
+  "uniqueness_vs_r13_lattice_literal_3px": 0.997424,
+  "lattice_footprint_coverage_3px": 0.998713,
+  "lattice_rule_pass_70pct": false,
+  "holdout_sgmc_offcatalogue_raw": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "withheld_positives": 62703,
+    "dti": 0.045151,
+    "ci95": [
+      0.032841,
+      0.058384
+    ],
+    "same_evaluator_best_of_nine": {
+      "site": "GEMSDOE27",
+      "dti": 0.102422
+    },
+    "note": "Off-catalogue proxy; the nine focus files score 0.094-0.102 on it. Not the hidden leaderboard."
+  },
+  "holdout_hide_and_recover_catalogue": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "dti": 0.021649,
+    "ci95": [
+      0.015213,
+      0.028284
+    ],
+    "note": "Catalogue-recovery proxy. Official scoring masks known catalogue faults, so this proxy is misaligned with the target; reported for transparency only."
+  },
+  "feature_auc_canary": {
+    "tmi_hg_alone_auc_sgmc": 0.490479,
+    "max_oriented_auc": 0.509521,
+    "threshold": 0.9,
+    "pass": true,
+    "n_pos": 62703,
+    "n_neg": 250812
+  },
+  "official_masking_source": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+  "official_metric_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+  "leaderboard_estimate": "NOT ESTIMABLE \u2014 no ORGANIZER-CONFIRMED receipt and no validated proxy that reproduces the reported focus-site ranking",
+  "verdict": "negative; DUPLICATE_STOP (lattice overlap > 70%). Also below the random-placement null on the proxy.",
+  "ok_to_submit": false,
+  "submission_name": "gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif",
+  "note": "Off-consensus tmi_hg ridge, 37,654 dots, 0 focus-site 3px overlap; blocked by lattice rule.",
+  "blockers": [
+    "literal 3px overlap with registered calibration lattice r13-lattice-s5 = 99.7424% > 70% (no non-hole-gaming dot set of N >= ~22,164 can pass; see README)",
+    "registry inventory not literal-complete (registry/complete_registry_manifest.json literal_registry_complete=false)",
+    "no ORGANIZER-CONFIRMED receipt; leaderboard score not estimable",
+    "shared holdout template has open upstream defects (GEMSDOE32 issues #42, #60, #66)"
+  ],
+  "duplicate_check": {
+    "file": "evidence/dup-check-s6.json",
+    "verdict": "DUPLICATE_STOP",
+    "trigger": "literal 3-px overlap with registered calibration lattice r13-lattice-s5 > 70%"
+  },
+  "novelty": "Partly prior art: an NMS ridge family exists in src/gems32/crsb_gub.py (crsb_gub_unsup_ridge, 4-azimuth NMS). tmi_hg is the input this run added.",
+  "random_null_reference": {
+    "file": "evidence/control-random-null-sgmc.json",
+    "mean": 0.070965
+  }
+}
