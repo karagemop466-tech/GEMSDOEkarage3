@@ -2,6 +2,25 @@
 
 ## Start here (2026-10-29): nine-site summary and submission status
 
+### Session 6 (2026-10-29) — correction and verification (read first)
+
+- **Answer to "download and submit?": NO.** No file is cleared. The front page, executive summary and how-to-submit page had shown a file named `karage3-unique-offcat-…tif` as **"READY TO DOWNLOAD"**. That was wrong and has been corrected. The file is quarantined at [docs/quarantine/karage3-unique-offcat/](docs/quarantine/karage3-unique-offcat/NOT-CLEARED.md) with the measured reasons.
+- **Measured 2026-10-29** against the pinned lattice witness `13GEMSDOE r13-lattice-s5` (fetched from `codeload.github.com/buffedlizard55-lab/13GEMSDOE/tar.gz/92ee6f074323f161eed837b80ec3ee5b662e26f5`; file SHA-256 `b4570b40…` matches the pin; 206,895 dots):
+  - the quarantined 12,000-dot file has **4,517 dots inside the 5,167,373-cell footprint and 7,483 outside it**;
+  - in-footprint overlap within 3 px is **99.89%**, so the reported "0.00%" and "44.6%" labels were wrong;
+  - its 37.65% all-dot figure is low only because most dots lie outside the footprint, where the lattice has none. That placement is not a geological signal, and the project does not submit it;
+  - it has no generator script in the repo, so it is not reproducible.
+- **Pages regenerated from the generator** (`scripts/build_site.py`, `build_preflight_site.py`, `build_review_status.py`, `build_release_review.py`, `build_focus9.py`, `build_run_card.py`). `index.html` and `executive-summary.html` now say *NOT APPROVED / DO NOT SUBMIT*. `docs/how-to-submit.html` was a legacy page no generator writes; it is rewritten as a truthful guide with no upload step for any current file.
+- **Saved-byte audit re-run** (`scripts/audit_saved_tiffs.py --fetch`): now covers all 11 TIFFs under `docs/`. Every one has in-footprint overlap above 70% against the pinned lattice (range 99.34%–99.92%).
+- **Tests:** `pytest` 196 passed, 1 skipped (was 11 failing before this session). `unittest discover` OK; `node --test tests/test_browser_feed.js` 2/2; `build_site.py --check` OK; `verify_numbers.py` 24/24. `check_readiness.py` exits 2 (blocked), as documented.
+- **Public leaderboard, fetched 2026-10-29:** #1 `xiaofanhu` **0.4544**, #2 `cfld__` **0.3916**, #3 `Batik Shirt Brothers` 0.3911 ([leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). The figures 0.4413 and 0.3195 from the request do not appear on this page. Site-level scores such as 0.2778 (GEMSDOE32) are **USER-REPORTED / UNVERIFIED**.
+- **Not done this session, and why:** no new candidate and no 3–5 hypothesis slate beyond the existing ones. Every in-footprint dot candidate overlaps the lattice by more than 82% at 37,654 dots (or 99%+ at the budgets tested). The cached feature stack for a holdout run is absent from this checkout, so nothing could be validated. Any new idea must first pass the gate and holdout described below.
+- **Irregularities for review:**
+  1. `docs/readiness.json` now reports `core_mirror_data: false` because `.cache/gems_data` is absent in this checkout. The committed `true` came from another checkout (the Session 5 irregularity still applies).
+  2. The `karage3-unique-offcat` files had no generator script; they were committed without provenance.
+  3. The shallow clone has one commit, so the pre-edit front page cannot be recovered from git history. The generator output is the reference now.
+  4. `docs/data/current-run.json` binds the saved-byte receipt hash; it was refreshed with `build_run_card.py` after the audit re-run.
+
 - **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
 - **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
 - **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
