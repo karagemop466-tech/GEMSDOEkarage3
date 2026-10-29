@@ -7,6 +7,9 @@ if __package__:
     from .audit_historical_rasters import ROOT, SNAPSHOT, sha256
 else:
     from audit_historical_rasters import ROOT, SNAPSHOT, sha256
+import sys as _sys
+_sys.path.insert(0, str(ROOT / 'src'))
+from gems32.paths import data_dir  # noqa: E402
 
 
 def readiness():
@@ -26,7 +29,9 @@ def readiness():
     for r in core:
         if r['group'] != 'core':
             continue
-        path = ROOT / 'data' / r['dest']
+        # Look where restore_data.py writes (paths.data_dir()), then the legacy data/ folder.
+        candidates = [data_dir() / r['dest'], ROOT / 'data' / r['dest']]
+        path = next((c for c in candidates if c.is_file()), candidates[0])
         core_checks.append(dict(id=r['id'], present_and_hash_verified=path.is_file() and sha256(path) == r['sha256']))
     checks = [
         dict(id='canonical_source_snapshot', passed=source_ok,
