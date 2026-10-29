@@ -107,13 +107,7 @@ def render() -> dict[Path, str]:
     from build_k3c_site import apply_root_decision, apply_guide_decision  # current lane decision (docs/k3c/run-card.json)
     main = apply_root_decision(main)
     guide = apply_guide_decision(guide)
-    # Submission desk: the top-of-site executive summary (generated from evidence JSON).
-    from build_submission_desk import desk_banner, render as render_desk  # noqa: E402
-    banner = desk_banner()
-    main = main.replace('<main id="main"', banner + '\n<main id="main"', 1)
-    guide = guide.replace('<main id="main"', banner + '\n<main id="main"', 1)
-    return {ROOT / "index.html": main, ROOT / "executive-summary.html": guide,
-            ROOT / "submission-desk.html": render_desk()}
+    return {ROOT / "index.html": main, ROOT / "executive-summary.html": guide}
 
 
 def main() -> int:

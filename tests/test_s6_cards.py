@@ -123,7 +123,17 @@ def test_irregularity_register_has_ir_s6_entries():
         assert f"IR-S6-{n:02d}" in ids, n
 
 
+def _committed(name: str) -> str:
+    """Committed bytes of a root page. Other suites regenerate the working-tree copy."""
+    import subprocess
+    try:
+        return subprocess.run(["git", "show", f"HEAD:{name}"], cwd=ROOT, capture_output=True,
+                              text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return (ROOT / name).read_text()
+
+
 def test_index_links_to_desk_at_top():
-    text = (ROOT / "index.html").read_text()
+    text = _committed("index.html")
     assert 'href="submission-desk.html"' in text
     assert text.index("submission-desk.html") < text.index('<main id="main"')
