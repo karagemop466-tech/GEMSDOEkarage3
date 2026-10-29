@@ -1,5 +1,37 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+**Latest repository review (2026-10-29):** [current decision, artifact re-audit, three-pass verification and JSON card](docs/review-2026-10-29-session.md). The earlier [pre-merge review](docs/review-2026-10-29.md) is retained as history and is superseded where its candidate-ready wording conflicts. Release decision: **DO NOT SUBMIT**.
+
+## SUBMISSION STATUS (read first, updated 2026-10-29)
+
+**Answer: NO file in this repository is currently cleared to download and submit.** Existing archived candidates fail measured overlap or lack complete evidence. A newly inherited 12,000-dot artifact was explicitly constructed by selecting lattice-uncovered cells; this is prohibited by the no-hole-gaming protocol and it has no complete-registry, surface-correlation or holdout validation. It has been removed from the public download area and retained only as rejected forensic evidence.
+
+| Artifact (research/rejection paths are not downloads) | Score evidence | Uniqueness evidence | OK to download and submit? |
+|---|---|---|---|
+| `docs/hk3d/downloads/gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif` (SHA-256 `c12a12b3…afde83e`, 37,654 dots) — best current candidate | **No leaderboard estimate.** Holdout only: `HOLDOUT-DTI 0.094220` `[0.083462, 0.103783]` (24-cell, n=66,904 withheld positives, evaluator GEMSDOE32-HIDE-RECOVER-v3.1-24cell). Same-holdout champion rule scores `0.100798`, so this candidate **does not beat the baseline**. | **NO** — 99.3547% of dots within 3 px of the calibration lattice `r13-lattice-s5` (`evidence/lattice-feasibility-20261029.json`) | **NO** |
+| `docs/k3c/downloads/gemsdoekarage3-h-k3c-csst-bghf-24cell-d31-b37654-20261028T175133Z-3586582f-zeros.tif` (archive) | Historical holdout `0.111044` `[0.098990, 0.122727]` (superseded, not a leaderboard estimate) | **NO** — 99.3520% vs. the same lattice | **NO** |
+| Nine historical GEMSDOE site files (`docs/**/*.tif`, research only) | USER-REPORTED scores only; no estimate (see the [nine-site table](index.html#scorecard)) | **NO** — all nine fail vs. the lattice (`evidence/saved-tiffs-literal-20261028.json`) | **NO** |
+| Inherited `karage3-unique-offcat` 12,000-dot artifact (`evidence/rejected-lattice-hole-candidate/`; rejected) | No HOLDOUT-DTI; no live-score estimate | **NOT CLEARED** — metadata describes intentional selection of lattice-uncovered cells; prohibited by protocol. Full registry and pre-placement surface checks absent. | **NO — DO NOT SUBMIT** |
+
+**What the pinned lattice witness establishes — and what it does not:**
+- The lattice (`13GEMSDOE` `r13-lattice-s5`, `206,895` dots, SHA-256 `b4570b40…`) lies within 3 px of **99.87%** of the 5,167,373-cell footprint, according to the dated feasibility audit.
+- That audit counted 6,649 uncovered footprint cells; 6,580 (98.96%) fall in a three-cell boundary ring. Under the literal 70% maximum, at least 30% of any candidate's dots must be outside this witness's 3-pixel buffer to pass this one overlap test.
+- This is a severe uniqueness constraint, **not proof that no scientifically generated raster could ever pass**. Selecting lattice holes/boundary cells to obtain a low overlap is explicitly prohibited. The inherited 12,000-dot artifact is rejected for that construction and was not evaluated as a geological model.
+- Scores are labelled by evidence class. The inherited artifact has no HOLDOUT-DTI, no ORGANIZER-CONFIRMED receipt, and no defensible leaderboard estimate. Historical focus-site values remain USER-REPORTED / UNVERIFIED.
+
+**Leaderboard note:** The repository contains dated public snapshots and the prompt contains conflicting values (`0.3195` and `0.4413`). The latest saved public-page observation in this review is historical, not refreshed now and not a score receipt for this team. Check the [official live leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) for the current public rank; no new-file score estimate is available.
+
+**No rule waiver is assumed or requested.** Keep the literal uniqueness rule and the anti-hole-gaming requirement. Until a named method lane, complete current registry, protocol-conforming holdout and all gates exist, the verdict remains `negative` and `ok_to_submit = false`.
+
+### Submission readiness checks (all run locally, none authorises a slot)
+
+- `scripts/check_readiness.py` — core files now read from `.cache/gems_data` (`paths.data_dir()`); previously it looked only in `data/`, so restored files were reported missing. Fixed 2026-10-29.
+- `scripts/check_submission.py` on the H-K3D file: format `[PASSED]` (float32, `EPSG:32611`, `3730×3292`, values in `[0.0, 1.0]`, 0 NaN), but **`outside_template_null_pass: false`** — the file writes `0.0` outside the footprint where the template uses NaN. Whether the portal accepts `0.0` outside is **unknown** (organizer acceptance is not verified). Flagged for review.
+- Hold-out re-run: **not reproduced in this session** — the cached feature stack `.cache/gems_work/feature_stack.npy` is absent. Holdout numbers above are copied from the repo's run cards, not recomputed.
+
+[**Submission status evidence (lattice feasibility)**](evidence/lattice-feasibility-20261029.json) ·
+[Feasibility script](scripts/lattice_feasibility.py)
+
 ## Decision: **DO NOT SUBMIT** (`ok_to_submit = False`, `verdict = "negative"`)
 
 There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `H-K3D (TGSF-BVCD)`** candidate (`gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif`, SHA-256 `c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e`, literal lattice overlap **99.3547%**) and the retained Session 4 **H-K3C** archive (`0d1461e8786d…`, literal lattice overlap **99.3520%**) are blocked by `scripts/promotion_gate.py` under the binding literal `<= 70%` 3-pixel overlap rule against the registered `206,895`-dot calibration lattice witness (`13GEMSDOE` `r13-lattice-s5`, SHA-256 `b4570b40…`). Local range (`[0.0, 1.0]` finite across all `12,279,160` cells, `nodata=None`) and grid checks (`EPSG:32611`, `3730 × 3292`) pass automatically without human intervention against the pinned mirror template; keep your weekly feedback slot unused.
@@ -183,7 +215,7 @@ approval. The former README narrative is available in Git history.
 3. **Upstream Shared-Template Issues (`GEMSDOE32@97597a066d1c`)**:
    - The 7 pinned shared files are kept byte-identical (`registry/shared_template_97597a.json`), while `src/karage3/holdout_v32_ref.py` provides non-forking diagnostic evaluation for `#41` (zero-truth FP conservation), `IR-K3-12` (`> 500 m` fragment censoring), and `#60` (`> 1.5 km` buffered holdout). Upstream issues `#41`, `#42`, `#60`, `#61`, and `#66` (plus binary-only writer restriction vs continuous `[0, 1]` portal spec) remain open on `buffedlizard55-lab/GEMSDOE32`.
 4. **Data & Score Provenance**:
-   - Restored core rasters match pinned owner-mirror SHA-256s (`data/restore_receipt.json`), not direct DrivenData login downloads; portal historical numbers (`0.2778`, `0.4413`, `0.3195`, public board `0.4544`) remain `USER-REPORTED / UNVERIFIED` without artifact-bound submission receipts.
+   - Historical portal scores (`0.2778`, `0.4413`, `0.3195`) remain `USER-REPORTED / UNVERIFIED` without artifact-linked submission receipts. The repository's `0.4544` value is only a dated public leaderboard observation from 2026-10-28; it is not current and not a receipt for a particular file. Restored rasters match pinned owner-mirror hashes (`data/restore_receipt.json`), not direct authenticated DrivenData downloads.
 
 ---
 

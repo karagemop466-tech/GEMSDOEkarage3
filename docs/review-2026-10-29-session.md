@@ -2,7 +2,7 @@
 
 ## Executive decision
 
-**NEGATIVE — no new TIFF was generated, no weekly slot was spent, and nothing in the repository is cleared to download and submit.** The requested parallel-run protocol has no unambiguous assigned method lane in this prompt. The current checkout also lacks organizer-authenticated competition rasters, the cached feature stack, a complete current registry, and a protocol-conforming shared holdout. Proceeding to model selection or generating an uploadable-looking file would violate the fail-closed gates rather than maximize the chance of a valid result.
+**NEGATIVE — this review generated no TIFF and used no weekly slot; nothing in the repository is cleared to download and submit.** During branch synchronization, `origin/main` supplied a 12,000-dot TIFF artifact. Its metadata describes deliberate placement into cells outside the pinned lattice buffer; this violates the explicit no-hole-gaming protocol. The artifact was reclassified as rejected forensic evidence, removed from the public download area, and is not an eligible candidate. The request still has no unambiguous assigned method lane. This checkout lacks the cached feature stack, complete current registry, and protocol-conforming shared holdout; proceeding to model selection would violate fail-closed gates.
 
 - [Current run card (JSON)](data/review-run-20261029.json)
 - [Current readiness snapshot](readiness.json)
@@ -31,7 +31,7 @@ The site scores supplied in the prompt do not define a calibrated conversion fro
 4. **Shared-template defects remain open:** upstream issues cover holdout truth/visible buffering (#60), pooled false-positive handling (#41), leakage diagnostics (#61), surface-stage overlap enforcement (#42), and masked in-footprint pixels (#66). The pinned shared code is provenance, not proof of correctness. This checkout cannot patch the central shared template and must not substitute a private fork.
 5. **No comparable incumbent rerun:** there is no current same-evaluator, same-fold baseline to beat. The user-supplied historical results are not that baseline.
 
-A single registered calibration-lattice witness has previously triggered literal overlap failures for the archived dense submissions. That is a valid stop witness for those artifacts, not a completeness proof about every raster or a proof that every conceivable new surface is duplicate. No candidate surface or final dots exist in this review, so candidate correlation and overlap are **NOT RUN**, not zero.
+A single registered calibration-lattice witness has previously triggered literal overlap failures for archived dense submissions. That is a valid stop witness for those artifacts, not a completeness proof about every raster or proof that every conceivable new surface is duplicate. The inherited 12,000-dot artifact's metadata explicitly describes selection of lattice-uncovered cells, so it is rejected by the no-hole-gaming rule; a numerical overlap pass is not claimed. No pre-placement surface correlation or complete current-registry comparison was performed. See the [rejection record and preserved hashes](../evidence/rejected-lattice-hole-candidate/README.md).
 
 ## Candidate slate disposition
 
@@ -57,11 +57,12 @@ The official [reference solution](https://github.com/drivendataorg/gems-prize-re
 ### Pass 1 — repo and source inspection
 - Read `AGENTS.md`, README, the retained project brief, prior current-session review, current run cards, focus-site evidence, readiness logic, and official problem/metric/format/source pages.
 - Confirmed the repository already has a nine-site executive summary and historical file/score/uniqueness table. It is a comparison of supplied historical artifacts, not edits to the nine sibling sites.
-- Confirmed the current template and candidate TIFFs are absent from this checkout; do not mistake `data/prepared_manifest.json` for the cached stack.
+- The pre-merge checkout had no local current template or candidate. During main synchronization an inherited candidate appeared; this review reclassified it as lattice-hole gaming, moved it to forensic evidence, independently checked only its saved TIFF header/range, and did not treat that limited check as approval. Do not mistake `data/prepared_manifest.json` for the missing cached stack.
 
 ### Pass 2 — regression and gate review
 - Installed dependencies only in ignored local environments (`.venv/`, `node_modules/`); no source or tracked binary dependencies were added.
-- `.venv/bin/python -m pytest -q`: **188 passed, 1 skipped, 78 subtests passed** (56 rasterio pending-deprecation warnings). The skipped test is the existing optional integration requiring a missing cached stack.
+- `.venv/bin/python -m pytest -q`: **193 passed, 1 skipped, 78 subtests passed** (56 rasterio pending-deprecation warnings). The skipped test is the existing optional integration requiring a missing cached stack.
+- `.venv/bin/python -m unittest discover -s tests -q`: **99 passed**.
 - `npm test`: **4 passed**; `node --test tests/test_browser_feed.js`: **2 passed**.
 - `scripts/verify_numbers.py`: **22/22 consistency checks passed**. These checks establish repository consistency, not organizer score or slot eligibility.
 - `scripts/build_site.py --check`: passed. `scripts/check_readiness.py`: expected **not-ready / exit 2**; see detailed blockers above.
@@ -73,7 +74,7 @@ The official [reference solution](https://github.com/drivendataorg/gems-prize-re
 
 ## Next steps, in order
 
-1. Assign one explicit method paragraph/lane and clarify with the protocol owner whether the literal 3-pixel rule applies to the calibration lattice exactly as written; do not self-exempt it.
+1. Assign one explicit method paragraph/lane. Keep the literal 3-pixel rule as written for every registry raster, including the lattice, and do not exempt or game uncovered cells.
 2. Restore authorized competition rasters and the cached feature stack, then verify hashes and metadata against the actual submission template. Owner mirrors are not organizer-authenticated.
 3. Resolve or centrally verify the shared evaluator/holdout/surface/validator defects; pin and regression-test the fixed shared implementation, not a local fork.
 4. Build a complete, current, hash-pinned registry; recheck both unplaced candidate surfaces and final dots against every registered raster.
@@ -82,4 +83,4 @@ The official [reference solution](https://github.com/drivendataorg/gems-prize-re
 
 ## Run card
 
-See the machine-readable [negative review card](data/review-run-20261029.json). It records no experiment, no new raster hash, no candidate uniqueness measurement, no validator pass and no submission name.
+See the machine-readable [negative review card](data/review-run-20261029.json). It records no experiment or review-generated raster; the inherited rejected artifact hash is separate forensic metadata. No complete candidate uniqueness measurement, candidate-wide validator pass, holdout score, or submission name is claimed.

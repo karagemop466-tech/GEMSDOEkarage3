@@ -4,7 +4,7 @@ Read `README.md`, `docs/PROJECT_BRIEF.md`, the latest repository review `docs/re
 
 ## Literal uniqueness is mandatory
 
-The user's rule is **no exemptions**: stop if rank correlation with any registered raster exceeds 0.90 **or** more than 70% of candidate-support pixels are within 3 pixels of that raster, both before placement and on final dots. The local screen additionally rejects strong anticorrelation conservatively. A dense or synthetic lattice still counts. Null-calibrated excess is an optional diagnostic, never a substitute. `scripts/protocol_preflight.py` stops budgets of 22,164 or more because the pinned lattice proves a violation; this is a necessary bound, not proof that lower budgets pass. A new candidate needs complete, current, hash-bound registry measurements at both stages. The historical filtered registry fetcher cannot certify completeness.
+The user's rule is **no exemptions**: stop if rank correlation with any registered raster exceeds 0.90 **or** more than 70% of candidate-support pixels are within 3 pixels of that raster, both before placement and on final dots. The local screen additionally rejects strong anticorrelation conservatively. A dense or synthetic lattice still counts. Do not put points in lattice holes or boundary cells to evade the overlap rule. Null-calibrated excess is an optional diagnostic, never a substitute. `scripts/protocol_preflight.py` stops budgets of 22,164 or more because the pinned lattice proves a violation; this is a necessary bound, not proof that lower budgets pass. A new candidate needs complete, current, hash-bound registry measurements at both stages. The historical filtered registry fetcher cannot certify completeness.
 
 ## Shared tools and experiments
 

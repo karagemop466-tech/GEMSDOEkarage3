@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conditional, evidence-first submission instructions for the DOE GEMS competition. No file is currently approved for upload.">
+  <title>How to submit when approved · GEMSDOEkarage3</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>Conditional submission guide · DOE GEMS / 306</small></span></a>
+  <nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="how-to-submit.html" aria-current="page">How to submit</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav>
+</div></header>
+<main id="main"><div class="container">
+  <div class="page-hero"><div class="eyebrow">Conditional procedure · not an upload authorization</div><h1 class="page-title">How to submit — when a file is approved</h1><p>Follow these steps only after the independent selector marks one exact GeoTIFF as eligible and a current submission slot is available.</p></div>
+  <div class="banner" role="status"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NO FILE IS CURRENTLY OK TO DOWNLOAD AND SUBMIT.</strong><p>The inherited 12,000-dot artifact was rejected because its metadata describes deliberate lattice-hole selection, which violates the protocol. It is retained under <code>evidence/rejected-lattice-hole-candidate/</code> for audit only. Do not upload it or any historical TIFF.</p><p><a href="review-2026-10-29-session.md">Read the latest repository review</a> · <a href="data/review-run-20261029.json">Read its JSON run card</a> · <a href="../executive-summary.html#site-details">Review the nine historical site rows</a></p></div></div>
+  <section><h2>Before a future upload</h2><ol class="steps">
+    <li><strong>Confirm approval in the project.</strong> The current run card must have a positive verdict, pass the literal uniqueness checks against a complete current registry both before placement and on final dots, and record an independent selector approval. A local format check alone is not approval.</li>
+    <li><strong>Download only the exact approved artifact.</strong> Use the filename linked from the current executive summary. Verify its SHA-256 against the selector card; do not substitute an older run, ZIP, or similarly named file.</li>
+    <li><strong>Re-run the saved-byte validator.</strong> The official problem description requires a single-layer 32-bit float GeoTIFF, EPSG:32611, the training grid resolution/bounds, predicted values in [0,1], and null or NaN outside bounds. This repository additionally checks exact shape/transform, masks, and all in-footprint values. Do not infer organizer acceptance from a local pass.</li>
+    <li><strong>Open the official competition page.</strong> Sign in to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS competition</a> and open its submission form. Its data and account quota require the authorized account session; this repository cannot confirm your current remaining slots.</li>
+    <li><strong>Select the approved file and enter its short note.</strong> Use the exact unique name/note from the run card. Keep the note within 140 characters and avoid claiming an unverified geological discovery or score.</li>
+    <li><strong>Save the organizer receipt.</strong> Record the submission ID, timestamp, exact file hash, note and returned score. Only a receipt-backed result may be labeled ORGANIZER-CONFIRMED. A public leaderboard rank is not a receipt for your file.</li>
+  </ol></section>
+  <section><h2>Official format and sources</h2><p>Read the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">problem description, metric and submission format</a> and the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">competition rules</a>. The competition predicts faults indicative of geothermal resources; a fault prediction is not proof of a geothermal vent.</p><p>The portal previously returned “Predicted values must be in range [0, 1]”. The value-range condition is explicit in the official format. This guide does not claim to know the specific cause of the earlier rejection; only the portal receipt or organizer support can confirm it.</p></section>
+</div></main>
+<footer class="footer"><div class="container footer-inner"><span>Evidence before submission · no slot selected</span><span><a href="../index.html">Overview</a> · <a href="../executive-summary.html">Nine-site summary</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official competition</a></span></div></footer>
+</body></html>

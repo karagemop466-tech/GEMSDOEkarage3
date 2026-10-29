@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "repository-review-20261029",
-  "created_utc": "2026-10-29T18:05:00Z",
+  "created_utc": "2026-10-29T18:17:52Z",
   "review_only": true,
   "hypothesis": "No candidate hypothesis selected: the request did not specify an unambiguous single method lane; the four ranked ideas remain planning-only.",
   "mechanism": "No model was fit and no candidate surface or raster was generated in this review.",
@@ -22,7 +22,7 @@
     "candidate_surface_spearman": null,
     "candidate_preview_dot_overlap": null,
     "candidate_final_dot_overlap": null,
-    "status": "NOT RUN: no candidate surface/dots; local readiness reports 0/416 pinned registry paths present, so a full current comparison cannot be made.",
+    "status": "NO COMPLIANT CANDIDATE: an inherited artifact was rejected because its metadata describes deliberate selection of lattice-uncovered cells, prohibited by the protocol. No numerical full-registry comparison is claimed; local readiness reports 0/416 pinned paths present.",
     "historical_witness_only": {
       "witness": "13GEMSDOE/r13-lattice-s5",
       "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
@@ -30,8 +30,16 @@
     }
   },
   "raster_sha256": null,
+  "inherited_artifact_review": {
+    "path": "evidence/rejected-lattice-hole-candidate/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+    "sha256": "34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e",
+    "status": "REJECTED — DO NOT SUBMIT; metadata describes deliberate lattice-hole selection. Retained for audit only.",
+    "limited_format_observation": "One float32 band, EPSG:32611, 3730x3292, expected 100m transform, finite [0,1], 12,000 positive cells; this does not validate scientific merit or portal acceptance.",
+    "complete_registry_or_surface_audit": null,
+    "holdout_dti": null
+  },
   "validator_output": {
-    "status": "NOT RUN: no new candidate raster",
+    "status": "NOT RUN for a new candidate; inherited artifact has only a limited forensic header/range check",
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
     "crs_matches": null,
@@ -41,7 +49,7 @@
     "organizer_acceptance": "unknown"
   },
   "submission_name": null,
-  "note": "Review-only negative result; no candidate file is available or approved for download/submission.",
+  "note": "Negative review; no eligible candidate is approved for download or submission.",
   "verdict": "negative",
   "experiments_run": 0,
   "weekly_slots_used": 0,
@@ -57,7 +65,8 @@
     "current_value": null
   },
   "verification": {
-    "pytest": "188 passed, 1 skipped, 78 subtests; 56 warnings",
+    "pytest": "193 passed, 1 skipped, 78 subtests; 56 warnings",
+    "unittest": "99 passed",
     "npm_test": "4 passed",
     "browser_feed_test": "2 passed",
     "verify_numbers": "22/22 consistency checks passed",
