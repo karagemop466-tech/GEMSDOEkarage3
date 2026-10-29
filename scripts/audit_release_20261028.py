@@ -9,6 +9,7 @@ import numpy as np
 import rasterio
 from scipy.ndimage import distance_transform_edt
 from scripts.audit_historical import fetch, sha256_file
+from scripts.audit_registry import boundary_ring_share
 from scripts.validate_raster import audit
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +43,9 @@ def run():
         rows.append(dict(file=str(path.relative_to(ROOT)), sha256=sha256_file(path),
                          dots=n, within_3px_fraction=overlap,
                          duplicate_stop=overlap is not None and overlap > .70,
+                         boundary_ring_share=boundary_ring_share(dots, footprint) if n else None,
+                         boundary_gaming_refusal=bool(overlap is not None and overlap <= .70 and n
+                                                      and (boundary_ring_share(dots, footprint) or 0) >= .5),
                          validator=result, ok_to_submit=False))
     return dict(schema_version=1, evidence_class='GEOMETRY / SAVED-BYTE AUDIT — NOT A SCORE',
                 date_utc='2026-10-28', witness=manifest['inputs']['lattice'],
