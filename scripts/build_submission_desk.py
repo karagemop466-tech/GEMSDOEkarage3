@@ -126,6 +126,19 @@ def s6e2_row(c: dict) -> str:
 </tr>"""
 
 
+def h1_note() -> str:
+    """Main's H1 candidate, read from evidence/h1-lattice-check-20261029.json (no hand-typed numbers)."""
+    e = json.loads((ROOT / "evidence/h1-lattice-check-20261029.json").read_text())
+    c = e["candidates"]["nan"]
+    hm = e["holdout_metrics_in_card"]
+    return (f'<p><strong>Main\'s H1 file (seismic-gravity basin, {c["dots"]:,} dots):</strong> '
+            f'{c["within_3px_of_lattice_fraction"]*100:.1f}% of its dots lie within 3 px of the lattice; the nearest is '
+            f'{c["min_distance_px"]:.2f} px and the median {c["median_distance_px"]:.2f} px. It passes the literal lattice test '
+            f'only because every dot sits just outside the 3-px radius, which we flag as a possible design around the rule. '
+            f'Its holdout metrics are null (HOLDOUT-DTI not computed), the registry check covers 14 of 113 repositories, and its card '
+            f'says {esc(hm["slot_decision"])}. It is <strong>not cleared</strong>. Evidence: <code>evidence/h1-lattice-check-20261029.json</code>.</p>')
+
+
 def render() -> str:
     a, card = load()
     lat = a["lattice"]
@@ -211,6 +224,7 @@ def render() -> str:
 <li><strong>Score evidence.</strong> A real score needs an ORGANIZER-CONFIRMED receipt. Each upload uses a one-way weekly slot, and local estimates cannot separate the nine files.</li>
 <li><strong>Leaderboard number.</strong> Confirm the current public #1 by hand (IR-S6-07). The prompt gives 0.4413 and 0.3195, the README gives 0.4544, and IR-K3-03 records 0.4437 from a 26 Oct fetch.</li>
 </ol>
+{h1_note()}
 <p><strong>Recommendation:</strong> upload nothing from this page. Both new candidates are DUPLICATE_STOP under the lattice rule. The next hypothesis to test is H4 in <code>docs/research/session6-hypotheses-20261029.md</code>, after a precondition check. That work does not change decision 1.</p>
 </div></section>
 
@@ -256,7 +270,7 @@ def desk_banner() -> str:
             '<div style="padding:14px 18px;border:2px solid #881337;border-radius:10px;background:#fff1f2;color:#881337">'
             '<strong>SUBMISSION DESK (29 Oct 2026): NO FILE IS CLEARED FOR UPLOAD.</strong> '
             'Download table, estimates and uniqueness results: <a href="submission-desk.html"><strong>open the Submission Desk ↗</strong></a>. '
-            'The new unique file is research only: <a href="evidence/experiments/s6-e1/gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif">S6-E1 TIFF</a> (do NOT upload).'
+            'Research files only (none is cleared, including the main H1 file): <a href="evidence/experiments/s6-e1/gemsdoekarage3-s6-offcons-tmihg-ridge-37654-20261029.tif">S6-E1 TIFF</a> (do NOT upload).'
             '</div></section>')
 
 

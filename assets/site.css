@@ -14,28 +14,3 @@
 .micro,.breadcrumb{color:#596b5f}.micro{font-size:11px}
 .table-note{color:#596b5f}.callout p{color:#516458}
 .footer{color:#5b6d60}.breadcrumb a{text-decoration:underline}
-
-/* --- Download banner (top of page) --- */
-.download-banner{background:#eef3eb;border:1px solid #c9d7c7;border-radius:14px;padding:28px 32px;margin:0 auto 48px;position:relative;overflow:hidden}
-.download-banner:after{content:"";position:absolute;right:-110px;top:-80px;width:320px;height:320px;border-radius:50%;border:1px solid rgba(56,110,76,.10);pointer-events:none}
-.download-ok{display:inline-flex;align-items:center;gap:9px;background:#dceedd;color:#264a34;border:1px solid #b5d2b9;border-radius:999px;padding:5px 12px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;max-fit-content}
-.download-banner h2{margin:14px 0 8px;font-size:clamp(24px,3vw,30px);line-height:1.2;letter-spacing:-.03em}
-.download-sub{font-size:15px;color:#607067;margin:0 0 20px;max-width:700px}
-.download-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
-.download-actions .button{font-size:14px;padding:13px 20px}
-.download-actions .secondary{background:white;color:#396e4e!important;border-color:#c9d7c7}
-.download-actions .secondary:hover{background:#f7faf6}
-.download-meta{font-size:12px;color:#65726b;margin:0 0 16px;line-height:1.6}
-.download-meta p{margin:6px 0}
-.download-meta code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f0f3ee;padding:1px 4px;border-radius:4px;font-size:11px;color:#396e4e}
-.validation-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.validation-grid.compact{margin-top:10px}
-.vcard{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #d8e2d6;border-radius:8px;padding:6px 10px;font-size:11.5px;color:#52635a}
-.vcheck{color:#396e4e;font-weight:900}
-.download-note{font-size:12px;color:#396e4e;font-weight:750;margin-top:12px}
-.ok-tag{display:inline-block;border-radius:5px;padding:3px 6px;font-weight:800;font-size:10px;background:#dceedd;color:#264a34}
-.best-tag{display:inline-block;border-radius:5px;padding:2px 6px;font-weight:800;font-size:9px;background:#fff3cd;color:#8a6d1a;margin-left:8px}
-.ok-text{color:#396e4e;font-weight:750}
-
-/* Override site-wide tag for positive status */
-.tag.ok-tag{background:#dceedd;color:#264a34}
