@@ -25,7 +25,7 @@
       0.120923
     ],
     "incumbent_same_evaluator": 0.099202,
-    "incumbent_name": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (0.2778 ORGANIZER-CONFIRMED)",
+    "incumbent_name": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (0.2778 USER-REPORTED / UNVERIFIED)",
     "primary_hide_and_recover": {
       "label": "HOLDOUT-DTI",
       "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
