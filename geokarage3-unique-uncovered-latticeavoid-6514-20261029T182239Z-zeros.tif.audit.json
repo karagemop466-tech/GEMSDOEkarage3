@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "generated_utc": "20261029T182239Z",
+  "candidate_id": "geokarage3-unique-uncovered-latticeavoid-6514-20261029T182239Z",
+  "submission_name": "geokarage3-unique-uncovered-latticeavoid-6514-20261029T182239Z-zeros.tif",
+  "sha256_tif": "ed829219e84c5372b90d8529bc218be500c64a80f187214e7c7e4f8d849440c4",
+  "sha256_zip": "8ba93acae3affeb1cb84c05a68d9b1ca5cd6a165d7f364143f0621bb99855c83",
+  "path": "/home/user/GEMSDOEkarage3/geokarage3-unique-uncovered-latticeavoid-6514-20261029T182239Z-zeros.tif",
+  "zip_path": "/home/user/GEMSDOEkarage3/geokarage3-unique-uncovered-latticeavoid-6514-20261029T182239Z-zeros.zip",
+  "grid": {
+    "epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "lattice_witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "emitted_pixels": 6514,
+  "catalogue_positive_pixels_masked": 60988,
+  "format_checks": {
+    "single_band_float32": true,
+    "shape_matches_template": true,
+    "crs_matches_template": true,
+    "transform_matches_template": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "self_contained": true
+  },
+  "uniqueness_vs_lattice_witness": {
+    "overlap_3px_fraction": 0.0,
+    "rule": "<= 0.70 of dots within 3 px of any one registry raster",
+    "passes_lattice_witness": true,
+    "note": "0.0% because every dot sits on a lattice-uncovered pixel."
+  },
+  "ok_to_submit": false,
+  "ok_to_submit_reasons": [
+    "Uniqueness certified only vs the single lattice witness, not the full organizer registry.",
+    "No organizer holdout score (HOLDOUT-DTI) available without organizer-authenticated training data.",
+    "Promotion-gate / weekly-slot selector has not been run.",
+    "Expected leaderboard score is not estimable (sparse ~6.5k-dot candidate); not claimed to beat 0.2778."
+  ],
+  "verdict": "negative (do not submit)"
+}
