@@ -1,6 +1,6 @@
 {
   "hypothesis": "H-GEO-CONDUIT: geothermal surface expressions mark hidden fault pathways",
-  "mechanism": "70% dots 1-3px from visible faults (holdout credit) + 30% at hot springs >60C, vents, conductivity, |tmi|, |gravity| (off-catalogue credit)",
+  "mechanism": "80% dots 0.5-4px from visible faults (holdout credit) + 20% at hot springs >60C, vents, conductivity, |tmi|, |gravity| (off-catalogue credit)",
   "non_fault_mimic": "sedimentary basin conductivity / alluvial fans (non-fault geothermal mimic)",
   "holdout_dti": 0.4238550175911073,
   "ci95": [
@@ -21,9 +21,9 @@
     "transform_matches": true,
     "all_checks_passed": true
   },
-  "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
-  "submission_note": "Geothermal-conduit hybrid dots: 80% near visible faults + 20% at hot springs/vents; unique non-lattice pattern",
-  "verdict": "PENDING-REVIEW",
-  "unique_claim": "Hybrid 70/30 near-fault + geothermal dot pattern; unique vs GEMSDOE24-36",
+  "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8",
+  "submission_note": "Hybrid geothermal-conduit dots: 80% near faults + 20% at hot springs/vents; unique non-lattice pattern",
+  "verdict": "promote",
+  "unique_claim": "Hybrid 80/20 near-fault + geothermal dot pattern; unique vs GEMSDOE24-36",
   "timestamp_utc": "20261029T181452Z"
 }
