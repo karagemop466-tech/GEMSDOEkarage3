@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "candidate": "H1 magnetic+gravity horizontal-gradient ridge, off-catalogue, NMS, 20k",
+  "preregistered_parameters": {
+    "layers": [
+      "tmi_hg",
+      "iso_grav_anom_hg"
+    ],
+    "score": "min(robust_z)",
+    "nms_window": 7,
+    "catalogue_exclusion_px": 3.0,
+    "budget": 20000,
+    "seed": 20261029
+  },
+  "n_candidate_cells_after_nms": 14186,
+  "n_dots": 14186,
+  "footprint_cells": 5167373,
+  "catalogue_positive_cells": 60988,
+  "leakage_canary": {
+    "tmi_hg": {
+      "band": 3,
+      "auc": 0.527048,
+      "n_pos": 60894,
+      "n_neg": 199883,
+      "leakage_suspect": false
+    },
+    "iso_grav_anom_hg": {
+      "band": 18,
+      "auc": 0.499991,
+      "n_pos": 60894,
+      "n_neg": 199883,
+      "leakage_suspect": false
+    },
+    "tc": {
+      "band": 6,
+      "auc": 0.448675,
+      "n_pos": 60894,
+      "n_neg": 199883,
+      "leakage_suspect": false
+    },
+    "tmi_vg": {
+      "band": 9,
+      "auc": 0.487079,
+      "n_pos": 60894,
+      "n_neg": 199883,
+      "leakage_suspect": false
+    },
+    "iso_grav_anom_vg": {
+      "band": 11,
+      "auc": 0.526069,
+      "n_pos": 60894,
+      "n_neg": 199883,
+      "leakage_suspect": false
+    },
+    "det_elev_slope": {
+      "band": 19,
+      "auc": 0.557723,
+      "n_pos": 60894,
+      "n_neg": 199883,
+      "leakage_suspect": false
+    }
+  },
+  "mask_npy": ".cache/candidates/h1_mask.npy",
+  "mask_npy_sha256": "1ce7592cfe3e00466015cea773d941c92064c295faca08b6dfc7f37179190b5b",
+  "blocked_tif": {
+    "path": ".cache/candidates/h1/gemsdoe32-gemsdoekarage3-h1-ridge-offcat-nms-14k-20261029T180906Z-09cd91aa-zeros.tif",
+    "sha256": "bbb5a47b254de5cf354f1225e4c153fda356713a8ff67c8010c4b352b804fbda",
+    "status": "BLOCKED - DO NOT SUBMIT",
+    "reason": "99.45% of dots within 3 px of 13GEMSDOE lattice (literal limit 70%)"
+  }
+}

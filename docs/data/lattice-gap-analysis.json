@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "registry_raster": ".cache/gems_data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "lattice_dots": 206895,
+  "footprint_cells": 5167373,
+  "gap_cells_not_within_3px": 6649,
+  "max_budget_for_literal_70pct_if_all_gap_used": 22163,
+  "sgmc_offcatalogue_truth_cells": 62122,
+  "recall_ceiling_gap_only_share": 0.004218,
+  "share_offcatalogue_truth_within_3px_of_any_lattice_dot": 0.999227,
+  "interpretation": "A literal-compliant file must put >=30% of its dots in the gap cells, and gap cells cover almost none of the off-catalogue truth. Matches IR-K3-02 in knowledge/irregularities.md."
+}

@@ -224,3 +224,16 @@ new candidate is automatically checked against our own archived `CRSB-GUB`, `K3-
 TIFFs (`0` fetch failures across 113 repos; `H-K3D` `EXP-2` overlaps `H-K3C` by `57.18% <= 70%` and max discrete
 `<= 100k`-dot peer detector by `62.37% <= 70%`).
 
+
+## Session 6 irregularities (2026-10-29; receipts: `docs/data/submission-summary.json`, `docs/data/leaderboard-snapshot-20261029.json`)
+
+- **IR-S6-01** `labels.tif` and `existing_faults.tif` are byte-identical (SHA-256 `7ba308cc…`). Treat the labels as the catalogue, not as an independent hidden label set.
+- **IR-S6-02** GEMSDOE25 and GEMSDOE30 have identical dot sets (1.000 overlap both ways) and the same reported 0.2600. They are one submission in two encodings, not two.
+- **IR-S6-03** The catalogue hide-and-recover holdout is anti-correlated with the reported leaderboard (Spearman −0.849, n = 9). It should not be used to rank candidates for this leaderboard.
+- **IR-S6-04** 0.2778 is not reproduced by any local evaluator (HIDE-RECOVER 0.0045; SGMC-CAL 0.0641). Local numbers are proxies only.
+- **IR-S6-05** Leaderboard top: the prompt gives 0.4413; an earlier repo note gives 0.4437 and 0.4544. The public board read on 2026-10-29 has rank 1 at **0.4544**. The "0.3195 is the highest right now" claim is **rank 47** on the same board. Rank 50 is 0.3167. No GEMSDOE value appears in the visible top 50.
+- **IR-S6-06** H1 deviated from its pre-registered budget: 14,186 dots, not 20,000 (fewer candidates survived suppression). Recorded in the receipt.
+- **IR-S6-07** Official rules: section 1.1 says "a single entry", and section 3.2 says "three submissions per week". These are not consistent. The weekly cap shown on the submission page must be checked manually.
+- **IR-S6-08** The 70% / 3 px uniqueness rule is this project's internal protocol. It is not in the official rules, and it is measured against a registry we cannot fully enumerate (only nine site files and 14 scored rasters are available locally). See IR-K3-02.
+- **IR-S6-09** The top-9 GEMSDOE files have 0 dots on the catalogue and a directional 3-px overlap of at least 0.976 with another site. Every one of the nine fails the project's own 70% rule against the others. None of the nine is unique under that rule.
+- **IR-S6-10** H1 (14,186 dots) is 99.45% within 3 px of the 13GEMSDOE lattice. Lattice gap = 6,649 footprint cells; literal budget bound = 22,163 dots; gap-only recall ceiling = 0.42%. No candidate can clear the literal rule without placing dots in lattice gaps, which the protocol treats as gaming.

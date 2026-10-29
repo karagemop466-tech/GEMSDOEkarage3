@@ -1,5 +1,29 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Start here (read at the start of every session)
+
+- **Standing prompt:** [`docs/PROJECT_PROMPT.md`](docs/PROJECT_PROMPT.md). Goal, core values, non-negotiable rules, official sources, data locations, and access the user must arrange.
+- **Session 6 executive summary:** [**submission-summary.html**](submission-summary.html) — per-site table, the measured reason GEMSDOE32 (0.2778) scored highest, the new H1 file, decisions needed. Built by `scripts/build_submission_summary.py` from receipts only.
+- **Official public leaderboard (read 2026-10-29):** rank 1 = **0.4544**; rank 47 = 0.3195; rank 50 = 0.3167; no GEMSDOE value in the visible top 50. Snapshot: `docs/data/leaderboard-snapshot-20261029.json`.
+- **Clear to submit?** **NO. No file is cleared.** Every generated file is blocked by a gate (see the summary). Merging this branch does not clear any file.
+- **Reproduce the session-6 evidence** (after `scripts/restore_data.py --group core|scored|external`):
+
+  ```bash
+  .venv/bin/python scripts/fetch_gemsdoe_top9.py          # nine pinned top-site TIFFs -> .cache/site_submissions/
+  .venv/bin/python scripts/analyze_gemsdoe_top9.py        # dot structure + overlap -> docs/data/gemsdoe-top9-analysis.json
+  .venv/bin/python scripts/evaluate_holdout.py <tif> ...  # HOLDOUT-DTI per file (shared template)
+  .venv/bin/python scripts/analyze_lattice_gap.py         # lattice gap + recall ceiling
+  .venv/bin/python scripts/build_h1_candidate.py          # blocked H1 TIFF -> .cache/candidates/h1/ (gitignored; SHA-256 recorded)
+  .venv/bin/python scripts/check_candidate_uniqueness.py .cache/candidates/h1/<h1>-zeros.tif docs/data/h1-uniqueness.json  # literal uniqueness
+  .venv/bin/python scripts/build_submission_summary.py    # -> submission-summary.html + docs/data/submission-summary.json
+  .venv/bin/python scripts/build_site.py --check          # front page + guide must match their generators
+  ```
+
+- **Protocol (unchanged):** uniqueness rule (rank correlation > 0.90 or > 70% of dots within 3 px of one registry raster = duplicate); shared evaluator and writer only; holdout labels `HOLDOUT-DTI` or `ORGANIZER-CONFIRMED`; leakage canary AUC > 0.90; budget 3 experiments or 2 hours; one JSON run card per candidate; promotion is a separate selector step within the weekly cap.
+- **Blocked artefacts are not in Git.** Research TIFFs must not be copied under `docs/` (the saved-byte audit enumerates every `docs/**/*.tif`). The H1 file is regenerated from its script, not published.
+- **Open decision for the user:** whether the 70%/3 px rule binds against the registered 13GEMSDOE lattice. Under it, no competitive file can be cleared. See summary section 6.
+- **Irregularities:** `knowledge/irregularities.md` (IR-S6-01 … IR-S6-10 added this session).
+
 ## Decision: **DO NOT SUBMIT** (`ok_to_submit = False`, `verdict = "negative"`)
 
 There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `H-K3D (TGSF-BVCD)`** candidate (`gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif`, SHA-256 `c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e`, literal lattice overlap **99.3547%**) and the retained Session 4 **H-K3C** archive (`0d1461e8786d…`, literal lattice overlap **99.3520%**) are blocked by `scripts/promotion_gate.py` under the binding literal `<= 70%` 3-pixel overlap rule against the registered `206,895`-dot calibration lattice witness (`13GEMSDOE` `r13-lattice-s5`, SHA-256 `b4570b40…`). Local range (`[0.0, 1.0]` finite across all `12,279,160` cells, `nodata=None`) and grid checks (`EPSG:32611`, `3730 × 3292`) pass automatically without human intervention against the pinned mirror template; keep your weekly feedback slot unused.
