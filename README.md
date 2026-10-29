@@ -14,6 +14,17 @@ There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `
 [Three-pass review](docs/review-2026-10-28-session.md) ·
 [Full retained project brief](docs/PROJECT_BRIEF.md)
 
+### Session 6 (`2026-10-29`) — Fresh checkout review & source update
+
+**Decision remains NEGATIVE: no candidate TIFF, no new experiment, no slot and no submission.** The current session did not infer a method lane from prior work or reuse an archived TIFF as a new candidate.
+
+- Refreshed [`docs/data/feed.json`](docs/data/feed.json) from the public GitHub API at 2026-10-29 18:02:43 UTC: **9/9** focus repositories responded and **9/9** `main` heads differ from their pinned audit references. This is a source-change alert only; new rasters and scores were not re-audited.
+- Re-ran [`scripts/check_readiness.py`](scripts/check_readiness.py): `ready_for_experiment = false`, `ok_to_submit = false`. This checkout lacks competition rasters, the shared feature cache, all 416 locally pinned registry files, a single assigned method lane, a same-evaluator baseline and a verified complete registry. The upstream shared holdout, surface-gate and masked-pixel validator issues remain unresolved; see [issue #60](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/60), [#42](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/42), and [#66](https://github.com/buffedlizard55-lab/GEMSDOE32/issues/66).
+- The official leaderboard was **not fetched**. The feed retains only a dated 2026-10-28 observation, not a current score or a receipt. The user-provided 0.3195 and 0.4413 claims remain unreconciled; the [`GEMSDOE28` README at the refreshed head](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/424bf795ed2183000c643d6e30a12ce2d4bf401d/README.md) also claims 0.4544, but this is not independently authenticated.
+- The nine-site table remains pinned historical research, not a current recommendation. Each historical row fails the stated 3-pixel overlap rule against at least one of the other eight; a new leaderboard estimate is **NOT ESTIMABLE**.
+- Review report: [three-pass Session 6 review](docs/review-2026-10-29.md). Current machine state: [`docs/readiness.json`](docs/readiness.json). Hypothesis slate: [`research/2026-10-28-review.md`](research/2026-10-28-review.md) (proposals only; no lane assigned).
+- Verification on this checkout: `pytest` **189 passed, 1 skipped, 85 subtests**, `unittest` **100 passed**, Node dashboard/feed tests **6 passed**; site generation and all 22 consistency checks passed. The skipped integration test requires the absent `smgc_extra_4ch.npy` cache.
+
 ### Session 5 (`2026-10-28`) — Lane `H-K3D (TGSF-BVCD)` Scientific & Gate Summary
 
 1. **Bug Repaired Before Training (`IR-K3-27`)**: Inspection of the official INGENIOUS GDR #1391 sinter/travertine shapefile revealed column `Deposit_ty` (`22` `Tufa`, `19` `Sinter`, `26` `Travertine`), whereas `src/gems32/crsb_gub.py` checked only `Dep_Type` / `Type` — silently skipping the Quaternary lacustrine tufa carbonate mimic veto in prior sessions. Fixed and covered by regression tests.

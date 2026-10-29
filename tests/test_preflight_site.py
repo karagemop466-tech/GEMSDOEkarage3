@@ -101,6 +101,25 @@ class SiteTests(unittest.TestCase):
         self.assertIn('Refresh never approves a submission', javascript)
         self.assertIn('stale', javascript)
 
+    def test_session6_review_is_linked_and_all_local_markdown_links_resolve(self):
+        review_path = DOCS / 'review-2026-10-29.md'
+        self.assertTrue(review_path.is_file())
+        review = review_path.read_text()
+        self.assertIn('NEGATIVE — DO NOT DOWNLOAD OR SUBMIT A TIFF', review)
+        self.assertIn('NOT ESTIMABLE', review)
+        self.assertIn('No new candidate TIFF was generated', review)
+        for url in re.findall(r'\[[^\]]+\]\(([^)]+)\)', review):
+            parsed = urlsplit(url)
+            if not parsed.scheme and not parsed.netloc and parsed.path:
+                with self.subTest(url=url):
+                    self.assertTrue((review_path.parent / parsed.path).is_file())
+        home = (ROOT / 'index.html').read_text()
+        decision = (DOCS / 'index.html').read_text()
+        self.assertIn('docs/review-2026-10-29.md', home)
+        self.assertIn('href="review-2026-10-29.md"', decision)
+        self.assertIn('href="data/feed.json"', decision)
+        self.assertIn('href="readiness.json"', decision)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,6 @@
 # Project starting point and safety rules
 
-Read `README.md`, `docs/PROJECT_BRIEF.md`, the latest session review `docs/review-2026-10-28-session.md`, and `docs/data/latest-run.json` before work; `research/2026-10-28-literal-review.md` and `docs/data/current-run.json` preserve the independent parallel review. Prior run cards are historical evidence, not authorization. Do not claim organizer confirmation without an artifact-linked receipt, present a historical TIFF as a new submission, or promote on format alone.
+At the start of every session, read `README.md` (including the standing prompt), `docs/PROJECT_BRIEF.md`, the latest review `docs/review-2026-10-29.md`, `docs/data/latest-run.json`, `docs/readiness.json`, and `docs/data/feed.json`; read `docs/review-2026-10-28-session.md` and `research/2026-10-28-literal-review.md` for prior-session evidence. Refresh readiness and GitHub source metadata before relying on their timestamps. Prior run cards are historical evidence, not authorization. Do not claim organizer confirmation without an artifact-linked receipt, present a historical TIFF as a new submission, or promote on format alone.
 
 ## Literal uniqueness is mandatory
 

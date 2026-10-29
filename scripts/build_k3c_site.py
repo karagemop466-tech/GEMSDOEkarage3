@@ -32,7 +32,7 @@ def shell(title, body, depth=0):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{H(title)}</title><link rel="stylesheet" href="{pre}assets/site.css">{feed_script}</head>
 <body><main id="main" class="wrap" style="padding:28px 0 60px">
-<p><a href="{pre}index.html">Decision home</a> · <a href="{pre}hk3d/index.html">Session 5 H-K3D</a> · <a href="{pre}hk3d/how-to-submit.html">H-K3D submission guide</a> · <a href="{pre}k3c/index.html">K3C archive</a> · <a href="{pre}k3c/how-to-submit.html">Submission guide</a> · <a href="{pre}data/latest-run.json">Latest JSON card</a> · <a href="{pre}data/current-run.json">Parallel preflight card</a></p>
+<p><a href="{pre}index.html">Decision home</a> · <a href="{pre}hk3d/index.html">Session 5 H-K3D</a> · <a href="{pre}hk3d/how-to-submit.html">H-K3D submission guide</a> · <a href="{pre}k3c/index.html">K3C archive</a> · <a href="{pre}k3c/how-to-submit.html">Submission guide</a> · <a href="{pre}data/latest-run.json">Latest JSON card</a> · <a href="{pre}data/current-run.json">Parallel preflight card</a> · <a href="{pre}review-2026-10-29.md">Session 6 review</a> · <a href="{pre}readiness.json">Current readiness</a> · <a href="{pre}data/feed.json">GitHub source feed</a></p>
 {body}<p><small>USER-REPORTED values have no artifact-linked organizer receipt here. Historical HOLDOUT-DTI values are cited, not reproduced, and are not leaderboard scores. Nothing on this page selects a weekly slot.</small></p>
 </main></body></html>\n'''
 
@@ -65,7 +65,10 @@ def root_decision_html():
              '<a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · '
              '<a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
-             '<a href="docs/data/latest-run.json">Current run card</a></aside>')
+             '<a href="docs/data/latest-run.json">Current run card</a> · '
+             '<a href="docs/review-2026-10-29.md">Session 6 review</a> · '
+             '<a href="docs/readiness.json">Readiness</a> · '
+             '<a href="docs/data/feed.json">GitHub metadata feed</a></aside>')
     card = ('<div class="release-card" aria-label="Current submission decision">\n'
             '      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>\n'
             '      <h2>No file cleared<br>for live submission.</h2>\n'
