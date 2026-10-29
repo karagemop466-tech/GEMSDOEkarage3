@@ -12,7 +12,21 @@
   },
   "zeros_sha256": "34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e",
   "nan_sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
-  "unique_vs_existing_submissions": "0% within 3px of existing focus-site dots",
-  "estimated_lattice_overlap_bound": "44.6% theoretical minimum (12000 dots, 6649 lattice-free cells)",
-  "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/..."
+  "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/...",
+  "gate_status_20261029": "NOT OK TO SUBMIT - DO NOT SUBMIT",
+  "correction_20261029": {
+    "in_footprint_dots": 4517,
+    "dots_outside_template_footprint": 7483,
+    "in_footprint_within_3px_of_lattice_r13": 0.9988930706220943,
+    "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "receipt": "evidence/saved-tiffs-literal-20261028.json",
+    "strict_format_gate_pass": false,
+    "nan_variant_label_error": "the -nan.tif file contains zero NaN values",
+    "superseded_claims": {
+      "unique_vs_existing_submissions": "0% within 3px of existing focus-site dots",
+      "estimated_lattice_overlap_bound": "44.6% theoretical minimum (12000 dots, 6649 lattice-free cells)",
+      "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/..."
+    },
+    "note": "Earlier claims of 0% overlap and READY TO DOWNLOAD were wrong. They compared only against the nine focus-site files, counted dots placed outside the scored template footprint, and did not measure against the 13GEMSDOE r13-lattice-s5 witness. Measured 2026-10-29: 99.89% of in-footprint dots lie within 3 px of that lattice (limit 70%)."
+  }
 }

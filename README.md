@@ -2,6 +2,7 @@
 
 ## Start here (2026-10-29): nine-site summary and submission status
 
+- **Correction (2026-10-29, later):** the `karage3-unique-offcat` TIFF previously described as "unique and ready" is **DO NOT SUBMIT**. Measured against the pinned lattice witness it has 99.89% in-footprint overlap (limit 70%). Details: [docs/review-2026-10-29.md](docs/review-2026-10-29.md#later-correction-same-day-the-unique-ready-tiff-was-wrong). Leaderboard #1 is 0.4544 (fetched 2026-10-29).
 - **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
 - **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
 - **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
