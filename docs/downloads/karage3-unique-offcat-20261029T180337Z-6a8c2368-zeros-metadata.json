@@ -27,6 +27,7 @@
       "estimated_lattice_overlap_bound": "44.6% theoretical minimum (12000 dots, 6649 lattice-free cells)",
       "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/..."
     },
-    "note": "Earlier claims of 0% overlap and READY TO DOWNLOAD were wrong. They compared only against the nine focus-site files, counted dots placed outside the scored template footprint, and did not measure against the 13GEMSDOE r13-lattice-s5 witness. Measured 2026-10-29: 99.89% of in-footprint dots lie within 3 px of that lattice (limit 70%)."
+    "note": "Earlier claims of 0% overlap and READY TO DOWNLOAD were wrong. They compared only against the nine focus-site files, counted dots placed outside the scored template footprint, and did not measure against the 13GEMSDOE r13-lattice-s5 witness. Measured 2026-10-29: 99.89% of in-footprint dots lie within 3 px of that lattice (limit 70%).",
+    "nan_variant_action": "Removed from docs/downloads on 2026-10-29: the -nan.tif contained zero NaN values, so its label was false. It remains in git history at commit fb007b0. The -zeros.tif is retained as a DO-NOT-SUBMIT research artifact."
   }
 }

@@ -32322,7 +32322,7 @@
     "reasons": []
   },
   "reassessment": {
-    "checked_utc": "2026-10-29T18:25:25.076666+00:00",
+    "checked_utc": "2026-10-29T18:30:10.081517+00:00",
     "status": "SUPERSEDED: historical promote withdrawn; literal duplicate stop and conservative outside-null failure.",
     "evidence": "docs/data/saved-tiffs-literal-20261028.json",
     "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
