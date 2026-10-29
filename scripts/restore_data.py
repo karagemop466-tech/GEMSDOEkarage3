@@ -143,9 +143,15 @@ def main() -> None:
         "storage_root": storage_root,
         "files": results,
     }
-    (ROOT / "data").mkdir(parents=True, exist_ok=True)
-    (ROOT / "data" / "restore_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
-    print(f"Verified {len(results)} files; receipt written to data/restore_receipt.json")
+    # Only a complete run may replace the tracked receipt. A partial --group run previously
+    # overwrote it with a subset (2026-10-29: 30 files -> 4), so partial receipts stay in the data dir.
+    if args.group == "all":
+        receipt_path = ROOT / "data" / "restore_receipt.json"
+    else:
+        receipt_path = root / f"restore_receipt_{args.group}.json"
+    receipt_path.parent.mkdir(parents=True, exist_ok=True)
+    receipt_path.write_text(json.dumps(receipt, indent=2) + "\n")
+    print(f"Verified {len(results)} files; receipt written to {receipt_path}")
 
 
 if __name__ == "__main__":
