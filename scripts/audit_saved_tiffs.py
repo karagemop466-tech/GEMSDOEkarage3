@@ -19,7 +19,7 @@ import rasterio
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from scripts.audit_registry import binary_spearman, checked_raster, dilate_disk, ensure_file, sha256
+from scripts.audit_registry import binary_spearman, boundary_ring_share, checked_raster, dilate_disk, ensure_file, sha256
 from scripts.check_format import inspect
 
 
@@ -51,11 +51,23 @@ def audit(cache: Path, fetch: bool = False) -> dict:
         n_dots = int(dots.sum())
         overlap = float((dots & near).sum() / n_dots) if n_dots else None
         rho = binary_spearman(dots, witness, foot) if is_binary else None
+        # Literal all-dots reading ("your dots", every positive pixel, wherever it lies).
+        # Reported alongside the footprint-restricted convention above, never instead of it.
+        all_pos = np.isfinite(a) & (a > 0)
+        n_all = int(all_pos.sum())
+        overlap_all = float((all_pos & near).sum() / n_all) if n_all else None
         rows.append({
             'file': str(path.relative_to(ROOT)), 'sha256': sha256(path),
             'in_footprint_binary': is_binary, 'positive_pixels': n_dots,
             'within_3px_fraction': overlap, 'binary_spearman': rho,
             'duplicate_stop': bool(overlap is not None and overlap > .70),
+            'boundary_ring_share': boundary_ring_share(dots, foot),
+            'boundary_gaming_refusal': bool(overlap is not None and overlap <= .70
+                                            and (boundary_ring_share(dots, foot) or 0) >= .5),
+            'positive_pixels_all': n_all,
+            'positive_pixels_outside_template_footprint': int((all_pos & ~foot).sum()),
+            'within_3px_fraction_all_positive_pixels': overlap_all,
+            'literal_all_dots_lattice_rule_pass': bool(overlap_all is not None and overlap_all <= .70),
             'format_diagnostic': fmt,
             'ok_to_submit': False,
         })

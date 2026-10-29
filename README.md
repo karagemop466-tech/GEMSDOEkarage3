@@ -22,6 +22,14 @@
 
 - **Historical artifact (research only, DO NOT SUBMIT):** H-K3B-1 CSST-BGHF file `gemsdoekarage3-h-k3b-1-csst-bghf-coulomb-d31-20261028T061500Z-78c25201-zeros.tif` (SHA-256 `4b47a37ecf91384b2202897dd695219d23375cab2a300106feaf541d60fc9c5b`), archived at [docs/csst-bghf](docs/csst-bghf/index.html). The nine focus sites compared in this repo are GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36 (research only).
 
+### Added by this PR (session 6 branch, merged onto `main`)
+
+- **All-dots reading is recorded alongside the footprint reading.** `scripts/audit_saved_tiffs.py` and `scripts/lattice_feasibility.py` report, per file, the all-positive-pixel count, the outside-footprint count, and the all-dots overlap. The `unique-offcat` file is the only one that passes the 70% rule under the all-dots reading (37.65%, via 7,483 outside dots). The other TIFFs under `docs/` fail under both readings (≥99.3%).
+- **Restore receipt bug fixed.** `scripts/restore_data.py` used to overwrite the tracked 30-file `data/restore_receipt.json` on a partial `--group` run. Now only `--group all` writes it; a partial run writes `<target>/restore_receipt_<group>.json`. Regression test: `tests/test_restore_receipt.py`.
+- **Measured the quarantined H-GEO zeros file** with the same lattice: 99.83% (35,615 dots, all inside). It fails the rule.
+- **Stale upstream text.** `evidence/upstream/GEMSDOE33/README.md` (line 93) still says "YES — READY TO DOWNLOAD" for an older upstream file. It is a vendored snapshot, so it is flagged here and not edited. It is not this repo's current claim.
+- **Owner decision still required** before any upload can be considered: (1) keep the literal rule (no dot-based file can pass); (2) re-scope the rule to discrete detectors and exempt the 206,895-dot calibration lattice; (3) state which overlap reading governs. Under any choice, dots outside the footprint fail the null-outside convention in the organizer template, and the complete-registry and rank-correlation checks still have to run.
+
 ## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
 
 **Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.

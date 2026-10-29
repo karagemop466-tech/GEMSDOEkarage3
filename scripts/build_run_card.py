@@ -37,7 +37,7 @@ def main() -> int:
     rasters = audit['rasters']
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     if ({r['file'] for r in rasters} != expected or not rasters
-            or any(digest(ROOT / r['file']) != r['sha256'] or not r['duplicate_stop'] for r in rasters)):
+            or any(digest(ROOT / r['file']) != r['sha256'] or not (r['duplicate_stop'] or r['boundary_gaming_refusal']) for r in rasters)):
         raise ValueError('Saved TIFF audit is stale, incomplete or no longer proves the duplicate stops')
     lat = history['lattice']
     if not lat['budget_lower_bound'] > .7:

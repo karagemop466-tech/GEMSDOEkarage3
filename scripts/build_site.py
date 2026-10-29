@@ -104,9 +104,12 @@ def render() -> dict[Path, str]:
              .replace("{{HEAD_TIME}}", esc(time)))
     if "{{" in main or "{{" in guide:
         raise ValueError("Unexpanded site template token")
-    from build_k3c_site import apply_root_decision, apply_guide_decision  # current lane decision (docs/k3c/run-card.json)
-    main = apply_root_decision(main)
-    guide = apply_guide_decision(guide)
+    # The public templates are deliberately fail-closed, standalone decision pages.
+    # Do not inject candidate links or infer submission approval from historical geometry.
+    for name, page in (("index.html", main), ("executive-summary.html", guide)):
+        if ("DO NOT SUBMIT" not in page.upper() or
+                re.search(r"href=[\"'][^\"']*karage3-unique-offcat", page, flags=re.IGNORECASE)):
+            raise ValueError(f"Unsafe or stale public decision template: {name}")
     return {ROOT / "index.html": main, ROOT / "executive-summary.html": guide}
 
 

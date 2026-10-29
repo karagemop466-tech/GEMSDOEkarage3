@@ -16,6 +16,7 @@ fetched from https://codeload.github.com/buffedlizard55-lab/13GEMSDOE/tar.gz/92e
 | Overlap of in-footprint dots with lattice (≤3 px) | **99.89%** (4,512 of 4,517) |
 | Overlap of all dots, as reported by the "37.65%" figure | 37.65%, only because 62.4% of dots lie outside the footprint |
 | Value written outside footprint | 0.0 (finite); template uses NaN there |
+| `-nan.tif` vs `-zeros.tif` | Pixel-identical float32 arrays; the `-nan` file contains **0** NaN pixels (only the nodata tag differs) |
 | Generator script in repo | **none** (no reproducible build) |
 
 Why this is not a valid submission: the apparent uniqueness comes from placing most dots outside the

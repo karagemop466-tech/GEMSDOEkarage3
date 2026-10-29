@@ -19,7 +19,7 @@
 </ul>
 
 <h2>2. Uniqueness gate (project rule)</h2>
-<p>A candidate must have at most 70% of its dots within 3 px of any registered raster, and rank correlation at most 0.90. Measured on 2026-10-29: every retained in-footprint file exceeds 99% against the pinned calibration lattice (<a href="../evidence/saved-tiffs-literal-20261028.json">saved-byte audit</a>, <a href="../evidence/lattice-feasibility-20261029.json">feasibility receipt</a>).</p>
+<p>A candidate must have at most 70% of its dots within 3 px of any registered raster, and rank correlation at most 0.90. Measured on 2026-10-29: every retained in-footprint file exceeds 99% against the pinned calibration lattice (<a href="../evidence/saved-tiffs-literal-20261028.json">saved-byte audit</a>, <a href="../evidence/lattice-feasibility-20261029.json">feasibility receipt</a>). Reading all positive pixels instead, <code>karage3-unique-offcat</code> reaches 37.65%, but only because 7,483 of its 12,000 dots lie outside the organizer template footprint (null there). That is not a compliant placement; see the <a href="quarantine/karage3-unique-offcat/NOT-CLEARED.md">quarantine notice</a>.</p>
 
 <h2>3. Steps for a future, cleared file (not available now)</h2>
 <ol>
