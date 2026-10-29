@@ -16,23 +16,28 @@
 <main id="main">
   <div class="container">
 
-    <!-- ===== HERO: Prominent download ===== -->
+    <!-- ===== TOP STATUS BANNER: obvious OK/NOT-OK ===== -->
     <section class="hero" aria-labelledby="hero-title">
+      <div class="status-banner" style="background:#fdecea;color:#7a1f1f;border:1px solid #f5c2c2;border-radius:12px;padding:16px;margin-bottom:16px">
+        <strong style="display:block;margin-bottom:6px">⚠ NOT CLEARED FOR DRIVENDA SUBMISSION</strong>
+        <p style="margin:4px 0 0">A unique, format-valid GeoTIFF is available for download, but neither generated file beats the same-holdout baseline (0.100798 HOLDOUT-DTI). Per protocol, no submission slot may be spent until a candidate beats the baseline on a valid holdout. <strong>Download for testing only — do not upload until selector approval.</strong></p>
+      </div>
       <div>
-        <div class="eyebrow">Competition-ready unique TIF submission</div>
+        <div class="eyebrow">Unique GeoTIFF submission — format-validated, not submit-cleared</div>
         <h1 id="hero-title">Download a unique <em>GeoTIFF</em> for the DOE GEMS competition.</h1>
-        <p class="lede">A new, independently generated 12,000-dot off-catalogue fault detector placed &gt;3 px from every existing focus-site submission. Values clamped to [0, 1], no NaN inside the footprint, exact EPSG:32611 grid (3730 &times; 3292, 100 m). Ready to download and submit to DrivenData.</p>
+        <p class="lede">A new, independently generated off-catalogue fault detector. Values clamped to [0, 1], no NaN inside the footprint, exact EPSG:32611 grid (3730 &times; 3292, 100 m). Format-validated but <strong>not cleared for submission</strong> until holdout baseline is beaten.</p>
         <div class="hero-links">
-          <a class="button" href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download submission .tif <span aria-hidden="true">↓</span></a>
+          <a class="button" href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download karage3-unique-offcat .tif <span aria-hidden="true">↓</span></a>
           <a class="button light" href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.zip">Download .zip package <span aria-hidden="true">↓</span></a>
+          <a class="button light" href="docs/downloads/gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif">Download karage3-h1 .tif <span aria-hidden="true">↓</span></a>
           <a class="button light" href="executive-summary.html">Read nine-site executive summary <span aria-hidden="true">↗</span></a>
           <a class="button light" href="docs/hk3d/how-to-submit.html">Step-by-step submit guide <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <div class="release-card">
-        <div class="card-top"><span class="card-kicker">THIS SUBMISSION</span><span class="pill" style="background:#e4f0e3;color:#38694a">UNIQUE · DOWNLOADABLE</span></div>
+        <div class="card-top"><span class="card-kicker">THIS SUBMISSION</span><span class="pill" style="background:#fdecea;color:#7a1f1f">UNIQUE · FORMAT-OK · NOT SUBMIT-CLEARED</span></div>
         <h2>karage3-unique-offcat</h2>
-        <p>12,000 dots &bull; 0% overlap with existing focus-site submissions &bull; SHA-256 34cef583&hellip;</p>
+        <p>12,000 dots &bull; 0% overlap with existing focus-site submissions &bull; SHA-256 34cef583&hellip; &bull; HOLDOUT-DTI 0.010003 (baseline 0.100798 — NOT beaten)</p>
         <a class="button light" style="display:block;width:max-content;margin:0 auto" href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download zeros.tif</a>
         <div class="card-foot"><span>12,000 emitted dots</span><a href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json" style="color:#bad0bd">Validation metadata ↗</a></div>
       </div>
@@ -63,14 +68,14 @@
             <div class="stat-note">EPSG:32611 &bull; 3730 &times; 3292 &bull; 100 m</div>
           </div>
           <div class="stat">
-            <div class="stat-label">Lattice overlap bound</div>
-            <div class="stat-value">44.6%</div>
-            <div class="stat-note">Theoretical minimum vs registered 206,895-dot witness</div>
+            <div class="stat-label">Lattice overlap (70% rule)</div>
+            <div class="stat-value">37.65%</div>
+            <div class="stat-note">PASS &mdash; below 70% stop vs registered witness</div>
           </div>
           <div class="stat">
-            <div class="stat-label">Target leaderboard</div>
-            <div class="stat-value">&gt; 0.2778</div>
-            <div class="stat-note">Off-catalogue dots target hidden geothermal faults</div>
+            <div class="stat-label">Holdout-DTI vs baseline</div>
+            <div class="stat-value">0.010003</div>
+            <div class="stat-note">Baseline 0.100798 &mdash; NOT beaten &mdash; not submit-cleared</div>
           </div>
         </div>
       </div>
@@ -90,7 +95,7 @@
               <tr>
                 <th scope="col">Site / historical file</th>
                 <th scope="col">Reported value</th>
-                <th scope="col">Estimated score</th>
+                <th scope="col">Holdout estimate</th>
                 <th scope="col">Unique vs focus sites?</th>
                 <th scope="col">Action</th>
               </tr>
@@ -159,25 +164,18 @@
                 <td><span class="warning-text">NO &bull; 97.58%</span><span class="micro">within 3 px of GEMSDOE27</span></td>
                 <td><span class="tag">DO NOT SUBMIT</span><span class="micro">Already-reported historical file</span></td>
               </tr>
-              <tr style="background:#e7f0e4;">
+              <tr style="background:#fdecea;">
                 <td><strong>karage3-unique-offcat (NEW)</strong><a class="file-link" href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif</a><span class="micro">New unique submission · <a href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.zip">ZIP package</a> · <a href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json">Validation metadata</a></span></td>
-                <td><span class="value">Target &gt; 0.2778</span><span class="micro">LOCALLY VALIDATED · NOT YET SUBMITTED TO DRIVENDATA</span></td>
-                <td>Off-catalogue detector<span class="micro">12,000 dots &bull; >3 px from all focus-site dots</span></td>
-                <td><span style="color:#38694a;font-weight:750">YES &bull; 0.00%</span><span class="micro">within 3 px of every existing focus-site submission</span></td>
-                <td><span class="tag" style="background:#e4f0e3;color:#38694a">READY TO DOWNLOAD</span><span class="micro">Format-validated · unique · submission-ready</span></td>
+                <td><span class="value">Target &gt; 0.2778</span><span class="micro">LOCALLY VALIDATED · NOT SUBMITTED</span></td>
+                <td><span class="value">0.010003</span><span class="micro">HOLDOUT-DTI · CI [0.008271, 0.011684] · below baseline 0.100798</span></td>
+                <td><span style="color:#38694a;font-weight:750">YES &bull; 0.00%</span><span class="micro">within 3 px of every focus-site submission · 37.65% vs lattice (&lt;70%)</span></td>
+                <td><span class="tag" style="background:#fdecea;color:#7a1f1f">FORMAT-OK · NOT CLEARED</span><span class="micro">Holdout below baseline · no organizer receipt</span></td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="table-note">The official public leaderboard showed <strong>0.4544</strong> in first place on 28 October 2026. This dated snapshot is not a receipt for any local file and may be stale; <a href="https://www.drivendata.org/competitions/306/competitions/306/competition-doe-gems/leaderboard/">check the current leaderboard ↗</a></p>
+        <p class="table-note">The official public leaderboard showed <strong>0.4544</strong> in first place on 28 October 2026. This dated snapshot is not a receipt for any local file and may be stale; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">check the current leaderboard ↗</a></p>
         <p class="table-note">GEOMETRY-AUDIT, not a score: directed overlap is the share of a row&rsquo;s positive pixels within 3 pixels of its most overlapping other focus-site file. All 72 directional comparisons among the nine historical files exceeded the requested threshold.</p>
-        <div class="callout">
-          <div>
-            <h3>Why a new, unique TIF is required</h3>
-            <p>Every historical file overlaps a registered 206,895-dot calibration lattice by &gt;97% within 3 px. The competition&rsquo;s uniqueness rule stops any submission with &gt;70% of dots within 3 px of a single registry raster. The karage3-unique-offcat file places 12,000 dots in footprint cells that are &gt;3 px from every existing focus-site submission, with a theoretical lattice-overlap floor of 44.6% — safely below the 70% stop.</p>
-          </div>
-          <a class="button" href="docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download unique TIF <span aria-hidden="true">↓</span></a>
-        </div>
       </div>
     </section>
 
@@ -213,4 +211,4 @@
 
 <footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 &bull; Evidence before submission</span><span><a href="index.html">Overview</a> &nbsp; / &nbsp; <a href="executive-summary.html">Nine-site summary</a> &nbsp; / &nbsp; <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3">Repository</a> &nbsp; / &nbsp; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official competition</a></span></div></footer>
 </body>
-</html>
+</html>"
