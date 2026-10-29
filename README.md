@@ -12,6 +12,7 @@
 
 ## Session 6 (2026-10-29) — correction and verification (read first)
 
+- **Status page and review note (2026-10-29):** [docs/submit-now/index.html](docs/submit-now/index.html) (blocking reasons, nine-site table) · [evidence/review-note-20261029.md](evidence/review-note-20261029.md) (three review passes, irregularities, remaining work).
 - **Answer to "download and submit?": NO.** No file is cleared. Two files were previously presented as downloadable and are now quarantined:
   - `karage3-unique-offcat-…tif` (front page had said "READY TO DOWNLOAD") → [docs/quarantine/karage3-unique-offcat/](docs/quarantine/karage3-unique-offcat/NOT-CLEARED.md)
   - H-GEO-CONDUIT hybrid `…0a6974d8-zeros.tif` (PENDING-REVIEW) → [docs/quarantine/geoconduit-hybrid/](docs/quarantine/geoconduit-hybrid/NOT-CLEARED.md)
