@@ -29,8 +29,12 @@ def test_preflight_stops_proven_duplicate_budget_and_keeps_lower_budget_inconclu
 def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
     audit = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
     assert audit['complete_registry_checked'] is False
-    assert {r['file'] for r in audit['rasters']} == {
+    unassessed = json.loads((ROOT / 'evidence/unassessed-tiffs-inventory-20261029.json').read_text())
+    extra_paths = {r['path'] for r in unassessed['files']}
+    assert {r['file'] for r in audit['rasters']} | extra_paths == {
         str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    assert {r['status'] for r in unassessed['files']} == {'UNASSESSED'}
+    assert all(r['do_not_submit'] for r in unassessed['files'])
     for row in audit['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
         assert row['duplicate_stop'] and row['within_3px_fraction'] > .70
@@ -72,7 +76,10 @@ def test_shared_final_gate_has_no_lattice_exemption():
 
 def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
     receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261028.json').read_text())
-    assert set(r['file'] for r in receipt['rasters']) == set(str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif'))
+    unassessed = json.loads((ROOT / 'evidence/unassessed-tiffs-inventory-20261029.json').read_text())
+    extra_paths = {r['path'] for r in unassessed['files']}
+    assert set(r['file'] for r in receipt['rasters']) | extra_paths == set(
+        str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif'))
     for row in receipt['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
         assert row['lattice_overlap_3px'] > .70 and row['duplicate_stop']

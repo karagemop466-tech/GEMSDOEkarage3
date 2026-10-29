@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from scripts.promotion_gate import assess
+from scripts.tiff_inventory import inventory as checked_tiff_inventory
 
 
 def sha(path: Path) -> str:
@@ -72,9 +73,19 @@ def main() -> int:
        and current['correlation_overlap_vs_registry']['unavoidable_overlap_fraction']
        == history['lattice']['budget_lower_bound'] > .70)
     rows = audit['rasters']
-    paths = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
-    ck('all retained TIFFs inventoried exactly once',
-       bool(rows) and len(rows) == len(paths) and {r['file'] for r in rows} == paths)
+    try:
+        tiff_inventory = checked_tiff_inventory(ROOT)
+        inventory_ok = ({r['file'] for r in rows} == set(tiff_inventory['audited_paths'])
+                        and set(tiff_inventory['audited_paths']) | set(tiff_inventory['unassessed_paths'])
+                        == {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')})
+    except (OSError, KeyError, TypeError, ValueError):
+        tiff_inventory = {'unassessed': {'files': []}}
+        inventory_ok = False
+    ck('audited cohort and unassessed TIFFs inventoried exactly once', inventory_ok)
+    for extra in tiff_inventory['unassessed'].get('files', []):
+        ck(f"{extra['path']} hash-bound as unassessed / DO NOT SUBMIT",
+           extra.get('status') == 'UNASSESSED' and extra.get('do_not_submit') is True
+           and (ROOT / extra['path']).is_file() and sha(ROOT / extra['path']) == extra['sha256'])
     for row in rows:
         path = (ROOT / row['file']).resolve()
         ck(f"{row['file']} hash and duplicate stop",

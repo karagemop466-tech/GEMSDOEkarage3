@@ -2,17 +2,18 @@
 
 ## Start here (2026-10-29): nine-site summary and submission status
 
-- **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
+- **Download a file to submit?** **NO.** No file is cleared. The audited nine-site files fail the literal uniqueness gate. The registered lattice covers 99.87% of the footprint within 3 px; a 37,654-dot candidate has a proven minimum literal overlap above 70%. This does not prove every possible sparse raster must fail, but boundary-hole placement is not a scientifically valid workaround.
 - **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
 - **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
-- **Decision needed from the owner:** whether the literal any-registry 70% rule should apply to dense calibration lattices. Until then, no candidate can pass. See *Remaining Work* below.
-- **Irregularity for review:** `scripts/restore_data.py` writes the core rasters to `.cache/gems_data/`, but `scripts/check_readiness.py` checks `data/`. The committed `core_mirror_data: passed` snapshot therefore does not reproduce in this checkout. The readiness file was left unchanged.
-- Rebuild the summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Tests: `tests/test_focus9.py`.
-**Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
+- **No uniqueness waiver is in force.** The user's parallel-run rule explicitly makes any registry raster a stop witness: no calibration-lattice or density exemption is allowed. The 70% overlap ceiling applies literally.
+- **Current code-review finding:** two `karage3-unique-offcat` TIFFs in `docs/downloads/` were absent from the old nine-file audit and were promoted by a stale root homepage as ready to submit. That claim was unsafe. They are now explicitly marked unassessed / DO NOT SUBMIT in generated root pages and the release review; their bytes were not modified. See [follow-up review](docs/review-2026-10-29-follow-up.md) and [current release decision](docs/current-gate-decision.json).
+- **Run readiness afresh:** `docs/readiness.json` is a dated snapshot, not proof the data/cache exist now. In this checkout `.cache/gems_work/feature_stack.npy` is absent and `data/` contains manifests/receipts, not the core GeoTIFFs. No holdout experiment can be reproduced here.
+- Rebuild the nine-site summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Review the current [hypothesis slate](docs/research/candidate-slate-2026-10-29.md). Tests: `tests/test_focus9.py`.
+**Latest repo review (2026-10-29):** [follow-up review, three verification passes and current blockers](docs/review-2026-10-29-follow-up.md) · [candidate hypothesis slate](docs/research/candidate-slate-2026-10-29.md) · [negative JSON run card](docs/data/run-card-20261029-review.json). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
 
 ## SUBMISSION STATUS (read first, updated 2026-10-29)
 
-**Answer: NO file in this repository is currently OK to download and submit.** Every candidate fails the literal uniqueness rule, and a rule-compliant file cannot be built from real predictions.
+**Answer: NO file in this repository is currently OK to download and submit.** Every previously evaluated candidate fails the literal uniqueness rule; two additional local TIFFs are unassessed and therefore not cleared. No rule-compliant prediction file is currently supported by the available validated pipeline.
 
 | File to download | Estimated score | Unique vs. registry? (literal rule: ≤70% of dots within 3 px of any raster) | OK to download and submit? |
 |---|---|---|---|
@@ -28,12 +29,7 @@
 
 **Public leaderboard (fetched 2026-10-29 from [drivendata leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)):** #1 `xiaofanhu` **0.4544** (Best public DW-Tversky). The `0.4413` and `0.3195` figures in the prompt are not confirmed by this page.
 
-**Decision needed from the owner (blocking):** Choose one:
-1. **Keep the literal rule** → no submission is possible; this repo stays in research mode.
-2. **Exempt only dense calibration lattices (>100k dots) from the 3-px rule** (keep rank correlation ≤0.90 for all rasters). Even then, the best candidate fails the same-holdout baseline (`0.094220 < 0.100798`) and must not be submitted.
-3. **Re-scope the rule to the registered discrete detectors only**, with the lattice excluded by a written decision.
-
-Until one of these is chosen in writing, the gate result is `negative` and `ok_to_submit = false`.
+**Binding decision: retain the literal any-registry rule, without exemptions.** This is stated directly in the current parallel-run protocol. The historical discussion below/elsewhere proposing lattice exemptions is superseded and must not be treated as an open approval request. The gate remains `negative`; `ok_to_submit = false`.
 
 ### Submission readiness checks (all run locally, none authorises a slot)
 
@@ -219,7 +215,7 @@ approval. The former README narrative is available in Git history.
 
 1. **Literal Calibration-Lattice Witness Conflict (`13GEMSDOE` `r13-lattice-s5`)**:
    - Algebraic pigeonhole bound proves every budget `N >= 22,164` overlaps `r13-lattice-s5` (`206,895` dots, `99.87%` footprint coverage within `3 px`) by `> 70%`, and Session 5 `EXP-3` (`N = 20,000 <= 22,163`) proves empirically that even `20,000`-dot geological detectors without hole-gaming overlap `r13-lattice-s5` by **`99.1750%`** (`EXP-2` at `37,654` dots: **`99.3547%`**) while `EXP-2` overlaps all discrete (`<= 100k`-dot) peer detectors across all 113 repos by at most **`62.37% <= 70%`**.
-   - **Action needed from repo owner / protocol coordinator**: Decide whether dense calibration lattices (`> 100k` dots) and continuous probability surfaces in `registry/complete_registry_manifest.json` should be governed by rank correlation (`|Spearman| <= 0.90`, where `H-K3D` scores `0.5789`) while restricting the `<= 70%` 3-px dot-overlap stop to discrete (`<= 100k`-dot) submissions. Until explicitly authorized by the user, `promotion_gate.py` enforces the literal any-registry rule strictly (`ok_to_submit = False`).
+   - **Superseded exemption proposal**: an earlier draft suggested excluding dense lattices and continuous surfaces from the 3-px rule. The current user protocol explicitly rejects exceptions. Do not request or infer a waiver; `promotion_gate.py` enforces the literal any-registry rule and `ok_to_submit = False`.
 2. **Closing the Gap Between `H-K3D` (`HR24 = 0.0942`) and `H-K3C` (`0.1110`) / `0.2778` Champion (`0.1008`) on Standard `HR`, While Preserving `H-K3D` `SGMC-cal` Gain (`0.0682 > 0.0641`)**:
    - `H-K3D` `EXP-2` (`B = 3 px`) beat the `0.2778` Champion rule on off-catalogue USGS SGMC faults (`0.068224` vs `0.064121`) and beat `B = 2 px` on `> 500 m` fragment-censored holdout (`0.082560` vs `0.080991`), because `64.75%` of its budget went to far-field basins (`> 1.5 km`). However, standard `Hide-and-Recover` (`HR24`) rewards `[200 m, 1500 m]` near-apron step-overs more heavily (`H-K3D` placed only `13.99%` within `<= 800 m` vs `~34%` in `H-K3C`). Next iteration (`H-K3E`) should test a two-tier submodular budget split (`30%` Coulomb step-over bridge + `70%` `B = 3 px` `TGSF-BVCD` off-catalogue detector).
 3. **Upstream Shared-Template Issues (`GEMSDOE32@97597a066d1c`)**:

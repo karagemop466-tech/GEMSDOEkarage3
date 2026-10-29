@@ -16,8 +16,12 @@ def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
     report = json.loads((ROOT / 'evidence/release-audit-20261028.json').read_text())
     assert report['experiments_run'] == report['weekly_slots_used'] == 0
     assert report['ok_to_submit'] is False
+    unassessed = json.loads((ROOT / 'evidence/unassessed-tiffs-inventory-20261029.json').read_text())
+    extra_paths = {r['path'] for r in unassessed['files']}
     assert {r['file'] for r in report['rows']} == {
-        str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')}
+        str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')} - extra_paths
+    assert {r['status'] for r in unassessed['files']} == {'UNASSESSED'}
+    assert all(r['do_not_submit'] for r in unassessed['files'])
     for row in report['rows']:
         path = ROOT / row['file']
         assert hashlib.sha256(path.read_bytes()).hexdigest() == row['sha256']

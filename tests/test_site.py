@@ -85,6 +85,11 @@ def test_generated_pages_match_evidence(tmp_path, monkeypatch):
     result = build_site.render()
     assert result[root / "index.html"] == (ROOT / "index.html").read_text()
     assert result[root / "executive-summary.html"] == (ROOT / "executive-summary.html").read_text()
+    assert "additional local TIFF(s)" in result[root / "index.html"]
+    assert "unverified" in result[root / "index.html"]
+    review = (ROOT / "docs/release-review.html").read_text()
+    assert "karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif" in review
+    assert "unassessed" in review.lower()
     decision = json.loads((ROOT / "docs/current-gate-decision.json").read_text())
     if decision["ok_to_submit"]:
         assert "OK TO SUBMIT? YES" in result[root / "index.html"]

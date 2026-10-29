@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "run_id": "karage3-review-20261029-root-release-safety",
+  "created_utc": "2026-10-29T18:21:07Z",
+  "hypothesis": "PROPOSED ONLY: localized cross-spectral phase coherence between RTP magnetics and isostatic gravity may highlight concealed basement boundaries under weak relief; not assigned or tested.",
+  "mechanism": "Stable scale-banded coherence and phase lag across magnetic and gravity responses could indicate a buried density/magnetization boundary without requiring a mapped surface scarp.",
+  "named_non_fault_mimic": "Lithologic contacts, mafic dikes, remanent magnetization, acquisition/leveling artifacts, and basement-depth interpolation seams.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci_95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "NOT RUN: no cached feature stack, no unambiguous assigned lane, and shared evaluator protocol defects remain open."
+  },
+  "feature_canaries": {
+    "status": "NOT RUN: no candidate feature was computed",
+    "features_tested": 0,
+    "leakage_threshold_auc": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_surface_max_overlap_3px": null,
+    "candidate_final_dots_spearman": null,
+    "candidate_final_dots_max_overlap_3px": null,
+    "registry_inventory_complete": false,
+    "status": "NOT RUN: no candidate surface/dots; current complete registry unavailable. Existing lattice witness is not a substitute for a complete audit."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no new candidate raster",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "organizer_acceptance": "unknown"
+  },
+  "submission_name": null,
+  "note": "No candidate generated; DO NOT SUBMIT.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "slot_selected": false,
+  "limitations": [
+    "Historical TIFFs in this repository are not new candidates or score estimates.",
+    "Two local off-catalogue TIFFs are absent from the pinned saved-byte audit and remain unverified / DO NOT SUBMIT.",
+    "No holdout DTI, confidence interval, or leaderboard-score projection is available for this proposal.",
+    "The root site advertises no downloadable submission file; only the disabled button is displayed."
+  ]
+}
