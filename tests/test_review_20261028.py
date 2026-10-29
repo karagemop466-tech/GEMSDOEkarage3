@@ -27,17 +27,16 @@ def test_preflight_stops_proven_duplicate_budget_and_keeps_lower_budget_inconclu
 
 
 def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
-    audit = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    historic = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    audit = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_text())
     assert audit['complete_registry_checked'] is False
+    historical_paths = {r['file'] for r in historic['rasters']}
     audited = {r['file'] for r in audit['rasters']}
     current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
-    assert audited.issubset(current)
-    assert current - audited == {
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
-    }
+    assert len(historical_paths) == 9
+    assert historical_paths.issubset(audited)
+    assert audited == current and len(audited) == 13
+    assert len(audited - historical_paths) == 4
     for row in audit['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
         assert row['duplicate_stop'] and row['within_3px_fraction'] > .70
@@ -77,17 +76,13 @@ def test_shared_final_gate_has_no_lattice_exemption():
     assert 'dots_spearman' not in result['comparisons'][0]
 
 
-def test_retained_byte_audit_scope_is_distinguished_from_later_unreviewed_tiffs():
+def test_retained_byte_audit_scope_is_distinguished_from_full_witness_inventory():
     receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261028.json').read_text())
+    latest = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_text())
     audited = {r['file'] for r in receipt['rasters']}
-    current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')}
+    current = {r['file'] for r in latest['rasters']}
+    assert len(audited) == 5
     assert audited.issubset(current)
-    assert current - audited == {
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
-    }
     for row in receipt['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
         assert row['lattice_overlap_3px'] > .70 and row['duplicate_stop']
@@ -104,7 +99,7 @@ def test_current_numbers_verifier_runs_fail_closed():
 
 def test_parallel_k3c_witness_agrees_with_eight_file_audit():
     witness = json.loads((ROOT / 'evidence/k3c-literal-witness-audit-20261028.json').read_text())
-    all_saved = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    all_saved = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_text())
     row = next(r for r in all_saved['rasters'] if r['file'] == witness['candidate'])
     assert hashlib.sha256((ROOT / witness['candidate']).read_bytes()).hexdigest() == witness['candidate_sha256']
     assert row['sha256'] == witness['candidate_sha256']

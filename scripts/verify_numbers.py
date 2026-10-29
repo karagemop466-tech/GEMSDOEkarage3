@@ -42,7 +42,8 @@ def main() -> int:
     latest = load('docs/data/latest-run.json')
     archived = load('docs/k3c/run-card.json')
     decision = load('docs/current-gate-decision.json')
-    audit = load('evidence/saved-tiffs-literal-20261028.json')
+    audit = load('evidence/saved-tiffs-literal-20261029.json')
+    historic_audit = load('evidence/saved-tiffs-literal-20261028.json')
     witness = load('evidence/k3c-literal-witness-audit-20261028.json')
     sites = load('docs/sites.json')
     history = load('docs/data/historical-audit.json')
@@ -64,8 +65,11 @@ def main() -> int:
        sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json'))
     ck('current card binds both saved audit receipts',
        current['geometry_audit_sha256'] == sha(ROOT / 'docs/data/historical-audit.json')
-       and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json')
-       and sha(ROOT / 'docs/data/saved-tiffs-literal-20261028.json') == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json'))
+       and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261029.json')
+       and current['saved_tiffs_audit'] == 'saved-tiffs-literal-20261029.json'
+       and len(historic_audit['rasters']) == 9
+       and sha(ROOT / 'docs/data/saved-tiffs-literal-20261028.json') == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json')
+       and sha(ROOT / 'docs/data/saved-tiffs-literal-20261029.json') == sha(ROOT / 'evidence/saved-tiffs-literal-20261029.json'))
     ck('lattice geometry and budget bound agree',
        audit['witness']['sha256'] == history['lattice']['source']['sha256']
        and audit['witness']['uncovered_footprint_pixels'] == history['lattice']['uncovered_beyond_3px']
@@ -74,24 +78,33 @@ def main() -> int:
     rows = audit['rasters']
     paths = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     audited_paths = {r['file'] for r in rows}
-    unreviewed = paths - audited_paths
-    hgeo = load('docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-audit.json')
-    offcat = load('docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json')
+    historical_paths = {r['file'] for r in historic_audit['rasters']}
+    offcat = load('docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json')
     hgeo_review = load('docs/data/candidate-review-20261029.json')
     later_hashes = {
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif': hgeo['zeros_tif']['sha256'],
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif': hgeo['nan_tif']['sha256'],
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif': offcat['zeros_sha256'],
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif': offcat['nan_sha256'],
+        'docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif': '064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43',
+        'docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif': 'dafa1e375a57735f6f64091f8b36050b5dda9c72b325ad97327d9d49a76ce1f3',
+        'docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif': '34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e',
+        'docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif': '80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390',
     }
-    ck('dated saved-byte scope and later files explicitly inventoried as unreviewed',
-       bool(rows) and audited_paths.issubset(paths) and unreviewed == set(later_hashes)
+    ck('dated 9-file receipt remains immutable; fresh 13-file witness audit covers current docs TIFFs',
+       len(historical_paths) == 9 and historical_paths.issubset(audited_paths)
+       and audited_paths == paths and len(rows) == 13
        and all(sha(ROOT / path) == digest for path, digest in later_hashes.items())
        and offcat['ok_to_submit'] is False and offcat['verdict'] == 'negative'
        and offcat['estimated_leaderboard_score'] is None
        and 'NOT ESTABLISHED' in offcat['uniqueness_status']
-       and hgeo_review['verdict'] == 'negative' and hgeo_review['raster_sha256'] == hgeo['zeros_tif']['sha256']
+       and hgeo_review['verdict'] == 'negative'
+       and hgeo_review['raster_sha256'] == '064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43'
        and hgeo_review['registry_checks']['registry_completeness'] == 'NOT ESTABLISHED')
+    h1 = load('docs/data/run-card-20261029-h1.json')
+    h1_files = list((ROOT / 'evidence/quarantine/h1-seismic-gravity-basin').glob('*.tif'))
+    ck('inherited H1 candidate remains quarantined with negative run-card and no public download',
+       h1['verdict'] == 'negative' and h1['ok_to_submit'] is False
+       and h1['slot_selected'] is False and h1['holdout_dti']['value'] == 0.0
+       and h1['raster_path'].startswith('evidence/quarantine/h1-seismic-gravity-basin/')
+       and len(h1_files) == 2
+       and not list((ROOT / 'docs/downloads').glob('*h1-seismic-gravity-basin*.tif')))
     for row in rows:
         path = (ROOT / row['file']).resolve()
         ck(f"{row['file']} hash and duplicate stop",

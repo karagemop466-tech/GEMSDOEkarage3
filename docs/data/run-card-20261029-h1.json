@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "run_id": "karage3-h1-seismic-gravity-basin-20261029",
+  "created_utc": "2026-10-29T18:23:09+00:00",
+  "assigned_lane": "NOT ESTABLISHED in this review; the inherited card labels this H1 method but an assignment record was not verified.",
+  "hypothesis": "Seismicity (ieq_n100a15) + Bouguer gravity (iso_grav_anom) + elevation (det_elev) + shear strain rate (geod_shearrate) jointly identify blind geothermal fault conduits off the USGS/INGENIOUS catalogue. Seismicity reveals active slip on unmapped faults; gravity lows mark fractured basins; low elevation and shear localize geothermal upflow.",
+  "mechanism": "Composite prospectivity score weights seismicity 40%, inverse gravity anomaly 25%, inverse elevation 20%, shear rate 15%. Dots placed at top-scoring off-catalogue pixels (visible faults masked pixel-exactly, 1-px buffer).",
+  "named_non_fault_mimic": "Unfaulted sedimentary basins, volcanic calderas, groundwater drawdown, lithologic contacts.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "value": 0.0,
+    "ci_95": [
+      0.0,
+      0.0
+    ],
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "b_visible_px": 0.0,
+    "note": "The inherited card reports 1,924 dots away from withheld fault segments; this is a negative result, not a uniqueness or submission pass.",
+    "evidence_status": "Inherited run-card claim; not independently reproduced in this review and not organizer-confirmed."
+  },
+  "sgmc_off_catalogue": {
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "withheld_positives": 62703,
+    "raw_pooled_dti": 0.000581,
+    "raw_ci95": [
+      0.000171,
+      0.001114
+    ],
+    "prevalence_calibrated_dti": 0.000565,
+    "calibrated_ci95": [
+      0.000166,
+      0.001074
+    ]
+  },
+  "leakage_canaries": {
+    "status": "NOT RUN for this static candidate; single-feature canaries were run on the 61-channel shared stack (global max oriented AUC 0.618008 <= 0.90, evidence/leakage-canary-61ch.json)"
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_surface_dot_overlap": null,
+    "candidate_final_spearman": null,
+    "candidate_final_dot_overlap_vs_lattice": 0.0,
+    "candidate_final_dot_overlap_vs_focus_sites": 0.0,
+    "candidate_final_dot_overlap_vs_karage3_unique_offcat": 0.0,
+    "vs_70pct_rule": "The inherited card reports 0.0% overlap versus one pinned lattice witness; not a complete-registry check or uniqueness pass.",
+    "vs_rank_correlation": "NOT RUN (complete registry scan not performed for this candidate)",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "witness_budget": 206895,
+    "witness_coverage_within_3px": 0.9987,
+    "status": "NOT ESTABLISHED \u2014 single-witness/focus-site diagnostic only; complete registry scan was not performed."
+  },
+  "raster_sha256": "d99e0d4fe96a11c3fee75998b6605a75cdf0a0625030e415e1f60b9afaaa0b87",
+  "raster_path": "evidence/quarantine/h1-seismic-gravity-basin/gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif",
+  "validator_output": {
+    "template": ".cache/gems_data/sample_submission.tif",
+    "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "geotiff": true,
+    "single_band": true,
+    "float32": true,
+    "shape_matches": true,
+    "crs_matches": true,
+    "transform_matches": true,
+    "self_contained_tiff": true,
+    "inside_all_finite": true,
+    "inside_range_0_1": true,
+    "inside_not_nodata_or_masked": true,
+    "core_format_pass": true,
+    "inside_nonfinite_count": 0,
+    "inside_masked_count": 0,
+    "inside_min": 0.0,
+    "inside_max": 1.0,
+    "outside_template_null_pass": false,
+    "whole_array_finite_range_pass": true,
+    "organizer_acceptance": "unknown",
+    "authorization": "NOT AUTHORIZED",
+    "note": "Template uses NaN outside footprint; candidate writes 0.0 outside. Portal acceptance of 0.0-outside is unverified."
+  },
+  "submission_name": "gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif",
+  "note": "Research-only H1 seismic-gravity diagnostic; negative holdout; not approved for download or submission.",
+  "note_length": 103,
+  "note_truncated": false,
+  "experiments_run": 1,
+  "weekly_slots_used": 0,
+  "slot_selected": false,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "eligibile_for_selector": false,
+  "blockers": [
+    "Inherited HOLDOUT-DTI claim 0.000000 does not beat the stated same-holdout baseline 0.100798; result not independently reproduced here.",
+    "The card reports dots only in the lattice-free boundary ring, with no geological signal there; this does not establish global uniqueness.",
+    "Complete registry rank-correlation and literal surface/final-dot scans were not performed.",
+    "Outside-footprint null convention (0.0 vs template NaN) remains unverified for organizer acceptance."
+  ],
+  "evidence": {
+    "format_validation": "scripts/check_submission.py output",
+    "holdout_evaluation": "scripts/evaluate_holdout.py output",
+    "generation_script": "scripts/generate_unique_submission.py",
+    "metadata_json": "evidence/unique-submission-h1-20261029T182309Z.json"
+  }
+}

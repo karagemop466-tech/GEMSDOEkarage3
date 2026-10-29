@@ -737,10 +737,10 @@ def main() -> int:
     witness_out = edir / "hk3d-literal-witness-audit-20261028.json"
     witness_out.write_text(json.dumps(witness_hk3d, indent=2, allow_nan=False) + "\n")
 
-    # Refresh 9-file saved-byte audit across all docs/**/*.tif
+    # Write a fresh current-inventory saved-byte audit; keep the frozen 2026-10-28 receipt untouched.
     saved_all = audit_saved_tiffs.audit(ROOT / ".cache" / "historical", fetch=True)
-    (edir / "saved-tiffs-literal-20261028.json").write_text(json.dumps(saved_all, indent=2, allow_nan=False) + "\n")
-    (ROOT / "docs/data/saved-tiffs-literal-20261028.json").write_bytes((edir / "saved-tiffs-literal-20261028.json").read_bytes())
+    (edir / "saved-tiffs-literal-20261029.json").write_text(json.dumps(saved_all, indent=2, allow_nan=False) + "\n")
+    (ROOT / "docs/data/saved-tiffs-literal-20261029.json").write_bytes((edir / "saved-tiffs-literal-20261029.json").read_bytes())
 
     # Render 4-panel diagnostic figure
     render_hk3d_figure(ROOT / "docs/assets/fig_hk3d_tgsf.png", hk3d_stack, surf_live, ship_dots, foot, HR, FRAG)

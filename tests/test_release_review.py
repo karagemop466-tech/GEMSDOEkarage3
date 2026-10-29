@@ -6,6 +6,7 @@ import subprocess
 import sys
 
 import numpy as np
+import rasterio
 from scripts.promotion_gate import assess
 from src.gems32.release_gate import compare_registry
 
@@ -13,29 +14,36 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_dated_saved_audit_is_not_misrepresented_as_covering_later_tiffs():
-    report = json.loads((ROOT / 'evidence/release-audit-20261028.json').read_text())
-    assert report['experiments_run'] == report['weekly_slots_used'] == 0
-    assert report['ok_to_submit'] is False
-    audited = {r['file'] for r in report['rows']}
-    current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')}
-    assert audited.issubset(current)
-    assert current - audited == {
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
-        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
-        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
+    historic = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    latest = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_text())
+    assert latest['experiments_run'] == latest['weekly_slots_used'] == 0
+    assert latest['ok_to_submit'] is False
+    old_paths = {r['file'] for r in historic['rasters']}
+    audited = {r['file'] for r in latest['rasters']}
+    current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    assert len(old_paths) == 9
+    assert old_paths.issubset(audited)
+    assert audited == current and len(audited) == 13
+    assert audited - old_paths == {
+        'docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
+        'docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
+        'docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
+        'docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
     }
-    for row in report['rows']:
+    for row in latest['rasters']:
         path = ROOT / row['file']
         assert hashlib.sha256(path.read_bytes()).hexdigest() == row['sha256']
-        assert row['validator']['candidate_sha256'] == row['sha256']
-        assert row['within_3px_fraction'] > .70
-        assert row['duplicate_stop'] is True
+        assert row['within_3px_fraction'] > .70 and row['duplicate_stop'] is True
         assert row['ok_to_submit'] is False
         if path.name.endswith('-zeros.tif'):
-            assert row['validator']['whole_array_finite_range_pass'] is True
+            assert row['format_diagnostic']['all_cell_finite_range'] is True
+        elif path.name.startswith('karage3-unique-offcat-'):
+            assert row['format_diagnostic']['all_cell_finite_range'] is True
+            with rasterio.open(path) as nan_ds, rasterio.open(path.with_name(path.name.replace('-nan.tif', '-zeros.tif'))) as zero_ds:
+                assert int(np.isnan(nan_ds.read(1)).sum()) == 0
+                assert np.array_equal(nan_ds.read(1), zero_ds.read(1))
         else:
-            assert row['validator']['whole_array_finite_range_pass'] is False
+            assert row['format_diagnostic']['all_cell_finite_range'] is False
 
 
 def test_public_rebuild_deterministic_and_old_narrative_collapsed():
@@ -50,11 +58,11 @@ def test_public_rebuild_deterministic_and_old_narrative_collapsed():
         assert text.count('<!-- ARCHIVED-BODY -->') <= 1
         assert 'DO NOT SUBMIT' in text
     release_page = (ROOT / 'docs/release-review.html').read_text()
-    assert 'newer files are not covered' in release_page
-    assert 'NOT ESTABLISHED · not measured' in release_page
+    assert '13 of the 13 retained TIFFs fail' in release_page
+    assert 'NOT ESTABLISHED · not measured' not in release_page
     assert 'gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif' in release_page
     assert 'karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif' in release_page
-    assert 'download href="downloads/gemsdoe32-karage3-h-geoconduit' not in release_page
+    assert '<a download' not in release_page
     # The home decision pages are generated from the current lane card by build_k3c_site.py
     home = [ROOT / p for p in ('docs/index.html', 'docs/executive-summary.html')]
     before = [p.read_bytes() for p in home]

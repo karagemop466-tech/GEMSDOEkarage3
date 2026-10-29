@@ -53,11 +53,20 @@ def audit(cache: Path, fetch: bool = False) -> dict:
         n_dots = int(dots.sum())
         overlap = float((dots & near).sum() / n_dots) if n_dots else None
         rho = binary_spearman(dots, witness, foot) if is_binary else None
+        # Literal all-dots reading ("your dots", every positive pixel, wherever it lies).
+        # Reported alongside the footprint-restricted convention above, never instead of it.
+        all_pos = np.isfinite(a) & (a > 0)
+        n_all = int(all_pos.sum())
+        overlap_all = float((all_pos & near).sum() / n_all) if n_all else None
         rows.append({
             'file': str(path.relative_to(ROOT)), 'sha256': sha256(path),
             'in_footprint_binary': is_binary, 'positive_pixels': n_dots,
             'within_3px_fraction': overlap, 'binary_spearman': rho,
             'duplicate_stop': bool(overlap is not None and overlap > .70),
+            'positive_pixels_all': n_all,
+            'positive_pixels_outside_template_footprint': int((all_pos & ~foot).sum()),
+            'within_3px_fraction_all_positive_pixels': overlap_all,
+            'literal_all_dots_lattice_rule_pass': bool(overlap_all is not None and overlap_all <= .70),
             'format_diagnostic': fmt,
             'ok_to_submit': False,
         })
@@ -94,7 +103,10 @@ def compare_dated_receipt(result: dict, expected: dict) -> list[str]:
     recorded = {r['file']: r for r in expected['rasters']}
     if not set(recorded).issubset(fresh):
         raise ValueError('A TIFF named by the committed receipt is missing from the fresh audit')
-    changed = [path for path, row in recorded.items() if fresh[path] != row]
+    # A later schema may add measurements (such as all-dots diagnostics). The
+    # dated receipt is still verified exactly for every field it actually bound.
+    changed = [path for path, row in recorded.items()
+               if any(fresh[path].get(key) != value for key, value in row.items())]
     if changed:
         raise ValueError('Fresh saved-byte audit differs from committed rows: ' + ', '.join(changed))
     return sorted(set(fresh) - set(recorded))
@@ -104,7 +116,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--cache', type=Path, default=ROOT / '.cache/historical')
     ap.add_argument('--fetch', action='store_true')
-    ap.add_argument('--out', type=Path, default=ROOT / 'evidence/saved-tiffs-literal-20261028.json')
+    ap.add_argument('--out', type=Path, default=ROOT / 'evidence/saved-tiffs-literal-20261029.json')
     ap.add_argument('--verify-receipt', type=Path,
                     help='Compare fresh values with a saved report, ignoring only the audit timestamp; do not write output')
     args = ap.parse_args()

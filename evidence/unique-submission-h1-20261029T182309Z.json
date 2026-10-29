@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-29T18:23:12+00:00",
+  "hypothesis": {
+    "rank": 1,
+    "name": "H1-seismic-gravity-basin-conduit",
+    "layers": [
+      "ieq_n100a15",
+      "iso_grav_anom",
+      "det_elev",
+      "geod_shearrate"
+    ],
+    "signature": "Seismicity + negative gravity + low elevation + shear: blind fault conduits beneath young cover, no mapped surface trace.",
+    "off_catalogue_rationale": "Seismicity reveals active slip on unmapped faults; gravity lows marks fractured basins; these detect structures absent from USGS/INGENIOUS traces.",
+    "non_fault_mimic": "Unfaulted sedimentary basins, volcanic calderas, groundwater drawdown.",
+    "cost": "Low \u2014 uses existing 19-band feature stack, no external data.",
+    "expected_dti": "Moderate improvement over off-catalogue-only detectors."
+  },
+  "mechanism": "Seismicity reveals active slip on unmapped faults; gravity lows mark fractured basins; low elevation and shear strain localize blind geothermal conduits off the catalogue.",
+  "named_non_fault_mimic": "Unfaulted sedimentary basins, volcanic calderas, groundwater drawdown, lithologic contacts.",
+  "score_label": "HOLDOUT-DTI (static diagnostic; not a leaderboard estimate)",
+  "emitted_pixels": 1924,
+  "bundle": {
+    "candidate_id": "karage3-h1-seismic-gravity-basin-20261029T182309Z",
+    "slug": "karage3-h1-seismic-gravity-basin",
+    "content_digest8": "91540319",
+    "description": "H1 static binary diagnostic; research-only and quarantined after a negative holdout result.",
+    "submission_note_zeros": "Research-only H1 seismic-gravity diagnostic; negative holdout; not approved for download or submission.",
+    "submission_note_nan": "Research-only H1 seismic-gravity diagnostic; negative holdout; not approved for download or submission.",
+    "zeros_tif": {
+      "filename": "gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif",
+      "size_bytes": 60531,
+      "sha256": "d99e0d4fe96a11c3fee75998b6605a75cdf0a0625030e415e1f60b9afaaa0b87",
+      "mode": "zeros",
+      "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "None",
+      "emitted_positive_pixels": 1924,
+      "footprint_fraction": 0.000372,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 12279160,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "nan_tif": {
+      "filename": "gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-nan.tif",
+      "size_bytes": 190207,
+      "sha256": "a5066b5f7ac5df03974a87537195dbcba8c518f730556388e17b4be7d3aa5957",
+      "mode": "nan",
+      "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "nodata": null,
+      "nodata_repr": "nan",
+      "emitted_positive_pixels": 1924,
+      "footprint_fraction": 0.000372,
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_finite_pixels": 5167373,
+      "in_footprint_min": 0.0,
+      "in_footprint_max": 1.0,
+      "full_grid_finite_pixels": 5167373,
+      "checks": {
+        "exact_reference_grid_match": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_zero_nan": true,
+        "in_footprint_zero_inf": true,
+        "in_footprint_zero_sentinel": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_compliant": true,
+        "zero_on_catalogue_leakage": true,
+        "validator_range_0_1_guaranteed": true
+      },
+      "all_checks_passed": true
+    },
+    "holdout_metrics": {
+      "catalogue_hidden_mean": null,
+      "catalogue_hidden_per_quadrant": {},
+      "sgmc_prevalence_calibrated_dti": null,
+      "drift_corrected_holdout_mean": null,
+      "drift_corrected_per_quadrant": {},
+      "predicted_leaderboard_dti": null,
+      "ei_drift_corrected": null,
+      "slot_decision": "HOLD-DO-NOT-SUBMIT"
+    },
+    "release_status": "NEGATIVE \u2014 DO NOT DOWNLOAD OR SUBMIT; format diagnostic only."
+  },
+  "uniqueness_checked_vs": [
+    "/home/user/GEMSDOEkarage3/docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/8GEMSDOE_Hedge-v2_submission.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gemsdoe-ens12-adopted-7f00890a.tif",
+    "/home/user/GEMSDOEkarage3/.cache/gems_data/scored/gemsdoe9-PLACEHOLDER-2314b599.tif"
+  ],
+  "review_status": "Inherited run-card claim; not independently reproduced in this review. Negative; no complete-registry uniqueness pass or slot authorization."
+}

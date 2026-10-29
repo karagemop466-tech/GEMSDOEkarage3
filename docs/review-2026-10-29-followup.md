@@ -50,6 +50,14 @@ Kept the dated raster receipt immutable and narrowed claims to its actual nine f
 4. A complete current registry and its rasters are needed to test every candidate surface before placement and final dots. The four newer TIFFs must stay blocked until this is available.
 5. An independent selector must verify eligibility and current weekly quota. There is no organizer receipt in this review.
 
+## Post-review base-branch update — 29 October 2026
+
+While this PR was open, `main` advanced with a separate safety review. Its fresh pinned-lattice audit was saved separately as `evidence/saved-tiffs-literal-20261029.json` (13 TIFFs; check time 18:32 UTC) so the original nine-row `evidence/saved-tiffs-literal-20261028.json` remains immutable. The new audit measures the four previously uncovered files: H-GEO-CONDUIT is 99.8287% within 3 px of the lattice witness; the off-catalogue file has 4,517 in-footprint dots, 99.8893% within 3 px, and 7,483 dots outside the template footprint. All 13 audited TIFFs are stopped by this one witness. This is a negative witness screen, not a complete-registry or surface uniqueness audit.
+
+The updated base also included a separate H1 seismic–gravity TIFF pair. Its inherited run card records HOLDOUT-DTI 0.000000 against a stated 0.100798 baseline and says the complete-registry scan was not performed. It was not generated or independently validated in this review; the pair and its sidecar have been moved out of public `docs/downloads` into `evidence/quarantine/h1-seismic-gravity-basin/`, with the negative run card retained. No submission slot or upload occurred.
+
+The first CI run for this PR failed because a current inventory was compared for exact equality with the nine-file frozen receipt. Receipt verification now compares all frozen fields/rows and reports later additions separately. The subsequent CI run passed both checks on commit `37cd318`; the merge conflict with newer `main` was resolved locally on this same session branch. Post-merge local verification now passes: pytest **210 passed, 1 skipped, 80 subtests passed**; unittest **114 passed**; npm **4 passed**; browser-feed **2 passed**; site/release builders and `git diff --check` passed; `verify_numbers.py` reports **27/27** consistency checks. The frozen 9-row receipt matches the latest 13-row audit on its shared rows; four later TIFF entries are reported separately. The real pull-request CI still must confirm these merge-resolution edits before PR #54 is merged.
+
 ## Run card — this follow-up
 
 ```json
