@@ -39,7 +39,7 @@ def shell(title, body, depth=0):
 
 def _archive():
     original = json.loads((ROOT / 'evidence/k3c_run_card.json').read_text())
-    report = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_text())
+    report = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
     rasters = report['rasters']
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     if (len(rasters) != len(expected) or len(rasters) < 8 or {r['file'] for r in rasters} != expected
@@ -62,6 +62,9 @@ def root_decision_html():
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
              f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; '
              'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
+             'H-GEO-CONDUIT hybrid candidate (quarantined at <code>docs/quarantine/geoconduit-hybrid/</code>, PENDING-REVIEW) has 99.83% of its 35,615 dots within 3 px of the lattice, so it is not a compliant file. '
+             'Its HOLDOUT-DTI 0.4239 [0.4053, 0.4427] (GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives) is copied from its candidate card. It is NOT ESTABLISHED as a same-protocol baseline and is not an organizer-confirmed score. '
+             'No submission note is authorized. '
              '<a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · '
              '<a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · '
              '<a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · '
@@ -69,7 +72,7 @@ def root_decision_html():
     card = ('<div class="release-card" aria-label="Current submission decision">\n'
             '      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>\n'
             '      <h2>No file cleared<br>for live submission.</h2>\n'
-            '      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>\n'
+            '      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641), the H-GEO-CONDUIT candidate (99.83% vs lattice; HOLDOUT-DTI 0.4239, NOT ESTABLISHED as a same-protocol baseline) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>\n'
             '      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>\n'
             '      <div class="card-foot"><span id="download-explanation">Live slot locked · do not submit · see <a href="docs/hk3d/index.html" style="color:#d6e8d7">H-K3D audit</a></span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>\n'
             '    </div>')
@@ -89,8 +92,7 @@ def apply_guide_decision(text):
     aside, _ = root_decision_html()
     text, n1 = re.subn(r'<aside style="padding:16px;background:#(?:fff1f2|ecfdf5)[^"]*">.*?</aside>', lambda _: aside, text, count=1, flags=re.S)
     banner = ('<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved</strong>'
-              '<p>The K3C archive and the other retained TIFFs fail the literal duplicate rule. Research links below are not new submissions; no leaderboard estimate or slot decision exists.</p>'
-              '<p><strong>Latest candidate</strong> gemsdoe32-karage3-h-geoconduit-hybrid (PENDING-REVIEW, verdict negative): the quoted HOLDOUT-DTI 0.4239 is NOT ESTABLISHED here. It is not an organizer score. The literal registry lattice check fails at 99.83% (limit 70%).</p></div></div>')
+              '<p>The K3C archive and the other retained TIFFs fail the literal duplicate rule. Research links below are not new submissions; no leaderboard estimate or slot decision exists.</p></div></div>')
     text, n2 = re.subn(r'<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved or available</strong>.*?</div></div>', lambda _: banner, text, count=1, flags=re.S)
     if (n1, n2) != (1, 1):
         raise ValueError('Root submission-guide decision markers missing')
@@ -107,7 +109,7 @@ def build():
     card['reassessment'] = {
         'checked_utc': report['checked_utc'],
         'status': 'SUPERSEDED: historical promote withdrawn; literal duplicate stop and conservative outside-null failure.',
-        'evidence': 'docs/data/saved-tiffs-literal-20261029.json',
+        'evidence': 'docs/data/saved-tiffs-literal-20261028.json',
         'witness_sha256': report['witness']['sha256'],
         'measured_witness_overlap_fraction': row['within_3px_fraction'],
         'full_registry_checked_in_this_reassessment': False,
@@ -126,7 +128,7 @@ def build():
                 'current_run_card': 'docs/data/latest-run.json',
                 'parallel_preflight_card': 'docs/data/current-run.json'}
     (ROOT / 'docs/current-gate-decision.json').write_text(json.dumps(decision, indent=2, allow_nan=False) + '\n')
-    (ROOT / 'docs/data/saved-tiffs-literal-20261029.json').write_bytes((ROOT / 'evidence/saved-tiffs-literal-20261029.json').read_bytes())
+    (ROOT / 'docs/data/saved-tiffs-literal-20261028.json').write_bytes((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_bytes())
     sites_path = ROOT / 'docs/sites.json'
     sites = json.loads(sites_path.read_text())
     sites['promoted_candidate'] = None
@@ -146,7 +148,7 @@ def build():
 <p>Historical file: <code>{file}</code><br>SHA-256 <code>{sha}</code><br><a href="{tif_rel}" download>Download historical TIFF for research only — DO NOT SUBMIT</a></p>
 <h2>Scientific record, not re-run here</h2><p>The prior card reports <strong>HOLDOUT-DTI {hold['dti']:.6f}</strong> (95% CI [{ci[0]:.6f}, {ci[1]:.6f}], evaluator <code>{H(hold['evaluator_version'])}</code>, {hold['withheld_positives']:,} withheld-positive occurrences). The same-card champion-rule comparator is {hold['champion_02778_same_evaluator_dti']:.6f}; paired delta CI [{delta[0]:+.6f}, {delta[1]:+.6f}]. This was not reproduced here and does not establish a compliant buffered whole-segment split, a win against the current same-protocol best, an organizer score or an estimate.</p>
 <p>The user-reported 0.2778 for GEMSDOE32 has no artifact-linked organizer receipt in this checkout. Its dot set is a near-catalogue-pruned subset of GEMSDOE31; reduced redundant prediction mass is plausible, but hidden labels and causality are unknown.</p>
-<p><a href="run-card.json">Corrected historical card</a> · <a href="../data/saved-tiffs-literal-20261029.json">Independent saved-byte audit</a> · <a href="../../executive-summary.html#site-details">Nine-site file table</a> · <a href="../../research.html">Hypotheses</a></p>'''
+<p><a href="run-card.json">Corrected historical card</a> · <a href="../data/saved-tiffs-literal-20261028.json">Independent saved-byte audit</a> · <a href="../../executive-summary.html#site-details">Nine-site file table</a> · <a href="../../research.html">Hypotheses</a></p>'''
     (ROOT / 'docs/k3c/index.html').write_text(shell('K3C archive · do not submit', archive, 1))
     guide = common + f'''<h1>Submission guide · not yet actionable</h1><p><strong>Do not upload <code>{file}</code></strong> (SHA-256 <code>{sha}</code>) or any other retained TIFF.</p>
 <ol><li>Obtain an explicit single-method assignment. Resolve and pin the shared-template issues; restore authenticated inputs and a complete registry.</li>

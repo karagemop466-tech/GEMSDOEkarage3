@@ -128,7 +128,7 @@ class SummaryMatchesSources(unittest.TestCase):
 
 class SavedByteAndFootprintReceipts(unittest.TestCase):
     def test_saved_byte_receipt_covers_every_docs_tif(self):
-        rec = json.loads((ROOT / "evidence" / "saved-tiffs-literal-20261029.json").read_text())
+        rec = json.loads((ROOT / "evidence" / "saved-tiffs-literal-20261028.json").read_text())
         on_disk = sorted(str(p.relative_to(ROOT)) for p in (ROOT / "docs").rglob("*.tif"))
         self.assertEqual(sorted(r["file"] for r in rec["rasters"]), on_disk)
         self.assertTrue(all(r["duplicate_stop"] for r in rec["rasters"]))

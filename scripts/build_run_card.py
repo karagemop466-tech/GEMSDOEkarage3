@@ -32,7 +32,7 @@ def main() -> int:
     if (history.get('kind') != 'GEOMETRY-AUDIT, NOT A SCORE' or not history.get('no_new_experiment')
             or history.get('manifest_sha256') != digest(ROOT / 'data/focus_registry.json')):
         raise ValueError('Historical audit missing, invalid or mismatched to pinned focus manifest')
-    evidence = ROOT / 'evidence/saved-tiffs-literal-20261029.json'
+    evidence = ROOT / 'evidence/saved-tiffs-literal-20261028.json'
     audit = json.loads(evidence.read_text())
     rasters = audit['rasters']
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
@@ -76,7 +76,7 @@ def main() -> int:
             'Organizer-authenticated inputs, matched derived feature cache, quota and artifact-linked receipts are unavailable. Owner-mirrored core rasters and raw bands were restored but do not authenticate organizer provenance; portal behavior is unverified.'
         ],
         'geometry_audit_sha256': digest(path), 'geometry_audit': 'historical-audit.json',
-        'saved_tiffs_audit_sha256': digest(evidence), 'saved_tiffs_audit': 'saved-tiffs-literal-20261029.json',
+        'saved_tiffs_audit_sha256': digest(evidence), 'saved_tiffs_audit': 'saved-tiffs-literal-20261028.json',
         'official_hidden_score_estimate': None, 'slot_selector': 'Separate step required; not run.'
     }
     if len(card['note']) > 140:
