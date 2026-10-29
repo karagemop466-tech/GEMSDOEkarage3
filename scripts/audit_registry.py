@@ -67,6 +67,20 @@ def ensure_file(entry: dict, path: Path, fetch: bool) -> None:
         Path(name).unlink(missing_ok=True)
 
 
+def boundary_ring_share(dots: np.ndarray, footprint: np.ndarray) -> float | None:
+    """Share of positive dots lying in the 3-cell edge band of the footprint.
+
+    The lattice witness leaves only 6,649 footprint cells uncovered and 6,580 of
+    them are this edge band (see evidence/lattice-feasibility-20261029.json). A
+    file that places most of its dots there clears a 3-px test by geometry alone,
+    not by geology, so the saved-byte audits record this share as a separate refusal.
+    """
+    from scipy.ndimage import binary_erosion
+    ring = footprint & ~binary_erosion(footprint, iterations=3)
+    n = int(dots.sum())
+    return float((dots & ring).sum() / n) if n else None
+
+
 def dilate_disk(mask: np.ndarray, radius: int) -> np.ndarray:
     """Nonwrapping Euclidean integer-pixel disk, inclusive of the radius."""
     if mask.ndim != 2 or radius < 0 or int(radius) != radius:
