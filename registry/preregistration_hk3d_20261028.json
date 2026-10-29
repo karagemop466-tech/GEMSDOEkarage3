@@ -1,0 +1,100 @@
+{
+  "schema": "GEMSDOEkarage3-PREREGISTRATION-v1",
+  "lane_id": "H-K3D",
+  "lane_name": "TGSF-BVCD (Tilt-Depth Wedge Migration, Gallardo-Meju GravityxConductivity Structural Coupling, Scarp-Facing Polarity Persistence & Tufa-Deconfounded Blind Geothermal Vent-Gradient Conduit Discovery)",
+  "branch": "arena/185322d1-gemsdoekarage3",
+  "locked_utc": "2026-10-28T00:00:00Z",
+  "protocol_budget_max_experiments": 3,
+  "protocol_budget_max_hours": 2.0,
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H-K3D-1",
+      "name": "TGSF-BVCD",
+      "selected_for_run": true,
+      "layers": [
+        "training_features.tif Bands 02 (rtp), 03 (tmi_hg), 05 (iso_grav_anom_slope), 06 (tc), 12 (det_elev), 13 (iso_grav_anom), 14 (tmi), 15 (depth_to_base_surf), 17 (cond_surf), 18 (iso_grav_anom_hg), 19 (det_elev_slope)",
+        "geodawn_extensions_u8.tif (ThK, UK, UTh, TMI_up150)",
+        "geodawn_rad_u8.tif (K, Th, U, TC) + acquisition_block_id_100m.tif",
+        "lidar_scarp_features_u8.tif (step_max, downface_max, upface_max, coh100, strike, valid)",
+        "2m_temperature_probe_INGENIOUS_regional_data.zip (F2mDAB, T2m)",
+        "paleo_geothermal_regional.zip (Deposit_ty: Sinter / Silica-cemented sand / Sinter and silicified zone; Tufa vetoed)",
+        "gdr_wellspring_in_footprint.csv (temp_c, geothermquartz_c, geothermchalc_c, geothermcat_c; dist_known_fault_px excluded)",
+        "tiger_road_distance_m.tif",
+        "fold-visible catalogue faults only (15 km local strike mode)"
+      ],
+      "named_non_fault_mimic": "Tilted Oligocene-Miocene ash-flow tuff cooling-unit margins and caldera ring walls (tilt wedge); shallow lateral groundwater outflow plumes down hydraulic gradient (2-m F2mDAB gradient); unpaired fluvial terrace risers (1-km scarp facing)."
+    },
+    {
+      "rank": 2,
+      "id": "H-K3D-2",
+      "name": "GMD-PINCH (Gallardo-Meju Gravity x Conductivity Anti-Parallel Structural Coupling)",
+      "selected_for_run": true,
+      "layers": [
+        "training_features.tif Bands 13 (iso_grav_anom), 18 (iso_grav_anom_hg), 17 (cond_surf), 15 (depth_to_base_surf), 12 (det_elev), 19 (det_elev_slope)"
+      ],
+      "named_non_fault_mimic": "Unfaulted erosional paleovalley margins filled with conductive lacustrine clay abutting granitic bedrock."
+    },
+    {
+      "rank": 3,
+      "id": "H-K3D-3",
+      "name": "BSRD-4B (Seam-Masked 4-Block Radiometric Adularia Change-Point)",
+      "selected_for_run": false,
+      "layers": [
+        "training_features.tif Band 06 (tc)",
+        "geodawn_rad_u8.tif (K, Th, U, TC)",
+        "geodawn_extensions_u8.tif (ThK)",
+        "acquisition_block_id_100m.tif"
+      ],
+      "named_non_fault_mimic": "Unfaulted rhyolite-andesite flow contacts and alluvial fan provenance boundaries."
+    },
+    {
+      "rank": 4,
+      "id": "H-K3D-4",
+      "name": "NSL-HYPODD-INSAR (Relocated Microseismic Planar Clusters & Sentinel-1 InSAR Phase Step)",
+      "selected_for_run": false,
+      "obtainable_in_current_sandbox": false,
+      "external_sources": [
+        "https://earthquake.usgs.gov/fdsnws/event/1/",
+        "https://asf.alaska.edu/"
+      ],
+      "named_non_fault_mimic": "Geothermal injection/production microseismicity and agricultural groundwater pumping subsidence bowls."
+    }
+  ],
+  "shared_template_repairs": [
+    "IR-K3-12: Fragment-censored (> 5 px / > 500 m) Hide-and-Recover in src/gems32/holdout.py and scripts/evaluate_holdout.py",
+    "IR-K3-27: Paleo_geothermal_final.dbf Deposit_ty field parsing in src/gems32/crsb_gub.py",
+    "IR-K3-24 & IR-K3-26: Honest USER-REPORTED score key + primary & secondary 9-site audit",
+    "Complete registry self-history inclusion in scripts/fetch_all_registry.py"
+  ],
+  "experiments": [
+    {
+      "id": "E1",
+      "name": "H-K3D-B2-Binary",
+      "min_sep_px": 3.3,
+      "collar_px": 2.0,
+      "target_mass": 37654.0,
+      "emission": "binary_0_1"
+    },
+    {
+      "id": "E2",
+      "name": "H-K3D-B3-Depletion",
+      "min_sep_px": 3.3,
+      "collar_px": 3.0,
+      "target_mass": 37654.0,
+      "emission": "binary_0_1"
+    },
+    {
+      "id": "E3",
+      "name": "H-K3D-HighPrec-20000",
+      "min_sep_px": 3.3,
+      "collar_px": "winner_of_E1_E2",
+      "target_mass": 20000.0,
+      "emission": "binary_0_1"
+    }
+  ],
+  "leakage_canary_max_oriented_auc": 0.9,
+  "literal_overlap_cap": 0.7,
+  "literal_overlap_radius_px": 3.0,
+  "spearman_cap": 0.9
+}

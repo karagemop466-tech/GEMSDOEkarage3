@@ -1,0 +1,392 @@
+{
+  "schema_version": 2,
+  "generated_utc": "2026-10-29T00:44:04Z",
+  "classification": "NINE-SITE PRIMARY + SECONDARY FORENSIC & UNIQUENESS AUDIT (SCORES USER-REPORTED / UNVERIFIED)",
+  "hk3d_emitted_dots": 37654,
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "head_commit": "361ade21cf45",
+      "total_rasters_in_repo": 74,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+        "repo_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "emitted_dots": 60069,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.2477,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.097204,
+        "static_diagnostic_sgmc_cal_dti": 0.057932,
+        "hk3d_in_file_3px_overlap": 0.340123,
+        "file_in_hk3d_3px_overlap": 0.365263,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "d1-0-20261002-6c7a7fd40be9-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.233,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        },
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "h19-5-blind-floor-r30-20261001-f28dc60b7970-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.1453,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.426807,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.143699,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE25",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "head_commit": "fb1db3727477",
+      "total_rasters_in_repo": 61,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+        "repo_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "emitted_dots": 44090,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.26,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.099202,
+        "static_diagnostic_sgmc_cal_dti": 0.060592,
+        "hk3d_in_file_3px_overlap": 0.328199,
+        "file_in_hk3d_3px_overlap": 0.356067,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "dotted-h19-5-d2-0-20261002-9826c16ca38b-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2584,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        },
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "dotted-h20-1-d1-5-20261002-235c2c0e0660-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2358,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.413555,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.093597,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE27",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "head_commit": "6704fa2a5133",
+      "total_rasters_in_repo": 42,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+        "repo_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "emitted_dots": 61328,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.2449,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.096778,
+        "static_diagnostic_sgmc_cal_dti": 0.058262,
+        "hk3d_in_file_3px_overlap": 0.344452,
+        "file_in_hk3d_3px_overlap": 0.361858,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "h24-2-nms3-cov1200-b0-34k-20261002-016b1d07c552-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2211,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        },
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "d15-nms3-cov0500-b1-26k-20261002-40901b9575d3-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2156,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.409704,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.097082,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE28",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "head_commit": "9509b73eaf35",
+      "total_rasters_in_repo": 52,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+        "repo_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+        "emitted_dots": 37660,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.271,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.028932,
+        "static_diagnostic_sgmc_cal_dti": 0.062967,
+        "hk3d_in_file_3px_overlap": 0.324481,
+        "file_in_hk3d_3px_overlap": 0.389272,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite",
+          "repo_path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-allfinite.tif",
+          "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+          "emitted_dots": 40199,
+          "nodata": null,
+          "whole_array_finite": true,
+          "in_footprint_range_0_1": true,
+          "user_reported_dti": 0.2708,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+          "static_diagnostic_hr8_dti": 0.030057,
+          "static_diagnostic_sgmc_cal_dti": 0.06301,
+          "hk3d_in_file_3px_overlap": 0.327535,
+          "file_in_hk3d_3px_overlap": 0.389263,
+          "ok_to_submit": false
+        },
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "rung30-v2-d2-8-40k-20261002-88749b218996-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.271,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.359377,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.094955,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE30",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "head_commit": "31696c6541cf",
+      "total_rasters_in_repo": 34,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside",
+        "repo_path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+        "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+        "emitted_dots": 44090,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.26,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.099202,
+        "static_diagnostic_sgmc_cal_dti": 0.060592,
+        "hk3d_in_file_3px_overlap": 0.328199,
+        "file_in_hk3d_3px_overlap": 0.356067,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.514208,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.101206,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE31",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/",
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "head_commit": "06930b9d0347",
+      "total_rasters_in_repo": 62,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan",
+        "repo_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+        "emitted_dots": 40199,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.2708,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.030057,
+        "static_diagnostic_sgmc_cal_dti": 0.06301,
+        "hk3d_in_file_3px_overlap": 0.327535,
+        "file_in_hk3d_3px_overlap": 0.389263,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "h35-1-d28-p300m-offcat-20261004-c309c3a7-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2647,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        },
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "h31-1-sarpu-d28-20261004-649b720d-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2647,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.430977,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.132729,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE32",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "head_commit": "97597a066d1c",
+      "total_rasters_in_repo": 79,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+        "repo_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "emitted_dots": 37654,
+        "nodata": null,
+        "whole_array_finite": true,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.2778,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.004515,
+        "static_diagnostic_sgmc_cal_dti": 0.064121,
+        "hk3d_in_file_3px_overlap": 0.326048,
+        "file_in_hk3d_3px_overlap": 0.411244,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "h32-2-champ-b1-20261004-b531dae0-nan",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2738,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.515696,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.112418,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE33",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "head_commit": "3eaf85efb49f",
+      "total_rasters_in_repo": 44,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside",
+        "repo_path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+        "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+        "emitted_dots": 41865,
+        "nodata": null,
+        "whole_array_finite": false,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.2632,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.05069,
+        "static_diagnostic_sgmc_cal_dti": 0.062551,
+        "hk3d_in_file_3px_overlap": 0.330695,
+        "file_in_hk3d_3px_overlap": 0.376974,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [
+        {
+          "role": "secondary_prompt_listed",
+          "prompt_stem": "h33c-farfield-geotherm-r30-20261004-465c8d2a9992",
+          "repo_path": null,
+          "sha256": null,
+          "user_reported_dti": 0.2632,
+          "score_evidence_class": "USER-REPORTED / UNVERIFIED (not retained in public repo HEAD)",
+          "ok_to_submit": false
+        }
+      ],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.330695,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.079832,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    },
+    {
+      "site": "GEMSDOE36",
+      "site_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "head_commit": "e280188adbbe",
+      "total_rasters_in_repo": 23,
+      "primary_highest": {
+        "role": "primary_highest",
+        "prompt_stem": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+        "repo_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "emitted_dots": 38854,
+        "nodata": null,
+        "whole_array_finite": true,
+        "in_footprint_range_0_1": true,
+        "user_reported_dti": 0.275,
+        "score_evidence_class": "USER-REPORTED / UNVERIFIED",
+        "static_diagnostic_hr8_dti": 0.004577,
+        "static_diagnostic_sgmc_cal_dti": 0.064444,
+        "hk3d_in_file_3px_overlap": 0.333192,
+        "file_in_hk3d_3px_overlap": 0.409765,
+        "ok_to_submit": false
+      },
+      "secondary_prompt_listed": [],
+      "hk3d_vs_site_max_discrete_3px_overlap": 0.348728,
+      "hk3d_vs_site_max_abs_surface_spearman": 0.105632,
+      "discrete_uniqueness_vs_site_passed": true,
+      "action": "DO NOT SUBMIT (historical user-reported reference)"
+    }
+  ]
+}

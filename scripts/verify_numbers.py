@@ -103,12 +103,24 @@ def main() -> int:
        and decision['ok_to_submit'] is False and gate['ok_to_submit'] is False
        and decision['eligible_for_selector'] is False
        and decision['raster_sha256'] == archived['raster_sha256'])
+    hk3d = load('docs/hk3d/run-card.json')
+    hk3d_witness = load('evidence/hk3d-literal-witness-audit-20261028.json')
+    hk3d_gate = assess(hk3d)
+    hk3d_row = next((r for r in rows if r['file'] == hk3d['submission_file']), None)
+    ck('Session 5 H-K3D run card, saved-byte audit and literal witness agree',
+       sha(ROOT / 'docs/hk3d/run-card.json') == sha(ROOT / 'evidence/hk3d_run_card.json')
+       and hk3d['verdict'] == hk3d_gate['verdict'] == 'negative'
+       and hk3d['ok_to_submit'] is False and hk3d_gate['ok_to_submit'] is False
+       and hk3d_row is not None and hk3d_row['sha256'] == hk3d['raster_sha256'] == hk3d_witness['candidate_sha256']
+       and hk3d_row['within_3px_fraction'] == hk3d_witness['within_3px_fraction'] > .70
+       and hk3d_witness['duplicate_stop'] is True and hk3d_witness['ok_to_submit'] is False)
     ck('no promoted site or estimated organizer score',
        sites['promoted_candidate'] is None and sites['promoted_candidate_sha256'] is None
        and sites['promoted_candidate_card'] is None and len(sites['sites']) == 9
        and all(s['estimated_score'] is None and s['ok_to_submit'] is False for s in sites['sites']))
     pages = ('index.html', 'executive-summary.html', 'docs/index.html', 'docs/executive-summary.html',
-             'docs/k3c/index.html', 'docs/k3c/how-to-submit.html')
+             'docs/k3c/index.html', 'docs/k3c/how-to-submit.html',
+             'docs/hk3d/index.html', 'docs/hk3d/how-to-submit.html')
     ck('current pages say DO NOT SUBMIT and never say YES',
        all('DO NOT SUBMIT' in (ROOT / page).read_text()
            and 'OK TO SUBMIT? YES' not in (ROOT / page).read_text()

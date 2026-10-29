@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_utc": "2026-10-28T22:31:13.090271+00:00",
+  "checked_utc": "2026-10-29T00:44:20.725622+00:00",
   "classification": "GEOMETRY AND FORMAT DIAGNOSTIC, NOT A SCORE",
   "scope": "All checked-in docs TIFFs versus one pinned witness; not a complete registry or a surface audit.",
   "input_provenance": "Hash-pinned public owner mirrors, not authenticated organizer inputs.",
@@ -279,6 +279,48 @@
       "format_diagnostic": {
         "file": "karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
         "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa",
+        "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "checks": {
+          "template_epsg32611_and_100m_unrotated": true,
+          "geotiff": true,
+          "self_contained_no_sidecars": true,
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match_template": true,
+          "inside_finite_and_in_range": true,
+          "inside_not_masked": true,
+          "no_positive_outside_footprint": true,
+          "all_cell_finite_range": true,
+          "outside_null_or_nan": false
+        },
+        "all_cell_finite_range": true,
+        "outside_null_or_nan": false,
+        "inside_nonfinite": 0,
+        "inside_out_of_range": 0,
+        "min_all_finite": 0.0,
+        "max_all_finite": 1.0,
+        "strict_format_gate_pass": false,
+        "slot_approved": false,
+        "note": "Local format checks only; not an organizer receipt, novelty check, holdout, or slot approval.",
+        "inside_masked_pixels": 0,
+        "footprint_pixels": 5167373,
+        "whole_array_pixels": 12279160,
+        "whole_array_nonfinite": 0,
+        "whole_array_out_of_range_finite": 0
+      },
+      "ok_to_submit": false
+    },
+    {
+      "file": "docs/hk3d/downloads/gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif",
+      "sha256": "c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e",
+      "in_footprint_binary": true,
+      "positive_pixels": 37654,
+      "within_3px_fraction": 0.9935465023636267,
+      "binary_spearman": -0.0009124361051900152,
+      "duplicate_stop": true,
+      "format_diagnostic": {
+        "file": "gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif",
+        "sha256": "c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e",
         "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
         "checks": {
           "template_epsg32611_and_100m_unrotated": true,

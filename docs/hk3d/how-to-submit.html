@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Submit · Lane H-K3D Conditional Guide &amp; [0,1] Range-Error Fix</title>
+<link rel="stylesheet" href="../assets/site.css"></head>
+<body><main id="main" class="wrap" style="padding:28px 0 60px">
+<p><a href="../../index.html">Site Home</a> · <a href="index.html">H-K3D Executive Summary</a> · <a href="run-card.json">H-K3D Run Card JSON</a> · <a href="../../executive-summary.html">Full Nine-Site Guide</a></p>
+<div class="banner" role="alert"><span class="banner-icon" aria-hidden="true">!</span><div>
+<strong>OK TO SUBMIT? NO — DO NOT SUBMIT TO DRIVENDATA PORTAL.</strong>
+<p>Automated release gate <code>scripts/promotion_gate.py</code> returned <strong><code>verdict = "negative"</code></strong> and <strong><code>ok_to_submit = False</code></strong>. Although Lane <code>H-K3D (TGSF-BVCD)</code> passes every GeoTIFF format/finite-<code>[0,1]</code> check, passes the 61-channel leakage canary (<code>max AUC = 0.618008 &le; 0.90</code>), passes uniqueness against all discrete (<code>&le; 100k</code>-dot) peer detectors across 113 repos (<code>max 3-px = 62.37% &le; 70%</code>, <code>57.18%</code> vs <code>H-K3C</code>, <code>32.60%</code> vs <code>GEMSDOE32</code>), and beats the <code>0.2778</code> champion rule on off-catalogue USGS SGMC faults (<code>0.068224</code> vs <code>0.064121</code>), it <strong>fails the literal 3-px overlap stop against the registered 206,895-dot calibration lattice witness</strong> (<code>99.3547% &gt; 70%</code>) and does not beat the 24-cell Hide-and-Recover baseline (<code>0.094220</code> vs <code>0.100798</code>). No weekly submission slot is used.</p>
+</div></div>
+<h1>Step-by-Step Submission Guide (Currently Locked: DO NOT SUBMIT)</h1>
+<p><strong>Current Gate Status for <code>gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif</code>:</strong> <strong><code>DO NOT SUBMIT</code> (<code>ok_to_submit = False</code>)</strong>. Keep your weekly DrivenData feedback slot unused until a candidate passes both the same-evaluator holdout gate and the literal registry overlap gate, and is chosen by the separate weekly-slot selector.</p>
+
+<h2>1. How the <code>"Predicted values must be in range [0, 1]"</code> Portal Error Was Eliminated</h2>
+<ul>
+  <li><strong>Root Cause Audited:</strong> Historical <code>-nan.tif</code> files write <code>7,111,787</code> out-of-footprint <code>float32 NaN</code> pixels with <code>nodata = None</code>; strict whole-array validators that evaluate <code>(arr &gt;= 0.0) &amp; (arr &lt;= 1.0)</code> without a separate NaN branch fail on <code>NaN</code> comparisons, and unclipped float interpolation or sentinel leakage (<code>-9999</code> / <code>-3.4e38</code> in raw <code>training_features.tif</code>, <code>IR-K3-24</code>) produces out-of-range predictions.</li>
+  <li><strong>Automated Fix Enforced:</strong> Canonical <code>scripts/submission_writer.py</code> emits <code>-zeros.tif</code> with <code>dtype = float32</code>, <code>nodata = None</code>, <code>0.0</code> outside the valid footprint, strict <code>[0.0, 1.0]</code> finite values across all <code>12,279,160</code> grid cells, and exact <code>sample_submission.tif</code> CRS (<code>EPSG:32611</code>), shape (<code>3730 &times; 3292</code>), and geotransform (<code>(100, 0, 243350, 0, -100, 4508550)</code>).</li>
+  <li><strong>Zero-Human-Intervention CLI Gate:</strong> Run <code>python scripts/check_submission.py --strict-finite docs/hk3d/downloads/gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif</code> and <code>python scripts/promotion_gate.py docs/hk3d/run-card.json</code>.</li>
+</ul>
+
+<h2>2. Conditional 5-Step DrivenData Upload Procedure (Only When a Future Run Shows <code>OK TO SUBMIT: YES</code>)</h2>
+<ol>
+  <li><strong>Verify Automated Gate &amp; Selector Approval:</strong> Confirm <code>promotion_gate.py</code> exits <code>0</code> with <code>ok_to_submit = true</code>, the top banner no longer displays <code>DO NOT SUBMIT</code>, and the separate weekly-slot selector approves spending one of the 3 rolling 7-day feedback slots. (Currently <strong>NO — DO NOT SUBMIT</strong>; stop at Step 1.)</li>
+  <li><strong>Verify SHA-256 Locally:</strong> Check <code>sha256sum</code> of the downloaded <code>.tif</code> (or single-TIFF <code>.zip</code>) against <code>run-card.json</code> before uploading.</li>
+  <li><strong>Sign In to DrivenData GEMS (#306):</strong> Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a> &rarr; <em>Submissions</em>.</li>
+  <li><strong>Upload Single-Band GeoTIFF &amp; Paste &le;140-Char Note:</strong> Upload the approved <code>-zeros.tif</code> (or single-TIFF <code>.zip</code>) and paste its exact <code>&le; 140</code>-character run-card note (for audit reference, H-K3D's 97-char note is <code>H-K3D E2 TGSF-BVCD d=3.3 B=3 37654d [0,1] zeros; 24c HR 0.0942, FRAG500m 0.0826 (DO NOT SUBMIT)</code>).</li>
+  <li><strong>Archive Organizer Receipt:</strong> Save the DrivenData submission-page confirmation screenshot/receipt binding the exact timestamp, filename, SHA-256, and returned score; only receipt-backed scores may ever be labeled <code>ORGANIZER-CONFIRMED</code>. Remember to include required generative-AI disclosure in final prize documentation.</li>
+</ol>
+</main></body></html>

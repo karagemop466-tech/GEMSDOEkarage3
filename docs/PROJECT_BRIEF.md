@@ -1,6 +1,8 @@
 # Project brief — retained user request
 
-**Read at the start of every session.** This is a consolidated archive of the user's request; repeated passages in the original message are not duplicated. Statements and numerical historical results below are the user's input, **not independently verified organizer receipts or leaderboard forecasts**. The current [run card](data/current-run.json), [independent audit](data/historical-audit.json), and [source register](data-sources.md) supersede historical assumptions. Follow the operative protocol without inventing missing inputs.
+> **Session 5 Standing Instruction (`2026-10-28`):** *"Work on next steps first. Make sure to put the updated prompt into the repo as the starting point."*
+
+**Read at the start of every session.** This is a consolidated archive of the user's request; repeated passages in the original message are not duplicated. Statements and numerical historical results below are the user's input, **not independently verified organizer receipts or leaderboard forecasts**. The current [Session 5 H-K3D run card](hk3d/run-card.json), [parallel preflight card](data/current-run.json), [latest session review card](data/latest-run.json), [independent audit](data/historical-audit.json), and [source register](data-sources.md) supersede historical assumptions. Follow the operative protocol without inventing missing inputs.
 
 ## Objective and product
 
