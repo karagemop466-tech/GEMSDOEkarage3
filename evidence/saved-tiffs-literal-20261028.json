@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_utc": "2026-10-29T00:44:20.725622+00:00",
+  "checked_utc": "2026-10-29T18:36:30.029930+00:00",
   "classification": "GEOMETRY AND FORMAT DIAGNOSTIC, NOT A SCORE",
   "scope": "All checked-in docs TIFFs versus one pinned witness; not a complete registry or a surface audit.",
   "input_provenance": "Hash-pinned public owner mirrors, not authenticated organizer inputs.",
@@ -393,6 +393,34 @@
         "whole_array_out_of_range_finite": 0
       },
       "ok_to_submit": false
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif",
+      "sha256": "dafa1e375a57735f6f64091f8b36050b5dda9c72b325ad97327d9d49a76ce1f3",
+      "duplicate_stop": true,
+      "overlap_pct": null,
+      "within_3px_fraction": 0.998231
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+      "sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+      "duplicate_stop": true,
+      "overlap_pct": null,
+      "within_3px_fraction": 0.998231
+    },
+    {
+      "file": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif",
+      "sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
+      "duplicate_stop": false,
+      "overlap_pct": null,
+      "within_3px_fraction": 0.3765
+    },
+    {
+      "file": "docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif",
+      "sha256": "34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e",
+      "duplicate_stop": false,
+      "overlap_pct": null,
+      "within_3px_fraction": 0.3765
     }
   ],
   "complete_registry_checked": false,

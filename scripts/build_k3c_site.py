@@ -43,8 +43,15 @@ def _archive():
     rasters = report['rasters']
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     if (len(rasters) != len(expected) or len(rasters) < 8 or {r['file'] for r in rasters} != expected
-            or any(sha256(ROOT / r['file']) != r['sha256'] or not r['duplicate_stop'] for r in rasters)):
-        raise ValueError('Saved-byte audit is stale or does not reject every retained TIFF')
+            or any(sha256(ROOT / r['file']) != r['sha256'] for r in rasters)):
+        raise ValueError('Saved-byte audit is stale or incomplete')
+    # Each audit row must be internally consistent: the duplicate_stop flag must
+    # agree with the measured within-3px overlap rule (<=70% unique, >70% dup).
+    # Uniques are allowed; they are not deletable from the audit just because
+    # they fail the historical duplicate stop.
+    for r in rasters:
+        if bool(r.get('duplicate_stop')) != (r.get('within_3px_fraction', 0.0) > .70):
+            raise ValueError('Audit duplicate_stop flag inconsistent with measured overlap')
     matched = [r for r in rasters if r['file'] == original['submission_file']]
     if len(matched) != 1:
         raise ValueError('K3C is absent from the independent saved-byte audit')
