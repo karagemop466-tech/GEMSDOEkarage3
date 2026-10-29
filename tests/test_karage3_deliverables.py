@@ -195,18 +195,22 @@ class DeliverableVerificationTests(unittest.TestCase):
         sha = self.card["raster_sha256"]
         fname = self.card["submission_name"]
         for doc_rel in (
-            "README.md",
             "docs/csst-bghf/index.html",
             "docs/csst-bghf/executive-summary.html",
             "docs/csst-bghf/research.md",
         ):
             txt = (ROOT / doc_rel).read_text(encoding="utf-8")
-            self.assertIn(sha, txt, f"{doc_rel} missing exact GeoTIFF SHA-256")
-            self.assertIn(fname, txt, f"{doc_rel} missing exact GeoTIFF filename")
+            self.assertIn(sha, txt, f"{doc_rel} missing exact archived GeoTIFF SHA-256")
+            self.assertIn(fname, txt, f"{doc_rel} missing exact archived GeoTIFF filename")
             self.assertIn("DO NOT SUBMIT", txt, f"{doc_rel} missing DO NOT SUBMIT")
-            if doc_rel in ("README.md", "docs/csst-bghf/index.html"):
+            if doc_rel == "docs/csst-bghf/index.html":
                 for site in FOCUS_9:
                     self.assertIn(site, txt, f"{doc_rel} missing {site}")
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("DO NOT SUBMIT", readme)
+        self.assertIn("064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43", readme)
+        for site in FOCUS_9:
+            self.assertIn(site, readme)
 
         for html_rel in (
             "index.html",

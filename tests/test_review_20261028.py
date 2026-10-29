@@ -29,8 +29,15 @@ def test_preflight_stops_proven_duplicate_budget_and_keeps_lower_budget_inconclu
 def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
     audit = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
     assert audit['complete_registry_checked'] is False
-    assert {r['file'] for r in audit['rasters']} == {
-        str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    audited = {r['file'] for r in audit['rasters']}
+    current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
+    assert audited.issubset(current)
+    assert current - audited == {
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
+    }
     for row in audit['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
         assert row['duplicate_stop'] and row['within_3px_fraction'] > .70
@@ -70,9 +77,17 @@ def test_shared_final_gate_has_no_lattice_exemption():
     assert 'dots_spearman' not in result['comparisons'][0]
 
 
-def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
+def test_retained_byte_audit_scope_is_distinguished_from_later_unreviewed_tiffs():
     receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261028.json').read_text())
-    assert set(r['file'] for r in receipt['rasters']) == set(str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif'))
+    audited = {r['file'] for r in receipt['rasters']}
+    current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')}
+    assert audited.issubset(current)
+    assert current - audited == {
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
+    }
     for row in receipt['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
         assert row['lattice_overlap_3px'] > .70 and row['duplicate_stop']

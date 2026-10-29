@@ -14,5 +14,11 @@
   "nan_sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
   "unique_vs_existing_submissions": "0% within 3px of existing focus-site dots",
   "estimated_lattice_overlap_bound": "44.6% theoretical minimum (12000 dots, 6649 lattice-free cells)",
-  "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/..."
+  "note": "Unique off-catalogue detector: 12,000 dots placed >3px from all existing focus-site submissions; targets hidden faults missing from USGS/...",
+  "uniqueness_status": "NOT ESTABLISHED: the recorded 0% comparison covered the focus-site positives only, not the complete registry or surface-before-placement requirement.",
+  "holdout_status": "NOT ESTABLISHED: no protocol-compliant HOLDOUT-DTI with evaluator version, withheld-positive count, and 95% CI is available in this metadata.",
+  "estimated_leaderboard_score": null,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "decision_note": "Research artifact only. Do not download or submit; complete-registry literal uniqueness, protocol holdout, leakage canaries, and selector checks are missing."
 }

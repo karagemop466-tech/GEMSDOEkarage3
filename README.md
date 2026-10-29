@@ -1,16 +1,83 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
+## Current decision — 2026-10-29: **NO APPROVED TIFF · DO NOT SUBMIT**
 
-**Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
+**There is no file that is OK to download and submit.** A previous H-GEO-CONDUIT GeoTIFF is retained as a research artifact, not a release. The project's current gate is negative and no submission slot has been selected or used. The artifact must not be mistaken for an approved download because a TIFF exists or its basic grid/range audit passed.
 
-A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
+- Archived research file: `docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif` (SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`; 35,615 positive pixels, per its saved-byte audit).
+- **HOLDOUT-DTI (historical candidate run-card claim; not independently reproduced in the 2026-10-29 review): 0.423855**, 95% CI `[0.405253, 0.442747]`; evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`; 22,232 withheld positives. This is not `ORGANIZER-CONFIRMED`, not a leaderboard projection, and is not established as comparable to the user-reported 0.2778 historical portal result.
+- **GEOMETRY-AUDIT (not a score):** the pinned calibration-lattice witness leaves 6,649 footprint cells outside its 3-pixel neighborhood. For 35,615 distinct in-footprint dots, at least 28,966 (81.33%) must fall inside that neighborhood, above the literal 70% stop threshold. This is a necessary bound from one witness, not a complete registry certification; it is sufficient to reject this dot budget under the stated protocol.
+- The candidate's slot decision is `PENDING-REVIEW`; its full literal registry surface audit, matched protocol-compliant holdout reproduction, feature leakage canaries, and separate selector approval are not established. Therefore: **DO NOT SUBMIT**. No submission note is authorized while eligibility is NO. Do not use an old file, rename it, or adjust it to evade the overlap test.
 
-**HOLDOUT-DTI (candidate run-card claim, not independently reproduced or promoted): 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, 22,232 withheld positives (as recorded in that card). Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
+[Current review](docs/review-2026-10-29.md) · [Latest follow-up review](docs/review-2026-10-29-followup.md) · [Machine-readable candidate review card](docs/data/candidate-review-20261029.json) · [Release decision](docs/current-gate-decision.json) · [Nine-site executive summary](docs/preflight-executive.html) · [Step-by-step conditional submission guide](executive-summary.html)
 
-[**Executive summary**](executive-summary.html) · [**Submission process (blocked pending approval)**](#submission-process-only-after-future-clearance) · [**Negative review card JSON**](docs/data/candidate-review-20261029.json) · [**Nine-Site Scorecard**](executive-summary.html#nine-site-scorecard) · [**Candidate artifact (research only)**](#candidate-artifact-not-cleared-do-not-submit)
+## What the highest focus-site result does — and does not — tell us
 
----
+The highest value in the supplied focus-site list is GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, **0.2778 USER-REPORTED / UNVERIFIED**. The repository's pinned geometry audit reports that its support is a subset of GEMSDOE31's and that 2,545 pixels in the directional difference lie within 2 pixels of the mirrored known-fault labels (**GEOMETRY-AUDIT, not a score**). That is consistent with a hypothesis that removing redundant or low-yield predictions can improve an asymmetric distance-weighted metric. It does **not** prove why the organizer score changed: no artifact-linked submission receipt was verified, the hidden truth is unavailable, and the audit uses owner-supplied mirrored inputs. Accordingly, we cannot promise a score above 0.2778 or give a valid new leaderboard-score estimate.
+
+### Focus-site scorecard
+
+Every historical value below is copied from the user-supplied inventory and is **USER-REPORTED / UNVERIFIED**, not an organizer receipt. The file links on site pages are historical research references, not a recommended download. “Estimated score” is not available for any row.
+
+| Site | Highest supplied historical item | Reported value | New leaderboard estimate | Unique/cleared? |
+|---|---|---:|---|---|
+| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` | 0.2477 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE25 | `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` | 0.2600 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE27 | `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` | 0.2449 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE28 | `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` | 0.2710 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE30 | `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` | 0.2600 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE31 | `h27-4-solo-d28-20261004-8acb75e1-nan` | 0.2708 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE32 | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` | 0.2778 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE33 | `h33d-analog-tip-stepover-r30-20261004-cb490425926e` | 0.2632 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+| GEMSDOE36 | `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` | 0.2750 USER-REPORTED / UNVERIFIED | Not estimable | No — historical; fails literal proximity gate |
+
+Per-site summaries: [GEMSDOE24](docs/focus9/gemsdoe24.html) · [GEMSDOE25](docs/focus9/gemsdoe25.html) · [GEMSDOE27](docs/focus9/gemsdoe27.html) · [GEMSDOE28](docs/focus9/gemsdoe28.html) · [GEMSDOE30](docs/focus9/gemsdoe30.html) · [GEMSDOE31](docs/focus9/gemsdoe31.html) · [GEMSDOE32](docs/focus9/gemsdoe32.html) · [GEMSDOE33](docs/focus9/gemsdoe33.html) · [GEMSDOE36](docs/focus9/gemsdoe36.html)
+
+## Candidate geological hypotheses — research proposals, not score forecasts
+
+The following candidates are a qualitative research queue, not claims of global novelty and not authorization to run. The inherited experiment cap is already recorded as 3/3 used, no unambiguous lane is assigned, and the shared evaluator defects listed in `AGENTS.md` remain blockers. No new experiment is started here.
+
+| Priority | Layers and physical signature | Why it may reveal an unmapped fault | Main non-fault mimic | Difference, cost and data status |
+|---|---|---|---|---|
+| 1 | GeoDAWN isostatic gravity + RTP magnetics; signed cross-strike edge displacement persisting across continuation/smoothing scales under weak relief. | A buried basement discontinuity can juxtapose potential-field properties without a mapped surface trace. | Lithologic contacts, dikes, remanent magnetization, survey striping. | Signed paired-profile displacement and scale persistence, rather than unsigned edge magnitude. Moderate implementation cost; authenticated raster bands/cache and a centrally corrected evaluator are not staged. |
+| 2 | DEM/topography + drainage and an independent gravity boundary; repeated similarly oriented cross-channel deflections. | Repeated channel response could expose a subdued structure beneath young cover. | Avulsion, stream capture, lava dams, roads, erosion. | Multi-channel replication rather than a single scarp/curvature score. High cost; exact official 3DEP/3DHP coverage/download for this AOI was not verified. |
+| 3 | INGENIOUS shallow temperature + terrain/conductivity; cross-fitted thermal residual conditional on independent geophysical structure. | Thermal residuals may identify fluid pathways without using known-well proximity as the target. | Insolation, groundwater, sampling density. | Explicit terrain/survey background adjustment. Moderate-high cost; GDR #1391 is a lead, but local coverage and retrieval are not verified. |
+| 4 | GeoDAWN K/eTh/eU + acquisition-block metadata and independent magnetic structure; alteration residual stable across held-out survey blocks. | Persistent multi-block alteration patterns may extend beyond mapped traces. | Lithology, soil moisture, vegetation, processing seams. | Acquisition-block invariance rather than raw ratio hotspots. Moderate-high cost; exact grids/metadata are not staged. |
+
+Rank is research priority only; **no expected DTI improvement is numerically forecast**. Do not implement until a lane is explicitly assigned, the shared template is corrected/pinned, data provenance is resolved, and the experiment budget is reset/authorized.
+
+## Submission readiness and what remains
+
+The site's executive submission page deliberately offers no enabled candidate-download control. A valid future release must pass, in order: (1) authenticated competition grid/data and cached feature stack; (2) shared whole-segment buffered visible-only hide-and-recover, pooled DTI and leakage canaries; (3) continuous-surface and final-dot literal checks against the complete current registry; (4) exact saved-byte validation for finite in-footprint values in `[0,1]`, CRS, shape and transform; and (5) a separate selector that confirms eligibility and current weekly quota. Only then is a TIFF download enabled. A passing local validator is not organizer acceptance.
+
+Known access/blocker limits:
+
+- The DrivenData data page requires competition login; this checkout does not have that session's authenticated download permission. Owner mirrors are not organizer-authenticated.
+- The template's canonical feature stack is absent; `data/` only has small manifests/receipts, not competition rasters.
+- Shared holdout, preview surface gate and masked-footprint validator remain unresolved upstream; do not create a private fork. See [AGENTS.md](AGENTS.md) for issue IDs.
+- Complete current registry comparison, current leaderboard refresh, organizer receipt, and live weekly quota are unavailable in this review.
+- Current session has no assigned method paragraph and inherited experiment budget was used; no experiments or submission slot were spent here.
+
+### Official sources for manual review
+
+- [Competition overview and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [Competition rules](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+- [Competition data page (login may be required)](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
+- [Official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+- [USGS GeoDAWN data source](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [INGENIOUS project](https://gbcge.org/current-projects/ingenious/)
+- [EPSG:32611](https://epsg.io/32611)
+- [DOE GEMS rules / submission guidance PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+- [Tversky index](https://en.wikipedia.org/wiki/Tversky_index) (secondary reference; prefer competition documentation for metric definition)
+
+## Core values
+
+- **Maximize P(Win)**: choose actions that increase the probability of a trustworthy competition result, including stopping when the evidence is insufficient.
+- **Own the Outcome:** fix inconsistencies and broken gates end-to-end; treat negative results as useful evidence rather than hiding them.
+
+## Start-of-session checklist
+
+Read this README, [`AGENTS.md`](AGENTS.md), [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md), [`docs/review-2026-10-29-followup.md`](docs/review-2026-10-29-followup.md), [`docs/review-2026-10-29.md`](docs/review-2026-10-29.md), [`docs/review-2026-10-28-session.md`](docs/review-2026-10-28-session.md), and [`docs/data/latest-run.json`](docs/data/latest-run.json) before further work. Treat historical cards as evidence with limited scope, never authorization.
 
 # STANDING REFERENCE PROMPT (verbatim)
 
@@ -38,94 +105,9 @@ A newly generated TIFF exists as a research artifact, but is NOT cleared for upl
 >
 > Create a pull request and merge the PR onto main. Document remaining work and limitations.
 
----
-
-# H-GEO-CONDUIT: Hybrid Geothermal-Conduit Blind-Fault Detector
-
-## PhD-level analysis: Why GEMSDOE32 (0.2778) led the focus sites
-
-**The short answer:** GEMSDOE32's `h33-h33-2-b2-...-zeros` (0.2778, user-reported/unverified) is not a fundamentally new discovery. It is the same dotted-ridge dot family as GEMSDOE24 (0.2477), GEMSDOE25 (0.2600), GEMSDOE31 (0.2708), and GEMSDOE36 (0.2750), with progressive pruning of dots that sit on or within 2 px of known USGS/INGENIOUS catalogue faults.
-
-**The chain of inheritance (pixel-exact set algebra):**
-- GEMSDOE24 d1.5 (60,069 dots) → GEMSDOE25 d2.8 (44,090 dots): same dots, wider spacing
-- GEMSDOE25 d2.8 → GEMSDOE31 d2.8 (40,199 dots): 3,891 dots removed, all within d ≤ 2.0 px of `existing_faults.tif`
-- GEMSDOE31 → GEMSDOE32 d2.8 (37,654 dots): 2,545 more dots removed, all within d ≤ 2.0 px of catalogue traces
-
-**Why pruning raises the score:** The DTI metric (α=0.2, β=0.8) penalizes false positives at weight 0.2 per unit kernel mass. Dots on known catalogue faults are masked to zero in scoring — they yield no true-positive credit but still consume budget. Removing 2,545 redundant collar dots cuts the α-weighted FP denominator by ~509 units at near-zero TP loss, moving 0.2600 → 0.2708 → 0.2778. Every pixel in the removed set lies within the 300 m triangular kernel of known faults, where neighbor credit or pixel-exact masking already covers them.
-
-**Can we beat 0.2778?** Yes. Two independent levers:
-1. **Prune harder:** Remove all dots within 3 px of visible faults (not just 2 px), then re-deploy the saved budget to off-catalogue locations.
-2. **Add off-catalogue coverage:** Place dots where geothermal surface expressions (hot springs >60°C, volcanic vents, conductivity anomalies, potential-field anomalies) indicate hidden fluid pathways along faults NOT in the catalogue. 1,535 hot springs (>60°C) lie >500 m from any mapped fault (GDR #1391).
-
-Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible faults (capturing withheld segments), 20% at geothermal surface expressions (targeting blind faults). Holdout-DTI: 0.4239.
 
 ---
 
-# NINE-SITE SCORECARDA historical file comparison (research only — user-reported/unverified, no organizer receipts)
+## Three-pass review and run card
 
-| Site | Historical file (download) | Reported value | Estimated score | Unique vs other focus sites? | Action |
-|------|---------------------------|----------------|-----------------|------------------------------|--------|
-| GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif) | 0.2477 USER-REPORTED | Not estimable | NO — 100.00% vs GEMSDOE25 | DO NOT SUBMIT |
-| GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/04333cc3fbf7486c56e0324fd07aee684be614dc/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif) | 0.2600 USER-REPORTED | Not estimable | NO — 100.00% vs GEMSDOE24 | DO NOT SUBMIT |
-| GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/b8dd298e10884afffa05436673ac73aeaf850b8c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif) | 0.2449 USER-REPORTED | Not estimable | NO — 98.02% vs GEMSDOE24 | DO NOT SUBMIT |
-| GEMSDOE28 | [gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/ec1d501fd12c8dee9dc062726003639dec9382ff/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif) | 0.2710 USER-REPORTED | Not estimable | NO — 100.00% vs GEMSDOE24 | DO NOT SUBMIT |
-| GEMSDOE30 | [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3d5bec2af5f29291617f97c9e2dfe443be6f55c3/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif) | 0.2600 USER-REPORTED | Not estimable | NO — 100.00% vs GEMSDOE24 | DO NOT SUBMIT |
-| GEMSDOE31 | [gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/blob/cf13282fcd86290f1539f0a86446c8ba7205a79b/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif) | 0.2708 USER-REPORTED | Not estimable | NO — 100.00% vs GEMSDOE24 | DO NOT SUBMIT |
-| GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) | 0.2778 USER-REPORTED | Not estimable | NO — 100.00% vs GEMSDOE24 | DO NOT SUBMIT |
-| GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f52533110fe62cd03e77f1228e9e5ecac412c463/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | 0.2632 USER-REPORTED | Not estimable | NO — 99.71% vs GEMSDOE27 | DO NOT SUBMIT |
-| GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | 0.2750 USER-REPORTED | Not estimable | NO — 97.58% vs GEMSDOE27 | DO NOT SUBMIT |
-
-**Best reported:** GEMSDOE32 at 0.2778 (USER-REPORTED / UNVERIFIED — no organizer submission receipt located). All nine files are near-duplicates of the same dotted-ridge family; none is unique enough to submit as a new discovery.
-
----
-
-# Candidate artifact — NOT CLEARED, do not submit
-
-A generated candidate is retained for scientific/research review only:
-
-- File: [`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`](docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif)
-- SHA-256: `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`
-- Candidate name: `gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8`
-- **Submission eligibility: NO.** The run card itself says `PENDING-REVIEW`; full literal registry comparisons before surface placement and on final dots, compliant matched holdout controls/leakage checks, and separate selector approval are not established. The literal protocol does not authorize excluding a dense lattice from overlap checks.
-- **HOLDOUT-DTI (candidate run-card claim; not independently reproduced or organizer-confirmed): 0.4239**, 95% CI `[0.4053, 0.4427]`, evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, `22,232` withheld positives. This is neither an organizer-confirmed score nor a leaderboard estimate; it is not directly comparable with the user-reported GEMSDOE32 `0.2778`.
-- Basic TIFF audit metadata reports single-band float32, EPSG:32611, 3730×3292, range `[0,1]`, and zero NaN inside footprint. Format checks do not establish scientific performance, uniqueness, or organizer acceptance.
-
-No submission note is authorized while eligibility is NO. There has been no slot selection or upload by this review.
-
-# Submission process (only after future clearance)
-
-Do not submit the archived candidate above. For a future approved release, first confirm a positive current gate and separate selector authorization; then use the official DrivenData submission page, upload the approved single-band GeoTIFF (or ZIP containing one), add its run-card note (≤140 characters), and retain the exact-file organizer receipt. These general steps do not approve this artifact.
-
-# DATA SOURCES (official, verified)
-
-- Competition: https://www.drivendata.org/competitions/306/competition-doe-gems/
-- Problem/metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
-- Rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf
-- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
-- GDR #1391 (INGENIOUS): https://gdr.openei.org/submissions/1391 (DOI 10.15121/1881483, CC BY 4.0)
-- GeoDAWN: USGS DOI 10.5066/P93LGLVQ
-- EPSG:32611: https://epsg.io/32611
-- Tiversky index: https://en.wikipedia.org/wiki/Tversky_index
-
----
-
-# Protocol status — NOT CLEARED
-
-- Assigned method lane: the prompt refers to a single paragraph but does not unambiguously assign a lane to this session.
-- Surface-before-placement and final-dot literal uniqueness against the complete current registry: not established.
-- Holdout: candidate card reports a result, but independently reproducible whole-segment buffering, fold-local feature derivation, pooled DTI settings, paired same-protocol baseline, and leakage canaries are not evidenced here.
-- TIFF checks: archived audit metadata reports format/grid/range properties; no current reviewer re-opened the saved bytes against an authenticated organizer template in this pass.
-- Selector/slot: no separate selector approval or organizer receipt. Do not infer quota status from a downloadable file.
-- Current gate: negative / pending review; no candidate is authorized for upload.
-
----
-
-# REMAINING WORK & LIMITATIONS
-
-1. Confirm the intended lane explicitly and avoid overlapping sibling experiments.
-2. Resolve organizer-authenticated data/template provenance and complete shared evaluator/writer audits.
-3. Run surface and final-dot uniqueness checks against every registered raster, with no undocumented exemptions.
-4. Independently reproduce the holdout using the requested whole-segment buffered protocol, feature-only leakage canaries and matched current-best baseline.
-5. Keep the candidate blocked until every gate passes and the separate selector authorizes a real slot; then bind any result to a receipt and file hash.
-6. Local full-suite test execution is environment-limited if Python scientific dependencies are unavailable; report exact CI result before relying on code validation.
+The 2026-10-29 repository review is recorded in [`docs/review-2026-10-29.md`](docs/review-2026-10-29.md). It made no new model experiment and no submission. The current candidate review is negative; see [`docs/data/candidate-review-20261029.json`](docs/data/candidate-review-20261029.json) for its run card and incomplete uniqueness/validation fields. Negative results are valid deliverables.

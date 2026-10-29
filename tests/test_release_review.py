@@ -12,12 +12,19 @@ from src.gems32.release_gate import compare_registry
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
+def test_dated_saved_audit_is_not_misrepresented_as_covering_later_tiffs():
     report = json.loads((ROOT / 'evidence/release-audit-20261028.json').read_text())
     assert report['experiments_run'] == report['weekly_slots_used'] == 0
     assert report['ok_to_submit'] is False
-    assert {r['file'] for r in report['rows']} == {
-        str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')}
+    audited = {r['file'] for r in report['rows']}
+    current = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif')}
+    assert audited.issubset(current)
+    assert current - audited == {
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif',
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif',
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif',
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif',
+    }
     for row in report['rows']:
         path = ROOT / row['file']
         assert hashlib.sha256(path.read_bytes()).hexdigest() == row['sha256']
@@ -42,6 +49,12 @@ def test_public_rebuild_deterministic_and_old_narrative_collapsed():
         assert text.count('<!-- RELEASE-REVIEW -->') == 1
         assert text.count('<!-- ARCHIVED-BODY -->') <= 1
         assert 'DO NOT SUBMIT' in text
+    release_page = (ROOT / 'docs/release-review.html').read_text()
+    assert 'newer files are not covered' in release_page
+    assert 'NOT ESTABLISHED · not measured' in release_page
+    assert 'gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif' in release_page
+    assert 'karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif' in release_page
+    assert 'download href="downloads/gemsdoe32-karage3-h-geoconduit' not in release_page
     # The home decision pages are generated from the current lane card by build_k3c_site.py
     home = [ROOT / p for p in ('docs/index.html', 'docs/executive-summary.html')]
     before = [p.read_bytes() for p in home]

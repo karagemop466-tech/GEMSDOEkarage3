@@ -73,8 +73,25 @@ def main() -> int:
        == history['lattice']['budget_lower_bound'] > .70)
     rows = audit['rasters']
     paths = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
-    ck('all retained TIFFs inventoried exactly once',
-       bool(rows) and len(rows) == len(paths) and {r['file'] for r in rows} == paths)
+    audited_paths = {r['file'] for r in rows}
+    unreviewed = paths - audited_paths
+    hgeo = load('docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-audit.json')
+    offcat = load('docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json')
+    hgeo_review = load('docs/data/candidate-review-20261029.json')
+    later_hashes = {
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif': hgeo['zeros_tif']['sha256'],
+        'docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif': hgeo['nan_tif']['sha256'],
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif': offcat['zeros_sha256'],
+        'docs/downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif': offcat['nan_sha256'],
+    }
+    ck('dated saved-byte scope and later files explicitly inventoried as unreviewed',
+       bool(rows) and audited_paths.issubset(paths) and unreviewed == set(later_hashes)
+       and all(sha(ROOT / path) == digest for path, digest in later_hashes.items())
+       and offcat['ok_to_submit'] is False and offcat['verdict'] == 'negative'
+       and offcat['estimated_leaderboard_score'] is None
+       and 'NOT ESTABLISHED' in offcat['uniqueness_status']
+       and hgeo_review['verdict'] == 'negative' and hgeo_review['raster_sha256'] == hgeo['zeros_tif']['sha256']
+       and hgeo_review['registry_checks']['registry_completeness'] == 'NOT ESTABLISHED')
     for row in rows:
         path = (ROOT / row['file']).resolve()
         ck(f"{row['file']} hash and duplicate stop",
