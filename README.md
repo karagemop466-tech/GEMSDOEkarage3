@@ -10,8 +10,10 @@ There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `
 [**Nine-site executive summary**](index.html#scorecard) ·
 [Submission guide](executive-summary.html) ·
 [Current JSON run card](docs/data/latest-run.json) ·
+[**Latest repository review (2026-10-29)**](docs/review-2026-10-29-session.md) ·
+[Review run card (JSON)](docs/data/review-run-20261029.json) ·
 [Session 5 Three-Pass Report](docs/research/session5-hk3d-report-20261028.md) ·
-[Three-pass review](docs/review-2026-10-28-session.md) ·
+[Prior three-pass review](docs/review-2026-10-28-session.md) ·
 [Full retained project brief](docs/PROJECT_BRIEF.md)
 
 ### Session 5 (`2026-10-28`) — Lane `H-K3D (TGSF-BVCD)` Scientific & Gate Summary
@@ -42,7 +44,7 @@ There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `
   GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36** are user/owner
   reports without hash-linked organizer receipts (`USER-REPORTED / UNVERIFIED`). The Pages table identifies
   the historical files and links to their sources for **research only**.
-- **Why GEMSDOE32 (`0.2778` user-reported) led the 9 focus sites**: Pixel-exact set algebra proves strict nesting `A_32 (37,654) ⊂ A_31 (40,199) ⊂ A_25 = A_30 (44,090)` and `A_32 ⊂ A_36 (38,854)`. Every one of the `2,545` pixels in `A_31 \ A_32` lies within `d <= 2.0 px` (`200 m`) of known `existing_faults.tif`, where the `300 m` triangular kernel already receives neighbour credit or pixel-exact masking. Removing `ΔFP = 2,545` redundant collar dots cuts the `α = 0.2` false-positive penalty by `509` denominator units at near-zero `TP` loss (`0.2600 -> 0.2708 -> 0.2778` user-reported; vs public leaderboard top `0.4544` observed `2026-10-28`, `0.4413` user-reported in prompt, `0.3195` stale historical snapshot).
+- **Why GEMSDOE32 (`0.2778` user-reported) led the 9 focus sites**: Pixel-exact set algebra proves strict nesting `A_32 (37,654) ⊂ A_31 (40,199) ⊂ A_25 = A_30 (44,090)` and `A_32 ⊂ A_36 (38,854)`. Every one of the `2,545` pixels in `A_31 \ A_32` lies within `d <= 2.0 px` (`200 m`) of known `existing_faults.tif`, where the `300 m` triangular kernel already receives neighbour credit or pixel-exact masking. Removing `ΔFP = 2,545` collar dots may reduce false-positive mass under `α = 0.2`, but a near-zero hidden-TP loss is only a plausible explanation, not established causality (`0.2600 -> 0.2708 -> 0.2778` USER-REPORTED). The saved public-board snapshot was `0.4544` on `2026-10-28`; it is dated, not a current read or a score receipt for this team. The prompt also reports `0.4413` and `0.3195`; these distinct snapshots/claims must not be conflated. See the [2026-10-29 review](docs/review-2026-10-29-session.md#leaderboard-and-historical-score-irregularity).
 - The [independent geometry receipt](evidence/historical-reaudit-20261028-session.json)
   covers nine pinned files and one witness. All 72
   directional focus-site comparisons exceed 70%. A 37,654-dot budget is

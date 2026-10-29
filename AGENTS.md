@@ -1,6 +1,6 @@
 # Project starting point and safety rules
 
-Read `README.md`, `docs/PROJECT_BRIEF.md`, the latest session review `docs/review-2026-10-28-session.md`, and `docs/data/latest-run.json` before work; `research/2026-10-28-literal-review.md` and `docs/data/current-run.json` preserve the independent parallel review. Prior run cards are historical evidence, not authorization. Do not claim organizer confirmation without an artifact-linked receipt, present a historical TIFF as a new submission, or promote on format alone.
+Read `README.md`, `docs/PROJECT_BRIEF.md`, the latest repository review `docs/review-2026-10-29-session.md`, its card `docs/data/review-run-20261029.json`, the latest experiment run card `docs/data/latest-run.json`, and the readiness snapshot `docs/readiness.json` before work; `docs/review-2026-10-28-session.md`, `research/2026-10-28-literal-review.md`, and `docs/data/current-run.json` preserve earlier independent reviews. Prior run cards are historical evidence, not authorization. Do not claim organizer confirmation without an artifact-linked receipt, present a historical TIFF as a new submission, or promote on format alone.
 
 ## Literal uniqueness is mandatory
 

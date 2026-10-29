@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "run_id": "repository-review-20261029",
+  "created_utc": "2026-10-29T18:05:00Z",
+  "review_only": true,
+  "hypothesis": "No candidate hypothesis selected: the request did not specify an unambiguous single method lane; the four ranked ideas remain planning-only.",
+  "mechanism": "No model was fit and no candidate surface or raster was generated in this review.",
+  "named_non_fault_mimic": "Lithologic contacts can mimic potential-field boundaries; this is a research caveat, not an evaluated candidate.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci_95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "NOT RUN: no assigned lane, local cached feature stack, or verified protocol-conforming shared holdout. No score estimate is available."
+  },
+  "feature_canaries": {
+    "status": "NOT RUN: no candidate features were constructed",
+    "features_tested": 0
+  },
+  "correlation_overlap_vs_registry": {
+    "candidate_surface_spearman": null,
+    "candidate_preview_dot_overlap": null,
+    "candidate_final_dot_overlap": null,
+    "status": "NOT RUN: no candidate surface/dots; local readiness reports 0/416 pinned registry paths present, so a full current comparison cannot be made.",
+    "historical_witness_only": {
+      "witness": "13GEMSDOE/r13-lattice-s5",
+      "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "scope": "Historical archived candidate audits only; not a new surface measurement and not a complete registry certificate."
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no new candidate raster",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_matches": null,
+    "shape_matches": null,
+    "transform_matches": null,
+    "outside_null_or_nan": null,
+    "organizer_acceptance": "unknown"
+  },
+  "submission_name": null,
+  "note": "Review-only negative result; no candidate file is available or approved for download/submission.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "selector_approval": false,
+  "ok_to_submit": false,
+  "leaderboard": {
+    "status": "NOT REFRESHED this review; latest saved repo snapshot is dated 2026-10-28 and is not a receipt for this team.",
+    "historical_values": [
+      {"value": 0.3195, "evidence_class": "USER-REPORTED / UNVERIFIED prompt claim"},
+      {"value": 0.4413, "evidence_class": "USER-REPORTED / UNVERIFIED prompt claim"},
+      {"value": 0.4544, "evidence_class": "DATED ORGANIZER-PUBLIC leaderboard snapshot saved in repo; not a submission-page receipt"}
+    ],
+    "current_value": null
+  },
+  "verification": {
+    "pytest": "188 passed, 1 skipped, 78 subtests; 56 warnings",
+    "npm_test": "4 passed",
+    "browser_feed_test": "2 passed",
+    "verify_numbers": "22/22 consistency checks passed",
+    "site_build_check": "passed",
+    "readiness": "not ready; expected exit 2"
+  },
+  "blockers": [
+    "No unambiguous assigned method lane.",
+    "Competition rasters and cached feature stack are absent in this checkout; owner-mirror preparation records do not establish local availability or organizer authenticity.",
+    "0/416 pinned registry paths are present locally; current complete surface and dot comparison is impossible.",
+    "Shared holdout, surface-overlap and masked-pixel validator issues remain unresolved or unverified centrally.",
+    "No same-evaluator incumbent baseline or matched HOLDOUT-DTI result.",
+    "No organizer submission receipt or current quota/selector approval."
+  ],
+  "evidence": {
+    "readiness": "docs/readiness.json",
+    "prior_nine_site_review": "docs/review-2026-10-28-session.md",
+    "official_problem_metric": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "official_usgs_geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution"
+  }
+}
