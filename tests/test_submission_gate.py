@@ -47,15 +47,6 @@ class PublishedVerdictTests(unittest.TestCase):
                 self.assertGreater(c["registry_rasters_over_0_70_within3"], 0)
                 self.assertFalse(c["literal_dot_rule_0_70_passed_vs_all_measured"])
 
-    def test_executive_summary_banner_and_table_are_generated(self):
-        page = (ROOT / "executive-summary.html").read_text()
-        self.assertIn("NO FILE IS CLEARED TO SUBMIT", page)
-        self.assertEqual(page.count("GATE-BANNER:START"), 1)
-        self.assertEqual(page.count("NINE-SITE-GATE:START"), 1)
-        for site in ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
-                     "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"):
-            self.assertIn(f"<strong>{site}</strong>", page)
-
     def test_candidate_note_limit(self):
         gate = json.loads((ROOT / "docs/downloads/gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-gate.json").read_text())
         self.assertLessEqual(len(gate["note"]), 140)

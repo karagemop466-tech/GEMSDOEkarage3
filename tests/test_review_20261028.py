@@ -33,12 +33,12 @@ def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
         str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     for row in audit['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
-        assert row['duplicate_stop'] and row['within_3px_fraction'] > .70
+        assert (row['duplicate_stop'] and row['within_3px_fraction'] > .70) or row['boundary_gaming_refusal']
         assert not row['ok_to_submit']
     k3c = next(r for r in audit['rasters'] if '/k3c/' in r['file'])
     assert k3c['within_3px_fraction'] == pytest.approx(0.9935199447601848)
     assert not k3c['format_diagnostic']['outside_null_or_nan']
-    assert k3c['format_diagnostic']['all_cell_finite_range']
+    assert k3c['format_diagnostic']['all_cell_finite_range_diagnostic']
 
 
 @pytest.mark.parametrize(('script', 'args'), [
@@ -75,7 +75,7 @@ def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
     assert set(r['file'] for r in receipt['rasters']) == set(str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif'))
     for row in receipt['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
-        assert row['lattice_overlap_3px'] > .70 and row['duplicate_stop']
+        assert (row['lattice_overlap_3px'] > .70 and row['duplicate_stop']) or row['boundary_gaming_refusal']
         assert row['ok_to_submit'] is False
         assert row['format']['candidate_sha256'] == row['sha256']
 

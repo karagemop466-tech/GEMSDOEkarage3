@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "karage3-h-geoconduit-hybrid-20261029T181452Z-review",
-  "candidate_file": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "candidate_file": "docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
   "hypothesis": "H-GEO-CONDUIT: geothermal surface expressions may indicate hidden fault pathways.",
   "mechanism": "Candidate metadata describes 80% near-visible-fault placements and 20% at geothermal surface expressions. This is a candidate hypothesis, not evidence of submission benefit.",
   "named_non_fault_mimic": "Sedimentary-basin conductivity and alluvial fans.",

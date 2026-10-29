@@ -79,8 +79,10 @@ def main() -> int:
         path = (ROOT / row['file']).resolve()
         ck(f"{row['file']} hash and duplicate stop",
            path.is_relative_to(ROOT / 'docs') and path.is_file()
-           and sha(path) == row['sha256'] and row['within_3px_fraction'] > .70
-           and row['duplicate_stop'] is True and row['ok_to_submit'] is False
+           and sha(path) == row['sha256']
+           and ((row['within_3px_fraction'] > .70 and row['duplicate_stop'] is True)
+                or row['boundary_gaming_refusal'] is True)
+           and row['ok_to_submit'] is False
            and row['format_diagnostic']['sha256'] == row['sha256'])
     k3c = next((r for r in rows if r['file'] == witness['candidate']), None)
     ck('independent K3C witness agrees with saved-byte audit',

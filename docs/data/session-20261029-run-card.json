@@ -1,0 +1,119 @@
+{
+  "schema_version": "session-run-card/1",
+  "run_id": "session-20261029-review-and-calibration",
+  "date_utc": "2026-10-29",
+  "branch": "arena/545a1729-gemsdoekarage3",
+  "method_lane": "NOT ASSIGNED (the prompt's lane paragraph is missing; AGENTS.md forbids choosing one)",
+  "candidate_file": null,
+  "candidate_generated": false,
+  "candidate_sha256": null,
+  "submission_name": null,
+  "note": null,
+  "hypothesis": "H-GEO-CONDUIT (catalogue-holdout gains from pruning and conduit dots) may raise a non-catalogue score. Status: NOT ESTABLISHED.",
+  "budget": {
+    "experiments_used": 3,
+    "limit": "3 experiments or 2 hours",
+    "experiments": [
+      {
+        "id": "E1",
+        "what": "reproduce 0.4239 headline on the H-GEO-CONDUIT TIFF",
+        "result": "visible_gated 0.42386 reproduced; hide_recover 0.3047"
+      },
+      {
+        "id": "E2",
+        "what": "calibrate proxies vs USER-REPORTED values (n=18)",
+        "result": "hide_recover/visible_gated rho -0.551 (p 0.018); off-catalogue rho 0.082 (p 0.747)"
+      },
+      {
+        "id": "E3",
+        "what": "exact SHA-256 uniqueness audit of nine top files",
+        "result": "all nine byte-identical to files in other repos"
+      }
+    ]
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_versions": [
+      "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "GEMSDOE32-HOLDOUT-v3-visible-gated"
+    ],
+    "reference_candidate": "docs/downloads/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+    "reference_candidate_sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+    "results": [
+      {
+        "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.30473,
+        "ci95": [
+          0.2881,
+          0.3189
+        ],
+        "withheld_positives": 22232
+      },
+      {
+        "evaluator": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.42386,
+        "ci95": [
+          0.4053,
+          0.4427
+        ],
+        "withheld_positives": 22232
+      }
+    ],
+    "target_caveat": "Holdout withholds USGS catalogue faults; the official test set is non-catalogue faults. Not a leaderboard estimate."
+  },
+  "leakage_canaries": {
+    "status": "NOT RUN",
+    "reason": "no feature stack built; restored inputs only cover core and external groups",
+    "threshold": "single-feature AUC > 0.90 means leakage"
+  },
+  "registry_checks": {
+    "literal_registry_complete": false,
+    "uniqueness_gate": "NOT ESTABLISHED (no candidate; focus-9 audit shows all nine top files duplicated)",
+    "proxy_calibration": {
+      "status": "NEGATIVE",
+      "n": 18,
+      "rho_holdout_vs_user_reported": -0.5512,
+      "p": 0.0177,
+      "rho_offcatalogue_vs_user_reported": 0.0817,
+      "p_offcatalogue": 0.7473
+    },
+    "leaderboard_public_top": 0.4544
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN",
+    "reason": "no candidate raster generated"
+  },
+  "verdict": "NEGATIVE / DO NOT SUBMIT",
+  "estimated_score": "NOT ESTIMABLE (no local proxy tracks the user-reported leaderboard)",
+  "organizer_confirmed_score": null,
+  "source_checks": [
+    {
+      "claim": "test set = non-catalogue faults; metric = distance-weighted Tversky a=0.2, b=0.8, 3 px kernel; float32 [0,1] EPSG:32611 100 m submission",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "status": "READ"
+    },
+    {
+      "claim": "reference notebook trains on labels.tif (Known Faults)",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "status": "READ"
+    },
+    {
+      "claim": "rules PDF",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "status": "NOT OPENED"
+    },
+    {
+      "claim": "public leaderboard: #1 xiaofanhu 0.4544, #2 cfld__ 0.3916, #3 Batik Shirt Brothers 0.3911; prompt values 0.4413 and 0.3195 do not appear",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "status": "READ 2026-10-29 (fetch tool); public-split scores, not final"
+    }
+  ],
+  "remaining_work": [
+    "assign a method lane explicitly",
+    "replace or validate the proxy target on the official non-catalogue target or an organizer receipt",
+    "build feature stack and run leakage canaries",
+    "run the literal uniqueness gate on the complete registry",
+    "fix 12 pre-existing test failures (identical on base commit)"
+  ]
+}

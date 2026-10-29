@@ -182,6 +182,11 @@ def sha256_file(p: Path) -> str:
 
 
 def resolve_head(owner: str, repo: str) -> str | None:
+    """Resolve the default-branch HEAD SHA.
+
+    Primary: GitHub REST via `gh api`. Fallback: `git ls-remote` (no API quota,
+    and works when the API is rate-limited or `gh` auth is invalid).
+    """
     try:
         out = subprocess.run(
             ["gh", "api", f"repos/{owner}/{repo}/commits/HEAD", "--jq", ".sha"],
@@ -190,7 +195,20 @@ def resolve_head(owner: str, repo: str) -> str | None:
             text=True,
             timeout=20,
         ).stdout.strip()
-        return out if len(out) == 40 else None
+        if len(out) == 40:
+            return out
+    except Exception:
+        pass
+    try:
+        out = subprocess.run(
+            ["git", "ls-remote", f"https://github.com/{owner}/{repo}", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=60,
+        ).stdout.split()
+        sha = out[0] if out else ""
+        return sha if len(sha) == 40 else None
     except Exception:
         return None
 

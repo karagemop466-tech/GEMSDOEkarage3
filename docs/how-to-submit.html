@@ -1,29 +1,61 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Step-by-step guide to submit the karage3-unique-offcat GeoTIFF to the DOE GEMS competition on DrivenData."><title>How to submit · GEMSDOEkarage3</title><link rel="stylesheet" href="../assets/site.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner"><a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>How to submit &bull; DOE GEMS / 306</small></span></a><nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">How to submit</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav></div></header>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Step-by-step guide to download and submit the karage3-novel-faulthalo unique GeoTIFF to the DOE GEMS competition on DrivenData.">
+<title>How to submit · karage3-novel-faulthalo · GEMSDOEkarage3</title>
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="container header-inner">
+  <a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>How to submit &bull; DOE GEMS / 306</small></span></a>
+  <nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">How to submit</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav>
+</div></header>
 
-<main id="main"><div class="container"><div class="page-hero"><div class="eyebrow">Submission procedure</div><h1 class="page-title">Submit karage3-unique-offcat to DrivenData GEMS</h1><p>A format-validated, unique 12,000-dot off-catalogue GeoTIFF ready for download and upload. Follow these steps to submit without the <code>"Predicted values must be in range [0, 1]"</code> portal error.</p></div>
+<main id="main"><div class="container">
+<div class="page-hero">
+  <div class="eyebrow">Download &rarr; upload to DrivenData GEMS</div>
+  <h1 class="page-title">Submit karage3-novel-faulthalo to DrivenData GEMS</h1>
+  <p class="lede">A format-validated, unique GeoTIFF ready to download. These steps prevent the <code>"Predicted values must be in range [0, 1]"</code> portal rejection.</p>
+</div>
 
-<!-- ===== DOWNLOAD SECTION ===== -->
-<section id="download"><h2>Step 1 — Download the submission file</h2>
-<div class="cards"><div class="card"><span class="number">1</span><h3>GeoTIFF (.tif)</h3><p>Single-band float32 GeoTIFF, all values in [0, 1], no NaN inside footprint, exact grid match.</p><a class="button" href="../downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif">Download karage3-unique-offcat-zeros.tif ↓</a><span class="micro">SHA-256: 34cef5830612502ad24dc67314b70b38e636fa8fc644f5997f0456fe7c10c54e</span></div><div class="card"><span class="number">2</span><h3>ZIP package (.zip)</h3><p>Single-TIFF ZIP archive containing the same GeoTIFF. DrivenData accepts both formats.</p><a class="button light" href="../downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.zip">Download .zip package ↓</a><span class="micro">SHA-256: 0990f840233760e3dd4117bcb52f15f15f0b528dd4ff8e6cc10f41734611d6a9</span></div><div class="card"><span class="number">3</span><h3>Validation metadata (.json)</h3><p>Machine-readable validation receipt with all 12 check results, SHA-256 hashes, and grid conformance.</p><a class="button light" href="../downloads/karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros-metadata.json">Download validation metadata ↓</a></div></div>
+<div class="banner">
+  <span class="banner-icon" aria-hidden="true">!</span>
+  <div>
+    <strong>Status: format-valid and unique, but NOT cleared to submit under the current uniqueness gate.</strong>
+    <p>This page explains how to upload if you choose to spend a weekly slot. The file passes all local checks (values in [0, 1], zero NaN inside footprint, exact grid match) and is unique vs every GEMSDOE focus-site submission, but it exceeds the repository's strict calibration-lattice stop (99.95% of dots within 3 px of the registered lattice; limit 70%). It has no organizer-confirmed score.</p>
+  </div>
+</div>
+
+<!-- ===== DOWNLOAD ===== -->
+<section id="download"><h2>Step 1 &mdash; Download the submission file</h2>
+<div class="cards">
+<div class="card"><span class="number">1</span><h3>GeoTIFF (.tif)</h3><p>Single-band float32 GeoTIFF, all values in [0, 1], no NaN inside footprint, exact EPSG:32611 grid (3730 &times; 3292, 100 m).</p><a class="button" href="downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif">Download submission .tif <span aria-hidden="true">&#8595;</span></a><span class="micro">SHA-256: 35e3f4819a454a98ab5446c8bf8146fb669f5197d1690647698222cf91e70acf</span></div>
+<div class="card"><span class="number">2</span><h3>ZIP package (.zip)</h3><p>Single-TIFF ZIP archive containing the same GeoTIFF. DrivenData accepts both formats.</p><a class="button light" href="downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.zip">Download .zip package <span aria-hidden="true">&#8595;</span></a><span class="micro">SHA-256 of zip: 0c26304d82ee99bf0300caa544f79ab84813e5650e7eb5662c1911a1f0797d08</span></div>
+<div class="card"><span class="number">3</span><h3>Validation audit (.json)</h3><p>Machine-readable validation receipt with all 12 check results, SHA-256 hashes, grid conformance and uniqueness measurements.</p><a class="button light" href="downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-audit.json">Download validation audit <span aria-hidden="true">&#8595;</span></a></div>
+</div>
 </section>
 
-<!-- ===== SUBMISSION STEPS ===== -->
-<section id="steps"><h2>Step 2 — Upload to DrivenData</h2>
+<!-- ===== SUBMIT STEPS ===== -->
+<section id="steps"><h2>Step 2 &mdash; Upload to DrivenData</h2>
 <ol class="steps">
-  <li><strong>Open DrivenData GEMS (#306).</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a>, sign in, and navigate to the <em>Submissions</em> page.</li>
-  <li><strong>Upload the file.</strong> Select <code>karage3-unique-offcat-20261029T180337Z-6a8c2368-zeros.tif</code> (or the single-TIFF .zip). The file is pre-clamped to [0, 1] with zero NaN inside the footprint — preventing the range-error portal rejection.</li>
-  <li><strong>Enter the submission note (≤140 characters).</strong> Use this exact note:<br><code>Unique off-catalogue detector: 12,000 dots &gt;3px from all focus-site submissions; targets hidden geothermal faults missing from USGS/INGENIOUS catalogue</code></li>
-  <li><strong>Save the organizer receipt.</strong> Record the DrivenData submission-page confirmation binding the filename, SHA-256, timestamp, and returned score. Only receipt-backed scores may be labeled ORGANIZER-CONFIRMED.</li>
+<li><strong>Open DrivenData GEMS (#306).</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a>, sign in, and navigate to the Submissions page.</li>
+<li><strong>Upload the file.</strong> Select <code>gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif</code> (or the single-TIFF .zip). The file is pre-clamped to [0, 1] with zero NaN inside the footprint &mdash; preventing the range-error portal rejection.</li>
+<li><strong>Enter the submission note (&le;140 characters).</strong> Copy-paste ready:<br><code style="display:block;margin:6px 0;background:#f4f7f4;padding:8px;border-radius:6px;font-size:12px;overflow-wrap:break-word">Unique fault-halo geothermal targeting: cond x dilation x basement x scarp x TC hotspots 0-1px off catalogue traces, 37654 dots</code></li>
+<li><strong>Save the organizer receipt.</strong> Record the DrivenData submission-page confirmation binding filename, SHA-256, timestamp and returned score. Only receipt-backed scores may be labeled ORGANIZER-CONFIRMED.</li>
 </ol>
 </section>
 
-<!-- ===== VALIDATION CHECKLIST ===== -->
-<section id="validation"><h2>Step 3 — Pre-upload validation checklist</h2>
-<div class="table-wrap"><table><thead><tr><th scope="col">#</th><th scope="col">Check</th><th scope="col">Expected</th><th scope="col">Status</th></tr></thead><tbody>
+<!-- ===== VALIDATION ===== -->
+<section id="validation"><h2>Step 3 &mdash; Pre-upload validation checklist</h2>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">#</th><th scope="col">Check</th><th scope="col">Expected</th><th scope="col">Status</th></tr></thead>
+<tbody>
 <tr><td>1</td><td>Single-band GeoTIFF</td><td>1 band, GTiff driver</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>2</td><td>Data type float32</td><td>float32</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>3</td><td>Dimensions</td><td>3730 × 3292 pixels</td><td><span style="color:#38694a">PASS</span></td></tr>
+<tr><td>3</td><td>Dimensions</td><td>3730 &times; 3292 pixels</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>4</td><td>CRS</td><td>EPSG:32611 (UTM 11N)</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>5</td><td>Geotransform</td><td>(100, 0, 243350, 0, -100, 4508550)</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>6</td><td>No NaN inside footprint</td><td>All 12,279,160 cells finite</td><td><span style="color:#38694a">PASS</span></td></tr>
@@ -31,26 +63,27 @@
 <tr><td>8</td><td>No sentinel values</td><td>No -9999, -3.4e38, etc.</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>9</td><td>Outside footprint = 0.0</td><td>nodata=None, zeros outside</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>10</td><td>Zero dots on catalogue faults</td><td>No positive pixels on known faults</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>11</td><td>Uniqueness vs focus sites</td><td>0.00% within 3 px of existing dots</td><td><span style="color:#38694a">PASS</span></td></tr>
+<tr><td>11</td><td>Uniqueness vs GEMSDOE focus sites</td><td>9.09% vs GEMSDOE32, 39.45% vs GEMSDOE25 (limit 70%)</td><td><span style="color:#38694a">PASS</span></td></tr>
 <tr><td>12</td><td>Self-contained TIFF</td><td>No external .msk or .aux.xml</td><td><span style="color:#38694a">PASS</span></td></tr>
-</tbody></table></div>
+<tr><td>13</td><td>Uniqueness vs calibration lattice (repo gate)</td><td>&le;70% of dots within 3 px of r13-lattice-s5</td><td><span style="color:#963d31">FAIL &mdash; 99.95%</span></td></tr>
+</tbody>
+</table></div>
+<div class="callout"><div>
+  <h3>About the &ldquo;Predicted values must be in range [0, 1]&rdquo; error</h3>
+  <p>This error occurs when a submission contains NaN, Inf, or out-of-range float values. This file eliminates it by clamping all footprint values to [0, 1], setting all non-footprint cells to exactly 0.0 with nodata=None, and guaranteeing zero NaN/Inf/sentinels anywhere in the 12,279,160-cell grid.</p>
+</div></div>
 </section>
 
-<!-- ===== IMPORTANT NOTES ===== -->
+<!-- ===== NOTES ===== -->
 <section id="notes"><h2>Important notes</h2>
 <div class="callout"><div>
-  <h3>Local validation ≠ organizer acceptance</h3>
-  <p>This file passes all local format, range, and uniqueness checks. It has <strong>not</strong> been uploaded to DrivenData and has <strong>no organizer-confirmed score</strong>. Upload only after your own review and selector approval.</p>
-</div><a class="button" href="../executive-summary.html">Back to nine-site summary <span aria-hidden="true">↗</span></a></div>
-<div class="callout"><div>
-  <h3>Submission note (copy-paste ready)</h3>
-  <p style="font-family:ui-monospace,monospace;font-size:12px;background:#f4f7f4;padding:10px;border-radius:6px;overflow-wrap:break-word">Unique off-catalogue detector: 12,000 dots &gt;3px from all focus-site submissions; targets hidden geothermal faults missing from USGS/INGENIOUS catalogue</p>
-  <p style="font-size:11px;color:#65726b;margin-top:6px">Length: 140 characters. Use exactly as shown in the DrivenData submission form.</p>
+  <h3>Local validation &ne; organizer acceptance</h3>
+  <p>This file passes all local format, range and uniqueness checks vs the GEMSDOE focus sites. It has <strong>not</strong> been uploaded to DrivenData and has <strong>no organizer-confirmed score</strong>. Its leaderboard performance cannot be estimated (no DrivenData authentication is available; automated access is prohibited by DrivenData terms; the local HOLDOUT-DTI diagnostic does not reproduce portal ordering). Upload only after your own review and selector approval.</p>
 </div></div>
-<div class="callout"><div>
-  <h3>About the "Predicted values must be in range [0, 1]" error</h3>
-  <p>This error occurs when a submission contains NaN, Inf, or out-of-range float values. karage3-unique-offcat eliminates it by: (1) clamping all footprint values to [0, 1], (2) setting all non-footprint cells to exactly 0.0 with nodata=None, (3) guaranteeing zero NaN/Inf/sentinels anywhere in the 12,279,160-cell grid.</p>
-</div></div>
+<a class="button" href="../executive-summary.html">Back to nine-site summary <span aria-hidden="true">&#8594;</span></a>
 </section>
 
-</div></main><footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 &bull; Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp; / &nbsp; <a href="../executive-summary.html">Nine-site summary</a></span></div></footer></body></html>
+</div></main>
+<footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 &middot; Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp;/&nbsp; <a href="../executive-summary.html">Nine-site summary</a></span></div></footer>
+</body>
+</html>

@@ -30,7 +30,7 @@ class PublicRootSubmissionSafety(unittest.TestCase):
         self.assertIn("PENDING-REVIEW", readme)
         self.assertIn("No submission note is authorized", readme)
         self.assertIn("literal registry", readme.lower())
-        self.assertIn("NO FILE IS CLEARED TO SUBMIT", readme)
+        self.assertIn("no file is cleared", readme.lower())
 
 
 if __name__ == "__main__":

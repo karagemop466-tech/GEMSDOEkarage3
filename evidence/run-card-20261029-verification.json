@@ -1,0 +1,53 @@
+{
+  "card_type": "run-card",
+  "schema_version": 1,
+  "date_utc": "2026-10-29",
+  "lane": "none assigned (AGENTS.md: no method lane without an unambiguous user assignment)",
+  "hypothesis": "none tested this session (verification and tooling only)",
+  "mechanism": "n/a",
+  "named_non_fault_mimic": "n/a",
+  "holdout_dti": {
+    "value": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "evidence_class": "NOT RUN",
+    "owner_reported_unverified": {
+      "value": 0.4239,
+      "ci95": [
+        0.4053,
+        0.4427
+      ],
+      "status": "NOT ESTABLISHED"
+    }
+  },
+  "registry_correlation_and_overlap": {
+    "receipt": "evidence/literal-uniqueness-measure-20261029.json",
+    "registry_rasters_compared": 1979,
+    "registry_rasters_listed": 1997,
+    "complete_registry_checked": false,
+    "candidate_rows": 22,
+    "candidate_rows_duplicate_stop": 22,
+    "lattice_witness_overlap_within_3px_range": [
+      0.9934,
+      0.9992
+    ],
+    "lattice_witness_receipt": "evidence/saved-tiffs-literal-20261028.json",
+    "rank_correlation_rule": "> 0.90 stop (literal rule)"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "tool": "scripts/check_format.py",
+    "gate": "official DrivenData rules",
+    "competition_template_gate_pass": true,
+    "zeros_outside_footprint_candidates_gate_pass": false,
+    "unique_offcat_nan_named_file_gate_pass": false
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "slot_selected": false,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "portal_error_status": "Predicted values must be in range [0, 1]: UNEXPLAINED; no file identified"
+}
