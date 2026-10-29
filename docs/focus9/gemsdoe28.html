@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE28 · GEMSDOE focus-9</title>
+<link rel="stylesheet" href="../assets/site.css"></head>
+<body><main class="wrap" style="padding:28px 0 60px;max-width:1000px;margin:auto">
+<p><a href="index.html">Focus-9 summary home</a> · <a href="../index.html">Decision home</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules (PDF)</a></p>
+<h1>GEMSDOE28 — executive summary</h1>
+<div style="border:3px solid #b00020;background:#fff0f0;padding:16px;border-radius:8px;margin:16px 0">
+<strong style="font-size:1.25em">OK TO DOWNLOAD AND SUBMIT? NO — DO NOT SUBMIT THIS FILE.</strong>
+<p style="margin:8px 0 0">The validator and the uniqueness gate both fail. Nothing on this page authorizes an upload or a weekly slot.</p></div>
+<h2>At a glance</h2>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>File to download (research copy only)</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/ec1d501fd12c8dee9dc062726003639dec9382ff/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a></td></tr>
+<tr><td>Pinned commit</td><td><code>ec1d501fd12c8dee9dc062726003639dec9382ff</code></td></tr>
+<tr><td>SHA-256</td><td><code>5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641</code></td></tr>
+<tr><td>Site</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">https://buffedlizard55-lab.github.io/GEMSDOE28/</a></td></tr>
+<tr><td>Reported portal score</td><td>0.2710 — <strong>USER-REPORTED / UNVERIFIED</strong></td></tr>
+<tr><td>Estimated leaderboard score</td><td><strong>Not estimable.</strong> No organizer receipt, and the static local holdout does not reproduce portal ordering.</td></tr>
+<tr><td>Unique submission?</td><td><strong>NO</strong> — 100.00% of dots within 3 px of GEMSDOE24; 99.91% within 3 px of the calibration lattice.</td></tr>
+<tr><td>Withheld positives (holdout)</td><td>22232 (hide-and-recover); 62703 (off-catalogue SGMC)</td></tr>
+<tr><td>OK to submit?</td><td><strong>NO</strong></td></tr>
+</table>
+<h2>Local HOLDOUT-DTI (static binary diagnostic)</h2>
+<p>Label: <strong>HOLDOUT-DTI</strong>. Evaluator <code>GEMSDOE32-HIDE-RECOVER-v3.0</code>, 22232 withheld positives, 140 spatial clusters, 95% cluster-bootstrap CI.</p>
+<ul>
+<li>Hide-and-recover pooled DTI: <strong>0.0294</strong> [0.0250, 0.0344]</li>
+<li>Off-catalogue SGMC (<code>GEMSDOE32-SGMC-CAL-v3.0</code>, 62703 positives): prevalence-calibrated <strong>0.0630</strong> [0.0557, 0.0704]; raw 0.0943</li>
+</ul>
+<p>Mode <code>static_binary_diagnostic</code>; promotion_eligible <code>False</code>. The evaluator says: <em>Static predictions cannot establish fold-local catalogue features or leakage-free training.</em></p>
+<h2>Format checks (saved bytes, local)</h2>
+<ul>
+<li>Single band float32; EPSG:32611; shape 3730 × 3292; transform matches reference: True</li>
+<li>NaN cells: 7,111,787 (nodata = nan). Finite values in [0,1]: True.</li>
+<li>Positive cells: 37,660. These pass the range check. The NaN outside-footprint convention is reported separately and is not an organizer acceptance receipt.</li>
+</ul>
+<h2>Why it is blocked</h2>
+<p>Calibration lattice 13GEMSDOE r13-lattice-s5 (206,895 dots, 99.87% of the footprint within 3 px). A random placement of 37,654 dots gives 99.87% within 3 px as well. The shared rule stops any candidate with more than 70% of dots within 3 px of a registry raster. This file is 99.91% within 3 px of the lattice, and 100.00% within 3 px of GEMSDOE24.</p>
+<h2>Irregularities for review</h2>
+<ul><li>Four GEMSDOE28 files are reported (0.2708, 0.2649, 0.2710, 0.2707). Only the 0.2710 file (<code>h36-1-rung30-blind-r1</code>) is audited here.</li><li>Reported score has no organizer receipt; the portal value is USER-REPORTED / UNVERIFIED.</li></ul>
+<p><small>Sources: <a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/ec1d501fd12c8dee9dc062726003639dec9382ff/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">pinned file</a> · <a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">site</a> · <a href="../../evidence/focus9-holdout-baseline-20261029.json">baseline evidence</a> · <a href="../../docs/data/historical-audit.json">geometry audit</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>. Scores are not ORGANIZER-CONFIRMED.</small></p>
+
+</main></body></html>

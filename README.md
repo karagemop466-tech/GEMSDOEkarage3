@@ -1,5 +1,14 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Start here (2026-10-29): nine-site summary and submission status
+
+- **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
+- **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
+- **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
+- **Decision needed from the owner:** whether the literal any-registry 70% rule should apply to dense calibration lattices. Until then, no candidate can pass. See *Remaining Work* below.
+- **Irregularity for review:** `scripts/restore_data.py` writes the core rasters to `.cache/gems_data/`, but `scripts/check_readiness.py` checks `data/`. The committed `core_mirror_data: passed` snapshot therefore does not reproduce in this checkout. The readiness file was left unchanged.
+- Rebuild the summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Tests: `tests/test_focus9.py`.
+
 ## Decision: **DO NOT SUBMIT** (`ok_to_submit = False`, `verdict = "negative"`)
 
 There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `H-K3D (TGSF-BVCD)`** candidate (`gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif`, SHA-256 `c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e`, literal lattice overlap **99.3547%**) and the retained Session 4 **H-K3C** archive (`0d1461e8786d…`, literal lattice overlap **99.3520%**) are blocked by `scripts/promotion_gate.py` under the binding literal `<= 70%` 3-pixel overlap rule against the registered `206,895`-dot calibration lattice witness (`13GEMSDOE` `r13-lattice-s5`, SHA-256 `b4570b40…`). Local range (`[0.0, 1.0]` finite across all `12,279,160` cells, `nodata=None`) and grid checks (`EPSG:32611`, `3730 × 3292`) pass automatically without human intervention against the pinned mirror template; keep your weekly feedback slot unused.
