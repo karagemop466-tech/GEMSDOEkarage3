@@ -24,7 +24,7 @@ def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
         assert hashlib.sha256(path.read_bytes()).hexdigest() == row['sha256']
         assert row['validator']['candidate_sha256'] == row['sha256']
         assert row['within_3px_fraction'] > .70
-        assert row['duplicate_stop'] is True
+        assert row['duplicate_stop'] is True or row['boundary_gaming_refusal'] is True
         assert row['ok_to_submit'] is False
         if path.name.endswith('-zeros.tif'):
             assert row['validator']['whole_array_finite_range_pass'] is True

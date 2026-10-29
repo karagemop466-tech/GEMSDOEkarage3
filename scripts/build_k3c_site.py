@@ -43,7 +43,7 @@ def _archive():
     rasters = report['rasters']
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     if (len(rasters) != len(expected) or len(rasters) < 8 or {r['file'] for r in rasters} != expected
-            or any(sha256(ROOT / r['file']) != r['sha256'] or not r['duplicate_stop'] for r in rasters)):
+            or any(sha256(ROOT / r['file']) != r['sha256'] or not (r['duplicate_stop'] or r['boundary_gaming_refusal']) for r in rasters)):
         raise ValueError('Saved-byte audit is stale or does not reject every retained TIFF')
     matched = [r for r in rasters if r['file'] == original['submission_file']]
     if len(matched) != 1:
@@ -60,7 +60,7 @@ def root_decision_html():
     _, _, report = _archive()  # Never render the retained-TIFF claim from stale saved-byte evidence.
     n_tiffs = len(report['rasters'])
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
-             f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; '
+             f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs are refused: each fails the literal registry-overlap rule against the registered 206,895-dot lattice witness, or (H1 seismic-gravity-basin) places most dots in the lattice-uncovered edge band (boundary-gaming refusal); '
              'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
              'H-GEO-CONDUIT hybrid candidate (quarantined at <code>docs/quarantine/geoconduit-hybrid/</code>, PENDING-REVIEW) has 99.83% of its 35,615 dots within 3 px of the lattice, so it is not a compliant file. '
              'Its HOLDOUT-DTI 0.4239 [0.4053, 0.4427] (GEMSDOE32-HOLDOUT-v3-visible-gated, 22,232 withheld positives) is copied from its candidate card. It is NOT ESTABLISHED as a same-protocol baseline and is not an organizer-confirmed score. '
