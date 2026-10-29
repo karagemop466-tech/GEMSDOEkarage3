@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 import numpy as np
 import rasterio
-from scripts.audit_registry import ROOT, MANIFEST, ensure_file, dilate_disk, sha256
+from scripts.audit_registry import ROOT, MANIFEST, boundary_ring_share, ensure_file, dilate_disk, sha256
 from scripts.validate_raster import audit as format_audit
 
 
@@ -36,6 +36,9 @@ def audit(cache: Path, fetch: bool = False) -> dict:
         rows.append(dict(file=str(path.relative_to(ROOT)), sha256=sha256(path),
                          dots=n, lattice_overlap_3px=overlap,
                          duplicate_stop=overlap is not None and overlap > .70,
+                         boundary_ring_share=boundary_ring_share(dots, footprint),
+                         boundary_gaming_refusal=bool(overlap is not None and overlap <= .70
+                                                      and (boundary_ring_share(dots, footprint) or 0) >= .5),
                          format=fmt, verdict="negative", ok_to_submit=False,
                          surface_check="Not reproduced: cached pre-placement surface absent"))
     return dict(schema_version=1, evidence_class="GEOMETRY-AUDIT, NOT A SCORE",

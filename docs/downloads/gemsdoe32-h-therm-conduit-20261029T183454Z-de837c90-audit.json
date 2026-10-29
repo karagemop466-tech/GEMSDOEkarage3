@@ -1,0 +1,46 @@
+{
+  "filename": "gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-zeros.tif",
+  "size_bytes": 23758349,
+  "sha256": "238ff4fb383cddfd8932de1b0139e92911b3969563b52c9a4960a0fbdacb77eb",
+  "geometry_reference": "documented grid (EPSG:32611, 3730x3292, from_origin(243350, 4508550, 100, 100)); organizer template sample_submission.tif NOT available locally, so exact footprint masking could not be verified against it",
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "shape": [
+    3730,
+    3292
+  ],
+  "dtype": "float32",
+  "nodata": null,
+  "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_reference": true,
+    "self_contained_tiff": true,
+    "driver_gtiff": true,
+    "nodata_none": true,
+    "all_cells_finite": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "all_cells_in_range_0_1": true,
+    "min_value": 4.294364511025278e-25,
+    "max_value": 0.7640351057052612,
+    "positive_cells": 70974,
+    "zero_cells": 0
+  },
+  "all_checks_passed": true,
+  "note": "LOCAL FORMAT AUDIT ONLY. Not an organizer receipt, not a holdout score, not a registry-uniqueness proof, not slot authorization. ok_to_submit is False until the promotion gate passes with organizer data.",
+  "submission_name": "gemsdoe32-h-therm-conduit-20261029T183454Z-de837c90-zeros.tif",
+  "submission_note": "Smooth geothermal-conduit surface: central plume + stepover corridors; unique non-dotted pattern",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason_not_cleared": "Holdout DTI + 95% CI, per-feature leakage canaries, literal registry uniqueness (surface AND final dots), and validator binding to exact bytes require organizer rasters (sample_submission.tif, labels.tif, training_features.tif, complete registry) that are not present in this checkout and require DrivenData login. A local format pass is not submission authorization."
+}

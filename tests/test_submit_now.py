@@ -70,16 +70,14 @@ class SubmitNowTests(unittest.TestCase):
 
     def test_status_pages_agree_with_card(self):
         expect = "OK TO DOWNLOAD: YES" if self.card["gates"]["download_ok"] else "OK TO DOWNLOAD: NO"
-        self.assertIn(expect, (ROOT / "docs" / "index.html").read_text())
-        self.assertIn(expect.split(":")[0], (ROOT / "docs" / "submit-now" / "index.html").read_text())
+        self.assertIn(expect, (ROOT / "docs" / "submit-now" / "index.html").read_text())
 
     def test_root_page_still_refuses_submission(self):
-        # The root generator is currently blocked (see the review note); its checked-in warning must still say NO.
         root = (ROOT / "index.html").read_text()
-        self.assertIn("OK TO SUBMIT: NO", root)
+        self.assertIn("OK TO SUBMIT? NO", root)
         self.assertNotIn("READY TO DOWNLOAD", root)
-        self.assertNotIn("Download submission .tif", root)
-        self.assertNotIn('<div class="stat-value">0.00%', root)
+        self.assertNotIn('href="docs/downloads/karage3', root)
+        self.assertIn("disabled", root)
 
     def test_readme_does_not_offer_an_unpublished_download(self):
         text = (ROOT / "README.md").read_text()

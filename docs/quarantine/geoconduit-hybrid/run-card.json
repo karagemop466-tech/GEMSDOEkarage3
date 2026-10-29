@@ -1,0 +1,43 @@
+{
+  "hypothesis": "H-GEO-CONDUIT: geothermal surface expressions mark hidden fault pathways",
+  "mechanism": "80% of candidate placements near visible faults and 20% at geothermal surface expressions, as specified by the generating script.",
+  "non_fault_mimic": "sedimentary basin conductivity / alluvial fans (non-fault geothermal mimic)",
+  "holdout_dti": 0.4238550175911073,
+  "ci95": [
+    0.4052528039454756,
+    0.4427468022085632
+  ],
+  "n_withheld_positives": 22232,
+  "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+  "sgmc_raw_dti": 0.003936567934094802,
+  "sgmc_cal_dti": 0.0026422076780525977,
+  "raster_sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+  "raster_filename": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "validator": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_matches": true,
+    "shape_matches": true,
+    "transform_matches": true,
+    "all_checks_passed": true
+  },
+  "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "submission_note": "H-GEO-CONDUIT candidate archived for protocol review; not approved for submission.",
+  "verdict": "negative",
+  "unique_claim": "NOT ESTABLISHED: complete literal registry surface/final-dot checks and selector approval are absent.",
+  "timestamp_utc": "20261029T181452Z",
+  "status": "DO NOT SUBMIT; HOLDOUT-DTI is a copied candidate-run-card result, not organizer-confirmed and not independently reproduced in this review.",
+  "registry_comparison": "NOT ESTABLISHED against the complete registry; no dense-lattice overlap exemption is authorized.",
+  "same_protocol_baseline": "NOT ESTABLISHED",
+  "leakage_canaries": "NOT ESTABLISHED in this review",
+  "gate_correction_20261029": {
+    "status": "NOT OK TO SUBMIT - DO NOT SUBMIT",
+    "lattice_witness": "13GEMSDOE r13-lattice-s5, sha256 b4570b40...",
+    "in_footprint_dots": 35615,
+    "dots_within_3px_of_lattice": 0.998287,
+    "literal_limit": 0.7,
+    "why_prior_claim_was_wrong": "The <=34.49% figure was computed against discrete submissions only, which exempts the registered lattice. No lattice exemption exists in the protocol.",
+    "checked_by": "scripts/audit_saved_tiffs.py on 2026-10-29"
+  },
+  "ok_to_submit": false
+}

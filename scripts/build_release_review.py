@@ -14,7 +14,7 @@ def build():
     expected = {str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
     if (len(rasters) != len(expected) or len(rasters) < 8 or {r['file'] for r in rasters} != expected
             or any(hashlib.sha256((ROOT / r['file']).read_bytes()).hexdigest() != r['sha256']
-                   or not r['duplicate_stop'] for r in rasters)):
+                   or not (r['duplicate_stop'] or r['boundary_gaming_refusal']) for r in rasters)):
         raise ValueError('Refusing to publish stale or incomplete saved-byte audit')
     for src, dest in [('evidence/saved-tiffs-literal-20261028.json', 'saved-tiffs-literal-20261028.json'), ('evidence/run-card-20261028.json', 'run-card-20261028.json'), ('research/2026-10-28-review.md', 'review-20261028.md')]:
         (ROOT / 'docs/data' / dest).write_bytes((ROOT / src).read_bytes())
@@ -22,14 +22,17 @@ def build():
     for r in audit['rasters']:
         name = Path(r['file']).name
         rows.append(f'<tr><td><a download href="{escape(r["file"].removeprefix("docs/"))}">{escape(name)}</a><br><small>Archive only · SHA256 {r["sha256"]}</small></td>'
-                    f'<td>Not estimable</td><td>{100*r["within_3px_fraction"]:.4f}% · FAIL</td>'
+                    f'<td>Not estimable</td><td>{100*r["within_3px_fraction"]:.4f}% footprint-restricted; {100*r["within_3px_fraction_all_positive_pixels"]:.4f}% all-dots ({r["positive_pixels_outside_template_footprint"]:,} dots outside footprint) · {"FAIL" if r["duplicate_stop"] else "PASS"}</td>'
                     f'<td>{"PASS" if r["format_diagnostic"]["all_cell_finite_range"] else "FAIL"}</td><td>DO NOT SUBMIT</td></tr>')
     n_tiffs = len(rasters)
+    n_fail = sum(1 for r in rasters if r['duplicate_stop'])
+    n_boundary = sum(1 for r in rasters if r['boundary_gaming_refusal'])
+    n_outside_dots = sum(r.get('positive_pixels_outside_template_footprint', 0) for r in rasters)
     body = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Submission decision · GEMS</title><link rel="stylesheet" href="assets/site.css"></head><body>
 <main class="wrap"><p><a href="../index.html">Home</a> · <a href="hk3d/index.html">Session 5 Lane H-K3D</a> · <a href="preflight-executive.html">Nine-site executive summary</a></p>
 <h1>No submission is authorized</h1><p><strong>2026-10-28 · NEGATIVE · Automated saved-byte review ({n_tiffs} retained TIFFs)</strong></p>
-<p>Earlier PROMOTE / OK TO SUBMIT claims on archived pages are withdrawn, and Session 5 Lane <code>H-K3D (TGSF-BVCD)</code> (<a href="hk3d/index.html">executive summary</a> · <a href="hk3d/run-card.json">run card</a>) also terminates in an automated <strong>DO NOT SUBMIT</strong> stop. All {n_tiffs} retained TIFFs fail your literal any-registry overlap rule against the registered 206,895-dot calibration lattice witness. No weekly slot or organizer submission was used.</p>
+<p>Earlier PROMOTE / OK TO SUBMIT claims on archived pages are withdrawn, and Session 5 Lane <code>H-K3D (TGSF-BVCD)</code> (<a href="hk3d/index.html">executive summary</a> · <a href="hk3d/run-card.json">run card</a>) also terminates in an automated <strong>DO NOT SUBMIT</strong> stop. {n_fail} of the {n_tiffs} retained TIFFs fail the footprint-restricted literal any-registry overlap rule against the registered 206,895-dot calibration lattice witness; the other {n_boundary} (H1 seismic-gravity-basin) pass it only by placing {100*max((r['boundary_ring_share'] or 0) for r in rasters if r['boundary_gaming_refusal']):.1f}% of their dots in the lattice-uncovered footprint edge band and are refused as boundary gaming. The unique-offcat file (karage3-unique-offcat) passes the all-dots count only by placing {n_outside_dots:,} of its dots outside the study footprint (null in the organizer template), so it is NOT OK to submit. No weekly slot or organizer submission was used.</p>
 <h2>Existing downloads — research only</h2><p>Different file hashes do not prove geological uniqueness under the literal lattice witness. The overlap below is measured against the hash-pinned registered lattice, sufficient to reject. The range column is a raw whole-array diagnostic against the mirrored template, not organizer acceptance. None of the {n_tiffs} passes both conservative outside-null and whole-array-finite checks simultaneously.</p>
 <div style="overflow-x:auto"><table><thead><tr><th>Archive file (not a live portal submission)</th><th>Leaderboard estimate</th><th>Dots within 3 px of witness</th><th>Whole-array finite/range</th><th>Decision</th></tr></thead><tbody>''' + '\n'.join(rows) + '''</tbody></table></div>
 <h2>Best historical result is not a new candidate</h2><p>The largest owner-reported value in the focus list is GEMSDOE32's 0.2778. It is USER-REPORTED / UNVERIFIED without a hash-linked organizer receipt. Its geometry is a pruned subset of GEMSDOE31; that supports an emission-efficiency hypothesis, not causal proof or a forecast of improvement.</p>

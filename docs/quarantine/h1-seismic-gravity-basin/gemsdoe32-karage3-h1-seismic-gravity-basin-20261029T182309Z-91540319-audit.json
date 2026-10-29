@@ -1,0 +1,110 @@
+{
+  "candidate_id": "karage3-h1-seismic-gravity-basin-20261029T182309Z",
+  "slug": "karage3-h1-seismic-gravity-basin",
+  "content_digest8": "91540319",
+  "description": "H1 seismic-gravity-basin-conduit off-catalogue detector; static binary diagnostic",
+  "submission_note_zeros": "Unique off-catalogue geothermal detector: seismic+gravity+elevation+shear prospectivity, 12k dots >3px from all prior focus-site submissi...",
+  "submission_note_nan": "Unique off-catalogue geothermal detector: seismic+gravity+elevation+shear prospectivity, 12k dots >3px from all prior focus-site submissi...",
+  "zeros_tif": {
+    "filename": "gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-zeros.tif",
+    "size_bytes": 60531,
+    "sha256": "d99e0d4fe96a11c3fee75998b6605a75cdf0a0625030e415e1f60b9afaaa0b87",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 1924,
+    "footprint_fraction": 0.000372,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-nan.tif",
+    "size_bytes": 190207,
+    "sha256": "a5066b5f7ac5df03974a87537195dbcba8c518f730556388e17b4be7d3aa5957",
+    "mode": "nan",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 1924,
+    "footprint_fraction": 0.000372,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": null,
+    "catalogue_hidden_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": null,
+    "drift_corrected_holdout_mean": null,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-DO-NOT-SUBMIT"
+  }
+}

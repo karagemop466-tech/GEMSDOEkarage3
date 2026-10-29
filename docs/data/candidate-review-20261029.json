@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "run_id": "karage3-h-geoconduit-hybrid-20261029T181452Z-review",
+  "candidate_file": "docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+  "hypothesis": "H-GEO-CONDUIT: geothermal surface expressions may indicate hidden fault pathways.",
+  "mechanism": "Candidate metadata describes 80% near-visible-fault placements and 20% at geothermal surface expressions. This is a candidate hypothesis, not evidence of submission benefit.",
+  "named_non_fault_mimic": "Sedimentary-basin conductivity and alluvial fans.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": 0.4238550175911073,
+    "ci_95": [0.4052528039454756, 0.4427468022085632],
+    "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+    "withheld_positives": 22232,
+    "provenance": "Copied from the candidate run card; not independently reproduced in this review, not organizer-confirmed, and not a leaderboard estimate.",
+    "same_protocol_baseline_comparison": "NOT ESTABLISHED"
+  },
+  "leakage_canaries": {
+    "status": "NOT ESTABLISHED in this review",
+    "feature_auc_results": null
+  },
+  "registry_checks": {
+    "surface_before_placement_spearman_max": null,
+    "surface_before_placement_dot_overlap_max_3px": null,
+    "final_dots_spearman_max": null,
+    "final_dots_overlap_max_3px": null,
+    "registry_completeness": "NOT ESTABLISHED",
+    "status": "NOT PASSED — all-registry checks required; no undocumented lattice exemption"
+  },
+  "raster_sha256": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+  "validator_output": {
+    "source": "Candidate audit JSON only; not re-run against authenticated organizer template in this review.",
+    "no_nan_inside_footprint_reported": true,
+    "values_in_0_1_reported": true,
+    "crs_reported": "EPSG:32611",
+    "shape_reported": [3730, 3292],
+    "transform_reported": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "organizer_acceptance": "UNKNOWN"
+  },
+  "submission_name": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8",
+  "note": "H-GEO-CONDUIT candidate archived for protocol review; not approved for submission.",
+  "verdict": "negative"
+}
