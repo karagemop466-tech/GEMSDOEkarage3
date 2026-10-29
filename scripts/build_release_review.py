@@ -23,7 +23,7 @@ def build():
         name = Path(r['file']).name
         rows.append(f'<tr><td><a download href="{escape(r["file"].removeprefix("docs/"))}">{escape(name)}</a><br><small>Archive only · SHA256 {r["sha256"]}</small></td>'
                     f'<td>Not estimable</td><td>{100*r["within_3px_fraction"]:.4f}% · FAIL</td>'
-                    f'<td>{"PASS" if r["format_diagnostic"]["all_cell_finite_range"] else "FAIL"}</td><td>DO NOT SUBMIT</td></tr>')
+                    f'<td>{"PASS" if r["format_diagnostic"]["all_cell_finite_range_diagnostic"] else "FAIL"}</td><td>DO NOT SUBMIT</td></tr>')
     n_tiffs = len(rasters)
     body = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Submission decision · GEMS</title><link rel="stylesheet" href="assets/site.css"></head><body>
