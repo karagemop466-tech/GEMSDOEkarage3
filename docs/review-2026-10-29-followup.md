@@ -21,6 +21,7 @@ The repository contains research-only TIFFs from earlier work. Do not confuse a 
 - Updated saved-byte publishing so the 28 Oct receipt stays scoped to its nine actually audited files. The four newer files are explicitly listed as **not audited / NOT ESTABLISHED / DO NOT SUBMIT**, with file hashes; they are not linked as approved downloads. No fabricated re-audit was created.
 - Updated the off-catalogue sidecar to withdraw its ambiguous uniqueness wording and record no estimate, no eligibility, and no submission approval.
 - Updated regression tests and `scripts/verify_numbers.py` to catch future inventory/audit scope drift and to prove that newer artifacts remain unreviewed instead of being silently counted as uniqueness passes.
+- The first GitHub CI run exposed one more date-scope bug: `audit_saved_tiffs.py --verify-receipt` compared the 28 Oct receipt to the entire current TIFF inventory and failed after the four later files appeared. Fixed receipt verification to compare all metadata and each frozen row exactly while separately reporting later rows as outside the receipt. Added regression tests so new files are surfaced as unreceipted and changed/missing historical rows still fail closed.
 
 ## Three-pass review
 
@@ -34,7 +35,7 @@ Kept the dated raster receipt immutable and narrowed claims to its actual nine f
 
 ### Pass 3 — verify
 
-- `.venv/bin/python -m pytest -q --tb=short`: **197 passed, 1 skipped, 80 subtests passed**; rasterio emitted 56 pending-deprecation warnings.
+- `.venv/bin/python -m pytest -q --tb=short`: **200 passed, 1 skipped, 80 subtests passed**; rasterio emitted 56 pending-deprecation warnings.
 - `.venv/bin/python -m unittest discover -s tests -q`: **105 passed**.
 - `npm test`: **4 passed**; `node --test tests/test_browser_feed.js`: **2 passed**.
 - `python scripts/build_site.py --check`: passed after deterministic rebuild.

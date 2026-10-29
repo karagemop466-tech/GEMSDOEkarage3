@@ -3,6 +3,8 @@
 
 This is a negative-only audit: one witness can reject a file; it cannot establish
 full-registry uniqueness, scientific quality, organizer acceptance or selection.
+A dated receipt binds only the raster rows it contains; later additions are
+reported separately and must not be silently treated as receipt-covered.
 Run with --fetch to restore only the small, hash-pinned owner mirrors.
 """
 from __future__ import annotations
@@ -77,6 +79,27 @@ def audit(cache: Path, fetch: bool = False) -> dict:
     }
 
 
+def compare_dated_receipt(result: dict, expected: dict) -> list[str]:
+    """Verify a frozen receipt without pretending it covers later additions.
+
+    All receipt-level metadata must match except the timestamp and raster list.
+    Every raster row named by the receipt must match exactly. Freshly audited
+    additions are returned to the caller as unreviewed-by-this-receipt paths.
+    """
+    stable_result = {k: v for k, v in result.items() if k not in ('checked_utc', 'rasters')}
+    stable_expected = {k: v for k, v in expected.items() if k not in ('checked_utc', 'rasters')}
+    if stable_result != stable_expected:
+        raise ValueError('Fresh saved-byte audit metadata differs from the committed receipt')
+    fresh = {r['file']: r for r in result['rasters']}
+    recorded = {r['file']: r for r in expected['rasters']}
+    if not set(recorded).issubset(fresh):
+        raise ValueError('A TIFF named by the committed receipt is missing from the fresh audit')
+    changed = [path for path, row in recorded.items() if fresh[path] != row]
+    if changed:
+        raise ValueError('Fresh saved-byte audit differs from committed rows: ' + ', '.join(changed))
+    return sorted(set(fresh) - set(recorded))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--cache', type=Path, default=ROOT / '.cache/historical')
@@ -87,12 +110,14 @@ def main() -> int:
     args = ap.parse_args()
     try:
         result = audit(args.cache, args.fetch)
+        unreceipted = []
         if args.verify_receipt:
             expected = json.loads(args.verify_receipt.read_text())
-            if ({k: v for k, v in result.items() if k != 'checked_utc'} !=
-                    {k: v for k, v in expected.items() if k != 'checked_utc'}):
-                raise ValueError('Fresh saved-byte audit differs from the committed receipt')
-            print('Fresh saved-byte audit matches the receipt (except audit time).')
+            unreceipted = compare_dated_receipt(result, expected)
+            print(f"Fresh audit matches all {len(expected['rasters'])} rows in the dated receipt (timestamp ignored).")
+            if unreceipted:
+                print(f"NOTICE: {len(unreceipted)} later TIFF(s) are outside that dated receipt and remain unreviewed by it: "
+                      + ', '.join(unreceipted))
         else:
             args.out.parent.mkdir(parents=True, exist_ok=True)
             args.out.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
