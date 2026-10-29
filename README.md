@@ -30,13 +30,30 @@
 - **Stale upstream text.** `evidence/upstream/GEMSDOE33/README.md` (line 93) still says "YES — READY TO DOWNLOAD" for an older upstream file. It is a vendored snapshot, so it is flagged here and not edited. It is not this repo's current claim.
 - **Owner decision still required** before any upload can be considered: (1) keep the literal rule (no dot-based file can pass); (2) re-scope the rule to discrete detectors and exempt the 206,895-dot calibration lattice; (3) state which overlap reading governs. Under any choice, dots outside the footprint fail the null-outside convention in the organizer template, and the complete-registry and rank-correlation checks still have to run.
 
+---
+
+## Session update (29 October 2026, later): READ FIRST — still DO NOT SUBMIT, and two earlier claims are corrected
+
+1. **Submission status: NO file is cleared.** No new TIFF was generated this session. Reasons, with evidence: the proxies do not track the reported leaderboard, every nine-site top file already exists byte-for-byte on other sites, and the prompt's lane paragraph is missing. Details: [`docs/review-2026-10-29.md`](docs/review-2026-10-29.md) (session addendum).
+2. **The official target is non-catalogue faults.** The DrivenData problem page says the test labels are faults *not* in the USGS database ([page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)). The holdout in this repo withholds *catalogue* faults, so it measures a different target.
+3. **Correction to the 0.4239 headline.** This session it reproduced exactly (0.42386) under the `visible_gated` variant (b=2 px gate) using an *uncommitted sandbox script*, so this supersedes item 4 of the Session 6 block above, which says it was not reproduced. The committed evaluator must be used to make this reproducible. The CLI's hide-and-recover evaluator gives **0.3047** (95% CI 0.2881–0.3189, 22,232 withheld positives). Both are HOLDOUT-DTI on a catalogue target, not leaderboard estimates.
+4. **Calibration is negative.** Across 18 registry rasters with user-reported leaderboard values (unverified), the catalogue-holdout proxies have Spearman ρ = −0.55 (p = 0.018). The off-catalogue proxy shows no relationship (ρ = 0.08, p = 0.75). **No local proxy currently estimates a leaderboard score.** Evidence: [`evidence/proxy-calibration-20261029.json`](evidence/proxy-calibration-20261029.json) (script `scripts/proxy_calibration.py`).
+5. **Uniqueness fails for all nine focus sites.** Each top file is byte-identical to a file in at least one other site's repository. Evidence: [`evidence/focus9-duplicate-audit-20261029.json`](evidence/focus9-duplicate-audit-20261029.json) (script `scripts/focus9_duplicate_audit.py`).
+6. **Session run card:** [`docs/data/session-20261029-run-card.json`](docs/data/session-20261029-run-card.json).
+7. **Leaderboard check (fetched 2026-10-29):** the [public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) shows #1 xiaofanhu **0.4544**, #2 cfld__ 0.3916, #3 Batik Shirt Brothers 0.3911. Neither 0.4413 (prompt) nor 0.3195 appears. These are public-split scores; the final round is rescored on an expanded label set, so they are not final results.
+
+Reproduce the local checks: restore core data with `python scripts/restore_data.py --group core` (and `--group external`), then run `python scripts/proxy_calibration.py` and `python scripts/focus9_duplicate_audit.py`.
+
+---
+
+
 ## Current review decision (2026-10-29): **DO NOT SUBMIT** — candidate requires protocol review
 
 **Safety correction:** a candidate TIFF was added in the latest repository update, but its artifact run card says `PENDING-REVIEW`; public pages must not treat the holdout proxy or focus-site-only checks as approval. The current protocol requires full-registry checks before/after placement, protocol-compliant holdout comparison, and a separate selector. No submission slot is authorized.
 
 A newly generated TIFF exists as a research artifact, but is NOT cleared for upload: **H-GEO-CONDUIT hybrid geothermal-conduit blind-fault detector** (`gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif`, SHA-256 `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`, 35,615 dots).
 
-**HOLDOUT-DTI (candidate run-card claim, not independently reproduced or promoted): 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, 22,232 withheld positives (as recorded in that card). Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
+**HOLDOUT-DTI: 0.4239** [95% CI: 0.4053, 0.4427], evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated` (reproduced exactly this session with an uncommitted sandbox script; the committed CLI's hide-and-recover evaluator gives 0.3047 on the same file), 22,232 withheld positives. The score is a catalogue-holdout proxy and does not track the leaderboard (see the session update above). Not organizer-confirmed, not a leaderboard estimate, and not cleared for submission. Off-catalogue SGMC calibrated DTI: 0.0026. No complete literal registry surface-before-placement and final-dot uniqueness audit is recorded for this candidate. Excluding any registry raster from the literal 70% overlap rule is not authorized by the supplied protocol. The saved-byte audit reports basic GeoTIFF/grid/range checks, but these do not resolve the missing protocol and uniqueness gates.
 
 [**Executive summary**](executive-summary.html) · [**Submission process (blocked pending approval)**](#submission-process-only-after-future-clearance) · [**Negative review card JSON**](docs/data/candidate-review-20261029.json) · [**Nine-Site Scorecard**](executive-summary.html#nine-site-scorecard) · [**Candidate artifact (research only)**](#candidate-artifact-not-cleared-do-not-submit)
 
@@ -81,13 +98,13 @@ A newly generated TIFF exists as a research artifact, but is NOT cleared for upl
 - GEMSDOE25 d2.8 → GEMSDOE31 d2.8 (40,199 dots): 3,891 dots removed, all within d ≤ 2.0 px of `existing_faults.tif`
 - GEMSDOE31 → GEMSDOE32 d2.8 (37,654 dots): 2,545 more dots removed, all within d ≤ 2.0 px of catalogue traces
 
-**Why pruning raises the score:** The DTI metric (α=0.2, β=0.8) penalizes false positives at weight 0.2 per unit kernel mass. Dots on known catalogue faults are masked to zero in scoring — they yield no true-positive credit but still consume budget. Removing 2,545 redundant collar dots cuts the α-weighted FP denominator by ~509 units at near-zero TP loss, moving 0.2600 → 0.2708 → 0.2778. Every pixel in the removed set lies within the 300 m triangular kernel of known faults, where neighbor credit or pixel-exact masking already covers them.
+**Why pruning raises the score (UNVERIFIED mechanism; the official text does not mention masking):** The DTI metric (α=0.2, β=0.8) penalizes false positives at weight 0.2 per unit kernel mass. Dots on known catalogue faults are masked to zero in scoring — they yield no true-positive credit but still consume budget. Removing 2,545 redundant collar dots cuts the α-weighted FP denominator by ~509 units at near-zero TP loss, moving 0.2600 → 0.2708 → 0.2778. Every pixel in the removed set lies within the 300 m triangular kernel of known faults, where neighbor credit or pixel-exact masking already covers them.
 
-**Can we beat 0.2778?** Yes. Two independent levers:
+**Can we beat 0.2778?** NOT ESTABLISHED. Two candidate levers, untested against the official target:
 1. **Prune harder:** Remove all dots within 3 px of visible faults (not just 2 px), then re-deploy the saved budget to off-catalogue locations.
 2. **Add off-catalogue coverage:** Place dots where geothermal surface expressions (hot springs >60°C, volcanic vents, conductivity anomalies, potential-field anomalies) indicate hidden fluid pathways along faults NOT in the catalogue. 1,535 hot springs (>60°C) lie >500 m from any mapped fault (GDR #1391).
 
-Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible faults (capturing withheld segments), 20% at geothermal surface expressions (targeting blind faults). Holdout-DTI: 0.4239.
+Our H-GEO-CONDUIT detector combines both: 80% of dots at 0.5–4 px from visible faults (capturing withheld segments), 20% at geothermal surface expressions (targeting blind faults). Holdout-DTI (visible-gated variant, catalogue target; not a leaderboard estimate): 0.4239.
 
 ---
 
@@ -117,7 +134,7 @@ A generated candidate is retained for scientific/research review only:
 - SHA-256: `064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43`
 - Candidate name: `gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8`
 - **Submission eligibility: NO.** The run card itself says `PENDING-REVIEW`; full literal registry comparisons before surface placement and on final dots, compliant matched holdout controls/leakage checks, and separate selector approval are not established. The literal protocol does not authorize excluding a dense lattice from overlap checks.
-- **HOLDOUT-DTI (candidate run-card claim; not independently reproduced or organizer-confirmed): 0.4239**, 95% CI `[0.4053, 0.4427]`, evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, `22,232` withheld positives. This is neither an organizer-confirmed score nor a leaderboard estimate; it is not directly comparable with the user-reported GEMSDOE32 `0.2778`.
+- **HOLDOUT-DTI (visible-gated variant; reproduced 2026-10-29 with an uncommitted sandbox script, not organizer-confirmed): 0.4239**, 95% CI `[0.4053, 0.4427]`, evaluator `GEMSDOE32-HOLDOUT-v3-visible-gated`, `22,232` withheld positives. This is neither an organizer-confirmed score nor a leaderboard estimate; it is not directly comparable with the user-reported GEMSDOE32 `0.2778`.
 - Basic TIFF audit metadata reports single-band float32, EPSG:32611, 3730×3292, range `[0,1]`, and zero NaN inside footprint. Format checks do not establish scientific performance, uniqueness, or organizer acceptance.
 
 No submission note is authorized while eligibility is NO. There has been no slot selection or upload by this review.
