@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "run_id": "gems-karage3-preflight-20261028-afbdab50",
-  "created_utc": "2026-10-29T18:51:56.511614+00:00",
+  "created_utc": "2026-10-29T19:19:35.143109+00:00",
   "assigned_lane": null,
   "hypothesis": "Proposed only: multiscale paired potential-field fabric displacement across a buried boundary; no method assigned or tested.",
   "mechanism": "A persistent cross-boundary displacement of corresponding gravity and magnetic textures may indicate offset basement fabric beneath cover.",
@@ -57,7 +57,7 @@
   ],
   "geometry_audit_sha256": "75942181a6f618454f565c513722fe39a94a77ad2397ac527d8f7a200c0f30f5",
   "geometry_audit": "historical-audit.json",
-  "saved_tiffs_audit_sha256": "08365e7604f55dd2947cb115e2996fbe17935012ce53bc411f4eaed7fa421e45",
+  "saved_tiffs_audit_sha256": "5fd1d0612b845b5d37b5672feeb9fe0e39aa355823e1d5161f9f095d060057ac",
   "saved_tiffs_audit": "saved-tiffs-literal-20261028.json",
   "official_hidden_score_estimate": null,
   "slot_selector": "Separate step required; not run."

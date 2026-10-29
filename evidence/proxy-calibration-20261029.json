@@ -1,0 +1,699 @@
+{
+  "schema": "proxy-calibration-v1",
+  "generated_utc": "2026-10-29T18:38:45Z",
+  "evaluator_sources": "src/gems32/holdout.py (evaluate_hide_and_recover, evaluate_visible_gated_holdout)",
+  "holdout_context": {
+    "data_dir": "/home/user/GEMSDOEkarage3/.cache/gems_data",
+    "n_cells": 8
+  },
+  "labels": {
+    "scores": "HOLDOUT-DTI (evaluator version, n withheld positives, 95% cluster-bootstrap CI)",
+    "reported": "USER-REPORTED / UNVERIFIED (copied from supplied prompt; not organizer receipts)"
+  },
+  "rank_agreement": {
+    "hide_recover_b0": {
+      "spearman_rho_vs_USER_REPORTED": -0.5511892450879006,
+      "p_value": 0.017742452565205007,
+      "n": 18
+    },
+    "visible_gated_b2": {
+      "spearman_rho_vs_USER_REPORTED": -0.5511892450879006,
+      "p_value": 0.017742452565205007,
+      "n": 18
+    },
+    "offcat_official_formula": {
+      "spearman_rho_vs_USER_REPORTED": 0.08169596690796276,
+      "p_value": 0.7472538669815124,
+      "n": 18
+    }
+  },
+  "rows": [
+    {
+      "label": "GEMSDOE32 h33-h33-2 zeros",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "reported_score_USER_REPORTED": 0.2778,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "sha256_matches_manifest": true,
+      "ref": "97597a066d1c61d2c226fdba349716f41b30c1c6",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09606004283619353,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.00451537871535044,
+        "ci95": [
+          0.0038164175817344387,
+          0.005261598301920283
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.00451537871535044,
+        "ci95": [
+          0.003917415528830087,
+          0.005257222182093553
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 37654
+    },
+    {
+      "label": "GEMSDOE36 anderson-pinn zeros",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "reported_score_USER_REPORTED": 0.275,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "sha256_matches_manifest": true,
+      "ref": "e280188adbbe762e6b7ac6f3b8e105e8e7915026",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09743406327058109,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.004576730703979592,
+        "ci95": [
+          0.0038915913728424577,
+          0.005300784778329944
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.004576730703979593,
+        "ci95": [
+          0.0039746822700589095,
+          0.005286555425494745
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 38854
+    },
+    {
+      "label": "GEMSDOE28 h36-1 rung30 nan",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "reported_score_USER_REPORTED": 0.271,
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "sha256_matches_manifest": true,
+      "ref": "9509b73eaf35f66d0b23fce63b2540ceff2a88e0",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09434123664384234,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.029360078390480288,
+        "ci95": [
+          0.024959299444030806,
+          0.034382240223559776
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.02893193285900265,
+        "ci95": [
+          0.02463664923655735,
+          0.03390953399662962
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 37660
+    },
+    {
+      "label": "GEMSDOE28 h27-4-r1 solo nan",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "reported_score_USER_REPORTED": 0.2708,
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "sha256_matches_manifest": true,
+      "ref": "9509b73eaf35f66d0b23fce63b2540ceff2a88e0",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09627307160880004,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.030516096725810685,
+        "ci95": [
+          0.025680176441420625,
+          0.03605063588978195
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.03005741418614668,
+        "ci95": [
+          0.025449417732504604,
+          0.03520145348763807
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 40199
+    },
+    {
+      "label": "GEMSDOE31 h27-4 solo nan",
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "reported_score_USER_REPORTED": 0.2708,
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "sha256_matches_manifest": true,
+      "ref": "06930b9d03473a9313094a4f2312c4fc6efd4fbb",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09627307160880004,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.030516096725810685,
+        "ci95": [
+          0.025680176441420625,
+          0.03605063588978195
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.03005741418614668,
+        "ci95": [
+          0.025449417732504604,
+          0.03520145348763807
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 40199
+    },
+    {
+      "label": "GEMSDOE33 h33d analog-tip",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "reported_score_USER_REPORTED": 0.2632,
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "sha256_matches_manifest": true,
+      "ref": "3eaf85efb49f364b84f8be04e8b084b12d0303b9",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09676373589379637,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.0519685128498396,
+        "ci95": [
+          0.04577318545951855,
+          0.05829620661401161
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.05068985435361664,
+        "ci95": [
+          0.04230812624805406,
+          0.059914377562571994
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 41865
+    },
+    {
+      "label": "GEMSDOE25 dotted d2.8 nan",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "reported_score_USER_REPORTED": 0.26,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "sha256_matches_manifest": true,
+      "ref": "fb1db37274776a29dbc48abe55b2e531f2ba6aad",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09528236525805693,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.09674330401596999,
+        "ci95": [
+          0.08416165969221351,
+          0.10952536708166187
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.09920232315251677,
+        "ci95": [
+          0.08112912776206667,
+          0.12082969980617288
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 44090
+    },
+    {
+      "label": "GEMSDOE30 d28-poisson",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "reported_score_USER_REPORTED": 0.26,
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "sha256_matches_manifest": true,
+      "ref": "31696c6541cfc54620ff850a748c51625461f27f",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09528236525805693,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.09674330401596999,
+        "ci95": [
+          0.08416165969221351,
+          0.10952536708166187
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.09920232315251677,
+        "ci95": [
+          0.08112912776206667,
+          0.12082969980617288
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 44090
+    },
+    {
+      "label": "GEMSDOE24 dotted d1.5 nan",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "reported_score_USER_REPORTED": 0.2477,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "sha256_matches_manifest": true,
+      "ref": "361ade21cf458a50c6273ec835c9c49ec2ccadcb",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.10111756213920532,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.09315052698145053,
+        "ci95": [
+          0.08127878015699064,
+          0.105968402764059
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.09720385946561562,
+        "ci95": [
+          0.08041759371472434,
+          0.11708950895997254
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 60069
+    },
+    {
+      "label": "GEMSDOE27 topo-gap nan",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "reported_score_USER_REPORTED": 0.2449,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "sha256_matches_manifest": true,
+      "ref": "6704fa2a5133e751df2516feb2e32565ad5fc1df",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.10242171571074637,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.0927484913819319,
+        "ci95": [
+          0.08085564044154277,
+          0.10539661683022032
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.09677777415544302,
+        "ci95": [
+          0.0801260856026794,
+          0.11660490131116467
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 61328
+    },
+    {
+      "label": "19GEMSDOE h19-5 powerlaw nan",
+      "repo": "buffedlizard55-lab/19GEMSDOE",
+      "path": "docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "reported_score_USER_REPORTED": 0.1922,
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "sha256_matches_manifest": true,
+      "ref": "a3aca62fdb2be428f4245e22570cbc54082b2c15",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.10060349914232136,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.06879199690327992,
+        "ci95": [
+          0.058821803669694084,
+          0.08005692480008342
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.07342354624497224,
+        "ci95": [
+          0.0609556289568179,
+          0.08971527290459898
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 121131
+    },
+    {
+      "label": "19GEMSDOE h19-4 nan",
+      "repo": "buffedlizard55-lab/19GEMSDOE",
+      "path": "docs/downloads/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "reported_score_USER_REPORTED": 0.1894,
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "sha256_matches_manifest": true,
+      "ref": "a3aca62fdb2be428f4245e22570cbc54082b2c15",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.10656435085530619,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.06920605698696591,
+        "ci95": [
+          0.059306267819551985,
+          0.08063427130824635
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.0738125761025971,
+        "ci95": [
+          0.06148670799151386,
+          0.09124903713095156
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 123779
+    },
+    {
+      "label": "16GEMSDOE h16-1 nan",
+      "repo": "buffedlizard55-lab/16GEMSDOE",
+      "path": "docs/downloads/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "reported_score_USER_REPORTED": 0.1855,
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "sha256_matches_manifest": true,
+      "ref": "932915670eab5606619037bc6b0eb284371a2783",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.11268873870444039,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.06807433693226782,
+        "ci95": [
+          0.05822502628819744,
+          0.07972415500757017
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.07259569532091398,
+        "ci95": [
+          0.06047194677533648,
+          0.08999274422760052
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 123939
+    },
+    {
+      "label": "GEMSDOE10 h28 dotted-ridge",
+      "repo": "buffedlizard55-lab/GEMSDOE10",
+      "path": "docs/downloads/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "reported_score_USER_REPORTED": 0.1839,
+      "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58",
+      "sha256_matches_manifest": true,
+      "ref": "4d08f51aa59bf57b4041474ff1463c9e737c8090",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.0914724399998162,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.20219689416240075,
+        "ci95": [
+          0.1869065447524894,
+          0.2166672203932162
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.21073903545323214,
+        "ci95": [
+          0.19375164183710308,
+          0.23148712074399033
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 69281
+    },
+    {
+      "label": "8GEMSDOE Hedge-v2",
+      "repo": "buffedlizard55-lab/8GEMSDOE",
+      "path": "docs/downloads/8GEMSDOE_Hedge-v2_submission.tif",
+      "reported_score_USER_REPORTED": 0.1563,
+      "sha256": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792",
+      "sha256_matches_manifest": true,
+      "ref": "e24abefab237115d67e0afb2acfde01c6304783f",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.09091684451367507,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.2665775129591306,
+        "ci95": [
+          0.23708379552395797,
+          0.29669818843003687
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.28704853609569986,
+        "ci95": [
+          0.24965456688338902,
+          0.3409990936711723
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 227507
+    },
+    {
+      "label": "GEMSDOE10 h25 ctx-ridge",
+      "repo": "buffedlizard55-lab/GEMSDOE10",
+      "path": "docs/downloads/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "reported_score_USER_REPORTED": 0.128,
+      "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
+      "sha256_matches_manifest": true,
+      "ref": "4d08f51aa59bf57b4041474ff1463c9e737c8090",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.08442921894404666,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.15338355660249836,
+        "ci95": [
+          0.1392662616317737,
+          0.16687264711143016
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.17144024473784236,
+        "ci95": [
+          0.15271177201845565,
+          0.194555784863213
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 174232
+    },
+    {
+      "label": "13GEMSDOE lattice-s5 nan-outside",
+      "repo": "buffedlizard55-lab/13GEMSDOE",
+      "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "reported_score_USER_REPORTED": 0.0904,
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "sha256_matches_manifest": true,
+      "ref": "92ee6f074323f161eed837b80ec3ee5b662e26f5",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.249661608201727,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.08601698873001104,
+        "ci95": [
+          0.07631334205623568,
+          0.09537855107936316
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.08582961112190063,
+        "ci95": [
+          0.07423746940653801,
+          0.09683465653187665
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 206895
+    },
+    {
+      "label": "GEMSDOE9 PLACEHOLDER 2314b599",
+      "repo": "buffedlizard55-lab/GEMSDOE9",
+      "path": "docs/downloads/gemsdoe9-PLACEHOLDER-2314b599.tif",
+      "reported_score_USER_REPORTED": 0.0107,
+      "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22",
+      "sha256_matches_manifest": true,
+      "ref": "1fdfddcefd291889e618adf8c42922e4893d514d",
+      "status": "scored",
+      "offcat_official_formula": {
+        "evaluator_version": "ANALYSIS-ONLY offcat-official-formula (scripts/proxy_calibration.py)",
+        "pooled_dti": 0.0336797692773564,
+        "n_truth_px": 62703,
+        "label": "PROXY-OFFCAT"
+      },
+      "hide_recover_b0": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.017321650852694905,
+        "ci95": [
+          0.012466565405925324,
+          0.022271354521797036
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.017744493583782515,
+        "ci95": [
+          0.012561732874946503,
+          0.022172416630652055
+        ],
+        "n_withheld_positives": 22232,
+        "label": "HOLDOUT-DTI"
+      },
+      "emitted_pixels": 147684
+    }
+  ],
+  "caveat": "Rank agreement with unverified user-reported values; n is small; not a leaderboard estimate."
+}

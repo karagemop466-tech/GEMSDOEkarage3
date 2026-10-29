@@ -1,0 +1,45 @@
+{
+  "truth": "USGS SGMC fault cells, off-catalogue (>3 px) inside template footprint",
+  "n_cells": 4722579,
+  "n_positive": 62122,
+  "features": {
+    "ex_max": {
+      "auc": 0.5582917270560802
+    },
+    "ex_mean": {
+      "auc": 0.5587096344249549
+    },
+    "step_max": {
+      "auc": 0.5675216408140386
+    },
+    "lapneg_max": {
+      "auc": 0.5652035428899129
+    },
+    "lappos_max": {
+      "auc": 0.5688935082132088
+    },
+    "downface_max": {
+      "auc": 0.59456989751398
+    },
+    "upface_max": {
+      "auc": 0.5900208083032011
+    },
+    "cross_max": {
+      "auc": 0.5994764510990782
+    },
+    "relief": {
+      "auc": 0.5778884342477977
+    },
+    "coh100": {
+      "auc": 0.43962954347346717
+    },
+    "strike": {
+      "auc": 0.44461107602272465
+    },
+    "valid": {
+      "auc": 0.44478085976019877
+    }
+  },
+  "max_auc": 0.5994764510990782,
+  "step_max_auc": 0.5675216408140386
+}
