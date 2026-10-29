@@ -2,6 +2,8 @@
 
 ## Start here (2026-10-29): nine-site summary and submission status
 
+**Public-page safety correction (2026-10-29):** The legacy root `index.html` and `executive-summary.html` previously promoted `karage3-unique-offcat` as submission-ready despite a negative current gate. That was unsafe and inconsistent with the machine-readable decision. The pages now explicitly mark it archived/research-only, give no score estimate, and say **DO NOT SUBMIT**. Regression coverage: `tests/test_root_submission_safety.py`. The archived TIFF remains downloadable only as a research artifact.
+
 - **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
 - **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
 - **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
