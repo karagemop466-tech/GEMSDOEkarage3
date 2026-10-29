@@ -89,7 +89,8 @@ def apply_guide_decision(text):
     aside, _ = root_decision_html()
     text, n1 = re.subn(r'<aside style="padding:16px;background:#(?:fff1f2|ecfdf5)[^"]*">.*?</aside>', lambda _: aside, text, count=1, flags=re.S)
     banner = ('<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved</strong>'
-              '<p>The K3C archive and the other retained TIFFs fail the literal duplicate rule. Research links below are not new submissions; no leaderboard estimate or slot decision exists.</p></div></div>')
+              '<p>The K3C archive and the other retained TIFFs fail the literal duplicate rule. Research links below are not new submissions; no leaderboard estimate or slot decision exists.</p>'
+              '<p><strong>Latest candidate</strong> gemsdoe32-karage3-h-geoconduit-hybrid (PENDING-REVIEW, verdict negative): the quoted HOLDOUT-DTI 0.4239 is NOT ESTABLISHED here. It is not an organizer score. The literal registry lattice check fails at 99.83% (limit 70%).</p></div></div>')
     text, n2 = re.subn(r'<div class="banner"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK TO SUBMIT · No new TIFF is approved or available</strong>.*?</div></div>', lambda _: banner, text, count=1, flags=re.S)
     if (n1, n2) != (1, 1):
         raise ValueError('Root submission-guide decision markers missing')
