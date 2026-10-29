@@ -1,5 +1,7 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+**Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
+
 ## Decision: **DO NOT SUBMIT** (`ok_to_submit = False`, `verdict = "negative"`)
 
 There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `H-K3D (TGSF-BVCD)`** candidate (`gemsdoe32-gemsdoekarage3-h-k3d-tgsf-bvcd-d33-b3-37654-20261029T004404Z-59814386-zeros.tif`, SHA-256 `c12a12b3c3d25c9e3e6556e535c383f42e28a44bdb5f1dc757d1bb375afde83e`, literal lattice overlap **99.3547%**) and the retained Session 4 **H-K3C** archive (`0d1461e8786d…`, literal lattice overlap **99.3520%**) are blocked by `scripts/promotion_gate.py` under the binding literal `<= 70%` 3-pixel overlap rule against the registered `206,895`-dot calibration lattice witness (`13GEMSDOE` `r13-lattice-s5`, SHA-256 `b4570b40…`). Local range (`[0.0, 1.0]` finite across all `12,279,160` cells, `nodata=None`) and grid checks (`EPSG:32611`, `3730 × 3292`) pass automatically without human intervention against the pinned mirror template; keep your weekly feedback slot unused.
@@ -8,7 +10,6 @@ There is no cleared TIFF for live DrivenData upload. Both our **Session 5 Lane `
 [**H-K3D Step-by-Step Submission Guide**](docs/hk3d/how-to-submit.html) ·
 [**H-K3D Run Card JSON**](docs/hk3d/run-card.json) ·
 [**Nine-site executive summary**](index.html#scorecard) ·
-[**Current repo review (2026-10-29)**](docs/review-2026-10-29.md) ·
 [Submission guide](executive-summary.html) ·
 [Current JSON run card](docs/data/latest-run.json) ·
 [Session 5 Three-Pass Report](docs/research/session5-hk3d-report-20261028.md) ·
