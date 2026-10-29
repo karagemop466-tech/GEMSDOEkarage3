@@ -1,0 +1,26 @@
+{
+ "schema_version": 1,
+ "run_id": "focus9-summary-20261029",
+ "hypothesis": "None tested. This session builds the nine-site executive summary and verifies the local holdout baseline; no new candidate is generated.",
+ "mechanism": "Not applicable.",
+ "named_non_fault_mimic": "Not applicable.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+  "withheld_positives": 22232,
+  "note": "Static binary baseline for the nine pinned files; see evidence/focus9-holdout-baseline-20261029.json. Not a candidate score."
+ },
+ "correlation_overlap_vs_registry": {
+  "status": "NOT RUN for a new candidate; the nine historical files are audited in docs/data/historical-audit.json."
+ },
+ "raster_sha256": null,
+ "validator_output": {
+  "status": "NOT RUN: no new candidate raster"
+ },
+ "submission_name": null,
+ "submission_note": null,
+ "experiments_run": 0,
+ "weekly_slots_used": 0,
+ "verdict": "negative",
+ "ok_to_submit": false
+}

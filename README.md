@@ -1,5 +1,13 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Start here (2026-10-29): nine-site summary and submission status
+
+- **Download a file to submit?** **NO.** No file is cleared. The uniqueness gate fails for all nine focus files, and the calibration-lattice rule fails for any dot-based detector (a random 37,654-dot placement scores 99.87% within 3 px of the lattice).
+- **Executive summaries (one per site, plus a comparison table):** [docs/focus9/index.html](docs/focus9/index.html) · run card [docs/focus9/run-card.json](docs/focus9/run-card.json).
+- **Holdout baseline (HOLDOUT-DTI, static diagnostic, evaluator `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives):** [evidence/focus9-holdout-baseline-20261029.json](evidence/focus9-holdout-baseline-20261029.json). Built by `scripts/focus9_holdout_baseline.py` on files fetched and hash-verified by `scripts/fetch_focus9_files.py`. These values do not reproduce portal ordering and are not leaderboard estimates.
+- **Decision needed from the owner:** whether the literal any-registry 70% rule should apply to dense calibration lattices. Until then, no candidate can pass. See *Remaining Work* below.
+- **Irregularity for review:** `scripts/restore_data.py` writes the core rasters to `.cache/gems_data/`, but `scripts/check_readiness.py` checks `data/`. The committed `core_mirror_data: passed` snapshot therefore does not reproduce in this checkout. The readiness file was left unchanged.
+- Rebuild the summaries with `.venv/bin/python scripts/build_focus9.py` (or `--check`). Tests: `tests/test_focus9.py`.
 **Latest repo review (2026-10-29):** [decision, nine-site comparison, research slate, verification passes and JSON run card](docs/review-2026-10-29.md). Release decision remains **DO NOT SUBMIT**. Read this before relying on historical run cards.
 
 ## SUBMISSION STATUS (read first, updated 2026-10-29)
