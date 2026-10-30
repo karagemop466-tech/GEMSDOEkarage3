@@ -56,6 +56,14 @@ class Focus9Tests(unittest.TestCase):
         self.assertEqual((ROOT / "docs/focus9/index.html").read_text(), expected)
         self.assertEqual(json.loads((ROOT / "docs/focus9/run-card.json").read_text()), card)
 
+    def test_nine_site_summary_never_links_unapproved_candidate_downloads(self):
+        page = (ROOT / "docs/nine-site-summary.html").read_text()
+        candidate = "gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3"
+        self.assertIn("Download status: disabled — DO NOT SUBMIT", page)
+        self.assertIn("no TIF or ZIP download link", page)
+        self.assertNotIn(f'href="docs/downloads/{candidate}-zeros.tif"', page)
+        self.assertNotIn(f'href="docs/downloads/{candidate}-zeros.zip"', page)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -20,7 +20,7 @@ jobs:
         run: |
           python scripts/audit_registry.py --fetch --cache "$RUNNER_TEMP/gems-inputs" --out "$RUNNER_TEMP/geometry.json"
           python scripts/check_reproduction.py evidence/geometry_audit.json "$RUNNER_TEMP/geometry.json"
-          python scripts/audit_saved_tiffs.py --cache "$RUNNER_TEMP/gems-inputs" --verify-receipt evidence/saved-tiffs-literal-20261028.json
+          python scripts/audit_saved_tiffs.py --cache "$RUNNER_TEMP/gems-inputs" --verify-receipt evidence/saved-tiffs-literal-20261030.json
       - name: Verify preflight data and authoritative decision pages
         run: |
           python scripts/build_preflight_site.py

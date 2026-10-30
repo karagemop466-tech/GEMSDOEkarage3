@@ -25,7 +25,6 @@ SUBMISSION_NAME = "karage3-k4-offcat-ridge-20k"
 SUBMISSION_NOTE = "Off-catalogue ridge detector: 20k NMS maxima of mag/grav gradient + LiDAR scarp step."
 assert len(SUBMISSION_NOTE) <= 140, len(SUBMISSION_NOTE)
 K4_ZEROS = "docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif"
-K4_ZIP = K4_ZEROS.replace(".tif", ".zip")
 TEMPLATE = {"crs": "EPSG:32611", "shape": [3730, 3292], "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]}
 
 
@@ -150,7 +149,7 @@ def main() -> int:
 <tr><th>File</th><th>sha256</th><th>Dots</th><th>Format</th><th>HOLDOUT-DTI</th><th>SGMC-calibrated</th><th>Unique?</th><th>Verdict</th></tr>
 {cand_table}
 </table></div>
-<p><strong>Download for {esc(SUBMISSION_NAME)}:</strong> <a href="{esc(K4_ZEROS)}">TIF</a> · <a href="{esc(K4_ZIP)}">ZIP (single GeoTIFF inside)</a>. Submission name: <code>{esc(SUBMISSION_NAME)}</code>. Note (≤140 chars, {len(SUBMISSION_NOTE)} used): <code>{esc(SUBMISSION_NOTE)}</code>. Verdict: do not submit (holdout gate).</p>
+<p><strong>Download status: disabled — DO NOT SUBMIT.</strong> <code>{esc(SUBMISSION_NAME)}</code> is a retained research artifact only; its holdout and full-registry uniqueness gates fail. The page intentionally provides no TIF or ZIP download link. No submission is cleared for download or upload.</p>
 <p><strong>Full-registry literal uniqueness scan (k4):</strong> {esc(scan_line())}</p>
 
 <h2>Why GEMSDOE32 reached 0.2778 (analysis)</h2>

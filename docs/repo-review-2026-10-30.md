@@ -1,4 +1,6 @@
-# Repository review — 2026-10-30
+# Repository review — 2026-10-30 (companion summary)
+
+A more detailed three-pass review, including the research-only hypothesis slate, download-safety corrections, and exact verification results for this branch, is in [`review-2026-10-30.md`](review-2026-10-30.md). This companion file was committed on the updated base branch and should be read together with that detailed review.
 
 ## Executive result
 
@@ -27,7 +29,7 @@ Therefore no valid holdout-DTI estimate can be made here, and no leaderboard-sco
 
 ## Verification performed
 
-- `.venv/bin/pytest -q`: **225 passed, 1 skipped** (56 upstream/deprecation warnings; 92 subtests).
+- `.venv/bin/python -m pytest -q`: **226 passed, 1 skipped** (56 rasterio pending-deprecation warnings; 92 subtests).
 - `npm test`: **4 passed**.
 - `.venv/bin/python scripts/verify_numbers.py`: **33/33 consistency checks passed**.
 - Fresh pinned-witness saved-byte audit: 20 TIFFs under `docs/` inventoried; all are negative/refused by duplicate or boundary-gaming rule. This is not a complete-registry uniqueness test.

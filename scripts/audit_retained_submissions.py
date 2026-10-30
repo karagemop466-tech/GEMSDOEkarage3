@@ -52,7 +52,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fetch', action='store_true')
     parser.add_argument('--cache', type=Path, default=ROOT / '.cache/historical')
-    parser.add_argument('--out', type=Path, default=ROOT / 'evidence/retained-submissions-audit-20261028.json')
+    parser.add_argument('--out', type=Path, default=ROOT / 'evidence/retained-submissions-audit-20261030.json')
     args = parser.parse_args()
     result = audit(args.cache, args.fetch)
     args.out.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')

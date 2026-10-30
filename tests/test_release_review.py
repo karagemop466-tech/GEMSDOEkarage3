@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
-    report = json.loads((ROOT / 'evidence/release-audit-20261028.json').read_text())
+    report = json.loads((ROOT / 'evidence/release-audit-20261030.json').read_text())
     assert report['experiments_run'] == report['weekly_slots_used'] == 0
     assert report['ok_to_submit'] is False
     assert {r['file'] for r in report['rows']} == {
@@ -58,6 +58,9 @@ def test_public_rebuild_deterministic_and_old_narrative_collapsed():
         assert text.count('<!-- RELEASE-REVIEW -->') == 1
         assert text.count('<!-- ARCHIVED-BODY -->') <= 1
         assert 'DO NOT SUBMIT' in text
+    release = (ROOT / 'docs/release-review.html').read_text()
+    assert 'download link disabled' in release
+    assert 'href="downloads/' not in release
     # The home decision pages are generated from the current lane card by build_k3c_site.py
     home = [ROOT / p for p in ('docs/index.html', 'docs/executive-summary.html')]
     before = [p.read_bytes() for p in home]
