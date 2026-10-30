@@ -1,0 +1,69 @@
+{
+  "run_id": "review-20261030",
+  "date_utc": "2026-10-30",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "hypothesis": "Top user-reported focus files are pruned away from catalogue faults, which favours non-catalogue test faults. Descriptive N=9 correlation only.",
+  "mechanism": "Catalogue-proximity pruning versus off-catalogue SGMC-calibrated DTI. Not validated.",
+  "named_non_fault_mimic": "Not tested.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0 and GEMSDOE32-SGMC-CAL-v3.0",
+    "withheld_positives": {
+      "catalogue": 22232,
+      "sgmc": 62703
+    },
+    "promotion_eligible": false,
+    "note": "Static binary diagnostic for existing files only. No new candidate."
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "Computed for existing files only",
+    "focus9_lattice_within_3px": "99.91-99.92%",
+    "max_lattice_overlap_repo_candidates": "99.92% (K3-fuse-greedy)",
+    "literal_rule_threshold": 0.7,
+    "literal_rule_pass": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN for a new candidate; format gate run on existing files (section 6)"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "slot_selected": false,
+  "receipts": [
+    "evidence/focus9-mechanism-audit-20261030.json",
+    "evidence/candidate-proxy-table-20261030.json",
+    "evidence/saved-tiffs-literal-20261030.json",
+    "evidence/holdout-corridor-20261030.json"
+  ],
+  "corridor_candidate": {
+    "raster": "docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif",
+    "raster_sha256": "6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa",
+    "lattice_within_3px": 0.9999,
+    "lattice_limit": 0.7,
+    "literal_rule_pass": false,
+    "holdout_sgmc_calibrated_dti": {
+      "value": 0.01975,
+      "ci95": [
+        0.015685,
+        0.023551
+      ],
+      "evaluator": "GEMSDOE32-SGMC-CAL-v3.0",
+      "withheld_positives": 62703,
+      "label": "HOLDOUT-DTI"
+    },
+    "holdout_catalogue_hide_and_recover_dti": {
+      "value": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "withheld_positives": 22232,
+      "label": "HOLDOUT-DTI"
+    },
+    "ok_to_submit": false
+  }
+}

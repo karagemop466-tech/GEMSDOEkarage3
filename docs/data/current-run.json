@@ -57,7 +57,7 @@
   ],
   "geometry_audit_sha256": "75942181a6f618454f565c513722fe39a94a77ad2397ac527d8f7a200c0f30f5",
   "geometry_audit": "historical-audit.json",
-  "saved_tiffs_audit_sha256": "1d19730f3509cc3ef176695f021a1deb5c0ae3e9eb602d299dbd7abd8e53a367",
+  "saved_tiffs_audit_sha256": "f7b7a27e7877f2a0bc19fac888b5c8460453bed284736fc43592c3502f55d645",
   "saved_tiffs_audit": "saved-tiffs-literal-20261028.json",
   "official_hidden_score_estimate": null,
   "slot_selector": "Separate step required; not run."
