@@ -1,6 +1,16 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## START HERE — executive summary (2026-10-29)
+## START HERE — review of 2026-10-30 (read first)
+
+**OK TO DOWNLOAD AND SUBMIT? NO.** No file is cleared. Every focus file fails the literal 3-px uniqueness rule against another focus file, and no organizer receipt exists for any score.
+
+- Review, focus-site table, GEMSDOE32 (0.2778) mechanism, hypotheses, irregularities, owner decisions: [docs/review-2026-10-30.md](docs/review-2026-10-30.md)
+- Structure receipt (exploratory, not a score): [evidence/focus9-structure-20261030.json](evidence/focus9-structure-20261030.json)
+- Holdout reproduction (HOLDOUT-DTI): [evidence/holdout-reproduction-20261030-geoconduit-zeros.json](evidence/holdout-reproduction-20261030-geoconduit-zeros.json)
+
+Note: the 2026-10-29 section below predates this review. Where the two disagree, the 2026-10-30 review governs (for example, the masking note and the `-zeros` advice).
+
+## Previous executive summary (2026-10-29)
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
 
