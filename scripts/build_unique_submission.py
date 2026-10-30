@@ -1,264 +1,251 @@
 #!/usr/bin/env python3
+"""Build a UNIQUE, format-valid GeoTIFF submission candidate for the DOE GEMS prize.
+
+Hypothesis H-OFFCAT-CORRIDOR (geometric prior; NOT a validated detector):
+  The DrivenData GEMS target label set is faults NOT in the USGS/INGENIOUS
+  catalogue (problem page 967). A candidate that only re-dots catalogue traces
+  cannot earn credit for hidden off-catalogue faults. So this file places dots
+  (a) off the catalogue (labels.tif + collar excluded), (b) outside the 3-px
+  neighbourhood of every previously published submission dot (literal uniqueness
+  vs the known dot registry), and (c) in a novel non-lattice, non-dotted-ridge
+  spatial pattern (stratified jitter with a blind-fault distance prior), not the
+  shared h19-5 dotted-ridge family.
+
+  Layers available in this checkout (no organizer training_features.tif):
+    * footprint + grid from data/bridge/sample_submission.tif  (EPSG:32611,
+      3730 x 3292, 100 m, transform [100,0,243350,0,-100,4508550])
+    * catalogue faults from data/bridge/labels.tif
+  MISSING: training_features.tif (potential-field / DEM gradient layers) is required
+  for a real edge-based blind-fault detector and is not available without a
+  DrivenData login. Consequently this file is a geometric prior, not a scored
+  geological model.
+
+OUTPUTS (written to docs/downloads/):
+  * <slug>-<ts>-<sha8>-zeros.tif   format-valid single-band float32 GeoTIFF
+                                    (0 outside footprint, {0,1} inside, no NaN)
+  * <slug>-<ts>-<sha8>-zeros.zip    single-TIF zip for portal upload
+  * <slug>-<ts>-<sha8>-audit.json   submission_writer audit sidecar
+  * docs/data/unique-submission-run-card.json   protocol run card
+
+VERDICT: NOT OK TO SUBMIT.
+  - No organizer labels → no holdout truth for off-catalogue faults → score not
+    estimable; no claim is made that it beats 0.2778 or any leaderboard value.
+  - Holdout, leakage-canary and full-registry uniqueness gates cannot run without
+    training_features.tif / labels provenance and the organizer template.
+  - This file is format-valid and demonstrably unique vs known prior dots, but it
+    has not passed the promotion gates. Do not spend a weekly submission slot.
 """
-Generate a UNIQUE, format-valid submission GeoTIFF candidate for the DOE GEMS
-Prize Challenge (competition 306), and audit its exact saved bytes.
-
-This script addresses the user's mandate: "MUST GENERATE A UNIQUE TIF SUBMISSION"
-and "IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT."
-
-Method (unique, distinct from GEMSDOE24/25/27/28/30/31/32/33/36 dotted-ridge
-family and from the H-GEO-CONDUIT 80/20 dot hybrid):
-  H-THERM-CONDUIT: a smooth geothermal-gradient conduit surface.
-    - A central upwelling (radial temperature gradient decay) represents a
-      concealed geothermal plume along a blind fault.
-    - Two linear stepover/relay-ramp corridors are added as elevated ridges,
-      targeting off-catalogue fault bends where permeability localizes.
-    - The surface is normalized to [0, 1] and written as a single-band float32
-      GeoTIFF with nodata=None so EVERY cell (including outside the scored
-      footprint) is finite and inside [0, 1]. This directly fixes the
-      DrivenData portal error "Predicted values must be in range [0, 1]".
-
-Grid (documented, EPSG:32611, 100 m):
-  height 3730, width 3292,
-  transform from_origin(243350, 4508550, 100, 100).
-
-VALIDATION STATUS (honest labeling):
-  - Format: grid / CRS / transform / dtype / bands / range [0,1] / no NaN
-    / no inf / nodata None -> all VERIFIABLE locally, and verified below.
-  - Footprint masking against the organizer template (sample_submission.tif):
-    NOT verifiable here -- the competition rasters require DrivenData login and
-    are not present in this checkout (.cache/gems_data/ is empty).
-  - Holdout DTI / registry uniqueness / leaderboard estimate: NOT verifiable
-    without labels.tif, training_features.tif and the complete registry.
-  - Therefore: OK TO DOWNLOAD = YES (format-valid file). OK TO SUBMIT = NO --
-    not cleared; the promotion gate (holdout DTI + CI, feature canaries,
-    literal registry uniqueness at surface AND final dots, validator bound to
-    bytes, submission name + <=140-char note) cannot be completed without the
-    organizer data. DO NOT upload to DrivenData until the gate passes.
-
-Outputs:
-  docs/downloads/h-therm-conduit-<timestamp>-<digest8>-zeros.tif   (the TIF)
-  docs/downloads/h-therm-conduit-<timestamp>-<digest8>-audit.json   (byte audit)
-"""
-
 from __future__ import annotations
 
 import hashlib
 import json
-import math
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 import rasterio
-from rasterio.transform import from_origin
+from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_DIR = ROOT / "docs" / "downloads"
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "src"))
 
-# ---------------------------------------------------------------------------
-# Documented submission grid (matches prepare_data.json / prepared_manifest)
-# ---------------------------------------------------------------------------
-HEIGHT = 3730
-WIDTH = 3292
-CRS_EPSG = 32611
-PIXEL_M = 100.0
-ORIGIN_X = 243350.0
-ORIGIN_Y = 4508550.0
-TRANSFORM = from_origin(ORIGIN_X, ORIGIN_Y, PIXEL_M, PIXEL_M)
+from submission_writer import write_validated_submission  # noqa: E402
 
-SLUG = "h-therm-conduit"
-TIMESTAMP = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+SLUG = "karage3-offcat-corridor-prior-v1"
+NOTE = "Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots."
+assert len(NOTE) <= 140, len(NOTE)
 
-NOTE_140 = "Smooth geothermal-conduit surface: central plume + stepover corridors; unique non-dotted pattern"
-assert len(NOTE_140) <= 140, len(NOTE_140)
-
-SUBMISSION_NAME = f"gemsdoe32-{SLUG}-{TIMESTAMP}-{{digest8}}-zeros.tif"
+DDIR = ROOT / "data" / "bridge"
+SAMPLE = DDIR / "sample_submission.tif"
+LABELS = DDIR / "labels.tif"
+N_DOTS = 15_000          # emission budget (dots)
+CAT_COLLAR_PX = 3        # mask catalogue traces pixel-exactly (300 m collar)
+EXISTING_DOT_COLLAR_PX = 3  # avoid prior submission dots for literal uniqueness
+MIN_DOT_SEP_PX = 6       # minimum separation between new dots (non-lattice, non-ridge)
+RNG_SEED = 20261030
 
 
-# ---------------------------------------------------------------------------
-# Surface construction
-# ---------------------------------------------------------------------------
-def _grid_coords(h: int, w: int):
-    yy, xx = np.mgrid[0:h, 0:w].astype(np.float64)
-    return yy, xx
+def read_footprint_grid(path: Path):
+    with rasterio.open(path) as ds:
+        arr = ds.read(1)
+        foot = np.isfinite(arr) & (ds.read_masks(1) > 0)
+        grid = (ds.crs, ds.shape, ds.transform)
+    return foot, grid
 
 
-def _radial(yy, xx, cy, cx, sigma):
-    return np.exp(-(((yy - cy) ** 2 + (xx - cx) ** 2)) / (2.0 * sigma ** 2))
+def read_labels(path: Path, foot: np.ndarray):
+    with rasterio.open(path) as ds:
+        raw = ds.read(1).astype(np.float32)
+    lab = (raw > 0) & foot
+    return lab
 
 
-def _line(yy, xx, y0, x0, y1, x1, width):
-    """Distance-to-line ridge: high near the line, decaying with perpendicular distance."""
-    dy = y1 - y0
-    dx = x1 - x0
-    length = math.hypot(dy, dx)
-    if length == 0:
-        return np.zeros_like(yy)
-    # Perpendicular distance from each pixel to the infinite line, clamped.
-    t = ((xx - x0) * dx + (yy - y0) * dy) / (length * length)
-    t = np.clip(t, 0.0, 1.0)
-    px = x0 + t * dx
-    py = y0 + t * dy
-    d = np.hypot(xx - px, yy - py)
-    return np.exp(-(d / width) ** 2)
+def collect_existing_dots(foot: np.ndarray) -> np.ndarray:
+    """Boolean mask of pixels within EXISTING_DOT_COLLAR_PX of any prior submission dot."""
+    exclude = np.zeros(foot.shape, dtype=bool)
+    n_files = 0
+    n_dots = 0
+    for tif in sorted(ROOT.glob("docs/**/*.tif")):
+        # skip the outputs we are about to write (none exist yet) and any non-grid tif
+        try:
+            with rasterio.open(tif) as ds:
+                if (ds.shape, str(ds.crs)) != (foot.shape, "EPSG:32611"):
+                    continue
+                a = ds.read(1)
+        except Exception:
+            continue
+        dots = np.isfinite(a) & (a > 0.5) & foot
+        if not dots.any():
+            continue
+        n_files += 1
+        n_dots += int(dots.sum())
+        # Mark every pixel within the collar of each existing dot.
+        buf = ndimage.binary_dilation(dots, iterations=EXISTING_DOT_COLLAR_PX)
+        exclude |= buf
+    print(f"existing dot files scanned: {n_files}, prior dots: {n_dots:,}, "
+          f"exclude-collar pixels: {int(exclude.sum()):,}")
+    return exclude
 
 
-def build_surface() -> np.ndarray:
-    yy, xx = _grid_coords(HEIGHT, WIDTH)
+def poisson_disc_sample(candidate: np.ndarray, n_dots: int, min_sep_px: int,
+                        weight: np.ndarray | None, rng: np.random.Generator,
+                        max_tries: int = 200) -> np.ndarray:
+    """Greedy Poisson-disc-like sampling weighted by ``weight`` (None = uniform).
 
-    # Central upwelling plume (blind geothermal fault zone), off the catalogue
-    # ridge network -> targets faults missing from USGS/INGENIOUS.
-    plume = _radial(yy, xx, HEIGHT * 0.42, WIDTH * 0.50, 260)
-
-    # Two stepover/relay-ramp corridors (off-catalogue structural complexity).
-    corridor_a = _line(yy, xx, HEIGHT * 0.30, WIDTH * 0.25, HEIGHT * 0.62, WIDTH * 0.78, 30)
-    corridor_b = _line(yy, xx, HEIGHT * 0.70, WIDTH * 0.20, HEIGHT * 0.40, WIDTH * 0.85, 22)
-
-    surface = 0.55 * plume + 0.25 * corridor_a + 0.20 * corridor_b
-    surface = np.clip(surface, 0.0, 1.0)
-
-    # Light smoothing so adjacent pixels share kernel credit (matches the
-    # 300 m triangular DTI kernel spirit without copying any peer dot lattice).
-    from scipy.ndimage import gaussian_filter
-
-    surface = gaussian_filter(surface, sigma=1.6, mode="constant", cval=0.0)
-    surface = np.clip(surface, 0.0, 1.0).astype(np.float32)
-    return surface
-
-
-# ---------------------------------------------------------------------------
-# GeoTIFF writing + byte audit
-# ---------------------------------------------------------------------------
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def audit_geotiff(tif_path: Path, arr: np.ndarray) -> dict:
-    with rasterio.open(tif_path) as ds:
-        crs_str = str(ds.crs)
-        transform_tuple = tuple(round(float(x), 4) for x in ds.transform)[:6]
-        checks = {
-            "single_band": ds.count == 1,
-            "dtype_float32": ds.dtypes[0] == "float32",
-            "dimensions_3730x3292": (ds.height == HEIGHT and ds.width == WIDTH),
-            "crs_epsg_32611": f"EPSG:{CRS_EPSG}" in crs_str or str(CRS_EPSG) in crs_str,
-            "transform_matches_reference": tuple(
-                round(float(x), 4) for x in ds.transform
-            ) == tuple(round(float(x), 4) for x in TRANSFORM),
-            "self_contained_tiff": len(ds.files) == 1,
-            "driver_gtiff": ds.driver == "GTiff",
-            "nodata_none": ds.nodata is None,
-        }
-    finite = np.isfinite(arr)
-    in_range = (arr >= 0.0) & (arr <= 1.0)
-    checks.update(
-        {
-            "all_cells_finite": bool(finite.all()),
-            "no_nan_anywhere": bool((~np.isnan(arr)).all()),
-            "no_inf_anywhere": bool((~np.isinf(arr)).all()),
-            "all_cells_in_range_0_1": bool(in_range.all()),
-            "min_value": float(np.nanmin(arr)),
-            "max_value": float(np.nanmax(arr)),
-            "positive_cells": int((arr > 0.5).sum()),
-            "zero_cells": int((arr == 0.0).sum()),
-        }
-    )
-    all_passed = all(v is True for v in checks.values() if isinstance(v, bool))
-    return {
-        "filename": tif_path.name,
-        "size_bytes": tif_path.stat().st_size,
-        "sha256": sha256_file(tif_path),
-        "geometry_reference": "documented grid (EPSG:32611, 3730x3292, "
-        "from_origin(243350, 4508550, 100, 100)); organizer template "
-        "sample_submission.tif NOT available locally, so exact footprint "
-        "masking could not be verified against it",
-        "crs": crs_str,
-        "transform": list(transform_tuple),
-        "shape": [ds.height, ds.width] if False else [HEIGHT, WIDTH],
-        "dtype": "float32",
-        "nodata": None,
-        "checks": checks,
-        "all_checks_passed": all_passed,
-        "note": "LOCAL FORMAT AUDIT ONLY. Not an organizer receipt, not a "
-        "holdout score, not a registry-uniqueness proof, not slot "
-        "authorization. ok_to_submit is False until the promotion gate "
-        "passes with organizer data.",
-    }
+    Returns boolean mask of placed dots. Novel non-lattice pattern.
+    """
+    H, W = candidate.shape
+    flat_idx = np.flatnonzero(candidate.ravel())
+    if flat_idx.size == 0:
+        return np.zeros((H, W), dtype=bool)
+    if weight is not None:
+        w = weight.ravel()[flat_idx].astype(np.float64)
+        w = np.maximum(w, 0.0)
+        if w.sum() <= 0:
+            w = np.ones_like(w)
+        p = w / w.sum()
+    else:
+        p = None
+    placed = np.zeros((H, W), dtype=bool)
+    placed_list = []
+    order = rng.choice(flat_idx, size=flat_idx.size, replace=True, p=p)
+    tries = 0
+    for idx in order:
+        if tries > max_tries * max(1, n_dots):
+            break
+        tries += 1
+        y, x = divmod(int(idx), W)
+        if not candidate[y, x]:
+            continue
+        if placed_list:
+            yy = np.array([p0 for p0, _ in placed_list])
+            xx = np.array([p1 for _, p1 in placed_list])
+            dist2 = (yy - y) ** 2 + (xx - x) ** 2
+            if dist2.min() < min_sep_px ** 2:
+                continue
+        placed[y, x] = True
+        placed_list.append((y, x))
+        if len(placed_list) >= n_dots:
+            break
+    return placed
 
 
 def main() -> int:
-    arr = build_surface()
+    t0 = datetime.now(timezone.utc)
+    foot, grid = read_footprint_grid(SAMPLE)
+    crs, shape, transform = grid
+    labels = read_labels(LABELS, foot)
+    catalogue_exclude = ndimage.binary_dilation(labels, iterations=CAT_COLLAR_PX) & foot
 
-    digest8 = hashlib.sha256(np.packbits(arr > 0.5)).hexdigest()[:8]
-    tif_name = f"gemsdoe32-{SLUG}-{TIMESTAMP}-{digest8}-zeros.tif"
-    tif_path = OUT_DIR / tif_name
-    audit_name = f"gemsdoe32-{SLUG}-{TIMESTAMP}-{digest8}-audit.json"
-    audit_path = OUT_DIR / audit_name
+    existing_exclude = collect_existing_dots(foot)
 
-    profile = dict(
-        driver="GTiff",
-        dtype="float32",
-        count=1,
-        height=HEIGHT,
-        width=WIDTH,
-        crs=f"EPSG:{CRS_EPSG}",
-        transform=TRANSFORM,
-        nodata=None,
-        compress="deflate",
-        predictor=3,
-        tiled=True,
-        blockxsize=256,
-        blockysize=256,
+    # Candidate zone: on the footprint, off the catalogue, away from prior dots.
+    candidate = foot & ~catalogue_exclude & ~existing_exclude
+    print(f"footprint: {int(foot.sum()):,}  catalogue+collar excl: {int(catalogue_exclude.sum()):,}  "
+          f"candidate zone: {int(candidate.sum()):,}")
+
+    # Blind-fault distance prior: moderate distance from catalogue faults (near a
+    # faulted terrane but not on a mapped trace). Weight ramps from the collar out
+    # to ~2 km then gently decays, favouring covered/off-catalogue terrain.
+    d_cat = ndimage.distance_transform_edt(~catalogue_exclude).astype(np.float32)
+    d_cat = np.where(foot, d_cat, 0.0)
+    prior = np.clip((d_cat - CAT_COLLAR_PX) / 20.0, 0.0, 1.0)  # 0 at collar, ~1 at 2 km
+    prior = np.where(candidate, prior, 0.0)
+
+    rng = np.random.default_rng(RNG_SEED)
+    mask = poisson_disc_sample(candidate, N_DOTS, MIN_DOT_SEP_PX, prior, rng)
+    n_dots = int(mask.sum())
+    print(f"placed dots: {n_dots:,}")
+
+    if n_dots == 0:
+        raise SystemExit("No dots placed: candidate zone empty (lower N_DOTS or collars).")
+
+    ts = t0.strftime("%Y%m%dT%H%M%SZ")
+    digest8 = hashlib.sha256(np.packbits(mask)).hexdigest()[:8]
+
+    meta = {
+        "candidate_id": SLUG,
+        "description": "Geometric off-catalogue corridor prior (stratified jitter, catalogue- and prior-dot excluded).",
+        "submission_note_zeros": NOTE,
+        "submission_note_nan": NOTE,
+        "catalogue_hidden_mean": None,
+        "catalogue_hidden_per_quadrant": {},
+        "sgmc_prevalence_calibrated_dti": None,
+        "drift_corrected_holdout_mean": None,
+        "drift_corrected_per_quadrant": {},
+        "predicted_leaderboard_dti": None,
+        "ei_drift_corrected": None,
+        "slot_decision": "HOLD-DO-NOT-SUBMIT",
+    }
+    bundle = write_validated_submission(
+        mask, slug=SLUG, candidate_meta=meta, ddir=DDIR,
+        out_dir=ROOT / "docs" / "downloads", timestamp_tag=ts,
     )
-    with rasterio.open(tif_path, "w", **profile) as dst:
-        dst.write(arr, 1)
 
-    audit = audit_geotiff(tif_path, arr)
-    audit["submission_name"] = tif_name
-    audit["submission_note"] = NOTE_140
-    audit["ok_to_download"] = True
-    audit["ok_to_submit"] = False
-    audit["reason_not_cleared"] = (
-        "Holdout DTI + 95% CI, per-feature leakage canaries, literal "
-        "registry uniqueness (surface AND final dots), and validator "
-        "binding to exact bytes require organizer rasters "
-        "(sample_submission.tif, labels.tif, training_features.tif, "
-        "complete registry) that are not present in this checkout and "
-        "require DrivenData login. A local format pass is not submission "
-        "authorization."
-    )
-    audit_path.write_text(json.dumps(audit, indent=2), encoding="utf-8")
+    zeros_name = bundle["zeros_tif"]["filename"]
+    zeros_sha = bundle["zeros_tif"]["sha256"]
 
-    print("=" * 70)
-    print("H-THERM-CONDUIT: unique geothermal-conduit submission candidate")
-    print("=" * 70)
-    print(f"  TIF:        {tif_path}")
-    print(f"  Audit:      {audit_path}")
-    print(f"  SHA-256:    {audit['sha256']}")
-    print(f"  Digest8:    {digest8}")
-    print(f"  Grid:       {HEIGHT}x{WIDTH}, EPSG:{CRS_EPSG}, 100 m, "
-          f"origin ({ORIGIN_X}, {ORIGIN_Y})")
-    print(f"  Values:     min={audit['checks']['min_value']:.6f} "
-          f"max={audit['checks']['max_value']:.6f}, all in [0,1]: "
-          f"{audit['checks']['all_cells_in_range_0_1']}")
-    print(f"  NaN anywhere: {not audit['checks']['no_nan_anywhere']}")
-    print(f"  All checks passed: {audit['all_checks_passed']}")
-    print()
-    print("  OK TO DOWNLOAD:   YES  (format-valid GeoTIFF, all cells in [0,1])")
-    print("  OK TO SUBMIT:     NO   (not cleared -- promotion gate requires "
-          "organizer data)")
-    print("  Unique vs peers:  YES  (new SHA-256; smooth conduit surface, not "
-          "the dotted-ridge family)")
-    print()
-    print("  Submission note (<=140 chars):", NOTE_140)
-    print("=" * 70)
+    # Run card (protocol rule 5).
+    card = {
+        "schema": "GEMSDOEkarage3-RUN-CARD-v1",
+        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "hypothesis": "H-OFFCAT-CORRIDOR: hidden (off-catalogue) geothermal faults are more likely in covered faulted terrain away from mapped USGS/INGENIOUS traces; dots placed off-catalogue in a novel non-lattice pattern should encounter blind faults that the dotted-ridge family (clustered on/near catalogue traces) misses.",
+        "mechanism": "Exclude catalogue faults + 300 m collar; exclude 3 px around every prior submission dot; weight the surviving off-catalogue zone by distance-from-catalogue prior; place dots by weighted Poisson-disc sampling (min 6 px separation) for a novel spatial pattern.",
+        "named_non_fault_mimic": "Lithologic contacts, dikes/intrusive margins, landslide scarps, road cuts, fence lines and acquisition striping can all produce edge/lineament-like geometry without being faults.",
+        "layers": ["footprint (sample_submission.tif)", "catalogue faults (labels.tif)", "prior submission dot registry (docs/downloads)"],
+        "physical_signature": "off-catalogue spatial exclusion + distance-from-catalogue prior (geometric proxy; no potential-field/DEM gradient layers available)",
+        "differs_from_existing": "Avoids all prior submission dots (literal uniqueness) and off-catalogue (excludes labels); the dotted-ridge family clusters on/near catalogue traces and reuses the same dot array across GEMSDOE24/25/27/28/30/31/32/33/36.",
+        "leakage_canary": {"status": "NOT RUN", "note": "training_features.tif unavailable; no feature-only AUC vs catalogue can be computed."},
+        "holdout_dti": {"label": "NOT ESTIMABLE", "value": None, "ci95": None,
+                        "n_withheld_positives": None, "evaluator": "none (no organizer labels/training features)"},
+        "registry_correlation_and_overlap": {
+            "unique_vs_prior_dots_by_construction": True,
+            "max_overlap3px_vs_known_prior_dots": 0.0,
+            "note": "3-px collar around every prior dot excluded before placement; full-registry literal scan not run (registry incomplete in this checkout).",
+        },
+        "raster": f"docs/downloads/{zeros_name}",
+        "raster_sha256": zeros_sha,
+        "validator_output": bundle["zeros_tif"],
+        "submission_name": SLUG,
+        "submission_note": NOTE,
+        "submission_note_chars": len(NOTE),
+        "n_dots": n_dots,
+        "budget_exhausted": False,
+        "verdict": "negative",
+        "ok_to_submit": False,
+        "reason": "Format-valid and unique vs prior dots, but NOT validated: no organizer labels/training_features.tif, so holdout DTI, leakage canary, and leaderboard-score estimate cannot be computed. Do not submit.",
+    }
+    card_path = ROOT / "docs" / "data" / "unique-submission-run-card.json"
+    card_path.parent.mkdir(parents=True, exist_ok=True)
+    card_path.write_text(json.dumps(card, indent=2, default=str) + "\n")
+
+    print(json.dumps({
+        "slug": SLUG, "dots": n_dots, "zeros_tif": zeros_name,
+        "zeros_sha256": zeros_sha, "run_card": str(card_path),
+        "ok_to_submit": False, "verdict": "negative",
+    }, indent=2))
     return 0
 
 

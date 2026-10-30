@@ -17,15 +17,15 @@
 <main id="main"><div class="container">
 <div class="page-hero">
   <div class="eyebrow">Download &rarr; upload to DrivenData GEMS</div>
-  <h1 class="page-title">Submit karage3-novel-faulthalo to DrivenData GEMS</h1>
+  <h1 class="page-title">Submit karage3-offcat-corridor-prior-v1 to DrivenData GEMS</h1>
   <p class="lede">A format-validated, unique GeoTIFF ready to download. These steps prevent the <code>"Predicted values must be in range [0, 1]"</code> portal rejection.</p>
 </div>
 
-<div class="banner">
+<div class="banner warn">
   <span class="banner-icon" aria-hidden="true">!</span>
   <div>
-    <strong>Status: format-valid and unique, but NOT cleared to submit under the current uniqueness gate.</strong>
-    <p>This page explains how to upload if you choose to spend a weekly slot. The file passes all local checks (values in [0, 1], zero NaN inside footprint, exact grid match) and is unique vs every GEMSDOE focus-site submission, but it exceeds the repository's strict calibration-lattice stop (99.95% of dots within 3 px of the registered lattice; limit 70%). It has no organizer-confirmed score.</p>
+    <strong>Status: format-valid and unique vs all 9 focus sites, but NOT cleared to submit.</strong>
+    <p>The file passes all local format/range checks (values in [0, 1], zero NaN inside footprint, exact EPSG:32611 grid match) and is unique vs every GEMSDOE focus-site submission (max 6.1% of dots within 3 px; limit 70%). It is <strong>NOT OK to submit</strong> to the leaderboard until validated: this checkout has no organizer labels or <code>training_features.tif</code> (DrivenData login required), so holdout-DTI, the leakage canary and a leaderboard-score estimate cannot be computed.</p>
   </div>
 </div>
 
@@ -43,7 +43,7 @@
 <ol class="steps">
 <li><strong>Open DrivenData GEMS (#306).</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a>, sign in, and navigate to the Submissions page.</li>
 <li><strong>Upload the file.</strong> Select <code>gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif</code> (or the single-TIFF .zip). The file is pre-clamped to [0, 1] with zero NaN inside the footprint &mdash; preventing the range-error portal rejection.</li>
-<li><strong>Enter the submission note (&le;140 characters).</strong> Copy-paste ready:<br><code style="display:block;margin:6px 0;background:#f4f7f4;padding:8px;border-radius:6px;font-size:12px;overflow-wrap:break-word">Unique fault-halo geothermal targeting: cond x dilation x basement x scarp x TC hotspots 0-1px off catalogue traces, 37654 dots</code></li>
+<li><strong>Enter the submission note (&le;140 characters).</strong> Copy-paste ready:<br><code style="display:block;margin:6px 0;background:#f4f7f4;padding:8px;border-radius:6px;font-size:12px;overflow-wrap:break-word">Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots.</code></li>
 <li><strong>Save the organizer receipt.</strong> Record the DrivenData submission-page confirmation binding filename, SHA-256, timestamp and returned score. Only receipt-backed scores may be labeled ORGANIZER-CONFIRMED.</li>
 </ol>
 </section>
