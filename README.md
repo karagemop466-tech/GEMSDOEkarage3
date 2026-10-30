@@ -6,13 +6,34 @@
 
 - **Executive summary (table of all nine sites + the new file):** [docs/nine-site-summary.html](docs/nine-site-summary.html) · run card [docs/nine-site-run-card.json](docs/nine-site-run-card.json)
 - **New TIF generated this session (NOT unique):** `karage3-k4-offcat-ridge-20k` — [zeros TIF](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif) · [zip](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip). Format-valid, but it FAILS the full-registry literal uniqueness scan (108 of 2,051 same-grid registry rasters exceed the 3-px or rho gate; evidence in `evidence/k4-literal-uniqueness-scan.json`) and the holdout gate (HOLDOUT-DTI 0.0178 vs the nine-site best 0.0967). Do not submit it.
-- **Portal error "Predicted values must be in range [0, 1]":** the `-nan.tif` files contain 7,111,787 NaN pixels outside the footprint. Use only the `-zeros.tif` / `-allfinite.tif` version of a file (same dots, no NaN).
+- **Portal error "Predicted values must be in range [0, 1]":** UNEXPLAINED. The `-nan.tif` files hold NaN outside the footprint, which matches the official rule "data outside the bounds is null or nan" ([problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format), checked 2026-10-30). The `-zeros.tif` files hold 0.0 outside, which does NOT match that rule. **The earlier advice to use only `-zeros.tif` is withdrawn** (see Session 7 below). No organizer answer resolves this yet.
+- **Upload instructions:** [docs/how-to-submit.html](docs/how-to-submit.html) previously told the user to upload a file. That was wrong; the page is now a DO-NOT-UPLOAD notice (Session 7).
 - **Reported best (0.2778, GEMSDOE32) is not unique:** every focus file has a peer with ≥0.976 of its dots within 3 px. GEMSDOE30 is the same dot array as GEMSDOE25.
 - **Score correction (2026-10-29):** the H-GEO-CONDUIT run card's HOLDOUT-DTI **0.4239** [0.4053, 0.4427] did not reproduce. The shared evaluator (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives) gives **HOLDOUT-DTI 0.3047** [95% CI 0.2881, 0.3189]. Not organizer-confirmed; not cleared. Evidence: `evidence/` and `scripts/evaluate_holdout.py`.
 - **HOLDOUT-DTI, consensus-hgrad-k37654 (shared evaluator):** **0.0073** [95% CI 0.0043, 0.0109], `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives, `promotion_eligible: false` (static diagnostic). Off-catalogue SGMC calibrated: 0.0091 [0.0050, 0.0135] (`GEMSDOE32-SGMC-CAL-v3.0`, 62,703 withheld positives). Source: `evidence/holdout-consensus-hgrad-20261029.json`. A negative result; not cleared.
 - **Literal uniqueness:** all 11 measured candidates have max within-3 px overlap **1.0** with registry raster `apartanish22-droid/ApartGEMSDOE2 …top37654…e34db98d-nan.tif` (5,106,385 positive cells). Flagged for owner review, not exempted. Source: `evidence/site-uniqueness-20261029.json`.
-- **ORGANIZER-CONFIRMED leaderboard check (official DrivenData public leaderboard, fetched 2026-10-29):** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ lists rank #1 = **0.4544**, #2 = 0.3916, rank #47 = **0.3195**, rank #50 = 0.3167. The prompt's **0.4413 does not appear** in the top 50. So **0.3195 is not the highest public score**. GEMSDOE32's user-reported 0.2778 is below rank 50 and not visible here. Public split only.
+- **Official public leaderboard check (NOT a submission receipt; fetched 2026-10-29, re-fetched 2026-10-30):** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ lists rank #1 = **0.4544**, #2 = 0.3916, rank #48 = **0.3195** (kpomazi), rank #50 = 0.3169 (re-checked 2026-10-30). The prompt's **0.4413 does not appear** in the top 50. So **0.3195 is not the highest public score**. GEMSDOE32's user-reported 0.2778 is below rank 50 and not visible here. Public split only.
 - **Labels:** HOLDOUT-DTI = local shared evaluator (withheld-positive count and 95% CI shown); USER-REPORTED = copied from the request; ORGANIZER-CONFIRMED = none exists yet.
+
+## Session 7 (2026-10-30) — review, verification and corrections (read first)
+
+**Answer to "download and submit?": NO. No file is cleared. Do not upload anything from this repository.**
+
+- **Why no new unique TIF was generated:** a file can be cleared only after (a) the literal uniqueness gate against every registry raster, before placement and on final dots, (b) a matched holdout with leakage canaries, (c) the saved-byte format check, and (d) a separate slot selector. This checkout has no training feature stack (`.cache/` is absent), no complete registry, and no holdout run. Gates (a), (b) and (d) cannot be run here. A new file without them would be a guess, so none was made.
+- **Fixed this session:**
+  1. **Upload page withdrawn.** [docs/how-to-submit.html](docs/how-to-submit.html) told the user to upload `gemsdoe32-novel-faulthalo-…-zeros.tif`. That file fails the saved-byte audit (99.95% within 3 px of the witness, stop at 70%). The page is now a DO-NOT-UPLOAD notice.
+  2. **Format advice corrected.** The official rule (verified at [the problem page, submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format)) says "data outside the bounds is null or nan". The `-zeros.tif` files write 0.0 there and fail `scripts/check_format.py` (`outside_null_or_nan`). The `-nan.tif` twins pass that check. The portal error is still unexplained, so the conflict is open for review, not settled.
+  3. **Leaderboard figures re-checked** on the official public leaderboard (2026-10-30): #1 0.4544, #2 0.3916, #3 0.3911. The prompt's 0.4413 does not appear. 0.3195 is at **rank #48** (README previously said #47), and #50 is 0.3169 (previously 0.3167).
+  4. **Test suite restored.** Six tests failed because two `consensus-hgrad` TIFs were added to `docs/downloads/` after the saved-byte receipts were last built. Regenerated, in order: `scripts/audit_saved_tiffs.py --fetch`, `scripts/audit_retained_submissions.py --fetch`, `scripts/audit_release_20261028.py`, `scripts/build_run_card.py`. Result: `pytest` 225 passed, 1 skipped, 0 failed. Both new files are rejected (overlap 99.89%, duplicate stop).
+- **Irregularities flagged for review (not repaired):**
+  - `evidence/k3c_run_card.json` is a historical card with `verdict: promote` and `ok_to_submit: true`. It is superseded by `docs/k3c/run-card.json` (negative). Keep it for provenance only; do not cite it as a clearance.
+  - The GEMSDOE32 page cites 0.2778 as an **owner report** with no submission receipt in the repo. Treat it as unverified.
+  - Only public-leaderboard numbers were re-checked here. The sandbox cannot reach DrivenData's login or data pages, so the training data cannot be downloaded from here.
+- **Blockers that remain (owner action needed):**
+  1. Download the DrivenData competition data from a logged-in browser and place it in `data/` (or `.cache/gems_data`), then run `scripts/prepare_data.py` and `scripts/restore_data.py`. Without this, no holdout can be run.
+  2. Ask the DrivenData user forum (linked from the problem page) what happens to values outside the footprint: NaN, or 0.0. One answer resolves the `-nan` / `-zeros` conflict.
+  3. Choose one assigned method lane (the repo still has none) and one hypothesis to test. The ranked next-hypotheses list in `research/2026-10-28-review.md` (section "Ranked next hypotheses") is planning only; none has been run.
+- **Standing prompt:** see the STANDING REFERENCE PROMPT section below. It is a CONDENSED version of the owner brief, not the full text. The full brief is not yet stored in this repo; add it (or a verified copy) in the next session.
 
 ## Session 6 (2026-10-29) — correction and verification (read first)
 
@@ -73,7 +94,7 @@ A newly generated TIFF exists as a research artifact, but is NOT cleared for upl
 
 ---
 
-# STANDING REFERENCE PROMPT (verbatim)
+# STANDING REFERENCE PROMPT (condensed; full brief not yet stored)
 
 > Maximize P(Win). No excuses. Own the outcome.
 > Please review the entire repo, then build and update the project as needed. Do not fabricate anything or hallucinate. Our goal is to win the DOE GEMS competition by creating a submission that gets a higher score than the current high on the leaderboard of 0.4413; all files must be validated by the project without human intervention and the project should clearly indicate whether a file is ok to download and submit or not. Right now the submission I downloaded and submitted had an error of "Predicted values must be in range [0, 1]".
