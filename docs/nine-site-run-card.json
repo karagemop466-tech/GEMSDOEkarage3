@@ -1,6 +1,6 @@
 {
   "schema": "nine-site-run-card/1",
-  "generated_utc": "2026-10-29T19:07:37Z",
+  "generated_utc": "2026-10-30T01:53:09Z",
   "submission_name": "karage3-k4-offcat-ridge-20k",
   "submission_note": "Off-catalogue ridge detector: 20k NMS maxima of mag/grav gradient + LiDAR scarp step.",
   "submission_note_chars": 85,

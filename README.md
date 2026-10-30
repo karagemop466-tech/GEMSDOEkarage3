@@ -1,5 +1,17 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## Verification addendum (2026-10-30, PR #69) — answer: NO
+
+**OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared. Nothing in this addendum authorises a slot.**
+
+- **Full verification review:** [docs/verification-review-2026-10-30.md](docs/verification-review-2026-10-30.md) (nine-site table, ranked candidates, passes, irregularities, run card [evidence/run-card-20261030.json](evidence/run-card-20261030.json)). The parallel review is [docs/review-2026-10-30.md](docs/review-2026-10-30.md).
+- **Corridor candidate (`karage3-offcat-corridor-prior-v1`, on main):** labelled "unique" on main, but that holds only against the nine focus sites. Measured 2026-10-30 against the lattice witness: **99.99%** of its 15,000 dots lie within 3 px of the lattice (limit 70%). It fails the repo's literal rule. Its run card also says `ok_to_submit: false`.
+- **Mechanism (descriptive, N = 9, USER-REPORTED):** higher reported focus scores have fewer dots near catalogue faults (Spearman ρ = −0.98) and lower catalogue-holdout DTI (ρ = −0.85), while off-catalogue SGMC-calibrated DTI rises with score (ρ = +0.95). Not causal. Receipt: [evidence/focus9-mechanism-audit-20261030.json](evidence/focus9-mechanism-audit-20261030.json).
+- **Ranked candidates (no slot used):** K3-fuse-greedy (SGMC-cal 0.0892, contamination unverified) > HK3-SMGC (0.0660) > consensus-hgrad (0.0091); H-GEO-CONDUIT rejected (catalogue-holdout 0.3047 reflects 84.6% of dots near catalogue; SGMC-cal 0.0026); H1 rejected (0.0006). Receipt: [evidence/candidate-proxy-table-20261030.json](evidence/candidate-proxy-table-20261030.json).
+- **Zeros-outside question (owner decision):** the official text says "data outside the bounds is null or nan"; the official template uses NaN outside the footprint. Zeros outside differ from both. Main's Session 7 block reads the rule as satisfied by `-zeros`. Until the owner settles "bounds" versus "footprint", no zeros variant is treated as cleared.
+- **Tests (merged tree):** 232 passed, 1 skipped, 0 failed; `verify_numbers.py` 35/35. `origin/main` alone failed 8 of these tests before this PR.
+- **Owner decisions:** (1) literal-uniqueness rule scope; (2) zeros-outside versus NaN-outside reading; (3) recovery of the K3-fuse generator to check SGMC inputs; (4) which focus registry is authoritative; (5) the exact portal error message and uploaded file.
+
 ## START HERE — executive summary (2026-10-30) — read first
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared. No candidate was generated. No weekly slot was used.**
@@ -14,24 +26,68 @@ Core values: **Maximize P(Win). Own the outcome.**
 - **Ranked candidates (no slot used):** (1) K3-fuse-greedy, SGMC-cal HOLDOUT-DTI 0.0892 [0.0677, 0.1111], but its generator is not in this checkout, so the SGMC score may be contaminated; (2) HK3-SMGC 0.0660; (3) consensus-hgrad 0.0091; (4) H-GEO-CONDUIT **rejected**: catalogue-holdout 0.3047 [0.2881, 0.3189] reflects 84.6% of dots near catalogue faults, and SGMC-cal is 0.0026; (5) H1 seismic-gravity-basin **rejected**: 0.0006. Receipt: [evidence/candidate-proxy-table-20261030.json](evidence/candidate-proxy-table-20261030.json).
 - **Literal uniqueness:** interior dot sets sit at ≥99% overlap with the lattice witness, so the ≤70% rule cannot be met. The owner must decide the rule ([docs/review-2026-10-30.md](docs/review-2026-10-30.md) section 4).
 - **Portal error "Predicted values must be in range [0, 1]":** not reproduced. No repo TIFF has a finite value outside [0, 1]. Cause unexplained; need the uploaded file and the exact portal message.
-- **Verification (2026-10-30):** new saved-byte receipt [evidence/saved-tiffs-literal-20261030.json](evidence/saved-tiffs-literal-20261030.json) covers all 20 TIFFs under `docs/`. Six pre-existing pytest failures trace to the stale 2026-10-28 receipt, which predates two `consensus-hgrad` TIFFs. Historical receipts were not rewritten. See [docs/review-2026-10-30.md](docs/review-2026-10-30.md) section 7.
+- **Verification (2026-10-30, merged tree):** 232 passed, 1 skipped, 0 failed; `scripts/verify_numbers.py` 35/35. The saved-byte receipt [evidence/saved-tiffs-literal-20261030.json](evidence/saved-tiffs-literal-20261030.json) covers all 22 TIFFs under `docs/`. The 2026-10-28 receipts were regenerated with the repo's generators so they cover the corridor files, and the run-card bindings were re-pinned (IR-RECEIPT-REBIND-20261030). See [docs/verification-review-2026-10-30.md](docs/verification-review-2026-10-30.md) section 7.
 - **Data:** core and external groups restored into the gitignored `.cache/`. The nine focus files were fetched and their SHA-256 values match `data/focus_registry.json`. `registry/focus9_registry.json` disagrees (IR-FOCUS-REGISTRY-DISAGREE-20261030).
 - **Owner decisions needed:** (1) the literal-uniqueness rule; (2) whether to re-pin the 2026-10-28 receipts; (3) recovery of the K3-fuse generator to check SGMC inputs; (4) which focus registry is authoritative; (5) the exact portal error message and file.
 - **Labels:** HOLDOUT-DTI = local shared evaluator (withheld count and 95% CI shown); USER-REPORTED = copied from the request; ORGANIZER-CONFIRMED = none exists.
 
-## START HERE — executive summary (2026-10-29; superseded in part by the 2026-10-30 block above)
+## READ FIRST — Session 7 (2026-10-30 UTC)
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared.**
+
+- **Why no new TIFF was generated:** the project's literal 70 %/3-px gate against the registered calibration lattice (`13GEMSDOE r13-lattice-s5`) makes any footprint-internal file above **22,163 cells** impossible to clear. Re-measured today: 99.8713 % of the footprint is covered within 3 px; 6,649 cells are uncovered (`scripts/verify_lattice_bound.py` → `evidence/lattice-bound-20261030.json`). Staying under the limit by placing dots on the uncovered ring is refused as boundary gaming.
+- **The competition text has no uniqueness rule** ([page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)). The 70 % gate is this project's protocol. **The owner must choose the registry scope** (keep literal, exclude named calibration/surface rasters with a signature, or use the nine named sites only). Options: [docs/review-2026-10-30.md §6](docs/review-2026-10-30.md).
+- **Live public leaderboard (fetched 2026-10-30, PUBLIC LEADERBOARD, not a submission receipt):** #1 xiaofanhu **0.4544**, #2 cfld__ **0.3916**, #3 Batik Shirt Brothers **0.3911** ([leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). The prompt's 0.4413 and 0.3195 are not confirmed.
+- **Format check (official [page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)):** float32, EPSG:32611, 100 m, values in [0, 1], NaN or null outside bounds. The 7 `-zeros.tif` files in `docs/downloads/` pass this. Their uniqueness gate fails (>99 % overlap with the lattice).
+- **Portal error fixed:** the three `-nan.tif` files (7,111,787 NaN cells each) were moved out of `docs/downloads/` into [`docs/quarantine/nan-variants/`](docs/quarantine/nan-variants/NOT-CLEARED.md). Never upload a `-nan.tif`.
+- **Focus-site review (parallel 2026-10-30 session, same decision: NO):** [docs/focus-review-2026-10-30.md](docs/focus-review-2026-10-30.md) — nine-site table with the literal 3-px pairwise matrix, GEMSDOE32 (0.2778) ring-removal ladder 25→31→32 (verified counts), break-even condition, gates, hypotheses, irregularities, owner decisions. Structure receipt (exploratory, not a score): [evidence/focus9-structure-20261030.json](evidence/focus9-structure-20261030.json). **Disagreement to resolve:** that review reads the official page as allowing NaN or null outside bounds (so `-nan` files are format-compliant and the `-zeros` GEMSDOE32 file is not), whereas the quarantine of the `-nan` files treats NaN as the cause of the portal error. The portal error's cause is unverified.
+- **Sample-file irregularity (IR-S7-03):** the mirror's `labels.tif` and `existing_faults.tif` are byte-identical, and `sample_submission.tif` has the same 60,988 positive pixels as the labels. The competition page describes the sample as "total fault absence". Owner must verify against the official download.
+- **Repo health:** stale audit receipts regenerated; tests went from 6 failed to **225 passed, 1 skipped**.
+- **Full review, run card and owner decisions:** [docs/review-2026-10-30.md](docs/review-2026-10-30.md) · [docs/data/session-20261030-run-card.json](docs/data/session-20261030-run-card.json) · irregularities IR-S7-01…07 in [registry/irregularities.json](registry/irregularities.json).
+
+---
+
+## START HERE — executive summary (reviewed 2026-10-30)
+
+**Current repo review:** [docs/repo-review-2026-10-30.md](docs/repo-review-2026-10-30.md). Tests pass after two previously unindexed TIFF variants were added to the saved-byte audits. No candidate is cleared for submission; this work did not generate a new candidate or use a slot.
+
+**Session 7 (2026-10-30), latest:** the upload page that named a non-cleared file is withdrawn; the `-zeros` format advice is corrected against the official rule. Details in the Session 7 section below. Answer: **NO**.
+
+## Previous executive summary (2026-10-29)
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
 
 - **Executive summary (table of all nine sites + the new file):** [docs/nine-site-summary.html](docs/nine-site-summary.html) · run card [docs/nine-site-run-card.json](docs/nine-site-run-card.json)
 - **New TIF generated this session (NOT unique):** `karage3-k4-offcat-ridge-20k` — [zeros TIF](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif) · [zip](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip). Format-valid, but it FAILS the full-registry literal uniqueness scan (108 of 2,051 same-grid registry rasters exceed the 3-px or rho gate; evidence in `evidence/k4-literal-uniqueness-scan.json`) and the holdout gate (HOLDOUT-DTI 0.0178 vs the nine-site best 0.0967). Do not submit it.
-- **Portal error "Predicted values must be in range [0, 1]":** the `-nan.tif` files contain 7,111,787 NaN pixels outside the footprint. Use only the `-zeros.tif` / `-allfinite.tif` version of a file (same dots, no NaN). **[SUPERSEDED 2026-10-30: this advice is wrong. The `-zeros` variant holds zeros outside the footprint, which fails the official NaN-outside rule; the portal error is not reproduced by any repo file. See docs/review-2026-10-30.md section 6.]**
+- **Portal error "Predicted values must be in range [0, 1]":** UNEXPLAINED. The `-nan.tif` files hold NaN outside the footprint, which matches the official rule "data outside the bounds is null or nan" ([problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format), checked 2026-10-30). The `-zeros.tif` files hold 0.0 outside, which does NOT match that rule. **The earlier advice to use only `-zeros.tif` is withdrawn** (see Session 7 below). No organizer answer resolves this yet.
+- **Upload instructions:** [docs/how-to-submit.html](docs/how-to-submit.html) previously told the user to upload a file. That was wrong; the page is now a DO-NOT-UPLOAD notice (Session 7).
+- **Interpretation note (this PR):** the zeros-outside reading is an owner decision (see the verification addendum at the top). The "Use only `-zeros`" advice above is not settled.
 - **Reported best (0.2778, GEMSDOE32) is not unique:** every focus file has a peer with ≥0.976 of its dots within 3 px. GEMSDOE30 is the same dot array as GEMSDOE25.
 - **Score correction (2026-10-29):** the H-GEO-CONDUIT run card's HOLDOUT-DTI **0.4239** [0.4053, 0.4427] did not reproduce. The shared evaluator (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives) gives **HOLDOUT-DTI 0.3047** [95% CI 0.2881, 0.3189]. Not organizer-confirmed; not cleared. Evidence: `evidence/` and `scripts/evaluate_holdout.py`.
 - **HOLDOUT-DTI, consensus-hgrad-k37654 (shared evaluator):** **0.0073** [95% CI 0.0043, 0.0109], `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives, `promotion_eligible: false` (static diagnostic). Off-catalogue SGMC calibrated: 0.0091 [0.0050, 0.0135] (`GEMSDOE32-SGMC-CAL-v3.0`, 62,703 withheld positives). Source: `evidence/holdout-consensus-hgrad-20261029.json`. A negative result; not cleared.
 - **Literal uniqueness:** all 11 measured candidates have max within-3 px overlap **1.0** with registry raster `apartanish22-droid/ApartGEMSDOE2 …top37654…e34db98d-nan.tif` (5,106,385 positive cells). Flagged for owner review, not exempted. Source: `evidence/site-uniqueness-20261029.json`.
-- **ORGANIZER-CONFIRMED leaderboard check (official DrivenData public leaderboard, fetched 2026-10-29):** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ lists rank #1 = **0.4544**, #2 = 0.3916, rank #47 = **0.3195**, rank #50 = 0.3167. The prompt's **0.4413 does not appear** in the top 50. So **0.3195 is not the highest public score**. GEMSDOE32's user-reported 0.2778 is below rank 50 and not visible here. Public split only.
+- **Official public leaderboard check (NOT a submission receipt; fetched 2026-10-29, re-fetched 2026-10-30):** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ lists rank #1 = **0.4544**, #2 = 0.3916, rank #48 = **0.3195** (kpomazi), rank #50 = 0.3169 (re-checked 2026-10-30). The prompt's **0.4413 does not appear** in the top 50. So **0.3195 is not the highest public score**. GEMSDOE32's user-reported 0.2778 is below rank 50 and not visible here. Public split only.
 - **Labels:** HOLDOUT-DTI = local shared evaluator (withheld-positive count and 95% CI shown); USER-REPORTED = copied from the request; ORGANIZER-CONFIRMED = none exists yet.
+
+## Session 7 (2026-10-30) — review, verification and corrections (read first)
+
+**Answer to "download and submit?": NO. No file is cleared. Do not upload anything from this repository.**
+
+- **Why no new unique TIF was generated:** a file can be cleared only after (a) the literal uniqueness gate against every registry raster, before placement and on final dots, (b) a matched holdout with leakage canaries, (c) the saved-byte format check, and (d) a separate slot selector. This checkout has no training feature stack (`.cache/` is absent), no complete registry, and no holdout run. Gates (a), (b) and (d) cannot be run here. A new file without them would be a guess, so none was made.
+- **Fixed this session:**
+  1. **Upload page withdrawn.** [docs/how-to-submit.html](docs/how-to-submit.html) told the user to upload `gemsdoe32-novel-faulthalo-…-zeros.tif`. That file fails the saved-byte audit (99.95% within 3 px of the witness, stop at 70%). The page is now a DO-NOT-UPLOAD notice.
+  2. **Format advice corrected.** The official rule (verified at [the problem page, submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format)) says "data outside the bounds is null or nan". The `-zeros.tif` files write 0.0 there and fail `scripts/check_format.py` (`outside_null_or_nan`). The `-nan.tif` twins pass that check. The portal error is still unexplained, so the conflict is open for review, not settled.
+  3. **Leaderboard figures re-checked** on the official public leaderboard (2026-10-30): #1 0.4544, #2 0.3916, #3 0.3911. The prompt's 0.4413 does not appear. 0.3195 is at **rank #48** (README previously said #47), and #50 is 0.3169 (previously 0.3167).
+  4. **Test suite restored.** Six tests failed because two `consensus-hgrad` TIFs were added to `docs/downloads/` after the saved-byte receipts were last built. Regenerated, in order: `scripts/audit_saved_tiffs.py --fetch`, `scripts/audit_retained_submissions.py --fetch`, `scripts/audit_release_20261028.py`, `scripts/build_run_card.py`. Result: `pytest` 225 passed, 1 skipped, 0 failed. Both new files are rejected (overlap 99.89%, duplicate stop).
+- **Irregularities flagged for review (not repaired):**
+  - `evidence/k3c_run_card.json` is a historical card with `verdict: promote` and `ok_to_submit: true`. It is superseded by `docs/k3c/run-card.json` (negative). Keep it for provenance only; do not cite it as a clearance.
+  - The GEMSDOE32 page cites 0.2778 as an **owner report** with no submission receipt in the repo. Treat it as unverified.
+  - Only public-leaderboard numbers were re-checked here. The sandbox cannot reach DrivenData's login or data pages, so the training data cannot be downloaded from here.
+- **Blockers that remain (owner action needed):**
+  1. Download the DrivenData competition data from a logged-in browser and place it in `data/` (or `.cache/gems_data`), then run `scripts/prepare_data.py` and `scripts/restore_data.py`. Without this, no holdout can be run.
+  2. Ask the DrivenData user forum (linked from the problem page) what happens to values outside the footprint: NaN, or 0.0. One answer resolves the `-nan` / `-zeros` conflict.
+  3. Choose one assigned method lane (the repo still has none) and one hypothesis to test. The ranked next-hypotheses list in `research/2026-10-28-review.md` (section "Ranked next hypotheses") is planning only; none has been run.
+- **Standing prompt:** see the STANDING REFERENCE PROMPT (verbatim) section below. It is restored verbatim from the 2026-10-29 README. A condensed rewrite on main was reverted in PR #69 because the owner requires the prompt verbatim.
 
 ## Session 6 (2026-10-29) — correction and verification (read first)
 

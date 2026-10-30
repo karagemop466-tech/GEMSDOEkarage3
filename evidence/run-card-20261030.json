@@ -35,6 +35,35 @@
   "receipts": [
     "evidence/focus9-mechanism-audit-20261030.json",
     "evidence/candidate-proxy-table-20261030.json",
-    "evidence/saved-tiffs-literal-20261030.json"
-  ]
+    "evidence/saved-tiffs-literal-20261030.json",
+    "evidence/holdout-corridor-20261030.json"
+  ],
+  "corridor_candidate": {
+    "raster": "docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif",
+    "raster_sha256": "6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa",
+    "lattice_within_3px": 0.9999,
+    "lattice_limit": 0.7,
+    "literal_rule_pass": false,
+    "holdout_sgmc_calibrated_dti": {
+      "value": 0.01975,
+      "ci95": [
+        0.015685,
+        0.023551
+      ],
+      "evaluator": "GEMSDOE32-SGMC-CAL-v3.0",
+      "withheld_positives": 62703,
+      "label": "HOLDOUT-DTI"
+    },
+    "holdout_catalogue_hide_and_recover_dti": {
+      "value": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "withheld_positives": 22232,
+      "label": "HOLDOUT-DTI"
+    },
+    "ok_to_submit": false
+  }
 }

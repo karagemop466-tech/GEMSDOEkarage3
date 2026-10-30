@@ -818,6 +818,74 @@
       "max_overlap3px_vs_other_focus_sites": 0.0505,
       "max_overlap3px_vs_other_focus_sites_site": "GEMSDOE27",
       "max_overlap3px_vs_all_in_this_audit": 0.0505
+    },
+    {
+      "id": "CAND-offcat-corridor-prior-v1",
+      "kind": "candidate",
+      "file": "docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif",
+      "sha256": "6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa",
+      "bytes": 127534,
+      "dots": 15000,
+      "nan_count_all_pixels": 0,
+      "repo": null,
+      "repo_head": null,
+      "submission_id": "karage3-offcat-corridor-prior-v1",
+      "user_reported_name": "karage3-offcat-corridor-prior-v1",
+      "user_reported_score": null,
+      "format": {
+        "core_format_pass": true,
+        "inside_nonfinite_count": 0,
+        "inside_min": 0.0,
+        "inside_max": 1.0,
+        "outside_template_null_pass": false,
+        "whole_array_finite_range_pass": true,
+        "checks": {
+          "geotiff": true,
+          "single_band": true,
+          "float32": true,
+          "shape_matches": true,
+          "crs_matches": true,
+          "transform_matches": true,
+          "self_contained_tiff": true,
+          "inside_all_finite": true,
+          "inside_range_0_1": true,
+          "inside_not_nodata_or_masked": true
+        }
+      },
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator": "none (no organizer labels/training features)",
+        "value": null,
+        "ci95": [
+          null,
+          null
+        ],
+        "n_withheld_positives": null
+      },
+      "sgmc_calibrated_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator": "none (no organizer labels/training features)",
+        "value": null,
+        "ci95": [
+          null,
+          null
+        ],
+        "n_withheld_positives": null
+      },
+      "exact_dot_subset_of_other_focus_site": {
+        "GEMSDOE24": 0.0,
+        "GEMSDOE25": 0.0,
+        "GEMSDOE27": 0.0,
+        "GEMSDOE28": 0.0,
+        "GEMSDOE30": 0.0,
+        "GEMSDOE31": 0.0,
+        "GEMSDOE32": 0.0,
+        "GEMSDOE33": 0.0,
+        "GEMSDOE36": 0.0
+      },
+      "max_overlap3px_vs_other_focus_sites": 0.0609,
+      "max_overlap3px_vs_other_focus_sites_site": "GEMSDOE27",
+      "max_overlap3px_vs_all_in_this_audit": 0.0609
     }
   ],
   "pairwise_overlap3px": {

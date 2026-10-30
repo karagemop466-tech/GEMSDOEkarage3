@@ -95,24 +95,35 @@ def main() -> int:
 
     focus_rows = "\n".join(site_row(r) for r in sorted(focus, key=lambda r: -r["user_reported_score"]))
 
+    def dti_cell(r: dict, key: str) -> str:
+        v = r[key]
+        if v.get("value") is None:
+            return "<strong>NOT ESTIMABLE</strong><br><small>no organizer labels / training features available</small>"
+        ci = v.get("ci95")
+        if ci and ci[0] is not None:
+            return f"{v['value']:.4f} <small>HOLDOUT-DTI; n={v['n_withheld_positives']:,}; CI {fmt_ci(ci)}</small>"
+        return f"{v['value']:.4f} <small>HOLDOUT-DTI; n={v['n_withheld_positives']:,}</small>"
+
     def cand_row(r: dict, verdict: str, note: str, unique: str) -> str:
         return f"""<tr>
 <td><strong>{esc(r['id'])}</strong><br><small><code>{esc(Path(r['file']).name)}</code></small></td>
 <td><code>{esc(r['sha256'][:12])}</code></td>
 <td>{r['dots']:,}</td>
 <td>{'PASS' if r['format']['core_format_pass'] and r['nan_count_all_pixels'] == 0 else 'FAIL'}</td>
-<td>{r['holdout_dti']['value']:.4f} <small>HOLDOUT-DTI; n={r['holdout_dti']['n_withheld_positives']:,}; CI {fmt_ci(r['holdout_dti']['ci95'])}</small></td>
-<td>{r['sgmc_calibrated_dti']['value']:.4f} <small>HOLDOUT-DTI; CI {fmt_ci(r['sgmc_calibrated_dti']['ci95'])}</small></td>
+<td>{dti_cell(r,'holdout_dti')}</td>
+<td>{dti_cell(r,'sgmc_calibrated_dti')}</td>
 <td>{unique}<br><small>max 3-px overlap vs nine: {r['max_overlap3px_vs_other_focus_sites']:.3f}</small></td>
 <td><span class="no">{esc(verdict)}</span><br><small>{esc(note)}</small></td>
 </tr>"""
 
+    offcat = next((r for r in cands if r["id"].startswith("CAND-offcat")), None)
     cand_table = "\n".join([
         cand_row(k4, "NO - fails holdout gate", f"HOLDOUT-DTI {k4['holdout_dti']['value']:.4f} < best {best_hr['holdout_dti']['value']:.4f} (GEMSDOE25/30); SGMC-cal {k4['sgmc_calibrated_dti']['value']:.4f} < {best_sg['sgmc_calibrated_dti']['value']:.4f}. Literal scan: {'FAIL' if scan and not scan['pass'] else 'not run'} ({scan['fail_count'] if scan else 'n/a'} rasters over the gate; see scan section).", uniq_k4),
         cand_row(geo, "NO - not cleared", "Static placement built from catalogue-adjacent dots: leakage not excluded. Its card's 0.4239 did not reproduce (0.3047 here). SGMC-cal is the lowest of the files tested.", f"NOT SCANNED on full registry (vs nine: max overlap {geo['max_overlap3px_vs_other_focus_sites']:.3f})"),
         cand_row(earlier, "NO", f"Unique vs the nine (max overlap {earlier['max_overlap3px_vs_other_focus_sites']:.3f}), but HOLDOUT-DTI {earlier['holdout_dti']['value']:.4f} and SGMC-cal {earlier['sgmc_calibrated_dti']['value']:.4f} are below the nine-site best.", ("vs nine only: YES; full registry NOT SCANNED" if earlier["max_overlap3px_vs_other_focus_sites"] <= 0.70 else "NO")),
-    ])
-
+    ] + ([
+        cand_row(offcat, "NO - NOT VALIDATED", f"Format-valid and unique vs all nine focus sites (max 3-px overlap {offcat['max_overlap3px_vs_other_focus_sites']:.3f}, well under the 70% rule; 0 dots on catalogue faults. HOLDOUT-DTI and leaderboard score NOT ESTIMABLE without training_features.tif / organizer labels. Do not spend a slot until validated.", f"UNIQUE vs nine: YES (max overlap {offcat['max_overlap3px_vs_other_focus_sites']:.3f} <= 0.70); full registry NOT SCANNED"),
+    ] if offcat else []))
     subset_txt = ", ".join(f"{esc(k)} ({v*100:.1f}% of its dots are exact pixels)" for k, v in sorted(g32_subset.items(), key=lambda kv: -kv[1])) or "none"
     corr_txt = "Spearman(USER-REPORTED, SGMC-cal) = 0.950 and Spearman(USER-REPORTED, HOLDOUT-DTI) = -0.849 across the nine sites (n=9; scores USER-REPORTED, not organizer-confirmed)."
 
