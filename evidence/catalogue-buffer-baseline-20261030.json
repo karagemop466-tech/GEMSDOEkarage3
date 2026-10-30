@@ -1,0 +1,80 @@
+{
+  "experiment": "catalogue-proximity baselines (diagnostic, NOT submissions)",
+  "score_label": "HOLDOUT-DTI",
+  "results": {
+    "buffer_0px": {
+      "pooled_dti": 0.0,
+      "ci95_cluster_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 0
+    },
+    "buffer_1px": {
+      "pooled_dti": 0.01848386985920997,
+      "ci95_cluster_bootstrap": [
+        0.016058491478904955,
+        0.0210854487888248
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 183308
+    },
+    "buffer_3px": {
+      "pooled_dti": 0.02864269096020797,
+      "ci95_cluster_bootstrap": [
+        0.02527922740778159,
+        0.032042711606073755
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 586311
+    },
+    "buffer_6px": {
+      "pooled_dti": 0.03312901957316731,
+      "ci95_cluster_bootstrap": [
+        0.029687507159407975,
+        0.036655354032607786
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 1213378
+    },
+    "buffer_10px": {
+      "pooled_dti": 0.030459022397549097,
+      "ci95_cluster_bootstrap": [
+        0.027433134238238087,
+        0.033491619947790964
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 2049888
+    }
+  },
+  "sparse_lattice_results": {
+    "lattice_ring_1_2px": {
+      "pooled_dti": 0.028957855668647645,
+      "ci95_cluster_bootstrap": [
+        0.023980811021750224,
+        0.03361768918586286
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 40853
+    },
+    "lattice_ring_1_3px": {
+      "pooled_dti": 0.057185472562321996,
+      "ci95_cluster_bootstrap": [
+        0.050435755065399664,
+        0.06442218785127525
+      ],
+      "n_withheld_positives": 22232,
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "emitted_cells_all_cells_total": 64925
+    }
+  },
+  "elapsed_s": 63.1,
+  "not_organizer_confirmed": true
+}
