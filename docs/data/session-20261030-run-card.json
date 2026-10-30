@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "run_id": "gems-karage3-session7-20261030",
+  "created_utc": "2026-10-30T01:48:04+00:00",
+  "evidence_class": "RUN CARD \u2014 NEGATIVE / NO CANDIDATE. Numbers are geometry diagnostics or public-page values, not scores.",
+  "hypothesis": "None tested this session. Three candidate hypotheses are listed, unranked by evidence, in docs/review-2026-10-30.md section 9.",
+  "mechanism": "Not applicable: no candidate was built. The blocking mechanism is measured: the registered 5-px calibration lattice covers 99.8713% of the footprint within 3 px, so any footprint-internal file above 22,163 cells exceeds the 70% literal limit.",
+  "named_non_fault_mimic": "Calibration lattice r13-lattice-s5 (a space-filling synthetic dot grid, per its own provenance) and dense continuous research surfaces in the registry. Neither is a geologic detector.",
+  "holdout_dti": {
+    "value": null,
+    "ci95": null,
+    "evaluator": null,
+    "withheld_positives": null,
+    "label": "NOT RUN (no candidate; no feature stack in this checkout)"
+  },
+  "public_leaderboard_reference": {
+    "rank1": {
+      "name": "xiaofanhu",
+      "score": 0.4544
+    },
+    "rank2": {
+      "name": "cfld__",
+      "score": 0.3916
+    },
+    "rank3": {
+      "name": "Batik Shirt Brothers",
+      "score": 0.3911
+    },
+    "label": "PUBLIC LEADERBOARD (page fetch, not a submission receipt)",
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "fetched": "2026-10-30"
+  },
+  "registry_correlation_overlap": {
+    "lattice_witness": "13GEMSDOE r13-lattice-s5",
+    "footprint_coverage_within_3px": 0.998713,
+    "uncovered_footprint_cells": 6649,
+    "largest_compliant_support_cells": 22163,
+    "rank_correlation": "not measured for a new candidate",
+    "registry_complete": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN for a new candidate. Existing 7 -zeros.tif files in docs/downloads passed format checks (float32, EPSG:32611, 3730x3292, same transform, 0 NaN, values in [0,1]); all fail the uniqueness gate.",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": "No submission. Owner registry-scope decision needed (docs/review-2026-10-30.md section 6).",
+  "note_chars": 0,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "slot_selected": false,
+  "budget": "0 of 3 experiments; about 1 hour of work.",
+  "evidence_files": [
+    "evidence/lattice-bound-20261030.json",
+    "docs/review-2026-10-30.md",
+    "evidence/saved-tiffs-literal-20261028.json",
+    "evidence/release-audit-20261028.json",
+    "evidence/retained-submissions-audit-20261028.json",
+    "docs/quarantine/nan-variants/NOT-CLEARED.md"
+  ],
+  "evidence_sha256": {
+    "evidence/lattice-bound-20261030.json": "805ecec958959a88e18d1be6e2cd4f044a227722ba3b530aac295aed1e482c28",
+    "docs/review-2026-10-30.md": "85a538bde5038499d50781da1d46560165ff9bb1eb503ed1a7d7df0f7c2bc6b5",
+    "evidence/saved-tiffs-literal-20261028.json": "d657de6e82a434cee224f33e5b56967d92278beb6f86aef24f502ba6dfc4d1ea",
+    "evidence/release-audit-20261028.json": "1cd997e3530a36d25707c4e039b82ffabc86666237469e8ff6793e4c2f00ca14",
+    "evidence/retained-submissions-audit-20261028.json": "23dc439379e6c61fb4e790cf0f7b2010ba3387874026f26c9e8efe216187500a",
+    "docs/quarantine/nan-variants/NOT-CLEARED.md": "2fdef119270004709bcb919612a815c3251897d9b90151adcdfde5ee1e1910b8"
+  }
+}
