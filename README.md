@@ -2,6 +2,8 @@
 
 ## START HERE — executive summary (2026-10-29)
 
+**Latest repository review (2026-10-30):** [review findings and safe next steps](docs/review-2026-10-30.md). No candidate is cleared; the full pytest suite was unavailable in this environment, and the static inventory check is 30/31.
+
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
 
 - **Executive summary (table of all nine sites + the new file):** [docs/nine-site-summary.html](docs/nine-site-summary.html) · run card [docs/nine-site-run-card.json](docs/nine-site-run-card.json)
