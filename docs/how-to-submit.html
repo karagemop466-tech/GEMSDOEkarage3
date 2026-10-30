@@ -3,87 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Step-by-step guide to download and submit the karage3-novel-faulthalo unique GeoTIFF to the DOE GEMS competition on DrivenData.">
-<title>How to submit · karage3-novel-faulthalo · GEMSDOEkarage3</title>
+<meta name="description" content="Automated release status and submission steps for DOE GEMS. No candidate is currently approved.">
+<title>Submission status · GEMSDOEkarage3</title>
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="container header-inner">
-  <a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>How to submit &bull; DOE GEMS / 306</small></span></a>
-  <nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">How to submit</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav>
+  <a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>Submission status · DOE GEMS / 306</small></span></a>
+  <nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">Submission status</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav>
 </div></header>
-
 <main id="main"><div class="container">
 <div class="page-hero">
-  <div class="eyebrow">Download &rarr; upload to DrivenData GEMS</div>
-  <h1 class="page-title">Submit karage3-novel-faulthalo to DrivenData GEMS</h1>
-  <p class="lede">A format-validated, unique GeoTIFF ready to download. These steps prevent the <code>"Predicted values must be in range [0, 1]"</code> portal rejection.</p>
+  <div class="eyebrow">Automated release gate</div>
+  <h1 class="page-title">No submission is approved</h1>
+  <p class="lede"><strong>OK TO DOWNLOAD AND SUBMIT? NO.</strong> No GeoTIFF or ZIP is cleared. The download controls are intentionally disabled until all evidence gates pass and a separate selector authorizes a slot.</p>
 </div>
-
 <div class="banner">
   <span class="banner-icon" aria-hidden="true">!</span>
   <div>
-    <strong>Status: format-valid and unique, but NOT cleared to submit under the current uniqueness gate.</strong>
-    <p>This page explains how to upload if you choose to spend a weekly slot. The file passes all local checks (values in [0, 1], zero NaN inside footprint, exact grid match) and is unique vs every GEMSDOE focus-site submission, but it exceeds the repository's strict calibration-lattice stop (99.95% of dots within 3 px of the registered lattice; limit 70%). It has no organizer-confirmed score.</p>
+    <strong>DO NOT SUBMIT any TIFF in this repository.</strong>
+    <p>Existing rasters are retained for audit or historical research. They have failed the literal-uniqueness or boundary safeguard, and no candidate has a current valid holdout promotion. A locally valid GeoTIFF is not evidence of leaderboard performance or organizer acceptance.</p>
   </div>
 </div>
-
-<!-- ===== DOWNLOAD ===== -->
-<section id="download"><h2>Step 1 &mdash; Download the submission file</h2>
-<div class="cards">
-<div class="card"><span class="number">1</span><h3>GeoTIFF (.tif)</h3><p>Single-band float32 GeoTIFF, all values in [0, 1], no NaN inside footprint, exact EPSG:32611 grid (3730 &times; 3292, 100 m).</p><a class="button" href="downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif">Download submission .tif <span aria-hidden="true">&#8595;</span></a><span class="micro">SHA-256: 35e3f4819a454a98ab5446c8bf8146fb669f5197d1690647698222cf91e70acf</span></div>
-<div class="card"><span class="number">2</span><h3>ZIP package (.zip)</h3><p>Single-TIFF ZIP archive containing the same GeoTIFF. DrivenData accepts both formats.</p><a class="button light" href="downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.zip">Download .zip package <span aria-hidden="true">&#8595;</span></a><span class="micro">SHA-256 of zip: 0c26304d82ee99bf0300caa544f79ab84813e5650e7eb5662c1911a1f0797d08</span></div>
-<div class="card"><span class="number">3</span><h3>Validation audit (.json)</h3><p>Machine-readable validation receipt with all 12 check results, SHA-256 hashes, grid conformance and uniqueness measurements.</p><a class="button light" href="downloads/gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-audit.json">Download validation audit <span aria-hidden="true">&#8595;</span></a></div>
-</div>
+<section id="status"><h2>What is blocking release?</h2>
+<ul>
+<li>No authenticated competition inputs or cached feature stack are available in this checkout.</li>
+<li>The shared holdout/writer protocol has unresolved issues; local private forks are not permitted by the project rules.</li>
+<li>A complete, current registry check at both surface and final-dot stages is not available.</li>
+<li>No new candidate has beaten a frozen same-evaluator HOLDOUT-DTI baseline with a valid paired confidence interval.</li>
+<li>No independent selector approval, submission-slot decision, or organizer receipt exists.</li>
+</ul>
+<p>See the <a href="../review-2026-10-30.md">30 October repository review</a>, <a href="../current-gate-decision.json">current machine-readable gate decision</a>, and <a href="../release-review.html">saved-byte release review</a>.</p>
 </section>
-
-<!-- ===== SUBMIT STEPS ===== -->
-<section id="steps"><h2>Step 2 &mdash; Upload to DrivenData</h2>
-<ol class="steps">
-<li><strong>Open DrivenData GEMS (#306).</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a>, sign in, and navigate to the Submissions page.</li>
-<li><strong>Upload the file.</strong> Select <code>gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif</code> (or the single-TIFF .zip). The file is pre-clamped to [0, 1] with zero NaN inside the footprint &mdash; preventing the range-error portal rejection.</li>
-<li><strong>Enter the submission note (&le;140 characters).</strong> Copy-paste ready:<br><code style="display:block;margin:6px 0;background:#f4f7f4;padding:8px;border-radius:6px;font-size:12px;overflow-wrap:break-word">Unique fault-halo geothermal targeting: cond x dilation x basement x scarp x TC hotspots 0-1px off catalogue traces, 37654 dots</code></li>
-<li><strong>Save the organizer receipt.</strong> Record the DrivenData submission-page confirmation binding filename, SHA-256, timestamp and returned score. Only receipt-backed scores may be labeled ORGANIZER-CONFIRMED.</li>
+<section id="future"><h2>How to submit after a future approval</h2>
+<p>These steps apply only after the dashboard explicitly shows <strong>OK TO DOWNLOAD AND SUBMIT: YES</strong>, the file hash matches its passing run card, and a separate selector approves the slot. None of those conditions is currently met.</p>
+<ol>
+<li>Download only the exact `.tif` or single-TIFF `.zip` linked from the approved candidate card. Do not use a historical or quarantined file.</li>
+<li>Verify the exact saved bytes: one-band GeoTIFF; EPSG:32611; competition grid shape and transform; predictions within [0, 1]; no NaN or infinity in the submission array; required outside-footprint convention; SHA-256 matches the run card.</li>
+<li>On the official DrivenData submission page, upload the file and use the unique submission name and short note (at most 140 characters) from the approved card.</li>
+<li>Save the organizer receipt with filename, hash, timestamp and returned score. Only that artifact-bound receipt may be labeled ORGANIZER-CONFIRMED.</li>
 </ol>
+<p>The repository's automated validator and selector are intended to remove manual inspection from the scientific and format gates. The final upload and any account-specific slot action still occur on the organizer's site and cannot be represented as completed without a receipt.</p>
 </section>
-
-<!-- ===== VALIDATION ===== -->
-<section id="validation"><h2>Step 3 &mdash; Pre-upload validation checklist</h2>
-<div class="table-wrap"><table>
-<thead><tr><th scope="col">#</th><th scope="col">Check</th><th scope="col">Expected</th><th scope="col">Status</th></tr></thead>
-<tbody>
-<tr><td>1</td><td>Single-band GeoTIFF</td><td>1 band, GTiff driver</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>2</td><td>Data type float32</td><td>float32</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>3</td><td>Dimensions</td><td>3730 &times; 3292 pixels</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>4</td><td>CRS</td><td>EPSG:32611 (UTM 11N)</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>5</td><td>Geotransform</td><td>(100, 0, 243350, 0, -100, 4508550)</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>6</td><td>No NaN inside footprint</td><td>All 12,279,160 cells finite</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>7</td><td>Values in [0, 1]</td><td>min=0.0, max=1.0</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>8</td><td>No sentinel values</td><td>No -9999, -3.4e38, etc.</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>9</td><td>Outside footprint = 0.0</td><td>nodata=None, zeros outside</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>10</td><td>Zero dots on catalogue faults</td><td>No positive pixels on known faults</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>11</td><td>Uniqueness vs GEMSDOE focus sites</td><td>9.09% vs GEMSDOE32, 39.45% vs GEMSDOE25 (limit 70%)</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>12</td><td>Self-contained TIFF</td><td>No external .msk or .aux.xml</td><td><span style="color:#38694a">PASS</span></td></tr>
-<tr><td>13</td><td>Uniqueness vs calibration lattice (repo gate)</td><td>&le;70% of dots within 3 px of r13-lattice-s5</td><td><span style="color:#963d31">FAIL &mdash; 99.95%</span></td></tr>
-</tbody>
-</table></div>
-<div class="callout"><div>
-  <h3>About the &ldquo;Predicted values must be in range [0, 1]&rdquo; error</h3>
-  <p>This error occurs when a submission contains NaN, Inf, or out-of-range float values. This file eliminates it by clamping all footprint values to [0, 1], setting all non-footprint cells to exactly 0.0 with nodata=None, and guaranteeing zero NaN/Inf/sentinels anywhere in the 12,279,160-cell grid.</p>
-</div></div>
+<section id="range"><h2>About the range error</h2>
+<p>The message “Predicted values must be in range [0, 1]” establishes that the submitted values were rejected by a range validation. It does <strong>not</strong>, by itself, identify whether NaN, infinity, out-of-range values, or another serialization detail caused the rejection. Validate the exact file that was uploaded—not a similarly named sibling—and record its SHA-256. No current candidate has been cleared for upload in response to that earlier error.</p>
+<p>Official references: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS competition</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem and submission format</a>.</p>
 </section>
-
-<!-- ===== NOTES ===== -->
-<section id="notes"><h2>Important notes</h2>
-<div class="callout"><div>
-  <h3>Local validation &ne; organizer acceptance</h3>
-  <p>This file passes all local format, range and uniqueness checks vs the GEMSDOE focus sites. It has <strong>not</strong> been uploaded to DrivenData and has <strong>no organizer-confirmed score</strong>. Its leaderboard performance cannot be estimated (no DrivenData authentication is available; automated access is prohibited by DrivenData terms; the local HOLDOUT-DTI diagnostic does not reproduce portal ordering). Upload only after your own review and selector approval.</p>
-</div></div>
-<a class="button" href="../executive-summary.html">Back to nine-site summary <span aria-hidden="true">&#8594;</span></a>
-</section>
-
 </div></main>
-<footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 &middot; Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp;/&nbsp; <a href="../executive-summary.html">Nine-site summary</a></span></div></footer>
+<footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 · Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp;/&nbsp; <a href="../executive-summary.html">Nine-site summary</a></span></div></footer>
 </body>
 </html>

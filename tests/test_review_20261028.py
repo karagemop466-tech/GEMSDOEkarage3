@@ -27,7 +27,7 @@ def test_preflight_stops_proven_duplicate_budget_and_keeps_lower_budget_inconclu
 
 
 def test_independent_saved_byte_audit_includes_k3c_and_every_public_tiff():
-    audit = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    audit = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261030.json').read_text())
     assert audit['complete_registry_checked'] is False
     assert {r['file'] for r in audit['rasters']} == {
         str(p.relative_to(ROOT)) for p in (ROOT / 'docs').rglob('*.tif')}
@@ -71,7 +71,7 @@ def test_shared_final_gate_has_no_lattice_exemption():
 
 
 def test_retained_byte_audit_covers_all_tiffs_and_refuses_each():
-    receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261028.json').read_text())
+    receipt = json.loads((ROOT / 'evidence/retained-submissions-audit-20261030.json').read_text())
     assert set(r['file'] for r in receipt['rasters']) == set(str(p.relative_to(ROOT)) for p in (ROOT / 'docs/downloads').glob('*.tif'))
     for row in receipt['rasters']:
         assert hashlib.sha256((ROOT / row['file']).read_bytes()).hexdigest() == row['sha256']
@@ -89,7 +89,7 @@ def test_current_numbers_verifier_runs_fail_closed():
 
 def test_parallel_k3c_witness_agrees_with_eight_file_audit():
     witness = json.loads((ROOT / 'evidence/k3c-literal-witness-audit-20261028.json').read_text())
-    all_saved = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261028.json').read_text())
+    all_saved = json.loads((ROOT / 'evidence/saved-tiffs-literal-20261030.json').read_text())
     row = next(r for r in all_saved['rasters'] if r['file'] == witness['candidate'])
     assert hashlib.sha256((ROOT / witness['candidate']).read_bytes()).hexdigest() == witness['candidate_sha256']
     assert row['sha256'] == witness['candidate_sha256']

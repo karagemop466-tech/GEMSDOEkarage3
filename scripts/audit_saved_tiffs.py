@@ -93,7 +93,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--cache', type=Path, default=ROOT / '.cache/historical')
     ap.add_argument('--fetch', action='store_true')
-    ap.add_argument('--out', type=Path, default=ROOT / 'evidence/saved-tiffs-literal-20261028.json')
+    ap.add_argument('--out', type=Path, default=ROOT / 'evidence/saved-tiffs-literal-20261030.json')
     ap.add_argument('--verify-receipt', type=Path,
                     help='Compare fresh values with a saved report, ignoring only the audit timestamp; do not write output')
     args = ap.parse_args()

@@ -1,11 +1,17 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## START HERE — executive summary (2026-10-29)
+## START HERE — current review status (2026-10-30)
 
-**OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
+**OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.** Read [the current repository review](docs/review-2026-10-30.md) and this standing brief before editing or running experiments. The current decision is fail-closed; old run cards and historical TIFFs are not permission to submit.
 
-- **Executive summary (table of all nine sites + the new file):** [docs/nine-site-summary.html](docs/nine-site-summary.html) · run card [docs/nine-site-run-card.json](docs/nine-site-run-card.json)
-- **New TIF generated this session (NOT unique):** `karage3-k4-offcat-ridge-20k` — [zeros TIF](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif) · [zip](docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip). Format-valid, but it FAILS the full-registry literal uniqueness scan (108 of 2,051 same-grid registry rasters exceed the 3-px or rho gate; evidence in `evidence/k4-literal-uniqueness-scan.json`) and the holdout gate (HOLDOUT-DTI 0.0178 vs the nine-site best 0.0967). Do not submit it.
+- **Executive summary (all nine focus sites):** [docs/nine-site-summary.html](docs/nine-site-summary.html) · machine-readable card [docs/nine-site-run-card.json](docs/nine-site-run-card.json)
+- **No approved TIF or ZIP is offered.** The K4 off-catalogue raster is a retained research artifact, not a submission: the holdout and uniqueness requirements fail. Its direct download link has been removed from the executive summary; the TIFF remains in the repository for audit lineage only.
+- **The score table distinguishes evidence types:** site scores copied from the request are USER-REPORTED / UNVERIFIED; local evaluator metrics are HOLDOUT-DTI, not leaderboard estimates; no artifact-linked ORGANIZER-CONFIRMED score receipt is present.
+
+> **Current-status precedence:** this opening section and [`docs/review-2026-10-30.md`](docs/review-2026-10-30.md) supersede the dated historical analysis below. Older sections preserve prior claims and may contain outdated score explanations, validation descriptions, or file names; do not follow them as download or submission instructions. The active submission guide is fail-closed and currently says no file is approved.
+
+### Historical snapshot (2026-10-29) — retained for provenance, not current instructions
+
 - **Portal error "Predicted values must be in range [0, 1]":** the `-nan.tif` files contain 7,111,787 NaN pixels outside the footprint. Use only the `-zeros.tif` / `-allfinite.tif` version of a file (same dots, no NaN).
 - **Reported best (0.2778, GEMSDOE32) is not unique:** every focus file has a peer with ≥0.976 of its dots within 3 px. GEMSDOE30 is the same dot array as GEMSDOE25.
 - **Score correction (2026-10-29):** the H-GEO-CONDUIT run card's HOLDOUT-DTI **0.4239** [0.4053, 0.4427] did not reproduce. The shared evaluator (`GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives) gives **HOLDOUT-DTI 0.3047** [95% CI 0.2881, 0.3189]. Not organizer-confirmed; not cleared. Evidence: `evidence/` and `scripts/evaluate_holdout.py`.
@@ -14,7 +20,7 @@
 - **ORGANIZER-CONFIRMED leaderboard check (official DrivenData public leaderboard, fetched 2026-10-29):** https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ lists rank #1 = **0.4544**, #2 = 0.3916, rank #47 = **0.3195**, rank #50 = 0.3167. The prompt's **0.4413 does not appear** in the top 50. So **0.3195 is not the highest public score**. GEMSDOE32's user-reported 0.2778 is below rank 50 and not visible here. Public split only.
 - **Labels:** HOLDOUT-DTI = local shared evaluator (withheld-positive count and 95% CI shown); USER-REPORTED = copied from the request; ORGANIZER-CONFIRMED = none exists yet.
 
-## Session 6 (2026-10-29) — correction and verification (read first)
+## Archived Session 6 (2026-10-29) — correction and verification (historical)
 
 - **Status page and review note (2026-10-29):** [docs/submit-now/index.html](docs/submit-now/index.html) (blocking reasons, nine-site table) · [evidence/review-note-20261029.md](evidence/review-note-20261029.md) (three review passes, irregularities, remaining work).
 - **Answer to "download and submit?": NO.** No file is cleared. Two files were previously presented as downloadable and are now quarantined:

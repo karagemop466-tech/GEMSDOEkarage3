@@ -42,7 +42,7 @@ def main() -> int:
     latest = load('docs/data/latest-run.json')
     archived = load('docs/k3c/run-card.json')
     decision = load('docs/current-gate-decision.json')
-    audit = load('evidence/saved-tiffs-literal-20261028.json')
+    audit = load('evidence/saved-tiffs-literal-20261030.json')
     witness = load('evidence/k3c-literal-witness-audit-20261028.json')
     sites = load('docs/sites.json')
     history = load('docs/data/historical-audit.json')
@@ -64,8 +64,8 @@ def main() -> int:
        sha(ROOT / 'docs/data/current-run.json') == sha(ROOT / 'evidence/run-card-20261028-afbdab50.json'))
     ck('current card binds both saved audit receipts',
        current['geometry_audit_sha256'] == sha(ROOT / 'docs/data/historical-audit.json')
-       and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json')
-       and sha(ROOT / 'docs/data/saved-tiffs-literal-20261028.json') == sha(ROOT / 'evidence/saved-tiffs-literal-20261028.json'))
+       and current['saved_tiffs_audit_sha256'] == sha(ROOT / 'evidence/saved-tiffs-literal-20261030.json')
+       and sha(ROOT / 'docs/data/saved-tiffs-literal-20261030.json') == sha(ROOT / 'evidence/saved-tiffs-literal-20261030.json'))
     ck('lattice geometry and budget bound agree',
        audit['witness']['sha256'] == history['lattice']['source']['sha256']
        and audit['witness']['uncovered_footprint_pixels'] == history['lattice']['uncovered_beyond_3px']

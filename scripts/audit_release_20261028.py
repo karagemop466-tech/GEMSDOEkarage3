@@ -4,6 +4,7 @@ A failing witness is sufficient to reject, never sufficient to approve. Official
 organizer provenance, full-registry surface checks and holdout reruns remain separate.
 """
 from pathlib import Path
+from datetime import datetime, timezone
 import json
 import numpy as np
 import rasterio
@@ -48,7 +49,7 @@ def run():
                                                       and (boundary_ring_share(dots, footprint) or 0) >= .5),
                          validator=result, ok_to_submit=False))
     return dict(schema_version=1, evidence_class='GEOMETRY / SAVED-BYTE AUDIT — NOT A SCORE',
-                date_utc='2026-10-28', witness=manifest['inputs']['lattice'],
+                date_utc=datetime.now(timezone.utc).date().isoformat(), witness=manifest['inputs']['lattice'],
                 template=manifest['inputs']['template'],
                 footprint_pixels=int(footprint.sum()),
                 witness_uncovered_pixels=int((footprint & (distance > 3)).sum()),
@@ -60,6 +61,6 @@ def run():
 
 if __name__ == '__main__':
     result = run()
-    target = ROOT / 'evidence/release-audit-20261028.json'
+    target = ROOT / 'evidence/release-audit-20261030.json'
     target.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
     print(json.dumps({r['file']: r['within_3px_fraction'] for r in result['rows']}, indent=2))
