@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-27T22:45:00Z",
+  "updated_utc": "2026-10-30T02:00:00Z",
   "irregularities": [
     {
       "id": "IR-K3-HOLDOUT-EXTDIR-01",
@@ -57,6 +57,62 @@
       "location": "README.md & docs/research.md",
       "summary": "The supplied prompt cites both 0.3195 and 0.4413 as competition leaderboard highs, and lists nine site scores (0.2449..0.2778) without portal receipt screenshots. Outbound network whitelist allows GitHub and PyPI/npm only (DrivenData, USGS, GDR, Dropbox, NLR unreachable directly).",
       "resolution": "Preserved both 0.3195 and 0.4413 verbatim as unverified prompt claims, labeled all nine historical site scores as OWNER-REPORT (distinct from measured HOLDOUT-DTI), and verified all local rasters via SHA-256 against pinned GitHub mirrors."
+    },
+    {
+      "id": "IR-S7-01",
+      "severity": "critical",
+      "category": "portal_validator_hazard",
+      "location": "docs/downloads/*-nan.tif",
+      "summary": "Three -nan.tif files (7,111,787 NaN cells each) remained in the public download folder after the README said they were removed.",
+      "resolution": "Moved to docs/quarantine/nan-variants/ with NOT-CLEARED.md (2026-10-30). Historical references kept."
+    },
+    {
+      "id": "IR-S7-02",
+      "severity": "high",
+      "category": "stale_receipts",
+      "location": "evidence/release-audit-20261028.json, evidence/retained-submissions-audit-20261028.json, evidence/saved-tiffs-literal-20261028.json, docs/data/current-run.json",
+      "summary": "Audit receipts listed an earlier TIFF set; 3 tests failed (6 total on entry).",
+      "resolution": "Regenerated with the existing generators; current-run card rebuilt (hash-binding and timestamp only). Suite: 225 passed, 1 skipped."
+    },
+    {
+      "id": "IR-S7-03",
+      "severity": "high",
+      "category": "sample_provenance",
+      "location": "registry/data_manifest.json; .cache/gems_data (restored 2026-10-30)",
+      "summary": "Verified: labels.tif and existing_faults.tif are byte-identical (SHA-256 7ba308cc...). sample_submission.tif (SHA-256 2176d08e...) has 60,988 pixels equal to 1, the same set as the labels' positives, and NaN outside the footprint. The competition page says the sample predicts total fault absence (all zeros).",
+      "resolution": "Flagged for owner review. Owner must download the official files by hand and supply SHA-256 values. The project keeps using the sample only as a grid template."
+    },
+    {
+      "id": "IR-S7-04",
+      "severity": "critical",
+      "category": "protocol_vs_competition",
+      "location": "AGENTS.md; README.md; docs/review-2026-10-30.md section 3",
+      "summary": "The competition text (page 967) has no uniqueness rule. The project's literal 70%/3-px gate against all registry rasters is unsatisfiable for any footprint-internal file above 22,163 cells, because the calibration lattice leaves only 6,649 footprint cells uncovered.",
+      "resolution": "Measured and reproduced (scripts/verify_lattice_bound.py). Owner must choose the registry scope (docs/review-2026-10-30.md section 6). No exemption applied."
+    },
+    {
+      "id": "IR-S7-05",
+      "severity": "medium",
+      "category": "prompt_provenance_conflict",
+      "location": "README.md; docs/review-2026-10-30.md section 1",
+      "summary": "Prompt values 0.4413 and 0.3195 are not on the public leaderboard fetched 2026-10-30 (live top 0.4544, #2 0.3916, #3 0.3911).",
+      "resolution": "Reported as UNVERIFIED prompt claims. Public-page values are labelled PUBLIC LEADERBOARD, not ORGANIZER-CONFIRMED."
+    },
+    {
+      "id": "IR-S7-06",
+      "severity": "low",
+      "category": "unread_source",
+      "location": "https://www.drivendata.org/competitions/306/competition-doe-gems/rules/",
+      "summary": "The rules link redirects to HeroX (https://www.herox.com/GEMSPrize/resource/2274). It was not read this session.",
+      "resolution": "Open. Owner or a later session to read it before any submission."
+    },
+    {
+      "id": "IR-S7-07",
+      "severity": "low",
+      "category": "stale_claim",
+      "location": "README.md",
+      "summary": "README said 200+ tests passed; the suite now has 225 passed and 1 skipped.",
+      "resolution": "Updated in the session 7 README section."
     }
   ]
 }

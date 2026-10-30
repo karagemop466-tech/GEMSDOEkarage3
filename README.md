@@ -1,5 +1,20 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## READ FIRST — Session 7 (2026-10-30 UTC)
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared.**
+
+- **Why no new TIFF was generated:** the project's literal 70 %/3-px gate against the registered calibration lattice (`13GEMSDOE r13-lattice-s5`) makes any footprint-internal file above **22,163 cells** impossible to clear. Re-measured today: 99.8713 % of the footprint is covered within 3 px; 6,649 cells are uncovered (`scripts/verify_lattice_bound.py` → `evidence/lattice-bound-20261030.json`). Staying under the limit by placing dots on the uncovered ring is refused as boundary gaming.
+- **The competition text has no uniqueness rule** ([page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)). The 70 % gate is this project's protocol. **The owner must choose the registry scope** (keep literal, exclude named calibration/surface rasters with a signature, or use the nine named sites only). Options: [docs/review-2026-10-30.md §6](docs/review-2026-10-30.md).
+- **Live public leaderboard (fetched 2026-10-30, PUBLIC LEADERBOARD, not a submission receipt):** #1 xiaofanhu **0.4544**, #2 cfld__ **0.3916**, #3 Batik Shirt Brothers **0.3911** ([leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). The prompt's 0.4413 and 0.3195 are not confirmed.
+- **Format check (official [page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)):** float32, EPSG:32611, 100 m, values in [0, 1], NaN or null outside bounds. The 7 `-zeros.tif` files in `docs/downloads/` pass this. Their uniqueness gate fails (>99 % overlap with the lattice).
+- **Portal error fixed:** the three `-nan.tif` files (7,111,787 NaN cells each) were moved out of `docs/downloads/` into [`docs/quarantine/nan-variants/`](docs/quarantine/nan-variants/NOT-CLEARED.md). Never upload a `-nan.tif`.
+- **Sample-file irregularity (IR-S7-03):** the mirror's `labels.tif` and `existing_faults.tif` are byte-identical, and `sample_submission.tif` has the same 60,988 positive pixels as the labels. The competition page describes the sample as "total fault absence". Owner must verify against the official download.
+- **Repo health:** stale audit receipts regenerated; tests went from 6 failed to **225 passed, 1 skipped**.
+- **Full review, run card and owner decisions:** [docs/review-2026-10-30.md](docs/review-2026-10-30.md) · [docs/data/session-20261030-run-card.json](docs/data/session-20261030-run-card.json) · irregularities IR-S7-01…07 in [registry/irregularities.json](registry/irregularities.json).
+
+---
+
 ## START HERE — executive summary (2026-10-29)
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
