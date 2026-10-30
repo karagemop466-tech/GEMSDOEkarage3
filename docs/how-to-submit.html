@@ -2,55 +2,77 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Automated release status and submission steps for DOE GEMS. No candidate is currently approved.">
-<title>Submission status · GEMSDOEkarage3</title>
-<link rel="stylesheet" href="../assets/site.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit · GEMSDOEkarage3 · DO NOT UPLOAD</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><div class="container header-inner">
-  <a class="brand" href="../index.html"><span class="brand-mark">G</span><span class="brand-name">GEMSDOEkarage3<small>Submission status · DOE GEMS / 306</small></span></a>
-  <nav class="nav" aria-label="Primary"><a href="../index.html">Overview</a><a href="../executive-summary.html">Nine-site executive summary</a><a href="index.html" aria-current="page">Submission status</a><a href="../research.html">Research</a><a href="../sources.html">Sources</a></nav>
-</div></header>
-<main id="main"><div class="container">
-<div class="page-hero">
-  <div class="eyebrow">Automated release gate</div>
-  <h1 class="page-title">No submission is approved</h1>
-  <p class="lede"><strong>OK TO DOWNLOAD AND SUBMIT? NO.</strong> No GeoTIFF or ZIP is cleared. The download controls are intentionally disabled until all evidence gates pass and a separate selector authorizes a slot.</p>
-</div>
-<div class="banner">
-  <span class="banner-icon" aria-hidden="true">!</span>
-  <div>
-    <strong>DO NOT SUBMIT any TIFF in this repository.</strong>
-    <p>Existing rasters are retained for audit or historical research. They have failed the literal-uniqueness or boundary safeguard, and no candidate has a current valid holdout promotion. A locally valid GeoTIFF is not evidence of leaderboard performance or organizer acceptance.</p>
-  </div>
-</div>
-<section id="status"><h2>What is blocking release?</h2>
-<ul>
-<li>No authenticated competition inputs or cached feature stack are available in this checkout.</li>
-<li>The shared holdout/writer protocol has unresolved issues; local private forks are not permitted by the project rules.</li>
-<li>A complete, current registry check at both surface and final-dot stages is not available.</li>
-<li>No new candidate has beaten a frozen same-evaluator HOLDOUT-DTI baseline with a valid paired confidence interval.</li>
-<li>No independent selector approval, submission-slot decision, or organizer receipt exists.</li>
-</ul>
-<p>See the <a href="../review-2026-10-30.md">30 October repository review</a>, <a href="../current-gate-decision.json">current machine-readable gate decision</a>, and <a href="../release-review.html">saved-byte release review</a>.</p>
+<header class="topbar"><div class="wrap"><strong>GEMSDOEkarage3</strong> · How to submit · DOE GEMS (#306)</div></header>
+<main class="wrap">
+
+<section class="panel" style="border:3px solid #b00020;background:#fff5f5">
+  <p class="section-label">Status · 2026-10-30</p>
+  <h1>DO NOT UPLOAD ANY FILE. No file in this repository is cleared for DrivenData.</h1>
+  <p>This page previously presented a file as ready to upload. That was wrong and has been withdrawn. The file
+  <code>gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif</code> fails the repository's
+  own saved-byte audit: 99.95% of its dots lie within 3 px of the registered lattice witness, against a 70% stop.
+  Evidence: <a href="../evidence/saved-tiffs-literal-20261028.json">saved-byte audit (JSON)</a>.</p>
+  <p><strong>Answer to &ldquo;can I download and submit?&rdquo;: NO.</strong></p>
 </section>
-<section id="future"><h2>How to submit after a future approval</h2>
-<p>These steps apply only after the dashboard explicitly shows <strong>OK TO DOWNLOAD AND SUBMIT: YES</strong>, the file hash matches its passing run card, and a separate selector approves the slot. None of those conditions is currently met.</p>
-<ol>
-<li>Download only the exact `.tif` or single-TIFF `.zip` linked from the approved candidate card. Do not use a historical or quarantined file.</li>
-<li>Verify the exact saved bytes: one-band GeoTIFF; EPSG:32611; competition grid shape and transform; predictions within [0, 1]; no NaN or infinity in the submission array; required outside-footprint convention; SHA-256 matches the run card.</li>
-<li>On the official DrivenData submission page, upload the file and use the unique submission name and short note (at most 140 characters) from the approved card.</li>
-<li>Save the organizer receipt with filename, hash, timestamp and returned score. Only that artifact-bound receipt may be labeled ORGANIZER-CONFIRMED.</li>
-</ol>
-<p>The repository's automated validator and selector are intended to remove manual inspection from the scientific and format gates. The final upload and any account-specific slot action still occur on the organizer's site and cannot be represented as completed without a receipt.</p>
+
+<section class="panel">
+  <h2>1. What the official rules require</h2>
+  <p>Quoted from the official problem page
+  (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">DrivenData, Submission format</a>,
+  retrieved 2026-10-30):</p>
+  <ul>
+    <li>Projected CRS EPSG 32611 (UTM zone 11N), 100 m resolution, same bounds as the training data.</li>
+    <li>&ldquo;data outside the bounds is null or nan.&rdquo;</li>
+    <li>Single layer, datatype 32-bit float (<code>float32</code>), values between 0 and 1.</li>
+  </ul>
+  <p>The official rules are at <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a>.</p>
 </section>
-<section id="range"><h2>About the range error</h2>
-<p>The message “Predicted values must be in range [0, 1]” establishes that the submitted values were rejected by a range validation. It does <strong>not</strong>, by itself, identify whether NaN, infinity, out-of-range values, or another serialization detail caused the rejection. Validate the exact file that was uploaded—not a similarly named sibling—and record its SHA-256. No current candidate has been cleared for upload in response to that earlier error.</p>
-<p>Official references: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS competition</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem and submission format</a>.</p>
+
+<section class="panel">
+  <h2>2. Open conflict (not resolved)</h2>
+  <p>The repository holds two variants of each candidate. Neither has an organizer receipt.</p>
+  <ul>
+    <li><strong>-nan.tif</strong>: NaN outside the footprint. This matches the official &ldquo;null or nan&rdquo; wording.
+    The user-reported portal error &ldquo;Predicted values must be in range [0, 1]&rdquo; was seen with a file of this kind
+    (the exact file was not recorded). The cause of that error is unexplained.</li>
+    <li><strong>-zeros.tif</strong>: 0.0 outside the footprint. This does <em>not</em> match the official &ldquo;null or nan&rdquo;
+    wording. Earlier notes recommended this variant; that recommendation is withdrawn until the organizer confirms it.</li>
+  </ul>
+  <p>Resolving this needs an organizer answer (the DrivenData user forum, linked from the problem page), not a guess.</p>
 </section>
-</div></main>
-<footer class="footer"><div class="container footer-inner"><span>GEMSDOEkarage3 · Evidence before submission</span><span><a href="../index.html">Overview</a> &nbsp;/&nbsp; <a href="../executive-summary.html">Nine-site summary</a></span></div></footer>
+
+<section class="panel">
+  <h2>3. Gates a file must pass before anyone uploads it</h2>
+  <table>
+    <thead><tr><th>Gate</th><th>Status for the novel-faulthalo file</th></tr></thead>
+    <tbody>
+      <tr><td>Official format (grid, float32, single band, outside = null/nan)</td><td>FAIL for -zeros (outside = 0.0); see section 2</td></tr>
+      <tr><td>Literal uniqueness vs pinned lattice witness (&le;70% within 3 px)</td><td>FAIL: 99.95%</td></tr>
+      <tr><td>Literal uniqueness vs every registry raster (complete, hash-bound)</td><td>NOT RUN (complete registry not available here)</td></tr>
+      <tr><td>Holdout (whole-segment buffered, paired, leakage canaries)</td><td>NOT RUN (training feature stack not in this checkout)</td></tr>
+      <tr><td>Separate weekly-slot selector approval</td><td>NOT GRANTED</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <h2>4. What would change this</h2>
+  <ol>
+    <li>A candidate that passes every gate above, with its own audit JSON and run card.</li>
+    <li>An organizer answer on NaN versus 0.0 outside the footprint.</li>
+    <li>A selector decision, made separately, on a weekly slot.</li>
+  </ol>
+  <p>Until all three exist, do not upload. Local checks are not organizer acceptance, and no score in this repository
+  is organizer-confirmed.</p>
+</section>
+
+<p><a href="../README.md">Repository README (START HERE)</a> · <a href="executive-summary.html">Executive summary</a> ·
+<a href="release-review.html">Release review</a></p>
+</main>
 </body>
 </html>

@@ -1,0 +1,36 @@
+{
+  "schema": "lattice-bound-v1",
+  "generated_utc": "2026-10-30T01:54:28+00:00",
+  "evidence_class": "GEOMETRY DIAGNOSTIC - NOT A SCORE, NOT A SUBMISSION APPROVAL",
+  "witness": {
+    "source_url": "https://github.com/buffedlizard55-lab/13GEMSDOE/blob/92ee6f074323f161eed837b80ec3ee5b662e26f5/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "pinned_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+  },
+  "template": {
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/bridge/sample_submission.tif",
+    "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "pinned_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+  },
+  "grid": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611"
+  },
+  "footprint_cells": 5167373,
+  "lattice_dots": 206895,
+  "lattice_dots_outside_footprint": 0,
+  "footprint_coverage_within_3px": 0.998713,
+  "uncovered_footprint_cells": 6649,
+  "pigeonhole_min_overlap_by_support": {
+    "12000": 0.4459,
+    "20000": 0.6675,
+    "22164": 0.7,
+    "37654": 0.8234,
+    "44090": 0.8492
+  },
+  "largest_support_meeting_literal_70pct": 22163,
+  "note": "A support above this many cells must exceed 70 % within-3-px overlap with the lattice. Staying under the limit by placing cells in the uncovered ring is boundary gaming and is refused."
+}
