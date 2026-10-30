@@ -1,0 +1,181 @@
+{
+  "schema": "candidate-proxy-table-v1",
+  "generated_utc": "2026-10-30T01:55:44+00:00",
+  "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "rows": [
+    {
+      "file": "docs/quarantine/geoconduit-hybrid/gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif",
+      "sha256": "dafa1e375a57735f6f64091f8b36050b5dda9c72b325ad97327d9d49a76ce1f3",
+      "official_format_gate_pass": true,
+      "format_failed_checks": [],
+      "n_dots_in_footprint": 35615,
+      "share_dots_within_3px_of_catalogue": 0.845795,
+      "share_dots_within_1px_of_catalogue": 0.845795,
+      "lattice_overlap_within_3px": 0.998287,
+      "literal_rule_vs_lattice_pass": false,
+      "holdout_catalogue_hide_and_recover": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.304734,
+        "ci95": [
+          0.288121,
+          0.318888
+        ],
+        "n_withheld_positives": 22232
+      },
+      "holdout_off_catalogue_sgmc_calibrated": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "prevalence_calibrated_dti": 0.002642,
+        "ci95": [
+          0.001975,
+          0.003471
+        ],
+        "n_withheld_positives": 62703
+      }
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-hk3-smgc-maxenv-axial28-37654-20261027T213000Z-c886c782-nan.tif",
+      "sha256": "d425f6f3e17743157ed950cf250c9bfa120c68be0fdff09a0cf8566039fdfaee",
+      "official_format_gate_pass": true,
+      "format_failed_checks": [],
+      "n_dots_in_footprint": 37654,
+      "share_dots_within_3px_of_catalogue": 0.090057,
+      "share_dots_within_1px_of_catalogue": 0.0,
+      "lattice_overlap_within_3px": 0.996866,
+      "literal_rule_vs_lattice_pass": false,
+      "holdout_catalogue_hide_and_recover": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.004949,
+        "ci95": [
+          0.004219,
+          0.00573
+        ],
+        "n_withheld_positives": 22232
+      },
+      "holdout_off_catalogue_sgmc_calibrated": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "prevalence_calibrated_dti": 0.066011,
+        "ci95": [
+          0.059799,
+          0.071279
+        ],
+        "n_withheld_positives": 62703
+      }
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-consensus-hgrad-k37654-20261029T183206Z-4786d9bd-nan.tif",
+      "sha256": "10a8697b891ec76d6401c899d769e9e99bb275877e3bad69c8042ccaae935f58",
+      "official_format_gate_pass": true,
+      "format_failed_checks": [],
+      "n_dots_in_footprint": 37165,
+      "share_dots_within_3px_of_catalogue": 0.08621,
+      "share_dots_within_1px_of_catalogue": 0.028064,
+      "lattice_overlap_within_3px": 0.998897,
+      "literal_rule_vs_lattice_pass": false,
+      "holdout_catalogue_hide_and_recover": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.007284,
+        "ci95": [
+          0.004285,
+          0.010882
+        ],
+        "n_withheld_positives": 22232
+      },
+      "holdout_off_catalogue_sgmc_calibrated": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "prevalence_calibrated_dti": 0.009082,
+        "ci95": [
+          0.004982,
+          0.013462
+        ],
+        "n_withheld_positives": 62703
+      }
+    },
+    {
+      "file": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "sha256": "04cdc5fe41fdc5ef1b148cf8352015d25d37763f1f847838f0f96cd0d342a993",
+      "official_format_gate_pass": true,
+      "format_failed_checks": [],
+      "n_dots_in_footprint": 34835,
+      "share_dots_within_3px_of_catalogue": 0.033817,
+      "share_dots_within_1px_of_catalogue": 0.0,
+      "lattice_overlap_within_3px": 0.999225,
+      "literal_rule_vs_lattice_pass": false,
+      "holdout_catalogue_hide_and_recover": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.002463,
+        "ci95": [
+          0.001797,
+          0.003261
+        ],
+        "n_withheld_positives": 22232
+      },
+      "holdout_off_catalogue_sgmc_calibrated": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "prevalence_calibrated_dti": 0.089197,
+        "ci95": [
+          0.06765,
+          0.111117
+        ],
+        "n_withheld_positives": 62703
+      }
+    },
+    {
+      "file": "docs/quarantine/h1-seismic-gravity-basin/gemsdoe32-karage3-h1-seismic-gravity-basin-20261029T182309Z-91540319-nan.tif",
+      "sha256": "a5066b5f7ac5df03974a87537195dbcba8c518f730556388e17b4be7d3aa5957",
+      "official_format_gate_pass": true,
+      "format_failed_checks": [],
+      "n_dots_in_footprint": 1924,
+      "share_dots_within_3px_of_catalogue": 0.0,
+      "share_dots_within_1px_of_catalogue": 0.0,
+      "lattice_overlap_within_3px": 0.0,
+      "literal_rule_vs_lattice_pass": true,
+      "holdout_catalogue_hide_and_recover": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "n_withheld_positives": 22232
+      },
+      "holdout_off_catalogue_sgmc_calibrated": {
+        "score_label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "prevalence_calibrated_dti": 0.000565,
+        "ci95": [
+          0.000166,
+          0.001074
+        ],
+        "n_withheld_positives": 62703
+      }
+    },
+    {
+      "file": "docs/quarantine/karage3-unique-offcat/karage3-unique-offcat-20261029T180337Z-6a8c2368-nan.tif",
+      "sha256": "80fac268d8cf8ef12f6213207072c1e476b132f6642357478058a41bd2f4d390",
+      "official_format_gate_pass": false,
+      "format_failed_checks": [
+        "no_positive_outside_footprint",
+        "outside_null_or_nan"
+      ],
+      "n_dots_in_footprint": 4517,
+      "share_dots_within_3px_of_catalogue": 0.087447,
+      "share_dots_within_1px_of_catalogue": 0.040292,
+      "lattice_overlap_within_3px": 0.998893,
+      "literal_rule_vs_lattice_pass": false,
+      "holdout": "NOT RUN: fails the official format gate or has no dots (evaluator refuses non-conforming grids)"
+    }
+  ],
+  "scope": "Descriptive proxies only. HOLDOUT-DTI is a catalogue/SGMC proxy, not an organizer score. Lattice = one registry raster, not the complete registry.",
+  "ok_to_submit": false
+}
