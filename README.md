@@ -1,6 +1,12 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## START HERE — executive summary (2026-10-29)
+## START HERE — executive summary (reviewed 2026-10-30)
+
+**Current repo review:** [docs/repo-review-2026-10-30.md](docs/repo-review-2026-10-30.md). Tests pass after two previously unindexed TIFF variants were added to the saved-byte audits. No candidate is cleared for submission; this work did not generate a new candidate or use a slot.
+
+**Session 7 (2026-10-30), latest:** the upload page that named a non-cleared file is withdrawn; the `-zeros` format advice is corrected against the official rule. Details in the Session 7 section below. Answer: **NO**.
+
+## Previous executive summary (2026-10-29)
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
 
