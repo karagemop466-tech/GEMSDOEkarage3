@@ -1,0 +1,411 @@
+{
+  "schema_version": 1,
+  "run_id": "gemsdoekarage3-session1-20261030",
+  "branch": "arena/1f0b5753-gemsdoekarage3",
+  "method_lane": "H-QDTI label-trained logistic emission (single lane)",
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H2",
+      "name": "magnetic tilt-derivative contact ridges with gravity-gradient ridges",
+      "tested": false
+    },
+    {
+      "rank": 2,
+      "id": "H3",
+      "name": "geodetic strain-rate ridges at detrended-elevation slope steps",
+      "tested": false
+    },
+    {
+      "rank": 3,
+      "id": "H4",
+      "name": "basement-step ridges at conductivity contrasts",
+      "tested": false
+    },
+    {
+      "rank": 4,
+      "id": "H1",
+      "name": "H-QDTI logistic emission",
+      "tested": true,
+      "result": "negative (below random control)"
+    },
+    {
+      "rank": 5,
+      "id": "H5",
+      "name": "off-catalogue-only emission (SGMC-validated)",
+      "tested": false
+    }
+  ],
+  "top_hypothesis_validated_on_holdout": false,
+  "top_hypothesis_validation_status": "NOT VALIDATED: experiment budget spent (3 of 3). Needs an explicit decision for a 4th experiment.",
+  "experiments_run": 3,
+  "experiment_budget": 3,
+  "weekly_slots_used": 0,
+  "slot_approved": false,
+  "holdout_leakage_canary": {
+    "label": "HOLDOUT-DTI infrastructure",
+    "max_single_feature_auc": 0.5595,
+    "threshold": 0.9,
+    "result": "PASS"
+  },
+  "holdout_H_QDTI_vs_random": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "by_fraction": {
+      "0.005": {
+        "qdti": {
+          "pooled_dti": 0.0117,
+          "ci95": [
+            0.0058,
+            0.0188
+          ]
+        },
+        "random_same_area": {
+          "pooled_dti": 0.0358,
+          "ci95": [
+            0.0322,
+            0.0391
+          ]
+        }
+      },
+      "0.01": {
+        "qdti": {
+          "pooled_dti": 0.0154,
+          "ci95": [
+            0.0095,
+            0.0222
+          ]
+        },
+        "random_same_area": {
+          "pooled_dti": 0.0514,
+          "ci95": [
+            0.0467,
+            0.0555
+          ]
+        }
+      },
+      "0.02": {
+        "qdti": {
+          "pooled_dti": 0.0184,
+          "ci95": [
+            0.0129,
+            0.0248
+          ]
+        },
+        "random_same_area": {
+          "pooled_dti": 0.0644,
+          "ci95": [
+            0.0573,
+            0.0711
+          ]
+        }
+      },
+      "0.05": {
+        "qdti": {
+          "pooled_dti": 0.0229,
+          "ci95": [
+            0.0177,
+            0.0293
+          ]
+        },
+        "random_same_area": {
+          "pooled_dti": 0.0638,
+          "ci95": [
+            0.0562,
+            0.0711
+          ]
+        }
+      },
+      "0.1": {
+        "qdti": {
+          "pooled_dti": 0.0233,
+          "ci95": [
+            0.0185,
+            0.0287
+          ]
+        },
+        "random_same_area": {
+          "pooled_dti": 0.0518,
+          "ci95": [
+            0.0454,
+            0.0582
+          ]
+        }
+      }
+    },
+    "result": "FAIL: H-QDTI below random same-area control at every fraction"
+  },
+  "candidate_raster": {
+    "file": ".cache/research-artifacts/hqdti-not-cleared/gemsdoekarage3-h-qdti-logit-top10-20261030.tif",
+    "sha256": "89edcf82108556ee1f6784a91799d41b49c29ae2da2313534fcf63c9e982a2b6",
+    "emitted_cells": 510639,
+    "catalogue_cells_emitted": 0,
+    "status": "NOT CLEARED (quarantined; do not submit)",
+    "gates": {
+      "format_check_scripts_check_format": "PASS",
+      "writer_audit_audit_geotiff_nan": "PASS (13/13)",
+      "leakage_canary": "PASS",
+      "holdout_vs_random_control": "FAIL",
+      "holdout_vs_holdout_best_0.0967": "FAIL",
+      "literal_uniqueness": "DUPLICATE-STOP (literal rule, decisive by protocol)"
+    }
+  },
+  "focus9_nine_site": {
+    "label": "HOLDOUT-DTI + USER-REPORTED + FORMAT/OVERLAP",
+    "sites": [
+      {
+        "site": "GEMSDOE24",
+        "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "format_gate_pass": true,
+        "format_checks_failed": [],
+        "owner_reported_USER_REPORTED": 0.2477,
+        "holdout_dti_hide_recover": {
+          "value": 0.093151,
+          "ci95": [
+            0.081279,
+            0.105968
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.097204
+      },
+      {
+        "site": "GEMSDOE25",
+        "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "format_gate_pass": true,
+        "format_checks_failed": [],
+        "owner_reported_USER_REPORTED": 0.26,
+        "holdout_dti_hide_recover": {
+          "value": 0.096743,
+          "ci95": [
+            0.084162,
+            0.109525
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.099202
+      },
+      {
+        "site": "GEMSDOE27",
+        "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "format_gate_pass": true,
+        "format_checks_failed": [],
+        "owner_reported_USER_REPORTED": 0.2449,
+        "holdout_dti_hide_recover": {
+          "value": 0.092748,
+          "ci95": [
+            0.080856,
+            0.105397
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.096778
+      },
+      {
+        "site": "GEMSDOE28",
+        "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+        "format_gate_pass": true,
+        "format_checks_failed": [],
+        "owner_reported_USER_REPORTED": 0.271,
+        "holdout_dti_hide_recover": {
+          "value": 0.02936,
+          "ci95": [
+            0.024959,
+            0.034382
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.028932
+      },
+      {
+        "site": "GEMSDOE30",
+        "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+        "format_gate_pass": false,
+        "format_checks_failed": [
+          "outside_null_or_nan"
+        ],
+        "owner_reported_USER_REPORTED": 0.26,
+        "holdout_dti_hide_recover": {
+          "value": 0.096743,
+          "ci95": [
+            0.084162,
+            0.109525
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.099202
+      },
+      {
+        "site": "GEMSDOE31",
+        "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+        "format_gate_pass": true,
+        "format_checks_failed": [],
+        "owner_reported_USER_REPORTED": 0.2708,
+        "holdout_dti_hide_recover": {
+          "value": 0.030516,
+          "ci95": [
+            0.02568,
+            0.036051
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.030057
+      },
+      {
+        "site": "GEMSDOE32",
+        "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "format_gate_pass": false,
+        "format_checks_failed": [
+          "outside_null_or_nan"
+        ],
+        "owner_reported_USER_REPORTED": 0.2778,
+        "holdout_dti_hide_recover": {
+          "value": 0.004515,
+          "ci95": [
+            0.003816,
+            0.005262
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.004515
+      },
+      {
+        "site": "GEMSDOE33",
+        "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+        "format_gate_pass": false,
+        "format_checks_failed": [
+          "outside_null_or_nan"
+        ],
+        "owner_reported_USER_REPORTED": 0.2632,
+        "holdout_dti_hide_recover": {
+          "value": 0.051969,
+          "ci95": [
+            0.045773,
+            0.058296
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.05069
+      },
+      {
+        "site": "GEMSDOE36",
+        "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "format_gate_pass": false,
+        "format_checks_failed": [
+          "outside_null_or_nan"
+        ],
+        "owner_reported_USER_REPORTED": 0.275,
+        "holdout_dti_hide_recover": {
+          "value": 0.004577,
+          "ci95": [
+            0.003892,
+            0.005301
+          ],
+          "n_withheld_positives": 22232,
+          "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0"
+        },
+        "holdout_dti_visible_gated_b2_point": 0.004577
+      }
+    ],
+    "holdout_vs_owner_reported_spearman": {
+      "rho": -0.8487,
+      "p": 0.0038,
+      "n": 9
+    },
+    "visible_gated_b2_vs_owner_reported": {
+      "rho": -0.8487394957983194,
+      "p": 0.003809953599434409,
+      "n": 9,
+      "note": "owner-reported values are USER-REPORTED, unverified"
+    }
+  },
+  "h_geo_claim_verification": {
+    "label": "HOLDOUT-DTI (verification of quarantined file)",
+    "hide_recover_v3_0": 0.3047,
+    "hide_recover_ci95": [
+      0.2881,
+      0.3189
+    ],
+    "visible_gated_b2": 0.4239,
+    "claims": {
+      "visible_gated_run_card": {
+        "pooled_dti": 0.4239,
+        "ci95": [
+          0.4053,
+          0.4427
+        ]
+      },
+      "hide_recover_cli": {
+        "pooled_dti": 0.3047,
+        "ci95": [
+          0.2881,
+          0.3189
+        ]
+      }
+    },
+    "reading": "Both claimed numbers reproduce under their named committed evaluator variants."
+  },
+  "literal_uniqueness": {
+    "status": "DUPLICATE-STOP (literal rule, decisive by protocol)",
+    "receipt": "evidence/literal-uniqueness-20261030.json",
+    "candidate_max_within_3px": 1.0,
+    "candidate_argmax_within_3px_registry": "apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+    "candidate_max_abs_spearman": 0.151874,
+    "candidate_argmax_spearman_registry": "buffedlizard55-lab/61GEMSDOE/docs/downloads/gems61-h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros.tif",
+    "candidate_duplicate_hits_count": 89,
+    "registry_unique_sha256_compared": 1979,
+    "skipped_counts": {
+      "different_grid": 10,
+      "no_dots_or_unreadable": 7,
+      "unreadable": 1
+    },
+    "degeneracy_flag": "the within-3px maximum for every candidate is driven by one registry raster (apartanish22-droid/ApartGEMSDOE2 depth-cond-conductive-under-thin-cover top37654 -nan), which is ~98.8 % positive; a near-full raster makes every dot 'within 3 px'. The within-3px rule is degenerate against it. The rho rule is not affected. A rule decision (exclude or keep) is needed from the user; it is not applied here.",
+    "note": "screen against the FILTERED inventory only; not a uniqueness certificate"
+  },
+  "leaderboard_check_2026_10_30": {
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "top_1": 0.4544,
+    "rank_48": 0.3195,
+    "value_0_4413_found": false,
+    "note": "public page read in 3 chunks; user-cited 0.4413 is not on the page"
+  },
+  "irregularities": [
+    "registry/focus9_registry.json vs data/focus_registry.json disagree on file variant (-allfinite vs -nan); audit uses data/focus_registry.json",
+    "GEMSDOE30 dot set is identical to GEMSDOE25 (44,090 dots, 0 differing cells); only outside-footprint encoding differs",
+    "GEMSDOE30/32/33/36 fail the official null-or-nan outside rule (zeros outside)",
+    "Holdout ordering is inverse to owner-reported ordering (rho -0.849); reproduced under visible-gated b=2 px",
+    "User-cited leaderboard 0.4413 not found on the public page; 0.3195 is at rank 48",
+    "Prior README advice to use -zeros files conflicts with the official null-or-nan rule and check_format.py; the advice is superseded here",
+    "Portal error 'Predicted values must be in range [0, 1]' is not linked to any file in the repo; not reproduced locally",
+    "lbfgs ConvergenceWarning on one H-QDTI cell (draw21_fold2, 300 iterations); effect not isolated",
+    "Visible-gated variant did not return CIs for the focus rows; point estimates only",
+    "Registry is a filtered inventory (literal_registry_complete false); uniqueness is against the filtered inventory only",
+    "Surface-level (continuous) check not run: the candidate was built binary only",
+    "Literal uniqueness DUPLICATE-STOP for every candidate is driven by a ~98.8 %-positive registry raster (within-3 px rule degenerate); rho gate passes for the H-QDTI candidate (max |rho| 0.152)"
+  ],
+  "limitations": [
+    "No organizer receipt exists; nothing is ORGANIZER-CONFIRMED",
+    "All scores are HOLDOUT-DTI local proxies or USER-REPORTED; the local proxy does not track the reported leaderboard",
+    "The pre-registration record was written after the experiments and is marked as such"
+  ],
+  "ok_to_submit": false,
+  "verdict": "NEGATIVE: no candidate cleared; no submission slot selected"
+}

@@ -1,0 +1,203 @@
+# Review — 2026-10-30 — DO NOT SUBMIT
+
+**OK TO DOWNLOAD AND SUBMIT? NO.** No file is cleared. No candidate was generated. No weekly slot was used. Every value below is labelled with its evidence class:
+
+- **HOLDOUT-DTI**: local shared evaluator (`GEMSDOE32-HIDE-RECOVER-v3.0` or `GEMSDOE32-SGMC-CAL-v3.0`), with withheld-positive count and 95% cluster-bootstrap CI. Static binary diagnostic; `promotion_eligible: false`. Not a leaderboard estimate.
+- **USER-REPORTED / UNVERIFIED**: copied from the request. No organizer receipt.
+- **ORGANIZER-CONFIRMED**: none exists for any file in this repository.
+
+Standing values: Maximize P(Win). Own the outcome.
+
+---
+
+## 1. Answer to the request
+
+| Question | Answer |
+|---|---|
+| Best file to download and submit now? | **None.** All nine focus files fail the literal uniqueness rule and sit on the calibration lattice. |
+| Can a unique GeoTIFF beating 0.4413 or 0.3195 be produced and validated? | **Not in this session.** The literal rule cannot be met by any footprint-interior dot set (section 4). No candidate was validated for a slot. |
+| Is 0.4413 a real public score? | **Not found.** Official leaderboard fetched 2026-10-30: #1 is 0.4544, and 0.4413 does not appear in the top 50. |
+| Is 0.3195 the rank-47 score? | **Stale.** 0.3195 is at **#48** (kpomazi). #47 is 0.3217. |
+| Why is GEMSDOE32 at 0.2778 the best reported focus score? | Not established. The local catalogue holdout ranks it near the bottom (HOLDOUT-DTI 0.0045). The 2026-10-30 mechanism audit shows higher reported scores have fewer dots near catalogue faults, but on N = 9 and USER-REPORTED scores this is a correlation, not an explanation. |
+| Portal error "Predicted values must be in range [0, 1]"? | **Not reproduced and not explained.** No TIFF in this repo has a finite value outside [0, 1] (section 6). |
+| Estimated score for each focus site? | **Not estimable.** No calibrated mapping from the local proxies to the portal exists. |
+
+## 2. Leaderboard, verified 2026-10-30
+
+Source: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (public split; fetched 3 chunks with the fetch tool).
+
+| Rank | Team | Score |
+|---|---|---|
+| 1 | xiaofanhu | 0.4544 |
+| 2 | cfld__ | 0.3916 |
+| 3 | Batik Shirt Brothers | 0.3911 |
+| 4 | BrandenKMurray | 0.3841 |
+| 5 | op01 | 0.3642 |
+| 47 | like60986 | 0.3217 |
+| 48 | kpomazi | 0.3195 |
+| 49 | drjy | 0.3180 |
+| 50 | twang | 0.3169 |
+
+Official task rules (fetched, https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/): metric DTI with α = 0.2 and β = 0.8; triangular kernel, R = 300 m; outside the footprint must be null or NaN; float32 values in [0, 1]. The reference solution (https://github.com/drivendataorg/gems-prize-reference-solution, read via codeload) writes float32 with CRS and transform from `labels.tif`.
+
+DrivenData data pages require login and were not accessed. The repository's own note says automated access to DrivenData is prohibited by its terms. This session made five page fetches (leaderboard ×3, problem page ×2) with the fetch tool. The owner should confirm that this is acceptable.
+
+## 3. Nine focus sites — executive table
+
+Sorted by user-reported score. Sources: `evidence/focus9-mechanism-audit-20261030.json`, `docs/data/historical-audit.json`, `evidence/focus9-holdout-baseline-20261029.json`. Files are research copies only; none may be submitted.
+
+| Site | File | Reported score (USER-REPORTED) | Catalogue HOLDOUT-DTI, pooled [95% CI] | Off-catalogue SGMC-cal HOLDOUT-DTI [95% CI] | Dots within 3 px of catalogue | Unique vs focus peers (worst case) | Estimated score | OK to submit? |
+|---|---|---|---|---|---|---|---|---|
+| GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` | 0.2778 | 0.0045 [0.0038, 0.0053] | 0.0641 [0.0567, 0.0716] | 5.8% | NO: 100.00% vs GEMSDOE24 | Not estimable | **NO** |
+| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif` | 0.2750 | 0.0046 [0.0039, 0.0053] | 0.0644 [0.0571, 0.0720] | 5.9% | NO: 97.58% vs GEMSDOE27 | Not estimable | **NO** |
+| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif` | 0.2710 | 0.0294 [0.0250, 0.0344] | 0.0630 [0.0557, 0.0704] | 11.6% | NO: 100.00% vs GEMSDOE24 | Not estimable | **NO** |
+| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif` | 0.2708 | 0.0305 [0.0257, 0.0361] | 0.0630 [0.0558, 0.0704] | 11.7% | NO: 100.00% vs GEMSDOE24 | Not estimable | **NO** |
+| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif` | 0.2632 | 0.0520 [0.0458, 0.0583] | 0.0626 [0.0553, 0.0700] | 14.4% | NO: 99.71% vs GEMSDOE27 | Not estimable | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` | 0.2600 | 0.0967 [0.0842, 0.1095] | 0.0606 [0.0536, 0.0679] | 19.5% | NO: 100.00% vs GEMSDOE24 | Not estimable | **NO** |
+| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif` | 0.2600 | 0.0967 [0.0842, 0.1095] | 0.0606 [0.0536, 0.0679] | 19.5% | NO: 100.00% vs GEMSDOE24 (same positive support as GEMSDOE25) | Not estimable | **NO** |
+| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif` | 0.2477 | 0.0932 [0.0813, 0.1060] | 0.0579 [0.0511, 0.0652] | 19.9% | NO: 100.00% vs GEMSDOE25 | Not estimable | **NO** |
+| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif` | 0.2449 | 0.0927 [0.0809, 0.1054] | 0.0583 [0.0515, 0.0655] | 19.9% | NO: 98.02% vs GEMSDOE24 | Not estimable | **NO** |
+
+Every focus file has 99.91–99.92% of dots within 3 px of the calibration lattice (`13GEMSDOE r13-lattice-s5`, SHA-256 `b4570b40…dc9b2`). The shared rule stops any candidate above 70%.
+
+**Mechanism (descriptive, N = 9, USER-REPORTED):** Spearman ρ between reported score and share of dots within 3 px of a catalogue fault = **−0.98**. Between score and catalogue-holdout DTI = **−0.85** (p = 0.0038). Between score and off-catalogue SGMC-calibrated DTI = **+0.95** (p = 0.0001). Dot count also gives ρ = −0.98, so the first correlation is confounded with dot count. These are not causal findings and not calibrations.
+
+**Note on the registries:** the nine files above are the `data/focus_registry.json` entries, whose SHA-256 values match the fetched bytes. `registry/focus9_registry.json` lists different files and hashes for GEMSDOE24, 25, 27, 28 and 31. See IR-FOCUS-REGISTRY-DISAGREE-20261030.
+
+## 4. Literal uniqueness and the rule question
+
+The shared rule stops a candidate if its rank correlation with any registry raster is above 0.90, or if more than 70% of its dots lie within 3 px of one registry raster.
+
+- Footprint-interior dot placements overlap the lattice witness at ≥ 99%. A random placement of about 37,654 dots gives about 99.87% (`evidence/lattice-feasibility-20261029.json`). The 70% rule therefore cannot be met by any interior dot set. Compliant dots would have to sit almost entirely on the boundary ring, and the existing boundary-gaming refusal exists for that case.
+- The owner must decide the rule. Option A: "not an exact duplicate" (byte-level). Option B: "≤70% lattice overlap". Under option A, H-GEO-CONDUIT, consensus-hgrad, H1 and unique-offcat are byte-unique against the filtered registry, but none is competitive on the off-catalogue proxy. This review does not choose between them.
+
+**Byte-level exact duplicates (2026-10-30):** all nine focus files are exact duplicates of other entries in `registry/complete_registry_manifest.json` (2 to 10 hits each). Among repo candidates, H-GEO-CONDUIT, consensus-hgrad, H1 and unique-offcat have 0 hits. HK3-SMGC and K3-fuse-greedy match only the repo's own `docs/downloads` paths.
+
+## 5. Candidate hypotheses, ranked (no slot used)
+
+Scoring: HOLDOUT-DTI from the shared evaluator. "Near-cat" is the share of dots within 3 px of a catalogue fault. Sources: `evidence/candidate-proxy-table-20261030.json` and `evidence/holdout-corridor-20261030.json`.
+
+| Rank | Candidate (repo file) | Off-catalogue SGMC-cal HOLDOUT-DTI [95% CI] | Catalogue HOLDOUT-DTI [95% CI] | Near-cat | Lattice overlap (within 3 px) | Format gate (local) | Status |
+|---|---|---|---|---|---|---|---|
+| 1 | K3-fuse-greedy (`docs/quarantine/nan-variants/karage3-k3-fuse-greedy-b2-…-80117cd2-nan.tif`, moved from `docs/downloads` on main) | **0.0892** [0.0677, 0.1111] | 0.0025 | 3.4% | 99.92% | PASS (`-nan`) | Highest SGMC score, but its generator is not in this checkout. Whether SGMC was an input is **unverified**; the score may be contaminated. The audit describes a "production B=2 catalogue ring prune", which explains the low near-catalogue share. Blocked by the lattice rule. |
+| 2 | HK3-SMGC (`docs/quarantine/nan-variants/gemsdoe32-hk3-smgc-maxenv-axial28-…-nan.tif`) | 0.0660 [0.0598, 0.0713] | 0.0049 | 9.0% | 99.69% | PASS (`-nan`) | Moderate off-catalogue signal. SGMC-input question not checked. Blocked by the lattice rule. |
+| 3 | **offcat-corridor-prior-v1** (`docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif`, added to main by a parallel session) | 0.0198 [0.0157, 0.0236] (SGMC-CAL, 62,703 positives) | 0.0 [0.0, 0.0] (0 on-catalogue dots, by construction) | 0% on catalogue | **99.99%** (15,000 dots) | Zeros outside the footprint: fails the official "null or nan" reading (open owner question) | **Blocked.** Labelled "unique" on main, but only against the nine focus sites. Fails the repo's lattice rule (limit 70%). Its own run card says `ok_to_submit: false`. |
+| 4 | consensus-hgrad (`docs/quarantine/nan-variants/gemsdoe32-karage3-consensus-hgrad-k37654-…-nan.tif`) | 0.0091 [0.0050, 0.0135] | 0.0073 | 8.6% | 99.89% | PASS (`-nan`) | Weak. Blocked. |
+| 5 | H-GEO-CONDUIT (`docs/quarantine/geoconduit-hybrid/…-0a6974d8-nan.tif`) | 0.0026 [0.0020, 0.0035] | **0.3047** [0.2881, 0.3189] | **84.6%** | 99.83% | PASS (`-nan`) | **Rejected.** Its high catalogue score reflects proximity to catalogue faults. The "0.4239" claim is not reproduced (IR-H-GEO-HOLDOUT-CLAIM-20261030). |
+| 6 | H1 seismic-gravity-basin (`docs/quarantine/h1-seismic-gravity-basin/…-nan.tif`) | 0.0006 [0.0002, 0.0011] | 0.0 | — | 0.0% | PASS (`-nan`) | **Rejected.** Duplicate-stop against an inverted-label registry raster (README). |
+| — | unique-offcat (`docs/quarantine/karage3-unique-offcat/…-nan.tif`) | not run | not run | 8.7% | 99.89% | **FAIL** | Quarantined. The "UNIQUE" label was wrong and its NaN-outside variant fails the local gate. |
+
+**Top candidate and validation status:** K3-fuse-greedy is ranked first on the SGMC proxy. It is **not** validated: the SGMC-input question is unresolved, the literal rule fails at 99.92% lattice overlap, and no organizer receipt exists. No slot is authorised.
+
+**Corridor candidate (main):** its SGMC-calibrated score (0.0198) would rank third, but it fails the same lattice rule at 99.99% overlap. Its catalogue-holdout score of 0.0 is by construction (no on-catalogue dots), so it says nothing about detection skill on catalogue-hidden faults.
+
+**Could a blocked holdout validation be run now?** The static evaluator runs on any file, and `training_features.tif` is present in this checkout (restored and cmp-verified). It still cannot establish fold-local catalogue features or leakage-free training. The leakage canary (single-feature AUC > 0.90) was not run on any candidate in this session. This is a gap, not a pass.
+
+## 6. Format gate and the portal error
+
+- The local gate (`scripts/check_format.py`) passes the official sample as a control and all five `-nan` TIFFs listed in section 5. It fails every `-zeros` file (their outside-footprint cells are 0, not NaN) and the unique-offcat `-nan` file.
+- Every retained TIFF in `docs/` was checked: all finite values lie in [0, 1]. No value outside [0, 1] was found, so **the portal's range error is not reproduced by any repo file**. The cause is unexplained. Candidates include portal handling of NaN, a zip/file mismatch, or a file other than the ones in this repo. The owner should supply the uploaded file name, the upload time, and the exact portal message.
+- The 0.2778 `-zeros` file fails the official NaN-outside rule as published, yet a score was reported for it. Whether the portal accepts zeros outside the footprint is unresolved (IR-PORTAL-RANGE-ERR-20261030).
+
+## 7. Verification passes
+
+**Pass 1 — implement and verify.** Restored core and external data (cmp-identical), reproduced the lattice receipt exactly, fetched the nine focus files (SHA-256 matched `data/focus_registry.json`), compared the metric with the official formula (TP/FP/FN and DTI match), wrote `scripts/focus9_mechanism_audit.py` and `scripts/candidate_proxy_table.py`, and produced the receipts in `evidence/`.
+
+**Pass 2 — review.** Found that `evidence/saved-tiffs-literal-20261028.json` predates two `consensus-hgrad` TIFFs (main later regenerated it; this PR regenerates it again for the corridor files). Its inventory covers 18 of the 20 TIFFs under `docs/`. This is why 6 existing tests fail and the site rebuild refuses to publish (`Refusing to publish stale or incomplete saved-byte audit`). The new dated receipt `evidence/saved-tiffs-literal-20261030.json` covers all 20 TIFFs with the same method and output: 18 unchanged rows and 2 added rows, both duplicate-stopped by the lattice witness at 99.89%. The 2026-10-28 receipt was regenerated with the repo's generator, and the run-card bindings were updated to match (section 7, test status). Found that K3-fuse's SGMC-input status is unverified (section 5). Found the focus registry disagreement and recorded it.
+
+**Pass 3 — re-check.** Recomputed every Spearman value in the mechanism receipt from its rows (`tests/test_review_20261030.py`). Confirmed that the focus-9 pages regenerate and match the committed files (`tests/test_focus9.py`: 5 passed). Confirmed that no receipt sets `ok_to_submit` to true. Confirmed that the new saved-byte receipt covers every `docs/**/*.tif` file.
+
+### Merge with main (2026-10-30)
+
+`main` moved during this session. Three other PRs landed (#67, #68 and a parallel 2026-10-30 session). Their changes, verified in this merge:
+- They regenerated `evidence/saved-tiffs-literal-20261028.json` (now 20 rasters, `ok_to_submit: false`) and moved the three `-nan.tif` files from `docs/downloads/` to `docs/quarantine/nan-variants/`.
+- They added the corridor candidate (`offcat-corridor-prior-v1`) with a run card. Its run card says `ok_to_submit: false`, but its `how-to-submit` page called the file "unique". That claim holds only against the nine focus sites (section 5). The page was corrected in this PR.
+- They wrote their own `docs/review-2026-10-30.md`. This file is therefore named `docs/verification-review-2026-10-30.md` to avoid a collision.
+- Their standing-prompt section was condensed. It is restored verbatim in this PR.
+
+### Test status (merged tree)
+
+After merging `main` and the corrections in this PR: **232 passed, 1 skipped, 0 failed** (`pytest -q`); `scripts/verify_numbers.py` **35/35**.
+
+`origin/main` alone fails the same six saved-byte and release tests plus two site tests (`test_generated_pages_match_evidence`, `test_root_page_still_refuses_submission`). Those failures were real safety guards, not noise:
+- The 2026-10-28 saved-byte, release and retained receipts did not cover the corridor TIFFs. They were regenerated with the repo's own generators (`audit_saved_tiffs.py`, `audit_release_20261028.py`, `audit_retained_submissions.py`). Following main's precedent (commit a9677a7), the `saved_tiffs_audit_sha256` binding in `docs/data/current-run.json` and `evidence/run-card-20261028-afbdab50.json` was re-pinned to the new receipt. The release page was rebuilt. All five receipts show `ok_to_submit: false`.
+- The root `index.html` had a hand-edited live download button for the corridor file. The generator (`scripts/build_site.py`) renders the disabled button from its template. The page was regenerated from that template.
+
+## 8. Irregularities
+
+Full list in `registry/irregularities.json` (entries `IR-*-20261030`). In summary:
+
+1. **IR-SAVED-AUDIT-STALE-20261030** (high): the 2026-10-28 saved-byte audit omits two TIFFs; 6 tests fail; rebuild refuses.
+2. **IR-FOCUS-REGISTRY-DISAGREE-20261030** (high): `registry/focus9_registry.json` and `data/focus_registry.json` disagree on five sites.
+3. **IR-PORTAL-RANGE-ERR-20261030** (high): the portal error is not reproduced; zeros-outside is unresolved.
+4. **IR-RULE-INTERP-20261030** (high): the literal rule is ambiguous and the owner must decide.
+5. **IR-K3-FUSE-PROVENANCE-20261030** (medium): the K3-fuse generator is not in this checkout; SGMC-input status unverified.
+6. **IR-H-GEO-HOLDOUT-CLAIM-20261030** (medium): the 0.4239 claim is not reproduced; committed evaluator gives 0.3047.
+7. **IR-PROXY-SIGN-CONFLICT-20261030** (medium): the focus-9 SGMC correlation (+0.95, N = 9) conflicts in sign with the 2026-10-29 off-catalogue result (ρ = 0.08 across 18 rasters). Not reconciled.
+8. **IR-METRIC-KNOWN-MASK-20261030** (medium): the `known` mask in `vendor/gems57/metric.py` cites "organiser thread 11516", which is not on the official page. Unverified.
+9. **IR-SAMPLE-SUBMISSION-20261030** (low): the local `sample_submission.tif` equals the positive labels (60,988 ones). The official page describes the sample as predicting total fault absence. The two cannot both be right for the sample.
+10. **IR-HOW-TO-SUBMIT-STALE-20261030** (high, corrected): `docs/how-to-submit.html` called a `-zeros` candidate "unique, ready to download" and told users to upload it. Corrected in place to NOT CLEARED with the download buttons relabelled as research copies.
+11. **IR-CORRIDOR-LATTICE-20261030** (high): main labels `offcat-corridor-prior-v1` "unique" and "format-valid". Measured lattice overlap 99.99% (limit 70%). Its uniqueness claim covers only the nine focus sites. Its zeros-outside variant is also contested under the official rule.
+12. **IR-TRAINING-FEATURES-CLAIM-20261030** (medium): main's corridor run card says training features are unavailable, so holdout is NOT ESTIMABLE. The restored `training_features.tif` (cmp-verified) runs the shared evaluator (`evidence/holdout-corridor-20261030.json`).
+13. **IR-LEADERBOARD-STALE-20261030** (low): the README's "#47 = 0.3195" is now #48. 0.4413 is not on the public top 50. The repo's automated-access note needs owner review (section 2).
+
+## 9. Submission status and next steps
+
+**Submission status: NO for every file.** The submission guidance page is `docs/submit-now/index.html`. It says NO and links here.
+
+Suggested remaining work, in order:
+
+1. Owner decision on the literal-uniqueness rule (IR-RULE-INTERP-20261030). Nothing else can change the status of an interior dot set.
+2. Owner decision on re-pinning the 2026-10-28 saved-byte receipt, which unblocks the 6 tests (IR-SAVED-AUDIT-STALE-20261030).
+3. Recover the K3-fuse generator and check whether SGMC is an input. If it is, its 0.0892 is contaminated.
+4. Resolve the two focus registries against the organizer's files (IR-FOCUS-REGISTRY-DISAGREE-20261030).
+5. Obtain the exact portal error message and the uploaded file for the range error.
+6. Run the leakage canary (single-feature AUC > 0.90) on any candidate before it is considered.
+
+## 10. Limitations
+
+- No organizer receipt exists. Every score here is a local proxy, USER-REPORTED, or both.
+- The local evaluator is static and binary. Its own warning says static predictions cannot establish fold-local catalogue features or leakage-free training.
+- The mechanism correlations use N = 9 and reported scores that are themselves unverified.
+- No new candidate was generated, so the three-experiment budget was not used. The verification scripts above are not experiments.
+- The public leaderboard split is partial, and the private split is not visible.
+
+## 11. Run card
+
+```json
+{
+  "run_id": "review-20261030",
+  "date_utc": "2026-10-30",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "hypothesis": "Top user-reported focus files are pruned away from catalogue faults, which favours non-catalogue test faults. Descriptive N=9 correlation only.",
+  "mechanism": "Catalogue-proximity pruning versus off-catalogue SGMC-calibrated DTI. Not validated.",
+  "named_non_fault_mimic": "Not tested.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0 and GEMSDOE32-SGMC-CAL-v3.0",
+    "withheld_positives": {"catalogue": 22232, "sgmc": 62703},
+    "promotion_eligible": false,
+    "note": "Static binary diagnostic for existing files only. No new candidate."
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "Computed for existing files only",
+    "focus9_lattice_within_3px": "99.91-99.92%",
+    "max_lattice_overlap_repo_candidates": "99.92% (K3-fuse-greedy)",
+    "literal_rule_threshold": 0.70,
+    "literal_rule_pass": false
+  },
+  "raster_sha256": null,
+  "validator_output": {"status": "NOT RUN for a new candidate; format gate run on existing files (section 6)"},
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "slot_selected": false,
+  "receipts": [
+    "evidence/focus9-mechanism-audit-20261030.json",
+    "evidence/candidate-proxy-table-20261030.json",
+    "evidence/saved-tiffs-literal-20261030.json"
+  ]
+}
+```

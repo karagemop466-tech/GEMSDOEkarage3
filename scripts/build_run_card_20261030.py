@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble evidence/run-card-20261030.json from the evidence files of this session (no hand-typed numbers)."""
+"""Assemble evidence/run-card-20261030-session1.json from the evidence files of this session (no hand-typed numbers)."""
 from __future__ import annotations
 
 import hashlib
@@ -10,7 +10,7 @@ from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
 E = ROOT / "evidence"
-OUT = E / "run-card-20261030.json"
+OUT = E / "run-card-20261030-session1.json"
 
 
 def load(p: str):
@@ -22,7 +22,7 @@ def main() -> int:
     a = load("evidence/focus9-audit-20261030.json")
     vg = load("evidence/focus9-visible-gated-20261030.json")
     hg = load("evidence/h-geo-claim-verification-20261030.json")
-    cand = ROOT / "docs/quarantine/hqdti-not-cleared/gemsdoekarage3-h-qdti-logit-top10-20261030.tif"
+    cand = ROOT / ".cache/research-artifacts/hqdti-not-cleared/gemsdoekarage3-h-qdti-logit-top10-20261030.tif"
     cand_meta = load("docs/quarantine/hqdti-not-cleared/gemsdoekarage3-h-qdti-logit-top10-20261030-meta.json")
     uniq_path = E / "literal-uniqueness-20261030.json"
     ur = json.loads(uniq_path.read_text()) if uniq_path.exists() else None

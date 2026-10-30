@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "data" / "focus_registry.json"
 AUDIT = ROOT / "docs" / "data" / "historical-audit.json"
 BASELINE = ROOT / "evidence" / "focus9-holdout-baseline-20261029.json"
+MECHANISM = ROOT / "evidence" / "focus9-mechanism-audit-20261030.json"
 OUT = ROOT / "docs" / "focus9"
 EXPECTED = [f"GEMSDOE{x}" for x in (24, 25, 27, 28, 30, 31, 32, 33, 36)]
 LEADERBOARD = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
@@ -57,6 +58,20 @@ def load_sources() -> tuple[dict, dict, dict]:
     return reg, aud, base
 
 
+def load_mech(reg: dict) -> dict:
+    """Mechanism rows (2026-10-30), keyed by site. Descriptive only: N = 9, USER-REPORTED scores."""
+    mech = json.loads(MECHANISM.read_text())
+    rows = {r["site"]: r for r in mech["rows"]}
+    if set(rows) != set(EXPECTED):
+        raise ValueError("Mechanism audit does not contain exactly the nine focus sites")
+    for site in EXPECTED:
+        if rows[site]["sha256"] != reg[site]["sha256"]:
+            raise ValueError(f"Mechanism audit SHA-256 disagreement for {site}")
+    if mech.get("ok_to_submit") is not False:
+        raise ValueError("Mechanism audit must not authorize a submission")
+    return {"rows": rows, "summary": mech["summary"]}
+
+
 def pct(x: float) -> str:
     return f"{100 * x:.2f}%"
 
@@ -83,7 +98,9 @@ BANNER = """<div style="border:3px solid #b00020;background:#fff0f0;padding:16px
 <p style="margin:8px 0 0">The validator and the uniqueness gate both fail. Nothing on this page authorizes an upload or a weekly slot.</p></div>"""
 
 
-def site_page(site: str, reg: dict, aud: dict, base: dict) -> str:
+def site_page(site: str, reg: dict, aud: dict, base: dict, mech: dict | None = None) -> str:
+    mech = mech or load_mech(reg)
+    m = mech["rows"][site]
     r, a, b = reg[site], aud[site], base[site]
     hr, sg = b["holdout_dti_hide_and_recover"], b["holdout_dti_sgmc_off_catalogue"]
     fmt = b["format_checks"]
@@ -115,6 +132,7 @@ def site_page(site: str, reg: dict, aud: dict, base: dict) -> str:
 <tr><td>Estimated leaderboard score</td><td><strong>Not estimable.</strong> No organizer receipt, and the static local holdout does not reproduce portal ordering.</td></tr>
 <tr><td>Unique submission?</td><td><strong>NO</strong> — {pct(a['worst_focus_fraction'])} of dots within 3 px of {esc(pair)}; {pct(a['lattice_fraction'])} within 3 px of the calibration lattice.</td></tr>
 <tr><td>Withheld positives (holdout)</td><td>{hr['n_withheld_positives']} (hide-and-recover); {sg['n_withheld_positives']} (off-catalogue SGMC)</td></tr>
+<tr><td>Dots within 3 px of a catalogue fault (2026-10-30)</td><td>{pct(m['share_dots_within_3px_of_catalogue'])} of {m['n_dots']:,} dots (descriptive; not a score)</td></tr>
 <tr><td>OK to submit?</td><td><strong>NO</strong></td></tr>
 </table>
 <h2>Local HOLDOUT-DTI (static binary diagnostic)</h2>
@@ -134,22 +152,28 @@ def site_page(site: str, reg: dict, aud: dict, base: dict) -> str:
 <p>{esc(LATTICE_NOTE)} The shared rule stops any candidate with more than 70% of dots within 3 px of a registry raster. This file is {pct(a['lattice_fraction'])} within 3 px of the lattice, and {pct(a['worst_focus_fraction'])} within 3 px of {esc(pair)}.</p>
 <h2>Irregularities for review</h2>
 <ul>{flag_html}</ul>
-<p><small>Sources: <a href="{esc(r['source_url'])}">pinned file</a> · <a href="{esc(r['site_url'])}">site</a> · <a href="../../evidence/focus9-holdout-baseline-20261029.json">baseline evidence</a> · <a href="../../docs/data/historical-audit.json">geometry audit</a> · <a href="{LEADERBOARD}">leaderboard</a>. Scores are not ORGANIZER-CONFIRMED.</small></p>
+<p><small>Sources: <a href="{esc(r['source_url'])}">pinned file</a> · <a href="{esc(r['site_url'])}">site</a> · <a href="../../evidence/focus9-holdout-baseline-20261029.json">baseline evidence</a> · <a href="../../evidence/focus9-mechanism-audit-20261030.json">mechanism audit</a> · <a href="../../docs/data/historical-audit.json">geometry audit</a> · <a href="{LEADERBOARD}">leaderboard</a>. Scores are not ORGANIZER-CONFIRMED.</small></p>
 """
     return page(site, body)
 
 
-def home(reg: dict, aud: dict, base: dict, run_card: dict) -> str:
+def home(reg: dict, aud: dict, base: dict, run_card: dict, mech: dict | None = None) -> str:
+    mech = mech or load_mech(reg)
+    rho_share = mech["summary"]["score_vs_share_near_catalogue_3px"]["spearman_rho"]
+    rho_hold = mech["summary"]["score_vs_holdout_dti"]["spearman_rho"]
+    rho_sgmc = mech["summary"]["score_vs_sgmc_off_catalogue_calibrated_dti"]["spearman_rho"]
     rows = []
     for site in EXPECTED:
         r, a, b = reg[site], aud[site], base[site]
         hr = b["holdout_dti_hide_and_recover"]
         sg = b["holdout_dti_sgmc_off_catalogue"]
+        m = mech["rows"][site]
         rows.append(
             f"<tr><td><a href=\"{esc(site.lower())}.html\">{esc(site)}</a></td>"
             f"<td>{esc(r['historical_claim'])} <small>(USER-REPORTED)</small></td>"
             f"<td>{hr['pooled_dti']:.4f} {ci(hr['ci95_cluster_bootstrap'])}</td>"
             f"<td>{sg['prevalence_calibrated_dti']:.4f}</td>"
+            f"<td>{pct(m['share_dots_within_3px_of_catalogue'])}</td>"
             f"<td><a href=\"{esc(r['source_url'])}\">{esc(r['path'].split('/')[-1])}</a> <small>(research only)</small></td>"
             f"<td>NO — {pct(a['worst_focus_fraction'])} vs {esc(a['worst_focus_comparator'])}</td>"
             f"<td>Not estimable</td><td><strong>NO</strong></td></tr>")
@@ -162,10 +186,11 @@ def home(reg: dict, aud: dict, base: dict, run_card: dict) -> str:
 <li><strong>Best file to download and submit right now:</strong> <strong>None.</strong> All nine files fail the repo's uniqueness gate. Every one of them is 97.6% or more within 3 px of a peer.</li>
 <li><strong>Estimated leaderboard score for any of the nine:</strong> not estimable. The organizer's score is not reproduced here, and the local static holdout does not reproduce portal ordering.</li>
 <li><strong>Uniqueness:</strong> 0 of 9 unique. All nine overlap the calibration lattice at 99.9%.</li>
+<li><strong>Mechanism (2026-10-30; descriptive only; N = 9; USER-REPORTED scores):</strong> higher reported scores have a smaller share of dots near catalogue faults (Spearman &rho; = {rho_share:.2f}) and lower catalogue-holdout DTI (&rho; = {rho_hold:.2f}), while off-catalogue SGMC-calibrated DTI rises with score (&rho; = {rho_sgmc:.2f}). This is a correlation across nine files, not a causal finding and not a calibration. <a href="../../evidence/focus9-mechanism-audit-20261030.json">Receipt</a>.</li>
 </ul>
 <h2>Comparison table</h2>
 <table>
-<tr><th>Site</th><th>Reported score</th><th>Local HOLDOUT-DTI (hide-and-recover, 95% CI)</th><th>Local HOLDOUT-DTI SGMC-cal</th><th>File (download = research only)</th><th>Unique?</th><th>Estimated score</th><th>OK to submit?</th></tr>
+<tr><th>Site</th><th>Reported score</th><th>Local HOLDOUT-DTI (hide-and-recover, 95% CI)</th><th>Local HOLDOUT-DTI SGMC-cal</th><th>Dots within 3 px of catalogue (descriptive)</th><th>File (download = research only)</th><th>Unique?</th><th>Estimated score</th><th>OK to submit?</th></tr>
 {table}
 </table>
 <p><small>Local HOLDOUT-DTI uses evaluator <code>{esc(base['GEMSDOE24']['holdout_dti_hide_and_recover']['evaluator_version'])}</code>, 22,232 withheld positives, static binary masks. Values are diagnostics, not organizer scores.</small></p>
@@ -177,15 +202,15 @@ def home(reg: dict, aud: dict, base: dict, run_card: dict) -> str:
 <li>The static local holdout does not reproduce portal ordering: GEMSDOE32 (reported 0.2778) scores HR 0.0045, and GEMSDOE28 (reported 0.2710) scores HR 0.0294. Local HR values are not leaderboard estimates.</li>
 <li>Four GEMSDOE28 files are reported; only the 0.2710 file is audited here.</li>
 <li>The competition data links on Dropbox and GDR (OpenEI) are not in this sandbox's allowlist. The restored rasters come from owner mirrors on GitHub codeload, not organizer downloads.</li>
-<li>The public leaderboard top differs across sources: 0.3195 (prompt, stale), 0.4413 (prompt, current), and 0.4544 (README, observed 2026-10-28). Verify manually on the official page.</li>
+<li>Leaderboard values disagree across sources. Observed on the official page 2026-10-30: #1 0.4544, #47 0.3217, #48 0.3195, #50 0.3169. The README's &ldquo;#47 = 0.3195&rdquo; is stale (now #48). The user-cited 0.4413 was not found on the fetched pages. Verify manually on the official page.</li>
 </ul>
 <h2>Source freshness</h2>
-<p>Run card: <a href="run-card.json">run-card.json</a> · Leaderboard: <a href="{LEADERBOARD}">official page</a>. Public leaderboard values in the prompt disagree (0.3195, 0.4413, 0.4544). These must be checked manually. Automated access to DrivenData is prohibited by its terms.</p>
+<p>Run card: <a href="run-card.json">run-card.json</a> · Leaderboard: <a href="{LEADERBOARD}">official page</a>. The 0.4413 value could not be located on the pages fetched 2026-10-30. The repo notes that automated access to DrivenData is prohibited by its terms; the 2026-10-30 session used a small number of page fetches and the owner should confirm that this is acceptable.</p>
 <p><small>Verdict: <strong>{esc(run_card['verdict'])}</strong>. No candidate generated.</small></p>
 """
     banner = ('<div role="status" style="background:#fff3cd;color:#222;padding:10px 14px;text-align:center;'
               'font-family:system-ui,sans-serif;font-size:15px;border-bottom:2px solid #d39e00">'
-              '<a href="../nine-site-summary.html" style="color:#222"><strong>EXECUTIVE SUMMARY (2026-10-29) — '
+              '<a href="../nine-site-summary.html" style="color:#222"><strong>EXECUTIVE SUMMARY (2026-10-30) — '
               'OK TO DOWNLOAD AND SUBMIT? NO. Read the nine-site table →</strong></a> · '
               '<a href="../nine-site-run-card.json">run card</a> · <a href="../../README.md">README standing prompt</a></div>')
     return page("Focus-9 summary", body).replace("<body>", "<body>" + banner, 1)

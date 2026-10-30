@@ -1,0 +1,110 @@
+{
+  "candidate_id": "karage3-offcat-corridor-prior-v1",
+  "slug": "karage3-offcat-corridor-prior-v1",
+  "content_digest8": "f665dd49",
+  "description": "Geometric off-catalogue corridor prior (stratified jitter, catalogue- and prior-dot excluded).",
+  "submission_note_zeros": "Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots.",
+  "submission_note_nan": "Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots.",
+  "zeros_tif": {
+    "filename": "gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif",
+    "size_bytes": 127534,
+    "sha256": "6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/data/bridge/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 15000,
+    "footprint_fraction": 0.002903,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-nan.tif",
+    "size_bytes": 264961,
+    "sha256": "7583b1b3387638cb2abd905235ede18b5cba5a29bebf6a8f1ede3d758ba3828f",
+    "mode": "nan",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/data/bridge/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 15000,
+    "footprint_fraction": 0.002903,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": null,
+    "catalogue_hidden_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": null,
+    "drift_corrected_holdout_mean": null,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-DO-NOT-SUBMIT"
+  }
+}

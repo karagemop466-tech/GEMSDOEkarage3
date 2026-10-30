@@ -1,0 +1,97 @@
+{
+  "schema": "GEMSDOEkarage3-RUN-CARD-v1",
+  "generated_utc": "2026-10-30T01:44:34Z",
+  "hypothesis": "H-OFFCAT-CORRIDOR: hidden (off-catalogue) geothermal faults are more likely in covered faulted terrain away from mapped USGS/INGENIOUS traces; dots placed off-catalogue in a novel non-lattice pattern should encounter blind faults that the dotted-ridge family (clustered on/near catalogue traces) misses.",
+  "mechanism": "Exclude catalogue faults + 300 m collar; exclude 3 px around every prior submission dot; weight the surviving off-catalogue zone by distance-from-catalogue prior; place dots by weighted Poisson-disc sampling (min 6 px separation) for a novel spatial pattern.",
+  "named_non_fault_mimic": "Lithologic contacts, dikes/intrusive margins, landslide scarps, road cuts, fence lines and acquisition striping can all produce edge/lineament-like geometry without being faults.",
+  "layers": [
+    "footprint (sample_submission.tif)",
+    "catalogue faults (labels.tif)",
+    "prior submission dot registry (docs/downloads)"
+  ],
+  "physical_signature": "off-catalogue spatial exclusion + distance-from-catalogue prior (geometric proxy; no potential-field/DEM gradient layers available)",
+  "differs_from_existing": "Avoids all prior submission dots (literal uniqueness) and off-catalogue (excludes labels); the dotted-ridge family clusters on/near catalogue traces and reuses the same dot array across GEMSDOE24/25/27/28/30/31/32/33/36.",
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "note": "training_features.tif unavailable; no feature-only AUC vs catalogue can be computed."
+  },
+  "holdout_dti": {
+    "label": "NOT ESTIMABLE",
+    "value": null,
+    "ci95": null,
+    "n_withheld_positives": null,
+    "evaluator": "none (no organizer labels/training features)"
+  },
+  "registry_correlation_and_overlap": {
+    "unique_vs_prior_dots_by_construction": true,
+    "max_overlap3px_vs_known_prior_dots": 0.0,
+    "overlap3px_vs_focus_sites_frac_of_new_dots_within3px": {
+      "GEMSDOE24": 0.0605, "GEMSDOE25": 0.0544, "GEMSDOE27": 0.0609,
+      "GEMSDOE28": 0.0539, "GEMSDOE30": 0.0544, "GEMSDOE31": 0.0544,
+      "GEMSDOE32": 0.0544, "GEMSDOE33": 0.0564, "GEMSDOE36": 0.0560
+    },
+    "max_overlap3px_vs_any_focus_site": 0.0609,
+    "focus_site_max_overlap_vs_new": {
+      "GEMSDOE24": 0.0228, "GEMSDOE25": 0.0231, "GEMSDOE27": 0.0224,
+      "GEMSDOE28": 0.0256, "GEMSDOE30": 0.0231, "GEMSDOE31": 0.0253,
+      "GEMSDOE32": 0.0271, "GEMSDOE33": 0.0249, "GEMSDOE36": 0.0271
+    },
+    "note": "3-px collar around every prior dot excluded before placement; measured vs all 9 focus sites (max 6.09% of new dots within 3 px, below the 70% rule). Full-registry literal scan not run (registry incomplete in this checkout)."
+  },
+  "raster": "docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif",
+  "raster_sha256": "6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa",
+  "validator_output": {
+    "filename": "gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif",
+    "size_bytes": 127534,
+    "sha256": "6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/data/bridge/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 15000,
+    "footprint_fraction": 0.002903,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "submission_name": "karage3-offcat-corridor-prior-v1",
+  "submission_note": "Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots.",
+  "submission_note_chars": 126,
+  "n_dots": 15000,
+  "budget_exhausted": false,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "reason": "Format-valid and unique vs prior dots, but NOT validated: no organizer labels/training_features.tif, so holdout DTI, leakage canary, and leaderboard-score estimate cannot be computed. Do not submit."
+}

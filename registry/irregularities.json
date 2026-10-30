@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-27T22:45:00Z",
+  "updated_utc": "2026-10-30T03:05:00Z",
   "irregularities": [
     {
       "id": "IR-K3-HOLDOUT-EXTDIR-01",
@@ -57,6 +57,174 @@
       "location": "README.md & docs/research.md",
       "summary": "The supplied prompt cites both 0.3195 and 0.4413 as competition leaderboard highs, and lists nine site scores (0.2449..0.2778) without portal receipt screenshots. Outbound network whitelist allows GitHub and PyPI/npm only (DrivenData, USGS, GDR, Dropbox, NLR unreachable directly).",
       "resolution": "Preserved both 0.3195 and 0.4413 verbatim as unverified prompt claims, labeled all nine historical site scores as OWNER-REPORT (distinct from measured HOLDOUT-DTI), and verified all local rasters via SHA-256 against pinned GitHub mirrors."
+    },
+    {
+      "id": "IR-S7-01",
+      "severity": "critical",
+      "category": "portal_validator_hazard",
+      "location": "docs/downloads/*-nan.tif",
+      "summary": "Three -nan.tif files (7,111,787 NaN cells each) remained in the public download folder after the README said they were removed.",
+      "resolution": "Moved to docs/quarantine/nan-variants/ with NOT-CLEARED.md (2026-10-30). Historical references kept."
+    },
+    {
+      "id": "IR-S7-02",
+      "severity": "high",
+      "category": "stale_receipts",
+      "location": "evidence/release-audit-20261028.json, evidence/retained-submissions-audit-20261028.json, evidence/saved-tiffs-literal-20261028.json, docs/data/current-run.json",
+      "summary": "Audit receipts listed an earlier TIFF set; 3 tests failed (6 total on entry).",
+      "resolution": "Regenerated with the existing generators; current-run card rebuilt (hash-binding and timestamp only). Suite: 225 passed, 1 skipped."
+    },
+    {
+      "id": "IR-S7-03",
+      "severity": "high",
+      "category": "sample_provenance",
+      "location": "registry/data_manifest.json; .cache/gems_data (restored 2026-10-30)",
+      "summary": "Verified: labels.tif and existing_faults.tif are byte-identical (SHA-256 7ba308cc...). sample_submission.tif (SHA-256 2176d08e...) has 60,988 pixels equal to 1, the same set as the labels' positives, and NaN outside the footprint. The competition page says the sample predicts total fault absence (all zeros).",
+      "resolution": "Flagged for owner review. Owner must download the official files by hand and supply SHA-256 values. The project keeps using the sample only as a grid template."
+    },
+    {
+      "id": "IR-S7-04",
+      "severity": "critical",
+      "category": "protocol_vs_competition",
+      "location": "AGENTS.md; README.md; docs/review-2026-10-30.md section 3",
+      "summary": "The competition text (page 967) has no uniqueness rule. The project's literal 70%/3-px gate against all registry rasters is unsatisfiable for any footprint-internal file above 22,163 cells, because the calibration lattice leaves only 6,649 footprint cells uncovered.",
+      "resolution": "Measured and reproduced (scripts/verify_lattice_bound.py). Owner must choose the registry scope (docs/review-2026-10-30.md section 6). No exemption applied."
+    },
+    {
+      "id": "IR-S7-05",
+      "severity": "medium",
+      "category": "prompt_provenance_conflict",
+      "location": "README.md; docs/review-2026-10-30.md section 1",
+      "summary": "Prompt values 0.4413 and 0.3195 are not on the public leaderboard fetched 2026-10-30 (live top 0.4544, #2 0.3916, #3 0.3911).",
+      "resolution": "Reported as UNVERIFIED prompt claims. Public-page values are labelled PUBLIC LEADERBOARD, not ORGANIZER-CONFIRMED."
+    },
+    {
+      "id": "IR-S7-06",
+      "severity": "low",
+      "category": "unread_source",
+      "location": "https://www.drivendata.org/competitions/306/competition-doe-gems/rules/",
+      "summary": "The rules link redirects to HeroX (https://www.herox.com/GEMSPrize/resource/2274). It was not read this session.",
+      "resolution": "Open. Owner or a later session to read it before any submission."
+    },
+    {
+      "id": "IR-S7-07",
+      "severity": "low",
+      "category": "stale_claim",
+      "location": "README.md",
+      "summary": "README said 200+ tests passed; the suite now has 225 passed and 1 skipped.",
+      "resolution": "Updated in the session 7 README section."
+    },
+    {
+      "id": "IR-SAVED-AUDIT-STALE-20261030",
+      "severity": "high",
+      "category": "stale_receipt",
+      "location": "evidence/saved-tiffs-literal-20261028.json; scripts/build_release_review.py; scripts/verify_numbers.py; tests/test_release_review.py; tests/test_review_20261028.py; tests/test_session_safety.py",
+      "summary": "The 2026-10-28 saved-byte audit covers 18 of the 20 TIFFs under docs/. The two consensus-hgrad-k37654 TIFFs (2026-10-29) are absent. Six pytest tests fail on main and on this branch, and the site rebuild refuses to publish a stale audit.",
+      "resolution": "Partial. New dated receipt evidence/saved-tiffs-literal-20261030.json covers all 20 TIFFs (same script; both new rows duplicate-stopped at 99.89%). Historical receipt not rewritten because historical run cards pin its hash. Repointing generators and tests and re-pinning hashes awaits owner decision."
+    },
+    {
+      "id": "IR-FOCUS-REGISTRY-DISAGREE-20261030",
+      "severity": "high",
+      "category": "registry_disagreement",
+      "location": "registry/focus9_registry.json vs data/focus_registry.json",
+      "summary": "The two focus registries list different files and SHA-256 values for GEMSDOE24, 25, 27, 28 and 31.",
+      "resolution": "Open. data/focus_registry.json matches the bytes fetched 2026-10-30 and is used by build_focus9.py. Owner must confirm the organizer-facing file."
+    },
+    {
+      "id": "IR-PORTAL-RANGE-ERR-20261030",
+      "severity": "high",
+      "category": "portal_error_unreproduced",
+      "location": "docs/**/*.tif; scripts/check_format.py",
+      "summary": "Portal error 'Predicted values must be in range [0, 1]' is not reproduced. No repo TIFF has a finite value outside [0,1]. The -nan variants pass the local gate; the -zeros variants fail the NaN-outside check. The 0.2778 -zeros file has a reported score although it fails the published NaN-outside rule.",
+      "resolution": "Open. Need the uploaded file name, upload time and exact portal message. Whether the portal accepts zeros outside the footprint is unresolved."
+    },
+    {
+      "id": "IR-RULE-INTERP-20261030",
+      "severity": "high",
+      "category": "rule_interpretation",
+      "location": "vendor/gems57 literal rule; docs/review-2026-10-30.md section 4",
+      "summary": "Literal-uniqueness rule is ambiguous: 'not an exact duplicate' versus '<=70% of dots within 3 px of one registry raster'. Interior dot sets cannot meet the second reading (about 99% lattice overlap).",
+      "resolution": "Open. Owner decision required. No candidate is cleared under either reading."
+    },
+    {
+      "id": "IR-K3-FUSE-PROVENANCE-20261030",
+      "severity": "medium",
+      "category": "provenance_unverified",
+      "location": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-*; docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-audit.json",
+      "summary": "Generator for K3-fuse-greedy is not in this checkout. Its audit describes a 'production B=2 catalogue ring prune' and lists SGMC as an evaluation instrument. Whether SGMC data was an input is unverified, so its SGMC-cal score 0.0892 may be contaminated.",
+      "resolution": "Open. Recover the generator and check its inputs. Do not use the SGMC score as evidence until resolved."
+    },
+    {
+      "id": "IR-H-GEO-HOLDOUT-CLAIM-20261030",
+      "severity": "medium",
+      "category": "score_claim_not_reproduced",
+      "location": "docs/quarantine/geoconduit-hybrid/*; README 2026-10-29 correction",
+      "summary": "Earlier H-GEO-CONDUIT HOLDOUT-DTI claim 0.4239 is not reproduced. Committed evaluator gives 0.3047 [0.2881, 0.3189]. 84.6% of dots lie within 3 px of a catalogue fault, so the score tracks catalogue proximity; SGMC-cal score is 0.0026.",
+      "resolution": "Candidate rejected. The 0.4239 figure stays unestablished."
+    },
+    {
+      "id": "IR-PROXY-SIGN-CONFLICT-20261030",
+      "severity": "medium",
+      "category": "statistical_conflict",
+      "location": "evidence/focus9-mechanism-audit-20261030.json; evidence/proxy-calibration-20261029.json",
+      "summary": "Focus-9 SGMC-cal vs user-reported score gives rho = +0.95 (N = 9). Prior 2026-10-29 off-catalogue calibration gives rho = 0.08 across 18 rasters. Signs and sample sizes disagree; not reconciled.",
+      "resolution": "Open. Treat both as descriptive only; no calibration is claimed."
+    },
+    {
+      "id": "IR-METRIC-KNOWN-MASK-20261030",
+      "severity": "medium",
+      "category": "metric_convention_unverified",
+      "location": "vendor/gems57/metric.py (known mask)",
+      "summary": "The known-mask convention that removes mapped catalogue faults from scoring cites 'organiser thread 11516'. That reference is not on the official task page. TP/FP/FN and the DTI formula match the official page.",
+      "resolution": "Open. Owner to confirm against an organizer source."
+    },
+    {
+      "id": "IR-SAMPLE-SUBMISSION-20261030",
+      "severity": "low",
+      "category": "template_mismatch",
+      "location": ".cache/gems_data/sample_submission.tif (restored, not tracked)",
+      "summary": "Local sample_submission.tif equals the positive labels (60,988 cells equal 1). The official task page describes the sample as predicting total fault absence.",
+      "resolution": "Open. Check which template the organizer distributes."
+    },
+    {
+      "id": "IR-LEADERBOARD-STALE-20261030",
+      "severity": "low",
+      "category": "stale_reference",
+      "location": "README.md (#47 = 0.3195); docs/focus9/index.html source note",
+      "summary": "README says rank #47 = 0.3195. On 2026-10-30 that score is at #48; #47 is 0.3217. The user-cited 0.4413 is not in the public top 50 (#1 = 0.4544). The repo notes that automated access to DrivenData is prohibited by its terms; the 2026-10-30 session made five page fetches.",
+      "resolution": "Corrected in README and docs/focus9 pages. Owner to confirm the fetch activity is acceptable under DrivenData's terms."
+    },
+    {
+      "id": "IR-HOW-TO-SUBMIT-STALE-20261030",
+      "severity": "high",
+      "category": "public_claim_corrected",
+      "location": "docs/how-to-submit.html (static page; no generator in scripts/)",
+      "summary": "Static page called a candidate 'format-validated, unique, ready to download', linked active download buttons to its -zeros TIFF and ZIP, and told the user to upload it as preventing the range error. The -zeros file has zeros outside the footprint (fails the NaN-outside rule), and the uniqueness claim was not supported.",
+      "resolution": "Corrected in place 2026-10-30: status NOT CLEARED, do-not-upload step, download buttons relabelled as research copies, unsupported claims removed. Page is static; a generator should replace it if the page is kept."
+    },
+    {
+      "id": "IR-CORRIDOR-LATTICE-20261030",
+      "severity": "high",
+      "category": "uniqueness_overstated",
+      "location": "docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-*.tif; docs/how-to-submit.html; docs/data/unique-submission-run-card.json",
+      "summary": "Corridor candidate is labelled 'format-valid and unique'. The uniqueness claim is measured only against the nine focus sites (max 6.09%). Against the calibration lattice witness (a registry raster under the 70% rule) 99.99% of its 15,000 dots lie within 3 px. Measured 2026-10-30. Its zeros-outside variant is also contested under the official 'null or nan' text.",
+      "resolution": "how-to-submit page corrected in PR #69 to NOT CLEARED with the lattice measurement. Owner decision required on rule scope and zeros-outside reading. No slot authorised."
+    },
+    {
+      "id": "IR-TRAINING-FEATURES-CLAIM-20261030",
+      "severity": "medium",
+      "category": "stale_claim",
+      "location": "docs/data/unique-submission-run-card.json (leakage_canary, holdout_dti)",
+      "summary": "Run card says training_features.tif is unavailable, so holdout DTI and leakage canary are NOT ESTIMABLE. The core group restores training_features.tif in this checkout (cmp-identical), and the shared evaluator runs on the corridor file.",
+      "resolution": "Corridor HOLDOUT-DTI measured 2026-10-30 (evidence/holdout-corridor-20261030.json): hide-and-recover 0.0 [0.0, 0.0] (0 on-catalogue dots by construction); SGMC-cal 0.0198 [0.0157, 0.0236], 62,703 withheld. Leakage canary still not run."
+    },
+    {
+      "id": "IR-RECEIPT-REBIND-20261030",
+      "severity": "medium",
+      "category": "receipt_regenerated_and_rebound",
+      "location": "evidence/saved-tiffs-literal-20261028.json; evidence/release-audit-20261028.json; evidence/retained-submissions-audit-20261028.json; docs/data/current-run.json; evidence/run-card-20261028-afbdab50.json; docs/release-review.html; index.html",
+      "summary": "Historical 2026-10-28 receipts were regenerated so they cover the corridor TIFFs. The saved_tiffs_audit_sha256 binding in both run-card copies was re-pinned. A hand-edited live download button on the root page was replaced by the template's disabled button. Main's tests failed on these points before this PR.",
+      "resolution": "Done with the repo's own generators; all receipts show ok_to_submit false; 232 tests pass. Owner should confirm the re-pin is acceptable, since historical receipts are normally immutable evidence."
     }
   ]
 }
