@@ -1,0 +1,24 @@
+# NOT CLEARED — H-QDTI top-10 % research raster (2026-10-30)
+
+**Do not download or submit this file.** It is kept as a research artifact only.
+
+| Item | Value |
+|---|---|
+| File | `gemsdoekarage3-h-qdti-logit-top10-20261030.tif` |
+| SHA-256 | `89edcf82108556ee1f6784a91799d41b49c29ae2da2313534fcf63c9e982a2b6` |
+| Built by | `scripts/build_qdti_candidate.py --frac 0.10` (fitted on all visible labels, same method as `scripts/qdti_holdout.py`) |
+| Emitted cells | 510,639 (9.88 % of the 5,167,373-cell footprint); 0 on catalogue pixels |
+| Local format gate (`scripts/check_format.py`) | PASS (organizer-format checks; not an organizer receipt) |
+| Shared writer audit (`src/gems32/submission.py` `audit_geotiff`, nan mode) | PASS, all 13 checks |
+
+## Why it is not cleared
+
+1. **Random control fails.** The H-QDTI holdout (HOLDOUT-DTI, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives) at the same 10 % fraction is **0.0233**, against a random same-area control of **0.0518**. The method does not beat chance at any pre-registered fraction (`evidence/qdti-holdout-20261030.json`).
+2. **Holdout best not beaten.** 0.0233 is below the local nine-site best of 0.0967 (`evidence/focus9-audit-20261030.json`).
+3. **The file itself is not separately evaluable.** It was fitted on all labels, so any holdout number for this file would be contaminated. The estimate comes only from the per-cell out-of-fold run.
+
+Pre-registration record: `docs/research/hqdti-preregistration-20261030.md`.
+
+4. **Literal uniqueness: DUPLICATE-STOP.** Within-3 px fraction 1.000 against one registry raster; max binary |rho| 0.152 (rho gate passes). Screen against the filtered inventory only (`evidence/literal-uniqueness-20261030.json`). The within-3 px result is driven by `apartanish22-droid/ApartGEMSDOE2/…/depth-cond-conductive-under-thin-cover-top37654-…-nan.tif`, which is about 98.8 % positive. A near-full raster makes every dot "within 3 px", so that rule is degenerate here. Whether to exclude that raster is a rule decision for the user and was not applied.
+
+The file was first written to `docs/candidates/` and moved here before any submission step. The uniqueness receipt labels it under the old `docs/candidates/` path.

@@ -1,6 +1,52 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
-## START HERE — executive summary (2026-10-29)
+## START HERE — 2026-10-30 (read first; supersedes the 2026-10-29 block where they conflict)
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No submission slot is selected or used (0 of the weekly slots).**
+
+Standing values: **Maximize P(Win). Own the outcome.** No local method beats its own random control yet, so the action that protects P(Win) is to hold submissions and report the gap, not to submit a file that fails the gates.
+
+| What | Where | Status |
+|---|---|---|
+| Per-site executive summary, all nine sites (file to download, estimated score, uniqueness), submission steps | [docs/focus9/executive-summary-20261030.html](docs/focus9/executive-summary-20261030.html) | Measured; nothing cleared |
+| Run card (one JSON) | [evidence/run-card-20261030.json](evidence/run-card-20261030.json) | Generated from evidence files |
+| Generated H-QDTI GeoTIFF | [docs/quarantine/hqdti-not-cleared/](docs/quarantine/hqdti-not-cleared/NOT-CLEARED.md) | **NOT CLEARED.** Fails the random control |
+| Pre-registration record (H1–H5 ranked) | [docs/research/hqdti-preregistration-20261030.md](docs/research/hqdti-preregistration-20261030.md) | Written after the result |
+
+### Headline findings (2026-10-30)
+
+1. **The local holdout does not agree with the reported leaderboard ordering.** Across the nine focus files, HOLDOUT-DTI vs owner-reported score has Spearman ρ = −0.849 (p = 0.004, n = 9) under the hide-and-recover evaluator, and ρ = −0.849 under the visible-gated b = 2 px variant (`evidence/focus9-audit-20261030.json`, `evidence/focus9-visible-gated-20261030.json`). The owner-reported figures are unverified, so this is an irregularity, not a finding about the organizer score.
+2. **H-QDTI fails the random control at every fraction.** At 10 %, H-QDTI is 0.0233 [0.0185, 0.0287] and the random same-area control is 0.0518 [0.0454, 0.0582] (HOLDOUT-DTI, `GEMSDOE32-HIDE-RECOVER-v3.0`, 22,232 withheld positives). The leakage canary passed (max single-feature AUC 0.559). The file is quarantined and is not a submission.
+3. **Uniqueness fails for every focus site** (against each other; for each site, at least 0.976 of its dots lie within 3 px of one other focus file's dots). GEMSDOE30's dot set is identical to GEMSDOE25's (44,090 dots, 0 cells differ).
+4. **Format:** GEMSDOE24, 25, 27, 28, 31 pass the official format gate. GEMSDOE30, 32, 33, 36 fail because they are 0 outside the footprint, not NaN.
+5. **H-GEO-CONDUIT historical claims are both reproducible, under different committed evaluator variants.** Hide-and-recover (`GEMSDOE32-HIDE-RECOVER-v3.0`): **0.3047** [0.2881, 0.3189]. Visible-gated b = 2 px (`GEMSDOE32-HOLDOUT-v3-visible-gated`): **0.4239** (point estimate; CI not returned by this function). The 10-29 wording "did not reproduce" is superseded: the two numbers come from two evaluators, and neither is organizer-confirmed (`evidence/h-geo-claim-verification-20261030.json`). Both files stay quarantined.
+6. **Literal uniqueness: DUPLICATE-STOP for all candidates.** Within-3 px is 1.000 against one ~98.8 %-positive registry raster (degenerate). The rho rule passes for the H-QDTI file (max |rho| 0.152). See the decision item below.
+7. **Leaderboard check (live, 2026-10-30, public page):** #1 = 0.4544; 0.3195 appears at rank #48; **0.4413 does not appear on the page.** Ask the user to confirm which figure they cite.
+
+### Format advice corrected
+
+The 10-29 advice to "use only the `-zeros` files" is **superseded**. The official rule is "data outside the bounds is null or nan"; the official sample uses NaN outside; `scripts/check_format.py` enforces NaN outside. Zero-outside files fail the gate. The portal error "Predicted values must be in range [0, 1]" remains **unexplained**: it is not linked to any file in the repository, and it was not reproduced locally.
+
+### GEMSDOE32 (0.2778, user-reported) — why, and can it be beaten? (2026-10-30)
+
+**Short answer.** The file is a pruned descendant of the dotted-ridge family (37,654 dots). Each of its dots lies within 3 px of a dot in every other focus file (overlap 1.000). It has the lowest local HOLDOUT-DTI of the nine (0.0045 [0.0038, 0.0053]; reproduced under visible-gated at 0.0045). So this proxy cannot explain why the organizer scored it highest. The reported score is not reproduced by any local measurement, and it is not organizer-confirmed.
+
+- **What it is.** Dots only, with 0 outside the footprint. The format gate fails for this reason (`outside_null_or_nan`). It is a near-subset of GEMSDOE31's family. The 10-29 "pixel-exact inheritance chain" section below is a lineage claim from the earlier session and is not re-verified here.
+- **Why it might score well (hypothesis, not established).** The organizer's withheld set may sit closer to mapped structure than our hide-and-recover masks assume. Dense placement along mapped structure would then earn more credit than the local proxy gives it. Testing this needs the organizer's per-file breakdown, which is not available.
+- **Why the local proxy disagrees.** The proxy and the leaderboard disagree on ordering (ρ = −0.849). Either the proxy is wrong about the organizer's blind set, or the owner-reported scores are wrong. Neither can be settled from the repository.
+- **Can higher be achieved?** The public leaderboard top is 0.4544, so higher scores exist. Nothing this session produced beats the local random control, so there is no validated route to a higher score yet. The top ranked untested hypothesis (H2, magnetic contact ridges) is not validated on the holdout, and no slot is used for it.
+
+### Remaining work and limitations
+
+- **Uniqueness (done, DUPLICATE-STOP):** `evidence/literal-uniqueness-20261030.json` (1,979 of 1,997 registry rasters compared; 18 skipped). Every candidate, including the H-QDTI file, is DUPLICATE-STOP on the within-3 px rule, driven by one ~98.8 %-positive registry raster, so the rule is degenerate for it. **Decision needed from the user:** exclude or keep that raster in the screen. Not applied here. The H-QDTI file stays NOT CLEARED regardless.
+- **H2–H5 untested.** Validating the top hypothesis on the spatially-blocked holdout needs a fourth experiment, which requires an explicit decision to exceed the 3-experiment budget.
+- **Continuous-surface check not run.** The candidate was built binary only.
+- **Release-test failures are pre-existing on `main`.** Six tests in `tests/test_release_review.py`, `tests/test_review_20261028.py` and `tests/test_session_safety.py` fail on `main` `HEAD` as well as on this branch (stale saved-byte audits: `docs/downloads` has two tracked `consensus-hgrad` TIFFs not in the audit; a 10-29 session-card assertion). Not repaired here; regenerating the audits is out of scope for this run. Full suite: 211 passed, 6 failed, 1 skipped.
+- **Registry conflict unresolved.** `registry/focus9_registry.json` (`-allfinite`) and `data/focus_registry.json` (`-nan`) disagree on file variants for several sites. The audit uses `data/focus_registry.json`.
+- **Visible-gated CIs** were not returned for focus rows (point estimates only).
+- **No organizer receipt** exists. Nothing here is ORGANIZER-CONFIRMED.
+
+## (Prior) START HERE — executive summary (2026-10-29)
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot.**
 

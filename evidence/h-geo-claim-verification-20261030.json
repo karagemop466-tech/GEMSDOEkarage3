@@ -1,0 +1,61 @@
+{
+  "claims": {
+    "visible_gated_run_card": {
+      "pooled_dti": 0.4239,
+      "ci95": [
+        0.4053,
+        0.4427
+      ]
+    },
+    "hide_recover_cli": {
+      "pooled_dti": 0.3047,
+      "ci95": [
+        0.2881,
+        0.3189
+      ]
+    }
+  },
+  "label": "HOLDOUT-DTI (historical verification; file quarantined, not a submission)",
+  "files": [
+    {
+      "file": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-nan.tif",
+      "sha256_file": "dafa1e375a57735f6f64091f8b36050b5dda9c72b325ad97327d9d49a76ce1f3",
+      "emitted_cells": 35615,
+      "hide_recover": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.30473355287974024,
+        "ci95": [
+          0.2881210935821653,
+          0.3188882103680109
+        ],
+        "n_withheld_positives": 22232
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.4238550175911073,
+        "ci95_cluster_bootstrap": null,
+        "n_withheld_positives": 22232
+      }
+    },
+    {
+      "file": "gemsdoe32-karage3-h-geoconduit-hybrid-20261029T181452Z-0a6974d8-zeros.tif",
+      "sha256_file": "064348774a950f22cd677b52c8e27778066ef2947505630ff4074fc6e4eeaf43",
+      "emitted_cells": 35615,
+      "hide_recover": {
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.30473355287974024,
+        "ci95": [
+          0.2881210935821653,
+          0.3188882103680109
+        ],
+        "n_withheld_positives": 22232
+      },
+      "visible_gated_b2": {
+        "evaluator_version": "GEMSDOE32-HOLDOUT-v3-visible-gated",
+        "pooled_dti": 0.4238550175911073,
+        "ci95_cluster_bootstrap": null,
+        "n_withheld_positives": 22232
+      }
+    }
+  ]
+}
