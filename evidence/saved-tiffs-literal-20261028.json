@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "checked_utc": "2026-10-30T01:50:05.310323+00:00",
+  "checked_utc": "2026-10-30T01:55:59.311017+00:00",
   "classification": "GEOMETRY AND FORMAT DIAGNOSTIC, NOT A SCORE",
   "scope": "All checked-in docs TIFFs versus one pinned witness; not a complete registry or a surface audit.",
   "input_provenance": "Hash-pinned public owner mirrors, not authenticated organizer inputs.",
