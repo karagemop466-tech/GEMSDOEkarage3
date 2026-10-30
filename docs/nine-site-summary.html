@@ -5,7 +5,7 @@
 <body><main class="wrap" style="padding:28px 0 60px;max-width:1180px;margin:auto">
 <p><a href="nine-site-summary.html">Executive summary</a> · <a href="focus9/index.html">Focus-9 detail</a> · <a href="index.html">Decision home</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition</a></p>
 <h1>GEMSDOE focus-9 · Executive summary</h1>
-<p><small>Generated 2026-10-29 19:07 UTC from <code>docs/data/nine-site-summary.json</code> by <code>scripts/build_nine_site_summary.py</code>. Run card: <a href="nine-site-run-card.json">nine-site-run-card.json</a>.</small></p>
+<p><small>Generated 2026-10-30 01:53 UTC from <code>docs/data/nine-site-summary.json</code> by <code>scripts/build_nine_site_summary.py</code>. Run card: <a href="nine-site-run-card.json">nine-site-run-card.json</a>.</small></p>
 
 <div style="border:3px solid #b00020;background:#fff0f0;padding:18px;border-radius:10px;margin:16px 0">
 <strong style="font-size:1.3em">OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared for a leaderboard slot today.</strong>
@@ -152,7 +152,7 @@
 <td>13,434</td>
 <td>PASS</td>
 <td>0.0178 <small>HOLDOUT-DTI; n=22,232; CI [0.0154, 0.0205]</small></td>
-<td>0.0239 <small>HOLDOUT-DTI; CI [0.0202, 0.0277]</small></td>
+<td>0.0239 <small>HOLDOUT-DTI; n=62,703; CI [0.0202, 0.0277]</small></td>
 <td>NO<br><small>max 3-px overlap vs nine: 0.213</small></td>
 <td><span class="no">NO - fails holdout gate</span><br><small>HOLDOUT-DTI 0.0178 &lt; best 0.0967 (GEMSDOE25/30); SGMC-cal 0.0239 &lt; 0.0644. Literal scan: FAIL (108 rasters over the gate; see scan section).</small></td>
 </tr>
@@ -162,7 +162,7 @@
 <td>35,615</td>
 <td>PASS</td>
 <td>0.3047 <small>HOLDOUT-DTI; n=22,232; CI [0.2881, 0.3189]</small></td>
-<td>0.0026 <small>HOLDOUT-DTI; CI [0.0020, 0.0035]</small></td>
+<td>0.0026 <small>HOLDOUT-DTI; n=62,703; CI [0.0020, 0.0035]</small></td>
 <td>NOT SCANNED on full registry (vs nine: max overlap 0.358)<br><small>max 3-px overlap vs nine: 0.358</small></td>
 <td><span class="no">NO - not cleared</span><br><small>Static placement built from catalogue-adjacent dots: leakage not excluded. Its card&#x27;s 0.4239 did not reproduce (0.3047 here). SGMC-cal is the lowest of the files tested.</small></td>
 </tr>
@@ -172,9 +172,19 @@
 <td>12,000</td>
 <td>PASS</td>
 <td>0.0100 <small>HOLDOUT-DTI; n=22,232; CI [0.0083, 0.0117]</small></td>
-<td>0.0073 <small>HOLDOUT-DTI; CI [0.0065, 0.0082]</small></td>
+<td>0.0073 <small>HOLDOUT-DTI; n=62,703; CI [0.0065, 0.0082]</small></td>
 <td>vs nine only: YES; full registry NOT SCANNED<br><small>max 3-px overlap vs nine: 0.051</small></td>
 <td><span class="no">NO</span><br><small>Unique vs the nine (max overlap 0.051), but HOLDOUT-DTI 0.0100 and SGMC-cal 0.0073 are below the nine-site best.</small></td>
+</tr>
+<tr>
+<td><strong>CAND-offcat-corridor-prior-v1</strong><br><small><code>gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif</code></small></td>
+<td><code>6432d93d31eb</code></td>
+<td>15,000</td>
+<td>PASS</td>
+<td><strong>NOT ESTIMABLE</strong><br><small>no organizer labels / training features available</small></td>
+<td><strong>NOT ESTIMABLE</strong><br><small>no organizer labels / training features available</small></td>
+<td>UNIQUE vs nine: YES (max overlap 0.061 <= 0.70); full registry NOT SCANNED<br><small>max 3-px overlap vs nine: 0.061</small></td>
+<td><span class="no">NO - NOT VALIDATED</span><br><small>Format-valid and unique vs all nine focus sites (max 3-px overlap 0.061, well under the 70% rule; 0 dots on catalogue faults. HOLDOUT-DTI and leaderboard score NOT ESTIMABLE without training_features.tif / organizer labels. Do not spend a slot until validated.</small></td>
 </tr>
 </table></div>
 <p><strong>Download for karage3-k4-offcat-ridge-20k:</strong> <a href="docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.tif">TIF</a> · <a href="docs/downloads/gemsdoe32-karage3-k4-offcat-ridge-20k-20261029T183711Z-2a6558a3-zeros.zip">ZIP (single GeoTIFF inside)</a>. Submission name: <code>karage3-k4-offcat-ridge-20k</code>. Note (≤140 chars, 85 used): <code>Off-catalogue ridge detector: 20k NMS maxima of mag/grav gradient + LiDAR scarp step.</code>. Verdict: do not submit (holdout gate).</p>

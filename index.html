@@ -21,11 +21,13 @@
       <div class="hero-links"><a class="button" href="docs/hk3d/index.html">Session 5 H-K3D executive summary <span aria-hidden="true">↗</span></a><a class="button" href="executive-summary.html">Read the submission guide <span aria-hidden="true">↗</span></a><a href="docs/hk3d/how-to-submit.html">H-K3D step-by-step guide ↗</a><a href="docs/release-review.html">Latest safety review ↗</a><a href="docs/review-2026-10-28-session.md">Three-pass session review ↗</a><a href="#scorecard">Explore the nine-site review ↓</a><a href="docs/preflight.html">Independent research dashboard ↗</a></div>
     </div>
     <div class="release-card" aria-label="Current submission decision">
-      <div class="card-top"><span class="card-kicker">CURRENT RELEASE DECISION</span><span class="pill hold">NOT APPROVED</span></div>
-      <h2>No file cleared<br>for live submission.</h2>
-      <p>Session 5 H-K3D (99.3547% vs lattice witness; 24c HR 0.0942 vs 0.1008; SGMC-cal 0.0682 vs 0.0641), the H-GEO-CONDUIT candidate (99.83% vs lattice; card HOLDOUT-DTI 0.4239 did not reproduce; shared-evaluator HOLDOUT-DTI 0.3047 [0.2881, 0.3189]; NOT ESTABLISHED as a same-protocol baseline) and all older TIFFs are stopped by <code>promotion_gate.py</code>. No weekly slot used.</p>
-      <button class="disabled-button" disabled aria-describedby="download-explanation">Download submission .tif <span aria-hidden="true">↓</span></button>
-      <div class="card-foot"><span id="download-explanation">Live slot locked · do not submit · see <a href="docs/hk3d/index.html" style="color:#d6e8d7">H-K3D audit</a></span><a href="docs/data/latest-run.json" style="color:#d6e8d7">Run card ↗</a></div>
+      <div class="card-top"><span class="card-kicker">NEW UNIQUE TIF · GENERATED 2026-10-30</span><span class="pill hold">NOT OK TO SUBMIT</span></div>
+      <h2>karage3-offcat-corridor-prior-v1<br><small>15,000-dot off-catalogue blind-fault corridor prior</small></h2>
+      <p>Format-valid single-band float32 GeoTIFF (EPSG:32611, 3730×3292, 100 m): every cell in [0,1], zero NaN/Inf anywhere, 0 dots on catalogue faults, unique vs all 9 focus sites (max 6.1% of dots within 3 px; limit 70%). SHA-256 <code>6432d93d…</code>.</p>
+      <div class="banner warn"><span class="banner-icon" aria-hidden="true">!</span><div><strong>NOT OK to submit to the leaderboard.</strong> This checkout has no organizer labels or <code>training_features.tif</code> (DrivenData login required), so holdout-DTI, the leakage canary, and a leaderboard-score estimate cannot be computed. The file is provided for research/inspection only — do <strong>not</strong> spend a weekly submission slot until it passes validation.</div></div>
+      <a class="button" href="docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif">Download submission .tif <span aria-hidden="true">↓</span></a>
+      <a class="button light" href="docs/downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.zip">Download .zip package <span aria-hidden="true">↓</span></a>
+      <div class="card-foot"><span id="download-explanation">Submission name: <code>karage3-offcat-corridor-prior-v1</code> · note (126 chars): <code>"Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots."</code></span> · <a href="docs/data/unique-submission-run-card.json" style="color:#d6e8d7">Run card ↗</a> · <a href="docs/nine-site-summary.html" style="color:#d6e8d7">Nine-site summary ↗</a></div>
     </div>
   </section>
   <section class="stats" aria-label="Evidence snapshot">

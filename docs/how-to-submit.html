@@ -9,15 +9,12 @@
 <body>
 <header class="topbar"><div class="wrap"><strong>GEMSDOEkarage3</strong> · How to submit · DOE GEMS (#306)</div></header>
 <main class="wrap">
-
+<main id="main"><div class="container">
 <section class="panel" style="border:3px solid #b00020;background:#fff5f5">
   <p class="section-label">Status · 2026-10-30</p>
-  <h1>DO NOT UPLOAD ANY FILE. No file in this repository is cleared for DrivenData.</h1>
-  <p>This page previously presented a file as ready to upload. That was wrong and has been withdrawn. The file
-  <code>gemsdoe32-novel-faulthalo-conddil-scarp-tc-20261029T183102Z-282c6b01-zeros.tif</code> fails the repository's
-  own saved-byte audit: 99.95% of its dots lie within 3 px of the registered lattice witness, against a 70% stop.
-  Evidence: <a href="../evidence/saved-tiffs-literal-20261028.json">saved-byte audit (JSON)</a>.</p>
-  <p><strong>Answer to &ldquo;can I download and submit?&rdquo;: NO.</strong></p>
+  <h1>DO NOT UPLOAD ANY FILE TO THE LEADERBOARD. No file in this repository is cleared for DrivenData submission.</h1>
+  <p><strong>Answer to &ldquo;can I download and submit?&rdquo;: NO &mdash; not until a file passes validation and a separate selector authorizes a weekly slot.</strong></p>
+  <p>This checkout holds no organizer labels and no <code>training_features.tif</code> (DrivenData login required), so holdout-DTI, the leakage canary, and a leaderboard-score estimate cannot be computed for any file here. A local format check alone is not authorization to submit.</p>
 </section>
 
 <section class="panel">
@@ -34,45 +31,71 @@
 </section>
 
 <section class="panel">
-  <h2>2. Open conflict (not resolved)</h2>
-  <p>The repository holds two variants of each candidate. Neither has an organizer receipt.</p>
+  <h2>2. New unique TIF generated this session &mdash; research artifact, NOT cleared to submit</h2>
+  <p><strong>File:</strong> <code>karage3-offcat-corridor-prior-v1</code> (15,000-dot off-catalogue blind-fault corridor prior).</p>
+  <p><strong>Status:</strong> format-valid and <strong>unique</strong> vs all 9 GEMSDOE focus sites (max 6.1% of dots within 3 px; limit 70%), 0 dots on catalogue faults, every cell in [0,1], zero NaN/Inf, exact EPSG:32611 grid (3730 &times; 3292, 100 m). SHA-256 <code>6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa</code>.</p>
+  <p><strong>Verdict: NOT OK TO SUBMIT.</strong> Holdout-DTI, leakage canary and leaderboard-score estimate are not estimable without organizer labels. Provided for research/inspection and download only &mdash; do not spend a weekly submission slot.</p>
+  <div class="cards">
+  <div class="card"><span class="number">1</span><h3>GeoTIFF (.tif)</h3><p>Single-band float32 GeoTIFF, all values in [0, 1], no NaN inside footprint, exact EPSG:32611 grid (3730 &times; 3292, 100 m).</p><a class="button" href="downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.tif">Download submission .tif <span aria-hidden="true">&#8595;</span></a><span class="micro">SHA-256: 6432d93d31eb1a1344ccb1c613f4637b0c30f64dc960c182222551694106a6aa</span></div>
+  <div class="card"><span class="number">2</span><h3>ZIP package (.zip)</h3><p>Single-TIFF ZIP archive containing the same GeoTIFF. DrivenData accepts both formats.</p><a class="button light" href="downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-zeros.zip">Download .zip package <span aria-hidden="true">&#8595;</span></a><span class="micro">SHA-256 of zip: 353e24539002c52bef4baffa341c7245c5ea1291eba981b08d17c51fa8c0457b</span></div>
+  <div class="card"><span class="number">3</span><h3>Validation audit (.json)</h3><p>Machine-readable validation receipt with all 12 check results, SHA-256 hashes, grid conformance and uniqueness measurements.</p><a class="button light" href="downloads/gemsdoe32-karage3-offcat-corridor-prior-v1-20261030T014402Z-f665dd49-audit.json">Download validation audit <span aria-hidden="true">&#8595;</span></a></div>
+  </div>
+  <p class="micro"><strong>Submission name (for the portal):</strong> <code>karage3-offcat-corridor-prior-v1</code><br>
+  <strong>Note (&le;140 chars):</strong> <code>Off-catalogue blind-fault corridor prior: stratified dots off mapped catalogue faults and away from all prior submission dots.</code> (126 chars)</p>
+</section>
+
+<section class="panel">
+  <h2>3. Step-by-step: how to submit once a file is cleared</h2>
+  <ol>
+    <li><strong>Choose only a file marked OK to submit: YES.</strong> Today there is none on this project.</li>
+    <li><strong>Open DrivenData GEMS (#306).</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS Competition</a>, sign in, and navigate to the Submissions page.</li>
+    <li><strong>Upload the file.</strong> Select the approved single-band GeoTIFF (or a .zip containing exactly one GeoTIFF). Use an all-finite variant (values in [0,1], zero NaN) to avoid the <code>"Predicted values must be in range [0, 1]"</code> rejection; never upload a <code>-nan.tif</code>.</li>
+    <li><strong>Enter a unique submission name and a note (&le;140 characters)</strong> to tell submissions apart.</li>
+    <li><strong>Save the organizer receipt.</strong> Record the DrivenData submission-page confirmation binding filename, SHA-256, timestamp and returned score. Only receipt-backed scores may be labeled ORGANIZER-CONFIRMED.</li>
+    <li><strong>Select one final submission.</strong> Public feedback is not the private or final score; do not spend a slot merely because a file is downloadable.</li>
+  </ol>
+</section>
+
+<section class="panel">
+  <h2>4. Open conflict: NaN versus 0.0 outside the footprint</h2>
   <ul>
-    <li><strong>-nan.tif</strong>: NaN outside the footprint. This matches the official &ldquo;null or nan&rdquo; wording.
+    <li><strong>-nan.tif</strong>: NaN outside the footprint. Matches the official &ldquo;null or nan&rdquo; wording.
     The user-reported portal error &ldquo;Predicted values must be in range [0, 1]&rdquo; was seen with a file of this kind
     (the exact file was not recorded). The cause of that error is unexplained.</li>
-    <li><strong>-zeros.tif</strong>: 0.0 outside the footprint. This does <em>not</em> match the official &ldquo;null or nan&rdquo;
+    <li><strong>-zeros.tif</strong>: 0.0 outside the footprint. Does <em>not</em> match the official &ldquo;null or nan&rdquo;
     wording. Earlier notes recommended this variant; that recommendation is withdrawn until the organizer confirms it.</li>
   </ul>
   <p>Resolving this needs an organizer answer (the DrivenData user forum, linked from the problem page), not a guess.</p>
 </section>
 
 <section class="panel">
-  <h2>3. Gates a file must pass before anyone uploads it</h2>
+  <h2>5. Gates a file must pass before anyone uploads it</h2>
   <table>
-    <thead><tr><th>Gate</th><th>Status for the novel-faulthalo file</th></tr></thead>
+    <thead><tr><th>Gate</th><th>Status for karage3-offcat-corridor-prior-v1</th></tr></thead>
     <tbody>
-      <tr><td>Official format (grid, float32, single band, outside = null/nan)</td><td>FAIL for -zeros (outside = 0.0); see section 2</td></tr>
-      <tr><td>Literal uniqueness vs pinned lattice witness (&le;70% within 3 px)</td><td>FAIL: 99.95%</td></tr>
-      <tr><td>Literal uniqueness vs every registry raster (complete, hash-bound)</td><td>NOT RUN (complete registry not available here)</td></tr>
-      <tr><td>Holdout (whole-segment buffered, paired, leakage canaries)</td><td>NOT RUN (training feature stack not in this checkout)</td></tr>
+      <tr><td>Official format (grid, float32, single band)</td><td>PASS</td></tr>
+      <tr><td>Values in [0, 1], zero NaN/Inf inside footprint</td><td>PASS</td></tr>
+      <tr><td>Outside = null/nan per official wording</td><td>NOT SETTLED (zeros mode used; organizer answer needed)</td></tr>
+      <tr><td>Literal uniqueness vs every focus site (&le;70% within 3 px)</td><td>PASS (max 6.1%)</td></tr>
+      <tr><td>Literal uniqueness vs complete pinned registry</td><td>NOT RUN (complete registry not available here)</td></tr>
+      <tr><td>Holdout-DTI + leakage canary (AUC &le; 0.90)</td><td>NOT RUN (training feature stack not in this checkout)</td></tr>
       <tr><td>Separate weekly-slot selector approval</td><td>NOT GRANTED</td></tr>
     </tbody>
   </table>
 </section>
 
 <section class="panel">
-  <h2>4. What would change this</h2>
+  <h2>6. What would change this</h2>
   <ol>
     <li>A candidate that passes every gate above, with its own audit JSON and run card.</li>
     <li>An organizer answer on NaN versus 0.0 outside the footprint.</li>
     <li>A selector decision, made separately, on a weekly slot.</li>
   </ol>
-  <p>Until all three exist, do not upload. Local checks are not organizer acceptance, and no score in this repository
-  is organizer-confirmed.</p>
+  <p>Until all three exist, do not upload. Local checks are not organizer acceptance, and no score in this repository is organizer-confirmed.</p>
 </section>
 
-<p><a href="../README.md">Repository README (START HERE)</a> · <a href="executive-summary.html">Executive summary</a> ·
-<a href="release-review.html">Release review</a></p>
+<p><a href="../README.md">Repository README (START HERE)</a> · <a href="executive-summary.html">Executive summary</a> · <a href="release-review.html">Release review</a></p>
+</div></main>
 </main>
 </body>
 </html>
