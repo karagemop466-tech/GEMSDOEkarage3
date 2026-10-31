@@ -13,7 +13,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / 'evidence/focus9-verification-20261031.json'
-LEADER = ROOT / 'evidence/leaderboard-snapshot-20261031.json'
+LEADER = ROOT / 'evidence/leaderboard-ranks-1-50-20261031.json'
 
 
 def _receipt():
