@@ -1,0 +1,116 @@
+{
+  "candidate_id": "colocation-h1",
+  "slug": "colocation-h1",
+  "content_digest8": "48e06738",
+  "description": "Pre-registered in scripts/build_colocation_candidate.py; min robust-z over three bands; NMS 3x3; top 37654 ridge pixels; labels excluded.",
+  "submission_note_zeros": "H1 3-field co-located gradient ridges, no catalogue cells, A1 budget. Holdout pending.",
+  "submission_note_nan": "H1 3-field co-located gradient ridges, no catalogue cells, A1 budget. Holdout pending.",
+  "zeros_tif": {
+    "filename": "gemsdoe32-colocation-h1-20261031T000000Z-48e06738-zeros.tif",
+    "size_bytes": 109998,
+    "sha256": "d983b933eb553372172b351c8304fa38d96af59188561b40b20b1505d944cc11",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 12177,
+    "footprint_fraction": 0.002357,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "gemsdoe32-colocation-h1-20261031T000000Z-48e06738-nan.tif",
+    "size_bytes": 246034,
+    "sha256": "4cad920c36b7eb5afe2458c287497d8f3c6b61e5c9518bfb110feccfdd7e3f47",
+    "mode": "nan",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 12177,
+    "footprint_fraction": 0.002357,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": null,
+    "catalogue_hidden_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": null,
+    "drift_corrected_holdout_mean": null,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-DO-NOT-SUBMIT"
+  },
+  "zeros_zip": {
+    "filename": "gemsdoe32-colocation-h1-20261031T000000Z-48e06738-zeros.zip",
+    "path": "/home/user/GEMSDOEkarage3/docs/quarantine/colocation-h1/gemsdoe32-colocation-h1-20261031T000000Z-48e06738-zeros.zip",
+    "size_bytes": 70707,
+    "sha256": "2961716854956bdf5342e8a4b753a1520505150a948e5403c31d8caabe7cc7b7"
+  }
+}

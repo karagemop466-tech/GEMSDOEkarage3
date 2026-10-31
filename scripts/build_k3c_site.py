@@ -60,6 +60,8 @@ def root_decision_html():
     _, _, report = _archive()  # Never render the retained-TIFF claim from stale saved-byte evidence.
     n_tiffs = len(report['rasters'])
     aside = ('<aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> '
+             '<p style="margin:8px 0"><a href="docs/executive-summary-20261031.html" style="font-weight:700;font-size:1.1em">'
+             '&#9658; 2026-10-31 EXECUTIVE SUMMARY: nine sites (GEMSDOE24-36), comparison table, three new candidates — none cleared</a></p>'
              f'Session 5 Lane H-K3D (TGSF-BVCD) and all {n_tiffs} retained research TIFFs are refused: each fails the literal registry-overlap rule against the registered 206,895-dot lattice witness, or (H1 seismic-gravity-basin) places most dots in the lattice-uncovered edge band (boundary-gaming refusal); '
              'the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. '
              'H-GEO-CONDUIT hybrid candidate (quarantined at <code>docs/quarantine/geoconduit-hybrid/</code>, PENDING-REVIEW) has 99.83% of its 35,615 dots within 3 px of the lattice, so it is not a compliant file. '

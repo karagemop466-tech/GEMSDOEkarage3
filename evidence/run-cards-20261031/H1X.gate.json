@@ -1,0 +1,25 @@
+{
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "eligible_for_selector": false,
+  "technically_eligible": false,
+  "selector_required": true,
+  "selector_approval": false,
+  "slot_used": false,
+  "reasons": [
+    "1 literal overlap value(s) missing, invalid or above 0.70; first: card.registry.final_dots.comparisons[9].literal_overlap_3px",
+    "experiment count or time budget missing/exceeded",
+    "no paired holdout improvement",
+    "current same-evaluator baseline not established or not beaten",
+    "shared evaluator provenance missing or implementation has unresolved protocol defects",
+    "missing complete fold/buffer/leakage/FP protocol audit",
+    "current best not evidenced on the same evaluator, implementation, folds and positives",
+    "whole-segment buffered fold-local visible-only holdout not established",
+    "pooled official DTI parameters not established",
+    "missing or leaking per-feature canaries",
+    "literal all-registry final audit absent or failed",
+    "surface literal uniqueness incomplete or duplicate",
+    "final_dots literal uniqueness incomplete or duplicate"
+  ],
+  "exit_code": 2
+}
