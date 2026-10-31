@@ -1,0 +1,126 @@
+{
+  "candidate_id": "k8d-scarponly",
+  "path": ".cache/k8/karage3-k8d-scarponly-n44k_mask.npy",
+  "emitted_pixels": 44090,
+  "mode": "static_binary_diagnostic",
+  "promotion_eligible": false,
+  "provenance_warning": "Static predictions cannot establish fold-local catalogue features or leakage-free training.",
+  "hide_and_recover": {
+    "candidate_id": "k8d-scarponly",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "b_visible_px": 0.0,
+    "n_withheld_positives": 22232,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "pooled_dti": 0.0023638918092170817,
+    "ci95_cluster_bootstrap": [
+      0.0016722857336078246,
+      0.003088614068384359
+    ],
+    "fold_mean_dti": 0.002322506309075224,
+    "per_quadrant_dti": {
+      "NW": 0.0028565021023957706,
+      "NE": 0.0009332467021355245,
+      "SW": 0.0026364975548428746,
+      "SE": 0.0028637788769267265
+    },
+    "folds": {
+      "draw20_fold0": {
+        "dti": 0.003117534144438413,
+        "coverage": 0.0041229436317092765,
+        "tp": 7.878945280196427,
+        "fp": 4984.623038590975,
+        "fn": 1903.1210547198036,
+        "n_truth": 1911,
+        "emitted": 4991
+      },
+      "draw20_fold1": {
+        "dti": 0.0015163869739715152,
+        "coverage": 0.0025531709374424067,
+        "tp": 6.002504873927098,
+        "fp": 10382.125022462147,
+        "fn": 2344.997495126073,
+        "n_truth": 2351,
+        "emitted": 10387
+      },
+      "draw20_fold2": {
+        "dti": 0.002263730574722684,
+        "coverage": 0.002623306361861114,
+        "tp": 9.666883943458206,
+        "fp": 6601.99936865914,
+        "fn": 3675.3331160565417,
+        "n_truth": 3685,
+        "emitted": 6609
+      },
+      "draw20_fold3": {
+        "dti": 0.0031831773310874033,
+        "coverage": 0.006320513085738389,
+        "tp": 20.383654701506305,
+        "fp": 19097.396979817924,
+        "fn": 3204.616345298494,
+        "n_truth": 3225,
+        "emitted": 19115
+      },
+      "draw21_fold0": {
+        "dti": 0.002595470060353128,
+        "coverage": 0.0033040033950885927,
+        "tp": 6.974751167032019,
+        "fp": 4985.418281398066,
+        "fn": 2104.025248832968,
+        "n_truth": 2111,
+        "emitted": 4991
+      },
+      "draw21_fold1": {
+        "dti": 0.0003501064302995338,
+        "coverage": 0.0006012016690984105,
+        "tp": 1.3617217805078996,
+        "fp": 10385.892922226993,
+        "fn": 2263.638278219492,
+        "n_truth": 2265,
+        "emitted": 10387
+      },
+      "draw21_fold2": {
+        "dti": 0.0030092645349630645,
+        "coverage": 0.0035179213495042335,
+        "tp": 12.608230116623172,
+        "fp": 6600.414313655721,
+        "fn": 3571.391769883377,
+        "n_truth": 3584,
+        "emitted": 6609
+      },
+      "draw21_fold3": {
+        "dti": 0.0025443804227660498,
+        "coverage": 0.00517368217474879,
+        "tp": 16.038414741721247,
+        "fp": 19101.29012272113,
+        "fn": 3083.961585258279,
+        "n_truth": 3100,
+        "emitted": 19115
+      }
+    }
+  },
+  "sgmc_off_catalogue": {
+    "candidate_id": "k8d-scarponly",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "n_withheld_positives": 62703,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "sgmc_raw_pooled_dti": 0.1151246030718887,
+    "sgmc_raw_ci95": [
+      0.08577807939468834,
+      0.14409384786998855
+    ],
+    "sgmc_prevalence_calibrated_dti": 0.07290749008656401,
+    "sgmc_calibrated_ci95": [
+      0.05579552190261324,
+      0.08855905680649158
+    ]
+  },
+  "legacy_summary": {
+    "catalogue_hidden_mean": 0.002322506309075224,
+    "sgmc_prevalence_calibrated_dti": 0.07290749008656398,
+    "drift_corrected_holdout_mean": 0.03267130353398713
+  }
+}

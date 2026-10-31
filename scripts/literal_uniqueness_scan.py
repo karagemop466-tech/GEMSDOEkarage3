@@ -50,12 +50,12 @@ def _pearson(a: np.ndarray, b: np.ndarray) -> float:
     return float((a * b).sum() / den) if den > 0 else float("nan")
 
 
-def _init():
-    foot = np.load(WORK / "k4_footprint.npy")
+def _init(prefix: str = "k4"):
+    foot = np.load(WORK / f"{prefix}_footprint.npy")
     G["foot"] = foot
-    G["S"] = np.load(WORK / "k4_surface.npy")[foot]
-    G["pre"] = np.load(WORK / "k4_surface_preview_dots.npy")
-    G["fin"] = np.load(WORK / "k4_final_dots.npy")
+    G["S"] = np.load(WORK / f"{prefix}_surface.npy")[foot]
+    G["pre"] = np.load(WORK / f"{prefix}_surface_preview_dots.npy")
+    G["fin"] = np.load(WORK / f"{prefix}_final_dots.npy")
     G["shape"] = foot.shape
     G["rS"] = _ranks(G["S"])
     G["rPre"] = _ranks(G["pre"][foot].astype(np.float32))
@@ -129,6 +129,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--inventory", type=Path, required=True, help="JSON list/dict with rasters[{name,local,sha256}]")
     ap.add_argument("--candidate-sha256", required=True)
+    ap.add_argument("--candidate-prefix", default="k4",
+                    help="Prefix of the prepared candidate arrays in .cache/gems_work (footprint/surface/preview/final)")
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--jobs", type=int, default=2)
     args = ap.parse_args()
@@ -147,7 +149,7 @@ def main() -> int:
 
     results = []
     partial = args.out.with_suffix(".partial.jsonl")
-    with Pool(args.jobs, initializer=_init) as pool, partial.open("w") as fh:
+    with Pool(args.jobs, initializer=_init, initargs=(args.candidate_prefix,)) as pool, partial.open("w") as fh:
         for i, r in enumerate(pool.imap_unordered(check_one, items, chunksize=4), 1):
             results.append(r)
             fh.write(json.dumps(r, default=float) + "\n")

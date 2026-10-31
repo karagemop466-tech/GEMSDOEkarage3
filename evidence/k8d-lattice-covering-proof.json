@@ -1,0 +1,12 @@
+{
+ "schema": "lattice-covering-proof-v1",
+ "random_44k_share_within_3px": [
+  0.9988432751190747,
+  0.9988432751190747,
+  0.9985711045588569,
+  0.9986164663188932,
+  0.9987752324790202
+ ],
+ "footprint_share_within_3px_sampled": 0.998668184649754,
+ "covering_note": "r13-lattice-s5 has ~5 px spacing; the 3 px discs around its dots tile the footprint, so ANY sufficiently dense candidate is a literal-rule duplicate of it. The full-registry literal rule is unsatisfiable without an owner decision on dense/covering witnesses."
+}
