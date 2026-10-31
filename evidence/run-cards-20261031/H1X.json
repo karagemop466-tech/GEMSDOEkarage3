@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "run_id": "gems-karage3-20261031-h1x",
+  "created_utc": "2026-10-31T00:00:00+00:00",
+  "experiment_ordinal": 3,
+  "assigned_lane": "H1X: H1-expanded (no NMS, full budget) (pre-registered; see scripts/build_colocation_expanded_candidate.py)",
+  "hypothesis": "The H1 co-location score at the full 37,654 budget with no non-maximum suppression (tests whether H1 signal scales).",
+  "mechanism": "The H1 co-location score at the full 37,654 budget with no non-maximum suppression (tests whether H1 signal scales).",
+  "named_non_fault_mimic": "As H1: lithologic contacts and slope breaks that co-occur in three fields.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "dti": 0.004686958804448256,
+    "ci95": [
+      0.0027725054864726,
+      0.0070753654933595625
+    ],
+    "paired_delta_ci95": null,
+    "same_evaluator_current_best": true,
+    "current_best_dti": 0.09674330401596999,
+    "current_best_source": "max pooled holdout DTI over the nine focus files, same evaluator (evidence/focus9-reeval/)",
+    "holdout_implementation_sha256": "9ce9cf359f4d7b7fa844dd8f208ec00c3e6c15afef5d724d9014320b944d318d",
+    "evaluator_sha256": "21ed7f6460d876dc0eb83d8c01d3843ee660f43bb73576eb3f0adb1a07e61dbb",
+    "shared_template_commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sgmc_off_catalogue": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "prevalence_calibrated": 0.016684376252730736,
+      "ci95": [
+        0.011221764569484172,
+        0.02232713924899405
+      ]
+    },
+    "budget_matched_random": {
+      "seeds": 2,
+      "holdout_range": [
+        0.030416134578365287,
+        0.03299307045762903
+      ],
+      "sgmc_range": [
+        0.04699990919246955,
+        0.04877236027330674
+      ]
+    }
+  },
+  "elapsed_seconds": null,
+  "leakage_canaries": {
+    "status": "NOT RUN: single-feature AUC > 0.90 test not executed for this candidate",
+    "features_tested": 0
+  },
+  "registry": {
+    "literal_all_rasters_final_passed": false,
+    "scope": "10 known rasters only: 9 focus files + 13GEMSDOE lattice witness. NOT the complete registry.",
+    "inventory_sha256": [
+      "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    ],
+    "manifest_sha256": "7181904446942510e1e16d78c5dac083c9eb8a841c6dc71be36c4aa16f3738d2",
+    "surface": {
+      "complete": false,
+      "status": "NOT MEASURED: surface-before-placement check not run for this candidate"
+    },
+    "final_dots": {
+      "complete": false,
+      "candidate_raster_sha256": "dc0aaa7fb6faf04f668079270d8a011b52f5811bffb74bca170ab49c25ec133d",
+      "support_count": 37654,
+      "support_definition": "positive finite cells of the saved NaN-outside TIFF (candidate dots)",
+      "support_sha256": "572712564c2e63a33464e45d64123e81e973b6ed6beb7d61d47b13be0d80d9db",
+      "surface_sha256": "572712564c2e63a33464e45d64123e81e973b6ed6beb7d61d47b13be0d80d9db",
+      "overlap_metric": "literal-directional-fraction-within-3px",
+      "comparisons": [
+        {
+          "name": "GEMSDOE24",
+          "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+          "abs_spearman": 0.003742062840057937,
+          "overlap_3px": 0.3038455409783821,
+          "literal_overlap_3px": 0.3038455409783821
+        },
+        {
+          "name": "GEMSDOE25",
+          "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+          "abs_spearman": 0.0034565040890489106,
+          "overlap_3px": 0.28777819089605355,
+          "literal_overlap_3px": 0.28777819089605355
+        },
+        {
+          "name": "GEMSDOE27",
+          "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+          "abs_spearman": 0.003637217436789659,
+          "overlap_3px": 0.3053858819780103,
+          "literal_overlap_3px": 0.3053858819780103
+        },
+        {
+          "name": "GEMSDOE28",
+          "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+          "abs_spearman": 0.003011464357160623,
+          "overlap_3px": 0.26791310352153824,
+          "literal_overlap_3px": 0.26791310352153824
+        },
+        {
+          "name": "GEMSDOE30",
+          "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+          "abs_spearman": 0.0034565040890489106,
+          "overlap_3px": 0.28777819089605355,
+          "literal_overlap_3px": 0.28777819089605355
+        },
+        {
+          "name": "GEMSDOE31",
+          "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+          "abs_spearman": 0.003627698595952891,
+          "overlap_3px": 0.27553513570935356,
+          "literal_overlap_3px": 0.27553513570935356
+        },
+        {
+          "name": "GEMSDOE32",
+          "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "abs_spearman": 0.0035211705448000997,
+          "overlap_3px": 0.26252191002283953,
+          "literal_overlap_3px": 0.26252191002283953
+        },
+        {
+          "name": "GEMSDOE33",
+          "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+          "abs_spearman": 0.0035518103768114317,
+          "overlap_3px": 0.28116534763902906,
+          "literal_overlap_3px": 0.28116534763902906
+        },
+        {
+          "name": "GEMSDOE36",
+          "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+          "abs_spearman": 0.004658777282984427,
+          "overlap_3px": 0.28087321400116855,
+          "literal_overlap_3px": 0.28087321400116855
+        },
+        {
+          "name": "LATTICE_13GEMSDOE",
+          "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+          "abs_spearman": 0.0003990362687095235,
+          "overlap_3px": 0.9994688479311626,
+          "literal_overlap_3px": 0.9994688479311626
+        }
+      ],
+      "max_abs_spearman": 0.004658777282984427,
+      "max_overlap_3px": 0.9994688479311626
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "max_abs_spearman": 0.004658777282984427,
+    "max_overlap_3px": 0.9994688479311626,
+    "lattice_overlap_3px": 0.9994688479311626
+  },
+  "raster_sha256": "dc0aaa7fb6faf04f668079270d8a011b52f5811bffb74bca170ab49c25ec133d",
+  "submission_name": "gemsdoe32-colocation-h1-expanded-20261031T020000Z-57271256-nan.tif",
+  "note": "NOT CLEARED. Research only; fails lattice literal rule (99.95%) and holdout. Do not submit.",
+  "validator": {
+    "saved_bytes_checked": true,
+    "geotiff": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "finite_inside": true,
+    "inside_unmasked": true,
+    "self_contained_tiff": true,
+    "range_0_1": true,
+    "whole_array_finite_range": true,
+    "outside_policy_checked": true,
+    "outside_null_or_nan": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "raster_sha256": "dc0aaa7fb6faf04f668079270d8a011b52f5811bffb74bca170ab49c25ec133d",
+    "format_gate_pass": true
+  },
+  "validator_output": {
+    "source": "evidence/session-20261031/format/gemsdoe32-colocation-h1-expanded-20261031T020000Z-57271256-nan.json",
+    "outside_null_or_nan": true
+  },
+  "experiments_run": 3,
+  "slot_selected": false,
+  "weekly_slots_used": 0,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

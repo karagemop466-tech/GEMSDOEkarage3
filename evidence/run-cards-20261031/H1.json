@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "run_id": "gems-karage3-20261031-h1",
+  "created_utc": "2026-10-31T00:00:00+00:00",
+  "experiment_ordinal": 1,
+  "assigned_lane": "H1: H1 co-location (NMS ridges) (pre-registered; see scripts/build_colocation_candidate.py)",
+  "hypothesis": "Three-field co-located horizontal-gradient ridges (tmi_hg, iso_grav_anom_hg, det_elev_slope), NMS ridges, top 12,177 (budget amended A1).",
+  "mechanism": "Three-field co-located horizontal-gradient ridges (tmi_hg, iso_grav_anom_hg, det_elev_slope), NMS ridges, top 12,177 (budget amended A1).",
+  "named_non_fault_mimic": "Lithologic contacts seen in magnetic and gravity fields together; alluvial-fan and erosional slope breaks; road embankments.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "withheld_positives": 22232,
+    "dti": 0.03653389375096261,
+    "ci95": [
+      0.028597424918287474,
+      0.04485709450341754
+    ],
+    "paired_delta_ci95": null,
+    "same_evaluator_current_best": true,
+    "current_best_dti": 0.09674330401596999,
+    "current_best_source": "max pooled holdout DTI over the nine focus files, same evaluator (evidence/focus9-reeval/)",
+    "holdout_implementation_sha256": "9ce9cf359f4d7b7fa844dd8f208ec00c3e6c15afef5d724d9014320b944d318d",
+    "evaluator_sha256": "21ed7f6460d876dc0eb83d8c01d3843ee660f43bb73576eb3f0adb1a07e61dbb",
+    "shared_template_commit": "73485f27cf230af770167397c2b72cb9ce3b3f25",
+    "sgmc_off_catalogue": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "prevalence_calibrated": 0.02522290824025732,
+      "ci95": [
+        0.02157936494557155,
+        0.02918903717071008
+      ]
+    },
+    "budget_matched_random": {
+      "seeds": 3,
+      "holdout_range": [
+        0.014940201494827407,
+        0.01625320506766626
+      ],
+      "sgmc_range": [
+        0.021509228344374798,
+        0.02255632718730488
+      ]
+    }
+  },
+  "elapsed_seconds": null,
+  "leakage_canaries": {
+    "status": "NOT RUN: single-feature AUC > 0.90 test not executed for this candidate",
+    "features_tested": 0
+  },
+  "registry": {
+    "literal_all_rasters_final_passed": false,
+    "scope": "10 known rasters only: 9 focus files + 13GEMSDOE lattice witness. NOT the complete registry.",
+    "inventory_sha256": [
+      "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    ],
+    "manifest_sha256": "7181904446942510e1e16d78c5dac083c9eb8a841c6dc71be36c4aa16f3738d2",
+    "surface": {
+      "complete": false,
+      "status": "NOT MEASURED: surface-before-placement check not run for this candidate"
+    },
+    "final_dots": {
+      "complete": false,
+      "candidate_raster_sha256": "4cad920c36b7eb5afe2458c287497d8f3c6b61e5c9518bfb110feccfdd7e3f47",
+      "support_count": 12177,
+      "support_definition": "positive finite cells of the saved NaN-outside TIFF (candidate dots)",
+      "support_sha256": "48e067384855c2b9f59ccd9a359a71f498e8d72d48db435bc43ad1fe2e05073a",
+      "surface_sha256": "48e067384855c2b9f59ccd9a359a71f498e8d72d48db435bc43ad1fe2e05073a",
+      "overlap_metric": "literal-directional-fraction-within-3px",
+      "comparisons": [
+        {
+          "name": "GEMSDOE24",
+          "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+          "abs_spearman": 0.011112771063299894,
+          "overlap_3px": 0.39147573293914756,
+          "literal_overlap_3px": 0.39147573293914756
+        },
+        {
+          "name": "GEMSDOE25",
+          "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+          "abs_spearman": 0.010332238027281988,
+          "overlap_3px": 0.37480496017081383,
+          "literal_overlap_3px": 0.37480496017081383
+        },
+        {
+          "name": "GEMSDOE27",
+          "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+          "abs_spearman": 0.011148113208858997,
+          "overlap_3px": 0.3964030549396403,
+          "literal_overlap_3px": 0.3964030549396403
+        },
+        {
+          "name": "GEMSDOE28",
+          "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+          "abs_spearman": 0.008176587753780875,
+          "overlap_3px": 0.33801428923380145,
+          "literal_overlap_3px": 0.33801428923380145
+        },
+        {
+          "name": "GEMSDOE30",
+          "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+          "abs_spearman": 0.010332238027281988,
+          "overlap_3px": 0.37480496017081383,
+          "literal_overlap_3px": 0.37480496017081383
+        },
+        {
+          "name": "GEMSDOE31",
+          "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+          "abs_spearman": 0.008325737645645691,
+          "overlap_3px": 0.3406421943007309,
+          "literal_overlap_3px": 0.3406421943007309
+        },
+        {
+          "name": "GEMSDOE32",
+          "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "abs_spearman": 0.007943261863159039,
+          "overlap_3px": 0.31403465549807014,
+          "literal_overlap_3px": 0.31403465549807014
+        },
+        {
+          "name": "GEMSDOE33",
+          "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+          "abs_spearman": 0.00825206446381853,
+          "overlap_3px": 0.354356573868769,
+          "literal_overlap_3px": 0.354356573868769
+        },
+        {
+          "name": "GEMSDOE36",
+          "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+          "abs_spearman": 0.007874708769549751,
+          "overlap_3px": 0.3193725876652706,
+          "literal_overlap_3px": 0.3193725876652706
+        },
+        {
+          "name": "LATTICE_13GEMSDOE",
+          "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+          "abs_spearman": 0.00017199678715566273,
+          "overlap_3px": 0.9992609016999261,
+          "literal_overlap_3px": 0.9992609016999261
+        }
+      ],
+      "max_abs_spearman": 0.011148113208858997,
+      "max_overlap_3px": 0.9992609016999261
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "max_abs_spearman": 0.011148113208858997,
+    "max_overlap_3px": 0.9992609016999261,
+    "lattice_overlap_3px": 0.9992609016999261
+  },
+  "raster_sha256": "4cad920c36b7eb5afe2458c287497d8f3c6b61e5c9518bfb110feccfdd7e3f47",
+  "submission_name": "gemsdoe32-colocation-h1-20261031T000000Z-48e06738-nan.tif",
+  "note": "NOT CLEARED. Research only; fails 13GEMSDOE lattice literal rule (99.93%). Do not submit.",
+  "validator": {
+    "saved_bytes_checked": true,
+    "geotiff": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "finite_inside": true,
+    "inside_unmasked": true,
+    "self_contained_tiff": true,
+    "range_0_1": true,
+    "whole_array_finite_range": true,
+    "outside_policy_checked": true,
+    "outside_null_or_nan": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "raster_sha256": "4cad920c36b7eb5afe2458c287497d8f3c6b61e5c9518bfb110feccfdd7e3f47",
+    "format_gate_pass": true
+  },
+  "validator_output": {
+    "source": "evidence/session-20261031/format/gemsdoe32-colocation-h1-20261031T000000Z-48e06738-nan.json",
+    "outside_null_or_nan": true
+  },
+  "experiments_run": 1,
+  "slot_selected": false,
+  "weekly_slots_used": 0,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}
