@@ -31,6 +31,39 @@
 
 ---
 
+## Session block — 2026-10-31 (branch arena/22af5e9a-gemsdoekarage3): review, live leaderboard check, covering-rule re-verification
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared, no TIF was generated, and no weekly slot was used.** A new candidate would hit the same covering-witness rule (below), so this session did not spend an experiment budget on one. The standing prompt is already the first section of this README (verbatim).
+
+Core values: **Maximize P(Win). Own the outcome.**
+
+| What | Where | Status |
+|---|---|---|
+| Live leaderboard snapshot (ranks 1-22) | [evidence/leaderboard-snapshot-20261031.json](evidence/leaderboard-snapshot-20261031.json) | ORGANIZER-CONFIRMED (public page) |
+| Geometric covering check (ideal lattice, no raster needed) | [scripts/verify_lattice_cover_geometry.py](scripts/verify_lattice_cover_geometry.py), [evidence/lattice-cover-geometry-20261031.json](evidence/lattice-cover-geometry-20261031.json) | Measured |
+| Test suite | `pytest tests` (Python 3.11, requirements.txt) | 231 passed, 1 skipped, 0 failed |
+| Consistency checks | `scripts/verify_numbers.py` | 50/50 passed (the 10-30 block cites 35/35; the check count has changed) |
+
+### Headline findings (2026-10-31, this session)
+
+1. **The "high score" figures in the request conflict with the live page.** The public leaderboard (fetched 2026-10-31) shows **#1 = 0.4544** (xiaofanhu) and **#2 = 0.3934** (cfld__). The request says 0.4413 is the high and 0.3195 is the current best. Neither figure is at the top of the fetched ranks 1-22. The 0.3195 position was not checked beyond rank 22. Source: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+2. **The covering-witness proof is not re-runnable as written.** The README and [evidence/k8d-lattice-covering-proof.json](evidence/k8d-lattice-covering-proof.json) say "deterministic and re-runnable". No script in the repo generates that JSON, and the r13 raster is not restored in this checkout. **Flagged as an irregularity.** The qualitative claim is supported by an independent check: an ideal square lattice with 4 px spacing covers **100%** of the plane within 3 px, 5 px covers **96.0%**, 6 px covers **88.8%**. The repo's 99.87% figure is **not reproduced**, because it depends on the real r13 layout.
+3. **Why no unique TIF can be cleared right now.** The literal rule (more than 70% of dots within 3 px of one registry raster's dots, with no exemption) is violated by any dense candidate placed on a footprint covered by a dense witness raster. Changing a dot layout does not change this, because the covering is a property of the witness, not the candidate. Uniqueness against the nine focus sites alone is achievable (K8-D: max 14.6%, limit 70%), but that is not the literal full-registry rule.
+4. **Format and portal error.** The repo's writer produces `-zeros.tif` and `-nan.tif` variants. The portal error "Predicted values must be in range [0, 1]" is still not reproduced locally. The exact uploaded file and the full portal message are still needed.
+
+### Owner decisions (blocking; not decided by this session)
+
+- **D1 (blocking everything):** Does the 70% rule apply to dense or covering witness rasters (for example, r13-lattice-s5)? If it does, no file can be cleared. If it does not, the rule must be written with an explicit exemption and the registry must be listed.
+- **D2:** Should unscored sibling-research rasters count as lanes? (Carried over from the 10-31 block.)
+- **D3:** Authoritative source for the "0.4413 high" and "0.3195 current best" figures. The live page disagrees with both.
+
+### Suggested next steps (ordered by P(Win) impact)
+
+1. Resolve D1 first. Without it, every candidate, including K8-D, stays NOT CLEARED.
+2. Restore the r13 raster from the pinned mirror and re-run the covering proof with a real script, so the 99.87% figure becomes a re-runnable receipt.
+3. Get the exact portal error text and the uploaded file from the owner, then reproduce the error locally.
+4. Only after D1 is settled: run the next candidate named in the 10-31 block (scarp evidence diluted with an independent off-catalogue component) under the three-experiment budget.
+
 ## Session block — 2026-10-31 (branch arena/7664cd10-gemsdoekarage3): K8-D generated + fully gated → DUPLICATE-STOP; nine sites re-verified; estimate machinery calibrated
 
 Read alongside the 2026-10-30 blocks below. Where they differ, both are reported and the difference is flagged.
