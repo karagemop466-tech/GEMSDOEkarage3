@@ -1,6 +1,6 @@
 {
   "schema": "session-recheck-20261031-v1",
-  "generated_utc": "2026-10-31T00:55:02+00:00",
+  "generated_utc": "2026-10-31T01:00:06+00:00",
   "evidence_class": "FORMAT + GEOMETRY DIAGNOSTICS - NOT A SCORE, NOT A SUBMISSION APPROVAL",
   "template": {
     "path": ".cache/historical/template.tif",
@@ -173,6 +173,38 @@
       "max_overlap_vs_peer": 0.975781,
       "max_overlap_peer_site": "GEMSDOE27",
       "max_abs_spearman_vs_peer": 0.984321,
+      "literal_protocol_gate": "DUPLICATE-STOP",
+      "ok_to_submit": false
+    }
+  ],
+  "extra_candidates": [
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-nan.tif",
+      "file_sha256": "66ff1b05a61f4ddb4a3572c4a1790a07a40a8cb0dc395437fec2eadfcca16c5a",
+      "dots": 100993,
+      "dots_outside_footprint": 0,
+      "format_gate_pass": true,
+      "outside_null_or_nan": true,
+      "overlap_vs_lattice_within3px": 0.999782,
+      "max_overlap_vs_focus_site": 0.23265,
+      "max_overlap_focus_site": "GEMSDOE27",
+      "spearman_vs_lattice_footprint": -0.000204,
+      "max_abs_spearman_vs_focus_site": 0.004315,
+      "literal_protocol_gate": "DUPLICATE-STOP",
+      "ok_to_submit": false
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-zeros.tif",
+      "file_sha256": "971f23f8ea4294cf42b75166e1d476f9ecf6e01cb6a58ded0ac7f0816c4b89b1",
+      "dots": 100993,
+      "dots_outside_footprint": 0,
+      "format_gate_pass": false,
+      "outside_null_or_nan": false,
+      "overlap_vs_lattice_within3px": 0.999782,
+      "max_overlap_vs_focus_site": 0.23265,
+      "max_overlap_focus_site": "GEMSDOE27",
+      "spearman_vs_lattice_footprint": -0.000204,
+      "max_abs_spearman_vs_focus_site": 0.004315,
       "literal_protocol_gate": "DUPLICATE-STOP",
       "ok_to_submit": false
     }

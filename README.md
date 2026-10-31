@@ -1,5 +1,36 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## STANDING REFERENCE PROMPT (verbatim — read at the start of every session)
+
+> Maximize P(Win). No excuses. Own the outcome.
+> Please review the entire repo, then build and update the project as needed. Do not fabricate anything or hallucinate. Our goal is to win the DOE GEMS competition by creating a submission that gets a higher score than the current high on the leaderboard; all files must be validated by the project without human intervention and the project should clearly indicate whether a file is ok to download and submit or not.
+>
+> Please focus on analyzing the highest scoring submissions from GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, and GEMSDOE36. Then answer: why and how did h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros on GEMSDOE32 get a score of 0.2778 which is the highest of any of those sites? Can we generate a submission that gets a higher score? If so, how?
+>
+> Make sure our project has an executive summary on every one of those sites (GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36) and a table that compares them and lists what file to download and what their estimated or actual score is and whether they are unique or not.
+>
+> WE MUST GENERATE A UNIQUE TIF SUBMISSION! Do not copy a previous submission, except for learning or comparison purposes! Whatever we generate MUST be a unique tif submission unlike any of those on the sites listed! Also provide a unique name and a short note <= 140 characters to help distinguish the submission in the contest. Also make it easy to download at the very beginning of our site in an obvious Executive Summary and have an executive summary subpage explaining step by step how to submit into the contest.
+>
+> Before writing any model code, read the GEMS feature list and generate 3-5 novel candidate geological hypotheses that have not been tried yet. For each hypothesis, name: (1) the specific layer(s) involved, (2) the physical signature you are targeting, (3) why it would catch faults/geothermal vents missing from the USGS/INGENIOUS catalogue rather than ones already in it, and (4) how it differs from existing implementations. Rank them by expected DTI improvement and implementation cost, then implement and validate the top candidate on the spatially-blocked holdout set.
+>
+> Parallel-run protocol:
+> 1) Lane: Stay inside your assigned method paragraph. If raster rank-correlation with any registry raster exceeds 0.90, or >70% of your dots fall within 3 px of a registry raster's dots, log as a duplicate and stop. Check both on the continuous surface before placement AND on final dots.
+> 2) Reuse, don't rebuild: Use the template's cached feature stack, evaluate_holdout.py, and submission_writer.py. Holdout = hide-and-recover: withhold whole fault segments with a buffer, derive any catalogue-based features only from visible faults, mask visible faults pixel-exactly, and score pooled DTI (alpha=0.2, beta=0.8, 300 m triangular kernel). If a shared tool in the template is wrong, fix it there — no private forks.
+> 3) Label every number: Every score must be labeled either HOLDOUT-DTI (with evaluator version, number of withheld positives, and 95% CI) or ORGANIZER-CONFIRMED (copied from a submission-page receipt). Never write a projection as a score.
+> 4) Leakage canary: Test each feature alone on holdout before trusting results. Single-feature AUC > 0.90 indicates leakage until proven otherwise.
+> 5) Run card: End with one JSON card containing: hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, registry correlation + overlap, raster SHA-256, validator output (no NaN inside footprint, values in [0,1], CRS/shape/transform match), submission_name + <=140-char note, and verdict: promote / negative. Negative results are valid deliverables. Do not spend a real submission slot on an idea that hasn't beaten holdout best.
+> 6) Budget: Stop after 3 experiments or 2 hours.
+>
+> Create a pull request and merge the PR onto main. Document remaining work and limitations.
+
+## Core Values
+
+**Maximize P(Win)** — “Maximize the Probability of Winning”: in every decision, weigh tradeoffs, assess risk, and choose the path that maximizes the probability of winning.
+
+**Own the Outcome** — We own results end to end. When problems arise and we have the means to act, we do so without waiting for permission. We treat failure and success as signals and use them to improve.
+
+---
+
 ## Session 1 block — 2026-10-30 (branch arena/1f0b5753-gemsdoekarage3): H-QDTI holdout, nine-site measurements, uniqueness DUPLICATE-STOP
 
 Read alongside the 2026-10-30 blocks below. Where they differ, both are reported and the difference is flagged.
@@ -89,6 +120,13 @@ Unique files: **0 of 9**. Every nine-site file is at 99.9% overlap with the regi
 - **Metric:** `src/gems32/metric.py` matches the official formulas, and the organizer's forum reply confirms known USGS/INGENIOUS pixels are masked. The lattice bound was re-run and matches (99.87% coverage; 22,163-cell ceiling under the literal rule).
 - **Irregularities:** the mirror template is not the official sample (IR-S8-02). GEMSDOE24's d2-8 file is byte-identical to GEMSDOE25's (IR-S8-03). Full list: review §7.
 - **New hypotheses (untested, no score claimed):** H-A conductive heat-flow residual lineaments (USGS heat-flow release, DOI 10.5066/P9BZPVUC); H-B World Stress Map SHmax-orientation prior (DOI 10.5880/WSM.2016.001). Rejected: INGENIOUS slip-tendency layer (catalogue-derived).
+
+### PR #71 reconciliation (main → this branch, 2026-10-31)
+
+- Main added `karage3-blind-conduit-stepper-v1` and its page said "DOWNLOAD: YES · SUBMIT: AT OWN RISK" and "unique (max 23.3%)". Measured against the 13GEMSDOE lattice (the literal rule), the `-nan` file has **99.98%** of its 100,993 dots within 3 px (limit 70%) → **DUPLICATE-STOP**. The 23.3% figure compares only with the nine focus sites. The `-zeros` file fails the NaN-outside check. The audit receipt has null holdout metrics and `slot_decision: PENDING-REVIEW`.
+- Resolution: `index.html` and `executive-summary.html` are regenerated from `site/*.template.html` and now say **OK TO DOWNLOAD AND SUBMIT? NO**. The main-only `docs/index.html` banner was reverted to the pre-merge version. Measurements are in `evidence/session-recheck-20261031.json` (`extra_candidates`).
+- **Merge status: NOT MERGED.** After the merge, pytest is 232 passed, 1 skipped, 8 failed. The 8 failures are the saved-byte audit coverage gap: the 2026-10-28 and 2026-10-30 receipts list 30 TIFFs and do not include the 5 TIFFs PR #71 added. A fresh run of `scripts/audit_saved_tiffs.py` (dry run, 35 rasters, not committed) shows all 5 are DUPLICATE-STOP (99.98% and 99.78%). A new dated receipt and test pointer updates are still needed. `verify_numbers.py` is 34/35 for the same reason. Pre-merge, the suite was 240 passed.
+- Owner decision D6: main also committed `docs/downloads/labels.tif` and `docs/downloads/sample_submission.tif`. These look like competition data, and the rules were not checked for redistribution. Recommend removing them from the public folder (keep in the gitignored cache) unless the rules allow it. Not changed in this session.
 
 ### Decisions needed from the owner (review §8)
 

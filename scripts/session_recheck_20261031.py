@@ -42,6 +42,11 @@ LATTICE = ROOT / ".cache" / "historical" / "lattice.tif"
 REGISTRY = ROOT / "data" / "focus_registry.json"
 OUT = ROOT / "evidence" / "session-recheck-20261031.json"
 RADIUS_PX = 3.0
+# Candidates added to main outside this session (PR #71). Measured with the same rules; never cleared here.
+EXTRA = [
+    "docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-nan.tif",
+    "docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-zeros.tif",
+]
 
 
 def sha256(p: Path) -> str:
@@ -150,6 +155,39 @@ def main() -> int:
             ok_to_submit=False,
         ))
 
+    extra_rows = []
+    for rel in EXTRA:
+        ep = ROOT / rel
+        if not ep.exists():
+            raise SystemExit(f"missing extra candidate {rel}")
+        ev = load_values(ep)
+        edots = (np.nan_to_num(ev, nan=0.0) > 0)
+        edist = distance_transform_edt(~edots)
+        n_e = int(edots.sum())
+        lat_ov = float((lat_dist[edots] <= RADIUS_PX).mean()) if n_e else None
+        peer = {}
+        for f in files:
+            peer[f["site"]] = float((dist_maps[f["site"]][edots] <= RADIUS_PX).mean()) if n_e else None
+        peer_site = max(peer, key=peer.get)
+        fv_e = ev[foot]
+        rho_lat = float(spearmanr(fv_e, L[foot]).statistic)
+        rho_peer = max(abs(float(spearmanr(fv_e, fv[k]).statistic)) for k in fv)
+        fmt = inspect(ep, TEMPLATE)
+        fail = (lat_ov > 0.70) or (peer[peer_site] > 0.70) or (abs(rho_lat) > 0.90) or (rho_peer > 0.90)
+        extra_rows.append(dict(
+            file=rel, file_sha256=sha256(ep), dots=n_e,
+            dots_outside_footprint=int((edots & ~foot).sum()),
+            format_gate_pass=bool(fmt["format_gate_pass"]),
+            outside_null_or_nan=bool(fmt["outside_null_or_nan"]),
+            overlap_vs_lattice_within3px=round(lat_ov, 6) if lat_ov is not None else None,
+            max_overlap_vs_focus_site=round(peer[peer_site], 6),
+            max_overlap_focus_site=peer_site,
+            spearman_vs_lattice_footprint=round(rho_lat, 6),
+            max_abs_spearman_vs_focus_site=round(rho_peer, 6),
+            literal_protocol_gate="DUPLICATE-STOP" if fail else "pass",
+            ok_to_submit=False,
+        ))
+
     result = dict(
         schema="session-recheck-20261031-v1",
         generated_utc=datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -160,6 +198,7 @@ def main() -> int:
                      footprint_coverage_within_3px=round(lattice_cov_within3, 6)),
         rule="literal protocol: DUPLICATE-STOP if overlap > 0.70 (within 3 px, vs lattice or any peer) or |Spearman| > 0.90",
         rows=rows,
+        extra_candidates=extra_rows,
         holdout_dti="NOT RECOMPUTED THIS SESSION. See evidence/focus9-audit-20261030.json (HOLDOUT-DTI, earlier receipt).",
         ok_to_submit_any=False,
         weekly_slots_used=0,
@@ -167,6 +206,9 @@ def main() -> int:
     )
     OUT.write_text(json.dumps(result, indent=2) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)}")
+    for e in extra_rows:
+        print(f"EXTRA {e['file'][-40:]} fmt_pass={e['format_gate_pass']} lattice={e['overlap_vs_lattice_within3px']} "
+              f"max_focus={e['max_overlap_vs_focus_site']} ({e['max_overlap_focus_site']}) -> {e['literal_protocol_gate']}")
     for r in rows:
         print(f"{r['site']:9s} fmt_pass={r['format_gate_pass']!s:5s} lattice={r['overlap_vs_lattice_within3px']:.4f} "
               f"max_peer={r['max_overlap_vs_peer']:.4f} ({r['max_overlap_peer_site']}) "

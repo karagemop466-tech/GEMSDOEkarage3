@@ -5,6 +5,14 @@
   <meta name="description" content="Evidence-first submission readiness for the DOE GEMS fault mapping competition.">
   <title>GEMS Fieldnotes · Submission readiness</title>
   <link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script>
+  <style>
+  .download-hero{background:#7a1d2b;color:#fff;padding:22px 20px;border-radius:12px;margin:0 0 24px;}
+  .download-hero h2{margin:0 0 8px;font-size:1.3rem;color:#fff;}
+  .download-hero p{margin:0 0 12px;line-height:1.5;}
+  .download-hero .btn{display:inline-block;background:#fff;color:#7a1d2b;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:700;margin:4px 6px 4px 0;}
+  .download-hero .btn.alt{background:transparent;color:#fff;border:2px solid #fff;}
+  .download-hero .badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:.78rem;font-weight:700;margin:2px 6px 2px 0;background:#fde7ea;color:#7a1d2b;}
+  </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -13,6 +21,15 @@
   <nav class="nav" aria-label="Primary"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a class="nav-cta" href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard ↗</a></nav>
 </div></header>
 <aside style="padding:16px;background:#fff1f2;color:#881337"><strong>OK TO SUBMIT? NO — DO NOT SUBMIT.</strong> <strong>Session 8 (2026-10-31):</strong> nine-site executive summary, live leaderboard and format re-check in <a href="docs/review-2026-10-31.md">docs/review-2026-10-31.md</a>. 0 of 9 focus files are unique under the literal rule; the -zeros files fail the official NaN-outside rule; estimated score not estimable. No file is cleared. Session 5 Lane H-K3D (TGSF-BVCD) and all 13 retained research TIFFs fail the literal registry-overlap rule against the registered 206,895-dot lattice witness; the former K3C PROMOTE verdict is withdrawn. Format checks cannot approve a file or guarantee portal acceptance. H-GEO-CONDUIT hybrid candidate (quarantined at <code>docs/quarantine/geoconduit-hybrid/</code>, PENDING-REVIEW) has 99.83% of its 35,615 dots within 3 px of the lattice, so it is not a compliant file. Its card's HOLDOUT-DTI 0.4239 [0.4053, 0.4427] (GEMSDOE32-HOLDOUT-v3-visible-gated) did not reproduce. The shared evaluator (GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives) gives HOLDOUT-DTI 0.3047 [0.2881, 0.3189]. It is NOT ESTABLISHED as a same-protocol baseline, and neither value is an organizer-confirmed score. No submission note is authorized. <a href="docs/hk3d/index.html">Session 5 H-K3D executive summary</a> · <a href="docs/hk3d/how-to-submit.html">Step-by-step guide</a> · <a href="docs/release-review.html">Saved-byte audit</a> · <a href="docs/k3c/index.html">K3C research archive</a> · <a href="docs/data/latest-run.json">Current run card</a></aside>
+<section class="download-hero" aria-labelledby="dl-hero-title">
+  <h2 id="dl-hero-title">OK TO DOWNLOAD AND SUBMIT? NO. Research copy only, not cleared.</h2>
+  <p><strong>karage3-blind-conduit-stepper-v1</strong> (100,993 dots) fails the literal uniqueness rule: <strong>99.98%</strong> of its dots lie within 3 px of the 13GEMSDOE calibration lattice (limit 70%). The "unique vs 9 focus sites, max 23.3%" figure published on main compares only the nine focus sites, so it does not apply the registry rule. Do not upload it and do not spend a weekly slot on it.</p>
+  <p>Format: the <code>-nan</code> file passes the NaN-outside check; the <code>-zeros</code> file fails it. HOLDOUT-DTI: not run (the audit receipt has null holdout metrics). ORGANIZER-CONFIRMED score: none.</p>
+  <p class="micro-note">Not linked on this page on purpose: the research copy is <code>docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-nan.tif</code> (audit receipt: <code>…-audit.json</code> in the same folder). Its download control stays disabled until a file passes every gate.</p>
+  <br>
+  <span class="badge">LITERAL UNIQUENESS: FAIL 99.98%</span><span class="badge">FORMAT -nan: PASS</span><span class="badge">FORMAT -zeros: FAIL</span><span class="badge">HOLDOUT-DTI: NOT RUN</span><span class="badge">ORGANIZER-CONFIRMED: NO</span>
+</section>
+
 <main id="main"><div class="container">
   <section class="hero" aria-labelledby="hero-title">
     <div><div class="eyebrow">Competition intelligence · Decision first</div>
