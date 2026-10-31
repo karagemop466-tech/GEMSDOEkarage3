@@ -1,0 +1,20 @@
+{
+  "iso_grav_anom_vg": {
+    "auc": 0.5306,
+    "auc_signed": 0.4694,
+    "n_pos": 62084,
+    "n_neg": 4657751
+  },
+  "iso_grav_anom_hg": {
+    "auc": 0.5066,
+    "auc_signed": 0.5066,
+    "n_pos": 62084,
+    "n_neg": 4657751
+  },
+  "tmi_vg": {
+    "auc": 0.5031,
+    "auc_signed": 0.5031,
+    "n_pos": 62084,
+    "n_neg": 4657751
+  }
+}

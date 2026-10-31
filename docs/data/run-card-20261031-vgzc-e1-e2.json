@@ -1,0 +1,142 @@
+{
+  "date": "2026-10-31",
+  "lane": "E1 H-VGZC and E2 (2 of 3 allowed experiments)",
+  "experiments": [
+    {
+      "id": "E1",
+      "hypothesis": "Zero-crossings of the vertical isostatic gravity gradient, ranked by horizontal gradient strength, mark density-contact edges that are missing from the catalogue.",
+      "layers": [
+        "iso_grav_anom_vg",
+        "iso_grav_anom_hg",
+        "labels.tif (catalogue exclusion)"
+      ],
+      "mechanism": "Sign change of vg coincides with a strong hg maximum at a density contrast edge.",
+      "named_non_fault_mimic": "Lithologic contacts, intrusion margins, basin-edge gravity steps.",
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "sgmc_calibrated": 0.03827720640656642,
+        "sgmc_calibrated_ci95": [
+          0.0347363166819641,
+          0.04149386778652137
+        ],
+        "n_withheld_positives": 62703,
+        "hide_recover_pooled": 0.0,
+        "hide_recover_n_withheld": 22232
+      },
+      "leakage_canary": {
+        "threshold_auc": 0.9,
+        "single_feature_auc": {
+          "iso_grav_anom_vg": 0.5306,
+          "iso_grav_anom_hg": 0.5066,
+          "tmi_vg": 0.5031
+        }
+      },
+      "registry_overlap": {
+        "max_candidate_within_3px": 1.0,
+        "max_abs_binary_rho": 0.040861,
+        "n_rasters_over_70pct": 83,
+        "file": "evidence/registry-overlap-20261031/gemsdoe32-vgzc-zc-stage-20261031T000000Z-33f68c4c-nan.overlap.json"
+      },
+      "raster_sha256": "8eec5c1733e49d77859b5c4dff8751b40eb3bf15ffc27abce3466a61ab8af385",
+      "raster_file": "evidence/quarantine-vgzc-e1-e2/gemsdoe32-vgzc-zc-stage-20261031T000000Z-33f68c4c-nan.tif",
+      "validator": {
+        "format_gate_pass": true,
+        "checks": {
+          "template_epsg32611_and_100m_unrotated": true,
+          "geotiff": true,
+          "self_contained_no_sidecars": true,
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match_template": true,
+          "inside_finite_and_in_range": true,
+          "inside_not_masked": true,
+          "no_positive_outside_footprint": true,
+          "outside_null_or_nan": true
+        },
+        "inside_nonfinite": 0,
+        "inside_out_of_range": 0,
+        "outside_null_or_nan": true
+      },
+      "submission_name": "karage3-vgzc-e1-zc-21570",
+      "submission_note": "E1 vertical-gravity zero-crossing edges x horizontal gradient, 21,570 dots. NOT CLEARED.",
+      "verdict": "negative",
+      "ok_to_submit": false
+    },
+    {
+      "id": "E2",
+      "hypothesis": "E1 restricted to zero-crossings coincident with a magnetic tmi_vg zero-crossing (independent edge) should raise precision.",
+      "layers": [
+        "iso_grav_anom_vg",
+        "iso_grav_anom_hg",
+        "tmi_vg",
+        "labels.tif"
+      ],
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+        "sgmc_calibrated": 0.021861108317491707,
+        "sgmc_calibrated_ci95": [
+          0.019402253902210956,
+          0.024112649168511236
+        ],
+        "n_withheld_positives": 62703,
+        "hide_recover_pooled": 0.0
+      },
+      "registry_overlap": {
+        "max_candidate_within_3px": 1.0,
+        "max_abs_binary_rho": 0.03111,
+        "n_rasters_over_70pct": 85
+      },
+      "raster_sha256": "a75fb39178d805558e44d8013109853b827d06fe64fcf53e3bea107ac665f25d",
+      "raster_file": "evidence/quarantine-vgzc-e1-e2/gemsdoe32-vgzc-e2-tmivg-coinc-20261031T000000Z-14e8fe39-nan.tif",
+      "validator": {
+        "format_gate_pass": true
+      },
+      "submission_name": "karage3-vgzc-e2-tmivg-coinc-9660",
+      "submission_note": "E2 gravity zero-crossing coincident with tmi_vg zero-crossing, 9,660 dots. NOT CLEARED.",
+      "verdict": "negative",
+      "ok_to_submit": false
+    }
+  ],
+  "nine_site_reference": {
+    "highest_holdout_sgmc_calibrated": {
+      "site": "GEMSDOE36",
+      "value": 0.06444361006575842,
+      "ci95": [
+        0.057086576831896246,
+        0.07195818932689524
+      ]
+    },
+    "highest_user_reported": {
+      "site": "GEMSDOE32",
+      "value": 0.2778,
+      "label": "USER-REPORTED"
+    },
+    "pairwise_max_per_site": {
+      "GEMSDOE24": 1.0,
+      "GEMSDOE25": 1.0,
+      "GEMSDOE27": 0.9802,
+      "GEMSDOE28": 1.0,
+      "GEMSDOE30": 1.0,
+      "GEMSDOE31": 1.0,
+      "GEMSDOE32": 1.0,
+      "GEMSDOE33": 0.9971,
+      "GEMSDOE36": 0.9758
+    },
+    "literal_registry_duplicate_stop_all_nine": true
+  },
+  "registry_scope": "2,444-entry manifest, 1,997 distinct bytes; 1,981 compared on the same grid; 10 different-grid rasters reported; manifest literal_registry_complete=false",
+  "experiments_run": 2,
+  "budget_limit": 3,
+  "weekly_slots_used": 0,
+  "portal_submission_performed": false,
+  "organizer_confirmed_scores": [],
+  "owner_decisions_required": [
+    "Literal 70% dot-overlap rule vs 62 dense registry rasters (any candidate is 100% overlapped).",
+    "Whether the organizer's duplicate rule matches this repo's literal rule (the nine were scored).",
+    "Reconcile hide-recover HOLDOUT-DTI with SGMC-CAL and with the leaderboard.",
+    "GEMSDOE25 and GEMSDOE30 are the same dot set (exact); confirm which was scored and whether it counts twice."
+  ],
+  "overall_verdict": "negative \u2014 NOT OK TO DOWNLOAD OR SUBMIT"
+}

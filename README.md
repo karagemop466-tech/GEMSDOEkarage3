@@ -31,6 +31,54 @@
 
 ---
 
+## START HERE — 2026-10-31 (branch arena/aaffc1c3-gemsdoekarage3): nine-site executive summary + E1/E2 negatives
+
+**ANSWER: NO FILE IS CLEARED FOR DOWNLOAD OR SUBMISSION.** No slot was used; nothing was uploaded to the portal (no access from this sandbox).
+
+- **Executive summary (nine sites, file / estimate / uniqueness):** [docs/nine-site-executive-20261031.html](docs/nine-site-executive-20261031.html)
+- **Run card (JSON):** [docs/data/run-card-20261031-vgzc-e1-e2.json](docs/data/run-card-20261031-vgzc-e1-e2.json)
+- **Measured holdout table (labelled HOLDOUT-DTI, evaluator GEMSDOE32-SGMC-CAL-v3.0 and HIDE-RECOVER-v3.0):** [docs/data/nine-site-holdout-20261031.json](docs/data/nine-site-holdout-20261031.json)
+- **Pairwise overlap among the nine:** [docs/data/nine-site-pairwise-20261031.json](docs/data/nine-site-pairwise-20261031.json)
+
+| Site | Highest?| File | SGMC-CAL holdout (HOLDOUT-DTI) | User-reported leaderboard | Unique? |
+|---|---|---|---|---|
+| GEMSDOE36 | best proxy | `docs/downloads/GEMSDOE36-…-zeros.tif` | 0.0644 [0.0571, 0.0720] | 0.2750 | NO (97.6% overlap with another focus site) |
+| GEMSDOE32 | best reported | `docs/downloads/GEMSDOE32-…-zeros.tif` | 0.0641 [0.0567, 0.0716] | 0.2778 | NO (100% overlap with another focus site) |
+| GEMSDOE31 | | `docs/downloads/GEMSDOE31-…-nan.tif` | 0.0630 [0.0558, 0.0704] | 0.2708 | NO |
+| GEMSDOE28 | | `docs/downloads/GEMSDOE28-…-nan.tif` | 0.0630 [0.0557, 0.0704] | 0.2710 | NO |
+| GEMSDOE33 | | `docs/downloads/GEMSDOE33-…tif` | 0.0626 [0.0553, 0.0700] | 0.2632 | NO |
+| GEMSDOE25 | | `docs/downloads/GEMSDOE25-…-nan.tif` | 0.0606 [0.0536, 0.0679] | 0.2600 | NO — **identical dot set to GEMSDOE30** |
+| GEMSDOE30 | | `docs/downloads/GEMSDOE30-…tif` | 0.0606 [0.0536, 0.0679] | 0.2600 | NO — **identical dot set to GEMSDOE25** |
+| GEMSDOE27 | | `docs/downloads/GEMSDOE27-…-nan.tif` | 0.0583 [0.0515, 0.0655] | 0.2449 | NO |
+| GEMSDOE24 | | `docs/downloads/GEMSDOE24-…-nan.tif` | 0.0579 [0.0511, 0.0652] | 0.2477 | NO |
+| E1 (new lab candidate) | negative | `evidence/quarantine-vgzc-e1-e2/…-nan.tif` | 0.0383 [0.0347, 0.0415] | — | byte-unique; **DUPLICATE-STOP** under the 70% rule |
+| E2 (new lab candidate) | negative | `evidence/quarantine-vgzc-e1-e2/…-nan.tif` | 0.0219 [0.0194, 0.0241] | — | byte-unique; **DUPLICATE-STOP** under the 70% rule |
+
+Full file names and the estimated-score projections are in the executive summary. HOLDOUT-DTI values are a same-protocol proxy, not the leaderboard score. USER-REPORTED values have no organizer receipt. ORGANIZER-CONFIRMED: none.
+
+### Why GEMSDOE32 (0.2778) led, and whether we beat it
+- **Mechanism (measured):** the nine are one dotted-ridge family: 37,654–61,328 dots, 97.6–100% pairwise overlap. GEMSDOE32 is the most pruned member. Verified 2026-10-31: its 37,654 dots are an exact subset of GEMSDOE31's 40,199; the 2,545 removed dots all lie 1.4–2.0 px from a catalogue trace, and none of GEMSDOE32's dots lie within 2 px of one. Why pruning raises the leaderboard score is an inference, not confirmed by an organizer receipt. On the off-catalogue SGMC proxy it sits at 0.0641, within CI of GEMSDOE36 (0.0644). The proxy cannot separate the two.
+- **Can we beat 0.2778?** Not demonstrated. The two new mechanisms tested this session (vertical-gravity zero-crossings, and their tmi_vg-coincidence variant) scored below all nine on the same proxy, and both trip the literal uniqueness rule.
+- **Leaderboard context (live fetch, not a receipt):** #1 0.4544, #2 0.3934, #3 0.3917. Ranks #1–#22 are all ≥ 0.3407. The request's figures 0.4413 and 0.3195 match neither the live page nor any receipt here; flagged, not used.
+
+### Blockers and irregularities (flagged for review, not repaired)
+1. **Literal 70% rule cannot be met by any candidate.** 62 registry rasters cover >50% of the footprint with dots, so every candidate with dots in the footprint is 100% within 3 px of one of them. Owner decision required; no exemption applied.
+2. **The nine were scored, yet all fail our literal rule.** Either the organizer's duplicate check is looser, or ours is stricter. Not resolved.
+3. **GEMSDOE25 and GEMSDOE30 are the exact same 44,090-dot placement** (different encodings, same user-reported 0.2600).
+4. **Metric disagreement:** hide-recover HOLDOUT-DTI ranks GEMSDOE24/25/27/30 highest, the reverse of the leaderboard order. SGMC-CAL agrees with the leaderboard (Spearman ρ = 0.95, n = 9, consistency check only).
+5. **Portal error "Predicted values must be in range [0, 1]"** remains unexplained here. The NaN-outside variant follows the official "null or nan" text; obtain the exact file hash and portal message before concluding.
+
+### How this was produced (reproducible)
+- Data restored and SHA-256 verified: `bash scripts/download_competition_data.sh` (30 files), registry: `python3 scripts/restore_complete_registry.py` (2,444 manifest entries, 1,997 distinct bytes).
+- Holdout: `python3 scripts/nine_site_holdout_table.py` (shared `scripts/evaluate_holdout.py`, unmodified).
+- E1 / E2 generator: `python3 scripts/build_vgzero_ridge_candidate.py` (E2: `VGZC_COINCIDE=tmi_vg`). Canary: `python3 scripts/canary_single_feature.py`. Format: `scripts/check_format.py`.
+- Literal overlap: `python3 scripts/candidate_registry_overlap.py <files...> --out-dir <dir>` (about 15 min on 2 CPUs).
+- Page + card: `python3 scripts/build_nine_site_exec_20261031.py`.
+
+**Next steps (not run):** (a) owner decision on the literal dense-raster rule; (b) reconcile the GEMSDOE25/30 duplicate and confirm which was scored; (c) reconcile hide-recover with SGMC-CAL; (d) a candidate that leaves the dotted-ridge family must beat SGMC-CAL 0.0644 on the same evaluator before any slot is considered.
+
+> **Parallel session note (2026-10-31):** the block below was written by a parallel session on branch `arena/86c0d3ae-gemsdoekarage3` and merged from `main`. Both blocks are kept. Where they differ, both are reported.
+
 ## Session block — 2026-10-31 (branch arena/86c0d3ae-gemsdoekarage3): executive summary, three unique candidates generated and gated, all NEGATIVE
 
 **OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No weekly slot used (0).** Start at [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) (also linked from the top of the root `index.html`). Step-by-step (BLOCKED): [docs/submission-20261031.html](docs/submission-20261031.html). Review: [docs/review-2026-10-31-executive.md](docs/review-2026-10-31-executive.md).
