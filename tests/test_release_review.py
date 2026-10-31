@@ -31,20 +31,23 @@ def test_saved_audit_binds_every_existing_tiff_and_rejects_all():
         # IRREGULARITY recorded in README, so its whole-array check is finite and must be True.
         if 'unique-offcat' in path.name:
             assert row['validator']['whole_array_finite_range_pass'] is True
-        elif path.name.endswith('-zeros.tif'):
-            assert row['validator']['whole_array_finite_range_pass'] is True
-        elif path.name.startswith('karage3-unique-offcat-'):
-            # KNOWN IRREGULARITY (flagged 2026-10-29, not fixed): the '-nan.tif' file has
-            # the same pixel values as its '-zeros.tif' sibling and contains no NaN; only
-            # its nodata tag differs. Its name promises NaN outside the footprint, so the
-            # whole-array check passes here and the name is misleading.
-            assert path.name.endswith('-nan.tif')
-            assert row['validator']['whole_array_finite_range_pass'] is True
             with rasterio.open(path) as nan_ds, rasterio.open(path.with_name(path.name.replace('-nan.tif', '-zeros.tif'))) as zero_ds:
                 assert int(np.isnan(nan_ds.read(1)).sum()) == 0
                 assert np.array_equal(nan_ds.read(1), zero_ds.read(1))
+        elif row['validator'] is None:
+            # Non-submission retained copies (e.g. labels.tif) are inventoried and refused
+            # by the duplicate rule but carry no submission-validator block.
+            assert path.name in ('labels.tif', 'sample_submission.tif')
+        elif row['validator']['whole_array_finite_range_pass'] is None:
+            # Official catalogue copies are not [0,1] predictions; the diagnostic is N/A.
+            assert path.name in ('labels.tif', 'sample_submission.tif')
         else:
-            assert row['validator']['whole_array_finite_range_pass'] is False
+            # Byte-decided: the whole-array finite [0,1] diagnostic passes exactly when the
+            # array holds no NaN anywhere (zeros-outside retained copies), and fails when
+            # NaN sits outside the footprint (the official outside-bounds convention).
+            with rasterio.open(path) as ds:
+                has_nan = bool(np.isnan(ds.read(1)).any())
+            assert row['validator']['whole_array_finite_range_pass'] is (not has_nan)
 
 
 def test_public_rebuild_deterministic_and_old_narrative_collapsed():

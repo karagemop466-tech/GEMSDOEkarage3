@@ -1,10 +1,41 @@
 # GEMSDOEkarage3 — evidence-first fault mapping
 
+## STANDING REFERENCE PROMPT (verbatim — read at the start of every session)
+
+> Maximize P(Win). No excuses. Own the outcome.
+> Please review the entire repo, then build and update the project as needed. Do not fabricate anything or hallucinate. Our goal is to win the DOE GEMS competition by creating a submission that gets a higher score than the current high on the leaderboard; all files must be validated by the project without human intervention and the project should clearly indicate whether a file is ok to download and submit or not.
+>
+> Please focus on analyzing the highest scoring submissions from GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, and GEMSDOE36. Then answer: why and how did h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros on GEMSDOE32 get a score of 0.2778 which is the highest of any of those sites? Can we generate a submission that gets a higher score? If so, how?
+>
+> Make sure our project has an executive summary on every one of those sites (GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36) and a table that compares them and lists what file to download and what their estimated or actual score is and whether they are unique or not.
+>
+> WE MUST GENERATE A UNIQUE TIF SUBMISSION! Do not copy a previous submission, except for learning or comparison purposes! Whatever we generate MUST be a unique tif submission unlike any of those on the sites listed! Also provide a unique name and a short note <= 140 characters to help distinguish the submission in the contest. Also make it easy to download at the very beginning of our site in an obvious Executive Summary and have an executive summary subpage explaining step by step how to submit into the contest.
+>
+> Before writing any model code, read the GEMS feature list and generate 3-5 novel candidate geological hypotheses that have not been tried yet. For each hypothesis, name: (1) the specific layer(s) involved, (2) the physical signature you are targeting, (3) why it would catch faults/geothermal vents missing from the USGS/INGENIOUS catalogue rather than ones already in it, and (4) how it differs from existing implementations. Rank them by expected DTI improvement and implementation cost, then implement and validate the top candidate on the spatially-blocked holdout set.
+>
+> Parallel-run protocol:
+> 1) Lane: Stay inside your assigned method paragraph. If raster rank-correlation with any registry raster exceeds 0.90, or >70% of your dots fall within 3 px of a registry raster's dots, log as a duplicate and stop. Check both on the continuous surface before placement AND on final dots.
+> 2) Reuse, don't rebuild: Use the template's cached feature stack, evaluate_holdout.py, and submission_writer.py. Holdout = hide-and-recover: withhold whole fault segments with a buffer, derive any catalogue-based features only from visible faults, mask visible faults pixel-exactly, and score pooled DTI (alpha=0.2, beta=0.8, 300 m triangular kernel). If a shared tool in the template is wrong, fix it there — no private forks.
+> 3) Label every number: Every score must be labeled either HOLDOUT-DTI (with evaluator version, number of withheld positives, and 95% CI) or ORGANIZER-CONFIRMED (copied from a submission-page receipt). Never write a projection as a score.
+> 4) Leakage canary: Test each feature alone on holdout before trusting results. Single-feature AUC > 0.90 indicates leakage until proven otherwise.
+> 5) Run card: End with one JSON card containing: hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, registry correlation + overlap, raster SHA-256, validator output (no NaN inside footprint, values in [0,1], CRS/shape/transform match), submission_name + <=140-char note, and verdict: promote / negative. Negative results are valid deliverables. Do not spend a real submission slot on an idea that hasn't beaten holdout best.
+> 6) Budget: Stop after 3 experiments or 2 hours.
+>
+> Create a pull request and merge the PR onto main. Document remaining work and limitations.
+
+## Core Values
+
+**Maximize P(Win)** — “Maximize the Probability of Winning”: in every decision, weigh tradeoffs, assess risk, and choose the path that maximizes the probability of winning.
+
+**Own the Outcome** — We own results end to end. When problems arise and we have the means to act, we do so without waiting for permission. We treat failure and success as signals and use them to improve.
+
+---
+
 ## Session block — 2026-10-31 (branch arena/7664cd10-gemsdoekarage3): K8-D generated + fully gated → DUPLICATE-STOP; nine sites re-verified; estimate machinery calibrated
 
 Read alongside the 2026-10-30 blocks below. Where they differ, both are reported and the difference is flagged.
 
-**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No submission slot is selected or used (0 of the weekly slots).** The new candidate K8-D is quarantined research-only: [docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json](docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json).
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No submission slot is selected or used (0 of the weekly slots).** The new candidate K8-D is quarantined research-only: [docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json](docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json). A parallel lane also published `gemsdoe32-karage3-blind-conduit-stepper-v1-…` (100,993 dots, off-catalogue stepover/relay conduit; max 23.3% within 3 px vs the nine focus sites, 0 catalogue dots, 13/13 format checks per its sidecar) directly under docs/downloads with a SUBMIT-AT-OWN-RISK page. On merge, that page was regenerated fail-closed by the repo's contract builders, and the `-zeros` variants were moved to `docs/quarantine/blind-conduit-stepper-zeros/` (retained copies must carry NaN outside the footprint per the official outside-bounds rule). The `-nan.tif` stays retained as a refused research copy (audit rows: duplicate_stop true). It has no run card from this lane's gates (no holdout, no canary, no full-registry screen) — treat as NOT CLEARED. Final merged-tree test state: 231 passed, 1 skipped, 0 failed.
 
 Standing values: **Maximize P(Win). Own the outcome.**
 
@@ -17,7 +48,6 @@ Standing values: **Maximize P(Win). Own the outcome.**
 | Full-registry scan (1,991/1,997 rasters) | [evidence/k8d-registry-uniqueness-scan.json](evidence/k8d-registry-uniqueness-scan.json) | 94 overlap fails, max abs rho 0.367 |
 | Lattice covering proof (rule unsatisfiability) | [evidence/k8d-lattice-covering-proof.json](evidence/k8d-lattice-covering-proof.json) | 99.87% of footprint within 3 px of lattice |
 | Estimate projection (labelled, never a score) | [evidence/k8d-estimate-projection.json](evidence/k8d-estimate-projection.json) | ≈0.317 [0.312, 0.321], extrapolated |
-| Nine-site refreshed evaluators | `.cache/eval/*.json` (cache); summary embedded in [executive-summary.html](executive-summary.html) | Reproduces 2026-10-30 numbers exactly |
 
 ### Headline findings (2026-10-31)
 
@@ -27,14 +57,14 @@ Standing values: **Maximize P(Win). Own the outcome.**
 4. **The literal full-registry rule is provably unsatisfiable.** The r13-lattice-s5 witness's 3 px discs cover **99.87% of the footprint** ([proof](evidence/k8d-lattice-covering-proof.json)); a uniform-random 44k-dot set scores 99.88% "overlap". No candidate of realistic density can pass. Owner decision required (first flagged 2026-10-29 on the lgap card; still open).
 5. **Format/portal error root-caused to a variant choice.** The writer's `-zeros.tif` (0.0 outside, nodata=None, all cells finite in [0,1]) cannot trigger "Predicted values must be in range [0, 1]" (NaN fails a strict range check); the `-nan.tif` twin matches the official "null or nan" text. Both variants carry reported receipts across the GEMSDOE sites. Variant policy is documented on the submission page.
 6. **Estimate machinery (PROJECTION, not a score).** SGMC-CAL → USER-REPORTED calibration on the nine anchors (Spearman rho +0.95, in-sample |resid| ≤ 0.005): K8-D projects to ≈0.317 [0.312, 0.321] — an extrapolation beyond the anchors' range (max 0.0644), labelled as a projection everywhere.
-7. **Site rebuilt with the decision first.** Root page = decision banner + nine-site measured table; [executive-summary.html](executive-summary.html) = the file/estimate/uniqueness table per site; [docs/how-to-submit.html](docs/how-to-submit.html) = exact submission steps. Tests: **224 passed, 1 skipped, 0 failed** (five pre-existing environment failures fixed by installing matplotlib from requirements.txt; saved-byte receipt refreshed to cover the quarantined TIFFs).
+7. **Site rebuilt with the decision first.** Root page = decision banner + nine-site measured table; [executive-summary.html](executive-summary.html) = the file/estimate/uniqueness table per site; [docs/how-to-submit.html](docs/how-to-submit.html) = exact submission steps. Tests: 231 passed, 1 skipped, 0 failed before the parallel-lane merge (five pre-existing environment failures fixed by installing matplotlib from requirements.txt; saved-byte receipt refreshed).
 
 ### Remaining work and limitations (owner decisions + next candidate)
 
 - **Owner decision 1 (blocking everything):** covering/dense registry witnesses. Until the lattice (and ≥1M-cell rasters) are exempted from the 70% dot rule, no file can ever be cleared. The [proof](evidence/k8d-lattice-covering-proof.json) is deterministic and re-runnable.
 - **Owner decision 2:** do unscored sibling-research rasters define lanes? K8-D's only non-degenerate collision is an unreported GEMSDOE31 research file.
+- **Owner decision 3 (from the parallel lane):** reconcile `docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-…` — published without this lane's gate set.
 - **Next candidate (named, not run):** scarp evidence ≥30% diluted with an independent off-catalogue component (gravity-edge lineaments in basin interiors, or seismicity-streak spines) to leave the registered scarp lane while keeping SGMC-CAL > 0.0644; then the promotion path is mechanical (same card pipeline).
-- **K3-fuse-greedy remains the highest SGMC-CAL candidate on record (0.0892) but is champion-derived and lane-contaminated** (99.9% lattice overlap); not cleared.
 - The 0.2778 GEMSDOE32 figure and all focus scores remain USER-REPORTED / UNVERIFIED; no organizer receipt exists in this repo.
 
 ## Session 1 block — 2026-10-30 (branch arena/1f0b5753-gemsdoekarage3): H-QDTI holdout, nine-site measurements, uniqueness DUPLICATE-STOP
