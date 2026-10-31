@@ -1,0 +1,1067 @@
+{
+  "candidate_sha256": "857c3fc65ae06171a99d38d9d5a8c4d58d388be989a8b2be757538e195180dbf",
+  "inventory_rasters_presented": 1997,
+  "checked_same_grid": 1991,
+  "skipped": 6,
+  "skipped_detail": [
+    {
+      "name": "buffedlizard55-lab/5GEMSDOE:data/evidence/proxy/proxy_window.tif",
+      "status": "skipped_grid_mismatch",
+      "shape": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/5GEMSDOE:data/evidence/xcat/proxy_window.tif",
+      "status": "skipped_grid_mismatch",
+      "shape": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE36:docs/downloads/GEMS36_FORMAT_TEST_NOT_SUBMISSION.tif",
+      "status": "skipped_grid_mismatch",
+      "shape": [
+        32,
+        48
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE63:docs/downloads/smoke.tif",
+      "status": "unreadable"
+    },
+    {
+      "name": "wingbangboozle1-lang/WBGGEMSDOE3:archive/site-legacy-2026-10-26/site/assets/downloads/gems-hnew01-stepper-dblind-unique.tif",
+      "status": "skipped_grid_mismatch",
+      "shape": [
+        1200,
+        1600
+      ]
+    },
+    {
+      "name": "wingbangboozle1-lang/WBGGEMSDOE3:archive/concurrent-8488b95/submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif",
+      "status": "skipped_grid_mismatch",
+      "shape": [
+        1024,
+        1024
+      ]
+    }
+  ],
+  "fail_count": 94,
+  "pass": false,
+  "max_abs_rho_surface": 0.3760656891686925,
+  "max_abs_rho_final": 0.36696392203056327,
+  "max_overlap3px_preview": 1.0,
+  "max_overlap3px_final": 1.0,
+  "worst_overlap_final": [
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "sha256": "1ccfcd3d40ad96d0e6b032210bd3f46ffa28d28009bc1db067fc80e33561bf9c",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5106385,
+      "rho_surface_S": 0.13549425650312738,
+      "rho_preview_dots": 0.010138210268421538,
+      "rho_final_dots": 0.010138210268421538,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "sha256": "621334388274c4a114e5c2a20c26d4e11bc3e3a44efb7ce09fcf483a3e2c49a0",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5106385,
+      "rho_surface_S": 0.13549425650312738,
+      "rho_preview_dots": 0.010138210268421538,
+      "rho_final_dots": 0.010138210268421538,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "sha256": "8757ceba7e677f27cf8d31f5e6af2ce7971dadae89cf74ba4301cc8d80230856",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5103418,
+      "rho_surface_S": 0.13879126985970633,
+      "rho_preview_dots": 0.01038490570429797,
+      "rho_final_dots": 0.010384905704297969,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5103418,
+      "rho_surface_S": 0.13879126985970633,
+      "rho_preview_dots": 0.01038490570429797,
+      "rho_final_dots": 0.010384905704297969,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/5GEMSDOE:docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+      "local": ".cache/registry/buffedlizard55-lab/5GEMSDOE/docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+      "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5106385,
+      "rho_surface_S": 0.13549425650312738,
+      "rho_preview_dots": 0.010138210268421538,
+      "rho_final_dots": 0.010138210268421538,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    }
+  ],
+  "worst_rho_final": [
+    {
+      "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h60-lidarscarp-s2p0-20261007-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE47/docs/downloads/gems47-h60-lidarscarp-s2p0-20261007-allfinite.tif",
+      "sha256": "4ee074230a305fce6768012fc33380bf196c89170e70050a77cf4a44d74ef14c",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37654,
+      "rho_surface_S": 0.12581598874588615,
+      "rho_preview_dots": 0.17024342472071424,
+      "rho_final_dots": 0.20735116440441312,
+      "overlap3px_preview": 0.5259242458607394,
+      "overlap3px_final": 0.5142889544114312,
+      "fail": []
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h60-lidarscarp-s2p0-20261007-nanoutside.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE47/docs/downloads/gems47-h60-lidarscarp-s2p0-20261007-nanoutside.tif",
+      "sha256": "d75ab9e282422d9592bc835c5cf719b22e6c564730de1f5fc42b57fc5bac2c01",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37654,
+      "rho_surface_S": 0.12581598874588615,
+      "rho_preview_dots": 0.17024342472071424,
+      "rho_final_dots": 0.20735116440441312,
+      "overlap3px_preview": 0.5259242458607394,
+      "overlap3px_final": 0.5142889544114312,
+      "fail": []
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h71-scarpconsensus-s2p0-20261008-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE47/docs/downloads/gems47-h71-scarpconsensus-s2p0-20261008-allfinite.tif",
+      "sha256": "cbae340361811abb7e7f6d0a1712d9adad087562c24479cb98439d5561225a17",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37654,
+      "rho_surface_S": 0.1266182617730519,
+      "rho_preview_dots": 0.16329190815330133,
+      "rho_final_dots": 0.19599619606120128,
+      "overlap3px_preview": 0.5254706282603765,
+      "overlap3px_final": 0.5141301882513042,
+      "fail": []
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h71-scarpconsensus-s2p0-20261008-nanoutside.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE47/docs/downloads/gems47-h71-scarpconsensus-s2p0-20261008-nanoutside.tif",
+      "sha256": "c97279940f013396fe1f83c4f403f8b39550f9dca87a5d5e43a14bba101aae42",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37654,
+      "rho_surface_S": 0.1266182617730519,
+      "rho_preview_dots": 0.16329190815330133,
+      "rho_final_dots": 0.19599619606120128,
+      "overlap3px_preview": 0.5254706282603765,
+      "overlap3px_final": 0.5141301882513042,
+      "fail": []
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h74-lidar-8ch-s2p8-20261008-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE47/docs/downloads/gems47-h74-lidar-8ch-s2p8-20261008-allfinite.tif",
+      "sha256": "a0e82ce0e2f8cfa11b9759d47ec36ec259923d8137b0057a557e4701d245c50c",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37654,
+      "rho_surface_S": 0.11608296880313296,
+      "rho_preview_dots": 0.11589295533065662,
+      "rho_final_dots": 0.15755257774888923,
+      "overlap3px_preview": 0.5226355182581084,
+      "overlap3px_final": 0.5143343161714674,
+      "fail": []
+    }
+  ],
+  "fail_detail": [
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "sha256": "1ccfcd3d40ad96d0e6b032210bd3f46ffa28d28009bc1db067fc80e33561bf9c",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5106385,
+      "rho_surface_S": 0.13549425650312738,
+      "rho_preview_dots": 0.010138210268421538,
+      "rho_final_dots": 0.010138210268421538,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "sha256": "621334388274c4a114e5c2a20c26d4e11bc3e3a44efb7ce09fcf483a3e2c49a0",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5106385,
+      "rho_surface_S": 0.13549425650312738,
+      "rho_preview_dots": 0.010138210268421538,
+      "rho_final_dots": 0.010138210268421538,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "sha256": "8757ceba7e677f27cf8d31f5e6af2ce7971dadae89cf74ba4301cc8d80230856",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5103418,
+      "rho_surface_S": 0.13879126985970633,
+      "rho_preview_dots": 0.01038490570429797,
+      "rho_final_dots": 0.010384905704297969,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5103418,
+      "rho_surface_S": 0.13879126985970633,
+      "rho_preview_dots": 0.01038490570429797,
+      "rho_final_dots": 0.010384905704297969,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif",
+      "sha256": "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 272853,
+      "rho_surface_S": -0.022768487707985494,
+      "rho_preview_dots": 0.013763375640449717,
+      "rho_final_dots": 0.014986440592192661,
+      "overlap3px_preview": 0.9603538217282831,
+      "overlap3px_final": 0.9597414379677931,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif",
+      "sha256": "e7f0d4b9fd58b90e67538e595680315fb9861e08d8d093c1617b10a584f28b5a",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 272853,
+      "rho_surface_S": -0.022768487707985494,
+      "rho_preview_dots": 0.013763375640449717,
+      "rho_final_dots": 0.014986440592192661,
+      "overlap3px_preview": 0.9603538217282831,
+      "overlap3px_final": 0.9597414379677931,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 206895,
+      "rho_surface_S": 0.0004229170829985444,
+      "rho_preview_dots": -0.0004433167632762942,
+      "rho_final_dots": -0.00023940493029074662,
+      "overlap3px_preview": 0.9978679972782944,
+      "overlap3px_final": 0.997958720798367,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+      "sha256": "c12533bb980234c3a706af641d4f1d514bbbe482714b2ebcac3b10f3e72a7a3f",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 206895,
+      "rho_surface_S": 0.0004229170829985444,
+      "rho_preview_dots": -0.0004433167632762942,
+      "rho_final_dots": -0.00023940493029074662,
+      "overlap3px_preview": 0.9978679972782944,
+      "overlap3px_final": 0.997958720798367,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+      "sha256": "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 192231,
+      "rho_surface_S": -0.0245464169585483,
+      "rho_preview_dots": -0.0026925533278345177,
+      "rho_final_dots": -0.002436848473864888,
+      "overlap3px_preview": 0.7594239056475391,
+      "overlap3px_final": 0.7611249716489,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+      "sha256": "840e7afe571a856a2395ff87dec5af757f4812e3c5c146da7bb83616dbc6da8d",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 192231,
+      "rho_surface_S": -0.0245464169585483,
+      "rho_preview_dots": -0.0026925533278345177,
+      "rho_final_dots": -0.002436848473864888,
+      "overlap3px_preview": 0.7594239056475391,
+      "overlap3px_final": 0.7611249716489,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+      "sha256": "49835b5135398b6893b3c88de209882c1e3ec81e1a52a8bec5674748f17ff83d",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 338755,
+      "rho_surface_S": -0.02068793417989031,
+      "rho_preview_dots": 0.018843482807949046,
+      "rho_final_dots": 0.019727589437019213,
+      "overlap3px_preview": 0.9416420957133137,
+      "overlap3px_final": 0.936992515309594,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+      "sha256": "779efdcdfdea223356eb8ef98a25021c20b9a527d4016b8e8ca3dfacad25a829",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 338755,
+      "rho_surface_S": -0.02068793417989031,
+      "rho_preview_dots": 0.018843482807949046,
+      "rho_final_dots": 0.019727589437019213,
+      "overlap3px_preview": 0.9416420957133137,
+      "overlap3px_final": 0.936992515309594,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+      "sha256": "cfccf7d2d985921a1b27b53a6a8af10824aa8e3111abb155d721e29ff6f0e317",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 507776,
+      "rho_surface_S": -0.04121016676516251,
+      "rho_preview_dots": 0.01551819120621148,
+      "rho_final_dots": 0.015355620174581449,
+      "overlap3px_preview": 0.9462916761170334,
+      "overlap3px_final": 0.942004989793604,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+      "sha256": "3f80e5b9c06228648082febe57b6511ac264a4a4c38f69d8d85e0a9549d1f174",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 507776,
+      "rho_surface_S": -0.04121016676516251,
+      "rho_preview_dots": 0.01551819120621148,
+      "rho_final_dots": 0.015355620174581449,
+      "overlap3px_preview": 0.9462916761170334,
+      "overlap3px_final": 0.942004989793604,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+      "sha256": "6d0227c6284ce2a5a2e51cb214acaabac42eab9cea290f5afc22cf6f7a210b16",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 380365,
+      "rho_surface_S": -0.05554145937906349,
+      "rho_preview_dots": 0.006144392660867555,
+      "rho_final_dots": 0.006805096896663068,
+      "overlap3px_preview": 0.9235654343388523,
+      "overlap3px_final": 0.9194828759355863,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+      "sha256": "2b6d871239a886121f3531c33f6b904bc146e3c2a004f4c1f6bd8b1c0d11c137",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 380365,
+      "rho_surface_S": -0.05554145937906349,
+      "rho_preview_dots": 0.006144392660867555,
+      "rho_final_dots": 0.006805096896663068,
+      "overlap3px_preview": 0.9235654343388523,
+      "overlap3px_final": 0.9194828759355863,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r11-greedy-mp.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp.tif",
+      "sha256": "e8f148d08d3d67035a457cb95bdede26242009ea5f50d4322f57da41f690d00c",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 272853,
+      "rho_surface_S": -0.022768487707985494,
+      "rho_preview_dots": 0.013763375640449717,
+      "rho_final_dots": 0.014986440592192661,
+      "overlap3px_preview": 0.9603538217282831,
+      "overlap3px_final": 0.9597414379677931,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+      "sha256": "ec6e74f8bb05a878ce77ab4dc7e85ee9ec2ed6bf028b7b772c84b3c52f106ce0",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 272853,
+      "rho_surface_S": -0.022768487707985494,
+      "rho_preview_dots": 0.013763375640449717,
+      "rho_final_dots": 0.014986440592192661,
+      "overlap3px_preview": 0.9603538217282831,
+      "overlap3px_final": 0.9597414379677931,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+      "sha256": "bd1e3d056e83e792aed8c77b3249f833d119320779b94d2eb7c5b65ac5161428",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 344041,
+      "rho_surface_S": -0.03553352409396245,
+      "rho_preview_dots": 0.012774162353766189,
+      "rho_final_dots": 0.013719452069498397,
+      "overlap3px_preview": 0.9312315717849853,
+      "overlap3px_final": 0.9269675663415741,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+      "sha256": "70c4ccd5dd51c6cbf1c0b8019738885a357dde7be64c17b4fb278a12f073e1e4",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 344041,
+      "rho_surface_S": -0.03553352409396245,
+      "rho_preview_dots": 0.012774162353766189,
+      "rho_final_dots": 0.013719452069498397,
+      "overlap3px_preview": 0.9312315717849853,
+      "overlap3px_final": 0.9269675663415741,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z.tif",
+      "sha256": "b023dc8a709dd5e806c991c586b776bd53e48d7ad34f1eedaf51b407c2462239",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 452679,
+      "rho_surface_S": -0.008973745430629062,
+      "rho_preview_dots": 0.029460626345962217,
+      "rho_final_dots": 0.02992948745375404,
+      "overlap3px_preview": 0.983556361986845,
+      "overlap3px_final": 0.9792469947833976,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z_allfinite.tif",
+      "sha256": "6d0085641ee4a9ae7da4db8b5f56fe6a92018bc08055c329f5ccda67f942d167",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 452679,
+      "rho_surface_S": -0.008973745430629062,
+      "rho_preview_dots": 0.029460626345962217,
+      "rho_final_dots": 0.02992948745375404,
+      "overlap3px_preview": 0.983556361986845,
+      "overlap3px_final": 0.9792469947833976,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-toporef-holdoutref.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-toporef-holdoutref.tif",
+      "sha256": "88976dc5b2504838b193d41b718df95eb1e237b870b94a6443dc3bee65e98e06",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 246469,
+      "rho_surface_S": -0.03183046080492806,
+      "rho_preview_dots": 0.013949996502160025,
+      "rho_final_dots": 0.014759531900417691,
+      "overlap3px_preview": 0.9107960988886369,
+      "overlap3px_final": 0.9059197096847358,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-toporef-holdoutref_allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/13GEMSDOE/docs/downloads/archive/13gems-toporef-holdoutref_allfinite.tif",
+      "sha256": "e050b1ec627e8207c1fe5f7530f015d0cf2feb6bb98c5bce225e5db806afb0e3",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 246469,
+      "rho_surface_S": -0.03183046080492806,
+      "rho_preview_dots": 0.013949996502160025,
+      "rho_final_dots": 0.014759531900417691,
+      "overlap3px_preview": 0.9107960988886369,
+      "overlap3px_final": 0.9059197096847358,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/15GEMSDOE:docs/downloads/gems-cleanup-a-20260928T195952Z-curv_scarp.tif",
+      "local": ".cache/registry/buffedlizard55-lab/15GEMSDOE/docs/downloads/gems-cleanup-a-20260928T195952Z-curv_scarp.tif",
+      "sha256": "3e88e6ad5c63f2bc37edebd0eb2c7332d97ba1e48308f7ffea3b7c63fc2bddd1",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 362327,
+      "rho_surface_S": 0.04706472581328416,
+      "rho_preview_dots": 0.05966151572489465,
+      "rho_final_dots": 0.055080083598791615,
+      "overlap3px_preview": 0.9739396688591517,
+      "overlap3px_final": 0.9716715808573373,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/5GEMSDOE:data/evidence/leaderboard_anchor/pindrop-v4-discovery-37f9d5b855.tif",
+      "local": ".cache/registry/buffedlizard55-lab/5GEMSDOE/data/evidence/leaderboard_anchor/pindrop-v4-discovery-37f9d5b855.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 155021,
+      "rho_surface_S": 0.009554379486696688,
+      "rho_preview_dots": 0.0016194950660076814,
+      "rho_final_dots": 0.002162198059914663,
+      "overlap3px_preview": 0.7696529825357223,
+      "overlap3px_final": 0.7734860512587889,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/5GEMSDOE:data/evidence/leaderboard_anchor/pindrop-v4-nodes-f347b70daa.tif",
+      "local": ".cache/registry/buffedlizard55-lab/5GEMSDOE/data/evidence/leaderboard_anchor/pindrop-v4-nodes-f347b70daa.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 155021,
+      "rho_surface_S": 0.008374939014815267,
+      "rho_preview_dots": 0.0003737450118121103,
+      "rho_final_dots": 0.0003367425349548161,
+      "overlap3px_preview": 0.7635064640508051,
+      "overlap3px_final": 0.7678611930142889,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/60GEMSDOE:docs/downloads/gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/60GEMSDOE/docs/downloads/gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+      "sha256": "1e404763feb330b9f9735767bd8bfd96ee50d5c0185ace5c40fef34a5c70306a",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 45000,
+      "rho_surface_S": 0.11802301659349725,
+      "rho_preview_dots": 0.13213801527976016,
+      "rho_final_dots": 0.14332493911861255,
+      "overlap3px_preview": 0.9591744159673395,
+      "overlap3px_final": 0.926173735540939,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/60GEMSDOE:docs/downloads/gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/60GEMSDOE/docs/downloads/gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+      "sha256": "2c1861f1dbf5bfe7e594db93cf2fedb5708e345b150c4ab58538a1fd1391047d",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 45000,
+      "rho_surface_S": 0.11802301659349725,
+      "rho_preview_dots": 0.13213801527976016,
+      "rho_final_dots": 0.14332493911861255,
+      "overlap3px_preview": 0.9591744159673395,
+      "overlap3px_final": 0.926173735540939,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/5GEMSDOE:docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+      "local": ".cache/registry/buffedlizard55-lab/5GEMSDOE/docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+      "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5106385,
+      "rho_surface_S": 0.13549425650312738,
+      "rho_preview_dots": 0.010138210268421538,
+      "rho_final_dots": 0.010138210268421538,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/61GEMSDOE:docs/downloads/gems61-lane-buried-step-gravinversion-hgm-r3-k400k-b2zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/61GEMSDOE/docs/downloads/gems61-lane-buried-step-gravinversion-hgm-r3-k400k-b2zeros.tif",
+      "sha256": "a70dee1a390c08e98ac91034e92d07a26b0845ec65f726b943a3598d0d5f8cf2",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 311617,
+      "rho_surface_S": 0.019919417324131154,
+      "rho_preview_dots": 0.0019724780047232627,
+      "rho_final_dots": 0.0017957047386661527,
+      "overlap3px_preview": 0.9948741211158993,
+      "overlap3px_final": 0.9941256520753006,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h62i-scarpcrosscut-hardcore-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/62GEMSDOE/docs/downloads/gems62-h62i-scarpcrosscut-hardcore-zeros.tif",
+      "sha256": "aaadb736f1b6037919c66983049a8deafab66e986ddba08c2c76083f233568cb",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 60000,
+      "rho_surface_S": 0.17076479640672562,
+      "rho_preview_dots": 0.1657271397263382,
+      "rho_final_dots": 0.20740414984666253,
+      "overlap3px_preview": 0.9958267180766613,
+      "overlap3px_final": 0.991698797913359,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/62GEMSDOE/docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-nan.tif",
+      "sha256": "c57d88adf4f6c39c626c4f8cfb805ed51be174c3c1187ced9b05111c318a5e01",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 40000,
+      "rho_surface_S": 0.08258979796156947,
+      "rho_preview_dots": 0.06925473997996483,
+      "rho_final_dots": 0.07129538311809962,
+      "overlap3px_preview": 0.7239283284191427,
+      "overlap3px_final": 0.6902472215921978,
+      "fail": [
+        "surface_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/62GEMSDOE/docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-zeros.tif",
+      "sha256": "fa0b254e191cbbc10caf5e76717f56aab3a69b9f0363fb3a16e0116bc225d319",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 40000,
+      "rho_surface_S": 0.08258979796156947,
+      "rho_preview_dots": 0.06925473997996483,
+      "rho_final_dots": 0.07129538311809962,
+      "overlap3px_preview": 0.7239283284191427,
+      "overlap3px_final": 0.6902472215921978,
+      "fail": [
+        "surface_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h63m-multiline-corroborated-90000-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/62GEMSDOE/docs/downloads/gems62-h63m-multiline-corroborated-90000-zeros.tif",
+      "sha256": "3b04880d5cd9f72806b35e19e23be80a421d90d595466ce19ac5315a61cdfacf",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 90000,
+      "rho_surface_S": 0.045832145825220806,
+      "rho_preview_dots": 0.018111574847351077,
+      "rho_final_dots": 0.017918570964648012,
+      "overlap3px_preview": 0.7897028804717623,
+      "overlap3px_final": 0.7693127693354502,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62b-tiltgrad-vote-scarpcorrob-120000-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/62GEMSDOE/docs/downloads/gems62b-tiltgrad-vote-scarpcorrob-120000-zeros.tif",
+      "sha256": "42bffef1b5973973cdcb52c252067b33159e03fa721d1f58bec83f18ca779a21",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 120000,
+      "rho_surface_S": 0.10413800785783357,
+      "rho_preview_dots": 0.04041735028442343,
+      "rho_final_dots": 0.04227538535475611,
+      "overlap3px_preview": 0.9709004309367203,
+      "overlap3px_final": 0.959559990927648,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE23/docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-nan.tif",
+      "sha256": "28f30b31c5d054764038144c2742364c5e4f1e2ca79f122281d04cb9d15cd5db",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 100000,
+      "rho_surface_S": 0.05755843430412741,
+      "rho_preview_dots": 0.029229543708087228,
+      "rho_final_dots": 0.03685094270110573,
+      "overlap3px_preview": 0.7222499432977999,
+      "overlap3px_final": 0.7276026309820821,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE23/docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-allfinite.tif",
+      "sha256": "d07cbb6f69076e76f1a8a4806ddc5639421bc9a59b10d80a09b9fb423bb99427",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5167373,
+      "rho_surface_S": NaN,
+      "rho_preview_dots": NaN,
+      "rho_final_dots": NaN,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE23/docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+      "sha256": "38539dc647d5ede0d8fa90123810d18130ee15e524097f55e83b6b8a57976ea9",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 91533,
+      "rho_surface_S": 0.12685004365549435,
+      "rho_preview_dots": 0.04679976802027013,
+      "rho_final_dots": 0.05646595970442106,
+      "overlap3px_preview": 0.9348151508278522,
+      "overlap3px_final": 0.9343615332274893,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h24-dispersed-habitat-20261002-ada8df14-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE23/docs/downloads/gemsdoe23-h24-dispersed-habitat-20261002-ada8df14-allfinite.tif",
+      "sha256": "aac907db6aadc3d07a4eeb2531a0be200ee0143599ab304921e4f4f742fbc02a",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5167373,
+      "rho_surface_S": NaN,
+      "rho_preview_dots": NaN,
+      "rho_final_dots": NaN,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h24-dispersed-habitat-20261002-ada8df14-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE23/docs/downloads/gemsdoe23-h24-dispersed-habitat-20261002-ada8df14-nan.tif",
+      "sha256": "e29e8f04e048a4aa210edbc1128dc39703e9271a11c02a5a391c7753339b0125",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 100000,
+      "rho_surface_S": 0.05786628439689732,
+      "rho_preview_dots": 0.03002375763120739,
+      "rho_final_dots": 0.03796589686240904,
+      "overlap3px_preview": 0.7253345429802677,
+      "overlap3px_final": 0.7300294851440235,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE23/docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-allfinite.tif",
+      "sha256": "ae5c5aafce85a395af73944ab10f3fc2cad7bcc1244d49a52d53443bd0f5c3c2",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 5167373,
+      "rho_surface_S": NaN,
+      "rho_preview_dots": NaN,
+      "rho_final_dots": NaN,
+      "overlap3px_preview": 1.0,
+      "overlap3px_final": 1.0,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE24:docs/downloads/gems24-oj1-3eef450351de-RESEARCH-NOT-SUBMISSION-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE24/docs/downloads/gems24-oj1-3eef450351de-RESEARCH-NOT-SUBMISSION-zeros.tif",
+      "sha256": "ec0139cb4e9f1641dd43ad385d1c164d639a2c854f64ff4c1f9d61e6dc86635a",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37722,
+      "rho_surface_S": 0.11257010710604971,
+      "rho_preview_dots": 0.08317401255369358,
+      "rho_final_dots": 0.08581866193101122,
+      "overlap3px_preview": 0.7998639147198912,
+      "overlap3px_final": 0.7694488546155591,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE25/docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+      "sha256": "8848a2935cf2c2ffaaf5e77b62a3fd17959c3aaa667409f87a67b3609e66ac60",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 43798,
+      "rho_surface_S": 0.12733886554386856,
+      "rho_preview_dots": 0.07859294199940163,
+      "rho_final_dots": 0.08717681933346712,
+      "overlap3px_preview": 0.7214107507371286,
+      "overlap3px_final": 0.6936493535949195,
+      "fail": [
+        "surface_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE25/docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+      "sha256": "6648cbebcf724f82f18682632d1770084bc293a1db63d1394bb42871de5279fc",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 43798,
+      "rho_surface_S": 0.12733886554386856,
+      "rho_preview_dots": 0.07859294199940163,
+      "rho_final_dots": 0.08717681933346712,
+      "overlap3px_preview": 0.7214107507371286,
+      "overlap3px_final": 0.6936493535949195,
+      "fail": [
+        "surface_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-s19-ascp-20261026-dc717c1ab13b-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE28/docs/downloads/gems28-s19-ascp-20261026-dc717c1ab13b-allfinite.tif",
+      "sha256": "553bbd6db1ae0f3a8fc41a81ed8bc1f438e5af6bd74d43c5d260d6889d0e6537",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37654,
+      "rho_surface_S": 0.1285751271073492,
+      "rho_preview_dots": 0.09699274658509267,
+      "rho_final_dots": 0.10176727575772859,
+      "overlap3px_preview": 0.8778634611022907,
+      "overlap3px_final": 0.8486731685189385,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE28/docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-allfinite.tif",
+      "sha256": "86ef9a3975cc0a96e2e2ec4de0f6ac55cd970c8006b1b3939338521cbf746c79",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37500,
+      "rho_surface_S": 0.11493355955369318,
+      "rho_preview_dots": 0.08728247933776617,
+      "rho_final_dots": 0.09067855389190821,
+      "overlap3px_preview": 0.7713313676570651,
+      "overlap3px_final": 0.7298707189838965,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE28/docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-nan.tif",
+      "sha256": "b80f73aa15e8b39c138be510a93d92e9a524e914187aba448ec3b05fdc78150c",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 37500,
+      "rho_surface_S": 0.11493355955369318,
+      "rho_preview_dots": 0.08728247933776617,
+      "rho_final_dots": 0.09067855389190821,
+      "overlap3px_preview": 0.7713313676570651,
+      "overlap3px_final": 0.7298707189838965,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE3:docs/downloads/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE3/docs/downloads/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif",
+      "sha256": "0ac095a7ed6c8a142cdd8f686e001dfdec765f9a0e21ee53ddc69ae4cc4cddbf",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 624025,
+      "rho_surface_S": 0.07598965663527207,
+      "rho_preview_dots": 0.019103808859313155,
+      "rho_final_dots": 0.01989157339209105,
+      "overlap3px_preview": 0.9153776366523021,
+      "overlap3px_final": 0.9123610796098889,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    },
+    {
+      "name": "buffedlizard55-lab/GEMSDOE31:docs/downloads/blocked/gemsdoe31-as1-lidar-antislope-38000dots-20261025-9b3afbc8-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/GEMSDOE31/docs/downloads/blocked/gemsdoe31-as1-lidar-antislope-38000dots-20261025-9b3afbc8-allfinite.tif",
+      "sha256": "28213ba2b1a800753d8750002371194f308fb6369b323ac237ca334df62b26c4",
+      "status": "checked",
+      "kind": "binary_dots",
+      "n_reg_dots": 38000,
+      "rho_surface_S": 0.12267544083467995,
+      "rho_preview_dots": 0.040184674786492236,
+      "rho_final_dots": 0.040504818517864694,
+      "overlap3px_preview": 0.7300748469040599,
+      "overlap3px_final": 0.7114084826491268,
+      "fail": [
+        "surface_3px_overlap",
+        "final_3px_overlap"
+      ]
+    }
+  ],
+  "conventions": "footprint pixels only; exact tie-aware Spearman; 3 px Euclidean; binary dots or top-K continuous",
+  "inventory_source": "registry/complete_registry_manifest.json"
+}

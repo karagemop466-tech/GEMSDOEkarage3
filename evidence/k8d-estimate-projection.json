@@ -1,0 +1,32 @@
+{
+ "schema": "k8d-estimate-projection-v1",
+ "label": "PROJECTION (never an organizer-confirmed score)",
+ "n_sites": 9,
+ "fit_score_vs_sgmc": {
+  "slope": 4.71597807472936,
+  "intercept": -0.027164118294717654,
+  "resid_max_abs": 0.0046236244793623205,
+  "spearman_rho": 0.9495798319327733
+ },
+ "fit_with_logdots": {
+  "coef": [
+   4.617003763428782,
+   -0.001969210691667508
+  ],
+  "resid_max_abs": 0.0046400853222503535
+ },
+ "k8d_sgmc_cal": 0.07290749008656398,
+ "projection_linear": 0.31666600643706627,
+ "band_linear": [
+  0.31204238195770395,
+  0.3212896309164286
+ ],
+ "projection_with_logdots": 0.3155554400575148,
+ "band_with_logdots": [
+  0.31091535473526444,
+  0.32019552537976514
+ ],
+ "nearest_neighbor": "GEMSDOE36 SGMC-CAL 0.0644 -> USER-REPORTED 0.2750; GEMSDOE32 0.0641 -> 0.2778",
+ "baseline_random_control_sgmc_cal": 0.0515,
+ "caveat": "N=9 USER-REPORTED points, one family, compressed SGMC range (0.058-0.064); K8-D 0.0729 is outside the fitted range (extrapolation). Treat as a directional estimate only."
+}

@@ -31,6 +31,42 @@
 
 ---
 
+## Session block — 2026-10-31 (branch arena/7664cd10-gemsdoekarage3): K8-D generated + fully gated → DUPLICATE-STOP; nine sites re-verified; estimate machinery calibrated
+
+Read alongside the 2026-10-30 blocks below. Where they differ, both are reported and the difference is flagged.
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No submission slot is selected or used (0 of the weekly slots).** The new candidate K8-D is quarantined research-only: [docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json](docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json). A parallel lane also published `gemsdoe32-karage3-blind-conduit-stepper-v1-…` (100,993 dots, off-catalogue stepover/relay conduit; max 23.3% within 3 px vs the nine focus sites, 0 catalogue dots, 13/13 format checks per its sidecar) directly under docs/downloads with a SUBMIT-AT-OWN-RISK page. On merge, that page was regenerated fail-closed by the repo's contract builders, and the `-zeros` variants were moved to `docs/quarantine/blind-conduit-stepper-zeros/` (retained copies must carry NaN outside the footprint per the official outside-bounds rule). The `-nan.tif` stays retained as a refused research copy (audit rows: duplicate_stop true). It has no run card from this lane's gates (no holdout, no canary, no full-registry screen) — treat as NOT CLEARED. Final merged-tree test state: 231 passed, 1 skipped, 0 failed.
+
+Standing values: **Maximize P(Win). Own the outcome.**
+
+| What | Where | Status |
+|---|---|---|
+| Executive summary (file / estimate / uniqueness per site) | [executive-summary.html](executive-summary.html) | Measured 2026-10-31; nothing cleared |
+| Submission mechanics subpage (name + note, variant policy, portal-error fix) | [docs/how-to-submit.html](docs/how-to-submit.html) | Written; no authorized file yet |
+| New unique TIF generated this session (quarantined) | [docs/quarantine/k8d-scarponly/](docs/quarantine/k8d-scarponly/) | **NOT CLEARED — lane-rule duplicate stop** |
+| K8-D run card (gates, receipts, projection) | [docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json](docs/quarantine/k8d-scarponly/karage3-k8d-scarponly-n44k-card.json) | verdict: negative |
+| Full-registry scan (1,991/1,997 rasters) | [evidence/k8d-registry-uniqueness-scan.json](evidence/k8d-registry-uniqueness-scan.json) | 94 overlap fails, max abs rho 0.367 |
+| Lattice covering proof (rule unsatisfiability) | [evidence/k8d-lattice-covering-proof.json](evidence/k8d-lattice-covering-proof.json) | 99.87% of footprint within 3 px of lattice |
+| Estimate projection (labelled, never a score) | [evidence/k8d-estimate-projection.json](evidence/k8d-estimate-projection.json) | ≈0.317 [0.312, 0.321], extrapolated |
+
+### Headline findings (2026-10-31)
+
+1. **Evaluator infrastructure re-verified end-to-end.** All competition + external + scored files restored from pinned mirrors (30 files, SHA-256 verified); all nine focus files re-fetched at their pinned refs and re-scored with the canonical evaluators — every number reproduces the 2026-10-30 session exactly (e.g. GEMSDOE25 hide-recover 0.096743, SGMC-CAL 0.060592).
+2. **Three candidate experiments run (budget respected).** E1 verification; E2 five-layer scarp+geophysics fusion (34k dots, SGMC-CAL 0.0560 — negative); E3 trace-chain placement (5,079 dots — too sparse, negative) → count calibration → **K8-D scarp-only, 44,090 dots: SGMC-CAL 0.0729 [0.0558, 0.0886]**, raw 0.1151 — above all nine focus files' raw values, and the largest margin over the same-count random control (0.0515) measured in this repo. Leakage canary pass (max single-layer AUC 0.759).
+3. **K8-D is DUPLICATE-STOP.** The full-registry screen (1,991/1,997 unique rasters, both stages) finds 96.65% of K8-D dots within 3 px of `gemsdoe31-h3-lidar-scarp-unique-50k` (59.1% within 1 px) — the same lidar-scarp lane — plus 17 dense witnesses; max |rho| 0.367 (no surface collision). K8-D IS unique against all nine scored focus submissions (max 14.6%, limit 70%).
+4. **The literal full-registry rule is provably unsatisfiable.** The r13-lattice-s5 witness's 3 px discs cover **99.87% of the footprint** ([proof](evidence/k8d-lattice-covering-proof.json)); a uniform-random 44k-dot set scores 99.88% "overlap". No candidate of realistic density can pass. Owner decision required (first flagged 2026-10-29 on the lgap card; still open).
+5. **Format/portal error root-caused to a variant choice.** The writer's `-zeros.tif` (0.0 outside, nodata=None, all cells finite in [0,1]) cannot trigger "Predicted values must be in range [0, 1]" (NaN fails a strict range check); the `-nan.tif` twin matches the official "null or nan" text. Both variants carry reported receipts across the GEMSDOE sites. Variant policy is documented on the submission page.
+6. **Estimate machinery (PROJECTION, not a score).** SGMC-CAL → USER-REPORTED calibration on the nine anchors (Spearman rho +0.95, in-sample |resid| ≤ 0.005): K8-D projects to ≈0.317 [0.312, 0.321] — an extrapolation beyond the anchors' range (max 0.0644), labelled as a projection everywhere.
+7. **Site rebuilt with the decision first.** Root page = decision banner + nine-site measured table; [executive-summary.html](executive-summary.html) = the file/estimate/uniqueness table per site; [docs/how-to-submit.html](docs/how-to-submit.html) = exact submission steps. Tests: 231 passed, 1 skipped, 0 failed before the parallel-lane merge (five pre-existing environment failures fixed by installing matplotlib from requirements.txt; saved-byte receipt refreshed).
+
+### Remaining work and limitations (owner decisions + next candidate)
+
+- **Owner decision 1 (blocking everything):** covering/dense registry witnesses. Until the lattice (and ≥1M-cell rasters) are exempted from the 70% dot rule, no file can ever be cleared. The [proof](evidence/k8d-lattice-covering-proof.json) is deterministic and re-runnable.
+- **Owner decision 2:** do unscored sibling-research rasters define lanes? K8-D's only non-degenerate collision is an unreported GEMSDOE31 research file.
+- **Owner decision 3 (from the parallel lane):** reconcile `docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-…` — published without this lane's gate set.
+- **Next candidate (named, not run):** scarp evidence ≥30% diluted with an independent off-catalogue component (gravity-edge lineaments in basin interiors, or seismicity-streak spines) to leave the registered scarp lane while keeping SGMC-CAL > 0.0644; then the promotion path is mechanical (same card pipeline).
+- The 0.2778 GEMSDOE32 figure and all focus scores remain USER-REPORTED / UNVERIFIED; no organizer receipt exists in this repo.
+
 ## Session 1 block — 2026-10-30 (branch arena/1f0b5753-gemsdoekarage3): H-QDTI holdout, nine-site measurements, uniqueness DUPLICATE-STOP
 
 Read alongside the 2026-10-30 blocks below. Where they differ, both are reported and the difference is flagged.

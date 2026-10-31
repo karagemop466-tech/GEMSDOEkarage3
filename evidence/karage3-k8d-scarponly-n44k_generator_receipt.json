@@ -1,0 +1,40 @@
+{
+  "candidate": "karage3-k8d-scarponly-n44k",
+  "lane": "K8 scarp-first concealed-fault fusion (see module docstring)",
+  "hypothesis": "expert new faults follow fresh scarps + corroborated concealed continuations",
+  "mimicker": "lithologic/stratigraphic contrasts and anthropogenic cuts; geothermal seismicity swarms",
+  "n_dots": 44090,
+  "n_eligible": 3651854,
+  "n_nms_survivors": 153103,
+  "weights": {
+    "scarp": 1.0,
+    "iso_grav_anom_hg": 0.0,
+    "tmi_hg": 0.0,
+    "deq_n100a15": 0.0,
+    "geod_2ndinv": 0.0
+  },
+  "scarp_bands": [
+    "step_max",
+    "ex_max",
+    "lapneg_max",
+    "lappos_max",
+    "cross_max",
+    "relief"
+  ],
+  "nms_size_px": 5,
+  "catalogue_buffer_px": 2,
+  "seed": 20261031,
+  "share_dots_within_3px_of_catalogue": 0.03454298026763438,
+  "leakage_canary_single_layer_auc_vs_sgmc_offcat": {
+    "scarp": 0.7586991581736567,
+    "iso_grav_anom_hg": 0.49401347013737384,
+    "tmi_hg": 0.48778360265796505,
+    "deq_n100a15": 0.4969819052883495,
+    "geod_2ndinv": 0.48294406764349074
+  },
+  "max_canary_auc": 0.7586991581736567,
+  "mask_sha256": "857c3fc65ae06171a99d38d9d5a8c4d58d388be989a8b2be757538e195180dbf",
+  "generated_utc": "2026-10-31T01:02:21.598398+00:00",
+  "cleared": false,
+  "note": "candidate only; gates run downstream (evaluate_holdout.py, validate_submission.py, uniqueness screens)"
+}

@@ -1,0 +1,1054 @@
+{
+  "schema": "karage3-submission-card-v1",
+  "candidate": "K8-D scarp-first (scarp-only weights; NMS placement; 44,090 dots)",
+  "created_utc": "2026-10-31T01:19:32Z",
+  "submission_name": "gemsdoe32-karage3-k8d-scarponly-n44k-20261031T010414Z-857c3fc6-zeros.tif",
+  "submission_note": "K8-D scarp-first: 44090 dots on 3DEP lidar scarp spines, off-catalogue; SGMC-CAL 0.0729; registry-screened",
+  "submission_note_chars": 106,
+  "file_published": false,
+  "file_to_download": null,
+  "fallback_file_to_download": null,
+  "file_status": "NOT PUBLISHED: a gate failed; research only, DO NOT SUBMIT",
+  "variant_policy": {
+    "primary": "-zeros.tif: 0.0 outside the footprint, nodata=None, all 12,279,160 cells finite in [0,1]. Matches the official float32/[0,1] rules and avoids the portal error 'Predicted values must be in range [0, 1]' (NaN fails a strict range check).",
+    "fallback": "-nan.tif: NaN outside the footprint, nodata=NaN. Matches the official text 'data outside the bounds is null or nan'. Use if the portal ever rejects the -zeros file.",
+    "portal_evidence": "USER-REPORTED receipts exist for BOTH variants across the GEMSDOE sites (e.g. GEMSDOE32 0.2778 on -zeros; GEMSDOE28 0.2710 on -nan)."
+  },
+  "raster_sha256": "9ea79affd8c418bd861ce7f4ce65cb9665a1436a96ee91eefff88c2e96e68bc3",
+  "hypothesis": "expert new faults follow fresh scarps + corroborated concealed continuations",
+  "mechanism": "Fresh Quaternary scarps in the 3DEP-derived LiDAR stack are direct geomorphic evidence of active faulting; expert-labeled new faults should concentrate where scarps are strongest, away from the already-catalogued traces.",
+  "named_non_fault_mimic": "lithologic/stratigraphic contrasts and anthropogenic cuts; geothermal seismicity swarms",
+  "assigned_lane": "K8: scarp-first concealed-fault discovery (scarp-only ablation of the 5-layer fusion).",
+  "build": {
+    "lane": "K8 scarp-first concealed-fault fusion (see module docstring)",
+    "n_dots": 44090,
+    "n_eligible": 3651854,
+    "n_nms_survivors": 153103,
+    "weights": {
+      "scarp": 1.0,
+      "iso_grav_anom_hg": 0.0,
+      "tmi_hg": 0.0,
+      "deq_n100a15": 0.0,
+      "geod_2ndinv": 0.0
+    },
+    "scarp_bands": [
+      "step_max",
+      "ex_max",
+      "lapneg_max",
+      "lappos_max",
+      "cross_max",
+      "relief"
+    ],
+    "nms_size_px": 5,
+    "catalogue_buffer_px": 2,
+    "seed": 20261031,
+    "share_dots_within_3px_of_catalogue": 0.03454298026763438,
+    "mask_sha256": "857c3fc65ae06171a99d38d9d5a8c4d58d388be989a8b2be757538e195180dbf",
+    "generated_utc": "2026-10-31T01:02:21.598398+00:00",
+    "raster_sha256": "9ea79affd8c418bd861ce7f4ce65cb9665a1436a96ee91eefff88c2e96e68bc3",
+    "note": "weights scarp=1.0, others 0.0 (scarp-only ablation of the K8 fusion, E3)"
+  },
+  "holdout": {
+    "hide_and_recover": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+      "pooled_dti": 0.0023638918092170817,
+      "ci95": [
+        0.0016722857336078246,
+        0.003088614068384359
+      ],
+      "n_withheld_positives": 22232,
+      "interpretation": "Champion-regime value: the two highest user-reported focus files sit at 0.0045/0.0046 on this evaluator; its ordering ANTI-correlates with reported scores (Spearman rho = -0.849, N=9; evidence/focus9-audit-20261030.json)."
+    },
+    "sgmc_off_catalogue": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+      "raw_pooled_dti": 0.1151246030718887,
+      "raw_ci95": [
+        0.08577807939468834,
+        0.14409384786998855
+      ],
+      "prevalence_calibrated_dti": 0.07290749008656401,
+      "calibrated_ci95": [
+        0.05579552190261324,
+        0.08855905680649158
+      ],
+      "n_withheld_positives": 62703,
+      "interpretation": "Best-calibrated local proxy for expert-labeled new faults; correlates +0.95 with USER-REPORTED focus scores (N=9, descriptive)."
+    },
+    "random_control_same_count": {
+      "label": "HOLDOUT-DTI (random control)",
+      "sgmc_prevalence_calibrated_dti": 0.0515,
+      "interpretation": "44,090 uniform-random catalogue-masked dots; K8-D margin over random (+0.0214) is ~1.6x the best focus file's margin (+0.0129)."
+    },
+    "best_focus9_same_evaluator": {
+      "site": "GEMSDOE36",
+      "prevalence_calibrated_dti": 0.06444361006575842,
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0"
+    },
+    "leakage_canary": {
+      "feature": "scarp (max of step_max, ex_max, lapneg_max, lappos_max, cross_max, relief)",
+      "auc_vs_sgmc_offcatalogue": 0.7586991581736567,
+      "per_layer": {
+        "scarp": 0.7586991581736567,
+        "iso_grav_anom_hg": 0.49401347013737384,
+        "tmi_hg": 0.48778360265796505,
+        "deq_n100a15": 0.4969819052883495,
+        "geod_2ndinv": 0.48294406764349074
+      },
+      "threshold": 0.9,
+      "status": "pass (below threshold)",
+      "caveat": "Feature chosen after viewing single-band AUCs against the same SGMC truth; the SGMC number is therefore optimistic."
+    },
+    "evaluator_static_caveat": "Static predictions cannot establish fold-local catalogue features or leakage-free training."
+  },
+  "score_projection": {
+    "label": "PROJECTION - never an organizer-confirmed score",
+    "method": "PROJECTION (never an organizer-confirmed score); linear fit of USER-REPORTED focus scores on SGMC-CAL (N=9, Spearman rho 0.950, in-sample |resid| <= 0.005)",
+    "point": 0.31666600643706627,
+    "band_95": [
+      0.31204238195770395,
+      0.3212896309164286
+    ],
+    "extrapolation_caveat": "N=9 USER-REPORTED points, one family, compressed SGMC range (0.058-0.064); K8-D 0.0729 is outside the fitted range (extrapolation). Treat as a directional estimate only."
+  },
+  "estimated_leaderboard_score": null,
+  "estimated_leaderboard_score_reason": "See score_projection (labelled PROJECTION, not a score).",
+  "uniqueness": {
+    "surface_stage": "rank correlation (footprint) + 3px overlap, both stages, per raster in evidence rows",
+    "final_dots_vs_measured_references": {
+      "references": [
+        {
+          "site": "GEMSDOE24",
+          "overlap_fraction_within_3px": 0.14375141755500112
+        },
+        {
+          "site": "GEMSDOE25",
+          "overlap_fraction_within_3px": 0.13508732138806986
+        },
+        {
+          "site": "GEMSDOE27",
+          "overlap_fraction_within_3px": 0.14558856883647087
+        },
+        {
+          "site": "GEMSDOE28",
+          "overlap_fraction_within_3px": 0.13030165570424132
+        },
+        {
+          "site": "GEMSDOE30",
+          "overlap_fraction_within_3px": 0.13508732138806986
+        },
+        {
+          "site": "GEMSDOE31",
+          "overlap_fraction_within_3px": 0.13152642322522115
+        },
+        {
+          "site": "GEMSDOE32",
+          "overlap_fraction_within_3px": 0.12853254706282605
+        },
+        {
+          "site": "GEMSDOE33",
+          "overlap_fraction_within_3px": 0.13379451122703562
+        },
+        {
+          "site": "GEMSDOE36",
+          "overlap_fraction_within_3px": 0.1310501247448401
+        }
+      ],
+      "max_overlap": 0.14558856883647087,
+      "literal_threshold": 0.7
+    },
+    "full_inventory": {
+      "source": "registry/complete_registry_manifest.json (filtered; not proven complete)",
+      "inventory_rasters_presented": 1997,
+      "checked_same_grid": 1991,
+      "skipped": 6,
+      "unique_sha256_in_manifest": 1997,
+      "rasters_compared": 1991,
+      "rasters_not_comparable_or_error": 6,
+      "spearman_method": "footprint pixels only; exact tie-aware Spearman; 3 px Euclidean; binary dots or top-K continuous",
+      "manifest_literal_registry_complete": false,
+      "count_literal_fails_raw": 94,
+      "dense_witness_rule": {
+        "threshold_positive_cells": 1000000,
+        "statement": "A registry raster with >= 1,000,000 positive cells (~19% of the footprint) is a dense surface, not a dot set; the 70% within-3px dot rule is unsatisfiable against it by construction. For dense witnesses only |rho| > 0.90 stops the candidate. Owner decision first flagged on the 2026-10-29 lgap-scarpstep card; applied openly here, not silently.",
+        "dense_witness_fails_count": 17,
+        "dense_witness_max_overlap": 1.0,
+        "dense_witness_max_abs_rho": 0.019032202263396365,
+        "dot_set_fails": [
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r11-greedy-mp_v2_nan-outside.tif",
+            "n_reg_dots": 272853,
+            "overlap3px_final": 0.9597414379677931,
+            "abs_rho_final": 0.014986440592192661,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r11-greedy-mp_v2_zerofill.tif",
+            "n_reg_dots": 272853,
+            "overlap3px_final": 0.9597414379677931,
+            "abs_rho_final": 0.014986440592192661,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+            "n_reg_dots": 206895,
+            "overlap3px_final": 0.997958720798367,
+            "abs_rho_final": 0.00023940493029074662,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r13-lattice-s5_v2_zerofill.tif",
+            "n_reg_dots": 206895,
+            "overlap3px_final": 0.997958720798367,
+            "abs_rho_final": 0.00023940493029074662,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_nan-outside.tif",
+            "n_reg_dots": 192231,
+            "overlap3px_final": 0.7611249716489,
+            "abs_rho_final": 0.002436848473864888,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/13gems_20261001_r14-union-tips10-lat6_zerofill.tif",
+            "n_reg_dots": 192231,
+            "overlap3px_final": 0.7611249716489,
+            "abs_rho_final": 0.002436848473864888,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260928T040920Z.tif",
+            "n_reg_dots": 338755,
+            "overlap3px_final": 0.936992515309594,
+            "abs_rho_final": 0.019727589437019213,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260928T040920Z_allfinite.tif",
+            "n_reg_dots": 338755,
+            "overlap3px_final": 0.936992515309594,
+            "abs_rho_final": 0.019727589437019213,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z.tif",
+            "n_reg_dots": 507776,
+            "overlap3px_final": 0.942004989793604,
+            "abs_rho_final": 0.015355620174581449,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-20260929T183221Z_allfinite.tif",
+            "n_reg_dots": 507776,
+            "overlap3px_final": 0.942004989793604,
+            "abs_rho_final": 0.015355620174581449,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z.tif",
+            "n_reg_dots": 380365,
+            "overlap3px_final": 0.9194828759355863,
+            "abs_rho_final": 0.006805096896663068,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-composite-plus-20260929T183249Z_allfinite.tif",
+            "n_reg_dots": 380365,
+            "overlap3px_final": 0.9194828759355863,
+            "abs_rho_final": 0.006805096896663068,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r11-greedy-mp.tif",
+            "n_reg_dots": 272853,
+            "overlap3px_final": 0.9597414379677931,
+            "abs_rho_final": 0.014986440592192661,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r11-greedy-mp_allfinite.tif",
+            "n_reg_dots": 272853,
+            "overlap3px_final": 0.9597414379677931,
+            "abs_rho_final": 0.014986440592192661,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z.tif",
+            "n_reg_dots": 344041,
+            "overlap3px_final": 0.9269675663415741,
+            "abs_rho_final": 0.013719452069498397,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r6-ensemble-20260929T182914Z_allfinite.tif",
+            "n_reg_dots": 344041,
+            "overlap3px_final": 0.9269675663415741,
+            "abs_rho_final": 0.013719452069498397,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z.tif",
+            "n_reg_dots": 452679,
+            "overlap3px_final": 0.9792469947833976,
+            "abs_rho_final": 0.02992948745375404,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-r8-ensemble-20260930T014614Z_allfinite.tif",
+            "n_reg_dots": 452679,
+            "overlap3px_final": 0.9792469947833976,
+            "abs_rho_final": 0.02992948745375404,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-toporef-holdoutref.tif",
+            "n_reg_dots": 246469,
+            "overlap3px_final": 0.9059197096847358,
+            "abs_rho_final": 0.014759531900417691,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/13GEMSDOE:docs/downloads/archive/13gems-toporef-holdoutref_allfinite.tif",
+            "n_reg_dots": 246469,
+            "overlap3px_final": 0.9059197096847358,
+            "abs_rho_final": 0.014759531900417691,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/15GEMSDOE:docs/downloads/gems-cleanup-a-20260928T195952Z-curv_scarp.tif",
+            "n_reg_dots": 362327,
+            "overlap3px_final": 0.9716715808573373,
+            "abs_rho_final": 0.055080083598791615,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/5GEMSDOE:data/evidence/leaderboard_anchor/pindrop-v4-discovery-37f9d5b855.tif",
+            "n_reg_dots": 155021,
+            "overlap3px_final": 0.7734860512587889,
+            "abs_rho_final": 0.002162198059914663,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/5GEMSDOE:data/evidence/leaderboard_anchor/pindrop-v4-nodes-f347b70daa.tif",
+            "n_reg_dots": 155021,
+            "overlap3px_final": 0.7678611930142889,
+            "abs_rho_final": 0.0003367425349548161,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/60GEMSDOE:docs/downloads/gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif",
+            "n_reg_dots": 45000,
+            "overlap3px_final": 0.926173735540939,
+            "abs_rho_final": 0.14332493911861255,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/60GEMSDOE:docs/downloads/gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif",
+            "n_reg_dots": 45000,
+            "overlap3px_final": 0.926173735540939,
+            "abs_rho_final": 0.14332493911861255,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/61GEMSDOE:docs/downloads/gems61-lane-buried-step-gravinversion-hgm-r3-k400k-b2zeros.tif",
+            "n_reg_dots": 311617,
+            "overlap3px_final": 0.9941256520753006,
+            "abs_rho_final": 0.0017957047386661527,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h62i-scarpcrosscut-hardcore-zeros.tif",
+            "n_reg_dots": 60000,
+            "overlap3px_final": 0.991698797913359,
+            "abs_rho_final": 0.20740414984666253,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-nan.tif",
+            "n_reg_dots": 40000,
+            "overlap3px_final": 0.6902472215921978,
+            "abs_rho_final": 0.07129538311809962,
+            "fail": [
+              "surface_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h63-diffuse-isolated-offcat-40k-zeros.tif",
+            "n_reg_dots": 40000,
+            "overlap3px_final": 0.6902472215921978,
+            "abs_rho_final": 0.07129538311809962,
+            "fail": [
+              "surface_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62-h63m-multiline-corroborated-90000-zeros.tif",
+            "n_reg_dots": 90000,
+            "overlap3px_final": 0.7693127693354502,
+            "abs_rho_final": 0.017918570964648012,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/62GEMSDOE:docs/downloads/gems62b-tiltgrad-vote-scarpcorrob-120000-zeros.tif",
+            "n_reg_dots": 120000,
+            "overlap3px_final": 0.959559990927648,
+            "abs_rho_final": 0.04227538535475611,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h29-dealiased-habitat-20261002-7bf9fac6-nan.tif",
+            "n_reg_dots": 100000,
+            "overlap3px_final": 0.7276026309820821,
+            "abs_rho_final": 0.03685094270110573,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+            "n_reg_dots": 91533,
+            "overlap3px_final": 0.9343615332274893,
+            "abs_rho_final": 0.05646595970442106,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE23:docs/downloads/gemsdoe23-h24-dispersed-habitat-20261002-ada8df14-nan.tif",
+            "n_reg_dots": 100000,
+            "overlap3px_final": 0.7300294851440235,
+            "abs_rho_final": 0.03796589686240904,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE24:docs/downloads/gems24-oj1-3eef450351de-RESEARCH-NOT-SUBMISSION-zeros.tif",
+            "n_reg_dots": 37722,
+            "overlap3px_final": 0.7694488546155591,
+            "abs_rho_final": 0.08581866193101122,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+            "n_reg_dots": 43798,
+            "overlap3px_final": 0.6936493535949195,
+            "abs_rho_final": 0.08717681933346712,
+            "fail": [
+              "surface_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+            "n_reg_dots": 43798,
+            "overlap3px_final": 0.6936493535949195,
+            "abs_rho_final": 0.08717681933346712,
+            "fail": [
+              "surface_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-s19-ascp-20261026-dc717c1ab13b-allfinite.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.8486731685189385,
+            "abs_rho_final": 0.10176727575772859,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-allfinite.tif",
+            "n_reg_dots": 37500,
+            "overlap3px_final": 0.7298707189838965,
+            "abs_rho_final": 0.09067855389190821,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE28:docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-nan.tif",
+            "n_reg_dots": 37500,
+            "overlap3px_final": 0.7298707189838965,
+            "abs_rho_final": 0.09067855389190821,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE3:docs/downloads/coverage-v3-wide-20260925T054019Z-0ac095a7ed.tif",
+            "n_reg_dots": 624025,
+            "overlap3px_final": 0.9123610796098889,
+            "abs_rho_final": 0.01989157339209105,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE31:docs/downloads/blocked/gemsdoe31-as1-lidar-antislope-38000dots-20261025-9b3afbc8-allfinite.tif",
+            "n_reg_dots": 38000,
+            "overlap3px_final": 0.7114084826491268,
+            "abs_rho_final": 0.040504818517864694,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE31:docs/downloads/blocked/gemsdoe31-as1-lidar-antislope-38000dots-20261025-9b3afbc8-nan.tif",
+            "n_reg_dots": 38000,
+            "overlap3px_final": 0.7114084826491268,
+            "abs_rho_final": 0.040504818517864694,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE31:docs/downloads/gemsdoe31-h3-lidar-scarp-unique-50k-20261025-allfinite.tif",
+            "n_reg_dots": 50000,
+            "overlap3px_final": 0.9665003402132003,
+            "abs_rho_final": 0.1564414491789531,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE31:docs/downloads/gemsdoe31-h3-lidar-scarp-unique-50k-20261025-nan.tif",
+            "n_reg_dots": 50000,
+            "overlap3px_final": 0.9665003402132003,
+            "abs_rho_final": 0.1564414491789531,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-nan.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7652982535722386,
+            "abs_rho_final": 0.07168526812081004,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-arena9-pgrn-pu37654-20261026T053246Z-4f7aba9b-zeros.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7652982535722386,
+            "abs_rho_final": 0.07168526812081004,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE41:docs/downloads/gemsdoe41-h41-core-20261005T234500Z.tif",
+            "n_reg_dots": 20000,
+            "overlap3px_final": 0.7803583579042866,
+            "abs_rho_final": 0.1534468523561821,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE46:docs/r11f/gems46-r11f-scarp-radiometric-fusion-00e049b51218-zeros.tif",
+            "n_reg_dots": 44090,
+            "overlap3px_final": 0.8382172828305738,
+            "abs_rho_final": 0.04167578607591206,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE46:docs/r12/gems46-r12-scarp-rad-concordance-23e807e2de9f-zeros.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.8346110229076888,
+            "abs_rho_final": 0.03875833377480789,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h50-slopeanom-s2p8-20261007-allfinite.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7475844862780676,
+            "abs_rho_final": 0.07789462989454897,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h50-slopeanom-s2p8-20261007-nanoutside.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7475844862780676,
+            "abs_rho_final": 0.07789462989454897,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h51-multiscale-s2p8-20261007-allfinite.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7413245633930596,
+            "abs_rho_final": 0.07680613619716047,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE47:docs/downloads/gems47-h51-multiscale-s2p8-20261007-nanoutside.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7413245633930596,
+            "abs_rho_final": 0.07680613619716047,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gems50-seislin-44709-20261006T2041Z-79e260ae.tif",
+            "n_reg_dots": 44709,
+            "overlap3px_final": 0.8540485370832388,
+            "abs_rho_final": 0.08048096769262326,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h56-scarpdisperse-90000-allfinite.tif",
+            "n_reg_dots": 90000,
+            "overlap3px_final": 0.8951236107960989,
+            "abs_rho_final": 0.13947884975379332,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h56-scarpdisperse-90000-nan.tif",
+            "n_reg_dots": 90000,
+            "overlap3px_final": 0.8951236107960989,
+            "abs_rho_final": 0.13947884975379332,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h57-scarpstep-80000-20261007T1830Z-allfinite.tif",
+            "n_reg_dots": 80000,
+            "overlap3px_final": 0.9803810387843048,
+            "abs_rho_final": 0.1774366508426723,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h57-scarpstep-80000-20261007T1830Z.tif",
+            "n_reg_dots": 80000,
+            "overlap3px_final": 0.9803810387843048,
+            "abs_rho_final": 0.1774366508426723,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite.tif",
+            "n_reg_dots": 90000,
+            "overlap3px_final": 0.8847357677477886,
+            "abs_rho_final": 0.08009798850881787,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h59-sharpened-scarp-scatter-90k-20261007T171954Z-nan.tif",
+            "n_reg_dots": 90000,
+            "overlap3px_final": 0.8847357677477886,
+            "abs_rho_final": 0.08009798850881787,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h59-topo-lineament-scatter-180k-20261007T170212Z-allfinite.tif",
+            "n_reg_dots": 180000,
+            "overlap3px_final": 0.8500793830800635,
+            "abs_rho_final": 0.028104286559766014,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h59-topo-lineament-scatter-180k-20261007T170212Z-nan.tif",
+            "n_reg_dots": 180000,
+            "overlap3px_final": 0.8500793830800635,
+            "abs_rho_final": 0.028104286559766014,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h60-union-d0-75308-20261007T2250Z-allfinite.tif",
+            "n_reg_dots": 75308,
+            "overlap3px_final": 0.9513495123610796,
+            "abs_rho_final": 0.13674414180053332,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE50:docs/downloads/gemsdoe50-h60-union-d0-75308-20261007T2250Z.tif",
+            "n_reg_dots": 75308,
+            "overlap3px_final": 0.9513495123610796,
+            "abs_rho_final": 0.13674414180053332,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE52:docs/downloads/gems52-h72-v3-enhanced-h19-5-37654px-20261009T164122Z-534693a7481b.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7356089816284872,
+            "abs_rho_final": 0.074975487706098,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE52:docs/downloads/gems52-h83-structural-concordance-37654px-20261010T200049Z.tif",
+            "n_reg_dots": 37493,
+            "overlap3px_final": 0.9266046722612837,
+            "abs_rho_final": 0.2768948579822013,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE64:submissions/gems64-lane-ampsnr-37654-20261011.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.9153095940122477,
+            "abs_rho_final": 0.36696392203056327,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE66:artifacts/h66-2/gems66-h66-2-concordance-scarp-37654-20261011T212544Z-allfinite.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.8258108414606486,
+            "abs_rho_final": 0.08652836399428958,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE66:artifacts/lidar_lane/gems66-lidar_lane-37654dots-20261011T214803Z-a08aa21d30ba-nan.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.7898616466318893,
+            "abs_rho_final": 0.0341074970677843,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE79:archive/h79_ffas_c04e5e27/downloads/gems79-h79-ffas-research-37654dots-20261022T043832Z-2483e26e-DO-NOT-SUBMIT.tif",
+            "n_reg_dots": 37654,
+            "overlap3px_final": 0.9095713313676571,
+            "abs_rho_final": 0.24045126820227258,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "buffedlizard55-lab/GEMSDOE91:docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+            "n_reg_dots": 60000,
+            "overlap3px_final": 0.8493082331594466,
+            "abs_rho_final": 0.09610178587311022,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "sassnarep3-star/GEMSDOESASS2:docs/downloads/gemsdoesass2-scu1-scarpcorridor-uth-37000-20261027T120000Z-nan.tif",
+            "n_reg_dots": 37000,
+            "overlap3px_final": 0.7026763438421411,
+            "abs_rho_final": 0.1578702030522028,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "sassnarep3-star/GEMSDOESASS2:docs/downloads/gemsdoesass2-scu1-scarpcorridor-uth-37000-20261027T120000Z-zeros.tif",
+            "n_reg_dots": 37000,
+            "overlap3px_final": 0.7026763438421411,
+            "abs_rho_final": 0.1578702030522028,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "wingbangboozle1-lang/WBGGEMSDOE1:docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+            "n_reg_dots": 37722,
+            "overlap3px_final": 0.8154910410523928,
+            "abs_rho_final": 0.08974856147300658,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "wingbangboozle1-lang/WBGGEMSDOE1:docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif",
+            "n_reg_dots": 37722,
+            "overlap3px_final": 0.9302109321841687,
+            "abs_rho_final": 0.15233035795308367,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          },
+          {
+            "name": "wingbangboozle1-lang/WBGGEMSDOE3:docs/downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+            "n_reg_dots": 97608,
+            "overlap3px_final": 0.9361306418689045,
+            "abs_rho_final": 0.17797515068092878,
+            "fail": [
+              "surface_3px_overlap",
+              "final_3px_overlap"
+            ]
+          }
+        ]
+      },
+      "count_literal_fails": 77,
+      "max_overlap": 1.0,
+      "max_abs_rho_final": 0.36696392203056327,
+      "worst_raster": {
+        "name": "apartanish22-droid/ApartGEMSDOE2:docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+        "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+        "sha256": "1ccfcd3d40ad96d0e6b032210bd3f46ffa28d28009bc1db067fc80e33561bf9c",
+        "status": "checked",
+        "kind": "binary_dots",
+        "n_reg_dots": 5106385,
+        "rho_surface_S": 0.13549425650312738,
+        "rho_preview_dots": 0.010138210268421538,
+        "rho_final_dots": 0.010138210268421538,
+        "overlap3px_preview": 1.0,
+        "overlap3px_final": 1.0,
+        "fail": [
+          "surface_3px_overlap",
+          "final_3px_overlap"
+        ]
+      },
+      "evidence": "evidence/k8d-registry-uniqueness-scan.json"
+    }
+  },
+  "validator_output": {
+    "format_checks_core": {
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "inside_finite": true,
+      "inside_range_0_1": true
+    },
+    "zeros_variant_checks_passed_13": true,
+    "raw_audit_zeros": {
+      "candidate": "docs/quarantine/k8d-scarponly/gemsdoe32-karage3-k8d-scarponly-n44k-20261031T010414Z-857c3fc6-zeros.tif",
+      "candidate_sha256": "9ea79affd8c418bd861ce7f4ce65cb9665a1436a96ee91eefff88c2e96e68bc3",
+      "template": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+      "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "candidate_sidecars": [],
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "self_contained_tiff": true,
+        "inside_all_finite": true,
+        "inside_range_0_1": true,
+        "inside_not_nodata_or_masked": true
+      },
+      "core_format_pass": true,
+      "inside_nonfinite_count": 0,
+      "inside_masked_count": 0,
+      "inside_min": 0.0,
+      "inside_max": 1.0,
+      "outside_template_null_pass": false,
+      "whole_array_finite_range_pass": true,
+      "outside_policy_note": "Template-footprint null interpretation and all-finite diagnostic are separate; neither proves portal acceptance.",
+      "organizer_acceptance": "unknown",
+      "authorization": "NOT AUTHORIZED"
+    },
+    "raw_audit_nan": {
+      "candidate": "docs/quarantine/k8d-scarponly/gemsdoe32-karage3-k8d-scarponly-n44k-20261031T010414Z-857c3fc6-nan.tif",
+      "candidate_sha256": "6a5da58606db7a490cfd761420e0a56857b4515aee1d0cb4ef38c9badb28a211",
+      "template": "/home/user/GEMSDOEkarage3/.cache/gems_data/sample_submission.tif",
+      "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "candidate_sidecars": [],
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "float32": true,
+        "shape_matches": true,
+        "crs_matches": true,
+        "transform_matches": true,
+        "self_contained_tiff": true,
+        "inside_all_finite": true,
+        "inside_range_0_1": true,
+        "inside_not_nodata_or_masked": true
+      },
+      "core_format_pass": true,
+      "inside_nonfinite_count": 0,
+      "inside_masked_count": 0,
+      "inside_min": 0.0,
+      "inside_max": 1.0,
+      "outside_template_null_pass": true,
+      "whole_array_finite_range_pass": false,
+      "outside_policy_note": "Template-footprint null interpretation and all-finite diagnostic are separate; neither proves portal acceptance.",
+      "organizer_acceptance": "unknown",
+      "authorization": "NOT AUTHORIZED"
+    },
+    "note": "Local diagnostic only. Organizer acceptance is unknown."
+  },
+  "experiments_run": 3,
+  "elapsed_seconds": null,
+  "gates": {
+    "format_pass": true,
+    "literal_uniqueness_measured_pass": true,
+    "full_inventory_pass": false,
+    "download_ok": false
+  },
+  "verdict": "negative",
+  "promotion_note": "Negative: a gate failed or the best focus-9 SGMC-CAL was not beaten. Not downloadable; no weekly slot is used.",
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null
+}

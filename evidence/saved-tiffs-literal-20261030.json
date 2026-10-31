@@ -1071,6 +1071,141 @@
         "whole_array_out_of_range_finite": 0
       },
       "ok_to_submit": false
+    },
+    {
+      "file": "docs/quarantine/k8d-scarponly/gemsdoe32-karage3-k8d-scarponly-n44k-20261031T010414Z-857c3fc6-nan.tif",
+      "sha256": "6a5da58606db7a490cfd761420e0a56857b4515aee1d0cb4ef38c9badb28a211",
+      "within_3px_fraction_vs_lattice_witness": 0.997958720798367,
+      "within_3px_fraction": 0.997958720798367,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:23:46.411966+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/quarantine/k8d-scarponly/gemsdoe32-karage3-k8d-scarponly-n44k-20261031T010414Z-857c3fc6-zeros.tif",
+      "sha256": "9ea79affd8c418bd861ce7f4ce65cb9665a1436a96ee91eefff88c2e96e68bc3",
+      "within_3px_fraction_vs_lattice_witness": 0.997958720798367,
+      "within_3px_fraction": 0.997958720798367,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:23:46.689872+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE24-gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "within_3px_fraction_vs_lattice_witness": 0.9992175664652316,
+      "within_3px_fraction": 0.9992175664652316,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:27.320599+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE25-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "within_3px_fraction_vs_lattice_witness": 0.9991608074393287,
+      "within_3px_fraction": 0.9991608074393287,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:27.558525+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE27-gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "within_3px_fraction_vs_lattice_witness": 0.9992336290112184,
+      "within_3px_fraction": 0.9992336290112184,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:27.796812+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE28-gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "within_3px_fraction_vs_lattice_witness": 0.9990971853425386,
+      "within_3px_fraction": 0.9990971853425386,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:28.019472+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE30-gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "within_3px_fraction_vs_lattice_witness": 0.9991608074393287,
+      "within_3px_fraction": 0.9991608074393287,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:28.218257+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE31-gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "within_3px_fraction_vs_lattice_witness": 0.9991790840568173,
+      "within_3px_fraction": 0.9991790840568173,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:28.431627+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE32-gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "within_3px_fraction_vs_lattice_witness": 0.9991501566898603,
+      "within_3px_fraction": 0.9991501566898603,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:28.693802+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE33-GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "within_3px_fraction_vs_lattice_witness": 0.9991400931565747,
+      "within_3px_fraction": 0.9991400931565747,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:28.970755+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/GEMSDOE36-gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "within_3px_fraction_vs_lattice_witness": 0.9991764039738509,
+      "within_3px_fraction": 0.9991764039738509,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:29.291795+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-nan.tif",
+      "sha256": "66ff1b05a61f4ddb4a3572c4a1790a07a40a8cb0dc395437fec2eadfcca16c5a",
+      "within_3px_fraction_vs_lattice_witness": 0.9997821631202163,
+      "within_3px_fraction": 0.9997821631202163,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:29.577492+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/labels.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "within_3px_fraction_vs_lattice_witness": 0.997786449793402,
+      "within_3px_fraction": 0.997786449793402,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:30.046038+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "within_3px_fraction_vs_lattice_witness": 0.997786449793402,
+      "within_3px_fraction": 0.997786449793402,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:27:30.273598+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/quarantine/blind-conduit-stepper-zeros/gemsdoe32-karage3-blind-conduit-stepper-v1-20261031T000000Z-e71280c6-zeros.tif",
+      "sha256": "971f23f8ea4294cf42b75166e1d476f9ecf6e01cb6a58ded0ac7f0816c4b89b1",
+      "within_3px_fraction_vs_lattice_witness": 0.9997821631202163,
+      "within_3px_fraction": 0.9997821631202163,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T01:33:54.350324+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
     }
   ],
   "complete_registry_checked": false,
@@ -1078,5 +1213,7 @@
   "experiments_run": 0,
   "weekly_slots_used": 0,
   "verdict": "negative",
-  "ok_to_submit": false
+  "ok_to_submit": false,
+  "generated_utc": "2026-10-31T01:33:54.350504+00:00",
+  "guard_note": "ok_to_submit stays False; this refresh only extends raster coverage"
 }
