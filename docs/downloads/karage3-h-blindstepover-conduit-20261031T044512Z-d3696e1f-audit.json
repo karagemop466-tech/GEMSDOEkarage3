@@ -1,0 +1,110 @@
+{
+  "candidate_id": "karage3-h-blindstepover-conduit-20261031T044512Z",
+  "slug": "h-blindstepover-conduit",
+  "content_digest8": "d3696e1f",
+  "description": "H-blind-stepover-conduit off-catalogue blind-fault detector (novel, not a copy of any focus-site file)",
+  "submission_note_zeros": "Unique blind stepover/relay conduit detector: endpoints 200-600m off catalogue traces, 10k dots, >3px from all nine focus-site dots",
+  "submission_note_nan": "Unique blind stepover/relay conduit detector: endpoints 200-600m off catalogue traces, 10k dots, >3px from all nine focus-site dots",
+  "zeros_tif": {
+    "filename": "karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-zeros.tif",
+    "size_bytes": 99230,
+    "sha256": "57a77abd04c17a8ba8f2f9252d3dbf48f5bd200ef8320f23ac797a03835ce21b",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/docs/downloads/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 10000,
+    "footprint_fraction": 0.001935,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "nan_tif": {
+    "filename": "karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-nan.tif",
+    "size_bytes": 234594,
+    "sha256": "5de1ac78b648dd35ae08325342e205fb749cdc0cc066ae284f2b71791d4c4d9b",
+    "mode": "nan",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/docs/downloads/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 10000,
+    "footprint_fraction": 0.001935,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "holdout_metrics": {
+    "catalogue_hidden_mean": null,
+    "catalogue_hidden_per_quadrant": {},
+    "sgmc_prevalence_calibrated_dti": null,
+    "drift_corrected_holdout_mean": null,
+    "drift_corrected_per_quadrant": {},
+    "predicted_leaderboard_dti": null,
+    "ei_drift_corrected": null,
+    "slot_decision": "HOLD-DO-NOT-SUBMIT"
+  }
+}

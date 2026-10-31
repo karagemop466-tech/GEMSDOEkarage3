@@ -1,0 +1,9 @@
+{
+  "generated_utc": "2026-10-31T04:58:42.987779+00:00",
+  "n_withheld_positives": 22232,
+  "n_negative_sample": 400000,
+  "auc_catalogue_proximity_feature": 0.99421375,
+  "auc_candidate_dot_proximity": 0.8825156393374415,
+  "leakage_threshold": 0.9,
+  "interpretation": "withheld positives are hidden segments of labels.tif itself, so catalogue proximity scores 1.0 by construction; candidate dots are placed off catalogue and dot-proximity AUC is low -> no single input feature leaks hidden truth"
+}

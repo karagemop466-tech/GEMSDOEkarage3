@@ -1206,6 +1206,24 @@
       "duplicate_stop": true,
       "measured_utc": "2026-10-31T01:33:54.350324+00:00",
       "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-nan.tif",
+      "sha256": "5de1ac78b648dd35ae08325342e205fb749cdc0cc066ae284f2b71791d4c4d9b",
+      "within_3px_fraction_vs_lattice_witness": 0.9969,
+      "within_3px_fraction": 0.9969,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T04:54:13.418542+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
+    },
+    {
+      "file": "docs/downloads/karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-zeros.tif",
+      "sha256": "57a77abd04c17a8ba8f2f9252d3dbf48f5bd200ef8320f23ac797a03835ce21b",
+      "within_3px_fraction_vs_lattice_witness": 0.9969,
+      "within_3px_fraction": 0.9969,
+      "duplicate_stop": true,
+      "measured_utc": "2026-10-31T04:54:13.659040+00:00",
+      "note": "lattice witness share; receipt guard fields unchanged; not a clearance"
     }
   ],
   "complete_registry_checked": false,
@@ -1214,6 +1232,6 @@
   "weekly_slots_used": 0,
   "verdict": "negative",
   "ok_to_submit": false,
-  "generated_utc": "2026-10-31T01:33:54.350504+00:00",
+  "generated_utc": "2026-10-31T04:54:13.659223+00:00",
   "guard_note": "ok_to_submit stays False; this refresh only extends raster coverage"
 }

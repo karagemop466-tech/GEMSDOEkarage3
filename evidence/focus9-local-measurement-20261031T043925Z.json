@@ -1,0 +1,806 @@
+{
+  "schema": "GEMSDOEkarage3-FOCUS9-LOCAL-MEASUREMENT-v1",
+  "generated_utc": "2026-10-31T04:39:25Z",
+  "template": "docs/downloads/sample_submission.tif (EPSG:32611, 3730x3292, 100 m, footprint 5,167,373 px)",
+  "catalogue_labels": "docs/downloads/labels.tif (60,988 catalogue-positive pixels)",
+  "holdout_evaluator": "GEMSDOE32-HIDE-RECOVER-v3.0 (catalogue, 22,232 withheld positives, cluster-bootstrap 95% CI)",
+  "offline_note": "organizer SGMC grid and full registry rasters are not available offline (DrivenData login required); SGMC off-catalogue and full-registry uniqueness not measured here",
+  "highest_reported": {
+    "site": "GEMSDOE32",
+    "value": "0.2778"
+  },
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE24-gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "reported_score": "0.2477",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": "GEMSDOE24-gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "mode": "nan",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 60069,
+        "footprint_fraction": 0.011625,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "format_zeros": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null
+      },
+      "dots": 60069,
+      "footprint_fraction": 0.011625,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.09315052698145053,
+        "ci95": [
+          0.08127878015699064,
+          0.105968402764059
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.09449039902261719,
+        "per_quadrant_dti": {
+          "NW": 0.09340211682185072,
+          "NE": 0.10017765806587951,
+          "SW": 0.0667723954292021,
+          "SE": 0.11760942577353645
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE25": 1.0,
+      "within3_of_GEMSDOE27": 1.0,
+      "within3_of_GEMSDOE28": 0.944714,
+      "within3_of_GEMSDOE30": 1.0,
+      "within3_of_GEMSDOE31": 0.950274,
+      "within3_of_GEMSDOE32": 0.895504,
+      "within3_of_GEMSDOE33": 0.968852,
+      "within3_of_GEMSDOE36": 0.896536,
+      "max_within3_vs_any_focus_site": 1.0,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE25",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE25-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "reported_score": "0.2600",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": "GEMSDOE25-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "mode": "nan",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 44090,
+        "footprint_fraction": 0.008532,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "format_zeros": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null
+      },
+      "dots": 44090,
+      "footprint_fraction": 0.008532,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.09674330401596999,
+        "ci95": [
+          0.08416165969221351,
+          0.10952536708166187
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.09832378835263812,
+        "per_quadrant_dti": {
+          "NW": 0.09828221217601787,
+          "NE": 0.1069962569009595,
+          "SW": 0.06744989964086548,
+          "SE": 0.12056678469270962
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 1.0,
+      "within3_of_GEMSDOE27": 1.0,
+      "within3_of_GEMSDOE28": 0.945158,
+      "within3_of_GEMSDOE30": 1.0,
+      "within3_of_GEMSDOE31": 0.953232,
+      "within3_of_GEMSDOE32": 0.900476,
+      "within3_of_GEMSDOE33": 0.970129,
+      "within3_of_GEMSDOE36": 0.901588,
+      "max_within3_vs_any_focus_site": 1.0,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE27",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE27-gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "reported_score": "0.2449",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": "GEMSDOE27-gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "mode": "nan",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 61328,
+        "footprint_fraction": 0.011868,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "format_zeros": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null
+      },
+      "dots": 61328,
+      "footprint_fraction": 0.011868,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.0927484913819319,
+        "ci95": [
+          0.08085564044154277,
+          0.10539661683022032
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.09411710858500714,
+        "per_quadrant_dti": {
+          "NW": 0.09323828475383727,
+          "NE": 0.1000647519924685,
+          "SW": 0.06634928221212028,
+          "SE": 0.11681611538160255
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 0.981199,
+      "within3_of_GEMSDOE25": 0.980922,
+      "within3_of_GEMSDOE28": 0.926624,
+      "within3_of_GEMSDOE30": 0.980922,
+      "within3_of_GEMSDOE31": 0.932119,
+      "within3_of_GEMSDOE32": 0.878424,
+      "within3_of_GEMSDOE33": 0.950382,
+      "within3_of_GEMSDOE36": 0.879484,
+      "max_within3_vs_any_focus_site": 0.981199,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE28",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE28-gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "reported_score": "0.2710",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": "GEMSDOE28-gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "mode": "nan",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 37660,
+        "footprint_fraction": 0.007288,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "format_zeros": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null
+      },
+      "dots": 37660,
+      "footprint_fraction": 0.007288,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.029360078390480288,
+        "ci95": [
+          0.024959299444030806,
+          0.034382240223559776
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.02984187212014274,
+        "per_quadrant_dti": {
+          "NW": 0.030774816566073258,
+          "NE": 0.032969319734326735,
+          "SW": 0.022584418780881087,
+          "SE": 0.033038933399289885
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 1.0,
+      "within3_of_GEMSDOE25": 1.0,
+      "within3_of_GEMSDOE27": 1.0,
+      "within3_of_GEMSDOE30": 1.0,
+      "within3_of_GEMSDOE31": 0.99777,
+      "within3_of_GEMSDOE32": 0.962454,
+      "within3_of_GEMSDOE33": 0.998672,
+      "within3_of_GEMSDOE36": 0.962985,
+      "max_within3_vs_any_focus_site": 1.0,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE30",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE30-gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "reported_score": "0.2600",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null,
+        "in_footprint_min": null,
+        "in_footprint_max": null
+      },
+      "format_zeros": {
+        "filename": "GEMSDOE30-gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "mode": "zeros",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 44090,
+        "footprint_fraction": 0.008532,
+        "on_catalogue_positive_pixels": 0
+      },
+      "dots": 44090,
+      "footprint_fraction": 0.008532,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.09674330401596999,
+        "ci95": [
+          0.08416165969221351,
+          0.10952536708166187
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.09832378835263812,
+        "per_quadrant_dti": {
+          "NW": 0.09828221217601787,
+          "NE": 0.1069962569009595,
+          "SW": 0.06744989964086548,
+          "SE": 0.12056678469270962
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 1.0,
+      "within3_of_GEMSDOE25": 1.0,
+      "within3_of_GEMSDOE27": 1.0,
+      "within3_of_GEMSDOE28": 0.945158,
+      "within3_of_GEMSDOE31": 0.953232,
+      "within3_of_GEMSDOE32": 0.900476,
+      "within3_of_GEMSDOE33": 0.970129,
+      "within3_of_GEMSDOE36": 0.901588,
+      "max_within3_vs_any_focus_site": 1.0,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE31",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE31-gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "reported_score": "0.2708",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": "GEMSDOE31-gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "mode": "nan",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 40199,
+        "footprint_fraction": 0.007779,
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_min": 0.0,
+        "in_footprint_max": 1.0
+      },
+      "format_zeros": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null
+      },
+      "dots": 40199,
+      "footprint_fraction": 0.007779,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.030516096725810685,
+        "ci95": [
+          0.025680176441420625,
+          0.03605063588978195
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.031042014839025488,
+        "per_quadrant_dti": {
+          "NW": 0.03216449618866432,
+          "NE": 0.033719997307012514,
+          "SW": 0.02313959046806852,
+          "SE": 0.0351439753923566
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 1.0,
+      "within3_of_GEMSDOE25": 1.0,
+      "within3_of_GEMSDOE27": 1.0,
+      "within3_of_GEMSDOE28": 0.996169,
+      "within3_of_GEMSDOE30": 1.0,
+      "within3_of_GEMSDOE32": 0.964352,
+      "within3_of_GEMSDOE33": 0.999378,
+      "within3_of_GEMSDOE36": 0.9649,
+      "max_within3_vs_any_focus_site": 1.0,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE32",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE32-gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "reported_score": "0.2778",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null,
+        "in_footprint_min": null,
+        "in_footprint_max": null
+      },
+      "format_zeros": {
+        "filename": "GEMSDOE32-gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "mode": "zeros",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 37654,
+        "footprint_fraction": 0.007287,
+        "on_catalogue_positive_pixels": 0
+      },
+      "dots": 37654,
+      "footprint_fraction": 0.007287,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.00451537871535044,
+        "ci95": [
+          0.0038164175817344387,
+          0.005261598301920283
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.004600104084398947,
+        "per_quadrant_dti": {
+          "NW": 0.00512840329036098,
+          "NE": 0.005504306306184852,
+          "SW": 0.0036920786311337214,
+          "SE": 0.004075628109916233
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 1.0,
+      "within3_of_GEMSDOE25": 1.0,
+      "within3_of_GEMSDOE27": 1.0,
+      "within3_of_GEMSDOE28": 0.998938,
+      "within3_of_GEMSDOE30": 1.0,
+      "within3_of_GEMSDOE31": 1.0,
+      "within3_of_GEMSDOE33": 0.999894,
+      "within3_of_GEMSDOE36": 1.0,
+      "max_within3_vs_any_focus_site": 1.0,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE33",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE33-GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "reported_score": "0.2632",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null,
+        "in_footprint_min": null,
+        "in_footprint_max": null
+      },
+      "format_zeros": {
+        "filename": "GEMSDOE33-GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "mode": "zeros",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 41865,
+        "footprint_fraction": 0.008102,
+        "on_catalogue_positive_pixels": 0
+      },
+      "dots": 41865,
+      "footprint_fraction": 0.008102,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.0519685128498396,
+        "ci95": [
+          0.04577318545951855,
+          0.05829620661401161
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.05303666414388171,
+        "per_quadrant_dti": {
+          "NW": 0.0587558505626059,
+          "NE": 0.05729500399879353,
+          "SW": 0.03866404161643479,
+          "SE": 0.05743176039769263
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 0.99711,
+      "within3_of_GEMSDOE25": 0.997062,
+      "within3_of_GEMSDOE27": 0.997134,
+      "within3_of_GEMSDOE28": 0.976568,
+      "within3_of_GEMSDOE30": 0.997062,
+      "within3_of_GEMSDOE31": 0.980389,
+      "within3_of_GEMSDOE32": 0.938588,
+      "within3_of_GEMSDOE36": 0.939424,
+      "max_within3_vs_any_focus_site": 0.997134,
+      "unique_vs_focus_sites": false
+    },
+    {
+      "site": "GEMSDOE36",
+      "path": "/home/user/GEMSDOEkarage3/docs/downloads/GEMSDOE36-gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "reported_score": "0.2750",
+      "reported_score_label": "USER-REPORTED / UNVERIFIED (no organizer receipt in this repo)",
+      "geometry": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "format_nan": {
+        "filename": null,
+        "mode": null,
+        "all_checks_passed": null,
+        "checks": null,
+        "emitted_positive_pixels": null,
+        "footprint_fraction": null,
+        "on_catalogue_positive_pixels": null,
+        "in_footprint_min": null,
+        "in_footprint_max": null
+      },
+      "format_zeros": {
+        "filename": "GEMSDOE36-gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "mode": "zeros",
+        "all_checks_passed": true,
+        "checks": {
+          "exact_reference_grid_match": true,
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_zero_nan": true,
+          "in_footprint_zero_inf": true,
+          "in_footprint_zero_sentinel": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_compliant": true,
+          "zero_on_catalogue_leakage": true,
+          "validator_range_0_1_guaranteed": true
+        },
+        "emitted_positive_pixels": 38854,
+        "footprint_fraction": 0.007519,
+        "on_catalogue_positive_pixels": 0
+      },
+      "dots": 38854,
+      "footprint_fraction": 0.007519,
+      "on_catalogue_dots": 0,
+      "holdout_dti": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+        "pooled_dti": 0.004576730703979592,
+        "ci95": [
+          0.0038915913728424577,
+          0.005300784778329944
+        ],
+        "n_withheld_positives": 22232,
+        "n_spatial_clusters": 140,
+        "fold_mean_dti": 0.004661795366142248,
+        "per_quadrant_dti": {
+          "NW": 0.005214630052050634,
+          "NE": 0.00549761253109758,
+          "SW": 0.003859836522286133,
+          "SE": 0.004075102359134644
+        },
+        "label_note": "catalogue-holdout diagnostic; NOT a leaderboard estimate and NOT organizer-confirmed"
+      },
+      "within3_of_GEMSDOE24": 0.979951,
+      "within3_of_GEMSDOE25": 0.979307,
+      "within3_of_GEMSDOE27": 0.980054,
+      "within3_of_GEMSDOE28": 0.977531,
+      "within3_of_GEMSDOE30": 0.979307,
+      "within3_of_GEMSDOE31": 0.978895,
+      "within3_of_GEMSDOE32": 0.978329,
+      "within3_of_GEMSDOE33": 0.979178,
+      "max_within3_vs_any_focus_site": 0.980054,
+      "unique_vs_focus_sites": false
+    }
+  ]
+}

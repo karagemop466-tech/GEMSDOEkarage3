@@ -1,0 +1,192 @@
+{
+  "schema": "GEMSDOEkarage3-RUN-CARD-v1",
+  "generated_utc": "20261031T044512Z",
+  "hypothesis": {
+    "rank": 1,
+    "name": "H-blind-stepover-conduit",
+    "layers": [
+      "labels.tif (catalogue traces -> endpoint/junction structure, distance off trace)"
+    ],
+    "signature": "Clusters of fault-trace endpoints (stepover/relay zones) 200-600 m off the mapped trace; blind, unmapped strands connecting mapped segments.",
+    "off_catalogue_rationale": "Dots are strictly off catalogue traces in the blind-strand corridor; no credit can flow to known USGS/INGENIOUS faults.",
+    "non_fault_mimic": "Erosion gullies, alluvial-fan distributaries, road/linear cultural lineaments.",
+    "cost": "Low \u2014 uses only the local catalogue grid; no external data.",
+    "expected_dti": "Low-moderate; sparse structural targets, no geothermal band available offline.",
+    "selected": true
+  },
+  "mechanism": "Endpoint/stepover density in the 200-600 m off-trace corridor. Blind geothermal conduits most plausibly connect mapped fault strands at stepovers and relays, which leave no mapped surface trace; dots there target hidden faults missing from the catalogue.",
+  "named_non_fault_mimic": "Erosion gullies, alluvial-fan distributaries, road/linear cultural lineaments.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "GEMSDOE32-HIDE-RECOVER-v3.0",
+    "pooled_dti": 0.08637156454930664,
+    "ci95": [
+      0.07992048846701519,
+      0.09225651420505485
+    ],
+    "n_withheld_positives": 22232,
+    "n_spatial_clusters": 140,
+    "label": "catalogue hide-and-recover diagnostic; NOT a leaderboard estimate, NOT organizer-confirmed"
+  },
+  "sgmc_off_catalogue": {
+    "candidate_id": "karage3-h-blindstepover-conduit-20261031T044512Z",
+    "evaluator_version": "GEMSDOE32-SGMC-CAL-v3.0",
+    "score_label": "HOLDOUT-DTI",
+    "n_withheld_positives": 0,
+    "n_spatial_clusters": 140,
+    "n_bootstrap_reps": 1000,
+    "sgmc_raw_pooled_dti": 0.0,
+    "sgmc_raw_ci95": [
+      0.0,
+      0.0
+    ],
+    "sgmc_prevalence_calibrated_dti": 0.0,
+    "sgmc_calibrated_ci95": [
+      0.0,
+      0.0
+    ],
+    "_cal_boots": "[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]"
+  },
+  "registry_correlation_and_overlap": {
+    "vs_nine_focus_sites_max_within3px": 0.0,
+    "vs_nine_focus_sites": {
+      "GEMSDOE24-gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif": 0.0,
+      "GEMSDOE25-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": 0.0,
+      "GEMSDOE27-gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif": 0.0,
+      "GEMSDOE28-gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif": 0.0,
+      "GEMSDOE30-gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif": 0.0,
+      "GEMSDOE31-gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif": 0.0,
+      "GEMSDOE32-gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif": 0.0,
+      "GEMSDOE33-GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif": 0.0,
+      "GEMSDOE36-gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif": 0.0
+    },
+    "unique_vs_focus_sites": true,
+    "full_registry_spearman": "NOT RUNNABLE OFFLINE \u2014 registry rasters are not cached locally (DrivenData login required) and literal_registry_complete=false",
+    "full_registry_within3px": "NOT RUNNABLE OFFLINE \u2014 same reason"
+  },
+  "raster_sha256": "57a77abd04c17a8ba8f2f9252d3dbf48f5bd200ef8320f23ac797a03835ce21b",
+  "raster_sha256_nan": "5de1ac78b648dd35ae08325342e205fb749cdc0cc066ae284f2b71791d4c4d9b",
+  "validator_zeros": {
+    "filename": "karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-zeros.tif",
+    "size_bytes": 99230,
+    "sha256": "57a77abd04c17a8ba8f2f9252d3dbf48f5bd200ef8320f23ac797a03835ce21b",
+    "mode": "zeros",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/docs/downloads/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "None",
+    "emitted_positive_pixels": 10000,
+    "footprint_fraction": 0.001935,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "validator_nan": {
+    "filename": "karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-nan.tif",
+    "size_bytes": 234594,
+    "sha256": "5de1ac78b648dd35ae08325342e205fb749cdc0cc066ae284f2b71791d4c4d9b",
+    "mode": "nan",
+    "geometry_reference": "/home/user/GEMSDOEkarage3/docs/downloads/sample_submission.tif",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "nodata_repr": "nan",
+    "emitted_positive_pixels": 10000,
+    "footprint_fraction": 0.001935,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_finite_pixels": 5167373,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 5167373,
+    "checks": {
+      "exact_reference_grid_match": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_zero_nan": true,
+      "in_footprint_zero_inf": true,
+      "in_footprint_zero_sentinel": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_compliant": true,
+      "zero_on_catalogue_leakage": true,
+      "validator_range_0_1_guaranteed": true
+    },
+    "all_checks_passed": true
+  },
+  "submission_name": "karage3-h-blindstepover-conduit-20261031T044512Z",
+  "submission_note": "Unique blind stepover/relay conduit detector: endpoints 200-600m off catalogue traces, 10k dots, >3px from all nine focus-site dots",
+  "note_length_chars": 131,
+  "emitted_pixels": 10000,
+  "files": {
+    "zeros_tif": "karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-zeros.tif",
+    "nan_tif": "karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-nan.tif",
+    "surface_npy": "karage3-h-blindstepover-conduit-20261031T044512Z-surface.npy",
+    "audit_json": "karage3-h-blindstepover-conduit-20261031T044512Z-audit.json"
+  },
+  "offline_limitations": [
+    "Organizer training features / SGMC grid not available offline (DrivenData login required); SGMC off-catalogue holdout computed against an all-zeros local placeholder (reported 0 / not measurable).",
+    "Full-registry uniqueness (G4/G5/G6) not runnable offline: registry rasters are not cached and literal_registry_complete=false; the registered lattice covers 99.87% of the footprint within 3 px, so the literal full-registry dot rule is unsatisfiable as written for any footprint-internal dot set \u2014 owner decision required.",
+    "No organizer receipt exists for any file; local holdout does not track leaderboard scores."
+  ],
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_submit_reason": "Format-valid and unique against the nine focus sites, but NOT cleared: the project's full-registry literal rule cannot be verified offline (registry rasters not cached; completeness flag false) and is unsatisfiable as written vs the registered lattice; no organizer receipt. Download for inspection/reproduction only.",
+  "leakage_canary": {
+    "rule": "single-feature AUC > 0.90 = leakage until proven otherwise",
+    "result": {
+      "generated_utc": "2026-10-31T04:58:42.987779+00:00",
+      "n_withheld_positives": 22232,
+      "n_negative_sample": 400000,
+      "auc_catalogue_proximity_feature": 0.99421375,
+      "auc_candidate_dot_proximity": 0.8825156393374415,
+      "leakage_threshold": 0.9,
+      "interpretation": "withheld positives are hidden segments of labels.tif itself, so catalogue proximity scores 1.0 by construction; candidate dots are placed off catalogue and dot-proximity AUC is low -> no single input feature leaks hidden truth"
+    },
+    "conclusion": "not leakage: withheld positives are hidden segments of labels.tif itself, so catalogue proximity scores 0.9942 by construction (evaluator hiding design). The candidate places dots off catalogue; its own dot-proximity feature scores 0.8825 < 0.90, below the leakage threshold. Consistent with the low holdout DTI (0.0864): credit comes only from spatial coincidence, not from a leaked feature."
+  }
+}

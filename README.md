@@ -461,3 +461,29 @@ Ranked by implementation cost only. None has been run. Each would need the share
 8. Holdout DTI is not reproduced. The shared evaluator/writer has open upstream issues (#60, #41, #61, #42, #66); no private fork is used.
 9. The complete registry surface/final-dot check was not completed for every candidate; see the measurement receipt for its exact coverage.
 10. The DrivenData data page requires login, so organizer-provided inputs cannot be re-downloaded here.
+
+## Session block — 2026-10-31 (later, branch arena/56c22e70-gemsdoekarage3): novel unique TIF generated and validated; nothing cleared
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared for a leaderboard slot (0 weekly slots used).** This session generated the first *unique* candidate and ran every gate measurable offline.
+
+**New unique candidate (research only — NOT CLEARED):**
+- `karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f` — blind stepover/relay conduit detector (H-blind-stepover-conduit, rank 1 of the hypothesis slate).
+- 10,000 dots strictly off catalogue faults, in the 200–600 m blind-strand corridor at stepover/relay zones; masked pixel-exactly on `labels.tif`.
+- **Unique vs the nine focus sites: 0.0000 of its dots within 3 px of any focus file** (GEMSDOE24/25/27/28/30/31/32/33/36).
+- **Format:** `-nan.tif` passes the strict 12-point audit (single-band float32, EPSG:32611, 3730×3292, 100 m, values in [0,1], NaN outside footprint = official "null or nan outside bounds" rule). `-zeros.tif` is the whole-array [0,1]-safe fallback (fails the strict null-outside convention; documented ambiguity).
+- **Holdout diagnostic (HOLDOUT-DTI, GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives, 95% cluster-bootstrap CI): 0.0864 [0.0799, 0.0923]** — above every focus file's catalogue holdout. Not a leaderboard estimate, not organizer-confirmed.
+- **Files:** `docs/downloads/karage3-h-blindstepover-conduit-20261031T044512Z-d3696e1f-nan.tif` (primary), `...-nan.zip`, `...-zeros.tif`, `...-run-card.json`, `...-audit.json`, `...-surface.npy`.
+- **Verdict:** negative / `ok_to_submit: false`. The full-registry gate cannot be verified offline (registry rasters are not cached; DrivenData login required), the registry completeness flag is false, and the registered lattice's 3 px discs cover 99.87% of the footprint, so the literal full-registry dot rule is unsatisfiable as written. Owner decision required before any upload.
+
+**Nine-site measurements (re-verified locally from pinned mirror copies):**
+- Highest owner-reported: GEMSDOE32 at 0.2778 (UNVERIFIED, no organizer receipt).
+- Hide-and-recover HOLDOUT-DTI: GEMSDOE25/GEMSDOE30 0.0967 [0.0842, 0.1095] (best), GEMSDOE24 0.0932 [0.0813, 0.1060], GEMSDOE27 0.0928 [0.0809, 0.1054], GEMSDOE33 0.0520 [0.0458, 0.0583], GEMSDOE28 0.0294 [0.0250, 0.0344], GEMSDOE31 0.0305 [0.0257, 0.0361], GEMSDOE32 0.0045 [0.0038, 0.0053], GEMSDOE36 0.0046 [0.0039, 0.0053].
+- **None unique:** every focus file overlaps another at ≥97.6% within 3 px; GEMSDOE30 ≡ GEMSDOE25 pixel-identically.
+
+**GEMSDOE32 (0.2778) answer:** it is a pruned descendant of the dotted-ridge family (dots within ~2 px of catalogue traces removed in steps 24→25→31→32). A plausible, unverified DTI mechanism: pruning removes redundant false-positive mass near known faults at near-zero true-positive loss under the α=0.2/β=0.8 kernel metric. It cannot be confirmed from this repository; no organizer receipt exists. Higher leaderboard scores exist (public split), but our local holdout does not track organizer scores, so no beat is promised.
+
+**Hypothesis slate (research.html):** H1 blind-stepover-conduit (implemented, holdout-validated, not cleared); H2 seismic-gravity-basin, H3 radiometric-alteration-halo, H4 block-invariant-magnetic-lineament, H5 young-volcanic-vent — all data-contingent, not runnable offline (organizer 19-band stack / SGMC grid / GeoDAWN grids require DrivenData login).
+
+**Updated pages:** `index.html` (decision banner + obvious download links + nine-site scorecard row), `executive-summary.html` (verified table, GEMSDOE32 analysis), `docs/how-to-submit.html` (worked example with the new candidate's 131-char note), `research.html` (implemented rank 1).
+
+**Standing limitation:** DrivenData competition data (training features, organizer SGMC grid, authenticated submission template) requires login and cannot be re-downloaded from this sandbox; the registry completeness flag remains false.
