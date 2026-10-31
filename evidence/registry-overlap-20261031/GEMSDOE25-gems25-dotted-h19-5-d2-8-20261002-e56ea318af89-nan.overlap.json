@@ -1,0 +1,110 @@
+{
+  "candidate": "GEMSDOE25-gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+  "candidate_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+  "candidate_dots": 44090,
+  "self_copies_skipped": [],
+  "exclude_repo": "buffedlizard55-lab/GEMSDOE25",
+  "registry_distinct_bytes": 1997,
+  "registry_rasters_compared": 1981,
+  "registry_rasters_different_grid": 10,
+  "registry_unreadable": [
+    {
+      "path": "docs/downloads/smoke.tif",
+      "error": "smoke.tif: MissingRequired:TIFF directory is missing required \"StripOffsets\" field"
+    }
+  ],
+  "rule": {
+    "dot_overlap_stop": 0.7,
+    "abs_rho_stop": 0.9,
+    "radius_px": 3.0
+  },
+  "max_candidate_within_3px": 1.0,
+  "max_abs_binary_rho": 1.0,
+  "n_rasters_over_70pct": 333,
+  "n_rasters_over_0p90_rho": 56,
+  "n_registry_rasters_over_50pct_of_footprint": 62,
+  "duplicate_stop": true,
+  "top10": [
+    {
+      "repo_path": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-nan.tif",
+      "sha256": "1ccfcd3d40ad96d0e6b032210bd3f46ffa28d28009bc1db067fc80e33561bf9c",
+      "registry_dots": 5106385,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.010138
+    },
+    {
+      "repo_path": "docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-depth-cond-conductive-under-thin-cover-top37654-20261028T224836Z-e34db98d-zeros.tif",
+      "sha256": "621334388274c4a114e5c2a20c26d4e11bc3e3a44efb7ce09fcf483a3e2c49a0",
+      "registry_dots": 5106385,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.010138
+    },
+    {
+      "repo_path": "docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-nan.tif",
+      "sha256": "8757ceba7e677f27cf8d31f5e6af2ce7971dadae89cf74ba4301cc8d80230856",
+      "registry_dots": 5103418,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.01008
+    },
+    {
+      "repo_path": "docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "local": ".cache/registry/apartanish22-droid/ApartGEMSDOE2/docs/downloads/gemsdoe32-h-mag-edge-slope-mag-x-slope-top37654-20261028T224750Z-2c00c25b-zeros.tif",
+      "sha256": "69a76559ff303c7604b0e35a0cec3af5fe0f7b742b8720e979857b01618a2d35",
+      "registry_dots": 5103418,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.01008
+    },
+    {
+      "repo_path": "docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+      "local": ".cache/registry/buffedlizard55-lab/19GEMSDOE/docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-allfinite.tif",
+      "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+      "registry_dots": 121131,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.598759
+    },
+    {
+      "repo_path": "docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/19GEMSDOE/docs/downloads/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "registry_dots": 121131,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.598759
+    },
+    {
+      "repo_path": "docs/downloads/gems57-h57g-width-normalized-b1329dc0f248-RESEARCH-DO-NOT-SUBMIT.tif",
+      "local": ".cache/registry/buffedlizard55-lab/57GEMSDOE/docs/downloads/gems57-h57g-width-normalized-b1329dc0f248-RESEARCH-DO-NOT-SUBMIT.tif",
+      "sha256": "07d03560f0ef4a793d98b1925156d0fdb74fa21b412579d94b44a4e7f0681d92",
+      "registry_dots": 5106385,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.010138
+    },
+    {
+      "repo_path": "docs/downloads/h57-continuous-anatomy-20261009T201252Z-f44b207a70f0.tif",
+      "local": ".cache/registry/buffedlizard55-lab/57GEMSDOE/docs/downloads/h57-continuous-anatomy-20261009T201252Z-f44b207a70f0.tif",
+      "sha256": "66e8ea67c86374ed67075812e6ab7c7b17d5eaa714b521dcd35c57f58454a46e",
+      "registry_dots": 5106385,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.010138
+    },
+    {
+      "repo_path": "docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+      "local": ".cache/registry/buffedlizard55-lab/5GEMSDOE/docs/downloads/gems-density-probe-20260925T184215Z-9cdae9b4.tif",
+      "sha256": "9cdae9b424c7b3d091755db909daabf96f321d3a78f7ff7143ce81fcf399ac42",
+      "registry_dots": 5106385,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 0.010138
+    },
+    {
+      "repo_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "local": ".cache/registry/buffedlizard55-lab/60GEMSDOE/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "registry_dots": 44090,
+      "candidate_within_3px": 1.0,
+      "binary_rho": 1.0
+    }
+  ],
+  "scope": "hash-verified restored registry (manifest literal_registry_complete=false); not a literal-registry proof"
+}

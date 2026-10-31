@@ -1,0 +1,36 @@
+{
+  "hypothesis": "H-VGZC vertical-gravity zero-crossing edges x horizontal gradient strength",
+  "layers": [
+    "iso_grav_anom_vg",
+    "iso_grav_anom_hg",
+    "labels (catalogue exclusion)"
+  ],
+  "footprint_cells": 5167373,
+  "sentinel_in_footprint": 3061,
+  "zero_crossing_cells_in_footprint": 41991,
+  "strength_percentile": 0.0,
+  "strength_threshold": 1.6623044103244855e-07,
+  "allowed_cells": 4708635,
+  "dots_target": 40000,
+  "dots_placed": 9660,
+  "spacing_px": 3,
+  "surface_float32_sha256": "7f44e2d8a7592fc8878c42b1087fc6a42458280578667d2279607a993210f03d",
+  "mask_npy_sha256": "890d6bdc4caf24819ff68a2f00c1f789b3b960fabad0d8c1405c5fe3f7301293",
+  "template_grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "coincidence_band": "tmi_vg",
+  "note": "Candidate generation only. No holdout score, registry check or slot approval in this file."
+}
