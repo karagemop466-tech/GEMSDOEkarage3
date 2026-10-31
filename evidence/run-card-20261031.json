@@ -1,0 +1,43 @@
+{
+  "session": "2026-10-31 session 8",
+  "answer": "NO. No file cleared. Zero new candidates. Zero weekly slots.",
+  "hypothesis": "none tested this session; two new hypotheses proposed (H-A heat-flow residual, H-B SHmax lineament prior)",
+  "mechanism": "n/a (no candidate built)",
+  "named_non_fault_mimic": {
+    "H-A": "groundwater flow in valley-fill basins and sparse-well artifacts",
+    "H-B": "topographic grain and dikes aligned with the extension direction"
+  },
+  "holdout_dti": {
+    "value": null,
+    "note": "not recomputed; carried values in \u00a76 are HOLDOUT-DTI, evaluator GEMSDOE32-HIDE-RECOVER-v3.0, 22,232 withheld positives"
+  },
+  "correlation_and_overlap": "session-recheck-20261031: all nine files DUPLICATE-STOP; lattice overlap 0.9991\u20130.9992; max peer overlap 0.9758\u20131.0000; max |Spearman| 0.714\u20131.000",
+  "lattice_bound": {
+    "coverage_within_3px": 0.998713,
+    "uncovered_cells": 6649,
+    "max_literal_support_cells": 22163
+  },
+  "validator": "scripts/check_format.py on the nine files: 5 PASS (24, 25, 27, 28, 31), 4 FAIL (30, 32, 33, 36). Two reference files checked by hand (template; -zeros k4 file)",
+  "raster_sha256": {
+    "template": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "lattice": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "verification_scripts_run": 4,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "organizer_confirmed_scores": 0,
+  "irregularities": [
+    "IR-S8-01",
+    "IR-S8-02",
+    "IR-S8-03",
+    "IR-S8-04",
+    "IR-S8-05",
+    "IR-S8-06",
+    "IR-S8-07",
+    "IR-S8-08"
+  ]
+}
