@@ -1,0 +1,32 @@
+{
+  "file": "GEMSDOE24-gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+  "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "checks": {
+    "template_epsg32611_and_100m_unrotated": true,
+    "geotiff": true,
+    "self_contained_no_sidecars": true,
+    "single_band": true,
+    "float32": true,
+    "crs_shape_transform_match_template": true,
+    "inside_finite_and_in_range": true,
+    "inside_not_masked": true,
+    "no_positive_outside_footprint": true,
+    "outside_null_or_nan": true
+  },
+  "all_cell_finite_range_diagnostic": false,
+  "outside_null_or_nan": true,
+  "inside_nonfinite": 0,
+  "inside_out_of_range": 0,
+  "min_all_finite": 0.0,
+  "max_all_finite": 1.0,
+  "format_gate_pass": true,
+  "strict_format_gate_pass": true,
+  "slot_approved": false,
+  "note": "Local format checks only; not an organizer receipt, novelty check, holdout, or slot approval.",
+  "inside_masked_pixels": 0,
+  "footprint_pixels": 5167373,
+  "whole_array_pixels": 12279160,
+  "whole_array_nonfinite": 7111787,
+  "whole_array_out_of_range_finite": 0
+}
