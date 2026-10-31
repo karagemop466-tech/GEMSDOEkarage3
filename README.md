@@ -60,6 +60,46 @@ The 10-29 advice to "use only the `-zeros` files" is **superseded**. The officia
 - **Tests (merged tree):** 232 passed, 1 skipped, 0 failed; `verify_numbers.py` 35/35. `origin/main` alone failed 8 of these tests before this PR.
 - **Owner decisions:** (1) literal-uniqueness rule scope; (2) zeros-outside versus NaN-outside reading; (3) recovery of the K3-fuse generator to check SGMC inputs; (4) which focus registry is authoritative; (5) the exact portal error message and uploaded file.
 
+## START HERE — 2026-10-31 (session 8) — read this first
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No TIFF is cleared. Zero new candidates. Zero weekly slots.**
+
+Full review: [docs/review-2026-10-31.md](docs/review-2026-10-31.md) · run card [evidence/run-card-20261031.json](evidence/run-card-20261031.json) · re-check script [scripts/session_recheck_20261031.py](scripts/session_recheck_20261031.py) → [evidence/session-recheck-20261031.json](evidence/session-recheck-20261031.json)
+
+### Nine-site executive summary (file, estimated score, unique?)
+
+| Site | File to download (research copy only) | Reported score (USER-REPORTED) | Estimated score | Unique? | Format gate | OK to submit? |
+|---|---|---|---|---|---|---|
+| GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-zeros.tif` | 0.2778 | Not estimable | NO (100% within 3 px of GEMSDOE24) | FAIL (zeros) | **NO** |
+| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-…-9b9ea4e6-zeros.tif` | 0.2750 | Not estimable | NO (97.6% vs GEMSDOE27) | FAIL (zeros) | **NO** |
+| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-…-b531dae0a36f-nan.tif` | 0.2710 | Not estimable | NO (100% vs GEMSDOE24) | PASS | **NO** |
+| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-…-8acb75e1-nan.tif` | 0.2708 | Not estimable | NO (100% vs GEMSDOE24) | PASS | **NO** |
+| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-…-cb490425926e.tif` | 0.2632 | Not estimable | NO (99.7% vs GEMSDOE27) | FAIL (zeros) | **NO** |
+| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-…-91eae1ca.tif` | 0.2600 | Not estimable | NO (same cells as GEMSDOE25) | FAIL (zeros) | **NO** |
+| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-…-e56ea318af89-nan.tif` | 0.2600 | Not estimable | NO (100% vs GEMSDOE24) | PASS | **NO** |
+| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-…-989f59505db1-nan.tif` | 0.2477 | Not estimable | NO (100% vs GEMSDOE25) | PASS | **NO** |
+| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-…-5512495c6bd1-nan.tif` | 0.2449 | Not estimable | NO (98.0% vs GEMSDOE24) | PASS | **NO** |
+
+Unique files: **0 of 9**. Every nine-site file is at 99.9% overlap with the registered calibration lattice (limit 70%). Estimated score: **not estimable** (no validated proxy; no organizer receipt). Labels: scores are USER-REPORTED; SHA-256 values were fetched and verified this session.
+
+### What changed this session (all verified; see the review for links)
+
+- **Leaderboard, live fetch 2026-10-31:** #1 xiaofanhu **0.4544**, #2 **0.3925**, #3 **0.3917**. **0.3195 is at #50** (not #48). **0.4413 is not in the top 50.** The request's "0.3195 is the highest score" is incorrect.
+- **Format correction (IR-S8-01):** the `-zeros` files put 0 outside the footprint and **fail** the official "null or nan" rule. Earlier statements that they pass are withdrawn. The `-nan` files pass and match the template's NaN-outside convention. The portal error "Predicted values must be in range [0, 1]" remains **unexplained** (two untested hypotheses in the review, §4).
+- **Metric:** `src/gems32/metric.py` matches the official formulas, and the organizer's forum reply confirms known USGS/INGENIOUS pixels are masked. The lattice bound was re-run and matches (99.87% coverage; 22,163-cell ceiling under the literal rule).
+- **Irregularities:** the mirror template is not the official sample (IR-S8-02). GEMSDOE24's d2-8 file is byte-identical to GEMSDOE25's (IR-S8-03). Full list: review §7.
+- **New hypotheses (untested, no score claimed):** H-A conductive heat-flow residual lineaments (USGS heat-flow release, DOI 10.5066/P9BZPVUC); H-B World Stress Map SHmax-orientation prior (DOI 10.5880/WSM.2016.001). Rejected: INGENIOUS slip-tendency layer (catalogue-derived).
+
+### Decisions needed from the owner (review §8)
+
+1. **D1 — registry scope for the 70% rule.** While the calibration lattice is in the registry, no dot file above 22,163 cells can pass. The request's own list names that lattice as a "GEMSDOE site," so the rule and the request conflict. Decide in writing.
+2. **D2 — the rejected file.** Send the file name, SHA-256 and the full portal message for the "[0, 1]" error.
+3. **D3 — official sample.** Report the SHA-256 and NaN/zero convention of the official `sample_submission` (login-only).
+4. **D4 — source of "0.4413".**
+5. **D5 — experiment budget** for H-A and H-B (three experiments per protocol).
+
+---
+
 ## START HERE — executive summary (2026-10-30) — read first
 
 **OK TO DOWNLOAD AND SUBMIT? NO — no file is cleared. No candidate was generated. No weekly slot was used.**
@@ -86,7 +126,7 @@ Core values: **Maximize P(Win). Own the outcome.**
 - **Why no new TIFF was generated:** the project's literal 70 %/3-px gate against the registered calibration lattice (`13GEMSDOE r13-lattice-s5`) makes any footprint-internal file above **22,163 cells** impossible to clear. Re-measured today: 99.8713 % of the footprint is covered within 3 px; 6,649 cells are uncovered (`scripts/verify_lattice_bound.py` → `evidence/lattice-bound-20261030.json`). Staying under the limit by placing dots on the uncovered ring is refused as boundary gaming.
 - **The competition text has no uniqueness rule** ([page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)). The 70 % gate is this project's protocol. **The owner must choose the registry scope** (keep literal, exclude named calibration/surface rasters with a signature, or use the nine named sites only). Options: [docs/review-2026-10-30.md §6](docs/review-2026-10-30.md).
 - **Live public leaderboard (fetched 2026-10-30, PUBLIC LEADERBOARD, not a submission receipt):** #1 xiaofanhu **0.4544**, #2 cfld__ **0.3916**, #3 Batik Shirt Brothers **0.3911** ([leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). The prompt's 0.4413 and 0.3195 are not confirmed.
-- **Format check (official [page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)):** float32, EPSG:32611, 100 m, values in [0, 1], NaN or null outside bounds. The 7 `-zeros.tif` files in `docs/downloads/` pass this. Their uniqueness gate fails (>99 % overlap with the lattice).
+- **Format check (official [page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)):** float32, EPSG:32611, 100 m, values in [0, 1], NaN or null outside bounds. The 7 `-zeros.tif` files in `docs/downloads/` pass this. **[CORRECTED 2026-10-31, IR-S8-01: they FAIL; see docs/review-2026-10-31.md §4.]** Their uniqueness gate fails (>99 % overlap with the lattice).
 - **Portal error fixed:** the three `-nan.tif` files (7,111,787 NaN cells each) were moved out of `docs/downloads/` into [`docs/quarantine/nan-variants/`](docs/quarantine/nan-variants/NOT-CLEARED.md). Never upload a `-nan.tif`.
 - **Focus-site review (parallel 2026-10-30 session, same decision: NO):** [docs/focus-review-2026-10-30.md](docs/focus-review-2026-10-30.md) — nine-site table with the literal 3-px pairwise matrix, GEMSDOE32 (0.2778) ring-removal ladder 25→31→32 (verified counts), break-even condition, gates, hypotheses, irregularities, owner decisions. Structure receipt (exploratory, not a score): [evidence/focus9-structure-20261030.json](evidence/focus9-structure-20261030.json). **Disagreement to resolve:** that review reads the official page as allowing NaN or null outside bounds (so `-nan` files are format-compliant and the `-zeros` GEMSDOE32 file is not), whereas the quarantine of the `-nan` files treats NaN as the cause of the portal error. The portal error's cause is unverified.
 - **Sample-file irregularity (IR-S7-03):** the mirror's `labels.tif` and `existing_faults.tif` are byte-identical, and `sample_submission.tif` has the same 60,988 positive pixels as the labels. The competition page describes the sample as "total fault absence". Owner must verify against the official download.
