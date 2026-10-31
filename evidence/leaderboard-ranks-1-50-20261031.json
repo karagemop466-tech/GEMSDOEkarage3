@@ -1,0 +1,37 @@
+{
+  "schema": "leaderboard-snapshot-v1",
+  "evidence_class": "PUBLIC LEADERBOARD PAGE READ - NOT AN ORGANIZER SUBMISSION RECEIPT",
+  "companion": "evidence/leaderboard-snapshot-20261031.json (ranks 1-22, from another session on main)",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "read_via": "fetch_page tool, chunks 0-2 of 3, session date 2026-10-31 UTC",
+  "metric_column": "Best public DW-Tversky (public split only; final round rescored on expanded labels per the problem page)",
+  "ranks_read": "1-50",
+  "scores_by_rank": {
+    "1": 0.4544, "2": 0.3934, "3": 0.3917, "4": 0.3860, "5": 0.3642,
+    "6": 0.3631, "7": 0.3568, "8": 0.3558, "9": 0.3557, "10": 0.3550,
+    "11": 0.3544, "12": 0.3533, "13": 0.3520, "14": 0.3500, "15": 0.3480,
+    "16": 0.3476, "17": 0.3447, "18": 0.3440, "19": 0.3418, "20": 0.3417,
+    "21": 0.3416, "22": 0.3407, "23": 0.3405, "24": 0.3399, "25": 0.3396,
+    "26": 0.3396, "27": 0.3389, "28": 0.3388, "29": 0.3364, "30": 0.3354,
+    "31": 0.3349, "32": 0.3348, "33": 0.3344, "34": 0.3335, "35": 0.3330,
+    "36": 0.3328, "37": 0.3314, "38": 0.3313, "39": 0.3312, "40": 0.3311,
+    "41": 0.3308, "42": 0.3295, "43": 0.3280, "44": 0.3273, "45": 0.3262,
+    "46": 0.3261, "47": 0.3244, "48": 0.3231, "49": 0.3217, "50": 0.3195
+  },
+  "checks": {
+    "prompt_value_0_4413_in_ranks_1_50": false,
+    "prompt_value_0_3195_in_ranks_1_50": true,
+    "prompt_value_0_3195_rank": 50,
+    "current_top_score": 0.4544,
+    "current_top_is_above_prompt_value_0_3195": true
+  },
+  "drift_vs_docs_review_2026-10-30": {
+    "rank_2_was": "0.3916 (cfld__)",
+    "rank_2_now": "0.3934 (cfld__)",
+    "rank_3_was": "0.3911 (Batik Shirt Brothers)",
+    "rank_3_now": "0.3917",
+    "value_0_3195_rank_was_recorded_as": ["#47 (README, 2026-10-29)", "#48 (docs/focus-review-2026-10-30.md)", "not in top 50 (docs/review-2026-10-30.md, 2026-10-29 fetch)"],
+    "value_0_3195_rank_now": 50
+  },
+  "note": "Usernames deliberately omitted. Scores are as displayed on the page; they are not verified against any submission file hash."
+}

@@ -31,6 +31,18 @@
 
 ---
 
+## Session block — 2026-10-31 (branch arena/1bf53387-gemsdoekarage3): independent re-verification; still NOT CLEARED
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No slot used. No new TIFF generated.** Full review: [docs/review-2026-10-31.md](docs/review-2026-10-31.md).
+
+- **Why no new TIFF:** the literal rule (70 % of dots within 3 px of any registered raster) cannot be met by any footprint dot file above **22,163 cells** against the pinned lattice witness. Reproduced today from the witness SHA-256 (`b4570b40…`); all five fields match [evidence/lattice-bound-20261030.json](evidence/lattice-bound-20261030.json). Every focus file also fails the rule against another focus file (closest pair 97.6–100 %).
+- **Nine focus sites (measured, not estimated):** [evidence/focus9-verification-20261031.json](evidence/focus9-verification-20261031.json). Best user-reported score: GEMSDOE32 **0.2778** (USER-REPORTED). It is a strict subset of GEMSDOE25 (6,436 dots fewer), so it is not unique. Its removed dots all lie 1–2 px from the known-fault mask, which is the organizer's pixel-exact mask (per the organizer's \"Sep 21\" forum post).
+- **Leaderboard (public page, 2026-10-31):** top **0.4544**; 0.4413 is not in ranks 1–50; 0.3195 is at **rank #50**. Snapshot (ranks 1–50): [evidence/leaderboard-ranks-1-50-20261031.json](evidence/leaderboard-ranks-1-50-20261031.json). A second, ranks 1–22 read from another session is at [evidence/leaderboard-snapshot-20261031.json](evidence/leaderboard-snapshot-20261031.json).
+- **Resolved:** IR-K3-08 (labels ≡ existing faults) is expected: the organizer says the scoring mask is identical to the training labels.
+- **Open:** four focus files store zeros outside the footprint; the official text says null or nan. The portal error's cause is unknown. Send the exact file name and the full message.
+- **Lattice 99.87 % re-run:** `scripts/verify_lattice_bound.py` reproduces the covering figure from the pinned raster (SHA-256 matches the pin). This answers the "not re-runnable" point in the block below.
+- **Tests:** 246 passed, 1 skipped, 0 failed (239 existing + 7 new receipt checks; Python 3.11 venv, `requirements.txt` + `pyproj` + `shapely`).
+
 ## Session block — 2026-10-31 (branch arena/22af5e9a-gemsdoekarage3): review, live leaderboard check, covering-rule re-verification
 
 **OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared, no TIF was generated, and no weekly slot was used.** A new candidate would hit the same covering-witness rule (below), so this session did not spend an experiment budget on one. The standing prompt is already the first section of this README (verbatim).
@@ -39,7 +51,7 @@ Core values: **Maximize P(Win). Own the outcome.**
 
 | What | Where | Status |
 |---|---|---|
-| Live leaderboard snapshot (ranks 1-22) | [evidence/leaderboard-snapshot-20261031.json](evidence/leaderboard-snapshot-20261031.json) | ORGANIZER-CONFIRMED (public page) |
+| Live leaderboard snapshot (ranks 1-22) | [evidence/leaderboard-snapshot-20261031.json](evidence/leaderboard-snapshot-20261031.json) | PUBLIC PAGE READ (corrected from "ORGANIZER-CONFIRMED": a public page is not an organizer receipt); ranks 1-50 in [evidence/leaderboard-ranks-1-50-20261031.json](evidence/leaderboard-ranks-1-50-20261031.json) |
 | Geometric covering check (ideal lattice, no raster needed) | [scripts/verify_lattice_cover_geometry.py](scripts/verify_lattice_cover_geometry.py), [evidence/lattice-cover-geometry-20261031.json](evidence/lattice-cover-geometry-20261031.json) | Measured |
 | Test suite | `pytest tests` (Python 3.11, requirements.txt) | 231 passed, 1 skipped, 0 failed |
 | Consistency checks | `scripts/verify_numbers.py` | 50/50 passed (the 10-30 block cites 35/35; the check count has changed) |

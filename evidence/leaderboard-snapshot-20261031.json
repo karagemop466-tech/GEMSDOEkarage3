@@ -2,7 +2,7 @@
   "schema": "leaderboard-snapshot-v1",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
   "fetched_utc_date": "2026-10-31",
-  "label": "ORGANIZER-CONFIRMED (public leaderboard page, 'Best public DW-Tversky' column)",
+  "label": "PUBLIC PAGE READ (not an organizer receipt; corrected in merge 2026-10-31 from ORGANIZER-CONFIRMED, which AGENTS.md does not allow for a public page)",
   "ranks_seen": "1-22 (fetch returned chunk 0 of 3; ranks 23+ not read this session)",
   "entries": [
     {"rank": 1, "participant": "xiaofanhu", "score": 0.4544},
