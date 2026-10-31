@@ -1,0 +1,37 @@
+{
+  "schema": "leaderboard-snapshot-v1",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "fetched_utc_date": "2026-10-31",
+  "label": "PUBLIC PAGE READ (not an organizer receipt; corrected in merge 2026-10-31 from ORGANIZER-CONFIRMED, which AGENTS.md does not allow for a public page)",
+  "ranks_seen": "1-22 (fetch returned chunk 0 of 3; ranks 23+ not read this session)",
+  "entries": [
+    {"rank": 1, "participant": "xiaofanhu", "score": 0.4544},
+    {"rank": 2, "participant": "cfld__", "score": 0.3934},
+    {"rank": 3, "participant": "Batik Shirt Brothers", "score": 0.3917},
+    {"rank": 4, "participant": "BrandenKMurray", "score": 0.3860},
+    {"rank": 5, "participant": "op01", "score": 0.3642},
+    {"rank": 6, "participant": "No Fault of Our Own", "score": 0.3631},
+    {"rank": 7, "participant": "herculesschonfeldt6", "score": 0.3568},
+    {"rank": 8, "participant": "tommymaherregen", "score": 0.3558},
+    {"rank": 9, "participant": "sevenrights0", "score": 0.3557},
+    {"rank": 10, "participant": "raulcbrooks0909", "score": 0.3550},
+    {"rank": 11, "participant": "luh.correia98", "score": 0.3544},
+    {"rank": 12, "participant": "jaydevelop111", "score": 0.3533},
+    {"rank": 13, "participant": "holandakrait", "score": 0.3520},
+    {"rank": 14, "participant": "j234", "score": 0.3500},
+    {"rank": 15, "participant": "xlgracias", "score": 0.3480},
+    {"rank": 16, "participant": "mzoorob", "score": 0.3476},
+    {"rank": 17, "participant": "joeyfezster", "score": 0.3447},
+    {"rank": 18, "participant": "liel93", "score": 0.3440},
+    {"rank": 19, "participant": "JerryDataWorks", "score": 0.3418},
+    {"rank": 20, "participant": "jay398144", "score": 0.3417},
+    {"rank": 21, "participant": "alexoktaba", "score": 0.3416},
+    {"rank": 22, "participant": "DARD", "score": 0.3407}
+  ],
+  "checks": {
+    "top_score_is_0.4544": true,
+    "score_0.4413_in_ranks_1_22": false,
+    "score_0.3195_in_ranks_1_22": false,
+    "note": "User-reported figures 0.4413 (high) and 0.3195 (current high) conflict with the live page; 0.3195 may sit below rank 22 and was not checked this session."
+  }
+}

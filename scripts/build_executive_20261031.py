@@ -469,7 +469,7 @@ def write_html(nine_rows, cand_rows, a, b, resid_sd, sg_min, sg_max, rho_sg, rho
 <li>Submission-format PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647</a> · CRS: <a href="https://epsg.io/32611">EPSG:32611</a> · Metric family: <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li>
 <li>GEODAWN airborne data: <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS</a></li>
 <li>Receipts: <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/evidence/run-card-20261031.json">run card</a> · <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/evidence/focus9-reeval/">nine-site holdout re-run</a> · <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/evidence/session-20261031/">format and uniqueness</a> · <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/evidence/controls/">random controls</a> · <a href="https://github.com/karagemop466-tech/GEMSDOEkarage3/blob/main/evidence/uniqueness-colocation/">candidate uniqueness</a></li>
-<li>Review: <a href="review-2026-10-31.md">review-2026-10-31.md</a></li>
+<li>Review: <a href="review-2026-10-31-executive.md">review-2026-10-31-executive.md</a></li>
 </ul>
 </body></html>
 """
