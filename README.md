@@ -31,6 +31,17 @@
 
 ---
 
+## Session block — 2026-10-31 (branch arena/1bf53387-gemsdoekarage3): independent re-verification; still NOT CLEARED
+
+**OK TO DOWNLOAD AND SUBMIT? NO. No file is cleared. No slot used. No new TIFF generated.** Full review: [docs/review-2026-10-31.md](docs/review-2026-10-31.md).
+
+- **Why no new TIFF:** the literal rule (70 % of dots within 3 px of any registered raster) cannot be met by any footprint dot file above **22,163 cells** against the pinned lattice witness. Reproduced today from the witness SHA-256 (`b4570b40…`); all five fields match [evidence/lattice-bound-20261030.json](evidence/lattice-bound-20261030.json). Every focus file also fails the rule against another focus file (closest pair 97.6–100 %).
+- **Nine focus sites (measured, not estimated):** [evidence/focus9-verification-20261031.json](evidence/focus9-verification-20261031.json). Best user-reported score: GEMSDOE32 **0.2778** (USER-REPORTED). It is a strict subset of GEMSDOE25 (6,436 dots fewer), so it is not unique. Its removed dots all lie 1–2 px from the known-fault mask, which is the organizer's pixel-exact mask (per the organizer's \"Sep 21\" forum post).
+- **Leaderboard (public page, 2026-10-31):** top **0.4544**; 0.4413 is not in ranks 1–50; 0.3195 is at **rank #50**. Snapshot: [evidence/leaderboard-snapshot-20261031.json](evidence/leaderboard-snapshot-20261031.json).
+- **Resolved:** IR-K3-08 (labels ≡ existing faults) is expected: the organizer says the scoring mask is identical to the training labels.
+- **Open:** four focus files store zeros outside the footprint; the official text says null or nan. The portal error's cause is unknown. Send the exact file name and the full message.
+- **Tests:** 246 passed, 1 skipped, 0 failed (239 existing + 7 new receipt checks; Python 3.11 venv, `requirements.txt` + `pyproj` + `shapely`).
+
 ## Session block — 2026-10-31 (branch arena/7664cd10-gemsdoekarage3): K8-D generated + fully gated → DUPLICATE-STOP; nine sites re-verified; estimate machinery calibrated
 
 Read alongside the 2026-10-30 blocks below. Where they differ, both are reported and the difference is flagged.
